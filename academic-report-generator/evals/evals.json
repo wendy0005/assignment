@@ -1,0 +1,23 @@
+{
+  "skill_name": "academic-report-generator",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Read the provided eTutorialCOMPUTERARCHITECTURE_DegreeWK-ODLJAN2026.pdf and generate a comprehensive academic report in Markdown. Ensure the tone is professional and 'less AI' (using paragraphs for analysis). Include Mermaid diagrams for the instruction cycle and logic gates. Then, convert it to a professional PDF.",
+      "expected_output": "A professional Markdown report and a formatted PDF containing scholarly paragraphs, LaTeX formulas, and Mermaid diagrams.",
+      "files": ["eTutorialCOMPUTERARCHITECTURE_DegreeWK-ODLJAN2026.pdf"]
+    },
+    {
+      "id": 2,
+      "prompt": "Create a technical report on a 'Smart Home Security System' logic circuit (Y = (A AND B) OR C). Use Mermaid for the diagram, include a truth table, and provide a Boolean analysis in scholarly paragraphs (no bullet points for analysis). Render the final output as a PDF.",
+      "expected_output": "A technical report with a Mermaid diagram, truth table, and scholarly analysis, successfully rendered as a PDF.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "Calculate the performance of a CPU with a 3GHz clock, 10^9 instructions, and 1.2 CPI. Show all steps using LaTeX and provide a critical interpretation of the result in a professional paragraph. Render the final result as a PDF.",
+      "expected_output": "A document with precise LaTeX calculations and professional interpretation, rendered as a PDF.",
+      "files": []
+    }
+  ]
+}
