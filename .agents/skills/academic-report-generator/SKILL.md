@@ -20,35 +20,18 @@ This skill provides a rigorous workflow for transforming assignment briefs or re
     - **Case Studies:** Ground technical concepts in real-world examples (e.g., Smart Greenhouse, Building Monitoring).
     - **Human-Centric Writing:** Refine the text to be "less AI" by varying sentence structure and ensuring a natural flow.
 
-3.  **Technical & Visual Rigor:**
+3. **Technical & Visual Rigor:**
     - **Latex Support:** Use LaTeX syntax ($ ... $) for all mathematical formulas and calculations.
     - **Step-by-Step Working:** Show every logical step for any calculations.
     - **Mermaid Diagrams:** Integrate Mermaid.js for flowcharts, architecture diagrams, and logic circuits.
+    - **Academic Styling:** Use "Times New Roman" or "Arial", 12pt/11pt font, and 1.5 line spacing as the standard for academic reports.
 
-4.  **Professional Rendering Workflow:**
-    - **Step 1 (HTML Preview):** Generate a professionally styled HTML version using GitHub-style CSS. Include scripts for MathJax and Mermaid.
-    - **Step 2 (PDF Generation):** Use the `mcp_playwright_browser_run_code` tool to set the content, wait for visuals to render, and export a final A4 PDF.
+4. **Professional Rendering Workflow:**
+    - **Step 1 (Markdown Source):** Create a clean, well-structured `.md` file containing all text, LaTeX formulas, and Mermaid diagrams. This serves as the editable source and raw submission.
+    - **Step 2 (HTML Preview):** Generate a professionally styled HTML version based on the Markdown content.
+    - **Step 3 (PDF Generation):** Use the `mcp_playwright_browser_run_code` tool to convert the HTML to a professional A4 PDF. **Note:** Do not use `require('fs')` inside the browser context as it is not supported. Instead, pass the HTML content as a string variable.
 
 ## Final Output Structure
-- **Markdown Source:** The raw text and diagrams.
-- **HTML Preview:** Temporary interactive and styled version.
-- **PDF Final:** The official submission-ready document.
-
-## Rendering Code Snippet (Playwright)
-When generating the PDF, use a pattern similar to this in `mcp_playwright_browser_run_code`:
-```javascript
-async (page) => {
-    const htmlContent = `...`; // The full HTML string
-    await page.setContent(htmlContent, { waitUntil: 'networkidle' });
-    // Wait for visuals (Mermaid/MathJax) to render
-    await page.waitForTimeout(5000); 
-    const pdfPath = 'Output_Report.pdf';
-    await page.pdf({
-        path: pdfPath,
-        format: 'A4',
-        margin: { top: '20mm', bottom: '20mm', left: '20mm', right: '20mm' },
-        printBackground: true
-    });
-    return `PDF successfully saved to ${pdfPath}`;
-}
-```
+ALWAYS deliver both:
+1.  **Markdown Source:** The `.md` file for version control and raw text access.
+2.  **PDF Final:** The official submission-ready document with full styling and rendered visuals.
