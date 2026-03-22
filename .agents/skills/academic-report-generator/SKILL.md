@@ -19,6 +19,7 @@ This skill provides a rigorous workflow for transforming assignment briefs or re
     - **No Bullet Points for Analysis:** ALWAYS use professional paragraphs and cohesive sentences for theoretical analysis. Bullet points are reserved for simple lists or step-by-step math.
     - **Case Studies:** Ground technical concepts in real-world examples (e.g., Smart Greenhouse, Building Monitoring).
     - **Human-Centric Writing:** Refine the text to be "less AI" by varying sentence structure and ensuring a natural flow.
+    - **Referencing:** Use **Harvard style** for all in-text citations and the reference list. **Crucially, ensure every reference includes its full source (URL, DOI, or publication details) and double-check that the source is active and accurately supports the claim.** Ensure all technical claims are backed by credible academic or industry sources.
 
 3. **Technical & Visual Rigor:**
     - **Latex Support:** Use LaTeX syntax ($ ... $) for all mathematical formulas and calculations.

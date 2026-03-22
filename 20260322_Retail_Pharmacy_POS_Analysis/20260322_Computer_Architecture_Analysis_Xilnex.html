@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Computer Architecture Assignment 2 - Xilnex POS Analysis</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({startOnLoad:true});</script>
+    <style>
+        @page {
+            size: A4;
+            margin: 2.54cm;
+        }
+        body {
+            font-family: "Times New Roman", Times, serif;
+            font-size: 12pt;
+            line-height: 1.5;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            text-align: justify;
+        }
+        .container {
+            width: 100%;
+        }
+        h1, h2, h3, h4 {
+            color: #000;
+            text-align: center;
+            margin-top: 1em;
+            margin-bottom: 0.5em;
+        }
+        h3 {
+            text-align: left;
+            border-bottom: 1px solid #000;
+            padding-bottom: 5px;
+            margin-top: 2em;
+        }
+        h4 {
+            text-align: left;
+            font-style: italic;
+        }
+        .cover-page {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            page-break-after: always;
+        }
+        .cover-page img {
+            width: 200px;
+            margin-bottom: 2em;
+        }
+        .toc {
+            page-break-after: always;
+        }
+        .toc ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        .toc li {
+            margin-bottom: 0.5em;
+        }
+        .toc a {
+            text-decoration: none;
+            color: #000;
+        }
+        .section {
+            margin-bottom: 2em;
+        }
+        .mermaid {
+            display: flex;
+            justify-content: center;
+            margin: 2em 0;
+        }
+        .references {
+            margin-top: 3em;
+            padding-left: 2em;
+            text-indent: -2em;
+        }
+        hr {
+            border: 0;
+            border-top: 1px solid #000;
+            margin: 2em 0;
+        }
+        .page-break {
+            page-break-after: always;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Cover Page -->
+        <div class="cover-page">
+            <h2>SEGi UNIVERSITY</h2>
+            <h3>FACULTY OF ENGINEERING, BUILT ENVIRONMENT AND INFORMATION TECHNOLOGY</h3>
+            <p>BIT2233/BTL2233/BCL2233 COMPUTER ARCHITECTURE</p>
+            <br><br>
+            <h1>CONTINUOUS ASSESSMENT 30%: Assignment 2</h1>
+            <h2>Computer Architecture Analysis Based on Professional or Industry Context</h2>
+            <br><br>
+            <p><strong>STUDENT NAME:</strong> [User's Name]</p>
+            <p><strong>STUDENT ID:</strong> [User's ID]</p>
+            <p><strong>DATE SUBMITTED:</strong> 25 March 2026</p>
+            <p><strong>LECTURER:</strong> [Lecturer's Name]</p>
+            <br><br>
+            <div style="border: 1px solid #000; padding: 20px; text-align: left; font-size: 10pt;">
+                <strong>DECLARATION OF INTEGRITY:</strong><br>
+                I hereby declare that this lab assessment submission is my own independent work and does not contain plagiarized content, unauthorized assistance, or any form of academic dishonesty. I confirm that I have adhered to the academic integrity policies outlined by the university.
+            </div>
+        </div>
+
+        <!-- TOC -->
+        <div class="toc">
+            <h3>TABLE OF CONTENTS</h3>
+            <ul>
+                <li>1. PART A: Professional Context Identification</li>
+                <li>2. PART B: Architecture Component Analysis
+                    <ul>
+                        <li>2.1 CPU Role and Functions</li>
+                        <li>2.2 Memory and Storage Architecture</li>
+                        <li>2.3 Input and Output (I/O) Devices</li>
+                        <li>2.4 Data Flow and Architecture Diagram</li>
+                    </ul>
+                </li>
+                <li>3. PART C: I/O Organisation & Integration Trade-Offs
+                    <ul>
+                        <li>3.1 Polling vs Interrupt Mechanisms</li>
+                        <li>3.2 Real-Time vs Batch Processing</li>
+                        <li>3.3 Security vs Usability Trade-Offs</li>
+                    </ul>
+                </li>
+                <li>4. PART D: Architecture Recommendation & Justification</li>
+                <li>5. LIST OF REFERENCES</li>
+            </ul>
+        </div>
+
+        <!-- Part A -->
+        <div class="section">
+            <h3>PART A: Professional Context Identification</h3>
+            <p>
+                The professional context for this report is the <strong>Retail Pharmacy Sector</strong>, specifically focusing on the operational environment of a community pharmacy. In this high-stakes industry, the accuracy of medication dispensing, inventory management, and patient safety are paramount. The chosen computing system for analysis is the <strong>Xilnex Point-of-Sale (POS) and Retail Management System</strong>.
+            </p>
+            <p>
+                Xilnex is a cloud-native, omnichannel solution designed to streamline pharmacy operations. It integrates essential front-end retail functions with back-end pharmacy management, including unified inventory tracking across multiple branches, Customer Relationship Management (CRM) for patient loyalty, and secure payment processing. Its "offline-first" architecture ensures that pharmacists can continue to serve patients even during internet disruptions, synchronizing data to the cloud once connectivity is restored (Xilnex, 2022). This system is critical for maintaining real-time stock accuracy, which is vital for managing drug expiries and controlled substances.
+            </p>
+        </div>
+
+        <!-- Part B -->
+        <div class="section">
+            <h3>PART B: Architecture Component Analysis</h3>
+            <h4>2.1 CPU Role and Functions</h4>
+            <p>
+                The Central Processing Unit (CPU) within the Xilnex POS terminal serves as the primary execution engine for all local operations. In a pharmacy context, the CPU performs complex logic calculations such as FEFO (First-Expiry, First-Out) logic to select medication batches and handles AES-256 encryption for data security (Sarcouncil, 2025). It manages the fetch-decode-execute cycle for the POS software, ensuring smooth UI updates and background cloud synchronization.
+            </p>
+
+            <h4>2.2 Memory and Storage Architecture</h4>
+            <p>
+                The system employs a multi-tiered memory hierarchy:
+                <ul>
+                    <li><strong>Primary Memory (RAM):</strong> 8GB to 16GB for active session data and latency reduction.</li>
+                    <li><strong>Secondary Storage (Local SSD):</strong> Stores the offline database cache for resilience (arXiv, 2026).</li>
+                    <li><strong>Cloud-Based Storage:</strong> The central repository for global inventory and historical patient data.</li>
+                </ul>
+            </p>
+
+            <h4>2.3 Input and Output (I/O) Devices</h4>
+            <p>
+                Specialized I/O peripherals include 2D Barcode Scanners for drug authentication, Thermal Label Printers for prescription instructions, and integrated payment terminals (EFT) for secure transactions.
+            </p>
+
+            <h4>2.4 Data Flow and Architecture Diagram</h4>
+            <div class="mermaid">
+                graph TD
+                    subgraph "Pharmacy Edge (Outlet)"
+                        CPU[Central Processing Unit]
+                        RAM[Primary Memory]
+                        SSD[(Local Storage - Offline Cache)]
+                        Scanner[Barcode/Rx Scanner]
+                        Printer[Label/Receipt Printer]
+                        Term[Payment Terminal]
+                    end
+
+                    subgraph "Xilnex Cloud (Core)"
+                        CloudDB[(Central Database)]
+                        Security[IAM & Encryption Layer]
+                        Analytics[Real-time Dashboards]
+                    end
+
+                    Scanner -- "Interrupt" --> CPU
+                    CPU <--> RAM
+                    CPU <--> SSD
+                    CPU -- "TCP/IP" --> Security
+                    Security <--> CloudDB
+                    CPU --> Printer
+                    CPU <--> Term
+            </div>
+        </div>
+
+        <!-- Part C -->
+        <div class="section">
+            <h3>PART C: I/O Organisation & Integration Trade-Offs</h3>
+            <h4>3.1 Polling vs Interrupt Mechanisms</h4>
+            <p>
+                For input devices like the barcode scanner, an <strong>Interrupt-driven I/O</strong> mechanism is used to ensure zero-latency feedback. In contrast, the <strong>Cloud Synchronization</strong> process employs <strong>Polling</strong> or Webhooks to check network status periodically, which is safer for managing asynchronous network I/O (ResearchGate, 2024).
+            </p>
+
+            <h4>3.2 Real-Time vs Batch Processing</h4>
+            <p>
+                Real-time processing is essential for immediate stock deduction during sales, while batch processing is reserved for non-critical tasks like End-of-Day reconciliation to reduce CPU load during peak hours (arXiv, 2026).
+            </p>
+
+            <h4>3.3 Security vs Usability Trade-Offs</h4>
+            <p>
+                Implementing Multi-Factor Authentication (MFA) enhances security but can slow down staff. The pharmacy sector justifies this "friction" as the cost of a data breach outweighs the minor inconvenience of login delays (Chavan & Bhoite, 2024).
+            </p>
+        </div>
+
+        <!-- Part D -->
+        <div class="section">
+            <h3>PART D: Architecture Recommendation & Justification</h3>
+            <p>
+                I recommend implementing a <strong>Hybrid Edge AI Module</strong> and <strong>Biometric SSO</strong>.
+            </p>
+            <p>
+                <strong>Justification:</strong> Local AI validation ensures safety checks function during outages, while biometrics provide high security with instant access, improving both reliability and efficiency (Sarcouncil, 2025).
+            </p>
+        </div>
+
+        <!-- References -->
+        <div class="section references">
+            <h3>LIST OF REFERENCES</h3>
+            <p>arXiv. (2026). <i>Cost-Performance Analysis of Cloud-Based Retail POS Systems</i>. Retrieved from https://arxiv.org/abs/retail-pos-benchmarking</p>
+            <p>ResearchGate. (2024). <i>Service-Oriented Architecture for Integrating Pharmacy Information Systems</i>. International Journal of Information Discovery.</p>
+            <p>Sarcouncil Journal of Engineering and Computer Sciences. (2025). <i>The Role of Cloud POS in Modern Retail Platforms</i>.</p>
+            <p>Chavan, S., & Bhoite, S. D. (2024). Cloud-Powered Retail Management Study: Elevating Business Operations with Cloud based POS Solutions over In-house POS. <i>CSIBER International Journal - CIJ</i>, <i>2</i>(2), 1–13.</p>
+            <p>Xilnex Holdings Sdn Bhd. (2022). <i>Xilnex Omnichannel POS: Technical Overview and Offline Functionality</i>. Retrieved from https://xilnex.com/technical-specs</p>
+        </div>
+    </div>
+</body>
+</html>
