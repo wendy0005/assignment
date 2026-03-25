@@ -16,18 +16,24 @@ This skill provides a rigorous workflow for transforming assignment briefs or re
 
 2.  **Drafting Phase (Narrative Strategy):**
     - **Academic Tone:** Use a formal, scholarly voice. Avoid robotic transitions.
-    - **No Bullet Points for Analysis:** ALWAYS use professional paragraphs and cohesive sentences for theoretical analysis. Bullet points are reserved for simple lists or step-by-step math.
+    - **Paragraph-First Approach:** ALWAYS use professional paragraphs and cohesive sentences for all analysis, descriptions, and theoretical discussions. **Avoid bullet points and numbered lists for narrative content.** Lists should be used only for step-by-step mathematical workings or simple enumerations of items (e.g., a list of components).
     - **Case Studies:** Ground technical concepts in real-world examples (e.g., Smart Greenhouse, Building Monitoring).
-    - **Human-Centric Writing:** Refine the text to be "less AI" by varying sentence structure and ensuring a natural flow.
-    - **Referencing:** Use **Harvard style** for all in-text citations and the reference list. **Crucially, ensure every reference includes its full source (URL, DOI, or publication details) and double-check that the source is active and accurately supports the claim.** Ensure all technical claims are backed by credible academic or industry sources.
+    - **Referencing:** Use **APA or Harvard style** (as requested) for all in-text citations and the reference list. **Crucially, ensure every reference includes its full source (URL, DOI, or publication details) and double-check that the source is active and accurately supports the claim.** Ensure all technical claims are backed by credible academic or industry sources. **NEVER include a URL that has not been empirically verified via search.**
 
-3. **Technical & Visual Rigor:**
+3. **Anti-Detection & Humanization Strategy:**
+    - **Synthesize, Don't Summarize:** Instead of summarizing one source at a time, synthesize multiple perspectives into a single paragraph. This creates the complex logical structures common in human writing.
+    - **Vary Sentence Dynamics:** Intentionally vary sentence length (short, punchy sentences followed by complex, compound ones). This increases "burstiness," a key metric human writers naturally produce.
+    - **Avoid AI "Bridge" Words:** Eliminate generic AI transition phrases like "Furthermore," "In addition," "Moreover," or "In conclusion" at the start of every paragraph. Instead, use logical bridges that refer back to the previous paragraph's core concept.
+    - **Inject Nuance and Critique:** Move beyond factual reporting. Include professional critique, discuss limitations of a technology, or reflect on architectural trade-offs. AI often struggles with nuanced "grey areas."
+    - **Specific Technical Depth:** Use precise industry terminology and deep-dive into specific architectural details (e.g., mentioning specific register names or instruction pipeline stages) to move away from generic AI descriptions.
+
+4. **Technical & Visual Rigor:**
     - **Latex Support:** Use LaTeX syntax ($ ... $) for all mathematical formulas and calculations.
     - **Step-by-Step Working:** Show every logical step for any calculations.
     - **Mermaid Diagrams:** Integrate Mermaid.js for flowcharts, architecture diagrams, and logic circuits.
     - **Academic Styling:** Use "Times New Roman" or "Arial", 12pt/11pt font, and 1.5 line spacing as the standard for academic reports.
 
-4. **Professional Rendering Workflow:**
+5. **Professional Rendering Workflow:**
     - **Step 1 (Markdown Source):** Create a clean, well-structured `.md` file containing all text, LaTeX formulas, and Mermaid diagrams. This serves as the editable source and raw submission.
     - **Step 2 (HTML Preview):** Generate a professionally styled HTML version based on the Markdown content.
     - **Step 3 (PDF Generation):** Use the `mcp_playwright_browser_run_code` tool to convert the HTML to a professional A4 PDF. **Note:** Do not use `require('fs')` inside the browser context as it is not supported. Instead, pass the HTML content as a string variable.

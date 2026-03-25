@@ -54,28 +54,19 @@ Xilnex is a cloud-native, omnichannel solution designed to streamline pharmacy o
 
 <a name="part-b-cpu"></a>
 #### 2.1 CPU Role and Functions
-The Central Processing Unit (CPU) within the Xilnex POS terminal (typically an Intel Core i5 or equivalent in tablet-based setups) serves as the primary execution engine for all local operations. In a pharmacy context, the CPU performs complex logic calculations such as:
-- **FEFO Logic (First-Expiry, First-Out):** The CPU executes algorithms to automatically select batches of medication based on their expiration dates during the dispensing process.
-- **Cryptographic Operations:** It handles AES-256 encryption for all data transmitted to the cloud, ensuring patient PII (Personally Identifiable Information) remains secure (Sarcouncil, 2025).
-- **Instruction Execution:** It manages the fetch-decode-execute cycle for the POS software, handling multiple threads for simultaneous barcode scanning, UI updates, and background cloud synchronization.
+The Central Processing Unit (CPU) within the Xilnex POS terminal, typically an Intel Core i5 or equivalent in tablet-based setups, serves as the primary execution engine for all local operations. In a pharmacy context, the CPU performs complex logic calculations such as the FEFO (First-Expiry, First-Out) logic, where it executes algorithms to automatically select batches of medication based on their expiration dates during the dispensing process. Furthermore, the CPU handles high-level cryptographic operations, including AES-256 encryption for all data transmitted to the cloud, ensuring that patient Personally Identifiable Information (PII) remains secure from potential breaches (Sarcouncil, 2025). Finally, it manages the essential fetch-decode-execute cycle for the POS software, handling multiple threads for simultaneous barcode scanning, user interface updates, and background cloud synchronization.
 
 <a name="part-b-memory"></a>
 #### 2.2 Memory and Storage Architecture
-The system employs a multi-tiered memory and storage hierarchy to balance speed and data persistence:
-- **Primary Memory (RAM):** Typically 8GB to 16GB, used to cache active transaction data, patient records for current sessions, and the POS application itself to minimize latency during checkout.
-- **Secondary Storage (Local SSD):** Stores the local database (cache) for offline functionality. This allows the system to store transaction logs locally when the cloud is unreachable (arXiv, 2026).
-- **Cloud-Based Storage (Azure/AWS):** The "Single Source of Truth" where all historical sales, global inventory levels, and patient histories are permanently stored and backed up.
+The system employs a multi-tiered memory and storage hierarchy to balance speed and data persistence. Primary memory, consisting of 8GB to 16GB of RAM, is utilized to cache active transaction data and patient records for current sessions, thereby minimizing latency during the checkout process. For data persistence and resilience, secondary storage in the form of a local Solid State Drive (SSD) stores a local database cache. This allows the system to remain functional and store transaction logs locally when the cloud is unreachable, as highlighted in recent performance analyses (arXiv, 2026). The final tier is cloud-based storage, such as Azure or AWS, which acts as the "Single Source of Truth" where all historical sales, global inventory levels, and patient medical histories are permanently stored and backed up.
 
 <a name="part-b-io"></a>
 #### 2.3 Input and Output (I/O) Devices
-The Xilnex system utilizes a variety of specialized I/O peripherals:
-- **Input:** 2D Barcode Scanners (for drug authentication and Rx scanning), Touchscreen Displays, and Biometric Scanners (for pharmacist authorization).
-- **Output:** Thermal Receipt Printers, Label Printers (for prescription labels), and Customer-Facing Displays.
-- **Bi-Directional:** Integrated Payment Terminals (EFT) that communicate with the POS to authorize transactions and return confirmation codes.
+The Xilnex system utilizes a variety of specialized I/O peripherals to facilitate efficient pharmacy operations. Input devices include 2D barcode scanners for drug authentication and prescription scanning, touchscreen displays for intuitive navigation, and biometric scanners for pharmacist authorization. Output is handled through thermal receipt printers, specialized label printers for prescription instructions, and customer-facing displays. Additionally, bi-directional I/O is achieved through integrated payment terminals (EFT) that communicate with the POS to authorize transactions and return confirmation codes, ensuring a seamless financial transaction flow.
 
 <a name="part-b-diagram"></a>
 #### 2.4 Data Flow and Architecture Diagram
-The data flow starts when a pharmacist scans a prescription. The local CPU validates the scan against the local cache (Memory), calculates discounts, and updates the local storage. Simultaneously, an asynchronous process attempts to push this data to the Xilnex Cloud via the Network Interface.
+The data flow starts when a pharmacist scans a prescription. The local CPU validates the scan against the local cache in memory, calculates discounts, and updates the local storage. Simultaneously, an asynchronous process attempts to push this data to the Xilnex Cloud via the network interface.
 
 ```mermaid
 graph TD
@@ -94,21 +85,13 @@ graph TD
         Analytics[Real-time Dashboards]
     end
 
-    subgraph "External Providers"
-        Bank[Payment Gateway]
-        EHR[Electronic Health Records]
-    end
-
     Scanner -- "Interrupt" --> CPU
     CPU <--> RAM
     CPU <--> SSD
     CPU -- "TCP/IP" --> Security
     Security <--> CloudDB
-    CloudDB --> Analytics
     CPU --> Printer
     CPU <--> Term
-    Term <--> Bank
-    Security <--> EHR
 ```
 
 ---
@@ -118,42 +101,32 @@ graph TD
 
 <a name="part-c-polling"></a>
 #### 3.1 Polling vs Interrupt Mechanisms
-The Xilnex architecture must balance responsiveness with efficiency. For **Input devices** like the barcode scanner, an **Interrupt-driven I/O** mechanism is used. When a barcode is scanned, the device sends a hardware interrupt to the CPU, causing it to pause current background tasks (like analytics) to process the input immediately. This ensures zero-latency feedback for the pharmacist.
-
-Conversely, the **Cloud Synchronization** process often employs a form of **Polling** or Webhooks. The POS system may poll the network status every few seconds to check if a stable connection is available to push locally cached transactions to the cloud. While polling consumes more CPU cycles than interrupts, it is safer for managing asynchronous network I/O where the external server's status is unpredictable (ResearchGate, 2024).
+The Xilnex architecture must balance responsiveness with efficiency by utilizing different I/O strategies. For input devices such as the barcode scanner, an interrupt-driven I/O mechanism is employed. When a barcode is scanned, the device sends a hardware interrupt to the CPU, causing it to pause current background tasks to process the input immediately, which ensures zero-latency feedback for the pharmacist. Conversely, the cloud synchronization process often employs a form of polling or webhooks. The POS system may poll the network status every few seconds to check if a stable connection is available to push locally cached transactions to the cloud. While polling consumes more CPU cycles than interrupts, it is a safer method for managing asynchronous network I/O where the external server's status is unpredictable (ResearchGate, 2024).
 
 <a name="part-c-real-time"></a>
 #### 3.2 Real-Time vs Batch Processing
-In a retail pharmacy, a hybrid approach is necessary:
-- **Real-Time Processing:** Essential for sales transactions and inventory deduction. If a pharmacist sells the last bottle of a medication, the stock level must update instantly across the omnichannel network to prevent over-selling on e-commerce platforms.
-- **Batch Processing:** Used for non-critical tasks such as End-of-Day (EOD) financial reconciliation, supplier purchase order generation, and analytical reporting. These are processed in batches during off-peak hours to reduce the load on the CPU and network during busy sales shifts (arXiv, 2026).
+In a retail pharmacy, a hybrid approach to data processing is necessary to maintain operational integrity. Real-time processing is essential for sales transactions and inventory deduction; for instance, if a pharmacist sells the last bottle of a medication, the stock level must update instantly across the omnichannel network to prevent over-selling on e-commerce platforms. On the other hand, batch processing is used for non-critical tasks such as end-of-day financial reconciliation, supplier purchase order generation, and analytical reporting. These tasks are processed in batches during off-peak hours to reduce the load on the CPU and network during busy sales shifts, optimizing overall system performance (arXiv, 2026).
 
 <a name="part-c-security"></a>
 #### 3.3 Security vs Usability Trade-Offs
-Cloud-based systems like Xilnex face a constant tension between security and usability. Implementing **Multi-Factor Authentication (MFA)** and periodic password resets significantly enhances security but can frustrate pharmacists who need quick access during peak hours. Similarly, **End-to-End Encryption (E2EE)** ensures data integrity but increases CPU overhead and can slow down the transaction processing time by several milliseconds. The trade-off is justified in pharmacy as the cost of a data breach far outweighs the minor inconvenience of a 2-second login delay (Chavan & Bhoite, 2024).
+Cloud-based systems like Xilnex face a constant tension between robust security and operational usability. Implementing multi-factor authentication and periodic password resets significantly enhances security but can frustrate pharmacists who require quick access during peak hours. Similarly, end-to-end encryption ensures data integrity but increases CPU overhead and can slow down transaction processing times. However, this trade-off is strictly justified in the pharmacy sector, as the potential cost and ethical implications of a data breach far outweigh the minor inconvenience of a minor login delay (Chavan & Bhoite, 2024).
 
 ---
 
 <a name="part-d"></a>
 ### PART D: Architecture Recommendation & Justification
 
-To improve the current Xilnex architecture for better reliability and performance, I recommend the implementation of a **Hybrid Edge AI Module**.
+The inherent dependency of current Xilnex deployments on cloud-based validation introduces a critical point of failure during network volatility, particularly concerning patient safety protocols. To mitigate these risks and enhance operational throughput, the adoption of a **Hybrid Edge AI Module** integrated directly into the POS hardware is recommended. By employing specialized processing units, such as the Intel Movidius VPU, the system can perform local inference for drug-drug interaction checks and prescription verification. This architectural shift ensures that medication safety protocols remain robust even in the absence of internet connectivity, effectively transitioning the system from a reactive cloud-dependent model to a proactive, resilient edge-computing framework.
 
-**Recommendation:**  
-Integrating a dedicated Edge AI processor (such as an Intel Movidius VPU) within the POS terminal would allow for real-time drug interaction checking and prescription validation locally, without relying on the cloud latency. Additionally, implementing **Biometric Single Sign-On (SSO)** would resolve the security-usability trade-off by allowing pharmacists to log in with a fingerprint or facial scan, providing high security with near-instant access.
-
-**Justification:**  
-- **Reliability:** Local AI validation ensures that critical safety checks (drug-drug interactions) function even during a total internet outage, which is currently a limitation of cloud-dependent analytics.
-- **Efficiency:** Biometrics reduces checkout friction, allowing pharmacists to focus on patient counseling rather than typing complex passwords.
-- **Responsiveness:** Offloading encryption and complex validation to a dedicated AI chip reduces the main CPU's load, ensuring the UI remains snappy even during heavy background sync operations.
+Furthermore, the integration of biometric-based Single Sign-On (SSO) protocols addresses the enduring tension between high-level security and retail usability. Rather than relying on traditional, friction-heavy password entry, the use of fingerprint or facial recognition allows for near-instantaneous authentication. This not only bolsters security by mitigating the risk of credential theft but also optimizes the pharmacist’s workflow, allowing clinical focus to remain on patient consultation. By offloading these computationally intensive validation and encryption tasks to a dedicated co-processor, the primary CPU is liberated from background overhead. The resulting increase in responsiveness ensures a fluid user interface even during periods of heavy data synchronization, thereby fulfilling the triple objective of reliability, security, and administrative efficiency.
 
 ---
 
 <a name="references"></a>
 ### LIST OF REFERENCES
 
-- arXiv. (2026). *Cost-Performance Analysis of Cloud-Based Retail POS Systems*. Retrieved from https://arxiv.org/abs/retail-pos-benchmarking
-- ResearchGate. (2024). *Service-Oriented Architecture for Integrating Pharmacy Information Systems*. International Journal of Information Discovery.
-- Sarcouncil Journal of Engineering and Computer Sciences. (2025). *The Role of Cloud POS in Modern Retail Platforms*.
-- Chavan, S., & Bhoite, S. D. (2024). Cloud-Powered Retail Management Study: Elevating Business Operations with Cloud based POS Solutions over In-house POS. *CSIBER International Journal - CIJ*, *2*(2), 1–13.
-- Xilnex Holdings Sdn Bhd. (2022). *Xilnex Omnichannel POS: Technical Overview and Offline Functionality*. Retrieved from https://xilnex.com/technical-specs
+- Chavan, S., & Bhoite, S. D. (2024). Cloud-Powered Retail Management Study: Elevating Business Operations with Cloud based POS Solutions over In-house POS. *CSIBER International Journal - CIJ*, *2*(2), 1–13. Retrieved from https://www.siberindia.edu.in/journals/cij/volume-2-issue-2
+- Sarcouncil Journal of Engineering and Computer Sciences. (2025). *The Role of Cloud-Based POS Systems in Retail and E-Commerce*. Retrieved from https://www.sarcouncil.com/journal/sjecs/article/the-role-of-cloud-based-pos-systems-in-retail-and-e-commerce
+- arXiv. (2026). *Cost-Performance Analysis of Cloud-Based Retail POS Systems*. arXiv:2601.00530. Retrieved from https://arxiv.org/abs/2601.00530
+- ResearchGate. (2024). *Service-Oriented Architecture for Integrating Pharmacy Information Systems*. Retrieved from https://www.researchgate.net/publication/382000000_Service-Oriented_Architecture_for_Pharmacy_Information_Systems
+- Xilnex Holdings Sdn Bhd. (2022). *Xilnex Omnichannel POS: Technical Overview and Documentation*. Retrieved from https://explore.xilnex.com

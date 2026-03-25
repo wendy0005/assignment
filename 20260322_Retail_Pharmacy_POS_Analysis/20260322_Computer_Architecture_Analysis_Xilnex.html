@@ -48,10 +48,6 @@
             text-align: center;
             page-break-after: always;
         }
-        .cover-page img {
-            width: 200px;
-            margin-bottom: 2em;
-        }
         .toc {
             page-break-after: always;
         }
@@ -61,10 +57,6 @@
         }
         .toc li {
             margin-bottom: 0.5em;
-        }
-        .toc a {
-            text-decoration: none;
-            color: #000;
         }
         .section {
             margin-bottom: 2em;
@@ -78,11 +70,6 @@
             margin-top: 3em;
             padding-left: 2em;
             text-indent: -2em;
-        }
-        hr {
-            border: 0;
-            border-top: 1px solid #000;
-            margin: 2em 0;
         }
         .page-break {
             page-break-after: always;
@@ -152,22 +139,17 @@
             <h3>PART B: Architecture Component Analysis</h3>
             <h4>2.1 CPU Role and Functions</h4>
             <p>
-                The Central Processing Unit (CPU) within the Xilnex POS terminal serves as the primary execution engine for all local operations. In a pharmacy context, the CPU performs complex logic calculations such as FEFO (First-Expiry, First-Out) logic to select medication batches and handles AES-256 encryption for data security (Sarcouncil, 2025). It manages the fetch-decode-execute cycle for the POS software, ensuring smooth UI updates and background cloud synchronization.
+                The Central Processing Unit (CPU) within the Xilnex POS terminal, typically an Intel Core i5 or equivalent in tablet-based setups, serves as the primary execution engine for all local operations. In a pharmacy context, the CPU performs complex logic calculations such as the FEFO (First-Expiry, First-Out) logic, where it executes algorithms to automatically select batches of medication based on their expiration dates during the dispensing process. Furthermore, the CPU handles high-level cryptographic operations, including AES-256 encryption for all data transmitted to the cloud, ensuring that patient Personally Identifiable Information (PII) remains secure from potential breaches (Sarcouncil, 2025). Finally, it manages the essential fetch-decode-execute cycle for the POS software, handling multiple threads for simultaneous barcode scanning, user interface updates, and background cloud synchronization.
             </p>
 
             <h4>2.2 Memory and Storage Architecture</h4>
             <p>
-                The system employs a multi-tiered memory hierarchy:
-                <ul>
-                    <li><strong>Primary Memory (RAM):</strong> 8GB to 16GB for active session data and latency reduction.</li>
-                    <li><strong>Secondary Storage (Local SSD):</strong> Stores the offline database cache for resilience (arXiv, 2026).</li>
-                    <li><strong>Cloud-Based Storage:</strong> The central repository for global inventory and historical patient data.</li>
-                </ul>
+                The system employs a multi-tiered memory and storage hierarchy to balance speed and data persistence. Primary memory, consisting of 8GB to 16GB of RAM, is utilized to cache active transaction data and patient records for current sessions, thereby minimizing latency during the checkout process. For data persistence and resilience, secondary storage in the form of a local Solid State Drive (SSD) stores a local database cache. This allows the system to remain functional and store transaction logs locally when the cloud is unreachable, as highlighted in recent performance analyses (arXiv, 2026). The final tier is cloud-based storage, such as Azure or AWS, which acts as the "Single Source of Truth" where all historical sales, global inventory levels, and patient medical histories are permanently stored and backed up.
             </p>
 
             <h4>2.3 Input and Output (I/O) Devices</h4>
             <p>
-                Specialized I/O peripherals include 2D Barcode Scanners for drug authentication, Thermal Label Printers for prescription instructions, and integrated payment terminals (EFT) for secure transactions.
+                The Xilnex system utilizes a variety of specialized I/O peripherals to facilitate efficient pharmacy operations. Input devices include 2D barcode scanners for drug authentication and prescription scanning, touchscreen displays for intuitive navigation, and biometric scanners for pharmacist authorization. Output is handled through thermal receipt printers, specialized label printers for prescription instructions, and customer-facing displays. Additionally, bi-directional I/O is achieved through integrated payment terminals (EFT) that communicate with the POS to authorize transactions and return confirmation codes, ensuring a seamless financial transaction flow.
             </p>
 
             <h4>2.4 Data Flow and Architecture Diagram</h4>
@@ -203,17 +185,17 @@
             <h3>PART C: I/O Organisation & Integration Trade-Offs</h3>
             <h4>3.1 Polling vs Interrupt Mechanisms</h4>
             <p>
-                For input devices like the barcode scanner, an <strong>Interrupt-driven I/O</strong> mechanism is used to ensure zero-latency feedback. In contrast, the <strong>Cloud Synchronization</strong> process employs <strong>Polling</strong> or Webhooks to check network status periodically, which is safer for managing asynchronous network I/O (ResearchGate, 2024).
+                The Xilnex architecture must balance responsiveness with efficiency by utilizing different I/O strategies. For input devices such as the barcode scanner, an interrupt-driven I/O mechanism is employed. When a barcode is scanned, the device sends a hardware interrupt to the CPU, causing it to pause current background tasks to process the input immediately, which ensures zero-latency feedback for the pharmacist. Conversely, the cloud synchronization process often employs a form of polling or webhooks. The POS system may poll the network status every few seconds to check if a stable connection is available to push locally cached transactions to the cloud. While polling consumes more CPU cycles than interrupts, it is a safer method for managing asynchronous network I/O where the external server's status is unpredictable (ResearchGate, 2024).
             </p>
 
             <h4>3.2 Real-Time vs Batch Processing</h4>
             <p>
-                Real-time processing is essential for immediate stock deduction during sales, while batch processing is reserved for non-critical tasks like End-of-Day reconciliation to reduce CPU load during peak hours (arXiv, 2026).
+                In a retail pharmacy, a hybrid approach to data processing is necessary to maintain operational integrity. Real-time processing is essential for sales transactions and inventory deduction; for instance, if a pharmacist sells the last bottle of a medication, the stock level must update instantly across the omnichannel network to prevent over-selling on e-commerce platforms. On the other hand, batch processing is used for non-critical tasks such as end-of-day financial reconciliation, supplier purchase order generation, and analytical reporting. These tasks are processed in batches during off-peak hours to reduce the load on the CPU and network during busy sales shifts, optimizing overall system performance (arXiv, 2026).
             </p>
 
             <h4>3.3 Security vs Usability Trade-Offs</h4>
             <p>
-                Implementing Multi-Factor Authentication (MFA) enhances security but can slow down staff. The pharmacy sector justifies this "friction" as the cost of a data breach outweighs the minor inconvenience of login delays (Chavan & Bhoite, 2024).
+                Cloud-based systems like Xilnex face a constant tension between robust security and operational usability. Implementing multi-factor authentication and periodic password resets significantly enhances security but can frustrate pharmacists who require quick access during peak hours. Similarly, end-to-end encryption ensures data integrity but increases CPU overhead and can slow down transaction processing times. However, this trade-off is strictly justified in the pharmacy sector, as the potential cost and ethical implications of a data breach far outweigh the minor inconvenience of a minor login delay (Chavan & Bhoite, 2024).
             </p>
         </div>
 
@@ -221,10 +203,10 @@
         <div class="section">
             <h3>PART D: Architecture Recommendation & Justification</h3>
             <p>
-                I recommend implementing a <strong>Hybrid Edge AI Module</strong> and <strong>Biometric SSO</strong>.
+                The inherent dependency of current Xilnex deployments on cloud-based validation introduces a critical point of failure during network volatility, particularly concerning patient safety protocols. To mitigate these risks and enhance operational throughput, the adoption of a <strong>Hybrid Edge AI Module</strong> integrated directly into the POS hardware is recommended. By employing specialized processing units, such as the Intel Movidius VPU, the system can perform local inference for drug-drug interaction checks and prescription verification. This architectural shift ensures that medication safety protocols remain robust even in the absence of internet connectivity, effectively transitioning the system from a reactive cloud-dependent model to a proactive, resilient edge-computing framework.
             </p>
             <p>
-                <strong>Justification:</strong> Local AI validation ensures safety checks function during outages, while biometrics provide high security with instant access, improving both reliability and efficiency (Sarcouncil, 2025).
+                Furthermore, the integration of biometric-based Single Sign-On (SSO) protocols addresses the enduring tension between high-level security and retail usability. Rather than relying on traditional, friction-heavy password entry, the use of fingerprint or facial recognition allows for near-instantaneous authentication. This not only bolsters security by mitigating the risk of credential theft but also optimizes the pharmacist’s workflow, allowing clinical focus to remain on patient consultation. By offloading these computationally intensive validation and encryption tasks to a dedicated co-processor, the primary CPU is liberated from background overhead. The resulting increase in responsiveness ensures a fluid user interface even during periods of heavy data synchronization, thereby fulfilling the triple objective of reliability, security, and administrative efficiency.
             </p>
         </div>
 
