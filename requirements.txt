@@ -1,0 +1,6 @@
+pypdf
+Pillow
+pdfplumber
+pdf2image
+pyyaml
+lxml
