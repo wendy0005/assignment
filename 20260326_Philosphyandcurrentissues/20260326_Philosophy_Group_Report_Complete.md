@@ -1,6 +1,11 @@
 # PHILOSOPHY AND CURRENT ISSUES (MPU 3193)
 ## Group Report: Topic - Sexual Abuse in Malaysia
 
+**Students:**
+*   Sharvindra A/L Shankar (SUKD2502195) - BIT WK
+*   Abilash A/L Ilanggo (SUOL2500294) - BIT ODL
+*   Chan Jing Yi (SUOL2500321) - BCS ODL
+
 ---
 
 ### A. Introduction of sexual abuse
@@ -41,18 +46,28 @@ External life struggles like poverty and lack of supervision create conditions w
 *   **Real-Life Example:** In 2024 alone, Malaysia recorded as many as 16,000 reports of Child Sexual Abuse Material (CSAM). Predators often use social media platforms like WeChat to trick children as young as seven years old into dangerous digital relationships that can later lead to physical assault (**Safe Online, 2023; PDRM, 2024**).
 
 **The Culture of Silence and Institutional Gaps**
-Abuse persists when there is a lack of oversight and a culture of shame. In many communities, the fear of "malu" (shame) or "rape myths" keeps victims from speaking up.
+Abuse persists when there is a month of oversight and a culture of shame. In many communities, the fear of "malu" (shame) or "rape myths" keeps victims from speaking up.
 *   **Real-Life Example:** The culture of victim-blaming is a major barrier to justice in Malaysia. Public attitudes often place the "burden" on the victim to avoid abuse through their dress or behavior, leading many survivors to suffer in silence rather than report the incident to the police for fear of not being believed (**WAO, 2021; Astro Awani, 2022**).
 
 ---
 
-### E. Impact of sexual abuse on the society
-(Content existing from your teammate's work...)
+### E. Impacts of sexual abuse on the society
+Sexual abuse has profound and far-reaching consequences that extend beyond individual survivors to families, institutions, and society as a whole. At the personal level, survivors often experience long-term psychological trauma, including depression, anxiety, post-traumatic stress disorder (PTSD), and feelings of guilt or shame. These impacts can disrupt education, employment, and relationships, reducing overall quality of life. Physical health may also be affected, with survivors facing increased risks of chronic illness, substance abuse, and reproductive health complications.
+
+The effects ripple outward into families and communities. Survivors’ trauma can strain family cohesion, erode trust, and create cycles of silence or stigma that discourage disclosure. Communities may struggle with the social costs of untreated trauma, including reduced productivity and increased healthcare burdens. Institutions that fail to protect individuals or respond adequately to abuse face a loss of public confidence, damaging their credibility and legitimacy.
+
+On a societal scale, sexual abuse undermines social cohesion and imposes significant economic costs through healthcare, legal processes, and lost productivity. Yet, survivors’ resilience and advocacy have also driven systemic reforms, highlighting the importance of prevention, accountability, and support services. Addressing sexual abuse requires not only strong law enforcement but also comprehensive education, survivor-centered care, and institutional transparency.
+
+Ultimately, the impacts of sexual abuse demonstrate that it is not merely a private issue but a societal crisis demanding collective responsibility and sustained action.
 
 ---
 
 ### F. Statistic of sexual abuse in Malaysia
-(Content existing from your teammate's work...)
+Based on the statistics, there was a noticeable decline in reported sexual harassment cases between 2016 and 2018. This reduction may be attributed to increased law enforcement efforts, public awareness campaigns, and stronger institutional measures aimed at addressing sexual misconduct. However, from 2018 onwards, the number of cases began to rise again, reaching significant peaks in 2021 and 2023.
+
+One possible explanation for this upward trend is the impact of the COVID-19 pandemic. During periods of lockdown, individuals were confined to their homes, which may have heightened risks of domestic abuse and harassment. Additionally, the stress and isolation associated with the pandemic could have exacerbated harmful behaviors. It is also important to note that greater awareness and advocacy during this period may have encouraged more survivors to come forward and report incidents, contributing to the increase in recorded cases.
+
+Overall, while enforcement and awareness efforts have shown some effectiveness, the data highlights the need for sustained preventive strategies, stronger support systems for survivors, and continued education to reduce sexual harassment in Malaysia.
 
 ---
 
@@ -81,8 +96,11 @@ Finally, Social Learning Theory explains the tragic "cycle of abuse" where child
 
 ---
 
-### I. Group Reflection
-(Content existing from your teammate's work...)
+### I. Group Reflection on the sexual abuse
+Through this study, we realised that sexual abuse is not just a personal issue but a societal problem that requires collective action. Awareness, education, and support systems are essential in addressing this issue. We also learned that victims need a safe and supportive environment to come forward. As students, we believe that promoting respect and consent is crucial in preventing abuse.
+
+**ABILASH:**
+Through this study I acquired a better understanding of how sexual abuse represents a breakdown in the moral fabric of our society. The group established that this problem requires collective awareness and support but I discovered that power and respect issues arise from a distorted "culture of thought" which exists in our society. The project showed me that National Education Philosophy defines "balanced human" as someone who needs emotional and spiritual development to protect other people's rights beyond their academic knowledge. I now believe that practicing the National Principles of Kesopanan dan Kesusilaan (Morality and Good Behavior) together with others will help us develop a community which always upholds the practice of required consent. The research demonstrated to me that my educational path and professional journey require me to create safe spaces while upholding ethical standards which will stop future misconduct from occurring.
 
 ---
 
