@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academic Report</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        @page {
+            size: A4;
+            margin: 2.54cm;
+        }
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 12pt;
+            line-height: 1.5;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 100%;
+        }
+        h1, h2, h3 {
+            color: #000;
+        }
+        h1 { font-size: 16pt; text-align: center; margin-bottom: 20px; }
+        h2 { font-size: 14pt; border-bottom: 1px solid #ccc; padding-bottom: 5px; margin-top: 30px; }
+        h3 { font-size: 12pt; margin-top: 20px; }
+        p { margin-bottom: 15px; text-align: justify; }
+        .mermaid { display: flex; justify-content: center; margin: 20px 0; }
+        .declaration { border: 1px solid #000; padding: 15px; margin: 20px 0; font-style: italic; }
+        .signature-line { margin-top: 20px; border-top: 1px solid #000; width: 200px; display: inline-block; }
+        pre { background: #f4f4f4; padding: 10px; border-radius: 5px; font-family: 'Courier New', Courier, monospace; font-size: 10pt; white-space: pre-wrap; }
+        .header { text-align: center; margin-bottom: 40px; }
+        .student-info { margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>BIT1144/BTL114/BCL1144 PROGRAMMING FUNDAMENTALS</h1>
+            <h1>CONTINUOUS ASSESSMENT (ASSIGNMENT 30%): OOP PROGRAM</h1>
+            <h1>APPOINTMENT BOOKING SYSTEM</h1>
+        </div>
+
+        <div class="student-info">
+            <p><strong>STUDENT NAME:</strong> Jingyi Chan</p>
+            <p><strong>STUDENT ID:</strong> [INSERT ID]</p>
+            <p><strong>DUE DATE:</strong> 25 MARCH 2026</p>
+        </div>
+
+        <div class="declaration">
+            <h2>DECLARATION OF INTEGRITY</h2>
+            <p>I hereby declare that this lab assessment submission is my own independent work and does not contain plagiarized content, unauthorized assistance, or any form of academic dishonesty. I confirm that I have adhered to the academic integrity policies outlined by the university. I understand that if any form of academic dishonesty, including plagiarism, falsification of results, or unauthorized collaboration, is detected in this submission, I may face disciplinary actions. This may include, but is not limited to, receiving a failing grade for this assessment or further academic penalties as determined by the university’s academic integrity committee.</p>
+            <p><strong>Student’s Signature:</strong> <span class="signature-line"></span>  <strong>Date:</strong> 25 March 2026</p>
+        </div>
+
+        <h2>1. Problem Description</h2>
+        <p>In contemporary service-oriented industries, the efficient management of client schedules is paramount to operational success. Manual booking processes are often prone to errors, such as double bookings or misplaced records, which can lead to significant administrative overhead and client dissatisfaction. To address these challenges, this project introduces a robust "Appointment Booking System" developed in Java. The system provides a centralized digital interface for recording, viewing, and searching for appointments. By categorizing appointments into "Regular" and "Priority" types, the system allows for nuanced scheduling that can prioritize urgent client needs while maintaining a steady flow for standard services. Furthermore, the integration of persistent file storage ensures that data is preserved across application sessions, providing a reliable alternative to complex database systems for small-scale applications.</p>
+
+        <h2>2. Class Diagram</h2>
+        <div class="mermaid">
+            classDiagram
+                class Appointment {
+                    <<abstract>>
+                    -String clientName
+                    -String date
+                    -String time
+                    +Appointment(String, String, String)
+                    +getClientName() String
+                    +getDate() String
+                    +getTime() String
+                    +getDetails()* String
+                    +toString() String
+                }
+                class RegularAppointment {
+                    -String serviceType
+                    +RegularAppointment(String, String, String, String)
+                    +getServiceType() String
+                    +getDetails() String
+                    +toString() String
+                }
+                class PriorityAppointment {
+                    -String priorityLevel
+                    +PriorityAppointment(String, String, String, String)
+                    +getPriorityLevel() String
+                    +getDetails() String
+                    +toString() String
+                }
+                class BookingSystemGUI {
+                    -ArrayList&lt;Appointment&gt; appointments
+                    +main(String[])
+                    +actionPerformed(ActionEvent)
+                    -addAppointment()
+                    -viewAppointments()
+                    -searchAppointment()
+                    -saveToFile()
+                    -loadFromFile()
+                }
+                Appointment <|-- RegularAppointment
+                Appointment <|-- PriorityAppointment
+                BookingSystemGUI o-- Appointment
+        </div>
+
+        <h2>3. Explanation of OOP Implementation</h2>
+        <p>The system leverages core principles of Object-Oriented Programming (OOP) to ensure a modular, extensible, and maintainable codebase.</p>
+
+        <h3>3.1 Abstraction and Encapsulation</h3>
+        <p>The <code>Appointment</code> class is defined as an <code>abstract</code> class, serving as a blueprint for all specific appointment types. It encapsulates shared attributes such as <code>clientName</code>, <code>date</code>, and <code>time</code> using the <code>private</code> access modifier. Access to these fields is strictly controlled via <code>public</code> getter and setter methods, ensuring data integrity and preventing unauthorized external modification. The abstract method <code>getDetails()</code> enforces a contract that all subclasses must implement their own specialized reporting logic.</p>
+
+        <h3>3.2 Inheritance</h3>
+        <p>Inheritance is demonstrated through the <code>RegularAppointment</code> and <code>PriorityAppointment</code> classes, both of which extend the <code>Appointment</code> base class. This structure promotes code reuse by allowing subclasses to inherit the foundational attributes and methods of the parent class while introducing specialized fields—such as <code>serviceType</code> for regular bookings and <code>priorityLevel</code> for urgent ones. This hierarchical design simplifies the management of diverse appointment categories.</p>
+
+        <h3>3.3 Polymorphism</h3>
+        <p>Polymorphism is achieved through method overriding. Both subclasses provide their own unique implementation of the <code>getDetails()</code> and <code>toString()</code> methods. In the <code>BookingSystemGUI</code> class, an <code>ArrayList&lt;Appointment&gt;</code> is used to store objects of both subclasses. During the "View All" operation, the system iterates through this list and invokes the overridden methods. The Java Virtual Machine (JVM) dynamically determines the correct implementation to execute based on the actual object type at runtime, allowing the system to handle different appointment types uniformly.</p>
+
+        <h2>4. Explanation of File Handling</h2>
+        <p>Data persistence is managed through a text-based file system using the <code>java.io</code> package. The system implements two primary operations: <code>saveToFile()</code> and <code>loadFromFile()</code>.</p>
+        <p>For data exportation, the <code>PrintWriter</code> class is utilized to write appointment details into a comma-separated values (CSV) format within a file named <code>appointments.txt</code>. This format ensures that the data is both human-readable and easily parsable. For data importation, the <code>Scanner</code> class reads the file line-by-line, splitting the strings into individual attributes to reconstruct the <code>Appointment</code> objects within the application's memory.</p>
+        <p>Robust error handling is implemented using <code>try-catch</code> blocks. The <code>saveToFile()</code> method catches <code>IOException</code> to handle potential write errors, while <code>loadFromFile()</code> specifically addresses <code>FileNotFoundException</code> and general <code>Exception</code> types to prevent the application from crashing if the data file is missing or corrupted. This approach ensures a professional user experience by providing informative feedback via the GUI's display area.</p>
+
+        <h2>5. Reflection</h2>
+        <p>Developing the Appointment Booking System was a comprehensive exercise in applying theoretical programming concepts to a functional software solution. The transition from console-based applications to a Graphical User Interface (GUI) using Java Swing presented the most significant learning curve. Managing the layout managers, such as <code>BorderLayout</code> and <code>GridLayout</code>, required a meticulous approach to ensure the interface remained intuitive, responsive, and visually organized across different screen resolutions.</p>
+        <p>One of the primary challenges encountered during development was the implementation of polymorphic file handling. Since the <code>ArrayList</code> contains different types of appointment objects (both <code>RegularAppointment</code> and <code>PriorityAppointment</code>), the <code>saveToFile</code> method had to utilize the <code>instanceof</code> operator to correctly identify and extract specialized fields like <code>serviceType</code> or <code>priorityLevel</code>. This highlighted the practical importance of understanding object types within a class hierarchy. Similarly, during the loading phase, the system had to parse a specific string identifier ("Regular" or "Priority") from the CSV file to decide which subclass to instantiate. This logic was crucial for maintaining the integrity of the specialized data and demonstrated the "Factory" pattern concepts in a practical setting.</p>
+        <p>Another significant technical hurdle was ensuring robust error management. Initially, the application would crash if the <code>appointments.txt</code> file was missing or formatted incorrectly. By implementing structured <code>try-catch</code> blocks, I learned how to provide meaningful feedback to the user via <code>JOptionPane</code> and the GUI display area, rather than allowing the program to terminate abruptly. This transition towards "defensive programming" is a vital skill for creating production-ready software.</p>
+        <p>A significant limitation of the current prototype is its reliance on a simple text file for storage. While effective for small datasets, a text file lacks the advanced querying and indexing capabilities of a relational database. For instance, searching for a specific client name requires a linear search through the entire list (O(n) complexity), which would become inefficient as the number of records grows. Future iterations of this project could integrate a database like SQLite or MySQL to enhance performance and data security. Furthermore, the GUI could be improved by incorporating data validation logic, such as using <code>Regex</code> to validate the date and time formats. Overall, this project has deepened my understanding of the entire OOP lifecycle—from architectural design (Class Diagrams) to implementation, testing, and documentation.</p>
+
+        <h2>6. Evidence / Appendix</h2>
+        <h3>6.1 GUI Implementation</h3>
+        <p>The GUI consists of a single-frame layout featuring:</p>
+        <ul>
+            <li><strong>Input Panel:</strong> Text fields for Name, Date, Time, and Type-specific details.</li>
+            <li><strong>Action Buttons:</strong> "Add Appointment", "View All", "Search Name", "Save to File", and "Load from File".</li>
+            <li><strong>Output Area:</strong> A scrollable text area for displaying system messages and appointment lists.</li>
+        </ul>
+
+        <h3>6.2 Sample Output (Source Code Reference)</h3>
+        <p>The system generates a text file formatted as follows:</p>
+        <pre><code>Regular,John Doe,25-03-2026,10:00,Consultation
+Priority,Jane Smith,25-03-2026,11:30,High</code></pre>
+    </div>
+    <script>
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+</body>
+</html>
