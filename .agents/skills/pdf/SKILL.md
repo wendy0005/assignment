@@ -6,6 +6,9 @@ license: Proprietary. LICENSE.txt has complete terms
 
 # PDF Processing Guide
 
+## Naming Convention (CRITICAL)
+- **YYYYMMDD Prefix:** ALWAYS prefix newly created PDF files or folders with the current date in YYYYMMDD format (e.g., `20260326_report.pdf`).
+
 ## Overview
 
 This guide covers essential PDF processing operations using Python libraries and command-line tools. For advanced features, JavaScript libraries, and detailed examples, see REFERENCE.md. If you need to fill out a PDF form, read FORMS.md and follow its instructions.
