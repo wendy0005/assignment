@@ -25,9 +25,11 @@ This skill provides a rigorous workflow for transforming assignment briefs or re
         - **BANNED HOOKS:** "In contemporary...", "In the rapidly evolving...", "In today's digital age...", "To address these challenges...", "Paramount to...".
         - **BANNED TRANSITIONS:** "Furthermore," "Moreover," "In addition," "Notably," "It is important to note," "Overall," "In conclusion," "Moving forward," "Additionally," "Lastly," "Finally," "Basically," "Essentially."
         - **BANNED CLOSING PHRASES:** "Deepened my understanding," "A comprehensive exercise," "Crucial for maintaining," "Significantly reduce," "Enhance performance."
+        - **BANNED CONVERSATIONAL FILLERS (Avoid Over-Correction):** Do not sacrifice academic tone to bypass AI detectors. NEVER use: "When we think about it," "For one thing," "Look at," "Basically," "To put it simply," "One of the aspects," "It is worrying that," "Imagine if," "Let's consider."
     - **Logical Flow over Transitional Fillers:** Use the *content* of the previous paragraph to bridge to the next. For example, instead of "Furthermore, the GUI...", use "While the backend manages the logic, the user interface provides the necessary interaction points..."
+    - **Avoid Formulaic Paragraphs:** AI often uses a predictable [Topic Sentence -> Data -> Elaboration -> Conclusion] structure. Break this by starting with an active scholarly argument or a direct critique. Integrate citations natively into the argument (e.g., "Predatory behavior exploits systemic vulnerabilities (Finkelhor, 2009)" instead of "According to Finkelhor (2009)...").
     - **Vary Sentence Dynamics:** Intentionally vary sentence length (short, punchy sentences followed by complex, compound ones). This increases "burstiness," a key metric human writers naturally produce.
-    - **Avoid AI "Bridge" Words:** Eliminate generic AI transition phrases like "Furthermore," "In addition," "Moreover," or "In conclusion" at the start of every paragraph. Instead, use logical bridges that refer back to the previous paragraph's core concept.
+    - **Achieve "Burstiness" through Academic Syntax:** Use academic punctuation (em-dashes, semicolons) and inverted clauses. Follow a dense, technical compound sentence with a short, declarative one to create natural variation.
     - **Inject Nuance and Critique:** Move beyond factual reporting. Include professional critique, discuss limitations of a technology, or reflect on architectural trade-offs. AI often struggles with nuanced "grey areas."
     - **Specific Technical Depth:** Use precise industry terminology and deep-dive into specific architectural details (e.g., mentioning specific register names or instruction pipeline stages) to move away from generic AI descriptions.
 
@@ -39,8 +41,8 @@ This skill provides a rigorous workflow for transforming assignment briefs or re
 
 5. **Professional Rendering Workflow:**
     - **Step 1 (Markdown Source):** Create a clean, well-structured `.md` file containing all text, LaTeX formulas, and Mermaid diagrams. This serves as the editable source and raw submission.
-    - **Step 2 (HTML Preview):** Generate a professionally styled HTML version based on the Markdown content.
-    - **Step 3 (PDF Generation):** Use the `mcp_playwright_browser_run_code` tool to convert the HTML to a professional A4 PDF. **Note:** Do not use `require('fs')` inside the browser context as it is not supported. Instead, pass the HTML content as a string variable.
+    - **Step 2 (HTML Preview):** Generate a professionally styled HTML version based on the Markdown content. Ensure you include the **Mermaid.js** script and a custom renderer (e.g., in `marked.js`) that converts `mermaid` code blocks into `<div class="mermaid">` elements. Use a listener (like `mermaid.run()`) to trigger the rendering.
+    - **Step 3 (PDF Generation):** Use the `mcp_playwright_browser_run_code` tool to convert the HTML to a professional A4 PDF. **Crucially, your Playwright script MUST wait for the Mermaid diagrams to finish rendering.** Use `await page.waitForSelector('.mermaid svg', { timeout: 10000 });` to ensure all diagrams have been converted to SVG before calling `page.pdf()`. **Note:** Do not use `require('fs')` inside the browser context as it is not supported. Instead, pass the HTML content as a string variable or navigate to a local file.
 
 ## Final Output Structure
 ALWAYS deliver both:
