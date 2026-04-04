@@ -1,0 +1,15 @@
+flowchart TD
+    Start([Start]) --> Init[Initialize Registers: Count=10, Sum=0]
+    Init --> Read[Read Sensor Value from Memory]
+    Read --> Sum[Add to Accumulator]
+    Sum --> Next[Update Pointer & Decrement Count]
+    Next --> CheckCount{Count > 0?}
+    CheckCount -- Yes --> Read
+    CheckCount -- No --> Avg[Calculate Average]
+    Avg --> StoreAvg[Store Average]
+    StoreAvg --> Thresh{Average > Threshold?}
+    Thresh -- Yes --> SetFlag[Set Irrigation Flag = 1]
+    Thresh -- No --> ClearFlag[Set Irrigation Flag = 0]
+    SetFlag --> StoreFlag[Store Irrigation Flag]
+    ClearFlag --> StoreFlag
+    StoreFlag --> Stop([End])

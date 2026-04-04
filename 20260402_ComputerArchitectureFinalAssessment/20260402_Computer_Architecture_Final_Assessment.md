@@ -55,30 +55,9 @@ In a pipelined implementation of this RISC architecture, data hazards occur when
 ---
 
 ### 4. Data Flow Diagram
-The following Mermaid diagram illustrates the architectural flow of data during the execution of the traced instructions.
+The following diagram illustrates the architectural flow of data during the execution of the traced instructions.
 
-```mermaid
-graph LR
-    subgraph CPU
-        CU[Control Unit]
-        PC[Program Counter]
-        RF[Register File]
-        ALU[Arithmetic Logic Unit]
-    end
-    subgraph Storage
-        MEM[Main Memory]
-    end
-
-    PC -->|Address| MEM
-    MEM -->|Instruction| CU
-    CU -->|Control Signals| RF
-    CU -->|Control Signals| ALU
-    RF -->|Operands| ALU
-    ALU -->|Result| RF
-    RF -->|Data to Store| MEM
-    ALU -->|Effective Address| MEM
-    MEM -->|Loaded Data| RF
-```
+![Data Flow Diagram](dataflow-diagram.png)
 
 ---
 
@@ -133,23 +112,7 @@ END:
 
 ### 2. Logic Flowchart
 
-```mermaid
-flowchart TD
-    Start([Start]) --> Init[Initialize Registers: Count=10, Sum=0]
-    Init --> Read[Read Sensor Value from Memory]
-    Read --> Sum[Add to Accumulator]
-    Sum --> Next[Update Pointer & Decrement Count]
-    Next --> CheckCount{Count > 0?}
-    CheckCount -- Yes --> Read
-    CheckCount -- No --> Avg[Calculate Average]
-    Avg --> StoreAvg[Store Average]
-    StoreAvg --> Thresh{Average > Threshold?}
-    Thresh -- Yes --> SetFlag[Set Irrigation Flag = 1]
-    Thresh -- No --> ClearFlag[Set Irrigation Flag = 0]
-    SetFlag --> StoreFlag[Store Irrigation Flag]
-    ClearFlag --> StoreFlag
-    StoreFlag --> Stop([End])
-```
+![Logic Flowchart](logic-flowchart.png)
 
 ### 3. Register Usage Table
 

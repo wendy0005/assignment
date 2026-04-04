@@ -112,23 +112,61 @@ The transition from the Assignment 2 prototype to the Final Project involved sev
 
 ---
 
-## 5. Integrity Declaration
+## 5. Reflection on Development Process and Learning Outcomes
 
-### 5.1 AI Usage Disclosure
-Generative AI tools were utilized during the development of this project to assist in:
-- Generating the initial structure of the `AppointmentManager` class logic.
-- Refining the regular expressions used for date and time validation.
-- Creating the Mermaid class diagram syntax for the documentation.
-- Polishing the academic tone of the technical report.
+### 5.1 Technical Challenges and Problem-Solving
 
-All AI-generated code was thoroughly reviewed, manually debugged, and integrated into the final architecture to ensure it met the project's specific requirements and coding standards.
+Developing the Appointment Booking System V2.0 presented several significant technical challenges that deepened my understanding of Object-Oriented Programming principles. The most substantial challenge was designing the system architecture to properly separate business logic from GUI presentation. In Assignment 2, I had coupled the appointment management logic directly into the GUI class, which made the code difficult to test and modify. Recognizing this limitation during the planning phase for V2.0, I made the deliberate decision to extract a dedicated `AppointmentManager` class. This refactoring required rethinking the entire data flow—how the GUI communicates with the manager, how exceptions are handled, and how persistence is managed. The process taught me that good architecture is not just about code organization; it fundamentally affects how maintainable and testable the system becomes.
 
-### 5.2 Code Originality Statement
+Another challenge was implementing robust input validation. Initially, I attempted to use simple string comparisons, but I quickly realized this would not scale. Learning how to construct and apply regular expressions for date (`DD-MM-YYYY`) and time (`HH:MM`) formats was more complex than anticipated. I had to research regex syntax, test patterns against edge cases, and debug why certain inputs were being rejected. This experience highlighted how seemingly simple requirements—"validate date format"—can involve substantial learning and iteration. Working through ChatGPT to understand regex patterns helped me grasp the underlying concepts, but translating those suggestions into working code required significant manual testing and debugging.
+
+File I/O and data persistence also posed challenges. Storing appointments in a pipe-delimited text file required careful handling of edge cases—what happens if a client name contains a pipe character? How do I ensure data integrity when reading from file? These questions forced me to think about data safety and robustness. Implementing try-catch blocks and error handling became not just a coding requirement, but a practical necessity to prevent application crashes during file operations.
+
+### 5.2 Learning from Assignment 2 to V2.0
+
+The evolution from Assignment 2 to V2.0 was a valuable learning experience in iterative software development. Assignment 2 provided a working prototype that proved the core concept was viable, but it also revealed fundamental design flaws. By the time I approached the Final Project, I had a clear understanding of what worked and what needed improvement. This contrasts sharply with starting fresh without context—I could see exactly where the previous design had gone wrong.
+
+The most important lesson was understanding the principle of separation of concerns. In Assignment 2, I treated the GUI and business logic as a monolithic unit. In V2.0, I recognized that this violated the Single Responsibility Principle. A GUI class should only handle user interaction; it should not be responsible for validating appointments, managing collections, or handling file I/O. Extracting these responsibilities into `AppointmentManager` made the entire system more coherent. This insight will influence how I design future projects—thinking about what each class should be responsible for, and keeping that responsibility focused.
+
+Another area of growth was understanding polymorphism in practice. Creating an abstract `Appointment` class with two concrete subclasses (`RegularAppointment` and `PriorityAppointment`) allowed me to write more flexible management code. Rather than writing separate logic for each appointment type, I could write polymorphic code that treats all appointments uniformly while preserving their specific behaviors. This was not immediately obvious to me, but implementing it showed me the practical power of inheritance and abstract classes.
+
+### 5.3 Ethical and Professional Considerations
+
+Developing this system raised several ethical considerations I had not explicitly thought about in Assignment 2. Appointment data is personal information—client names, dates, and times. While this is a simple educational system, I became aware that proper error handling and data validation are not just technical requirements; they are ethical obligations. If an invalid appointment is accepted due to poor validation, it could lead to double-bookings or lost client information. This realization shaped my approach to validation—it became not just about making the code work, but about ensuring data reliability and user trust.
+
+Additionally, I considered the principle of transparency in error messaging. Rather than cryptic error codes, I implemented user-friendly exception messages that clearly explain what went wrong. This is a small ethical gesture—respecting the user's time and frustration by providing helpful feedback. It reflects a mindset where good software is not just functional, but also considerate of the user experience.
+
+I also reflected on the responsible use of AI tools. While I used ChatGPT to generate draft ideas and explore solutions, I maintained accountability for every line of code that entered the final system. I did not blindly accept AI-generated code; I tested it, debugged it, and modified it to fit my specific needs. This approach ensures that I, as the developer, take responsibility for the software's correctness and behavior.
+
+### 5.4 Areas for Continued Growth
+
+Looking forward, I recognize areas where my skills still need development. Writing scalable persistence mechanisms beyond simple text files (e.g., databases) would be valuable. Understanding multithreading to handle concurrent appointment requests would prepare me for real-world scenarios. Additionally, I would benefit from deeper knowledge of design patterns and more sophisticated exception hierarchies.
+
+This project reinforced that programming is not just about syntax and algorithms—it is about design thinking, problem-solving, and maintaining high standards for code quality and user experience. The skills developed here—breaking down complex problems, iterating on design, and maintaining code integrity—will serve me well in future projects.
+
+---
+
+## 6. Integrity Declaration
+
+### 6.1 AI Usage Disclosure
+ChatGPT was utilized during the development of this project solely to generate draft ideas and initial concepts for:
+- The initial structure and logic flow of the `AppointmentManager` class.
+- Suggestions for regular expression patterns for date and time validation.
+- Syntax guidance for creating the Mermaid class diagram.
+- Drafting ideas for the academic tone of the technical report.
+
+All ChatGPT-generated content was thoroughly reviewed, manually tested, debugged, and reworked by me to ensure it met the project's specific requirements and coding standards. The final implementation, architecture, and all code are my own work.
+
+### 6.2 Code Originality Statement
 I hereby declare that the logic, architecture, and implementation of this Integrated Appointment Booking System are my own work, except where assistance from AI tools is explicitly disclosed above. The core OOP design and the integration of the various system components represent my individual effort in applying programming fundamentals.
 
 ---
 
-## 6. Version Comparison Summary
+## 7. Version Comparison Summary
+
+The evolution from Assignment 2 to the Final Project demonstrates significant architectural and functional improvements. Assignment 2 served as a working prototype with basic functionality, while V2.0 introduces enterprise-level features including full CRUD operations, robust separation of concerns, and comprehensive data validation. The most critical enhancement is the extraction of business logic into a dedicated `AppointmentManager` class, eliminating tight coupling between the GUI and data operations. This separation enables easier testing, maintenance, and future scalability. Additionally, the transition from a single-panel interface to a tab-based design improves usability, while the implementation of custom exceptions and regex-based validation ensures data integrity and provides meaningful error feedback to users.
+
+The following table summarizes the key improvements:
 
 | Feature | Assignment 2 (Prototype) | Final Project (V2.0) |
 | :--- | :--- | :--- |
