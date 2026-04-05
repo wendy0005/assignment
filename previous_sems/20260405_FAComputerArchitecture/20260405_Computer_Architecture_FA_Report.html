@@ -37,30 +37,79 @@
             padding: 20px;
             text-align: center;
         }
+        .toc {
+            background-color: #f6f8fa;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+        }
+        .toc h2 {
+            margin-top: 0;
+            border-bottom: none;
+        }
+        .toc ul {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+        .toc li {
+            margin-bottom: 5px;
+        }
+        .toc a {
+            text-decoration: none;
+            color: #0969da;
+        }
+        .toc a:hover {
+            text-decoration: underline;
+        }
         @media print {
             body { padding: 0; max-width: 100%; }
             .markdown-body { padding: 1cm; }
             table { page-break-inside: avoid; }
+            .toc { page-break-after: always; }
         }
     </style>
 </head>
 <body>
     <article class="markdown-body">
-        <h1>BIT2233/BTL2333/BCL2233 COMPUTER ARCHITECTURE</h1>
-        <h2>FINAL ASSESSMENT: Embedded Smart Sensor Controller Analysis</h2>
-
-        <p><strong>Student Name:</strong> [Your Name]<br>
-        <strong>Student ID:</strong> [Your ID]<br>
-        <strong>Programme:</strong> Bachelor in Information Technology (Honours)<br>
-        <strong>Course Code:</strong> BIT2233<br>
-        <strong>Lecturer’s Name:</strong> [Lecturer Name]<br>
-        <strong>Date:</strong> 5 April 2026</p>
 
         <hr>
 
-        <h2>Part A: Architecture Understanding & Instruction Analysis</h2>
+        <div class="toc">
+            <h2>Table of Contents</h2>
+            <ul>
+                <li>1. <a href="#part-a">Part A: Architecture Understanding & Instruction Analysis</a>
+                    <ul>
+                        <li>1.1 <a href="#a1">Fetch-Decode-Execute Cycle</a></li>
+                        <li>1.2 <a href="#a2">Instruction Tracing</a></li>
+                        <li>1.3 <a href="#a3">Data Hazards (Pipelining)</a></li>
+                        <li>1.4 <a href="#a4">Data Flow Diagram</a></li>
+                    </ul>
+                </li>
+                <li>2. <a href="#part-b">Part B: Assembly Program Development</a>
+                    <ul>
+                        <li>2.1 <a href="#b1">Assembly Source Code</a></li>
+                        <li>2.2 <a href="#b2">Flowchart</a></li>
+                        <li>2.3 <a href="#b3">Register Usage Table</a></li>
+                    </ul>
+                </li>
+                <li>3. <a href="#part-c">Part C: Performance & Data Flow Analysis</a>
+                    <ul>
+                        <li>3.1 <a href="#c1">Performance Metrics Calculation</a></li>
+                        <li>3.2 <a href="#c2">Identification of Bottlenecks</a></li>
+                        <li>3.3 <a href="#c3">Proposed Optimizations</a></li>
+                        <li>3.4 <a href="#c4">Comparison Table</a></li>
+                    </ul>
+                </li>
+                <li>4. <a href="#part-d">Part D: Reflection on Architecture Learning</a></li>
+                <li>5. <a href="#references">References</a></li>
+            </ul>
+        </div>
 
-        <h3>1. Fetch-Decode-Execute Cycle</h3>
+        <hr>
+
+        <h2 id="part-a">Part A: Architecture Understanding & Instruction Analysis</h2>
+
+        <h3 id="a1">1. Fetch-Decode-Execute Cycle</h3>
         <p>The Fetch-Decode-Execute (FDE) cycle is the fundamental operational process of a CPU. For a RISC-based processor, this cycle ensures that instructions are processed systematically.</p>
         <ul>
             <li><strong>Fetch:</strong> The Control Unit (CU) fetches the instruction from memory at the address stored in the Program Counter (PC). The instruction is then loaded into the Instruction Register (IR), and the PC is incremented to point to the next instruction.</li>
@@ -68,7 +117,7 @@
             <li><strong>Execute:</strong> The actual operation is carried out. For arithmetic tasks, the ALU performs the calculation. For memory access, the address is calculated, and data is moved between the Register File and Memory. Results are written back to the destination register.</li>
         </ul>
 
-        <h3>2. Instruction Tracing</h3>
+        <h3 id="a2">2. Instruction Tracing</h3>
         <table>
             <thead>
                 <tr>
@@ -104,14 +153,15 @@
             </tbody>
         </table>
 
-        <h3>3. Data Hazards (Pipelining)</h3>
+        <h3 id="a3">3. Data Hazards (Pipelining)</h3>
         <p>In a pipelined architecture, data hazards occur when instructions depend on the results of previous instructions that have not yet completed.</p>
         <ul>
             <li><strong>Read-After-Write (RAW):</strong> This is the most critical hazard in this sequence. The <code>ADD R3, R1, R4</code> instruction depends on <code>R1</code>, which is being loaded by the previous <code>LOAD</code> instruction. If the <code>LOAD</code> hasn't reached the Write-Back (WB) stage before <code>ADD</code> reaches the Execute (EX) stage, a stall or data forwarding is required.</li>
             <li><strong>Hazard Mitigation:</strong> The system may use "stalling" (inserting NOPs) or "data forwarding" (passing the result directly from the MEM stage to the EX stage) to maintain performance without compromising data integrity.</li>
         </ul>
 
-        <h3>4. Data Flow Diagram</h3>
+        
+        <h3 id="a4">4. Data Flow Diagram</h3>
         <div class="mermaid">
             flowchart LR
                 subgraph CPU
@@ -133,9 +183,9 @@
 
         <hr>
 
-        <h2>Part B: Assembly Program Development</h2>
+        <h2 id="part-b">Part B: Assembly Program Development</h2>
 
-        <h3>1. Assembly Source Code</h3>
+        <h3 id="b1">1. Assembly Source Code</h3>
         <pre><code>; Embedded Smart Sensor Controller Program
 ; Registers:
 ; R1: Loop Counter (10 to 0)
@@ -173,7 +223,7 @@ STORE_RES:
     STORE R7, 0x204      ; Store Flag at 0x204
     HALT                 ; End of Process</code></pre>
 
-        <h3>2. Flowchart</h3>
+        <h3 id="b2">2. Flowchart</h3>
         <div class="mermaid">
             flowchart TD
                 Init([Start]) --> Setup[Initialize Registers<br/>Count=10, Sum=0]
@@ -190,7 +240,7 @@ STORE_RES:
                 Store --> End([End])
         </div>
 
-        <h3>3. Register Usage Table</h3>
+        <h3 id="b3">3. Register Usage Table</h3>
         <table>
             <thead>
                 <tr>
@@ -240,9 +290,9 @@ STORE_RES:
 
         <hr>
 
-        <h2>Part C: Performance & Data Flow Analysis</h2>
+        <h2 id="part-c">Part C: Performance & Data Flow Analysis</h2>
 
-        <h3>1. Performance Metrics Calculation</h3>
+        <h3 id="c1">1. Performance Metrics Calculation</h3>
         <p>Based on the implementation, we can estimate the performance metrics for the original (unoptimized) loop versus an optimized version.</p>
         <p><strong>Assumptions:</strong></p>
         <ul>
@@ -258,17 +308,17 @@ STORE_RES:
         <p>\(Cycles = IC \times CPI\)<br>
         \(Cycles_{Original} = 70 \times 1.5 = 105\) cycles.</p>
 
-        <h3>2. Identification of Bottlenecks</h3>
+        <h3 id="c2">2. Identification of Bottlenecks</h3>
         <p>The primary performance bottleneck in the original system is the <strong>high frequency of memory access and branch instructions</strong>. In a 10-iteration loop, the <code>BRANCH</code> and <code>LOAD</code> instructions repeatedly stall the pipeline. Furthermore, the reliance on a single accumulator (R3) creates a serial dependency chain, preventing parallel execution of additions.</p>
 
-        <h3>3. Proposed Optimizations</h3>
+        <h3 id="c3">3. Proposed Optimizations</h3>
         <ol>
             <li><strong>Loop Unrolling:</strong> By processing two or four sensor values per iteration, we reduce the total number of <code>BRANCH</code> and <code>SUBI</code> instructions.</li>
             <li><strong>Register Reuse:</strong> Instead of frequent memory access, we can load multiple values into a register block to minimize the overhead of the memory bus.</li>
             <li><strong>Instruction Scheduling:</strong> Reordering <code>LOAD</code> and <code>ADD</code> instructions to allow the <code>LOAD</code> to complete during the execution of unrelated instructions, thus mitigating RAW hazards.</li>
         </ol>
 
-        <h3>4. Comparison Table</h3>
+        <h3 id="c4">4. Comparison Table</h3>
         <table>
             <thead>
                 <tr>
@@ -303,7 +353,7 @@ STORE_RES:
 
         <hr>
 
-        <h2>Part D: Reflection on Architecture Learning</h2>
+        <h2 id="part-d">Part D: Reflection on Architecture Learning</h2>
 
         <p>The study of computer architecture through the development of an embedded sensor controller highlights the intricate relationship between software instructions and hardware efficiency. This reflection explores how instruction behavior, data flow, and hardware-software integration define system performance.</p>
 
@@ -317,7 +367,7 @@ STORE_RES:
 
         <hr>
 
-        <h2>References</h2>
+        <h2 id="references">References</h2>
         <ul>
             <li>Hennessy, J. L., & Patterson, D. A. (2017). <em>Computer Architecture: A Quantitative Approach</em> (6th ed.). Morgan Kaufmann.</li>
             <li>Null, L., & Lobur, J. (2018). <em>The Essentials of Computer Organization and Architecture</em>. Jones & Bartlett Learning.</li>

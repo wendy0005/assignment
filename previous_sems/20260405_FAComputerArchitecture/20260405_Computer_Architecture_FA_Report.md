@@ -1,17 +1,28 @@
-# BIT2233/BTL2333/BCL2233 COMPUTER ARCHITECTURE
-## FINAL ASSESSMENT: Embedded Smart Sensor Controller Analysis
 
-**Student Name:** [Your Name]  
-**Student ID:** [Your ID]  
-**Programme:** Bachelor in Information Technology (Honours)  
-**Course Code:** BIT2233  
-**Lecturer’s Name:** [Lecturer Name]  
-**Date:** 5 April 2026
+## Table of Contents
+1.  **[Part A: Architecture Understanding & Instruction Analysis](#part-a)**
+    *   [1.1 Fetch-Decode-Execute Cycle](#a1)
+    *   [1.2 Instruction Tracing](#a2)
+    *   [1.3 Data Hazards (Pipelining)](#a3)
+    *   [1.4 Data Flow Diagram](#a4)
+2.  **[Part B: Assembly Program Development](#part-b)**
+    *   [2.1 Assembly Source Code](#b1)
+    *   [2.2 Flowchart](#b2)
+    *   [2.3 Register Usage Table](#b3)
+3.  **[Part C: Performance & Data Flow Analysis](#part-c)**
+    *   [3.1 Performance Metrics Calculation](#c1)
+    *   [3.2 Identification of Bottlenecks](#c2)
+    *   [3.3 Proposed Optimizations](#c3)
+    *   [3.4 Comparison Table](#c4)
+4.  **[Part D: Reflection on Architecture Learning](#part-d)**
+5.  **[References](#references)**
 
 ---
 
+<a name="part-a"></a>
 ## Part A: Architecture Understanding & Instruction Analysis
 
+<a name="a1"></a>
 ### 1. Fetch-Decode-Execute Cycle
 The Fetch-Decode-Execute (FDE) cycle is the fundamental operational process of a CPU. For a RISC-based processor, this cycle ensures that instructions are processed systematically.
 
@@ -19,6 +30,7 @@ The Fetch-Decode-Execute (FDE) cycle is the fundamental operational process of a
 *   **Decode:** The CU interprets the opcode within the IR. It identifies the operation to be performed (e.g., LOAD, ADD) and determines the source and destination registers or memory addresses involved.
 *   **Execute:** The actual operation is carried out. For arithmetic tasks, the ALU performs the calculation. For memory access, the address is calculated, and data is moved between the Register File and Memory. Results are written back to the destination register.
 
+<a name="a2"></a>
 ### 2. Instruction Tracing
 The following table traces the execution of three specific instructions within the sensor controller system.
 
@@ -28,11 +40,13 @@ The following table traces the execution of three specific instructions within t
 | 2 | `ADD R3, R1, R4` | Add contents of R1 and R4, store in R3. | $R3 \leftarrow R1 + R4$ | None |
 | 3 | `STORE R3, 4(R2)` | Store content of R3 into memory at R2 + 4. | None | $Mem[R2 + 4] \leftarrow R3$ |
 
+<a name="a3"></a>
 ### 3. Data Hazards (Pipelining)
 In a pipelined architecture, data hazards occur when instructions depend on the results of previous instructions that have not yet completed.
 *   **Read-After-Write (RAW):** This is the most critical hazard in this sequence. The `ADD R3, R1, R4` instruction depends on `R1`, which is being loaded by the previous `LOAD` instruction. If the `LOAD` hasn't reached the Write-Back (WB) stage before `ADD` reaches the Execute (EX) stage, a stall or data forwarding is required.
 *   **Hazard Mitigation:** The system may use "stalling" (inserting NOPs) or "data forwarding" (passing the result directly from the MEM stage to the EX stage) to maintain performance without compromising data integrity.
 
+<a name="a4"></a>
 ### 4. Data Flow Diagram
 The following diagram illustrates the flow of data between the primary components of the RISC processor during the sensor processing task.
 
@@ -57,8 +71,10 @@ flowchart LR
 
 ---
 
+<a name="part-b"></a>
 ## Part B: Assembly Program Development
 
+<a name="b1"></a>
 ### 1. Assembly Source Code
 The following RISC assembly program reads 10 sensor values, calculates the average, compares it against a threshold (defined here as 25°C), sets a flag if exceeded, and stores the final result.
 
@@ -101,6 +117,7 @@ STORE_RES:
     HALT                 ; End of Process
 ```
 
+<a name="b2"></a>
 ### 2. Flowchart
 ```mermaid
 flowchart TD
@@ -118,6 +135,7 @@ flowchart TD
     Store --> End([End])
 ```
 
+<a name="b3"></a>
 ### 3. Register Usage Table
 | Register | Name | Purpose |
 | :--- | :--- | :--- |
@@ -131,8 +149,10 @@ flowchart TD
 
 ---
 
+<a name="part-c"></a>
 ## Part C: Performance & Data Flow Analysis
 
+<a name="c1"></a>
 ### 1. Performance Metrics Calculation
 Based on the implementation, we can estimate the performance metrics for the original (unoptimized) loop versus an optimized version.
 
@@ -148,14 +168,17 @@ $IC_{Original} = 5 + (6 \times 10) + 5 = 70$ instructions.
 $Cycles = IC \times CPI$
 $Cycles_{Original} = 70 \times 1.5 = 105$ cycles.
 
+<a name="c2"></a>
 ### 2. Identification of Bottlenecks
 The primary performance bottleneck in the original system is the **high frequency of memory access and branch instructions**. In a 10-iteration loop, the `BRANCH` and `LOAD` instructions repeatedly stall the pipeline. Furthermore, the reliance on a single accumulator (R3) creates a serial dependency chain, preventing parallel execution of additions.
 
+<a name="c3"></a>
 ### 3. Proposed Optimizations
 1.  **Loop Unrolling:** By processing two or four sensor values per iteration, we reduce the total number of `BRANCH` and `SUBI` instructions.
 2.  **Register Reuse:** Instead of frequent memory access, we can load multiple values into a register block to minimize the overhead of the memory bus.
 3.  **Instruction Scheduling:** Reordering `LOAD` and `ADD` instructions to allow the `LOAD` to complete during the execution of unrelated instructions, thus mitigating RAW hazards.
 
+<a name="c4"></a>
 ### 4. Comparison Table
 | Metric | Original | Optimised | Improvement |
 | :--- | :---: | :---: | :---: |
@@ -167,6 +190,7 @@ The primary performance bottleneck in the original system is the **high frequenc
 
 ---
 
+<a name="part-d"></a>
 ## Part D: Reflection on Architecture Learning
 
 The study of computer architecture through the development of an embedded sensor controller highlights the intricate relationship between software instructions and hardware efficiency. This reflection explores how instruction behavior, data flow, and hardware-software integration define system performance.
@@ -181,6 +205,7 @@ Finally, the importance of hardware and software integration cannot be overstate
 
 ---
 
+<a name="references"></a>
 ## References
 
 *   Hennessy, J. L., & Patterson, D. A. (2017). *Computer Architecture: A Quantitative Approach* (6th ed.). Morgan Kaufmann.
