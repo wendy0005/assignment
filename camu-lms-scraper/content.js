@@ -117,6 +117,29 @@
     return topics;
   }
 
+  // ---- GO BACK TO MAIN PAGE FROM ITEM VIEW ----
+  async function goBackToMainPage() {
+    const closeSelectors = [
+      "button.page-close",
+      ".page-close",
+      "button.close",
+      ".btn-close",
+      "[aria-label='Close']",
+      "[aria-label='Back']",
+      ".page-back",
+      ".nav-link.back",
+    ];
+    for (const sel of closeSelectors) {
+      const el = document.querySelector(sel);
+      if (el) {
+        el.dispatchEvent(new MouseEvent("click", { bubbles: true, cancelable: true }));
+        await sleep(2000);
+        if (!window.location.hash.includes("page-content")) return true;
+      }
+    }
+    return false;
+  }
+
   // ---- COLLECT ALL SIDEBAR ITEMS ----
   function getSidebarItems(topicFilter) {
     const items = [];
@@ -264,10 +287,14 @@
         return result;
       }
 
-      // Click each sidebar item and extract content
-      let prevTopic = "";
+      // Process topics one at a time — click first item, next-chapter through it,
+      // then close and continue to the next topic
+      const processedTopics = new Set();
       for (let i = 0; i < items.length; i++) {
         const { label, topic, element } = items[i];
+
+        // Skip items from topics already processed via next-chapter
+        if (processedTopics.has(topic)) continue;
 
         chrome.runtime.sendMessage({
           action: "scrape-progress",
@@ -337,7 +364,15 @@
 
             prevLabel = nLabel;
           }
-          break; // exit sidebar loop since we're now in item view + next-chapter
+
+          // Mark topic done and go back to main page for the next topic
+          processedTopics.add(topic);
+          if (await goBackToMainPage()) {
+            await sleep(2000);
+            continue; // Continue sidebar loop → next topic's first item
+          } else {
+            break; // Could not go back — exit
+          }
         } else {
           // Not in item view yet - sidebar click didn't navigate
           result.contents.push({
