@@ -1,0 +1,144 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 420px;
+  max-height: 560px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 14px;
+  background: #f8f9fa;
+  color: #1a1a2e;
+}
+
+.container {
+  padding: 16px;
+}
+
+h1 {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: #16213e;
+}
+
+#status {
+  font-size: 13px;
+  color: #6c757d;
+  margin-bottom: 16px;
+  padding: 8px 12px;
+  background: #e9ecef;
+  border-radius: 6px;
+}
+
+.btn-group {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+.btn-full {
+  width: 100%;
+  padding: 12px 16px;
+  font-size: 15px;
+  margin-bottom: 12px;
+}
+
+.btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.btn:hover {
+  opacity: 0.85;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-primary {
+  background: #0d6efd;
+  color: #fff;
+}
+
+.btn-secondary {
+  background: #6c757d;
+  color: #fff;
+}
+
+.btn-small {
+  padding: 6px 12px;
+  font-size: 12px;
+  background: #e9ecef;
+  color: #495057;
+}
+
+.btn-small:hover {
+  background: #dee2e6;
+}
+
+.hidden {
+  display: none;
+}
+
+#progress {
+  margin-bottom: 12px;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 8px;
+  background: #e9ecef;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 6px;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 0%;
+  background: #0d6efd;
+  border-radius: 4px;
+  transition: width 0.3s;
+}
+
+#progress-text {
+  font-size: 13px;
+  color: #6c757d;
+}
+
+#result {
+  margin-bottom: 12px;
+}
+
+#output {
+  width: 100%;
+  max-height: 320px;
+  overflow: auto;
+  font-family: "SF Mono", "Fira Code", monospace;
+  font-size: 11px;
+  background: #1a1a2e;
+  color: #e4e4e4;
+  padding: 12px;
+  border-radius: 6px;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.error-box {
+  padding: 10px 14px;
+  background: #f8d7da;
+  color: #842029;
+  border-radius: 6px;
+  font-size: 13px;
+}

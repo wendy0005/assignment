@@ -1,0 +1,33 @@
+{
+  "manifest_version": 3,
+  "name": "Camu LMS Scraper",
+  "version": "1.0.0",
+  "description": "Extract course content from Camu LMS pages and export as markdown/JSON.",
+  "permissions": ["activeTab", "storage", "scripting"],
+  "host_permissions": [
+    "https://staff-spark.segi.edu.my/*",
+    "https://student-spark.segi.edu.my/*",
+    "https://segitslee-iot-portal-2026.web.app/*"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Camu LMS Scraper"
+  },
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://staff-spark.segi.edu.my/lms*",
+        "https://student-spark.segi.edu.my/lms*"
+      ],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "icons": {
+    "128": "icon.png"
+  }
+}
