@@ -124,6 +124,7 @@
       ".page-close",
       "button.close",
       ".btn-close",
+      ".hide-content_view",
       "[aria-label='Close']",
       "[aria-label='Back']",
       ".page-back",
@@ -134,7 +135,8 @@
       if (el) {
         el.dispatchEvent(new MouseEvent("click", { bubbles: true, cancelable: true }));
         await sleep(2000);
-        if (!window.location.hash.includes("page-content")) return true;
+        const stillInView = document.querySelector(".hide-content_view");
+        if (!window.location.hash.includes("page-content") || !stillInView) return true;
       }
     }
     return false;
@@ -197,6 +199,12 @@
       const t = cleanText(raw);
       if (t.startsWith("Topic ") || /^\d+\.\s/.test(t)) { btn.click(); await sleep(300); }
     }
+
+    // Wait for AJAX-loaded items to populate expanded panels
+    for (let w = 0; w < 30; w++) {
+      if (!document.querySelector(".no-cont_height")) break;
+      await sleep(500);
+    }
     await sleep(1000);
   }
 
@@ -245,7 +253,7 @@
         const c = getCurrentContent();
         const label = c.label || c.nextChapterItem || "";
         if (!label || label === prevLabel) break;
-        if (result.contents.some((cc) => cc.label === label)) break;
+        if (result.contents.some((cc) => cc.topic === (c.topic || c.nextChapterTopic || "") && cc.label === label)) break;
         if (selectedTopics && selectedTopics.length > 0) {
           const itemTopic = c.topic || c.nextChapterTopic || "";
           if (itemTopic && !selectedTopics.includes(itemTopic)) break;
@@ -280,42 +288,45 @@
       // Expand all sections first
       await expandAll();
 
-      // Collect all sidebar items
-      const items = getSidebarItems(selectedTopics);
-      if (items.length === 0) {
-        result.status = "error: no sidebar items found";
+      // Determine which topics to scrape
+      let topicsToScrape = selectedTopics;
+      if (!topicsToScrape || topicsToScrape.length === 0) {
+        topicsToScrape = await fetchTopicList();
+      }
+      if (!topicsToScrape || topicsToScrape.length === 0) {
+        result.status = "error: no topics found";
         return result;
       }
 
-      // Process topics one at a time — click first item, next-chapter through it,
-      // then close and continue to the next topic
-      const processedTopics = new Set();
-      for (let i = 0; i < items.length; i++) {
-        const { label, topic, element } = items[i];
+      // Process each topic one at a time — re-expand, get fresh items, scrape, close
+      for (const topicName of topicsToScrape) {
+        // Re-expand sidebar (topics may have collapsed after returning from item view)
+        await expandAll();
 
-        // Skip items from topics already processed via next-chapter
-        if (processedTopics.has(topic)) continue;
+        // Get fresh items for this topic
+        const topicItems = getSidebarItems([topicName]);
+        if (topicItems.length === 0) continue;
+        const firstItem = topicItems[0];
 
         chrome.runtime.sendMessage({
           action: "scrape-progress",
-          current: i + 1,
-          total: items.length,
-          label: `${topic} > ${label}`,
+          current: result.contents.length + 1,
+          total: "?",
+          label: `${topicName} > ${firstItem.label}`,
         });
 
-        clickSidebarItem(element);
+        clickSidebarItem(firstItem.element);
         await sleep(3000);
 
         const c = getCurrentContent();
 
-        // Check if we're now in item view
         if (window.location.hash.includes("page-content")) {
           let ic = { html: "", text: "" };
           if (c.iframeSrc) ic = await scrapeIframeSrc(c.iframeSrc);
 
           result.contents.push({
-            label: c.label || label,
-            topic: c.topic || topic,
+            label: c.label || firstItem.label,
+            topic: c.topic || topicName,
             quillHtml: c.quillHtml || "",
             quillText: c.quillText || "",
             iframeSrc: c.iframeSrc || "",
@@ -334,7 +345,7 @@
             const nc = getCurrentContent();
             const nLabel = nc.label || nc.nextChapterItem || "";
             if (!nLabel || nLabel === prevLabel) break;
-            if (result.contents.some((cc) => cc.label === nLabel)) break;
+            if (result.contents.some((cc) => cc.topic === (nc.topic || nc.nextChapterTopic || "") && cc.label === nLabel)) break;
             if (selectedTopics && selectedTopics.length > 0) {
               const itemTopic = nc.topic || nc.nextChapterTopic || "";
               if (itemTopic && !selectedTopics.includes(itemTopic)) break;
@@ -345,7 +356,7 @@
 
             result.contents.push({
               label: nLabel,
-              topic: nc.topic || nc.nextChapterTopic || topic,
+              topic: nc.topic || nc.nextChapterTopic || topicName,
               quillHtml: nc.quillHtml || "",
               quillText: nc.quillText || "",
               iframeSrc: nc.iframeSrc || "",
@@ -359,25 +370,20 @@
               action: "scrape-progress",
               current: result.contents.length,
               total: "?",
-              label: `${nc.topic || topic} > ${nLabel}`,
+              label: `${nc.topic || topicName} > ${nLabel}`,
             });
 
             prevLabel = nLabel;
           }
 
-          // Mark topic done and go back to main page for the next topic
-          processedTopics.add(topic);
-          if (await goBackToMainPage()) {
-            await sleep(2000);
-            continue; // Continue sidebar loop → next topic's first item
-          } else {
-            break; // Could not go back — exit
-          }
+          // Go back to main page for next topic
+          if (!await goBackToMainPage()) break;
+          await sleep(2000);
         } else {
-          // Not in item view yet - sidebar click didn't navigate
+          // Not in item view - sidebar click didn't navigate
           result.contents.push({
-            label,
-            topic,
+            label: firstItem.label,
+            topic: topicName,
             quillHtml: c.quillHtml || "",
             quillText: c.quillText || "",
             iframeSrc: c.iframeSrc || "",

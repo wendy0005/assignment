@@ -86,6 +86,12 @@ function escapeHtml(s) {
   return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 }
 
+function unescapeHtml(s) {
+  const d = document.createElement("div");
+  d.innerHTML = s;
+  return d.textContent || "";
+}
+
 function renderTopicCheckboxes(topics) {
   const list = document.getElementById("topic-list");
   list.innerHTML = topics.map((t) =>
@@ -96,7 +102,7 @@ function renderTopicCheckboxes(topics) {
 
 function getCheckedTopics() {
   return Array.from(document.querySelectorAll("#topic-list input[type='checkbox']:checked"))
-    .map((cb) => cb.value);
+    .map((cb) => unescapeHtml(cb.value));
 }
 
 document.getElementById("toggle-all-topics").addEventListener("click", () => {
