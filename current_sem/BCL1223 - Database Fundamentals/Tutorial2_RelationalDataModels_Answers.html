@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Tutorial 2 — Relational Data Models</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Open+Sans:wght@400;600&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Merriweather', 'Times New Roman', serif;
+    font-size: 12pt;
+    line-height: 1.6;
+    color: #1a1a1a;
+    padding: 40px 60px;
+    max-width: 210mm;
+    margin: 0 auto;
+    background: #fff;
+  }
+  h1 {
+    font-family: 'Open Sans', Arial, sans-serif;
+    font-size: 20pt;
+    font-weight: 700;
+    margin-bottom: 4px;
+    color: #1a1a2e;
+  }
+  h2 {
+    font-family: 'Open Sans', Arial, sans-serif;
+    font-size: 14pt;
+    font-weight: 600;
+    margin-top: 28px;
+    margin-bottom: 12px;
+    color: #1a1a2e;
+    border-bottom: 2px solid #1a1a2e;
+    padding-bottom: 4px;
+  }
+  h3 {
+    font-family: 'Open Sans', Arial, sans-serif;
+    font-size: 12pt;
+    font-weight: 600;
+    margin-top: 20px;
+    margin-bottom: 8px;
+    color: #333;
+  }
+  p { margin-bottom: 10px; text-align: justify; }
+  hr {
+    border: none;
+    border-top: 1px solid #ccc;
+    margin: 24px 0;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0;
+    font-size: 11pt;
+  }
+  th, td {
+    border: 1px solid #999;
+    padding: 8px 10px;
+    text-align: left;
+    vertical-align: top;
+  }
+  th {
+    background: #f0f0f0;
+    font-weight: 600;
+  }
+  strong { font-weight: 700; }
+  em { font-style: italic; }
+  .subtitle {
+    font-size: 11pt;
+    color: #555;
+    margin-bottom: 20px;
+  }
+  .mark-box {
+    display: inline-block;
+    background: #f5f5f5;
+    padding: 2px 8px;
+    border-radius: 3px;
+    font-size: 10pt;
+    color: #666;
+    font-family: 'Open Sans', Arial, sans-serif;
+  }
+  .mermaid { margin: 16px 0; }
+  .ref-list { padding-left: 20px; }
+  .ref-list li { margin-bottom: 6px; font-size: 11pt; }
+  @media print {
+    body { padding: 20px 30px; }
+    .mermaid svg { max-width: 100%; }
+  }
+</style>
+</head>
+<body>
+
+<h1>Tutorial 2 — Relational Data Models</h1>
+<p class="subtitle">BCL1223 / BIT1223 Database Systems</p>
+
+<hr>
+
+<h2>Question 1</h2>
+
+<p><strong>a) Define the relational database model.</strong> <span class="mark-box">(2 marks)</span></p>
+
+<p>The relational database model, introduced by Codd (1970), organizes data into <em>relations</em> — two-dimensional tables composed of <em>tuples</em> (rows) and <em>attributes</em> (columns). Each relation represents an entity or relationship, with constraints such as primary keys ensuring tuple uniqueness and foreign keys enforcing referential integrity across relations. The model provides a logical abstraction that decouples data storage from data access through set-oriented operations defined in relational algebra.</p>
+
+<p><strong>b) Explain TWO advantages of the relational database model compared to hierarchical and network database models.</strong> <span class="mark-box">(4 marks)</span></p>
+
+<p>The first advantage is <strong>logical simplicity and data independence</strong>. Unlike hierarchical and network models that require programmers to navigate predefined pointer paths or parent–child structures, relational databases present all data as simple tables. Changes to physical storage structures — adding indexes or reorganizing files — do not alter the logical schema, shielding applications from storage-level modifications (Elmasri &amp; Navathe, 2016).</p>
+
+<p>The second advantage is <strong>flexible ad-hoc querying</strong> via declarative languages such as SQL. In hierarchical and network models, retrieving data requires writing procedural code that explicitly traverses record linkages. The relational model supports set-based operations (SELECT, PROJECT, JOIN) that allow users to express complex queries without specifying access paths, improving productivity and reducing development time.</p>
+
+<p><strong>c) Differentiate between logical data independence and physical data independence.</strong> <span class="mark-box">(4 marks)</span></p>
+
+<table>
+<tr><th>Aspect</th><th>Logical Data Independence</th><th>Physical Data Independence</th></tr>
+<tr><td>Scope</td><td>Protects external schemas from changes to the conceptual schema</td><td>Protects the conceptual schema from changes to the internal storage</td></tr>
+<tr><td>Examples of change</td><td>Adding a new column, splitting a table, modifying relationships</td><td>Changing file organization, adding indexes, altering storage hardware</td></tr>
+<tr><td>Impact level</td><td>Higher-level abstraction — more difficult to achieve</td><td>Lower-level abstraction — relatively easier to implement</td></tr>
+<tr><td>Typical difficulty</td><td>Requires view mapping, may involve restructuring applications</td><td>Handled transparently by the DBMS</td></tr>
+</table>
+
+<hr>
+
+<h2>Question 2</h2>
+
+<p><em>Given: STUDENT(StudentID, StudentName, Programme, CGPA)</em></p>
+
+<p><strong>a) Explain the meaning of the terms relation, tuple, and attribute using the STUDENT table above.</strong> <span class="mark-box">(6 marks)</span></p>
+
+<p>A <strong>relation</strong> corresponds to the entire STUDENT table — a named set of tuples sharing the same attribute structure. It is the fundamental building block of the relational model.</p>
+
+<p>A <strong>tuple</strong> is an individual row within the relation. For example, the row <code>(S12345, Ali Bin Ahmad, Computer Science, 3.72)</code> constitutes one tuple representing a single student entity.</p>
+
+<p>An <strong>attribute</strong> is a named column of the relation, such as <code>StudentID</code>, <code>StudentName</code>, <code>Programme</code>, or <code>CGPA</code>. Each attribute draws values from a defined domain (e.g., <code>CGPA</code> draws from a decimal range 0.00–4.00). The number of attributes in a relation is called its <em>degree</em> — four in this case.</p>
+
+<p><strong>b) Why is a table considered a logical representation of a relation?</strong> <span class="mark-box">(4 marks)</span></p>
+
+<p>A table mirrors the mathematical definition of a relation — a subset of the Cartesian product of attribute domains. Each row is an ordered n-tuple of domain values, and the column headers name each dimension of the product. The table's properties (unique rows, unordered tuples, atomic attribute values) directly implement the characteristics of a mathematical relation, making it a natural logical representation.</p>
+
+<hr>
+
+<h2>Question 3</h2>
+
+<p><em>Given: EMPLOYEE(EmpID, EmpName, Department, Salary) and EmpID → EmpName, Department, Salary</em></p>
+
+<p><strong>a) Define functional dependency.</strong> <span class="mark-box">(2 marks)</span></p>
+
+<p>A functional dependency <em>X → Y</em> states that for any two tuples in the relation, if they share the same value for attribute set <em>X</em>, they must also share the same value for attribute set <em>Y</em>. The value of <em>X</em> uniquely determines the value of <em>Y</em>.</p>
+
+<p><strong>b) Explain why EmpID functionally determines the other attributes.</strong> <span class="mark-box">(4 marks)</span></p>
+
+<p><code>EmpID</code> serves as the unique identifier for each employee. No two employees share the same <code>EmpID</code> — it is assigned uniquely at record creation. Given a specific <code>EmpID</code>, the system retrieves exactly one <code>EmpName</code>, one <code>Department</code>, and one <code>Salary</code>. This one-to-one correspondence satisfies the definition of functional dependency.</p>
+
+<p><strong>c) Determine whether EmpName can functionally determine EmpID. Justify your answer.</strong> <span class="mark-box">(4 marks)</span></p>
+
+<p><code>EmpName</code> cannot functionally determine <code>EmpID</code> because employee names are not guaranteed unique. Two different employees may share the same name — for instance, two individuals named "Ahmad Faiz" would have different <code>EmpID</code> values. Under <code>EmpName → EmpID</code>, every occurrence of "Ahmad Faiz" would need to map to a single <code>EmpID</code>, which is impossible when the name is shared. Therefore, the dependency does not hold.</p>
+
+<hr>
+
+<h2>Question 4</h2>
+
+<p><em>Given: COURSE_REGISTRATION(StudentID, CourseID, Semester, Grade)</em></p>
+
+<p><strong>a) Define the following terms:</strong> <span class="mark-box">(8 marks)</span></p>
+
+<table>
+<tr><th>Term</th><th>Definition</th><th>Example</th></tr>
+<tr><td><strong>Superkey</strong></td><td>A set of attributes that uniquely identifies every tuple in a relation</td><td><code>{StudentID, CourseID, Semester}</code>; <code>{StudentID, CourseID, Semester, Grade}</code></td></tr>
+<tr><td><strong>Candidate Key</strong></td><td>A minimal superkey — no proper subset is itself a superkey</td><td><code>{StudentID, CourseID, Semester}</code> (removing any attribute loses uniqueness)</td></tr>
+<tr><td><strong>Primary Key</strong></td><td>The candidate key chosen as the main row identifier</td><td><code>{StudentID, CourseID, Semester}</code></td></tr>
+<tr><td><strong>Composite Key</strong></td><td>A primary key consisting of two or more attributes</td><td><code>(StudentID, CourseID, Semester)</code></td></tr>
+</table>
+
+<p><strong>b) Identify the most appropriate primary key for the relation and justify your answer.</strong> <span class="mark-box">(4 marks)</span></p>
+
+<p>The most appropriate primary key is the composite key <code>(StudentID, CourseID, Semester)</code>.</p>
+
+<p><em>Justification:</em> A student can register for multiple courses, so <code>StudentID</code> alone is insufficient. A single course has many students, so <code>CourseID</code> alone is insufficient. Even the pair <code>(StudentID, CourseID)</code> is not enough because the same student may retake the same course in a different semester. Adding <code>Semester</code> resolves this ambiguity. <code>Grade</code> cannot be part of the key because it is the value being recorded, not an identifier.</p>
+
+<hr>
+
+<h2>Question 5</h2>
+
+<p><em>Given: DEPARTMENT(DeptID, DeptName) and EMPLOYEE(EmpID, EmpName, DeptID)</em></p>
+
+<p><strong>a) Identify the primary key and foreign key in the tables above.</strong> <span class="mark-box">(4 marks)</span></p>
+
+<table>
+<tr><th>Table</th><th>Primary Key</th><th>Foreign Key</th></tr>
+<tr><td>DEPARTMENT</td><td><code>DeptID</code></td><td>—</td></tr>
+<tr><td>EMPLOYEE</td><td><code>EmpID</code></td><td><code>DeptID</code> (references DEPARTMENT.DeptID)</td></tr>
+</table>
+
+<p><strong>b) Explain the concept of referential integrity.</strong> <span class="mark-box">(3 marks)</span></p>
+
+<p>Referential integrity ensures that every foreign key value in a referencing table must either (i) match a primary key value in the referenced table or (ii) be NULL. This constraint guarantees that relationships between tables remain consistent — an employee cannot be assigned to a department that does not exist.</p>
+
+<p><strong>c) Describe what would happen if an employee record contains a DeptID that does not exist in the DEPARTMENT table.</strong> <span class="mark-box">(3 marks)</span></p>
+
+<p>Such a record would violate referential integrity and create an <em>orphan row</em> — an employee linked to a non-existent department. The DBMS enforces referential integrity at the constraint level; any INSERT or UPDATE that produces an invalid <code>DeptID</code> is rejected with an integrity constraint violation error.</p>
+
+<hr>
+
+<h2>Question 6</h2>
+
+<p><strong>a) Convert the information into relational schemas.</strong> <span class="mark-box">(4 marks)</span></p>
+
+<p style="font-family: 'Courier New', monospace; font-size: 12pt;">
+CUSTOMER(<u>CustomerID</u>, CustomerName)<br>
+ORDER(<u>OrderID</u>, OrderDate, CustomerID*)
+</p>
+
+<p><strong>b) Underline the primary keys and indicate foreign keys.</strong> <span class="mark-box">(4 marks)</span></p>
+
+<p style="font-family: 'Courier New', monospace; font-size: 12pt;">
+CUSTOMER( <u>CustomerID</u> , CustomerName )<br>
+ORDER( <u>OrderID</u> , OrderDate, CustomerID* )
+</p>
+
+<p><code>CustomerID</code> is the primary key of CUSTOMER and a foreign key in ORDER.</p>
+
+<p><strong>c) Explain the relationship between the entities identified.</strong> <span class="mark-box">(2 marks)</span></p>
+
+<p>The relationship is <strong>One-to-Many (1:M)</strong> — one customer can place many orders, but each order belongs to exactly one customer. This is implemented by embedding the <code>CustomerID</code> foreign key inside the ORDER table.</p>
+
+<div class="mermaid">
+erDiagram
+    CUSTOMER ||--o{ ORDER : places
+    CUSTOMER {
+        string CustomerID PK
+        string CustomerName
+    }
+    ORDER {
+        string OrderID PK
+        date OrderDate
+        string CustomerID FK
+    }
+</div>
+
+<hr>
+
+<h2>Question 7</h2>
+
+<p><strong>a) Differentiate between the following relationship types:</strong> <span class="mark-box">(6 marks)</span></p>
+
+<table>
+<tr><th>Type</th><th>Definition</th></tr>
+<tr><td><strong>One-to-One (1:1)</strong></td><td>One entity in A relates to at most one entity in B, and vice versa</td></tr>
+<tr><td><strong>One-to-Many (1:M)</strong></td><td>One entity in A relates to many entities in B; each B relates to one A</td></tr>
+<tr><td><strong>Many-to-Many (M:N)</strong></td><td>One entity in A relates to many in B, and one entity in B relates to many in A</td></tr>
+</table>
+
+<p><strong>b) Provide ONE real-world example for each relationship type.</strong> <span class="mark-box">(6 marks)</span></p>
+
+<ul style="margin-left: 20px; margin-bottom: 10px;">
+  <li><strong>1:1 — Person and Passport:</strong> Each person holds at most one passport, and each passport belongs to exactly one person.</li>
+  <li><strong>1:M — Department and Employee:</strong> One department employs many employees; each employee works in exactly one department.</li>
+  <li><strong>M:N — Student and Course:</strong> A student enrols in multiple courses; each course contains many enrolled students. A junction table is required to resolve this.</li>
+</ul>
+
+<div class="mermaid">
+erDiagram
+    PERSON ||--o| PASSPORT : "holds"
+    DEPARTMENT ||--o{ EMPLOYEE : employs
+    STUDENT }o--o{ COURSE : "enrols in"
+</div>
+
+<p><strong>c) Explain why M:N relationships cannot be directly implemented in a relational database.</strong> <span class="mark-box">(3 marks)</span></p>
+
+<p>Relational tables store data as rows with fixed attribute sets. An M:N relationship implies that one row in table A can be associated with an arbitrary number of rows in table B — storing this directly would require a variable-length attribute, violating the atomicity rule of first normal form (1NF). The standard solution is a <em>junction table</em> that decomposes the M:N into two 1:M relationships. For example, an <code>Enrolment</code> table with composite primary key <code>(StudentID, CourseID)</code> resolves the M:N between Student and Course.</p>
+
+<hr>
+
+<h2>Question 8</h2>
+
+<p><strong>a) Define a data dictionary.</strong> <span class="mark-box">(3 marks)</span></p>
+
+<p>A data dictionary — also called a <em>system catalog</em> — is a centralized repository of metadata describing the structure, constraints, and properties of all database objects. It stores information such as table names, column definitions, data types, primary and foreign keys, indexes, views, user permissions, and storage parameters.</p>
+
+<p><strong>b) Explain the role of metadata in a relational database.</strong> <span class="mark-box">(3 marks)</span></p>
+
+<p>Metadata provides the DBMS with a self-describing framework for managing data. When a query is submitted, the DBMS consults the metadata to resolve table and column names, verify access rights, check constraint compliance, and retrieve statistics for query optimization.</p>
+
+<p><strong>c) Discuss THREE benefits of maintaining a system catalog.</strong> <span class="mark-box">(6 marks)</span></p>
+
+<ul style="margin-left: 20px; margin-bottom: 10px;">
+  <li><strong>Data Consistency and Standardization:</strong> The catalog enforces uniform naming conventions and data-type rules across all tables. Changes to a column definition are immediately visible to all users and applications, preventing schema drift.</li>
+  <li><strong>Access Control and Security:</strong> The catalog stores user privileges at the table, column, and operation levels. The DBMS checks these permissions on every query, ensuring only authorized users can access sensitive data.</li>
+  <li><strong>Query Optimization:</strong> The catalog maintains statistics — row counts, index selectivity, data distribution histograms — that the query optimizer uses to choose efficient execution plans (e.g., index scans versus full table scans).</li>
+</ul>
+
+<hr>
+
+<h2>Question 9</h2>
+
+<p><em>Given: STUDENT(StudentID, StudentName, Programme)</em></p>
+
+<p><strong>a) Explain the difference between the SELECT and PROJECT operations.</strong> <span class="mark-box">(4 marks)</span></p>
+
+<p>The <strong>SELECT</strong> operation (&sigma;) filters <em>rows</em> (tuples) based on a predicate condition. It reduces cardinality but retains all attributes.</p>
+
+<p>The <strong>PROJECT</strong> operation (&pi;) filters <em>columns</em> (attributes), retaining only those specified and eliminating duplicate tuples. It reduces the degree but may not reduce cardinality unless duplicates arise.</p>
+
+<p><strong>b) Write the relational algebra expression to:</strong> <span class="mark-box">(4 marks)</span></p>
+
+<p>Retrieve all students from the "Computer Science" programme:</p>
+<p style="font-family: 'Courier New', monospace; text-align: center; font-size: 13pt; margin: 8px 0;">
+&sigma;<sub>Programme = "Computer Science"</sub>(STUDENT)
+</p>
+
+<p>Display only StudentID and StudentName:</p>
+<p style="font-family: 'Courier New', monospace; text-align: center; font-size: 13pt; margin: 8px 0;">
+&pi;<sub>StudentID, StudentName</sub>( &sigma;<sub>Programme = "Computer Science"</sub>(STUDENT) )
+</p>
+
+<p><strong>c) Differentiate between UNION and INTERSECT with suitable examples.</strong> <span class="mark-box">(4 marks)</span></p>
+
+<table>
+<tr><th>Operation</th><th>Symbol</th><th>Result</th><th>Example</th></tr>
+<tr><td><strong>UNION</strong></td><td><em>R &cup; S</em></td><td>All tuples in <em>R</em> or <em>S</em> (or both), duplicates removed</td><td>&pi;<sub>Programme</sub>(STUDENT) &cup; &pi;<sub>Programme</sub>(STAFF) returns all unique programmes across both tables</td></tr>
+<tr><td><strong>INTERSECT</strong></td><td><em>R &cap; S</em></td><td>Only tuples appearing in both <em>R</em> and <em>S</em></td><td>&pi;<sub>Programme</sub>(STUDENT) &cap; &pi;<sub>Programme</sub>(STAFF) returns programmes that exist in both tables</td></tr>
+</table>
+
+<p>Both operations require operands to be <em>union-compatible</em> — same number of attributes with compatible domains.</p>
+
+<hr>
+
+<h2>Question 10</h2>
+
+<p><strong>a) Define data redundancy.</strong> <span class="mark-box">(2 marks)</span></p>
+
+<p>Data redundancy refers to the unnecessary duplication of data values across multiple records or tables within a database. While controlled redundancy (e.g., foreign keys) is essential for representing relationships, uncontrolled redundancy wastes storage and creates maintenance problems.</p>
+
+<p><strong>b) Explain TWO data anomalies that may result from excessive redundancy.</strong> <span class="mark-box">(4 marks)</span></p>
+
+<ul style="margin-left: 20px; margin-bottom: 10px;">
+  <li><strong>Update Anomaly:</strong> A change to a redundant value must be applied to every occurrence. If a student's address is stored in both ENROLMENT and STUDENT, changing it requires updating many rows across both tables. A missed update leaves the database inconsistent.</li>
+  <li><strong>Deletion Anomaly:</strong> Deleting a row may unintentionally remove the only copy of some other fact. If course details are stored redundantly within an enrolment record, deleting the last enrolment for a course also deletes the course's name and description.</li>
+</ul>
+
+<p><strong>c) Describe the purpose of indexing in a relational database.</strong> <span class="mark-box">(2 marks)</span></p>
+
+<p>An index is an auxiliary data structure (commonly a B<sup>+</sup>-tree) that provides fast access paths to rows based on column values. It sacrifices write performance and storage space to accelerate read operations.</p>
+
+<p><strong>d) Explain how indexes improve query performance.</strong> <span class="mark-box">(4 marks)</span></p>
+
+<p>Without an index, the DBMS must perform a <em>full table scan</em> — reading every row from disk to locate those matching a WHERE clause. An index allows the DBMS to navigate directly to relevant disk pages using a balanced-tree search, reducing the search from O(<em>n</em>) to O(log <em>n</em>) comparisons. Indexes also speed up JOIN operations by enabling fast foreign-key lookups and support efficient ORDER BY and GROUP BY clauses by scanning the index in sorted order.</p>
+
+<hr>
+
+<h2>References</h2>
+
+<ol class="ref-list">
+  <li>Codd, E. F. (1970). A relational model of data for large shared data banks. <em>Communications of the ACM</em>, 13(6), 377–387. https://doi.org/10.1145/362384.362685</li>
+  <li>Elmasri, R., &amp; Navathe, S. B. (2016). <em>Fundamentals of Database Systems</em> (7th ed.). Pearson.</li>
+</ol>
+
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<script>
+  mermaid.initialize({ startOnLoad: true, theme: 'default', securityLevel: 'loose' });
+</script>
+</body>
+</html>
