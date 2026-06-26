@@ -12,7 +12,16 @@
 
     <div id="status">Ready</div>
 
-    <button id="scrape-btn" class="btn btn-primary btn-full">Scrape Module Topics</button>
+    <div id="topic-selection" class="hidden">
+      <div class="topic-header">
+        <span class="topic-title">Topics to scrape:</span>
+        <button id="toggle-all-topics" class="btn-link">Select All</button>
+      </div>
+      <div id="topic-list"></div>
+      <div id="topic-loading">Loading topics...</div>
+    </div>
+
+    <button id="scrape-btn" class="btn btn-primary btn-full" disabled>Loading topics...</button>
 
     <div id="progress" class="hidden">
       <div class="progress-bar">

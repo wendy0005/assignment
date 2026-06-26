@@ -94,8 +94,31 @@
     return true;
   }
 
+  // ---- FETCH AVAILABLE TOPICS ----
+  async function fetchTopicList() {
+    ensureContentTab();
+    await sleep(1000);
+    await expandAll();
+
+    const topics = [];
+    const seen = new Set();
+    const buttons = document.querySelectorAll("button");
+
+    for (const btn of buttons) {
+      const text = cleanText(btn.textContent);
+      if (text.startsWith("Topic ") && text.includes("COMPLETE")) {
+        const name = text.split("COMPLETE")[0].trim();
+        if (!seen.has(name)) {
+          seen.add(name);
+          topics.push(name);
+        }
+      }
+    }
+    return topics;
+  }
+
   // ---- COLLECT ALL SIDEBAR ITEMS ----
-  function getSidebarItems() {
+  function getSidebarItems(topicFilter) {
     const items = [];
     const seen = new Set();
     const labels = document.querySelectorAll("p.sub-chapter_label");
@@ -117,6 +140,7 @@
         el = el.parentElement;
       }
       if (!topic) continue;
+      if (topicFilter && topicFilter.length > 0 && !topicFilter.includes(topic)) continue;
 
       const key = topic + "||" + text;
       if (seen.has(key)) continue;
@@ -154,7 +178,7 @@
   }
 
   // ---- MAIN SCRAPE ----
-  async function scrapeModuleTopics() {
+  async function scrapeModuleTopics(selectedTopics) {
     const result = {
       url: window.location.href,
       timestamp: new Date().toISOString(),
@@ -199,6 +223,10 @@
         const label = c.label || c.nextChapterItem || "";
         if (!label || label === prevLabel) break;
         if (result.contents.some((cc) => cc.label === label)) break;
+        if (selectedTopics && selectedTopics.length > 0) {
+          const itemTopic = c.topic || c.nextChapterTopic || "";
+          if (itemTopic && !selectedTopics.includes(itemTopic)) break;
+        }
 
         let ic = { html: "", text: "" };
         if (c.iframeSrc) ic = await scrapeIframeSrc(c.iframeSrc);
@@ -230,7 +258,7 @@
       await expandAll();
 
       // Collect all sidebar items
-      const items = getSidebarItems();
+      const items = getSidebarItems(selectedTopics);
       if (items.length === 0) {
         result.status = "error: no sidebar items found";
         return result;
@@ -280,6 +308,10 @@
             const nLabel = nc.label || nc.nextChapterItem || "";
             if (!nLabel || nLabel === prevLabel) break;
             if (result.contents.some((cc) => cc.label === nLabel)) break;
+            if (selectedTopics && selectedTopics.length > 0) {
+              const itemTopic = nc.topic || nc.nextChapterTopic || "";
+              if (itemTopic && !selectedTopics.includes(itemTopic)) break;
+            }
 
             let nic = { html: "", text: "" };
             if (nc.iframeSrc) nic = await scrapeIframeSrc(nc.iframeSrc);
@@ -326,8 +358,12 @@
   }
 
   chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+    if (request.action === "get-topics") {
+      fetchTopicList().then((topics) => sendResponse({ topics }));
+      return true;
+    }
     if (request.action === "scrape-module-topics") {
-      scrapeModuleTopics().then((data) => sendResponse(data));
+      scrapeModuleTopics(request.topics).then((data) => sendResponse(data));
       return true;
     }
   });

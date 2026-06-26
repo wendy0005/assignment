@@ -25,7 +25,7 @@ async function getActiveTab() {
   return tab;
 }
 
-async function sendMessage(action) {
+async function sendMessage(payload) {
   const tab = await getActiveTab();
   if (!tab) {
     showError("No active tab found.");
@@ -39,7 +39,7 @@ async function sendMessage(action) {
     return null;
   }
   return new Promise((resolve) => {
-    chrome.tabs.sendMessage(tab.id, { action }, (response) => {
+    chrome.tabs.sendMessage(tab.id, payload, (response) => {
       if (chrome.runtime.lastError) {
         showError("Content script not loaded. Refresh the page.");
         resolve(null);
@@ -49,6 +49,62 @@ async function sendMessage(action) {
     });
   });
 }
+
+// ---- TOPIC SELECTION ----
+let allTopics = [];
+
+async function loadTopics() {
+  setStatus("Loading topics...");
+  const tab = await getActiveTab();
+  if (!tab) return;
+
+  try {
+    const response = await chrome.tabs.sendMessage(tab.id, { action: "get-topics" });
+    if (response && response.topics && response.topics.length > 0) {
+      allTopics = response.topics;
+      renderTopicCheckboxes(allTopics);
+      document.getElementById("topic-selection").classList.remove("hidden");
+      document.getElementById("topic-loading").classList.add("hidden");
+      scrapeBtn.textContent = "Scrape Selected Topics";
+      scrapeBtn.disabled = false;
+      setStatus("Ready — select topics and scrape");
+    } else {
+      // No topics found; fall back to scrape-all
+      scrapeBtn.textContent = "Scrape Module Topics";
+      scrapeBtn.disabled = false;
+      setStatus("Ready");
+    }
+  } catch (e) {
+    // Content script not ready; allow scrape attempt
+    scrapeBtn.textContent = "Scrape Module Topics";
+    scrapeBtn.disabled = false;
+    setStatus("Ready");
+  }
+}
+
+function escapeHtml(s) {
+  return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+}
+
+function renderTopicCheckboxes(topics) {
+  const list = document.getElementById("topic-list");
+  list.innerHTML = topics.map((t) =>
+    `<label class="topic-item"><input type="checkbox" value="${escapeHtml(t)}" checked><span>${escapeHtml(t)}</span></label>`
+  ).join("");
+  document.getElementById("toggle-all-topics").textContent = "Deselect All";
+}
+
+function getCheckedTopics() {
+  return Array.from(document.querySelectorAll("#topic-list input[type='checkbox']:checked"))
+    .map((cb) => cb.value);
+}
+
+document.getElementById("toggle-all-topics").addEventListener("click", () => {
+  const checkboxes = document.querySelectorAll("#topic-list input[type='checkbox']");
+  const allChecked = Array.from(checkboxes).every((cb) => cb.checked);
+  checkboxes.forEach((cb) => cb.checked = !allChecked);
+  document.getElementById("toggle-all-topics").textContent = allChecked ? "Select All" : "Deselect All";
+});
 
 scrapeBtn.addEventListener("click", async () => {
   errorEl.classList.add("hidden");
@@ -71,7 +127,11 @@ scrapeBtn.addEventListener("click", async () => {
     }
   });
 
-  const data = await sendMessage("scrape-module-topics");
+  const checkedTopics = getCheckedTopics();
+  const payload = { action: "scrape-module-topics" };
+  if (checkedTopics.length > 0) payload.topics = checkedTopics;
+
+  const data = await sendMessage(payload);
   if (!data) {
     progressEl.classList.add("hidden");
     scrapeBtn.disabled = false;
@@ -85,6 +145,9 @@ scrapeBtn.addEventListener("click", async () => {
   scrapeBtn.disabled = false;
   setStatus(`Completed — ${data.contents?.length || 0} items scraped`);
 });
+
+// Load topics on popup open
+loadTopics();
 
 function displayResults(data) {
   let summary = `Course: ${data.course?.courseName || "N/A"}\n`;
