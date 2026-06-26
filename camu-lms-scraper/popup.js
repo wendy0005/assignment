@@ -228,14 +228,32 @@ document.getElementById("copy-btn").addEventListener("click", async () => {
   setStatus("Copied to clipboard");
 });
 
+function shortTopic(full) {
+  const m = full && full.match(/^(Topic\s+\d+)/);
+  return m ? m[1] : full || "";
+}
+
+function cleanCourseName(name) {
+  return (name || "").replace(/\s{2,}/g, " ").trim();
+}
+
+function formatHeading(course, topic, label) {
+  const st = shortTopic(topic);
+  const cn = cleanCourseName(course);
+  if (st && cn) return `${cn} - ${st}: ${label}`;
+  if (st) return `${st}: ${label}`;
+  return label;
+}
+
 function toMarkdown(data) {
-  let md = `# ${data.course?.courseName || "Course"}\n\n`;
+  const courseName = cleanCourseName(data.course?.courseName);
+  let md = `# ${courseName || "Course"}\n\n`;
   if (data.student?.name) md += `**Student:** ${data.student.name}\n\n`;
   md += `---\n\n`;
 
   if (data.contents) {
     for (const c of data.contents) {
-      const heading = c.topic ? `${c.topic} > ${c.label}` : c.label;
+      const heading = formatHeading(courseName, c.topic, c.label);
       md += `## ${heading}\n\n`;
 
       if (c.quillText) md += c.quillText.replace(/\s+/g, " ").trim() + "\n\n";
