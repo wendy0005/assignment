@@ -1,0 +1,14 @@
+# Individual Reflection: Confronting the Architecture of Power in Sexual Abuse
+
+Reflecting on the causes of sexual abuse requires moving beyond the initial shock of the act and into the cold, systemic realities that permit such violations to occur. My analysis of Finkelhor’s (2009) framework has shifted my understanding from viewing abuse as a series of isolated, deviant incidents to seeing it as a predictable outcome of unchecked power imbalances. This realization is particularly unsettling because it suggests that the "safest" institutions—schools, families, and workplaces—are often the very environments where the architecture of authority is most easily weaponized.
+
+The concept of the "power gap" described by Finkelhor (2009) resonates deeply when considering how predators exploit institutional trust. In my reflection, I find that the most insidious aspect of this imbalance is not just the physical or social disparity, but the psychological leverage that authority provides. When a teacher or a relative is the aggressor, the victim is forced into a state of cognitive dissonance, where the person meant to provide protection becomes the source of trauma. This dual role effectively silences the victim, as the cost of reporting—shattering a family unit or challenging a respected institution—often feels higher than the cost of endurance. It is a sobering reminder that our social structures are only as secure as the oversight mechanisms we choose to enforce.
+
+Furthermore, the data showing the rise in cases during the COVID-19 pandemic highlights the fragility of our "safety nets." Isolation acts as a catalyst for abuse by removing the external observers—teachers, peers, and coworkers—who might otherwise detect the subtle signs of grooming or distress. This period of global crisis stripped away the thin layer of institutional protection many relied on, exposing how much our safety depends on constant, active visibility. It has made me realize that awareness is not a static achievement but a continuous, demanding process of vigilance.
+
+Ultimately, this study has changed my perspective on prevention. It is not enough to teach "stranger danger" or individual resilience. True prevention requires a fundamental restructuring of how we handle authority and transparency. We must move toward a culture where no individual is "above" scrutiny and where institutions are held to a standard of proactive accountability rather than reactive damage control. This academic journey has been more than just a requirement; it has been a confrontation with the reality that silence is the predator's greatest ally, and our collective responsibility is to ensure that power is never allowed to operate in the shadows.
+
+---
+**References**
+
+Finkelhor, D. (2009). The Prevention of Childhood Sexual Abuse. *The Future of Children*, 19(2), 169–194. https://doi.org/10.1353/foc.0.0029

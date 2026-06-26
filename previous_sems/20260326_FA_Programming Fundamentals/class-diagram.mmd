@@ -1,0 +1,63 @@
+classDiagram
+    class Appointment {
+        <<abstract>>
+        -String clientName
+        -String date
+        -String time
+        +Appointment(String, String, String)
+        +getClientName() String
+        +getDate() String
+        +getTime() String
+        +setClientName(String)
+        +setDate(String)
+        +setTime(String)
+        +getDetails()* String
+        +toString() String
+    }
+
+    class RegularAppointment {
+        -String serviceType
+        +RegularAppointment(String, String, String, String)
+        +getServiceType() String
+        +setServiceType(String)
+        +getDetails() String
+    }
+
+    class PriorityAppointment {
+        -String priorityLevel
+        +PriorityAppointment(String, String, String, String)
+        +getPriorityLevel() String
+        +setPriorityLevel(String)
+        +getDetails() String
+    }
+
+    class AppointmentManager {
+        -List~Appointment~ appointments
+        -String FILE_NAME
+        +addAppointment(Appointment)
+        +getAppointments() List
+        +updateAppointment(int, Appointment)
+        +deleteAppointment(int)
+        +searchByClientName(String) List
+        +saveToFile()
+        +loadFromFile()
+        +validateAppointmentData(String, String, String, String)
+    }
+
+    class InvalidAppointmentException {
+        +InvalidAppointmentException(String)
+    }
+
+    class EnhancedBookingSystemGUI {
+        -AppointmentManager manager
+        -JTabbedPane tabbedPane
+        +EnhancedBookingSystemGUI()
+        +actionPerformed(ActionEvent)
+    }
+
+    Appointment <|-- RegularAppointment
+    Appointment <|-- PriorityAppointment
+    EnhancedBookingSystemGUI o-- AppointmentManager
+    AppointmentManager o-- Appointment
+    AppointmentManager ..> InvalidAppointmentException : throws
+    EnhancedBookingSystemGUI ..> InvalidAppointmentException : handles

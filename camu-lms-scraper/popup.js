@@ -277,3 +277,57 @@ function toMarkdown(data) {
 
   return md;
 }
+
+// ---- PDF DOWNLOAD FROM LECTURE NOTES ----
+
+const downloadPdfsBtn = document.getElementById("download-pdfs-btn");
+const downloadProgress = document.getElementById("download-progress");
+const downloadProgressFill = document.getElementById("download-progress-fill");
+const downloadProgressText = document.getElementById("download-progress-text");
+const downloadResult = document.getElementById("download-result");
+
+downloadPdfsBtn.addEventListener("click", async () => {
+  errorEl.classList.add("hidden");
+  downloadResult.classList.add("hidden");
+  downloadProgress.classList.remove("hidden");
+  downloadPdfsBtn.disabled = true;
+  setStatus("Downloading PDFs from Lecture Notes...");
+
+  const tab = await getActiveTab();
+  if (!tab) {
+    downloadPdfsBtn.disabled = false;
+    return;
+  }
+
+  const data = await sendMessage({ action: "download-lecture-notes" });
+  if (!data) {
+    downloadProgress.classList.add("hidden");
+    downloadPdfsBtn.disabled = false;
+    return;
+  }
+
+  downloadProgress.classList.add("hidden");
+  downloadResult.classList.remove("hidden");
+
+  if (data.status === "completed") {
+    downloadResult.textContent = `Done — ${data.downloaded} PDFs downloaded (${data.failed} failed) from ${data.total} items`;
+    downloadResult.style.background = "#d1e7dd";
+    downloadResult.style.color = "#0f5132";
+  } else {
+    downloadResult.textContent = `Error: ${data.status}`;
+    downloadResult.style.background = "#f8d7da";
+    downloadResult.style.color = "#842029";
+  }
+
+  setStatus(`Downloaded ${data.downloaded} PDFs`);
+  downloadPdfsBtn.disabled = false;
+});
+
+// Listen for download progress updates from content script
+chrome.runtime.onMessage.addListener((msg) => {
+  if (msg.action === "download-progress") {
+    const pct = msg.total > 0 ? Math.round((msg.current / msg.total) * 100) : 0;
+    downloadProgressFill.style.width = pct + "%";
+    downloadProgressText.textContent = `[${msg.current}/${msg.total}] ${msg.label}`;
+  }
+});

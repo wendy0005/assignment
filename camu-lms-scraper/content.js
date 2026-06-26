@@ -398,6 +398,187 @@
     return result;
   }
 
+// ---- LECTURE NOTES PDF DOWNLOAD ----
+
+async function expandLectureNotesSections() {
+  const panelNameEls = document.querySelectorAll('p.panel-name');
+  let lectureNotesBtn = null;
+  let lectureNotesPanelId = null;
+  for (const el of panelNameEls) {
+    if (el.textContent.trim() === 'LECTURE NOTES') {
+      lectureNotesBtn = el.closest('button');
+      lectureNotesPanelId = lectureNotesBtn?.getAttribute('data-target');
+      break;
+    }
+  }
+  if (!lectureNotesBtn) throw new Error('LECTURE NOTES section not found');
+
+  let panel = lectureNotesPanelId ? document.querySelector(lectureNotesPanelId) : null;
+
+  if (panel && !panel.classList.contains('show')) {
+    lectureNotesBtn.click();
+    await sleep(1500);
+  }
+
+  if (!panel) {
+    const header = lectureNotesBtn.closest('.panel-header');
+    if (header) panel = header.nextElementSibling;
+  }
+  if (!panel) throw new Error('Could not find LECTURE NOTES panel');
+
+  const subBtns = panel.querySelectorAll('.sub-chapter_content button[data-toggle="collapse"]');
+  for (const btn of subBtns) {
+    const subTargetId = btn.getAttribute('data-target');
+    if (!subTargetId) continue;
+    const subPanel = document.querySelector(subTargetId);
+    if (!subPanel || subPanel.classList.contains('show')) continue;
+    btn.click();
+    await sleep(600);
+  }
+
+  await sleep(2000);
+}
+
+function collectLectureNoteItems() {
+  const items = [];
+  const rows = document.querySelectorAll('.list-cont_inbox');
+
+  for (const row of rows) {
+    const svgPath = row.querySelector('div.panel-list_items svg path');
+    if (!svgPath) continue;
+    const d = svgPath.getAttribute('d') || '';
+    if (!d.startsWith('M21.44')) continue; // paperclip icon only
+
+    const label = row.querySelector('.sub-chapter_label')?.textContent?.trim() || '';
+    if (!label) continue;
+
+    const collapsePanel = row.closest('.panel-collapse');
+    let chapter = '';
+    if (collapsePanel && collapsePanel.id) {
+      const btn = document.querySelector(`button[data-target="#${collapsePanel.id}"]`);
+      chapter = btn?.querySelector('.sub-chap_name')?.textContent?.trim() || '';
+    }
+
+    items.push({ label, chapter, element: row });
+  }
+
+  return items;
+}
+
+async function waitForFileView(timeout) {
+  const start = Date.now();
+  while (Date.now() - start < timeout) {
+    if (document.querySelector('.file-content_box')) return true;
+    if (document.querySelector('i.img-download_icon')) return true;
+    await sleep(500);
+  }
+  return false;
+}
+
+async function closeFileView() {
+  const closeSelectors = [
+    '.hide-content_view',
+    'button.page-close',
+    '.page-close',
+    'button.close',
+    '.btn-close',
+    '[aria-label="Close"]',
+    '[aria-label="Back"]',
+    '.page-back',
+  ];
+  for (const sel of closeSelectors) {
+    const el = document.querySelector(sel);
+    if (el) {
+      el.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true }));
+      const start = Date.now();
+      while (Date.now() - start < 8000) {
+        await sleep(500);
+        if (!document.querySelector('.file-content_box') && !document.querySelector('i.img-download_icon')) return true;
+      }
+    }
+  }
+  return !document.querySelector('.file-content_box');
+}
+
+async function downloadAllLectureNotes() {
+  const result = { status: "started", total: 0, downloaded: 0, failed: 0 };
+
+  if (document.querySelector('.file-content_box')) {
+    await closeFileView();
+    await sleep(2000);
+  }
+
+  await expandLectureNotesSections();
+
+  const initialItems = collectLectureNoteItems();
+  result.total = initialItems.length;
+
+  if (result.total === 0) {
+    result.status = "completed";
+    return result;
+  }
+
+  chrome.runtime.sendMessage({
+    action: "download-progress",
+    current: 0,
+    total: result.total,
+    label: `Found ${result.total} items in LECTURE NOTES`,
+  }).catch(() => {});
+
+  for (let i = 0; i < result.total; i++) {
+    await expandLectureNotesSections();
+    const freshItems = collectLectureNoteItems();
+    const item = freshItems[i];
+
+    if (!item || !item.element) {
+      result.failed++;
+      continue;
+    }
+
+    const downloadLabel = `${item.chapter} > ${item.label}`;
+
+    try {
+      item.element.scrollIntoView({ block: 'center' });
+      await sleep(500);
+      item.element.click();
+
+      const loaded = await waitForFileView(15000);
+      if (!loaded) {
+        throw new Error('File view did not load');
+      }
+      await sleep(2000);
+
+      const downloadIcon = document.querySelector('i.img-download_icon span');
+      if (downloadIcon && downloadIcon.isConnected) {
+        downloadIcon.click();
+        await sleep(3000);
+        result.downloaded++;
+      } else {
+        throw new Error('Download icon not found');
+      }
+
+      await closeFileView();
+      await sleep(1500);
+    } catch (e) {
+      result.failed++;
+      if (document.querySelector('.file-content_box')) {
+        await closeFileView();
+        await sleep(1500);
+      }
+    }
+
+    chrome.runtime.sendMessage({
+      action: "download-progress",
+      current: i + 1,
+      total: result.total,
+      label: downloadLabel,
+    }).catch(() => {});
+  }
+
+  result.status = "completed";
+  return result;
+}
+
   chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     if (request.action === "get-topics") {
       fetchTopicList().then((topics) => sendResponse({ topics }));
@@ -405,6 +586,10 @@
     }
     if (request.action === "scrape-module-topics") {
       scrapeModuleTopics(request.topics).then((data) => sendResponse(data));
+      return true;
+    }
+    if (request.action === "download-lecture-notes") {
+      downloadAllLectureNotes().then((data) => sendResponse(data));
       return true;
     }
   });
