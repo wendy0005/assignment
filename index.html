@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Course Hub — Interactive Lessons</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    min-height: 100vh; display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    padding: 40px 20px; color: #fff;
+  }
+  h1 {
+    font-size: 28px; font-weight: 800; letter-spacing: -.5px;
+    margin-bottom: 6px;
+  }
+  .subtitle {
+    font-size: 14px; color: #94a3b8; font-weight: 500; margin-bottom: 40px;
+  }
+  .courses {
+    display: flex; gap: 24px; flex-wrap: wrap; justify-content: center;
+    max-width: 800px;
+  }
+  .course-card {
+    background: rgba(255,255,255,.06); backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,.1);
+    border-radius: 16px; padding: 32px; width: 340px;
+    transition: all .3s cubic-bezier(.4,0,.2,1);
+    cursor: pointer; text-decoration: none; color: #fff;
+    position: relative; overflow: hidden;
+  }
+  .course-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(255,255,255,.2);
+    box-shadow: 0 20px 40px rgba(0,0,0,.3);
+    background: rgba(255,255,255,.1);
+  }
+  .course-card .icon {
+    font-size: 40px; margin-bottom: 16px;
+  }
+  .course-card h2 {
+    font-size: 18px; font-weight: 700; margin-bottom: 8px;
+  }
+  .course-card p {
+    font-size: 13px; color: #94a3b8; line-height: 1.6;
+  }
+  .course-card .tag {
+    display: inline-block; margin-top: 16px;
+    padding: 4px 12px; border-radius: 20px;
+    font-size: 11px; font-weight: 600;
+    background: rgba(59,130,246,.2); color: #60a5fa;
+  }
+  .course-card .tag.green { background: rgba(5,150,105,.2); color: #34d399; }
+  .footer-text {
+    margin-top: 40px; font-size: 12px; color: #475569;
+  }
+  @media (max-width: 600px) {
+    h1 { font-size: 22px; }
+    .course-card { width: 100%; max-width: 340px; }
+  }
+</style>
+</head>
+<body>
+  <h1>📚 Interactive Lessons</h1>
+  <p class="subtitle">BCL1223 / BIT1223 — BCL1123</p>
+  <div class="courses">
+    <a class="course-card" href="current_sem/BCL1223%20-%20Database%20Fundamentals/database_interactive_lessons.html">
+      <div class="icon">🗄️</div>
+      <h2>Database Fundamentals</h2>
+      <p>Relational data models, SQL, normalization, keys, and practical database design — 20 step-by-step lessons across 2 tutorials.</p>
+      <span class="tag">BCL1223 / BIT1223</span>
+    </a>
+    <a class="course-card" href="iot_lessons.html">
+      <div class="icon">🌐</div>
+      <h2>Internet of Things</h2>
+      <p>IoT architecture, smart cities, sensors, RFID, LPWA, 5G, MQTT, and communication protocols — 10 lessons across 5 topics.</p>
+      <span class="tag green">BCL1123</span>
+    </a>
+  </div>
+  <p class="footer-text">Pick a course to start learning 🧑‍🏫</p>
+</body>
+</html>

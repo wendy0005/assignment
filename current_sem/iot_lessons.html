@@ -1,0 +1,1244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Internet of Things — Interactive Lessons</title>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Merriweather:wght@400;700&display=swap');
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --navy: #0f172a; --slate: #334155; --slate-light: #64748b;
+    --blue: #3b82f6; --blue-light: #eff6ff; --blue-dark: #1e40af;
+    --teal: #14b8a6; --teal-light: #f0fdfa;
+    --amber: #f59e0b; --amber-light: #fffbeb;
+    --rose: #f43f5e; --rose-light: #fff1f2;
+    --bg: #f8fafc; --card: #ffffff; --border: #e2e8f0;
+    --shadow: 0 1px 3px rgba(0,0,0,.08), 0 1px 2px rgba(0,0,0,.06);
+    --shadow-lg: 0 10px 25px rgba(0,0,0,.08);
+    --radius: 12px; --radius-sm: 8px;
+    --font-sans: 'Inter', -apple-system, sans-serif;
+    --font-serif: 'Merriweather', Georgia, serif;
+    --transition: .25s cubic-bezier(.4,0,.2,1);
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--font-sans); background: var(--bg); color: var(--slate);
+    line-height: 1.7; -webkit-font-smoothing: antialiased;
+  }
+  header {
+    background: linear-gradient(135deg, var(--navy) 0%, #1e293b 100%);
+    color: #fff; padding: 20px 40px; position: sticky; top: 0;
+    z-index: 100; box-shadow: 0 2px 12px rgba(0,0,0,.15);
+    display: flex; align-items: center; gap: 24px;
+  }
+  header .header-left { flex-shrink: 0; }
+  header h1 { font-size: 22px; font-weight: 800; letter-spacing: -.5px; }
+  header p { font-size: 13px; color: #94a3b8; margin-top: 2px; font-weight: 500; }
+  .header-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(255,255,255,.1); padding: 4px 14px; border-radius: 20px;
+    font-size: 11px; font-weight: 600; margin-top: 6px; letter-spacing: .3px;
+  }
+  .header-badge span { color: var(--teal); }
+  .header-link {
+    color: #94a3b8; text-decoration: none; font-size: 13px; font-weight: 500;
+    margin-left: auto; padding: 6px 14px; border-radius: 8px;
+    transition: all var(--transition); white-space: nowrap;
+  }
+  .header-link:hover { background: rgba(255,255,255,.1); color: #fff; }
+
+  .search-wrapper { position: relative; flex-shrink: 0; min-width: 200px; }
+  .search-input {
+    width: 100%; padding: 10px 16px 10px 38px;
+    border: 1px solid rgba(255,255,255,.2); border-radius: 10px;
+    background: rgba(255,255,255,.1); color: #fff;
+    font-family: var(--font-sans); font-size: 13px; font-weight: 500;
+    outline: none; transition: all var(--transition);
+  }
+  .search-input::placeholder { color: rgba(255,255,255,.4); font-weight: 400; }
+  .search-input:focus { border-color: var(--blue); background: rgba(255,255,255,.15); }
+  .search-icon { position: absolute; left: 13px; top: 50%; transform: translateY(-50%); font-size: 14px; opacity: .5; pointer-events: none; }
+  .search-clear {
+    position: absolute; right: 10px; top: 50%; transform: translateY(-50%);
+    background: none; border: none; color: rgba(255,255,255,.4);
+    font-size: 16px; cursor: pointer; display: none; padding: 2px;
+    line-height: 1; border-radius: 4px;
+  }
+  .search-clear:hover { color: #fff; }
+  .search-results {
+    position: absolute; top: calc(100% + 6px); left: 0; right: 0;
+    background: #fff; border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-lg); max-height: 380px; overflow-y: auto;
+    display: none; z-index: 200;
+  }
+  .search-results.show { display: block; }
+  .search-result-item { padding: 12px 16px; cursor: pointer; border-bottom: 1px solid var(--border); transition: background var(--transition); }
+  .search-result-item:last-child { border-bottom: none; }
+  .search-result-item:hover, .search-result-item.highlighted { background: var(--blue-light); }
+  .search-result-item .sr-path { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .3px; color: var(--blue); margin-bottom: 2px; }
+  .search-result-item .sr-title { font-size: 14px; font-weight: 600; color: var(--navy); margin-bottom: 3px; }
+  .search-result-item .sr-preview { font-size: 12px; color: var(--slate-light); line-height: 1.4; }
+  .search-result-item .sr-preview em { background: #fef3c7; font-style: normal; padding: 0 2px; color: #92400e; font-weight: 600; }
+  .search-empty { padding: 20px; text-align: center; color: var(--slate-light); font-size: 13px; }
+
+  .tabs {
+    display: flex; background: #fff; border-bottom: 1px solid var(--border);
+    padding: 0 40px; position: sticky; top: 110px; z-index: 99;
+    box-shadow: 0 1px 2px rgba(0,0,0,.04); overflow-x: auto;
+  }
+  .tab-btn {
+    padding: 14px 20px; font-family: var(--font-sans); font-size: 13px;
+    font-weight: 600; border: none; background: none; cursor: pointer;
+    color: var(--slate-light); position: relative; white-space: nowrap;
+    transition: color var(--transition);
+  }
+  .tab-btn:hover { color: var(--slate); }
+  .tab-btn.active { color: var(--navy); }
+  .tab-btn.active::after {
+    content: ''; position: absolute; bottom: 0; left: 20px; right: 20px;
+    height: 3px; background: var(--blue); border-radius: 3px 3px 0 0;
+  }
+  .tab-badge {
+    display: inline-block; background: var(--border); padding: 0 8px;
+    border-radius: 10px; font-size: 10px; font-weight: 700;
+    margin-left: 5px; color: var(--slate-light);
+  }
+  .tab-btn.active .tab-badge { background: var(--blue-light); color: var(--blue); }
+
+  .app-layout { display: flex; max-width: 1400px; margin: 0 auto; min-height: calc(100vh - 170px); }
+  .sidebar {
+    width: 280px; flex-shrink: 0; background: #fff;
+    border-right: 1px solid var(--border); padding: 20px 16px;
+    position: sticky; top: 170px; height: calc(100vh - 170px); overflow-y: auto;
+  }
+  .sidebar h3 { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .6px; color: var(--slate-light); margin-bottom: 12px; padding: 0 8px; }
+  .sidebar-list { list-style: none; }
+  .sidebar-list li { margin-bottom: 2px; }
+  .sidebar-list a {
+    display: flex; align-items: center; gap: 10px;
+    padding: 8px 10px; border-radius: var(--radius-sm);
+    font-size: 13px; font-weight: 500; color: var(--slate);
+    text-decoration: none; transition: all var(--transition); cursor: pointer;
+  }
+  .sidebar-list a:hover { background: var(--bg); }
+  .sidebar-list a.active { background: var(--blue-light); color: var(--blue); font-weight: 600; }
+  .sidebar-list a .q-num {
+    width: 24px; height: 24px; border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 700; flex-shrink: 0;
+    background: var(--bg); color: var(--slate-light);
+    transition: all var(--transition);
+  }
+  .sidebar-list a.active .q-num { background: var(--blue); color: #fff; }
+  .sidebar-list a.done .q-num { background: #d1fae5; color: #065f46; }
+  .sidebar-list a.done::after { content: '✓'; margin-left: auto; font-size: 13px; color: #059669; }
+
+  .main-content { flex: 1; padding: 32px 48px; min-width: 0; }
+  .lesson-card { background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; animation: fadeIn .4s ease-out; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+  .lesson-header { padding: 28px 32px 0; }
+  .lesson-header .q-label { display: inline-block; background: var(--blue-light); color: var(--blue); font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 6px; text-transform: uppercase; letter-spacing: .3px; margin-bottom: 10px; }
+  .lesson-header h2 { font-family: var(--font-serif); font-weight: 700; font-size: 22px; color: var(--navy); line-height: 1.3; }
+  .lesson-intro { margin-top: 14px; padding: 16px 20px; background: var(--amber-light); border-left: 3px solid var(--amber); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; font-size: 14px; color: var(--slate); line-height: 1.7; }
+  .lesson-intro::before { content: '🧑‍🏫 '; font-size: 16px; }
+  .steps-container { padding: 24px 32px 32px; }
+  .steps-progress { display: flex; align-items: center; gap: 8px; margin-bottom: 24px; }
+  .step-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--border); transition: all var(--transition); }
+  .step-dot.active { background: var(--blue); transform: scale(1.3); }
+  .step-dot.done { background: var(--teal); }
+  .step-dot.current ~ .step-dot { opacity: .4; }
+  .step-label { font-size: 11px; font-weight: 600; color: var(--slate-light); margin-left: auto; text-transform: uppercase; letter-spacing: .3px; }
+  .step-content { animation: fadeIn .35s ease-out; }
+  .step-content h3 { font-family: var(--font-serif); font-size: 17px; color: var(--navy); margin-bottom: 14px; font-weight: 700; }
+  .step-content p { font-size: 15px; line-height: 1.8; margin-bottom: 14px; color: var(--slate); }
+  .step-content p:last-child { margin-bottom: 0; }
+  .step-content ul, .step-content ol { margin: 10px 0 14px; padding-left: 22px; }
+  .step-content li { font-size: 15px; line-height: 1.7; margin-bottom: 6px; }
+  .step-content strong { color: var(--navy); font-weight: 600; }
+  .step-content .highlight-box { background: var(--teal-light); border-left: 3px solid var(--teal); padding: 14px 18px; border-radius: 0 var(--radius-sm) var(--radius-sm) 0; margin: 14px 0; font-size: 14px; }
+  .step-content .example-box { background: var(--blue-light); border-left: 3px solid var(--blue); padding: 14px 18px; border-radius: 0 var(--radius-sm) var(--radius-sm) 0; margin: 14px 0; font-size: 14px; }
+  .step-content .example-box::before { content: '💡 '; font-weight: 600; color: var(--blue-dark); font-size: 13px; }
+  .step-content table { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 14px; border-radius: var(--radius-sm); overflow: hidden; }
+  .step-content th { background: var(--bg); font-weight: 600; text-align: left; padding: 10px 14px; color: var(--navy); font-size: 12px; text-transform: uppercase; letter-spacing: .3px; }
+  .step-content td { padding: 10px 14px; border-bottom: 1px solid var(--border); }
+  .step-content tr:last-child td { border-bottom: none; }
+  .glossary-term { color: var(--blue); cursor: pointer; border-bottom: 1px dashed var(--blue); font-weight: 500; transition: all var(--transition); }
+  .glossary-term:hover { background: var(--blue-light); }
+  .diagram-box { background: #fff; border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 20px; margin: 18px 0; overflow-x: auto; }
+  .diagram-box .mermaid { display: flex; justify-content: center; }
+  .step-nav { display: flex; gap: 10px; margin-top: 28px; padding-top: 20px; border-top: 1px solid var(--border); }
+  .step-nav button { padding: 10px 24px; font-family: var(--font-sans); font-size: 13px; font-weight: 600; border: none; border-radius: var(--radius-sm); cursor: pointer; transition: all var(--transition); }
+  .step-nav .btn-prev { background: var(--bg); color: var(--slate); }
+  .step-nav .btn-prev:hover { background: var(--border); }
+  .step-nav .btn-next { background: var(--blue); color: #fff; margin-left: auto; }
+  .step-nav .btn-next:hover { background: var(--blue-dark); transform: translateY(-1px); }
+  .step-nav .btn-next:disabled { opacity: .5; cursor: default; transform: none; }
+  .step-nav .btn-finish { background: #059669; color: #fff; margin-left: auto; }
+  .step-nav .btn-finish:hover { background: #047857; }
+  .recap-box { margin: 18px 0 0; padding: 20px 24px; background: linear-gradient(135deg, #f0fdf4, #f0fdfa); border: 1px solid #bbf7d0; border-radius: var(--radius-sm); }
+  .recap-box h4 { font-size: 12px; text-transform: uppercase; letter-spacing: .5px; color: #059669; margin-bottom: 10px; font-weight: 700; }
+  .recap-box ul { list-style: none; padding: 0; margin: 0; }
+  .recap-box li { padding: 6px 0; font-size: 14px; font-weight: 500; color: #065f46; }
+  .recap-box li::before { content: '✓ '; font-weight: 700; }
+
+  .modal-overlay { display: none; position: fixed; inset: 0; z-index: 999; background: rgba(15,23,42,.6); backdrop-filter: blur(4px); justify-content: center; align-items: center; }
+  .modal-overlay.show { display: flex; }
+  .modal-box { background: #fff; border-radius: var(--radius); padding: 32px; max-width: 480px; width: 90%; box-shadow: var(--shadow-lg); animation: fadeIn .2s ease-out; }
+  .modal-box h3 { font-size: 18px; font-weight: 700; color: var(--navy); margin-bottom: 10px; }
+  .modal-box p { font-size: 15px; line-height: 1.7; color: var(--slate); }
+  .modal-close { margin-top: 20px; padding: 8px 20px; font-family: var(--font-sans); font-size: 13px; font-weight: 600; border: none; border-radius: var(--radius-sm); cursor: pointer; background: var(--bg); color: var(--slate); transition: background var(--transition); }
+  .modal-close:hover { background: var(--border); }
+  .empty-state { text-align: center; padding: 60px 40px; color: var(--slate-light); }
+  .empty-state h2 { font-size: 20px; color: var(--slate); margin-bottom: 8px; }
+  .empty-state p { font-size: 14px; }
+
+  @media (max-width: 900px) {
+    header { padding: 16px 20px; flex-wrap: wrap; gap: 12px; }
+    .header-link { margin-left: 0; }
+    .search-wrapper { min-width: 0; width: 100%; order: 3; }
+    .tabs { padding: 0 16px; top: 170px; }
+    .sidebar { display: none; }
+    .main-content { padding: 20px; }
+    .lesson-header { padding: 20px 20px 0; }
+    .steps-container { padding: 16px 20px 24px; }
+    .step-nav { flex-wrap: wrap; }
+    .step-nav .btn-prev { order: 1; flex: 1; }
+    .step-nav .btn-next, .step-nav .btn-finish { order: 2; flex: 1; }
+    .app-layout { min-height: auto; }
+  }
+  @media (max-width: 600px) {
+    header h1 { font-size: 18px; }
+    .tab-btn { padding: 12px 14px; font-size: 12px; }
+    .tab-btn.active::after { left: 14px; right: 14px; }
+    .lesson-header h2 { font-size: 18px; }
+    .step-content p { font-size: 14px; }
+    .modal-box { padding: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-left">
+    <h1>🌐 Internet of Things</h1>
+    <p>BCL1123 — Interactive Lessons</p>
+    <div class="header-badge">🧑‍🏫 <span>Teacher Mode</span> — Learn step by step</div>
+  </div>
+  <div class="search-wrapper" id="searchWrapper">
+    <span class="search-icon">🔍</span>
+    <input class="search-input" id="searchInput" type="text" placeholder="Search lessons…" autocomplete="off">
+    <button class="search-clear" id="searchClear" onclick="clearSearch()">✕</button>
+    <div class="search-results" id="searchResults"></div>
+  </div>
+  <a class="header-link" href="index.html">📚 All Courses</a>
+</header>
+
+<div class="tabs" id="tabsContainer"></div>
+
+<div class="app-layout">
+  <aside class="sidebar" id="sidebar">
+    <h3>Lessons</h3>
+    <ul class="sidebar-list" id="sidebarList"></ul>
+  </aside>
+  <main class="main-content" id="mainContent">
+    <div class="empty-state"><h2>Select a lesson</h2><p>Choose a topic tab above, then click a lesson.</p></div>
+  </main>
+</div>
+
+<div class="modal-overlay" id="glossaryModal">
+  <div class="modal-box">
+    <h3 id="glossaryTermTitle"></h3>
+    <p id="glossaryTermDef"></p>
+    <button class="modal-close" onclick="closeGlossary()">Got it</button>
+  </div>
+</div>
+
+<script>
+const glossary = {
+  'IoT': 'The Internet of Things — a network of physical devices embedded with sensors, software, and connectivity to exchange data over the internet.',
+  'AIoT': 'Artificial Intelligence of Things — the integration of AI into IoT systems, enabling intelligent decision-making at the edge.',
+  'RFID': 'Radio Frequency Identification — a contactless technology that uses radio waves to read data from tags without requiring line-of-sight.',
+  'Sensor': 'A device that detects a physical quantity (temperature, light, motion) and converts it into an electrical signal.',
+  'Sensing Layer': 'The bottom layer of IoT architecture that collects data from the physical world using sensors, RFID, and GPS.',
+  'Network Layer': 'The layer of IoT architecture responsible for transmitting data from sensors to the cloud via Wi-Fi, 5G, NB-IoT, etc.',
+  'Platform Layer': 'The layer of IoT architecture that integrates data from multiple sources into cloud platforms for storage and analysis.',
+  'Application Layer': 'The top layer of IoT architecture that provides specific services to end users — smart grids, transportation, healthcare.',
+  'Edge Computing': 'Processing data directly on IoT devices instead of sending everything to the cloud, reducing latency and improving privacy.',
+  'Consumer IoT': 'IoT products purchased directly by individuals for daily use — smart bands, VR glasses, smart locks, wearables.',
+  'LPWA': 'Low Power Wide Area — wireless technologies designed for IoT devices that transmit small data over long distances with minimal power, like NB-IoT and LoRa.',
+  'NB-IoT': 'Narrowband IoT — an LPWA technology operating in licensed cellular bands, offering deep indoor penetration and 10-year battery life.',
+  'LoRa': 'Long Range — a proprietary spread-spectrum modulation technology for LPWA, allowing organizations to build private IoT networks.',
+  '5G': 'The fifth generation of cellular networks, offering enhanced mobile broadband (eMBB), massive IoT connectivity (mMTC), and ultra-reliable low-latency (uRLLC).',
+  'Network Slicing': 'A 5G feature that divides a single physical network into multiple virtual networks, each optimized for different use cases.',
+  'MQTT': 'Message Queuing Telemetry Transport — a lightweight publish/subscribe messaging protocol designed for constrained IoT devices.',
+  'CoAP': 'Constrained Application Protocol — a specialized UDP-based protocol for low-power, low-memory IoT devices.',
+  'V2X': 'Vehicle-to-Everything — communication system where vehicles exchange data with other vehicles (V2V), infrastructure (V2I), and pedestrians (V2P).',
+  'ZigBee': 'A low-power, low-data-rate wireless mesh networking protocol based on IEEE 802.15.4, used in smart homes and building automation.',
+  'Industry 4.0': 'The fourth industrial revolution, characterized by smart manufacturing, IoT, AI, and digital transformation of production.',
+  'UART': 'Universal Asynchronous Receiver/Transmitter — a simple serial protocol for point-to-point communication between two devices.',
+  'I2C': 'Inter-Integrated Circuit — a multi-master, multi-slave serial bus for connecting low-speed peripherals to microcontrollers.',
+  'SPI': 'Serial Peripheral Interface — a synchronous serial communication interface for short-distance, high-speed data transfer.',
+  'CAN Bus': 'Controller Area Network — a robust broadcast bus standard for reliable real-time communication in vehicles and industrial systems.',
+  'GPS': 'Global Positioning System — a US-owned satellite navigation system providing geolocation data to GPS receivers worldwide.',
+  'GNSS': 'Global Navigation Satellite System — the umbrella term covering GPS (USA), BeiDou (China), Galileo (EU), and GLONASS (Russia).',
+};
+
+const topics = [
+  {
+    id: 'topic1', title: 'Topic 1 — History & Overview', short: 'History & Overview',
+    questions: [
+      {
+        number: 1, title: 'Origin & Evolution of IoT',
+        intro: "The Internet of Things is often seen as a modern concept, but its roots go back further than you might think. Let's start at the very beginning — a coffee pot at Cambridge University.",
+        steps: [
+          {
+            title: 'The Trojan Room Coffee Pot',
+            body: `<p>In <strong>1991</strong>, scientists at the <strong>Computer Laboratory of Cambridge University</strong> faced a frustrating problem: they would walk downstairs to get coffee, only to find an empty pot. Their solution? They set up a <strong>portable camera</strong> next to the coffee pot and wrote a program to capture images every few seconds, broadcasting them over their local network.</p>
+
+<p>This was the <strong>Trojan Room Coffee Pot</strong> — widely considered the world's first webcam and a foundational moment in IoT history.</p>
+
+<div class="highlight-box">The coffee pot solved a simple human problem: <strong>"Is there coffee?"</strong> — and in doing so, it demonstrated the core idea of IoT: connecting a physical object to a network so we can monitor it remotely.</div>`
+          },
+          {
+            title: 'The Vending Machine That Came Before',
+            body: `<p>Even earlier, in <strong>1990</strong>, programmers at <strong>Carnegie Mellon University</strong> had modified a Coca-Cola vending machine to report:</p>
+<ul>
+  <li>How many cans were left</li>
+  <li>Whether they were cold</li>
+</ul>
+
+<div class="example-box">A programmer would type a command on their terminal to check the vending machine's status before walking across campus. If the machine was empty or the drinks weren't cold yet, they saved themselves the trip.</div>
+
+<p>Both the vending machine and the coffee pot share the same DNA: <strong>a physical object + a sensor/camera + a network + a user who wants to know something</strong>. That's IoT at its simplest.</p>`
+          },
+          {
+            title: 'The Term "Internet of Things" Is Born',
+            body: `<p>The term <strong>"Internet of Things"</strong> was first coined in <strong>1999</strong> by <strong>Kevin Ashton</strong>, a British technology pioneer working on RFID (Radio Frequency Identification).</p>
+
+<p>Ashton's vision: if computers could identify physical objects using RFID tags without human intervention, the internet would become truly "aware" of the physical world. His focus was on <strong>supply chain management</strong> — using RFID to track inventory automatically.</p>
+
+<div class="highlight-box">Key insight: Ashton realized that <strong>human data entry is slow, error-prone, and limited</strong>. IoT devices collect data <em>automatically</em>, without requiring a person to type it in.</div>`
+          },
+          {
+            title: 'The Evolution Timeline',
+            body: `<table>
+  <tr><th>Year</th><th>Milestone</th></tr>
+  <tr><td>1990</td><td>Carnegie Mellon Coca-Cola vending machine — first internet-connected appliance</td></tr>
+  <tr><td>1991</td><td>Cambridge Trojan Room coffee pot — first webcam</td></tr>
+  <tr><td>1999</td><td>Kevin Ashton coins "Internet of Things" — focus on RFID</td></tr>
+  <tr><td>2000s</td><td>Smartphones, wireless sensors, and cloud computing emerge</td></tr>
+  <tr><td>2010s</td><td>Smart home devices explode (Nest, Alexa, smart lights)</td></tr>
+  <tr><td>2016–present</td><td>Smart cities, AIoT, Edge AI, autonomous vehicles, Industry 4.0</td></tr>
+</table>
+
+<p>Today, IoT is no longer just about checking a coffee pot. It's about <strong>smart cities, connected cars, precision agriculture, healthcare monitoring, and factory automation</strong> — all built on the same core principle: <em>connect physical things to the internet and extract value from the data they generate</em>.</p>`
+          }
+        ],
+        recap: [
+          'IoT originated in 1990–1991 with university experiments (vending machine, coffee pot webcam).',
+          'The term "Internet of Things" was coined by Kevin Ashton in 1999, focused on RFID for supply chain automation.',
+          'Today IoT spans smart homes, cities, factories, healthcare, and autonomous systems.'
+        ]
+      },
+      {
+        number: 2, title: 'IoT Architecture & AIoT',
+        intro: "Now that we know how IoT got started, let's understand how a modern IoT system is built. Every IoT system, from a smart light bulb to a smart city, follows a layered architecture.",
+        steps: [
+          {
+            title: 'The Four-Layer IoT Architecture',
+            body: `<p>Modern IoT systems operate on a <strong>layered architecture</strong>. Each layer has a specific role, and they work together to turn raw physical signals into useful services.</p>
+
+<div class="diagram-box"><pre class="mermaid">
+flowchart TD
+  subgraph Sensing["🌡️ Sensing Layer"]
+    S1[Sensors, RFID, GPS]
+    S2[Collects & digitizes<br/>physical data]
+  end
+  subgraph Network["📡 Network Layer"]
+    N1[Wi-Fi, 5G, NB-IoT, LoRa]
+    N2[Transmits data to<br/>the cloud]
+  end
+  subgraph Platform["☁️ Platform Layer"]
+    P1[Cloud storage, data<br/>management, analytics]
+  end
+  subgraph Application["📱 Application Layer"]
+    A1[Smart Grid, Smart<br/>Transport, Smart Health]
+  end
+  Sensing --> Network --> Platform --> Application
+  style Sensing fill:#fef3c7,stroke:#f59e0b
+  style Network fill:#dbeafe,stroke:#3b82f6
+  style Platform fill:#f0fdf4,stroke:#059669
+  style Application fill:#f3e8ff,stroke:#9333ea
+</pre></div>`
+          },
+          {
+            title: 'Sensing Layer — The Eyes and Ears',
+            body: `<p>The <strong>Sensing Layer</strong> (also called the Perception Layer) is where data enters the IoT system. It collects information from the physical world and converts it into digital signals.</p>
+
+<p><strong>Technologies used:</strong></p>
+<ul>
+  <li><strong>Sensors</strong> — detect temperature, humidity, light, motion, gas, pressure</li>
+  <li><strong>RFID</strong> — identify objects wirelessly via radio frequency tags</li>
+  <li><strong>GPS</strong> — determine geographic location</li>
+  <li><strong>Actuators</strong> — devices that <em>do</em> something (open a valve, turn on a motor)</li>
+</ul>
+
+<div class="highlight-box">Think of the Sensing Layer as the <strong>"eyes and ears"</strong> of IoT. Without it, the system has no way to know what's happening in the physical world.</div>`
+          },
+          {
+            title: 'Network & Platform Layers',
+            body: `<p><strong>Network Layer:</strong> Once data is collected, it must be transmitted somewhere. The Network Layer is responsible for reliable data transmission between devices and the cloud.</p>
+
+<p>Technologies: <strong>Wi-Fi, 5G, NB-IoT, LoRa, Bluetooth, ZigBee, Ethernet</strong> — each suited to different range, power, and bandwidth needs.</p>
+
+<p><strong>Platform Layer:</strong> The cloud-based middleware that processes, stores, and manages IoT data. It provides:</p>
+<ul>
+  <li><strong>Data storage</strong> — massive databases for millions of sensor readings</li>
+  <li><strong>Device management</strong> — tracking device status, firmware updates</li>
+  <li><strong>Data analytics</strong> — turning raw data into actionable insights</li>
+  <li><strong>Security & access control</strong> — authenticating devices and users</li>
+</ul>`
+          },
+          {
+            title: 'Application Layer & AIoT',
+            body: `<p><strong>Application Layer:</strong> The top layer where data is turned into useful services for end users.</p>
+
+<p>Examples: <strong>Smart Grids</strong> (optimize electricity distribution), <strong>Smart Transportation</strong> (real-time traffic routing), <strong>Smart Logistics</strong> (track packages globally), <strong>Smart Healthcare</strong> (remote patient monitoring).</p>
+
+<p><strong>AIoT — Artificial Intelligence of Things:</strong> The most significant recent development in IoT is the integration of Artificial Intelligence, called <strong>AIoT</strong>.</p>
+
+<div class="highlight-box">Instead of sending all data to a centralized cloud for processing, <strong>Edge AI</strong> processes data directly on IoT devices. This minimizes latency, enhances data privacy, and is critical for real-time applications like <strong>autonomous vehicles</strong> and <strong>predictive maintenance</strong> in smart manufacturing.</div>
+
+<div class="diagram-box"><pre class="mermaid">
+flowchart LR
+  D[IoT Device] -->|Raw data| E[Edge AI<br/>Processes locally]
+  E -->|Insights only| C[Cloud<br/>Aggregates across devices]
+  E -->|Instant action| A[Actuator<br/>No waiting for cloud]
+  style E fill:#fef3c7,stroke:#f59e0b,stroke-width:2px
+  style C fill:#dbeafe,stroke:#3b82f6,stroke-width:2px
+</pre></div>`
+          }
+        ],
+        recap: [
+          'The 4 IoT layers: Sensing (collect data) → Network (transmit) → Platform (process/store) → Application (services).',
+          'AIoT integrates AI at the edge, enabling real-time decisions without cloud latency.'
+        ]
+      }
+    ]
+  },
+  {
+    id: 'topic2', title: 'Topic 2 — Industry Applications', short: 'Applications',
+    questions: [
+      {
+        number: 3, title: 'IoT Types & Smart City',
+        intro: "IoT isn't just about smart watches and voice assistants. It spans three major categories, and one of its most impactful applications is making cities smarter and more efficient.",
+        steps: [
+          {
+            title: 'Three Categories of IoT Applications',
+            body: `<p>The IoT ecosystem extends far beyond consumer gadgets. The industry is broadly categorized into three pillars:</p>
+
+<table>
+  <tr><th>Category</th><th>Who uses it</th><th>Examples</th><th>Network</th></tr>
+  <tr><td><strong>Consumer IoT</strong></td><td>Individuals</td><td>Smart bands, VR glasses, smart locks, wearables</td><td>Bluetooth, Wi-Fi, ZigBee</td></tr>
+  <tr><td><strong>Policy-driven IoT</strong></td><td>Governments, municipalities</td><td>Smart traffic, parking, street lamps, firefighting</td><td>NB-IoT, 5G, LoRa</td></tr>
+  <tr><td><strong>Production IoT</strong></td><td>Enterprises, factories</td><td>Industry 4.0, smart manufacturing, logistics</td><td>Industrial Ethernet, 5G</td></tr>
+</table>
+
+<p><strong>Consumer IoT</strong> is what most people know — products they buy and use daily. <strong>Policy-driven IoT</strong> is deployed by city governments for public services. <strong>Production IoT</strong> transforms industrial operations.</p>`
+          },
+          {
+            title: 'Smart City — Intelligent Traffic & Parking',
+            body: `<p><strong>Problem:</strong> Traffic congestion wastes time and fuel. Traditional traffic lights use fixed timers and cannot adapt to real-time conditions. Drivers circle endlessly looking for parking.</p>
+
+<p><strong>IoT solutions:</strong></p>
+<ul>
+  <li><strong>Intelligent Traffic:</strong> Edge cameras + induction loops detect real-time traffic flow. A cloud platform adjusts signal timings dynamically. Emergency vehicles get green-light priority.</li>
+  <li><strong>Smart Parking:</strong> NB-IoT geomagnetic sensors in each parking space detect when a car arrives (measuring the change in magnetic field). Drivers use a navigation app to find and reserve empty spots immediately.</li>
+</ul>
+
+<div class="example-box">A geomagnetic sensor detects a car by measuring the change in the Earth's magnetic field when a large metal object (your car) parks above it. This data is sent over NB-IoT to the cloud, and within seconds the spot shows as "occupied" in the parking app.</div>`
+          },
+          {
+            title: 'Smart Street Lamps & Firefighting',
+            body: `<p><strong>Smart Street Lamps:</strong> Traditional street lamps use fixed timers — they turn on at 7 PM regardless of whether it's a cloudy afternoon or a bright full-moon night.</p>
+<ul>
+  <li>Solution: Photosensitive sensors + NB-IoT/ZigBee modules</li>
+  <li>Lamps adjust brightness based on real-time ambient light</li>
+  <li>They report their own health status — maintenance crews know exactly which lamp is broken without patrolling</li>
+</ul>
+
+<p><strong>Smart Firefighting:</strong> Urban fires in crowded areas often lack early detection systems.</p>
+<ul>
+  <li>Wireless smoke detectors + temperature/humidity sensors send alerts over NB-IoT</li>
+  <li>Firefighters receive precise coordinates and environmental data before they even leave the station</li>
+  <li>Result: faster response, less property damage, saved lives</li>
+</ul>`
+          },
+          {
+            title: 'Manhole Cover & Sanitation Monitoring',
+            body: `<p><strong>Smart Manhole Covers:</strong> Cities have millions of manhole covers owned by different departments. Stolen or dislodged covers create fatal hazards.</p>
+<ul>
+  <li>Covers equipped with acceleration and tilt sensors trigger instant alarms if moved</li>
+  <li>Gas sensors monitor toxic gases in sewers in real time</li>
+</ul>
+
+<p><strong>Smart Sanitation:</strong> Garbage trucks running on fixed schedules waste fuel emptying half-empty bins while others overflow.</p>
+
+<div class="example-box">RFID tags and fill-level sensors on garbage bins report fullness over 4G/5G. The control center dynamically routes sanitation vehicles only to bins that actually need emptying &mdash; saving fuel, reducing overflow, and optimizing the entire fleet.</div>`
+          }
+        ],
+        recap: [
+          'IoT spans three categories: Consumer, Policy-driven (smart city), and Production (industrial).',
+          'Smart city IoT tackles traffic, parking, lighting, fire safety, manhole hazards, and waste management through connected sensors and real-time cloud platforms.'
+        ]
+      },
+      {
+        number: 4, title: 'Smart Home, IoV & Industrial IoT',
+        intro: "Three more major IoT domains are transforming everyday life: the all-in-one smart home, the internet of vehicles, and the fourth industrial revolution — Industry 4.0.",
+        steps: [
+          {
+            title: 'All-in-One Smart Home — The 1+2+N Strategy',
+            body: `<p>Traditional smart homes suffered from <strong>fragmented ecosystems</strong> — a Philips light that wouldn't talk to a Xiaomi sensor that wouldn't connect to a Samsung hub. The modern approach treats the entire house as a unified intelligent system.</p>
+
+<p><strong>The "1+2+N" Strategy</strong> (championed by Huawei):</p>
+<ul>
+  <li><strong>"1" (The Brain):</strong> A central smart home computer or smartphone acting as the AI processor and control hub</li>
+  <li><strong>"2" (The Nervous System):</strong> Two core capabilities — <strong>Networking</strong> (PLC, Wi-Fi 6+) and <strong>Interaction</strong> (voice, touch screens, sensors)</li>
+  <li><strong>"N" (Subsystems):</strong> Expandable modules — smart lighting, security, climate control, appliances, entertainment, access control</li>
+</ul>
+
+<div class="diagram-box"><pre class="mermaid">
+flowchart TB
+  B1[1: The Brain<br/>Smart Home Computer] <--> B2[2: Nervous System<br/>PLC / Wi-Fi 6+ Network]
+  B2 <--> N1[N: Smart Lighting]
+  B2 <--> N2[N: Security Monitoring]
+  B2 <--> N3[N: Climate Control]
+  B2 <--> N4[N: Smart Appliances]
+  style B1 fill:#002b5e,color:#fff
+  style B2 fill:#e6f2ff,stroke:#005bb5
+</pre></div>`
+          },
+          {
+            title: 'Internet of Vehicles (IoV) & V2X',
+            body: `<p>The <strong>Internet of Vehicles (IoV)</strong> extends IoT principles to transportation. Cars become connected devices that communicate with each other and with infrastructure.</p>
+
+<p><strong>V2X — Vehicle-to-Everything communication:</strong></p>
+<ul>
+  <li><strong>V2V (Vehicle-to-Vehicle):</strong> Cars share speed, braking, and position data directly. If the car ahead brakes suddenly, your car gets an instant alert — faster than human reaction time.</li>
+  <li><strong>V2I (Vehicle-to-Infrastructure):</strong> Cars talk to traffic lights and road signs. A traffic light tells an approaching car exactly how many seconds until it turns green.</li>
+  <li><strong>V2P (Vehicle-to-Pedestrian):</strong> Cars detect a pedestrian's smartphone or wearable, alerting the driver even if the pedestrian is hidden by a parked vehicle.</li>
+</ul>
+
+<div class="diagram-box"><pre class="mermaid">
+graph LR
+  A[Vehicle A] <-->|V2V| B[Vehicle B]
+  A <-->|V2I| C[Smart Traffic Light]
+  A <-->|Cloud| D((Network/Cloud))
+  D <--> E[Traffic Platform]
+  B <-->|V2P| F(Pedestrian Phone)
+  style A fill:#005bb5,color:#fff
+  style B fill:#005bb5,color:#fff
+</pre></div>`
+          },
+          {
+            title: 'Industrial IoT & Industry 4.0',
+            body: `<p><strong>Industrial IoT (IIoT)</strong> is a major driver for the next phase of economic growth, closely aligned with <strong>Industry 4.0</strong> — the fourth industrial revolution (following Steam, Electrification, and Informatization).</p>
+
+<p><strong>Enterprise digital transformation happens in three phases:</strong></p>
+<ol>
+  <li><strong>Information Digitization:</strong> Converting analog to digital (e.g., electronic accounting instead of paper ledgers)</li>
+  <li><strong>Process Digitalization:</strong> Using ERP, CRM systems to improve workflow efficiency</li>
+  <li><strong>Digital Transformation:</strong> Fundamental business model change — e.g., a car manufacturer stops <em>selling</em> cars and launches an IoT-based ride-sharing fleet management service</li>
+</ol>
+
+<p>The IIoT architecture follows the same 4-layer model but with industrial-grade components: industrial Ethernet, eLTE wireless, edge gateways, and heavy machinery sensors. Smart factories use this to enable <strong>predictive maintenance, real-time monitoring, and automated production</strong>.</p>`
+          }
+        ],
+        recap: [
+          'Smart Home: "1+2+N" strategy unifies all devices under one brain + one network.',
+          'IoV enables V2V, V2I, V2P communication for safer, smarter transportation.',
+          'Industry 4.0 uses IIoT to transform manufacturing through digital transformation phases.'
+        ]
+      }
+    ]
+  },
+  {
+    id: 'topic3', title: 'Topic 3 — Data Collection', short: 'Data Collection',
+    questions: [
+      {
+        number: 5, title: 'Sensors & Sensing Technologies',
+        intro: "Data is the foundation of every IoT system. But how does data actually get from the physical world into a computer? The answer is sensors — the 'eyes and ears' of IoT.",
+        steps: [
+          {
+            title: 'What is a Sensor?',
+            body: `<p>A <strong>sensor</strong> is a device that detects a physical quantity (measurand) and converts it into a usable electrical signal.</p>
+
+<p><strong>Three main components of a sensor system:</strong></p>
+<ul>
+  <li><strong>Sensing Element:</strong> Detects physical, chemical, or biological information — temperature, light, pressure, gas</li>
+  <li><strong>Conversion Element:</strong> Converts the sensing element's output into an electrical signal suitable for transmission</li>
+  <li><strong>Auxiliary Power & Conversion Circuit:</strong> Provides power and converts the signal into a measurable output (frequency, voltage, or current)</li>
+</ul>
+
+<div class="diagram-box"><pre class="mermaid">
+flowchart LR
+  A[Physical World<br/>Temperature, Light,<br/>Humidity, Motion] --> B[Sensing Element]
+  B --> C[Conversion Element]
+  C --> D[ADC / Processing]
+  D --> E[Digital Output<br/>to Microcontroller]
+  F[Auxiliary Power] --> B
+  F --> C
+  style A fill:#e6f2ff,stroke:#005bb5
+  style E fill:#fdfcf0,stroke:#8b9a46
+</pre></div>`
+          },
+          {
+            title: 'Sensor Classification & Signal Types',
+            body: `<p>Sensors can be classified by what they measure, how they output data, or what material they use.</p>
+
+<table>
+  <tr><th>Signal Type</th><th>What it outputs</th><th>Example</th></tr>
+  <tr><td><strong>Analog</strong></td><td>Continuous voltage/current/resistance that varies with the measurand</td><td>Thermistor — resistance changes with temperature</td></tr>
+  <tr><td><strong>Binary</strong></td><td>Only two states: ON or OFF (0 or 1)</td><td>Liquid level switch — above threshold = ON, below = OFF</td></tr>
+  <tr><td><strong>Digital</strong></td><td>Digital codes directly readable by a microcontroller (has built-in ADC)</td><td>DHT22 temperature/humidity sensor — outputs a digital byte</td></tr>
+</table>
+
+<p><strong>Analog sensors</strong> need an external ADC (Analog-to-Digital Converter) to be read by a microcontroller. <strong>Digital sensors</strong> have the ADC built right in, making them simpler to use.</p>`
+          },
+          {
+            title: 'Temperature, Humidity & Infrared Sensors',
+            body: `<p><strong>Temperature Sensors:</strong></p>
+<ul>
+  <li><strong>RTD (Resistance Temperature Detector):</strong> Metal resistance changes with temperature. Very accurate and stable.</li>
+  <li><strong>Thermocouple:</strong> Two different metal wires joined at both ends. When heated, they produce a voltage difference that can be converted to a temperature reading. Used in high-temperature industrial applications.</li>
+</ul>
+
+<p><strong>Humidity Sensors:</strong> Measure the water vapour content in air. Often combined with temperature sensors in a single module (like the DHT22).</p>
+
+<p><strong>Infrared (IR) Sensors:</strong></p>
+<ul>
+  <li><strong>Passive IR (PIR):</strong> Detects infrared radiation emitted by living beings (humans, animals). Used in motion detectors for security lights and alarms.</li>
+  <li><strong>Active IR:</strong> Emits infrared light and measures reflection — used in proximity sensors and object detection.</li>
+</ul>`
+          }
+        ],
+        recap: [
+          'Sensors detect physical quantities and convert them to electrical signals — the "eyes and ears" of IoT.',
+          'Signal types: analog (continuous), binary (on/off), digital (built-in ADC, outputs bytes).',
+          'Common IoT sensors: temperature (RTD, thermocouple), humidity, infrared (passive/active).'
+        ]
+      },
+      {
+        number: 6, title: 'RFID & Positioning Technologies',
+        intro: "Beyond sensing physical quantities, IoT systems need to identify objects and know where they are. This lesson covers tag identification (barcodes, RFID) and positioning technologies.",
+        steps: [
+          {
+            title: 'Barcodes — 1D and 2D',
+            body: `<p><strong>1D Barcodes:</strong> The traditional linear barcode found on every grocery item. A laser scanner reads the varying widths of black and white lines to decode a product ID.</p>
+<ul>
+  <li>Stores a small amount of data (usually just a product code)</li>
+  <li>Requires line-of-sight — scanner must see the barcode</li>
+  <li>Once printed, the data cannot be changed</li>
+  <li>Damaged barcodes become unreadable</li>
+</ul>
+
+<p><strong>2D Barcodes (QR Codes):</strong> Store data in both horizontal and vertical dimensions, allowing much more information.</p>
+<ul>
+  <li>Can store URLs, contact info, payment data — thousands of characters</li>
+  <li>Error correction built in — still readable even if partially damaged</li>
+  <li>Scanned by cameras (no special laser needed)</li>
+</ul>`
+          },
+          {
+            title: 'RFID Technology',
+            body: `<p><strong>RFID (Radio Frequency Identification)</strong> is a contactless technology that uses radio waves for two-way data communication without requiring line-of-sight.</p>
+
+<p><strong>Three components of an RFID system:</strong></p>
+<ul>
+  <li><strong>Reader:</strong> Emits radio frequency energy to form an electromagnetic field; reads/writes data to tags</li>
+  <li><strong>RFID Tag:</strong> Contains a microchip (memory) and antenna; stores and transmits data when triggered</li>
+  <li><strong>Data Management System:</strong> Backend software that processes collected tag data</li>
+</ul>
+
+<p><strong>RFID vs Barcode — A Comparison:</strong></p>
+<table>
+  <tr><th>Feature</th><th>Barcode</th><th>RFID</th></tr>
+  <tr><td>Line-of-sight needed?</td><td>Yes</td><td>No — reads through packaging</td></tr>
+  <tr><td>Items per scan</td><td>One at a time</td><td>Multiple simultaneously</td></tr>
+  <tr><td>Data capacity</td><td>Small</td><td>Large (up to several MB)</td></tr>
+  <tr><td>Durability</td><td>Unreadable if dirty/damaged</td><td>Works in harsh environments</td></tr>
+  <tr><td>Communication</td><td>One-way</td><td>Two-way, supports updates</td></tr>
+</table>`
+          },
+          {
+            title: 'Passive vs Active RFID',
+            body: `<table>
+  <tr><th>Type</th><th>Power Source</th><th>Range</th><th>Frequency</th><th>Application</th></tr>
+  <tr><td><strong>Passive RFID</strong></td><td>No battery — powered by reader's electromagnetic field</td><td>Short (&lt;1 m)</td><td>125 kHz, 13.56 MHz</td><td>Bus cards, ID cards, Touch 'n Go</td></tr>
+  <tr><td><strong>Active RFID</strong></td><td>Internal battery — transmits independently</td><td>Up to 100 m</td><td>900 MHz, 2.45 GHz</td><td>Electronic toll collection, vehicle tracking</td></tr>
+  <tr><td><strong>Semi-passive</strong></td><td>Battery for internal circuits only</td><td>Medium</td><td>UHF</td><td>Cold chain monitoring</td></tr>
+</table>
+
+<div class="example-box">Malaysia's <strong>Touch 'n Go</strong> card and the <strong>MyKad</strong> national identity card both use passive RFID at 13.56 MHz. When you tap your card at a toll booth, the reader's electromagnetic field energizes the card's antenna — powering the chip just long enough to transmit its data. The entire transaction completes in under 100 milliseconds, with no battery inside the card at all!</div>`
+          },
+          {
+            title: 'Positioning Technologies — GPS to Indoor',
+            body: `<p><strong>Outdoor Positioning — GPS/GNSS:</strong></p>
+<ul>
+  <li><strong>GPS (USA)</strong> — 24 satellites, the most widely adopted system</li>
+  <li><strong>BeiDou (China)</strong> — 35 satellites, fully global since 2020</li>
+  <li><strong>Galileo (EU)</strong> — civilian-focused high-precision system</li>
+  <li><strong>GLONASS (Russia)</strong> — global coverage, strong at high latitudes</li>
+</ul>
+<p>GPS determines position by <strong>trilateration</strong>: a receiver calculates its distance from at least 4 satellites using signal travel time. Standard civil GPS precision is ~100 m; Differential GPS improves this to ~5 m.</p>
+
+<p><strong>Indoor Positioning:</strong></p>
+<ul>
+  <li><strong>Wi-Fi Positioning:</strong> Uses signal strength (RSSI) from multiple Wi-Fi access points to estimate location. Accuracy 5–15 m.</li>
+  <li><strong>Bluetooth Beacons:</strong> Small battery-powered transmitters that broadcast a unique ID. Phone apps detect proximity. Accuracy 2–5 m.</li>
+  <li><strong>UWB (Ultra-Wideband):</strong> High-precision positioning using short radio pulses. Accuracy &lt;30 cm. Used for precise indoor tracking in factories, hospitals, and sports.</li>
+</ul>`
+          }
+        ],
+        recap: [
+          'Barcodes (1D/2D) are cheap but require line-of-sight; RFID reads multiple items simultaneously through packaging.',
+          'Passive RFID has no battery (powered by reader); active RFID has a battery for long-range transmission.',
+          'Outdoor positioning uses GPS/GNSS (satellites); indoor uses Wi-Fi, Bluetooth beacons, or UWB for cm-level accuracy.'
+        ]
+      }
+    ]
+  },
+  {
+    id: 'topic4', title: 'Topic 4 — Data Transmission', short: 'Transmission',
+    questions: [
+      {
+        number: 7, title: 'Wired & Short-Range Wireless',
+        intro: "Once data is collected by sensors, it needs to be transmitted. This lesson covers the 'last mile' of IoT communication — from wires inside a factory to short-range wireless in your smart home.",
+        steps: [
+          {
+            title: 'Wired Communications — RS-232, RS-485 & CAN',
+            body: `<p>Wired communications use physical cables and provide high reliability and stability. They are predominantly used in <strong>industrial control systems and fixed environments</strong>.</p>
+
+<table>
+  <tr><th>Technology</th><th>Signal Type</th><th>Max Distance</th><th>Topology</th><th>IoT Use Case</th></tr>
+  <tr><td><strong>RS-232</strong></td><td>Single-ended</td><td>~20 m</td><td>Point-to-point</td><td>Legacy barcode scanner to PC</td></tr>
+  <tr><td><strong>RS-485</strong></td><td>Differential (balanced)</td><td>1,200 m</td><td>Multi-drop bus</td><td>Multiple sensors on a factory floor</td></tr>
+  <tr><td><strong>CAN Bus</strong></td><td>Differential</td><td>~40 m</td><td>Broadcast bus</td><td>Vehicle electronics, industrial machines</td></tr>
+</table>
+
+<p><strong>RS-485</strong> uses differential signaling, making it resistant to electrical noise — critical in factories with heavy machinery. It's also multi-drop, meaning many devices share the same two wires.</p>
+
+<p><strong>CAN Bus (Controller Area Network)</strong> was originally designed for automotive use. It allows multiple microcontrollers to communicate without a central host, with built-in error detection and real-time guarantees.</p>`
+          },
+          {
+            title: 'Bluetooth & Wi-Fi',
+            body: `<p><strong>Bluetooth:</strong> Short-range (up to 100 m), low-power wireless for connecting personal devices.</p>
+<ul>
+  <li><strong>Bluetooth Classic:</strong> For continuous data streaming (headphones, speakers). Higher power consumption.</li>
+  <li><strong>Bluetooth Low Energy (BLE):</strong> Designed for IoT sensors that send small data packets and need months of battery life on a coin cell.</li>
+</ul>
+
+<p><strong>Wi-Fi 6 (802.11ax):</strong> The latest Wi-Fi standard with major improvements for IoT:</p>
+<ul>
+  <li><strong>OFDMA:</strong> Divides a Wi-Fi channel into smaller sub-channels, allowing many IoT devices to transmit simultaneously with less overhead</li>
+  <li><strong>Target Wake Time (TWT):</strong> Devices agree on a sleep schedule — the Wi-Fi router tells each device exactly when to wake up and send data. Greatly extends battery life for smart home sensors.</li>
+</ul>`
+          },
+          {
+            title: 'ZigBee — Self-Organizing Mesh Networks',
+            body: `<p><strong>ZigBee</strong> is a low-power, low-data-rate wireless protocol based on IEEE 802.15.4. It's famous for its <strong>self-organizing mesh network</strong> capability.</p>
+
+<div class="highlight-box">In a mesh network, each ZigBee device can relay data from other devices. If one device is out of range of the hub, it can hop through nearby devices to reach it. The network builds itself automatically.</div>
+
+<p><strong>Key characteristics:</strong></p>
+<ul>
+  <li>Very low power consumption — nodes can run on batteries for years</li>
+  <li>Low data rate (250 kbps) — not for video, perfect for sensor readings</li>
+  <li>Mesh topology — range extends as more devices join</li>
+  <li>Hundreds of nodes per network</li>
+  <li>Heavily used in smart buildings (lighting, HVAC, security)</li>
+</ul>`
+          }
+        ],
+        recap: [
+          'Wired: RS-485 (long-distance, multi-drop, noise-resistant) and CAN Bus (automotive/industrial with real-time guarantees).',
+          'Short-range wireless: Bluetooth/BLE for personal devices, Wi-Fi 6 with TWT for battery-smart IoT, ZigBee for self-organizing mesh networks.'
+        ]
+      },
+      {
+        number: 8, title: 'Cellular & LPWA Technologies',
+        intro: "When IoT devices are spread across a city or country, neither wires nor short-range wireless will work. This lesson covers wide-area cellular technologies (2G–5G) and LPWA — specifically designed for long-range, low-power IoT.",
+        steps: [
+          {
+            title: 'Cellular Evolution — 2G to 5G',
+            body: `<table>
+  <tr><th>Generation</th><th>Key Feature</th><th>IoT Relevance</th></tr>
+  <tr><td><strong>2G</strong></td><td>Digital voice + SMS</td><td>Early M2M (machine-to-machine) — old POS terminals</td></tr>
+  <tr><td><strong>3G</strong></td><td>Mobile internet</td><td>Basic telemetry, video calls</td></tr>
+  <tr><td><strong>4G/LTE</strong></td><td>High-speed mobile broadband</td><td>Vehicle tracking, HD video surveillance</td></tr>
+  <tr><td><strong>5G</strong></td><td>Ultra-low latency, massive connections, network slicing</td><td>Autonomous vehicles, smart factories, massive IoT</td></tr>
+</table>
+
+<div class="example-box">The speed evolution is staggering: downloading a 2-hour HD movie on 1G would take <strong>200 days</strong>. On 5G at peak speeds, it takes <strong>under 4 seconds</strong>!</div>`
+          },
+          {
+            title: '5G Network Slicing',
+            body: `<p><strong>5G Network Slicing</strong> is a revolutionary feature that divides a single physical 5G network into <strong>multiple virtual networks</strong>, each optimized for a different type of IoT application.</p>
+
+<div class="diagram-box"><pre class="mermaid">
+graph TD
+  Core[5G Universal Core]
+  Slice1[Slice 1: eMBB<br/>High Bandwidth]
+  Slice2[Slice 2: mMTC<br/>Massive IoT]
+  Slice3[Slice 3: uRLLC<br/>Ultra-Low Latency]
+  Core --> Slice1 --> VR[VR/AR, 4K Video]
+  Core --> Slice2 --> Sensors[Millions of Sensors]
+  Core --> Slice3 --> Cars[Autonomous Driving]
+  style Slice1 fill:#dbeafe,stroke:#3b82f6
+  style Slice2 fill:#f0fdf4,stroke:#059669
+  style Slice3 fill:#fef3c7,stroke:#f59e0b
+</pre></div>
+
+<p><strong>Three standard slices:</strong></p>
+<ul>
+  <li><strong>eMBB (Enhanced Mobile Broadband):</strong> High bandwidth for video streaming, VR/AR</li>
+  <li><strong>mMTC (Massive Machine Type Communications):</strong> Connects millions of low-power IoT devices per km²</li>
+  <li><strong>uRLLC (Ultra-Reliable Low-Latency Communications):</strong> &lt;1 ms latency for autonomous vehicles and remote surgery</li>
+</ul>`
+          },
+          {
+            title: 'LPWA — NB-IoT vs LoRa vs Sigfox',
+            body: `<p><strong>Low Power Wide Area (LPWA)</strong> technologies are designed specifically for IoT devices that transmit <strong>small amounts of data over long distances</strong> (up to 20 km) with <strong>battery lives up to 10 years</strong>.</p>
+
+<table>
+  <tr><th>Feature</th><th>NB-IoT</th><th>LoRa</th><th>Sigfox</th></tr>
+  <tr><td>Frequency</td><td>Licensed (cellular spectrum)</td><td>Unlicensed (ISM band)</td><td>Unlicensed</td></tr>
+  <tr><td>Range</td><td>~15 km</td><td>~15 km</td><td>~10 km</td></tr>
+  <tr><td>Battery life</td><td>~10 years (PSM mode)</td><td>~10 years</td><td>~10 years</td></tr>
+  <tr><td>Data rate</td><td>~200 kbps</td><td>~50 kbps</td><td>~100 bps</td></tr>
+  <tr><td>Network ownership</td><td>Telco-operated (uses existing 4G towers)</td><td>Private or public (you can build your own)</td><td>Sigfox-owned (subscription)</td></tr>
+  <tr><td>Indoor penetration</td><td>Excellent (deep basements)</td><td>Good</td><td>Moderate</td></tr>
+  <tr><td>Best for</td><td>Smart meters underground, city-wide sensors</td><td>Private agriculture, campus-wide deployments</td><td>Simple, ultra-low-cost telemetry</td></tr>
+</table>
+
+<div class="highlight-box"><strong>NB-IoT achieves 10-year battery life through Power Saving Mode (PSM):</strong> The device transmits its data, then enters a deep sleep where it ignores all network messages for up to 13 days at a time. This is perfect for a water meter that reports once a day.</div>`
+          }
+        ],
+        recap: [
+          '5G network slicing creates virtual networks for different needs: eMBB (bandwidth), mMTC (massive IoT), uRLLC (low latency).',
+          'LPWA technologies (NB-IoT, LoRa, Sigfox) trade data rate for extreme range and battery life — perfect for sensors that transmit small data packets over km distances.'
+        ]
+      }
+    ]
+  },
+  {
+    id: 'topic5', title: 'Topic 5 — Communication Protocols', short: 'Protocols',
+    questions: [
+      {
+        number: 9, title: 'Hardware & Network Protocols',
+        intro: "In the previous topic we covered the physical transmission technologies. Now we go one layer up — the protocols that define HOW devices speak to each other. From wires on a circuit board to IoT routing across a network.",
+        steps: [
+          {
+            title: 'OSI Model vs Simplified IoT Stack',
+            body: `<p>The <strong>OSI Model</strong> (7 layers) was designed for general-purpose computer networks. However, IoT devices (microcontrollers with limited RAM and processing power) often use a <strong>simplified, collapsed stack</strong>.</p>
+
+<table>
+  <tr><th>OSI Layer</th><th>Name</th><th>IoT Equivalent</th><th>Protocol Examples</th></tr>
+  <tr><td>7</td><td>Application</td><td rowspan="3">Application</td><td>MQTT, HTTP, CoAP</td></tr>
+  <tr><td>6</td><td>Presentation</td><td>— (handled by app)</td></tr>
+  <tr><td>5</td><td>Session</td><td>—</td></tr>
+  <tr><td>4</td><td>Transport</td><td>Transport</td><td>TCP, UDP</td></tr>
+  <tr><td>3</td><td>Network</td><td>Network</td><td>IPv6, 6LoWPAN, LoRaWAN</td></tr>
+  <tr><td>2</td><td>Data Link</td><td rowspan="2">Physical/Link</td><td>Wi-Fi, Bluetooth, NB-IoT</td></tr>
+  <tr><td>1</td><td>Physical</td><td>RS-485, CAN, Radio</td></tr>
+</table>
+
+<p>IoT systems collapse the top layers because constrained devices cannot afford the overhead of full session management and data formatting — they combine these into a simple application payload.</p>`
+          },
+          {
+            title: 'Hardware Protocols — UART, I2C & SPI',
+            body: `<p>These are the <strong>languages spoken on the circuit board</strong> between a microcontroller (like ESP32) and the sensors connected to it.</p>
+
+<table>
+  <tr><th>Protocol</th><th>Type</th><th>Speed</th><th>Pins</th><th>Devices</th><th>IoT Use Case</th></tr>
+  <tr><td><strong>UART</strong></td><td>Asynchronous serial</td><td>Up to 1 Mbps</td><td>2 (RX, TX)</td><td>Point-to-point (2 devices)</td><td>GPS module → ESP32</td></tr>
+  <tr><td><strong>I2C</strong></td><td>Synchronous serial</td><td>Up to 3.4 Mbps</td><td>2 (SDA, SCL)</td><td>Multi-master, multi-slave</td><td>Temperature sensor + display on same bus</td></tr>
+  <tr><td><strong>SPI</strong></td><td>Synchronous serial</td><td>Up to 80 Mbps</td><td>4+ (MOSI, MISO, SCLK, CS)</td><td>One master, multiple slaves</td><td>Fast SD card logging, display modules</td></tr>
+</table>
+
+<p><strong>UART</strong> is the simplest — just two wires (transmit and receive). Perfect for connecting a GPS module that spits out serial data. <strong>I2C</strong> lets you connect many sensors on just two wires — each sensor has a unique address. <strong>SPI</strong> is the fastest, used for high-speed data like writing to an SD card or driving an LCD screen.</p>`
+          },
+          {
+            title: 'IoT Network Protocols — LoRaWAN & 6LoWPAN',
+            body: `<p><strong>LoRaWAN:</strong> A network layer protocol designed for LPWA networks. It defines how LoRa devices communicate with gateways and servers at the MAC/network level.</p>
+<ul>
+  <li><strong>Star-of-stars topology</strong> — devices talk to gateways, gateways talk to a central server</li>
+  <li><strong>Adaptive Data Rate (ADR):</strong> The network optimizes each device's data rate, power, and frequency for maximum efficiency</li>
+  <li><strong>Airtime limitations:</strong> Regulations limit how long each device can transmit to ensure fair sharing of the unlicensed spectrum</li>
+</ul>
+
+<p><strong>6LoWPAN:</strong> IPv6 over Low-Power Wireless Personal Area Networks. It allows even the smallest IoT devices to have their own <strong>IPv6 address</strong> on the internet.</p>
+<ul>
+  <li>Compresses IPv6 headers from 40 bytes down to ~7 bytes (critical for 127-byte IEEE 802.15.4 frames)</li>
+  <li>Enables direct end-to-end connectivity from an IoT sensor to any internet host without gateways</li>
+  <li>Works over ZigBee, Bluetooth LE, and other low-power radios</li>
+</ul>`
+          }
+        ],
+        recap: [
+          'IoT collapses the OSI model (7 layers) into ~4 layers because constrained devices can\'t afford protocol overhead.',
+          'Hardware protocols: UART (simple 2-wire), I2C (multi-device 2-wire), SPI (high-speed 4-wire) — used on the circuit board.',
+          'Network protocols: LoRaWAN (LPWA network) and 6LoWPAN (IPv6 for tiny devices) connect IoT to the wider internet.'
+        ]
+      },
+      {
+        number: 10, title: 'Application Protocols — MQTT vs HTTP vs CoAP',
+        intro: "The final piece of the IoT puzzle: how do applications talk to each other across the internet? We compare three protocols — MQTT (lightweight IoT champion), HTTP (the web standard), and CoAP (designed for constrained devices).",
+        steps: [
+          {
+            title: 'HTTP — The Web Standard',
+            body: `<p><strong>HTTP (Hypertext Transfer Protocol)</strong> is the foundation of the World Wide Web. It uses a <strong>request-response model</strong>: the client sends a request, the server sends back a response.</p>
+
+<p><strong>In IoT:</strong></p>
+<ul>
+  <li>A sensor would <em>push</em> data to a cloud server using HTTP POST requests</li>
+  <li>A mobile app would <em>pull</em> data using HTTP GET requests</li>
+</ul>
+
+<p><strong>Limitations for IoT:</strong></p>
+<ul>
+  <li><strong>High overhead:</strong> HTTP headers can be hundreds of bytes — a huge waste for a temperature sensor sending "25.3°C"</li>
+  <li><strong>Client-initiated only:</strong> The server cannot push data to the device. To check for commands, the device must constantly ask ("poll") — wasting battery</li>
+  <li><strong>Not ideal for real-time:</strong> Polling introduces latency between an event and when the device discovers it</li>
+</ul>`
+          },
+          {
+            title: 'MQTT — Publish/Subscribe Model',
+            body: `<p><strong>MQTT (Message Queuing Telemetry Transport)</strong> was designed specifically for IoT. It uses a <strong>publish/subscribe</strong> model with a central <strong>broker</strong>.</p>
+
+<div class="diagram-box"><pre class="mermaid">
+flowchart LR
+  S[Sensor<br/>Publishes: "temperature"] --> B((MQTT Broker))
+  B --> D[Database<br/>Subscribed: "temperature"]
+  B --> A[Mobile App<br/>Subscribed: "temperature"]
+  C[Cloud Command] --> B
+  B --> S[Sensor<br/>Subscribed: "commands"]
+  style S fill:#fef3c7,stroke:#f59e0b
+  style B fill:#3b82f6,color:#fff
+</pre></div>
+
+<p><strong>How it works:</strong></p>
+<ul>
+  <li><strong>Publish:</strong> A temperature sensor publishes its reading to a topic called <code>sensor/temperature</code></li>
+  <li><strong>Broker:</strong> The MQTT broker receives the message and forwards it to all subscribers</li>
+  <li><strong>Subscribe:</strong> The cloud database and the mobile app are both subscribed to <code>sensor/temperature</code> — they both receive the reading automatically</li>
+</ul>
+
+<p><strong>Three Quality of Service (QoS) levels:</strong></p>
+<ul>
+  <li><strong>QoS 0 (At most once):</strong> Fire and forget — no confirmation. Fast but may lose messages.</li>
+  <li><strong>QoS 1 (At least once):</strong> Guarantees delivery but may send duplicates.</li>
+  <li><strong>QoS 2 (Exactly once):</strong> Guarantees exactly one delivery. Safest but slowest.</li>
+</ul>
+
+<div class="highlight-box">MQTT headers are <strong>only 2 bytes</strong> minimum — compared to HTTP's hundreds of bytes. For a sensor transmitting once per hour, this means dramatically less data usage and longer battery life.</div>`
+          },
+          {
+            title: 'CoAP — The Constrained Application Protocol',
+            body: `<p><strong>CoAP (Constrained Application Protocol)</strong> is designed for devices with very limited memory and processing power — think 8-bit microcontrollers with a few KB of RAM.</p>
+
+<p><strong>Key features:</strong></p>
+<ul>
+  <li><strong>UDP-based</strong> — no TCP connection overhead. Built-in reliability via retransmission.</li>
+  <li><strong>REST-like design</strong> — uses GET, POST, PUT, DELETE just like HTTP, making it familiar for web developers</li>
+  <li><strong>Observe pattern</strong> — a device can "subscribe" to a resource on a server and receive automatic updates when the resource changes</li>
+  <li><strong>Very low overhead</strong> — 4-byte header minimum</li>
+</ul>
+
+<p><strong>CoAP vs MQTT vs HTTP — Summary:</strong></p>
+<table>
+  <tr><th>Feature</th><th>HTTP</th><th>MQTT</th><th>CoAP</th></tr>
+  <tr><td>Model</td><td>Request-Response</td><td>Publish-Subscribe</td><td>REST (like HTTP over UDP)</td></tr>
+  <tr><td>Transport</td><td>TCP</td><td>TCP</td><td>UDP</td></tr>
+  <tr><td>Header size</td><td>~200+ bytes</td><td>~2 bytes</td><td>~4 bytes</td></tr>
+  <tr><td>Server push</td><td>No (polling only)</td><td>Yes (via broker)</td><td>Yes (Observe)</td></tr>
+  <tr><td>Best for</td><td>Web apps, APIs</td><td>Sensor data to cloud, two-way commands</td><td>Very constrained devices, smart objects</td></tr>
+</table>`
+          }
+        ],
+        recap: [
+          'MQTT uses publish/subscribe with a broker — lightweight (2-byte headers), supports two-way communication, ideal for most IoT sensor-to-cloud scenarios.',
+          'CoAP is UDP-based REST for ultra-constrained devices; HTTP is the web standard but too heavy for IoT.',
+          'Choose MQTT for sensor data streaming, CoAP for tiny devices, HTTP for web integration.'
+        ]
+      }
+    ]
+  }
+];
+
+const tabsContainer = document.getElementById('tabsContainer');
+const sidebarList = document.getElementById('sidebarList');
+const mainContent = document.getElementById('mainContent');
+const glossaryModal = document.getElementById('glossaryModal');
+const glossaryTermTitle = document.getElementById('glossaryTermTitle');
+const glossaryTermDef = document.getElementById('glossaryTermDef');
+
+let currentTutorialIdx = 0;
+let currentLessonIdx = 0;
+let currentStepIdx = 0;
+
+function renderTabs() {
+  tabsContainer.innerHTML = topics.map((t, i) =>
+    `<button class="tab-btn ${i === currentTutorialIdx ? 'active' : ''}" onclick="switchTutorial(${i})">
+      ${t.title}
+      <span class="tab-badge">${t.questions.length} lessons</span>
+    </button>`
+  ).join('');
+}
+
+function switchTutorial(idx) {
+  currentTutorialIdx = idx;
+  currentLessonIdx = 0;
+  currentStepIdx = 0;
+  renderTabs();
+  renderSidebar();
+  renderLesson();
+}
+
+function renderSidebar() {
+  const t = topics[currentTutorialIdx];
+  sidebarList.innerHTML = t.questions.map((q, i) => {
+    const isActive = i === currentLessonIdx;
+    const cls = isActive ? 'active' : '';
+    return `<li><a class="${cls}" onclick="switchLesson(${i})">
+      <span class="q-num">L${q.number}</span> ${q.title}
+    </a></li>`;
+  }).join('');
+}
+
+function switchLesson(idx, stepIdx) {
+  currentLessonIdx = idx;
+  currentStepIdx = stepIdx || 0;
+  renderSidebar();
+  renderLesson();
+}
+
+function renderLesson() {
+  const t = topics[currentTutorialIdx];
+  const q = t.questions[currentLessonIdx];
+  if (!q) {
+    mainContent.innerHTML = `<div class="empty-state"><h2>Select a lesson</h2><p>Choose a lesson from the sidebar.</p></div>`;
+    return;
+  }
+  const step = q.steps[currentStepIdx];
+  const totalSteps = q.steps.length;
+  const isLastStep = currentStepIdx === totalSteps - 1;
+  const stepDots = q.steps.map((_, i) =>
+    `<span class="step-dot ${i === currentStepIdx ? 'current active' : i < currentStepIdx ? 'done' : ''}"></span>`
+  ).join('');
+  const bodyHtml = processBody(step.body);
+  let diagramHtml = '';
+  if (step.diagram) {
+    diagramHtml = `<div class="diagram-box"><pre class="mermaid">${escapeHtml(step.diagram)}</pre></div>`;
+  }
+  let recapHtml = '';
+  if (isLastStep && q.recap) {
+    recapHtml = `<div class="recap-box">
+      <h4>📝 Lesson Summary</h4>
+      <ul>${q.recap.map(r => `<li>${r}</li>`).join('')}</ul>
+    </div>`;
+  }
+  mainContent.innerHTML = `
+    <div class="lesson-card">
+      <div class="lesson-header">
+        <span class="q-label">Lesson ${q.number}</span>
+        <h2>${q.title}</h2>
+        <div class="lesson-intro">${q.intro}</div>
+      </div>
+      <div class="steps-container">
+        <div class="steps-progress">
+          ${stepDots}
+          <span class="step-label">${currentStepIdx + 1} / ${totalSteps}</span>
+        </div>
+        <div class="step-content">
+          <h3>${step.title}</h3>
+          ${bodyHtml}
+          ${diagramHtml}
+          ${recapHtml}
+        </div>
+        <div class="step-nav">
+          <button class="btn-prev" onclick="prevStep()" ${currentStepIdx === 0 ? 'disabled' : ''}>← Previous</button>
+          ${isLastStep
+            ? `<button class="btn-finish" onclick="nextLesson()">Next Lesson →</button>`
+            : `<button class="btn-next" onclick="nextStep()">Continue →</button>`
+          }
+        </div>
+      </div>
+    </div>`;
+  initMermaid();
+  attachGlossaryListeners();
+  updateSidebarProgress();
+}
+
+function nextStep() {
+  const q = topics[currentTutorialIdx].questions[currentLessonIdx];
+  if (currentStepIdx < q.steps.length - 1) { currentStepIdx++; renderLesson(); }
+}
+function prevStep() {
+  if (currentStepIdx > 0) { currentStepIdx--; renderLesson(); }
+}
+function nextLesson() {
+  const t = topics[currentTutorialIdx];
+  if (currentLessonIdx < t.questions.length - 1) {
+    currentLessonIdx++; currentStepIdx = 0; renderSidebar(); renderLesson();
+  }
+}
+function updateSidebarProgress() {
+  const t = topics[currentTutorialIdx];
+  const links = sidebarList.querySelectorAll('a');
+  links.forEach(a => a.classList.remove('done'));
+  if (currentStepIdx > 0) links[currentLessonIdx]?.classList.add('done');
+}
+function processBody(html) {
+  return html.replace(/\{\{(.+?)\}\}/g, (_, term) => {
+    const key = Object.keys(glossary).find(k => k.toLowerCase() === term.toLowerCase());
+    return key ? `<span class="glossary-term" data-term="${key}">${key}</span>` : term;
+  });
+}
+function attachGlossaryListeners() {
+  document.querySelectorAll('.glossary-term').forEach(el => {
+    el.addEventListener('click', () => {
+      const term = el.dataset.term;
+      if (glossary[term]) { glossaryTermTitle.textContent = term; glossaryTermDef.innerHTML = glossary[term]; glossaryModal.classList.add('show'); }
+    });
+  });
+}
+function closeGlossary() { glossaryModal.classList.remove('show'); }
+function initMermaid() {
+  if (typeof mermaid !== 'undefined') {
+    mermaid.initialize({ startOnLoad: false, theme: 'neutral', fontSize: 14 });
+    mermaid.run({ querySelector: '.mermaid' }).catch(() => {});
+  }
+}
+function escapeHtml(str) {
+  return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
+glossaryModal.addEventListener('click', (e) => { if (e.target === glossaryModal) closeGlossary(); });
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') { closeGlossary(); closeSearch(); }
+  if (e.key === 'ArrowRight' && !e.target.closest('.search-input')) nextStep();
+  if (e.key === 'ArrowLeft' && !e.target.closest('.search-input')) prevStep();
+  if ((e.metaKey || e.ctrlKey) && (e.key === 'k' || e.key === 'f')) { e.preventDefault(); document.getElementById('searchInput').focus(); }
+});
+
+/* ---- Search ---- */
+let searchIndex = [];
+let searchHighlightIdx = -1;
+
+function buildSearchIndex() {
+  searchIndex = [];
+  topics.forEach((t, ti) => {
+    t.questions.forEach((q, qi) => {
+      searchIndex.push({
+        tutorialIdx: ti, lessonIdx: qi, stepIdx: -1,
+        sortKey: `${String(ti)}-${String(qi).padStart(2,'0')}-000`,
+        path: `${t.short} · L${q.number}`,
+        title: q.title,
+        fullText: stripHtml(q.intro)
+      });
+      q.steps.forEach((s, si) => {
+        searchIndex.push({
+          tutorialIdx: ti, lessonIdx: qi, stepIdx: si,
+          sortKey: `${String(ti)}-${String(qi).padStart(2,'0')}-${String(si).padStart(3,'0')}`,
+          path: `${t.short} · L${q.number}`,
+          title: `${q.title} — ${s.title}`,
+          fullText: stripHtml(s.body)
+        });
+      });
+    });
+  });
+}
+function stripHtml(html) {
+  return html.replace(/<[^>]*>/g, ' ').replace(/&mdash;/g,'—').replace(/&amp;/g,'&').replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&nbsp;/g,' ').replace(/\s+/g,' ').trim();
+}
+function makeSnippet(text, query, contextLen) {
+  contextLen = contextLen || 50;
+  const q = query.toLowerCase();
+  const t = text.toLowerCase();
+  const idx = t.indexOf(q);
+  if (idx < 0) return text.substring(0, 120);
+  const start = Math.max(0, idx - contextLen);
+  const end = Math.min(text.length, idx + q.length + contextLen);
+  let out = '';
+  if (start > 0) out += '…';
+  out += text.substring(start, end);
+  if (end < text.length) out += '…';
+  return out;
+}
+function performSearch(query) {
+  const q = query.toLowerCase().trim();
+  if (!q) return [];
+  const results = [];
+  searchIndex.forEach(item => {
+    const searchText = (item.title + ' ' + item.fullText).toLowerCase();
+    if (searchText.includes(q)) {
+      const snippet = makeSnippet(item.fullText, q, 55);
+      const highlighted = snippet.replace(new RegExp('(' + q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi'), '<em>$1</em>');
+      results.push({ ...item, snippet: highlighted });
+    }
+  });
+  return results.slice(0, 20);
+}
+function renderSearchResults(results) {
+  const container = document.getElementById('searchResults');
+  const input = document.getElementById('searchInput');
+  const clear = document.getElementById('searchClear');
+  if (!results.length) {
+    container.innerHTML = `<div class="search-empty">${input.value.trim() ? 'No results found' : 'Type to search…'}</div>`;
+    container.classList.add('show');
+    clear.style.display = input.value.trim() ? 'block' : 'none';
+    return;
+  }
+  container.innerHTML = results.map((r, i) =>
+    `<div class="search-result-item ${i === searchHighlightIdx ? 'highlighted' : ''}" data-idx="${i}" onclick="selectSearchResult(${i})" onmouseenter="searchHighlightIdx=${i};renderSearchResults(performSearch(document.getElementById('searchInput').value))">
+      <div class="sr-path">${r.path}</div>
+      <div class="sr-title">${r.title}</div>
+      <div class="sr-preview">${r.snippet}</div>
+    </div>`
+  ).join('');
+  container.classList.add('show');
+  clear.style.display = 'block';
+}
+function selectSearchResult(idx) {
+  const results = performSearch(document.getElementById('searchInput').value);
+  if (!results[idx]) return;
+  const r = results[idx];
+  closeSearch();
+  if (currentTutorialIdx !== r.tutorialIdx) switchTutorial(r.tutorialIdx);
+  switchLesson(r.lessonIdx, r.stepIdx >= 0 ? r.stepIdx : 0);
+}
+function closeSearch() { document.getElementById('searchResults').classList.remove('show'); document.getElementById('searchClear').style.display = 'none'; searchHighlightIdx = -1; }
+function clearSearch() { document.getElementById('searchInput').value = ''; closeSearch(); document.getElementById('searchInput').focus(); }
+
+buildSearchIndex();
+document.getElementById('searchInput').addEventListener('input', function() { searchHighlightIdx = -1; renderSearchResults(performSearch(this.value)); });
+document.getElementById('searchInput').addEventListener('blur', function() { setTimeout(closeSearch, 200); });
+document.getElementById('searchInput').addEventListener('keydown', function(e) {
+  const results = performSearch(this.value);
+  if (e.key === 'Escape') { closeSearch(); this.blur(); return; }
+  if (e.key === 'ArrowDown') { e.preventDefault(); searchHighlightIdx = Math.min(searchHighlightIdx + 1, results.length - 1); renderSearchResults(performSearch(this.value)); const el = document.querySelector('.search-result-item.highlighted'); if (el) el.scrollIntoView({ block: 'nearest' }); }
+  if (e.key === 'ArrowUp') { e.preventDefault(); searchHighlightIdx = Math.max(searchHighlightIdx - 1, -1); renderSearchResults(performSearch(this.value)); }
+  if (e.key === 'Enter' && searchHighlightIdx >= 0) { e.preventDefault(); selectSearchResult(searchHighlightIdx); }
+});
+document.addEventListener('click', function(e) { if (!e.target.closest('.search-wrapper')) closeSearch(); });
+
+renderTabs();
+renderSidebar();
+switchLesson(0);
+</script>
+</body>
+</html>

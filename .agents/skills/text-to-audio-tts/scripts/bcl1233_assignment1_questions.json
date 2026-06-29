@@ -1,0 +1,54 @@
+{
+  "case_study": "This assignment is about a Requirement Analysis for a Hybrid Work Monitoring System. A technology company has adopted a hybrid working model where employees work either from home or the office. Currently, the company uses manual tools such as spreadsheets, chat messages, and emails to track employee attendance, task updates, and work progress. This approach has led to several issues. First, inaccurate attendance tracking. Second, lack of real-time work visibility. Third, difficulty in monitoring task progress. Fourth, communication delays between employees and managers. And fifth, no centralized reporting system. To address these issues, the company plans to develop a Hybrid Work Monitoring System. The proposed system will allow employees to digitally check in and check out. It will record work location, whether remote or office. It will enable task assignment and tracking. It will provide real-time work status updates. It will generate attendance and productivity reports. It will send notifications for tasks and meetings. And it will provide a management dashboard.",
+  "sections": {
+    "Problem Analysis": {
+      "intro": "Section 1, Problem Analysis. This section is worth 20 marks.",
+      "questions": [
+        "Question 1 A: Identify two problems in the current manual system.",
+        "Question 1 B: Analyze each problem in terms of its impact on employees, managers, and organization."
+      ]
+    },
+    "System Objectives": {
+      "intro": "Section 2, System Objectives. This section is worth 20 marks.",
+      "questions": [
+        "Question 2 A: Propose and explain five objectives of the Hybrid Work Monitoring System."
+      ]
+    },
+    "Stakeholder Analysis": {
+      "intro": "Section 3, Stakeholder Analysis. This section is worth 10 marks.",
+      "questions": [
+        "Question 3 A: Identify five stakeholders involved in the system.",
+        "Question 3 B: Classify each stakeholder according to their role and involvement.",
+        "Question 3 C: Describe the responsibility of each stakeholder within the system context."
+      ]
+    },
+    "System Requirements": {
+      "intro": "Section 4, System Requirements. This section is worth 20 marks.",
+      "questions": [
+        "Question 4 A: Specify three functional requirements describing system behaviour or functions.",
+        "Question 4 B: Specify two non-functional requirements based on system quality attributes."
+      ]
+    },
+    "Requirement Gathering Technique": {
+      "intro": "Section 5, Requirement Gathering Technique. This section is worth 10 marks.",
+      "questions": [
+        "Question 5 A: Select one suitable requirement gathering technique for the system.",
+        "Question 5 B: Justify its suitability in relation to the system context.",
+        "Question 5 C: Explain its application in collecting system requirements."
+      ]
+    },
+    "System Function Description": {
+      "intro": "Section 6, System Function Description. This section is worth 10 marks.",
+      "questions": [
+        "Question 6 A: Select one system function from the proposed system.",
+        "Question 6 B: Describe the process flow in a structured format including function specification, user roles involved, pre-conditions, sequential process flow, and post-condition."
+      ]
+    },
+    "System Failure Prevention": {
+      "intro": "Section 7, System Failure Prevention. This section is worth 10 marks.",
+      "questions": [
+        "Question 7 A: Discuss the importance of requirement analysis in system development and evaluate its role in minimizing system design and implementation failures."
+      ]
+    }
+  }
+}

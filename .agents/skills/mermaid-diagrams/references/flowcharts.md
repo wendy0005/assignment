@@ -21,6 +21,7 @@ flowchart TD
 ```mermaid
 flowchart LR
     A[Process step]
+    B["Label with (parentheses)"]      %% Quote when label contains ()
 ```
 
 ### Rounded Rectangle

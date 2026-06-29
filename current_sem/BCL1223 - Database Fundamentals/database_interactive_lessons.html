@@ -1,0 +1,2396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Database Fundamentals — Interactive Lessons</title>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Merriweather:wght@400;700&display=swap');
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --navy: #0f172a; --slate: #334155; --slate-light: #64748b;
+    --blue: #3b82f6; --blue-light: #eff6ff; --blue-dark: #1e40af;
+    --teal: #14b8a6; --teal-light: #f0fdfa;
+    --amber: #f59e0b; --amber-light: #fffbeb;
+    --rose: #f43f5e; --rose-light: #fff1f2;
+    --bg: #f8fafc; --card: #ffffff; --border: #e2e8f0;
+    --shadow: 0 1px 3px rgba(0,0,0,.08), 0 1px 2px rgba(0,0,0,.06);
+    --shadow-lg: 0 10px 25px rgba(0,0,0,.08);
+    --radius: 12px; --radius-sm: 8px;
+    --font-sans: 'Inter', -apple-system, sans-serif;
+    --font-serif: 'Merriweather', Georgia, serif;
+    --transition: .25s cubic-bezier(.4,0,.2,1);
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--font-sans); background: var(--bg); color: var(--slate);
+    line-height: 1.7; -webkit-font-smoothing: antialiased;
+  }
+  /* ---- Header ---- */
+  header {
+    background: linear-gradient(135deg, var(--navy) 0%, #1e293b 100%);
+    color: #fff; padding: 20px 40px; position: sticky; top: 0;
+    z-index: 100; box-shadow: 0 2px 12px rgba(0,0,0,.15);
+    display: flex; align-items: center; gap: 24px;
+  }
+  header .header-left { flex-shrink: 0; }
+  header h1 {
+    font-size: 22px; font-weight: 800; letter-spacing: -.5px;
+  }
+  header p {
+    font-size: 13px; color: #94a3b8; margin-top: 2px; font-weight: 500;
+  }
+  .header-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(255,255,255,.1); padding: 4px 14px; border-radius: 20px;
+    font-size: 11px; font-weight: 600; margin-top: 6px; letter-spacing: .3px;
+  }
+  .header-badge span { color: var(--teal); }
+  .header-link {
+    color: #94a3b8; text-decoration: none; font-size: 13px; font-weight: 500;
+    padding: 6px 14px; border-radius: 8px; margin-left: auto;
+    transition: all var(--transition); white-space: nowrap;
+  }
+  .header-link:hover { background: rgba(255,255,255,.1); color: #fff; }
+
+  /* ---- Search ---- */
+  .search-wrapper {
+    position: relative; margin-left: auto; flex-shrink: 0;
+    min-width: 260px;
+  }
+  .search-input {
+    width: 100%; padding: 10px 16px 10px 40px;
+    border: 1px solid rgba(255,255,255,.2); border-radius: 10px;
+    background: rgba(255,255,255,.1); color: #fff;
+    font-family: var(--font-sans); font-size: 13px; font-weight: 500;
+    outline: none; transition: all var(--transition);
+    backdrop-filter: blur(4px);
+  }
+  .search-input::placeholder { color: rgba(255,255,255,.5); font-weight: 400; }
+  .search-input:focus {
+    border-color: var(--blue); background: rgba(255,255,255,.15);
+    box-shadow: 0 0 0 3px rgba(59,130,246,.2);
+  }
+  .search-icon {
+    position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
+    font-size: 15px; opacity: .6; pointer-events: none;
+  }
+  .search-clear {
+    position: absolute; right: 12px; top: 50%; transform: translateY(-50%);
+    background: none; border: none; color: rgba(255,255,255,.4);
+    font-size: 18px; cursor: pointer; display: none; padding: 2px;
+    line-height: 1; border-radius: 4px; transition: color var(--transition);
+  }
+  .search-clear:hover { color: #fff; }
+
+  .search-results {
+    position: absolute; top: calc(100% + 6px); left: 0; right: 0;
+    background: #fff; border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-lg); max-height: 400px; overflow-y: auto;
+    display: none; z-index: 200;
+  }
+  .search-results.show { display: block; }
+  .search-result-item {
+    padding: 12px 16px; cursor: pointer; border-bottom: 1px solid var(--border);
+    transition: background var(--transition);
+  }
+  .search-result-item:last-child { border-bottom: none; }
+  .search-result-item:hover, .search-result-item.highlighted { background: var(--blue-light); }
+  .search-result-item .sr-path {
+    font-size: 11px; font-weight: 600; text-transform: uppercase;
+    letter-spacing: .3px; color: var(--blue); margin-bottom: 2px;
+  }
+  .search-result-item .sr-title {
+    font-size: 14px; font-weight: 600; color: var(--navy); margin-bottom: 3px;
+  }
+  .search-result-item .sr-preview {
+    font-size: 12px; color: var(--slate-light); line-height: 1.4;
+  }
+  .search-result-item .sr-preview em {
+    background: #fef3c7; font-style: normal; padding: 0 2px;
+    color: #92400e; font-weight: 600;
+  }
+  .search-empty {
+    padding: 20px; text-align: center; color: var(--slate-light);
+    font-size: 13px;
+  }
+  .header-link:hover { background: rgba(255,255,255,.1); color: #fff; }
+
+  /* ---- Tabs ---- */
+  .tabs {
+    display: flex; background: #fff; border-bottom: 1px solid var(--border);
+    padding: 0 40px; position: sticky; top: 108px; z-index: 99;
+    box-shadow: 0 1px 2px rgba(0,0,0,.04);
+  }
+  .tab-btn {
+    padding: 14px 24px; font-family: var(--font-sans); font-size: 13px;
+    font-weight: 600; border: none; background: none; cursor: pointer;
+    color: var(--slate-light); position: relative;
+    transition: color var(--transition);
+  }
+  .tab-btn:hover { color: var(--slate); }
+  .tab-btn.active { color: var(--navy); }
+  .tab-btn.active::after {
+    content: ''; position: absolute; bottom: 0; left: 24px; right: 24px;
+    height: 3px; background: var(--blue); border-radius: 3px 3px 0 0;
+  }
+  .tab-badge {
+    display: inline-block; background: var(--border); padding: 0 8px;
+    border-radius: 10px; font-size: 10px; font-weight: 700;
+    margin-left: 6px; color: var(--slate-light);
+  }
+  .tab-btn.active .tab-badge { background: var(--blue-light); color: var(--blue); }
+
+  /* ---- Layout ---- */
+  .app-layout {
+    display: flex; max-width: 1400px; margin: 0 auto;
+    min-height: calc(100vh - 170px);
+  }
+  .sidebar {
+    width: 280px; flex-shrink: 0; background: #fff;
+    border-right: 1px solid var(--border); padding: 20px 16px;
+    position: sticky; top: 170px; height: calc(100vh - 170px);
+    overflow-y: auto;
+  }
+  .sidebar h3 {
+    font-size: 11px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: .6px; color: var(--slate-light); margin-bottom: 12px;
+    padding: 0 8px;
+  }
+  .sidebar-list { list-style: none; }
+  .sidebar-list li { margin-bottom: 2px; }
+  .sidebar-list a {
+    display: flex; align-items: center; gap: 10px;
+    padding: 8px 10px; border-radius: var(--radius-sm);
+    font-size: 13px; font-weight: 500; color: var(--slate);
+    text-decoration: none; transition: all var(--transition);
+    cursor: pointer;
+  }
+  .sidebar-list a:hover { background: var(--bg); }
+  .sidebar-list a.active {
+    background: var(--blue-light); color: var(--blue); font-weight: 600;
+  }
+  .sidebar-list a .q-num {
+    width: 24px; height: 24px; border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 700; flex-shrink: 0;
+    background: var(--bg); color: var(--slate-light);
+    transition: all var(--transition);
+  }
+  .sidebar-list a.active .q-num {
+    background: var(--blue); color: #fff;
+  }
+  .sidebar-list a.done .q-num {
+    background: #d1fae5; color: #065f46;
+  }
+  .sidebar-list a.done::after {
+    content: '✓'; margin-left: auto; font-size: 13px; color: #059669;
+  }
+
+  /* ---- Main Content ---- */
+  .main-content {
+    flex: 1; padding: 32px 48px; min-width: 0;
+  }
+
+  /* ---- Lesson Card ---- */
+  .lesson-card {
+    background: var(--card); border-radius: var(--radius);
+    box-shadow: var(--shadow); overflow: hidden;
+    animation: fadeIn .4s ease-out;
+  }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+
+  .lesson-header {
+    padding: 28px 32px 0;
+  }
+  .lesson-header .q-label {
+    display: inline-block; background: var(--blue-light); color: var(--blue);
+    font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 6px;
+    text-transform: uppercase; letter-spacing: .3px; margin-bottom: 10px;
+  }
+  .lesson-header h2 {
+    font-family: var(--font-serif); font-weight: 700;
+    font-size: 22px; color: var(--navy); line-height: 1.3;
+  }
+  .lesson-intro {
+    margin-top: 14px; padding: 16px 20px; background: var(--amber-light);
+    border-left: 3px solid var(--amber); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    font-size: 14px; color: var(--slate); line-height: 1.7;
+  }
+  .lesson-intro::before {
+    content: '🧑‍🏫 '; font-size: 16px;
+  }
+
+  /* ---- Steps ---- */
+  .steps-container { padding: 24px 32px 32px; }
+  .steps-progress {
+    display: flex; align-items: center; gap: 8px; margin-bottom: 24px;
+  }
+  .step-dot {
+    width: 10px; height: 10px; border-radius: 50%; background: var(--border);
+    transition: all var(--transition);
+  }
+  .step-dot.active { background: var(--blue); transform: scale(1.3); }
+  .step-dot.done { background: var(--teal); }
+  .step-dot.current ~ .step-dot { opacity: .4; }
+  .step-label {
+    font-size: 11px; font-weight: 600; color: var(--slate-light);
+    margin-left: auto; text-transform: uppercase; letter-spacing: .3px;
+  }
+
+  .step-content {
+    animation: fadeIn .35s ease-out;
+  }
+  .step-content h3 {
+    font-family: var(--font-serif); font-size: 17px; color: var(--navy);
+    margin-bottom: 14px; font-weight: 700;
+  }
+  .step-content p {
+    font-size: 15px; line-height: 1.8; margin-bottom: 14px;
+    color: var(--slate);
+  }
+  .step-content p:last-child { margin-bottom: 0; }
+  .step-content ul, .step-content ol {
+    margin: 10px 0 14px; padding-left: 22px;
+  }
+  .step-content li {
+    font-size: 15px; line-height: 1.7; margin-bottom: 6px;
+  }
+  .step-content strong {
+    color: var(--navy); font-weight: 600;
+  }
+  .step-content .highlight-box {
+    background: var(--teal-light); border-left: 3px solid var(--teal);
+    padding: 14px 18px; border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    margin: 14px 0; font-size: 14px;
+  }
+  .step-content .example-box {
+    background: var(--blue-light); border-left: 3px solid var(--blue);
+    padding: 14px 18px; border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    margin: 14px 0; font-size: 14px;
+  }
+  .step-content .example-box::before {
+    content: '💡 Example: '; font-weight: 600; color: var(--blue-dark);
+    font-size: 13px;
+  }
+  .step-content table {
+    width: 100%; border-collapse: collapse; margin: 14px 0;
+    font-size: 14px; border-radius: var(--radius-sm); overflow: hidden;
+  }
+  .step-content th {
+    background: var(--bg); font-weight: 600; text-align: left;
+    padding: 10px 14px; color: var(--navy); font-size: 12px;
+    text-transform: uppercase; letter-spacing: .3px;
+  }
+  .step-content td {
+    padding: 10px 14px; border-bottom: 1px solid var(--border);
+  }
+  .step-content tr:last-child td { border-bottom: none; }
+
+  /* Glossary term */
+  .glossary-term {
+    color: var(--blue); cursor: pointer; border-bottom: 1px dashed var(--blue);
+    font-weight: 500; transition: all var(--transition);
+    position: relative;
+  }
+  .glossary-term:hover { background: var(--blue-light); }
+
+  /* Diagram container */
+  .diagram-box {
+    background: #fff; border: 1px solid var(--border);
+    border-radius: var(--radius-sm); padding: 20px; margin: 18px 0;
+    overflow-x: auto;
+  }
+  .diagram-box .mermaid { display: flex; justify-content: center; }
+
+  /* Step nav buttons */
+  .step-nav {
+    display: flex; gap: 10px; margin-top: 28px; padding-top: 20px;
+    border-top: 1px solid var(--border);
+  }
+  .step-nav button {
+    padding: 10px 24px; font-family: var(--font-sans); font-size: 13px;
+    font-weight: 600; border: none; border-radius: var(--radius-sm);
+    cursor: pointer; transition: all var(--transition);
+  }
+  .step-nav .btn-prev {
+    background: var(--bg); color: var(--slate);
+  }
+  .step-nav .btn-prev:hover { background: var(--border); }
+  .step-nav .btn-next {
+    background: var(--blue); color: #fff; margin-left: auto;
+  }
+  .step-nav .btn-next:hover { background: var(--blue-dark); transform: translateY(-1px); }
+  .step-nav .btn-next:disabled {
+    opacity: .5; cursor: default; transform: none;
+  }
+  .step-nav .btn-finish {
+    background: #059669; color: #fff; margin-left: auto;
+  }
+  .step-nav .btn-finish:hover { background: #047857; }
+
+  /* ---- Recap ---- */
+  .recap-box {
+    margin: 18px 0 0; padding: 20px 24px;
+    background: linear-gradient(135deg, #f0fdf4, #f0fdfa);
+    border: 1px solid #bbf7d0; border-radius: var(--radius-sm);
+  }
+  .recap-box h4 {
+    font-size: 12px; text-transform: uppercase; letter-spacing: .5px;
+    color: #059669; margin-bottom: 10px; font-weight: 700;
+  }
+  .recap-box ul { list-style: none; padding: 0; margin: 0; }
+  .recap-box li {
+    padding: 6px 0; font-size: 14px; font-weight: 500;
+    color: #065f46;
+  }
+  .recap-box li::before { content: '✓ '; font-weight: 700; }
+
+  /* ---- Glossary Modal ---- */
+  .modal-overlay {
+    display: none; position: fixed; inset: 0; z-index: 999;
+    background: rgba(15,23,42,.6); backdrop-filter: blur(4px);
+    justify-content: center; align-items: center;
+  }
+  .modal-overlay.show { display: flex; }
+  .modal-box {
+    background: #fff; border-radius: var(--radius);
+    padding: 32px; max-width: 480px; width: 90%;
+    box-shadow: var(--shadow-lg); animation: fadeIn .2s ease-out;
+  }
+  .modal-box h3 {
+    font-size: 18px; font-weight: 700; color: var(--navy);
+    margin-bottom: 10px;
+  }
+  .modal-box p {
+    font-size: 15px; line-height: 1.7; color: var(--slate);
+  }
+  .modal-close {
+    margin-top: 20px; padding: 8px 20px;
+    font-family: var(--font-sans); font-size: 13px; font-weight: 600;
+    border: none; border-radius: var(--radius-sm); cursor: pointer;
+    background: var(--bg); color: var(--slate); transition: background var(--transition);
+  }
+  .modal-close:hover { background: var(--border); }
+
+  /* ---- Empty State ---- */
+  .empty-state {
+    text-align: center; padding: 60px 40px; color: var(--slate-light);
+  }
+  .empty-state h2 {
+    font-size: 20px; color: var(--slate); margin-bottom: 8px;
+  }
+  .empty-state p { font-size: 14px; }
+
+  /* ---- Responsive ---- */
+  @media (max-width: 900px) {
+    header { padding: 16px 20px; flex-wrap: wrap; gap: 12px; }
+    .search-wrapper { min-width: 0; width: 100%; order: 3; }
+    .search-hint { display: none; }
+    .tabs { padding: 0 20px; top: 96px; }
+    .sidebar { display: none; }
+    .main-content { padding: 20px; }
+    .lesson-header { padding: 20px 20px 0; }
+    .steps-container { padding: 16px 20px 24px; }
+    .step-nav { flex-wrap: wrap; }
+    .step-nav .btn-prev { order: 1; flex: 1; }
+    .step-nav .btn-next, .step-nav .btn-finish { order: 2; flex: 1; }
+    .app-layout { min-height: auto; }
+  }
+  @media (max-width: 600px) {
+    header h1 { font-size: 18px; }
+    .tab-btn { padding: 12px 14px; font-size: 12px; }
+    .tab-btn.active::after { left: 14px; right: 14px; }
+    .lesson-header h2 { font-size: 18px; }
+    .step-content p { font-size: 14px; }
+    .modal-box { padding: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-left">
+    <h1>📚 Database Fundamentals</h1>
+    <p>BCL1223 / BIT1223 Database Systems — Interactive Lessons</p>
+    <div class="header-badge">
+      🧑‍🏫 <span>Teacher Mode</span> — Learn step by step, like a classroom lesson
+    </div>
+  </div>
+  <div class="search-wrapper" id="searchWrapper">
+    <span class="search-icon">🔍</span>
+    <input class="search-input" id="searchInput" type="text" placeholder="Search lessons..." autocomplete="off">
+    <button class="search-clear" id="searchClear" onclick="clearSearch()">✕</button>
+    <div class="search-results" id="searchResults"></div>
+  </div>
+  <a class="header-link" href="../../index.html">📚 All Courses</a>
+</header>
+
+<div class="tabs" id="tabsContainer"></div>
+
+<div class="app-layout">
+  <aside class="sidebar" id="sidebar">
+    <h3>Lessons</h3>
+    <ul class="sidebar-list" id="sidebarList"></ul>
+  </aside>
+  <main class="main-content" id="mainContent">
+    <div class="empty-state">
+      <h2>Select a lesson to begin</h2>
+      <p>Choose a tutorial tab above, then click a lesson from the sidebar.</p>
+    </div>
+  </main>
+</div>
+
+<div class="modal-overlay" id="glossaryModal">
+  <div class="modal-box">
+    <h3 id="glossaryTermTitle"></h3>
+    <p id="glossaryTermDef"></p>
+    <button class="modal-close" onclick="closeGlossary()">Got it</button>
+  </div>
+</div>
+
+<script>
+const glossary = {
+  'Data': 'Raw, unprocessed facts and figures that carry no meaning on their own &mdash; e.g., the value <strong>150</strong> or the string <strong>RM45.00</strong>.',
+  'Information': 'Data that has been processed, organized, and contextualized to make it meaningful and useful for decision-making.',
+  'Database': 'A shared, integrated collection of logically related data structured to support efficient retrieval and modification.',
+  'DBMS': 'Database Management System &mdash; the software layer that manages, stores, retrieves, and manipulates data within a database.',
+  'Data Independence': 'The separation of logical and physical schemas, meaning changes to storage structures do not affect application programs.',
+  'Data Redundancy': 'The unnecessary duplication of the same data values across multiple files or tables within a system.',
+  'Data Inconsistency': 'A condition where different copies of the same data hold conflicting values, often caused by uncontrolled redundancy.',
+  'Data Anomaly': 'Irregularities or inconsistencies that arise in a database due to poor design, particularly from uncontrolled data redundancy.',
+  'Update Anomaly': "An anomaly where changing a redundant fact requires updating multiple rows &mdash; a missed update creates inconsistency.",
+  'Insertion Anomaly': "An anomaly where adding a new record is impossible without attaching it to another unrelated record.",
+  'Deletion Anomaly': "An anomaly where deleting a record unintentionally removes other facts stored alongside it.",
+  'Normalization': 'A technique that decomposes large, denormalized tables into smaller, well-structured relations to eliminate redundancy and anomalies.',
+  'Conceptual Model': 'The highest-level data model that represents what data exists and how entities relate, using Entity-Relationship (ER) diagrams.',
+  'Logical Model': 'A middle-level data model that maps the conceptual model to a specific data paradigm (e.g., relational), defining tables, columns, keys, and constraints.',
+  'Physical Model': 'The lowest-level data model describing how data is actually stored &mdash; file organization, indexes, partitions, compression, and access paths.',
+  'Data Dictionary': 'A centralized metadata repository that stores descriptions of all database objects &mdash; table definitions, column names, data types, constraints, indexes, views, and permissions.',
+  'Metadata': 'Data about data &mdash; information that describes the structure, constraints, and properties of database objects.',
+  'Relation': 'A two-dimensional table in the relational model, composed of tuples (rows) and attributes (columns).',
+  'Tuple': 'A single row in a relation, representing one record or entity instance.',
+  'Attribute': 'A named column in a relation, representing a property of the entity.',
+  'Domain': 'The set of permissible values for an attribute.',
+  'Functional Dependency': "A constraint where attribute X functionally determines attribute Y if each value of X is associated with exactly one value of Y (denoted X &rarr; Y).",
+  'Superkey': 'A set of attributes that uniquely identifies every tuple in a relation.',
+  'Candidate Key': 'A minimal superkey &mdash; a superkey with no proper subset that is itself a superkey.',
+  'Primary Key': 'The candidate key chosen by the database designer as the main identifier for a relation.',
+  'Composite Key': 'A primary key consisting of two or more attributes.',
+  'Foreign Key': 'An attribute in one table that references the primary key in another table, used to establish relationships.',
+  'Referential Integrity': 'A constraint ensuring that every foreign key value must match a primary key value in the referenced table or be NULL.',
+  'SELECT (relational algebra)': 'The SELECT operation (&sigma;) filters rows (tuples) based on a predicate condition.',
+  'PROJECT (relational algebra)': 'The PROJECT operation (&pi;) filters columns (attributes), retaining only those specified.',
+  'Index': 'An auxiliary data structure (commonly a B&sup1;-tree) that provides fast access paths to rows based on column values.',
+  'Fault Tolerance': 'The ability of a system to continue operating properly even when one or more of its components fail. In distributed databases, if one site fails, other sites keep running.',
+  'Replication': 'A data distribution strategy where the same data is copied to all sites in a distributed database. Ensures high availability but makes writes slower.',
+  'Partitioning': 'A data distribution strategy (also called sharding) where data is split across sites based on a rule &mdash; e.g., Site A stores Region 1 data, Site B stores Region 2 data.',
+  'ACID': 'A set of properties that guarantee database transactions are processed reliably: Atomicity (all-or-nothing), Consistency (valid state), Isolation (no interference), and Durability (survives failures).',
+  'MVCC': 'Multi-Version Concurrency Control — a technique where the DBMS keeps multiple versions of each record so readers never block writers and vice versa.',
+  'SQL': 'Structured Query Language — a declarative language for managing relational databases. You write <em>what</em> data you want, and the DBMS figures out <em>how</em> to retrieve it.',
+};
+
+const tutorials = [
+  {
+    id: 'tutorial1',
+    title: 'Tutorial 1 — Database Concepts',
+    short: 'Database Concepts',
+    questions: [
+      {
+        number: 1, title: 'Data & Information',
+        intro: "Before we dive into databases, we need to understand the most fundamental building blocks. Let's start by looking at what data actually is, how it transforms into information, and why this distinction matters in the real world.",
+        steps: [
+          {
+            title: 'What is Data?',
+            body: `<strong>Data</strong> refers to <strong>raw, unprocessed facts and figures</strong> that carry no meaning on their own. Think of it as the ingredients before they are cooked.
+
+Examples of data:
+<ul>
+  <li>The number <strong>150</strong> &mdash; just a number</li>
+  <li>The string <strong>"RM45.00"</strong> &mdash; characters with no context</li>
+  <li>A timestamp like <strong>"2026-01-10 14:30:00"</strong> &mdash; just a point in time</li>
+</ul>
+
+By itself, data tells us nothing. It needs to be processed and given context before it becomes useful.`
+          },
+          {
+            title: 'What is Information?',
+            body: `<strong>Information</strong> is data that has been <strong>processed, organized, and contextualized</strong> to make it meaningful and useful for decision-making.
+
+The same examples, now as information:
+<ul>
+  <li><strong>150</strong> becomes "150 units of Product A were sold today"</li>
+  <li><strong>"RM45.00"</strong> becomes "RM45.00 is the average transaction value for this customer segment"</li>
+  <li>The timestamp becomes "The peak sales hour on Friday was 2:30 PM"</li>
+</ul>
+
+The key difference: <strong>Data</strong> is raw material; <strong>Information</strong> is the finished product.`,
+            diagram: `flowchart LR
+              D[Raw Data] --> P[Processing<br/>+ Context]
+              P --> I[Information]
+              I --> D1[Decision Making]
+              style D fill:#eff6ff,stroke:#3b82f6,stroke-width:2px
+              style I fill:#f0fdf4,stroke:#059669,stroke-width:2px
+              style D1 fill:#fffbeb,stroke:#f59e0b,stroke-width:2px`
+          },
+          {
+            title: 'The Relationship: A Business Example',
+            body: `Let's look at a <strong>retail store</strong> to see this in action:
+
+<div class="example-box">A retail store processes thousands of transactions every day. Each sale generates <strong>raw transaction records</strong> &mdash; product IDs, quantities, prices, and timestamps. These individual records are <strong>data</strong>.
+
+When the store's system <strong>aggregates</strong> these records into a <strong>weekly sales report</strong> showing total revenue by product category, the result becomes <strong>information</strong> that managers can act upon.</div>
+
+Data serves as the raw material. The process of <strong>selection, aggregation, and formatting</strong> transforms it into information.`
+          },
+          {
+            title: 'Why Accuracy & Timeliness Matter',
+            body: `<strong>Accurate information</strong> ensures that decisions rest on facts rather than guesswork.
+
+<div class="highlight-box"><strong>🏥 Hospital example:</strong> A hospital relying on an inaccurate patient record system might administer incorrect treatments &mdash; the wrong dosage, the wrong medication, or the wrong procedure.</div>
+
+<strong>Timely information</strong> ensures that decisions are made while they are still relevant.
+
+<div class="highlight-box"><strong>📈 Stock trader example:</strong> A stock trader receiving price updates five minutes late cannot execute profitable trades &mdash; the market has already moved.</div>
+
+<strong>Takeaway:</strong> Poor-quality information (inaccurate, delayed, or incomplete) leads directly to poor decisions, financial losses, and missed strategic opportunities.`
+          }
+        ],
+        recap: [
+          'Data is raw, unprocessed facts; Information is data made meaningful through processing and context.',
+          'Accurate and timely information is critical for effective decision-making in any organization.'
+        ]
+      },
+      {
+        number: 2, title: 'Database & DBMS',
+        intro: "Now that we understand data and information, the next question is: how do we store and manage all this data effectively? That's where databases and DBMS come in.",
+        steps: [
+          {
+            title: 'What is a Database?',
+            body: `A <strong>database</strong> is a <strong>shared, integrated collection</strong> of logically related data structured to support efficient retrieval and modification.
+
+Think of it as a highly organized digital filing cabinet:
+<ul>
+  <li><strong>Shared</strong> &mdash; multiple users and applications can access it simultaneously</li>
+  <li><strong>Integrated</strong> &mdash; data is stored in a way that shows relationships between different pieces of information</li>
+  <li><strong>Structured</strong> &mdash; data follows a predefined schema with rules and constraints</li>
+</ul>
+
+Unlike a simple file or spreadsheet, a database ensures <strong>consistency, security, and efficiency</strong> even with millions of records.`
+          },
+          {
+            title: 'What is a DBMS?',
+            body: `A <strong>Database Management System (DBMS)</strong> is the <strong>software layer</strong> that manages, stores, retrieves, and manipulates data within a database. It provides an interface between users and the underlying data.
+
+<div class="diagram-box"><pre class="mermaid">
+flowchart LR
+  U[Users / Applications] --> Q[Queries]
+  Q --> DBMS[DBMS Layer]
+  DBMS --> S[Security<br/>Management]
+  DBMS --> CC[Concurrency<br/>Control]
+  DBMS --> IC[Integrity<br/>Constraints]
+  DBMS --> D[Database]
+  D --> Storage[(Physical Storage)]
+  style DBMS fill:#3b82f6,color:#fff,stroke:#1e40af,stroke-width:2px
+  style D fill:#059669,color:#fff,stroke:#047857,stroke-width:2px
+</pre></div>
+
+The DBMS hides the complexity of how data is physically stored. Users just submit queries &mdash; the DBMS handles the rest.`
+          },
+          {
+            title: 'DBMS as Intermediary',
+            body: `The DBMS acts as <strong>middleware</strong> between users and the database. Here's what happens when you submit a query:
+
+<div class="highlight-box"><strong>Step-by-step:</strong>
+<ol>
+  <li>You submit a query (e.g., SQL <code>SELECT</code> statement)</li>
+  <li>The DBMS <strong>parses and validates</strong> your query</li>
+  <li>It <strong>translates</strong> the high-level request into low-level file operations</li>
+  <li>The DBMS <strong>retrieves</strong> the relevant data from storage</li>
+  <li>It <strong>presents</strong> the results in the requested format</li>
+</ol></div>
+
+Along the way, the DBMS also:
+<ul>
+  <li>Enforces <strong>security policies</strong> (authentication, authorization)</li>
+  <li>Manages <strong>concurrent access</strong> (handles multiple users at once)</li>
+  <li>Maintains <strong>integrity constraints</strong> (validates data rules)</li>
+</ul>
+
+All of this happens <strong>without</strong> requiring you to know how the data is physically stored on disk.`
+          },
+          {
+            title: 'Three Key Advantages of Using a DBMS',
+            body: `<ol>
+  <li><strong>Data Independence:</strong> The separation of logical and physical schemas means changes to storage structures (e.g., adding an index) do not affect application programs. Developers can modify the logical schema without rewriting code.</li>
+  <li><strong>Reduced Data Redundancy:</strong> Centralized data management minimizes unnecessary duplication. When multiple applications need the same data, they share a single copy rather than maintaining separate files.</li>
+  <li><strong>Improved Data Security:</strong> A DBMS provides authentication, authorization, and encryption mechanisms. Administrators can grant granular permissions at the table or column level, preventing unauthorized access.</li>
+</ol>`
+          }
+        ],
+        recap: [
+          'A database is an organized collection of related data; a DBMS is the software that manages it.',
+          'The DBMS acts as middleware, handling security, concurrency, integrity, and storage transparently.'
+        ]
+      },
+      {
+        number: 3, title: 'Types of Databases',
+        intro: "Databases come in different shapes and sizes depending on who uses them and where they're located. Let's explore the main categories and really dig into how distributed databases work across different sites.",
+        steps: [
+          {
+            title: 'Single-User vs Multi-User Databases',
+            body: `<table>
+  <tr><th>Aspect</th><th>Single-User</th><th>Multi-User</th></tr>
+  <tr><td>Users</td><td>One at a time</td><td>Many simultaneously</td></tr>
+  <tr><td>Example</td><td>Personal library app on a laptop</td><td>University student portal</td></tr>
+  <tr><td>Concurrency</td><td>Not required</td><td>Essential (locks, transactions)</td></tr>
+  <tr><td>Performance</td><td>Local I/O speed</td><td>Concurrent throughput, query optimization</td></tr>
+</table>
+
+<p><strong>Single-user databases</strong> are simple &mdash; no need for complex concurrency control because only one person is using it at a time.</p>
+<p><strong>Multi-user databases</strong> are more complex. They must handle multiple users reading and writing simultaneously without conflicts &mdash; like hundreds of students registering for courses at the same time.</p>`
+          },
+          {
+            title: 'Centralized vs Distributed Overview',
+            body: `<table>
+  <tr><th>Aspect</th><th>Centralized</th><th>Distributed</th></tr>
+  <tr><td>Data location</td><td>Single server</td><td>Multiple geographically separated sites</td></tr>
+  <tr><td>Management</td><td>Simpler, single point of control</td><td>Complex — requires replication & synchronization</td></tr>
+  <tr><td>Failure risk</td><td>Single point of failure</td><td>Partial failures; other sites continue</td></tr>
+  <tr><td>Network dependency</td><td>All users connect to one node</td><td>Sites communicate over a network</td></tr>
+</table>
+
+<div class="diagram-box"><pre class="mermaid">
+flowchart LR
+  subgraph Centralized["Centralized Database"]
+    direction TB
+    S1[(Central Server)] --- U1[User A]
+    S1 --- U2[User B]
+    S1 --- U3[User C]
+  end
+  subgraph Distributed["Distributed Database"]
+    direction TB
+    S2a[(Site A)] --- U4[User A]
+    S2b[(Site B)] --- U5[User B]
+    S2c[(Site C)] --- U6[User C]
+    S2a <-->|Network| S2b
+    S2b <-->|Network| S2c
+  end
+  style S1 fill:#fef3c7,stroke:#f59e0b,stroke-width:2px
+  style S2a fill:#dbeafe,stroke:#3b82f6,stroke-width:2px
+  style S2b fill:#dbeafe,stroke:#3b82f6,stroke-width:2px
+  style S2c fill:#dbeafe,stroke:#3b82f6,stroke-width:2px
+</pre></div>
+
+<p>In a <strong>centralized</strong> setup, everyone connects to one server. In a <strong>distributed</strong> setup, each site has its <em>own</em> database server, and they talk to each other over the network.</p>`
+          },
+          {
+            title: 'How Distributed Databases Work (Site A & Site B)',
+            body: `<p>Let's look at a <strong>concrete example</strong> to really understand how distributed databases work across multiple sites.</p>
+
+<div class="example-box"><strong>A bank with two branches:</strong>
+<ul>
+  <li><strong>Site A</strong> — Kuala Lumpur (Malaysia HQ)</li>
+  <li><strong>Site B</strong> — Singapore (Regional Branch)</li>
+</ul>
+Both sites store customer accounts, transactions, and loan records. But they serve <strong>different customers locally</strong>.</div>
+
+<p><strong>How data is organized across sites:</strong></p>
+
+<div class="diagram-box"><pre class="mermaid">
+flowchart TB
+  subgraph SiteA["Site A — Kuala Lumpur"]
+    DB_A[(Database A)]
+    DB_A --> CusA[Customer: Ahmad<br/>Account: 1001<br/>Balance: RM5,000]
+    DB_A --> CusA2[Customer: Siti<br/>Account: 1002<br/>Balance: RM12,000]
+  end
+  subgraph SiteB["Site B — Singapore"]
+    DB_B[(Database B)]
+    DB_B --> CusB[Customer: John<br/>Account: 2001<br/>Balance: SGD 8,000]
+    DB_B --> CusB2[Customer: Mary<br/>Account: 2002<br/>Balance: SGD 15,000]
+  end
+  SiteA <==>|"🔁 Synchronization<br/>Network Link"| SiteB
+  style SiteA fill:#dbeafe,stroke:#3b82f6,stroke-width:2px
+  style SiteB fill:#f0fdf4,stroke:#059669,stroke-width:2px
+</pre></div>
+
+<p><strong>Key points:</strong></p>
+<ul>
+  <li><strong>Each site has its own server</strong> — Site A runs on a server in KL, Site B runs on a server in Singapore</li>
+  <li><strong>Each site stores its local data</strong> — Malaysian customers are stored at Site A, Singapore customers at Site B</li>
+  <li><strong>Sites talk to each other</strong> — they sync data over the network (e.g., for cross-border transfers)</li>
+  <li><strong>Local queries are fast</strong> — a KL customer checking their balance hits only Site A, no network delay</li>
+</ul>`
+          },
+          {
+            title: 'What Happens When a Site Goes Down?',
+            body: `<p>One of the biggest advantages of distributed databases is <strong>fault tolerance</strong>. Let's see what happens when a site fails.</p>
+
+<div class="highlight-box"><strong>Scenario:</strong> The network link between Site A (KL) and Site B (Singapore) goes down.</div>
+
+<table>
+  <tr><th>What happens</th><th>Site A (KL)</th><th>Site B (Singapore)</th></tr>
+  <tr><td>Local operations</td><td>✅ Continues normally — KL staff serve KL customers</td><td>✅ Continues normally — SG staff serve SG customers</td></tr>
+  <tr><td>Cross-site queries</td><td>❌ Cannot access Singapore data</td><td>❌ Cannot access Malaysia data</td></tr>
+  <tr><td>Replication</td><td>⏸️ Queues changes until link is restored</td><td>⏸️ Queues changes until link is restored</td></tr>
+  <tr><td>Business impact</td><td>Minimal — local operations unaffected</td><td>Minimal — local operations unaffected</td></tr>
+</table>
+
+<p><strong>Compare with a centralized database:</strong> If the single central server in KL goes down, <strong>both</strong> KL and Singapore are completely unable to operate. That's why distributed databases offer better reliability.</p>
+
+<div class="diagram-box"><pre class="mermaid">
+flowchart LR
+  subgraph Normal["Normal Operation"]
+    A1[(Site A)] <--> B1[(Site B)]
+    A1 --> UA[Users A]
+    B1 --> UB[Users B]
+  end
+  subgraph Failure["When Site A Goes Down"]
+    A2[(Site A)] -- "❌ Down" --- B2[(Site B)]
+    A2 -- "❌" --- UA2[Users A]
+    B2 --- UB2[Users B ✓]
+    style A2 fill:#fecaca,stroke:#ef4444,stroke-width:2px
+    style B2 fill:#dbeafe,stroke:#3b82f6,stroke-width:2px
+  end
+  style Normal fill:#f0fdf4,stroke:#059669
+  style Failure fill:#fef2f2,stroke:#ef4444
+</pre></div>`
+          },
+          {
+            title: 'Data Distribution Strategies',
+            body: `<p>There are two main ways to distribute data across sites. Each has different trade-offs.</p>
+
+<table>
+  <tr><th>Strategy</th><th>How it works</th><th>Pros</th><th>Cons</th></tr>
+  <tr><td><strong>Replication</strong></td><td>Same data is copied to all sites — Site A and Site B both have the same customer records</td><td>High availability, fast reads anywhere</td><td>Writes are slower (must update all copies), more storage</td></tr>
+  <tr><td><strong>Partitioning<br/>(Sharding)</strong></td><td>Data is split — Site A stores Malaysian customers, Site B stores Singapore customers</td><td>Efficient use of storage, fast local writes</td><td>Cross-site queries need network, less fault-tolerant for specific data</td></tr>
+</table>
+
+<div class="diagram-box"><pre class="mermaid">
+flowchart TB
+  subgraph Replication["Replication — Same data everywhere"]
+    direction LR
+    R1[(Site A)] -- "Copy all data" --> R2[(Site B)]
+    R2 -- "Copy all data" --> R1
+    R1_Data[Customer A<br/>Customer B<br/>Customer C] --- R1
+    R2_Data[Customer A<br/>Customer B<br/>Customer C] --- R2
+  end
+  subgraph Partitioning["Partitioning — Data split by region"]
+    direction LR
+    P1[(Site A)] --> PD1[Malaysia Customers<br/>Ahmad, Siti]
+    P2[(Site B)] --> PD2[Singapore Customers<br/>John, Mary]
+    P1 -.->|"Query forwarded"| P2
+  end
+  style Replication fill:#fef3c7,stroke:#f59e0b
+  style Partitioning fill:#dbeafe,stroke:#3b82f6
+</pre></div>
+
+<p><strong>Most real-world distributed databases use a hybrid approach:</strong> partition data by region <em>and</em> replicate critical data (like account balances) across sites for disaster recovery.</p>`
+          },
+          {
+            title: 'Real-World Recommendation',
+            body: `<p><strong>Scenario:</strong> A multinational company operates branches in several countries. Which database type is best?</p>
+
+<div class="highlight-box"><strong>Recommendation:</strong> A <strong>distributed database</strong> with a <strong>hybrid partitioning + replication</strong> strategy.</div>
+
+<p><strong>Why?</strong> A centralized database cannot adequately address the challenges of global operations:</p>
+<ul>
+  <li><strong>Latency:</strong> All branches connecting to a single data center — say in the US — would be painfully slow for users in Asia, Europe, and Africa. A distributed database puts data close to users.</li>
+  <li><strong>Network dependency:</strong> If the central data center loses connectivity, <em>all</em> global operations stop. In a distributed system, each site keeps running independently.</li>
+  <li><strong>Data locality:</strong> Partition data by region so each branch stores its local customers. Replicate critical data (global inventory, pricing) across all sites for fast access.</li>
+  <li><strong>Regulatory compliance:</strong> Some countries require customer data to stay within national borders. A distributed database makes this easy — data never leaves the country.</li>
+</ul>
+
+<p>This approach provides <strong>local performance</strong>, <strong>global availability</strong>, and <strong>regulatory compliance</strong> &mdash; the best of all worlds.</p>`
+          }
+        ],
+        recap: [
+          'Single-user databases serve one person; multi-user databases handle concurrent access.',
+          'Centralized databases are simpler but have a single point of failure.',
+          'Distributed databases use multiple sites — each site has its own server and data, and they sync over the network.',
+          'Replication copies data to all sites; partitioning splits data by region. Most real systems use a hybrid of both.'
+        ]
+      },
+      {
+        number: 4, title: 'File Systems vs DBMS',
+        intro: "Before databases existed, organizations used file systems to store data. Let's understand why that approach had serious problems and how DBMS solved them.",
+        steps: [
+          {
+            title: 'Characteristics of Traditional File Systems',
+            body: `<p>In the old days, each application maintained its own data files. This led to two defining characteristics:</p>
+
+<ol>
+  <li><strong>Separate and isolated files:</strong> Each application manages its own data with no shared structure. For example, a payroll application stores employee data in a <code>.txt</code> file while HR keeps the same data in a separate <code>.csv</code> file &mdash; even though they're about the same employees.</li>
+  <li><strong>Program-data dependence:</strong> The file structure is embedded directly in the application code. If you change a field's size, you need to modify every program that reads that file &mdash; a nightmare for maintenance.</li>
+</ol>`
+          },
+          {
+            title: 'Three Major Limitations of File Systems',
+            body: `<ol>
+  <li><strong>Data Redundancy:</strong> The same data appears in multiple files. Example: a customer's address stored in both the sales file and the billing file &mdash; two copies of the same information.</li>
+  <li><strong>Data Inconsistency:</strong> Updates applied to one file but not another create conflicting values. The customer's address gets updated in billing but remains stale in sales &mdash; which one is correct?</li>
+  <li><strong>Lack of Concurrent Access Control:</strong> When two users edit the same file simultaneously, one user's changes may overwrite the other's &mdash; leading to lost updates and data corruption.</li>
+</ol>
+
+<div class="diagram-box"><pre class="mermaid">
+flowchart TD
+  App1[Payroll App] --> F1[(Employee.txt)]
+  App2[HR App] --> F2[(Employee.csv)]
+  App3[Sales App] --> F3[(Customer.txt)]
+  App4[Billing App] --> F4[(Customer.dat)]
+  F1 -.-x Dup1[✗ Duplicate data]
+  F2 -.-x Dup2[✗ Inconsistent]
+  F3 -.-x Dup3[✗ No sharing]
+  F4 -.-x Dup4[✗ Conflicts]
+  style F1 fill:#fecaca,stroke:#ef4444
+  style F2 fill:#fecaca,stroke:#ef4444
+  style F3 fill:#fecaca,stroke:#ef4444
+  style F4 fill:#fecaca,stroke:#ef4444
+</pre></div>`
+          },
+          {
+            title: 'How DBMS Overcomes These Limitations',
+            body: `<p>A DBMS addresses each limitation with specific mechanisms. Let's look at each one.</p>
+
+<p><strong>1. Data Redundancy → Centralized Data Definition</strong></p>
+<p>Instead of each application maintaining its own files, the DBMS stores <strong>each fact once</strong> in a shared repository. All applications read from and write to the same source of truth. No more duplicate files.</p>
+
+<p><strong>2. Data Inconsistency → Integrity Constraints + ACID Transactions</strong></p>
+<p>This is where {{Foreign Key}} comes in. A <strong>foreign key</strong> is an attribute in one table that references the primary key in another table. It ensures you cannot create a record that refers to something that doesn't exist.</p>
+
+<div class="highlight-box"><strong>Step 1:</strong> The STUDENT table stores real student data. StudentID is the <strong>primary key</strong> — every row has a unique StudentID.</div>
+
+<table>
+  <tr><th>StudentID (PK)</th><th>Name</th></tr>
+  <tr><td>S100</td><td>Ali</td></tr>
+  <tr><td>S101</td><td>Siti</td></tr>
+</table>
+
+<div class="highlight-box"><strong>Step 2:</strong> The ENROLMENT table uses StudentID as a <strong>{{Foreign Key}}</strong>. It can only contain StudentID values that already exist in the STUDENT table.</div>
+
+<table>
+  <tr><th>EnrolID</th><th>StudentID (FK)</th><th>Course</th></tr>
+  <tr style="background: #f0fdf4"><td>E01</td><td><strong>S100</strong></td><td>Database</td></tr>
+  <tr style="background: #fef2f2"><td>E02</td><td><strong style="color: #ef4444;">S999</strong></td><td style="color: #ef4444;">❌ REJECTED by FK constraint</td></tr>
+</table>
+
+<p style="margin-top: 8px;">✅ <strong>E01 is allowed</strong> — StudentID S100 exists in the STUDENT table.</p>
+<p>❌ <strong>E02 is rejected</strong> — StudentID S999 does <em>not</em> exist in the STUDENT table. The DBMS will not allow this row to be inserted.</p>
+
+<div class="example-box"><strong>Without a foreign key (file system):</strong> A file system has no constraint. It lets you write the orphan record. Now you have an enrolment that refers to a student who doesn't exist &mdash; <strong>data inconsistency</strong>. Later, when someone asks "who is enrolled in this course?", you cannot find the student's name. The data is useless.</div>
+
+<p><strong>{{ACID}} transactions</strong> solve the update problem. An ACID transaction wraps multiple updates into one atomic unit:</p>
+<ul>
+  <li><strong>Atomic:</strong> All changes happen, or none do</li>
+  <li><strong>Consistent:</strong> Data is valid before and after</li>
+  <li><strong>Isolated:</strong> Concurrent transactions don't interfere</li>
+  <li><strong>Durable:</strong> Once committed, changes survive failures</li>
+</ul>
+
+<div class="highlight-box"><strong>Example:</strong> Transferring RM100 from Account A to Account B requires <em>two</em> updates: debit A, credit B. With ACID, if the power fails after debiting A but before crediting B, the DBMS <strong>rolls back</strong> the entire transaction. The RM100 is never lost. In a file system, half the update would be written and the money would vanish.</div>
+
+<p><strong>3. Concurrent Access → Concurrency Control</strong></p>
+<p>When two users edit the same file simultaneously in a file system, one user's changes overwrite the other's (a <em>lost update</em>). The DBMS prevents this through:</p>
+<ul>
+  <li><strong>Locking:</strong> When User A edits a record, the DBMS <em>locks</em> it. User B must wait until User A finishes.</li>
+  <li><strong>{{MVCC}} (Multi-Version Concurrency Control):</strong> Instead of locking, the DBMS keeps multiple versions of each record. User A sees their version, User B sees theirs — no waiting needed. When they save, the DBMS merges or detects conflicts.</li>
+</ul>`
+          }
+        ],
+        recap: [
+          'File systems suffer from data redundancy, inconsistency, and lack of concurrency control.',
+          'A DBMS solves these through centralization, integrity constraints, ACID transactions, and concurrency control mechanisms.'
+        ]
+      },
+      {
+        number: 5, title: 'Data Redundancy & Inconsistency',
+        intro: "Let's dig deeper into two of the most common problems in data management &mdash; data redundancy and data inconsistency. Understanding these is key to designing good databases.",
+        steps: [
+          {
+            title: 'Defining the Terms',
+            body: `<p><strong>Data redundancy</strong> is the unnecessary duplication of the same data values across multiple files or tables within a system.</p>
+
+<p><strong>Data inconsistency</strong> arises when different copies of the same data hold conflicting values &mdash; a clear sign that redundant copies have not been kept synchronized.</p>
+
+<div class="highlight-box"><strong>Analogy:</strong> Imagine being a teacher who keeps the same class roster in two notebooks. If you update a student's grade in one notebook but forget to update the other, which notebook has the correct grade? That's data inconsistency caused by redundancy.</div>`
+          },
+          {
+            title: 'How Redundancy Leads to Inconsistency',
+            body: `<p>When a system stores the same fact (e.g., a customer's phone number) in two different places, every update must be applied to both locations. If the update mechanism is not atomic (all-or-nothing) or if one location is missed, the two copies diverge.</p>
+
+<div class="highlight-box"><strong>The more places data is duplicated, the greater the probability of inconsistency.</strong></div>
+
+<p>This is why database designers follow the principle of <strong>single-source-of-truth</strong> &mdash; each fact should be stored exactly once.</p>`
+          },
+          {
+            title: 'Real-World Example',
+            body: `<div class="example-box">A university stores a student's address in both the <strong>Registration Office database</strong> and the <strong>Library System</strong>. When the student moves and submits a change to the Registration Office, the address is updated there. But the Library System is not notified &mdash; it still has the old address.
+
+Subsequently, library notices are mailed to the old address. The student never receives them, fines accumulate, and the student gets frustrated.
+
+This mismatch &mdash; one copy correct, one copy stale &mdash; is a <strong>data inconsistency</strong> caused by the initial redundancy.</div>`
+          }
+        ],
+        recap: [
+          'Data redundancy is unnecessary duplication; data inconsistency is conflicting values caused by unsynchronized duplicates.',
+          'The more copies you have, the harder it is to keep them consistent — store each fact once.'
+        ]
+      },
+      {
+        number: 6, title: 'Data Anomalies',
+        intro: "When data redundancy goes unchecked, it leads to data anomalies &mdash; irregularities that make your database unreliable. Let's look at the three main types.",
+        steps: [
+          {
+            title: 'What are Data Anomalies?',
+            body: `<strong>Data anomalies</strong> are irregularities or inconsistencies that arise in a database as a consequence of poor design, particularly due to uncontrolled data redundancy.
+
+Think of them as <strong>unwanted side effects</strong> of storing data in a badly designed table. There are three types:
+<ul>
+  <li><strong>Update Anomaly</strong> &mdash; changing data becomes a nightmare</li>
+  <li><strong>Insertion Anomaly</strong> &mdash; adding data becomes impossible in certain cases</li>
+  <li><strong>Deletion Anomaly</strong> &mdash; deleting data accidentally removes other information</li>
+</ul>`
+          },
+          {
+            title: 'Update Anomaly',
+            body: `<p>An <strong>Update Anomaly</strong> occurs when changing a redundant fact requires updating multiple rows &mdash; and a missed update creates inconsistency.</p>
+
+<div class="example-box">In a denormalized <code>STUDENT_COURSE</code> table where professor names are stored alongside each enrollment row, changing a professor's name requires updating every row where that professor teaches. If you miss even one row, the database has conflicting information &mdash; is the professor Dr. Smith or Dr. Jones?</div>
+
+<p><strong>The fix:</strong> Store the professor's name in a separate <code>PROFESSOR</code> table and reference it with a foreign key. Now one change updates everything automatically.</p>`
+          },
+          {
+            title: 'Insertion Anomaly',
+            body: `<p>An <strong>Insertion Anomaly</strong> occurs when adding a new record is impossible without attaching it to another unrelated record.</p>
+
+<div class="example-box">Consider a <code>STUDENT_COURSE</code> table where the primary key is <code>(StudentID, CourseID)</code>. A new course cannot be added to the database until at least one student enrolls in it &mdash; because you need both a StudentID and CourseID to create a row.</div>
+
+<p>The course exists as a concept, but you can't record it because the table structure forces you to link it to a student first. That's an insertion anomaly.</p>
+
+<p><strong>The fix:</strong> Have a separate <code>COURSE</code> table with just course information. The enrollment table only stores the relationship.</p>`
+          },
+          {
+            title: 'Deletion Anomaly',
+            body: `<p>A <strong>Deletion Anomaly</strong> occurs when deleting a record unintentionally removes other facts stored alongside it.</p>
+
+<div class="example-box">Using the same poorly designed <code>STUDENT_COURSE</code> table, imagine the last student drops a particular course. When you delete that student's enrollment record, the course's name and description are also removed from the database &mdash; even though the course still exists!</div>
+
+<p><strong>The fix:</strong> Same as above &mdash; separate the course information into its own table. Deleting an enrollment should only affect the enrollment, not the course itself.</p>`
+          },
+          {
+            title: 'How Normalization Helps',
+            body: `<p><strong>Normalization</strong> is the primary technique for eliminating anomalies. It decomposes large, denormalized tables into smaller, well-structured relations. Let's see this with a concrete example.</p>
+
+<div class="highlight-box"><strong>Before Normalization — A single, denormalized table:</strong></div>
+
+<table>
+  <tr><th>StudentID</th><th>StudentName</th><th>CourseID</th><th>CourseName</th><th>Instructor</th><th>InstructorOffice</th><th>Grade</th></tr>
+  <tr><td>S100</td><td>Ali</td><td>C01</td><td>Database</td><td>Dr. Tan</td><td>Block A</td><td>A</td></tr>
+  <tr><td>S100</td><td>Ali</td><td>C02</td><td>Python</td><td>Dr. Lim</td><td>Block B</td><td>B+</td></tr>
+  <tr><td>S101</td><td>Siti</td><td>C01</td><td>Database</td><td>Dr. Tan</td><td>Block A</td><td>A-</td></tr>
+</table>
+
+<p><strong>Red flags in this table:</strong></p>
+<ul>
+  <li>Dr. Tan's office (Block A) appears <strong>twice</strong> — if he moves, both rows need updating</li>
+  <li>CourseName "Database" appears <strong>twice</strong> — same redundancy</li>
+  <li>The table mixes <strong>three different entities</strong>: Student, Course, and Enrollment</li>
+</ul>
+
+<div class="highlight-box"><strong>After Normalization — Split into three tables, each representing ONE entity:</strong></div>
+
+<div class="diagram-box"><pre class="mermaid">
+flowchart TB
+  subgraph Before["Before: DENORMALIZED"]
+    D[One big table<br/>STUDENT_COURSE<br/>Student info + Course info<br/>+ Grade all together]
+  end
+  subgraph After["After: NORMALIZED"]
+    S[STUDENT<br/>StudentID, Name]
+    C[COURSE<br/>CourseID, Name, Instructor]
+    E[ENROLMENT<br/>StudentID*, CourseID*, Grade]
+    S ---|1:M| E
+    C ---|1:M| E
+  end
+  style Before fill:#fecaca,stroke:#ef4444,stroke-width:2px
+  style After fill:#f0fdf4,stroke:#059669,stroke-width:2px
+  style D fill:#fef2f2,stroke:#ef4444
+  style S fill:#dbeafe,stroke:#3b82f6
+  style C fill:#dbeafe,stroke:#3b82f6
+  style E fill:#fef3c7,stroke:#f59e0b
+</pre></div>
+
+<p><strong>Table 1 — STUDENT</strong> (stores only student info):</p>
+<table>
+  <tr><th>StudentID (PK)</th><th>StudentName</th></tr>
+  <tr><td>S100</td><td>Ali</td></tr>
+  <tr><td>S101</td><td>Siti</td></tr>
+</table>
+
+<p><strong>Table 2 — COURSE</strong> (stores only course info):</p>
+<table>
+  <tr><th>CourseID (PK)</th><th>CourseName</th><th>Instructor</th><th>InstructorOffice</th></tr>
+  <tr><td>C01</td><td>Database</td><td>Dr. Tan</td><td>Block A</td></tr>
+  <tr><td>C02</td><td>Python</td><td>Dr. Lim</td><td>Block B</td></tr>
+  <tr><td>C03</td><td>Web Dev</td><td>Dr. Chan</td><td>Block C</td></tr>
+</table>
+
+<p><strong>Table 3 — ENROLMENT</strong> (stores only the relationship):</p>
+<table>
+  <tr><th>StudentID (FK)</th><th>CourseID (FK)</th><th>Grade</th></tr>
+  <tr><td>S100</td><td>C01</td><td>A</td></tr>
+  <tr><td>S100</td><td>C02</td><td>B+</td></tr>
+  <tr><td>S101</td><td>C01</td><td>A-</td></tr>
+</table>
+
+<div class="highlight-box"><strong>How normalization eliminates each anomaly:</strong></div>
+
+<table>
+  <tr><th>Anomaly</th><th>Before (denormalized)</th><th>After (normalized)</th></tr>
+  <tr><td><strong>Update</strong></td><td>Dr. Tan moves offices. You must update <strong>both rows</strong> where he teaches. Miss one → inconsistency.</td><td>Dr. Tan's office is stored <strong>once</strong> in the COURSE table. Change it in one place → all fixed.</td></tr>
+  <tr><td><strong>Insertion</strong></td><td>New course (C03, Web Dev) cannot be added until <strong>at least one student enrolls</strong> — because every row needs a StudentID.</td><td>Add C03 directly to the COURSE table. <strong>No student needed.</strong> The row exists immediately.</td></tr>
+  <tr><td><strong>Deletion</strong></td><td>Siti drops Database. Deleting her enrolment row <strong>also removes the course info</strong> (CourseName, Instructor, Office). Course C01 is lost from the database.</td><td>Deleting the enrolment row affects <strong>only the ENROLMENT table</strong>. Course C01 still exists in the COURSE table with all its info intact.</td></tr>
+</table>`
+          }
+        ],
+        recap: [
+          'Three anomalies: Update (changing redundant data), Insertion (can\'t add without unrelated link), Deletion (removing unintended data).',
+          'Normalization solves anomalies by decomposing tables so each represents one entity.'
+        ]
+      },
+      {
+        number: 7, title: 'Data Models (Conceptual, Logical, Physical)',
+        intro: "Before building a database, we need to plan it. Data models help us design databases at different levels of detail &mdash; from high-level business concepts down to technical storage details.",
+        steps: [
+          {
+            title: 'The Three Levels of Data Modeling',
+            body: `<table>
+  <tr><th>Model</th><th>Level</th><th>What it describes</th><th>Audience</th></tr>
+  <tr><td><strong>Conceptual</strong></td><td>Highest</td><td>What data exists and how entities relate (ER diagrams)</td><td>Stakeholders, analysts</td></tr>
+  <tr><td><strong>Logical</strong></td><td>Middle</td><td>Tables, columns, keys, constraints (system-agnostic)</td><td>Designers, developers</td></tr>
+  <tr><td><strong>Physical</strong></td><td>Lowest</td><td>File organization, indexes, partitions, storage</td><td>DBAs</td></tr>
+</table>
+
+<div class="diagram-box"><pre class="mermaid">
+flowchart BT
+  P[Physical Model<br/>How data is stored] --> L[Logical Model<br/>How data is structured]
+  L --> C[Conceptual Model<br/>What data exists]
+  style C fill:#dbeafe,stroke:#3b82f6,stroke-width:2px
+  style L fill:#f0fdf4,stroke:#059669,stroke-width:2px
+  style P fill:#fef3c7,stroke:#f59e0b,stroke-width:2px
+</pre></div>`
+          },
+          {
+            title: 'Conceptual Model (The Big Picture)',
+            body: `<p>The <strong>conceptual model</strong> is the highest-level view. It answers the question: <em>"What data does our organization need?"</em></p>
+
+<p>It uses <strong>Entity-Relationship (ER) diagrams</strong> to show:</p>
+<ul>
+  <li><strong>Entities</strong> (things of interest, e.g., Student, Course, Professor)</li>
+  <li><strong>Attributes</strong> (properties of entities, e.g., StudentID, Name)</li>
+  <li><strong>Relationships</strong> (how entities connect, e.g., "Student enrolls in Course")</li>
+</ul>
+
+<p>This model is <strong>independent of any database system</strong> &mdash; we haven't decided whether we'll use MySQL, Oracle, or something else yet. It's purely about understanding the business requirements.</p>`
+          },
+          {
+            title: 'Logical Model (The Blueprint)',
+            body: `<p>The <strong>logical model</strong> takes the conceptual model and maps it to a specific data paradigm &mdash; in our case, the <strong>relational model</strong>.</p>
+
+<p>Here, we define:</p>
+<ul>
+  <li><strong>Tables</strong> (relations) &mdash; each entity becomes a table</li>
+  <li><strong>Columns</strong> (attributes) with data types</li>
+  <li><strong>Primary keys</strong> &mdash; the unique identifier for each row</li>
+  <li><strong>Foreign keys</strong> &mdash; connections between tables</li>
+  <li><strong>Constraints</strong> &mdash; rules the data must follow</li>
+</ul>
+
+<p>The logical model still doesn't worry about storage details &mdash; it's a <strong>blueprint</strong> for the database structure.</p>`
+          },
+          {
+            title: 'Physical Model (The Implementation)',
+            body: `<p>The <strong>physical model</strong> describes how data is actually stored on disk. This is the most technical level.</p>
+
+<p>It specifies:</p>
+<ul>
+  <li><strong>File organization</strong> &mdash; how tables are stored as files</li>
+  <li><strong>Indexes</strong> &mdash; data structures that speed up queries</li>
+  <li><strong>Partitions</strong> &mdash; splitting large tables across disks</li>
+  <li><strong>Compression</strong> &mdash; reducing storage space</li>
+  <li><strong>Access paths</strong> &mdash; how the DBMS finds data efficiently</li>
+</ul>`
+          },
+          {
+            title: 'Why Data Modeling Skills Matter',
+            body: `<strong>Data modeling</strong> provides a blueprint that bridges business requirements and technical implementation.
+
+<div class="highlight-box">A well-constructed model captures user needs, identifies data dependencies, and <strong>highlights design issues early</strong> &mdash; before any code is written.</div>
+
+<p>Poor modeling at the conceptual or logical stage leads to costly schema redesigns when the system reaches production. Moreover, a clear data model serves as <strong>documentation</strong> that stakeholders from different backgrounds can review and validate.</p>
+
+<p><strong>Remember:</strong> It's much cheaper to fix a design on paper than to fix a database that's already in production with thousands of records.</p>`
+          }
+        ],
+        recap: [
+          'Three levels: Conceptual (what), Logical (how structured), Physical (how stored).',
+          'Data modeling catches design issues early and serves as documentation bridging business and technical teams.'
+        ]
+      },
+      {
+        number: 8, title: 'Database System Components',
+        intro: "A database system is more than just software &mdash; it's a combination of five key components that work together. Let's look at each one.",
+        steps: [
+          {
+            title: 'The Five Components',
+            body: `<div class="diagram-box"><pre class="mermaid">
+flowchart LR
+  H[Hardware] --> S[Software]
+  S --> D[Data]
+  D --> P[People]
+  P --> PR[Procedures]
+  PR -.-> H
+  style H fill:#fecaca,stroke:#ef4444
+  style S fill:#dbeafe,stroke:#3b82f6
+  style D fill:#f0fdf4,stroke:#059669
+  style P fill:#fef3c7,stroke:#f59e0b
+  style PR fill:#f3e8ff,stroke:#9333ea
+</pre></div>
+
+<p>The five major components are: <strong>Hardware, Software, Data, People, and Procedures</strong>. All five must work together for a successful database system.</p>`
+          },
+          {
+            title: 'Hardware & Software',
+            body: `<p><strong>Hardware:</strong> The physical devices that store and run the database.</p>
+<div class="example-box">In a university: Servers housed in the data center store database files and run the DBMS. Workstations in administrative offices connect to these servers over the campus network.</div>
+
+<p><strong>Software:</strong> The programs that manage the database.</p>
+<div class="example-box">The DBMS (Oracle, MySQL) manages data storage, retrieval, and security. The operating system provides the environment for the DBMS to run. Utilities support routine maintenance like backups and monitoring.</div>`
+          },
+          {
+            title: 'Data & People',
+            body: `<p><strong>Data:</strong> The core asset &mdash; the actual information stored in the database.</p>
+<div class="example-box">University data includes student records, course catalogs, enrollment registrations, grade transcripts, faculty profiles, and financial aid information. This is what the system protects and serves.</div>
+
+<p><strong>People:</strong> Everyone who interacts with the database system.</p>
+<ul>
+  <li><strong>End users:</strong> Registrars entering enrollment data, students checking grades, faculty submitting marks</li>
+  <li><strong>Database administrators:</strong> Manage schema changes, performance tuning, backups</li>
+  <li><strong>Application developers:</strong> Build the portals and interfaces connecting users to the database</li>
+</ul>`
+          },
+          {
+            title: 'Procedures',
+            body: `<strong>Procedures</strong> are the instructions, policies, and standards that govern how the database system operates.
+
+<div class="example-box">Standard operating procedures at a university govern:
+<ul>
+  <li>How registrars enter new student data</li>
+  <li>How semester rollover is performed</li>
+  <li>How backup schedules operate</li>
+  <li>How disaster recovery is executed</li>
+</ul></div>
+
+<p>Even the best hardware and software will fail without proper procedures. They ensure <strong>consistency, security, and reliability</strong> in day-to-day operations.</p>`
+          }
+        ],
+        recap: [
+          'The five components: Hardware, Software, Data, People, Procedures.',
+          'All components must work together — great technology alone is not enough without skilled people and proper procedures.'
+        ]
+      },
+      {
+        number: 9, title: 'Data Dictionary & DBMS Functions',
+        intro: "Behind every well-run database is a data dictionary tracking metadata, and a DBMS providing essential functions. Let's explore both.",
+        steps: [
+          {
+            title: 'What is a Data Dictionary?',
+            body: `<p>A <strong>data dictionary</strong> (also called a <em>system catalog</em>) is a centralized metadata repository that stores descriptions of all database objects &mdash; like a <strong>"database about the database"</strong>.</p>
+
+<p>It stores information such as:</p>
+<ul>
+  <li><strong>Table definitions</strong> &mdash; names, owners, creation dates</li>
+  <li><strong>Column details</strong> &mdash; names, data types, sizes, default values</li>
+  <li><strong>Constraints</strong> &mdash; primary keys, foreign keys, unique rules</li>
+  <li><strong>Indexes</strong> &mdash; which columns are indexed</li>
+  <li><strong>Views</strong> &mdash; saved queries that act like virtual tables</li>
+  <li><strong>User permissions</strong> &mdash; who can access what</li>
+</ul>
+
+<div class="highlight-box">When you submit a query, the DBMS consults the dictionary to verify object existence, parse column references, check access rights, and retrieve storage statistics for optimization.</div>`
+          },
+          {
+            title: 'Four Key DBMS Functions',
+            body: `<ol>
+  <li><strong>Data Definition (DDL):</strong> The DBMS provides commands like <code>CREATE</code>, <code>ALTER</code>, and <code>DROP</code> to define and modify the database schema. This is how you build your tables.</li>
+  <li><strong>Data Manipulation (DML):</strong> The DBMS supports <code>SELECT</code>, <code>INSERT</code>, <code>UPDATE</code>, and <code>DELETE</code> for querying and modifying data.</li>
+  <li><strong>Security Management:</strong> The DBMS enforces user authentication, role-based access control, and encryption to protect data from unauthorized access.</li>
+  <li><strong>Integrity Enforcement:</strong> The DBMS checks constraints automatically on every insert or update &mdash; <code>PRIMARY KEY</code>, <code>FOREIGN KEY</code>, <code>CHECK</code>, <code>UNIQUE</code>, <code>NOT NULL</code> &mdash; preventing invalid data from entering the database.</li>
+</ol>`
+          },
+          {
+            title: 'Why Backup & Recovery Matter',
+            body: `<strong>Backup and recovery</strong> functions are critical because failures happen:
+
+<div class="highlight-box">Hardware failures, software bugs, human errors (accidental deletion), and natural disasters can <strong>corrupt or destroy data</strong>. Without reliable backup and recovery procedures, organizations face permanent data loss, regulatory penalties, legal liability, and extended business downtime.</div>
+
+Recovery mechanisms include:
+<ul>
+  <li><strong>Transaction logs</strong> &mdash; records every change for replay</li>
+  <li><strong>Point-in-time recovery</strong> &mdash; restore to just before a failure</li>
+  <li><strong>Replication</strong> &mdash; keep copies on multiple servers</li>
+</ul>
+
+These ensure data can be restored to a consistent state after any failure.`
+          }
+        ],
+        recap: [
+          'A data dictionary is a centralized metadata repository that describes all database objects.',
+          'DBMS functions: Data Definition, Data Manipulation, Security Management, and Integrity Enforcement — plus critical Backup & Recovery.'
+        ]
+      },
+      {
+        number: 10, title: 'File System Problems & DBMS Solutions',
+        intro: "Let's pull everything together by examining the key problems with file-based systems and understanding how a DBMS solves them comprehensively.",
+        steps: [
+          {
+            title: 'Three Problems of File-Based Systems',
+            body: `<ol>
+  <li><strong>Data Redundancy and Inconsistency:</strong> The same data is duplicated across disparate files, leading to conflicting values when updates are applied unevenly.</li>
+  <li><strong>Program-Data Dependence:</strong> File structure definitions are hard-coded into application programs, so any schema change requires modifying and recompiling every affected program.</li>
+  <li><strong>Limited Data Sharing:</strong> Each application operates on its own set of files. Sharing data across applications requires manual export/import procedures, which are error-prone and inefficient.</li>
+</ol>`
+          },
+          {
+            title: 'The DBMS Solution',
+            body: `<p>Implement a <strong>relational Database Management System</strong> (such as MySQL, PostgreSQL, or Oracle). It provides <strong>{{SQL}} (Structured Query Language)</strong> &mdash; a declarative language where you say <em>what</em> you want, not <em>how</em> to get it.</p>
+
+<div class="highlight-box"><strong>See the difference — File System vs SQL:</strong></div>
+
+<table>
+  <tr><th>Task</th><th>File System (custom code)</th><th>DBMS (SQL — one line)</th></tr>
+  <tr>
+    <td>Find all students named "Ali"</td>
+    <td><code style="font-size: 13px;">with open("students.txt") as f:<br/>&nbsp;&nbsp;for line in f:<br/>&nbsp;&nbsp;&nbsp;&nbsp;parts = line.split(",")<br/>&nbsp;&nbsp;&nbsp;&nbsp;if parts[1] == "Ali":<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(parts)</code></td>
+    <td><code style="font-size: 13px; color: #059669;">SELECT * FROM student<br/>&nbsp;WHERE name = 'Ali';</code></td>
+  </tr>
+  <tr>
+    <td>Show each student's name with their courses</td>
+    <td><code style="font-size: 13px;"># Write a nested loop to open<br/># both files, match IDs,<br/># handle missing records...<br/># ~30 lines of code</code></td>
+    <td><code style="font-size: 13px; color: #059669;">SELECT s.name, e.course<br/>&nbsp;FROM student s<br/>&nbsp;JOIN enrolment e<br/>&nbsp;&nbsp;&nbsp;ON s.id = e.student_id;</code></td>
+  </tr>
+  <tr>
+    <td>Count students per programme</td>
+    <td><code style="font-size: 13px;"># Manual grouping + counting<br/># ... ~20 lines</code></td>
+    <td><code style="font-size: 13px; color: #059669;">SELECT programme, COUNT(*)<br/>&nbsp;FROM student<br/>&nbsp;GROUP BY programme;</code></td>
+  </tr>
+</table>
+
+<p><strong>In the file system approach:</strong> Every question requires writing a <strong>new custom program</strong> in Python, Java, or C — parsing files, handling edge cases, closing handles. A manager asking "how many students are in each programme?" means a developer spends 30 minutes writing and testing code.</p>
+
+<p><strong>With SQL:</strong> You type the query, hit enter, and get the answer immediately. No programming, no compilation, no waiting. That's what "ad-hoc querying" means — you can ask any question about your data <strong>on the fly</strong>.</p>`
+
+          },
+          {
+            title: 'How DBMS Improves Sharing, Integrity & Security',
+            body: `<table>
+  <tr><th>Requirement</th><th>DBMS Solution</th></tr>
+  <tr><td><strong>Data Sharing</strong></td><td>Multiple users and applications access the same data simultaneously through controlled interfaces (views, stored procedures). The DBMS manages concurrent access via locking or MVCC.</td></tr>
+  <tr><td><strong>Data Integrity</strong></td><td>The DBMS enforces domain, entity, and referential integrity constraints automatically. Transactions follow ACID properties &mdash; Atomicity, Consistency, Isolation, and Durability.</td></tr>
+  <tr><td><strong>Data Security</strong></td><td>The DBMS provides user authentication, role-based privileges (GRANT/REVOKE), column-level encryption, and audit trails. Access is denied by default and granted explicitly.</td></tr>
+</table>`
+          },
+          {
+            title: 'One Disadvantage & How to Address It',
+            body: `<p><strong>Disadvantage:</strong> High initial cost. A full-scale DBMS deployment requires investment in server hardware, software licenses, specialized personnel (DBAs), and end-user training.</p>
+
+<p><strong>How to address it:</strong></p>
+<ul>
+  <li><strong>Open-source solutions:</strong> PostgreSQL or MariaDB eliminate licensing fees</li>
+  <li><strong>Cloud services:</strong> Amazon RDS, Google Cloud SQL reduce hardware and maintenance costs</li>
+  <li><strong>Phased implementation:</strong> Start with critical modules and expand gradually</li>
+</ul>
+
+<p>While there is an upfront cost, the <strong>long-term benefits</strong> of data integrity, security, and efficient access far outweigh the initial investment for most organizations.</p>`
+          }
+        ],
+        recap: [
+          'File systems suffer from redundancy, program-data dependence, and limited sharing — DBMS solves all three.',
+          'DBMS provides centralized sharing, ACID integrity, and granular security; initial costs can be mitigated with open-source and cloud options.'
+        ]
+      }
+    ]
+  },
+  {
+    id: 'tutorial2',
+    title: 'Tutorial 2 — Relational Data Models',
+    short: 'Relational Data Models',
+    questions: [
+      {
+        number: 1, title: 'The Relational Database Model',
+        intro: "The relational model is the foundation of modern databases. Introduced by E.F. Codd in 1970, it revolutionized how we store and access data. Let's understand why.",
+        steps: [
+          {
+            title: 'What is the Relational Database Model?',
+            body: `<p>The <strong>relational database model</strong>, introduced by <strong>Codd in 1970</strong>, organizes data into <strong>relations</strong> &mdash; which are essentially two-dimensional tables.</p>
+
+<p>Key concepts:</p>
+<ul>
+  <li>Data is organized into <strong>tables (relations)</strong></li>
+  <li>Each table consists of <strong>rows (tuples)</strong> and <strong>columns (attributes)</strong></li>
+  <li>Each relation represents an <strong>entity or relationship</strong></li>
+  <li><strong>Constraints</strong> like primary keys ensure tuple uniqueness</li>
+  <li><strong>Foreign keys</strong> enforce referential integrity across relations</li>
+</ul>
+
+<p>The model provides a logical abstraction that <strong>decouples data storage from data access</strong> through set-oriented operations defined in relational algebra.</p>`
+          },
+          {
+            title: 'Advantages Over Hierarchical & Network Models',
+            body: `<p><strong>Advantage 1: Logical simplicity and data independence.</strong></p>
+
+<p>Unlike hierarchical and network models that require programmers to navigate predefined pointer paths or parent-child structures, relational databases present all data as <strong>simple tables</strong>. Changes to physical storage structures (adding indexes, reorganizing files) do not alter the logical schema.</p>
+
+<p><strong>Advantage 2: Flexible ad-hoc querying via SQL.</strong></p>
+
+<p>In older models, retrieving data required writing procedural code that explicitly traverses record linkages. With relational databases, you use <strong>declarative SQL</strong> &mdash; you say <em>what</em> you want, not <em>how</em> to get it. The DBMS figures out the most efficient way to retrieve the data.</p>`
+          },
+          {
+            title: 'Logical vs Physical Data Independence',
+            body: `<p>Data independence is one of the greatest strengths of the relational model. It means changes at one level of the database do <strong>not</strong> require changes at another level. Let's make this concrete with real scenarios.</p>
+
+<div class="highlight-box"><strong>First, understand the three levels (the "three-schema architecture"):</strong></div>
+
+<div class="diagram-box"><pre class="mermaid">
+flowchart BT
+  P[Physical Level<br/>How data is stored on disk<br/>— files, indexes, partitions] --> L[Logical Level<br/>What data and how it's structured<br/>— tables, columns, constraints]
+  L --> V[View Level<br/>What users see<br/>— filtered views, reports]
+  style V fill:#fef3c7,stroke:#f59e0b
+  style L fill:#dbeafe,stroke:#3b82f6
+  style P fill:#f0fdf4,stroke:#059669
+</pre></div>
+
+<p>Data independence works in <strong>two directions</strong> — protection going up the stack from physical changes, and protection going down from logical changes.</p>
+
+<p><strong>Physical Data Independence</strong> — changes to storage <em>do not</em> affect the logical schema.</p>
+
+<div class="example-box"><strong>Scenario:</strong> Your university's student database has 50,000 records. Queries are getting slow. The DBA decides to add an <strong>index</strong> on the <code>StudentName</code> column and move the database to a faster SSD drive.<br/><br/>
+<strong>With independence:</strong> The application still runs <code>SELECT * FROM student WHERE name = 'Ali'</code> — <strong>no code changes needed</strong>. The DBMS automatically uses the new index. Developers don't even know the change happened.<br/><br/>
+<strong>Without this (file system):</strong> The file structure is hard-coded in every program. Adding an index means rewriting every application that reads student data.</div>
+
+<p><strong>Logical Data Independence</strong> — changes to the logical schema <em>do not</em> affect external views (what users/applications see).</p>
+
+<div class="example-box"><strong>Scenario:</strong> The university decides to restructure its database. Instead of one <code>STUDENT</code> table with all info, they split it into <code>STUDENT</code> (basic info) and <code>STUDENT_PROFILE</code> (address, phone, photo).<br/><br/>
+<strong>With independence:</strong> A <strong>view</strong> is created that joins the two tables back together, naming it <code>STUDENT_FULL</code>. The old registration app still runs <code>SELECT * FROM STUDENT_FULL</code> — <strong>no changes needed</strong>. The view hides the restructuring.<br/><br/>
+<strong>Without this:</strong> Every single application that reads student data must be updated to handle the new table structure. A registrar's desktop app, the student portal, the mobile app — all must be modified, tested, and redeployed.</div>
+
+<p><strong>Key difference in difficulty:</strong></p>
+<table>
+  <tr><th>Aspect</th><th>Logical Data Independence</th><th>Physical Data Independence</th></tr>
+  <tr><td>Protects</td><td>External schemas (views) from changes to the conceptual schema</td><td>Conceptual schema from changes to internal storage</td></tr>
+  <tr><td>Example change</td><td>Adding a new column, splitting a table into two, changing relationships</td><td>Adding indexes, changing file organization, moving to new hardware</td></tr>
+  <tr><td>Who handles it</td><td>DBAs must create <strong>views</strong> to maintain backward compatibility</td><td>Handled <strong>automatically</strong> by the DBMS — no human intervention needed</td></tr>
+  <tr><td>Difficulty</td><td><strong>Higher</strong> — requires careful view design and testing across all applications</td><td><strong>Lower</strong> — the DBMS abstracts storage details completely</td></tr>
+</table>`
+          }
+        ],
+        recap: [
+          'The relational model organizes data into tables (relations) with rows and columns, decoupling storage from access.',
+          'Logical independence protects apps from schema changes; physical independence protects schema from storage changes.'
+        ]
+      },
+      {
+        number: 2, title: 'Relation, Tuple & Attribute',
+        intro: "These three terms are the building blocks of the relational model. Let's understand them using a concrete example.",
+        steps: [
+          {
+            title: 'The STUDENT Table',
+            body: `<p>Consider a university's <code>STUDENT</code> table:</p>
+
+<table>
+  <tr><th>StudentID</th><th>StudentName</th><th>Programme</th><th>CGPA</th></tr>
+  <tr><td>S12345</td><td>Ali Bin Ahmad</td><td>Computer Science</td><td>3.72</td></tr>
+  <tr><td>S12346</td><td>Siti Nurhaliza</td><td>Information Systems</td><td>3.85</td></tr>
+  <tr><td>S12347</td><td>Raj Kumar</td><td>Computer Science</td><td>3.21</td></tr>
+</table>`
+          },
+          {
+            title: 'Relation = The Entire Table',
+            body: `<p>A <strong>relation</strong> corresponds to the <strong>entire table</strong> &mdash; a named set of tuples sharing the same attribute structure.</p>
+
+<div class="highlight-box">In our example, the entire <code>STUDENT</code> table (all rows and columns together) is the <strong>relation</strong>. It's the fundamental building block of the relational model.</div>
+
+<p>Properties of a relation:</p>
+<ul>
+  <li>Each relation has a <strong>unique name</strong> within the database</li>
+  <li>All rows follow the same <strong>column structure</strong></li>
+  <li>Rows are <strong>unordered</strong> &mdash; there's no built-in row number</li>
+  <li>Each cell contains <strong>atomic values</strong> (one value per cell)</li>
+</ul>`
+          },
+          {
+            title: 'Tuple = A Single Row, Attribute = A Named Column',
+            body: `<p>A <strong>tuple</strong> is an individual <strong>row</strong> within the relation.</p>
+
+<div class="example-box">The row <code>(S12345, Ali Bin Ahmad, Computer Science, 3.72)</code> constitutes <strong>one tuple</strong> representing a single student entity. Each tuple in our table has 4 values, one for each attribute.</div>
+
+<p>An <strong>attribute</strong> is a named <strong>column</strong> of the relation.</p>
+
+<div class="example-box"><code>StudentID</code>, <code>StudentName</code>, <code>Programme</code>, and <code>CGPA</code> are all attributes. Each attribute draws values from a defined <strong>domain</strong> (e.g., CGPA draws from 0.00&ndash;4.00). The number of attributes is called the relation's <strong>degree</strong> (4 in this case).</div>`
+          },
+          {
+            title: 'Why a Table is a Logical Relation',
+            body: `<p>A table mirrors the <strong>mathematical definition of a relation</strong> &mdash; specifically, a subset of the Cartesian product of attribute domains.</p>
+
+<p>What this means in practice:</p>
+<ul>
+  <li>Each row is an <strong>ordered n-tuple</strong> of domain values</li>
+  <li>Column headers name each <strong>dimension</strong> of the product</li>
+  <li><strong>Unique rows</strong> &mdash; no duplicate tuples allowed</li>
+  <li><strong>Unordered tuples</strong> &mdash; order of rows doesn't matter</li>
+  <li><strong>Atomic values</strong> &mdash; each cell has exactly one value</li>
+</ul>
+
+<p>The table structure directly implements these mathematical properties, making it a natural and intuitive logical representation.</p>`
+          }
+        ],
+        recap: [
+          'Relation = entire table, Tuple = a single row, Attribute = a named column.',
+          'Tables implement mathematical relations: unique rows, unordered tuples, atomic cell values.'
+        ]
+      },
+      {
+        number: 3, title: 'Functional Dependency',
+        intro: "Functional dependencies help us understand relationships between attributes &mdash; crucial for designing good database schemas.",
+        steps: [
+          {
+            title: 'What is a Functional Dependency?',
+            body: `<p>A <strong>functional dependency</strong> (denoted <strong>X &rarr; Y</strong>) states that for any two tuples in the relation, if they share the same value for attribute set X, they must also share the same value for attribute set Y.</p>
+
+<div class="highlight-box"><strong>In simple terms:</strong> The value of X <strong>uniquely determines</strong> the value of Y. If you know X, you can always find Y.</div>
+
+<p>Consider the EMPLOYEE table:</p>
+<table>
+  <tr><th>EmpID</th><th>EmpName</th><th>Department</th><th>Salary</th></tr>
+  <tr><td>E001</td><td>Ali</td><td>IT</td><td>5000</td></tr>
+  <tr><td>E002</td><td>Siti</td><td>HR</td><td>4500</td></tr>
+</table>`
+          },
+          {
+            title: 'Why EmpID Determines Other Attributes',
+            body: `<p>Given: <code>EmpID &rarr; EmpName, Department, Salary</code></p>
+
+<p><strong>EmpID</strong> serves as the unique identifier for each employee. No two employees share the same EmpID &mdash; it is assigned uniquely when the record is created.</p>
+
+<p>Consequently:</p>
+<ul>
+  <li>Given <strong>E001</strong> &rarr; We can retrieve exactly one EmpName: <strong>Ali</strong></li>
+  <li>Given <strong>E001</strong> &rarr; We can retrieve exactly one Department: <strong>IT</strong></li>
+  <li>Given <strong>E001</strong> &rarr; We can retrieve exactly one Salary: <strong>5000</strong></li>
+</ul>
+
+<p>This one-to-one correspondence between EmpID and the remaining attributes satisfies the definition of functional dependency.</p>`
+          },
+          {
+            title: 'Can EmpName Determine EmpID?',
+            body: `<p><strong>EmpName cannot functionally determine EmpID.</strong></p>
+
+<p>Why? Employee names are <strong>not guaranteed to be unique</strong>. Two different employees may share the same name.</p>
+
+<div class="example-box"><strong>Think of your MyKad (IC) number:</strong> Every Malaysian has a unique 12-digit IC number — <code>990101-08-1234</code>. No two people share the same IC number. If you know someone's IC, you can look up exactly one person.<br/><br/>
+But do two people share the same name? <strong>Absolutely.</strong> There could be 20 people named "Ahmad Faiz" in Malaysia. If you search the database by name, you get 20 different records — 20 different IC numbers, 20 different addresses.<br/><br/>
+Now apply this to functional dependency:<br/>
+✅ <strong>IC → Name</strong> (a valid FD — given an IC, you get one name)<br/>
+❌ <strong>Name → IC</strong> (NOT a valid FD — given "Ahmad Faiz", you get multiple ICs)</div>
+
+<div class="highlight-box">If we claimed <code>EmpName &rarr; EmpID</code>, every occurrence of "Ahmad Faiz" would need to map to a <strong>single</strong> EmpID. This is impossible when the name is shared.</div>
+
+<p><strong>Key insight:</strong> Functional dependencies reveal which attributes are suitable as keys. Only attributes that are <strong>guaranteed to be unique</strong> can serve as functional determinants &mdash; like IC numbers, employee IDs, or passport numbers.</p>`
+          }
+        ],
+        recap: [
+          'Functional dependency X → Y means X uniquely determines Y.',
+          'Unique identifiers like EmpID functionally determine other attributes; non-unique values like names cannot.'
+        ]
+      },
+      {
+        number: 4, title: 'Keys (Superkey, Candidate, Primary, Composite)',
+        intro: "Every key is about identifying a row uniquely, but each type has a different purpose. Let's use a concrete table and walk through them one by one.",
+        steps: [
+          {
+            title: 'Why We Need Multiple Attributes',
+            body: `<p>Consider: <code>COURSE_REGISTRATION(StudentID, CourseID, Semester, Grade)</code></p>
+
+<p>Here's some sample data:</p>
+
+<table>
+  <tr><th>StudentID</th><th>CourseID</th><th>Semester</th><th>Grade</th></tr>
+  <tr><td>S001</td><td>DB101</td><td>Jan2026</td><td>A</td></tr>
+  <tr><td>S001</td><td>NET201</td><td>Jan2026</td><td>B+</td></tr>
+  <tr><td>S002</td><td>DB101</td><td>Jan2026</td><td>A-</td></tr>
+  <tr><td>S001</td><td>DB101</td><td>May2026</td><td>A+</td></tr>
+</table>
+
+<p>Notice what happens if we try each column alone:</p>
+<ul>
+  <li><strong>StudentID alone</strong> — S001 appears 3 times. Not unique.</li>
+  <li><strong>CourseID alone</strong> — DB101 appears 3 times. Not unique.</li>
+  <li><strong>Semester alone</strong> — Jan2026 appears 3 times. Not unique.</li>
+</ul>
+
+<p>One student registers for many courses. One course has many students. A student can even retake the <strong>same course in a different semester</strong>. So no single column is enough — we need a <strong>combination</strong>.</p>`
+          },
+          {
+            title: 'Superkey — Any Unique Combination',
+            body: `<p>A <strong>Superkey</strong> is <strong>any combination of attributes</strong> that can uniquely identify each row — even if it contains unnecessary attributes.</p>
+
+<p><strong>Example 1:</strong> <code>(StudentID, CourseID, Semester)</code></p>
+<table>
+  <tr><th>StudentID</th><th>CourseID</th><th>Semester</th></tr>
+  <tr><td>S001</td><td>DB101</td><td>Jan2026</td></tr>
+  <tr><td>S001</td><td>NET201</td><td>Jan2026</td></tr>
+  <tr><td>S002</td><td>DB101</td><td>Jan2026</td></tr>
+  <tr><td>S001</td><td>DB101</td><td>May2026</td></tr>
+</table>
+<p>Every combination is different. ✅ <strong>This is a Superkey.</strong></p>
+
+<p><strong>Example 2:</strong> <code>(StudentID, CourseID, Semester, Grade)</code></p>
+<p>Adding <strong>Grade</strong> doesn't remove uniqueness — it's still unique. ✅ <strong>Also a Superkey.</strong></p>
+
+<p><strong>Example 3:</strong> <code>(StudentID, CourseID, Semester, Grade, Lecturer)</code></p>
+<p>Still unique. Adding more columns never makes it less unique. ✅ <strong>Also a Superkey.</strong></p>
+
+<div class="highlight-box"><strong>Rule for Superkey:</strong> As long as the combination uniquely identifies each row, it is a Superkey — even if it contains unnecessary attributes.</div>`
+          },
+          {
+            title: 'Candidate Key — The Minimal Superkey',
+            body: `<p>A <strong>Candidate Key</strong> is a <strong>minimal Superkey</strong>. "Minimal" means you <strong>cannot remove any attribute</strong> without losing uniqueness.</p>
+
+<p>Start with: <code>(StudentID, CourseID, Semester)</code>. Can we remove any attribute?</p>
+
+<p><strong>Try removing Semester →</strong> <code>(StudentID, CourseID)</code>:</p>
+<table>
+  <tr><th>StudentID</th><th>CourseID</th></tr>
+  <tr><td>S001</td><td>DB101</td></tr>
+  <tr><td>S001</td><td>DB101</td></tr>
+</table>
+<p>Duplicate! S001 took DB101 twice (different semesters). ❌ Not unique.</p>
+
+<p><strong>Try removing CourseID →</strong> <code>(StudentID, Semester)</code>:</p>
+<table>
+  <tr><th>StudentID</th><th>Semester</th></tr>
+  <tr><td>S001</td><td>Jan2026</td></tr>
+  <tr><td>S001</td><td>Jan2026</td></tr>
+</table>
+<p>Duplicate again. S001 registered for two courses in Jan2026. ❌ Not unique.</p>
+
+<p><strong>Try removing StudentID →</strong> <code>(CourseID, Semester)</code>:</p>
+<p>Many students register for the same course in the same semester. ❌ Not unique.</p>
+
+<div class="highlight-box">Since <strong>every attribute is necessary</strong>, <code>(StudentID, CourseID, Semester)</code> is the smallest unique combination. ✅ <strong>This is a Candidate Key.</strong></div>`
+          },
+          {
+            title: 'Primary Key & Composite Key',
+            body: `<p><strong>Primary Key:</strong> The Candidate Key <strong>chosen</strong> by the database designer as the official identifier.</p>
+
+<div class="example-box"><strong>Two Candidate Keys example:</strong> Imagine an <code>EMPLOYEE</code> table with both <code>EmployeeID</code> and <code>ICNumber</code>. Both uniquely identify each employee — so both are Candidate Keys. The designer <strong>chooses</strong> <code>EmployeeID</code> as the official identifier. That becomes the <strong>Primary Key</strong>. The IC number remains a Candidate Key but is not chosen.</div>
+
+<p>In our COURSE_REGISTRATION table, there is only one Candidate Key, so it becomes the Primary Key:</p>
+<p style="text-align: center; font-size: 16px;"><code>Primary Key = (StudentID, CourseID, Semester)</code></p>
+
+<p><strong>Composite Key:</strong> A Primary Key made up of <strong>two or more attributes</strong>. Since <code>(StudentID, CourseID, Semester)</code> has three attributes, it is a Composite Key.</p>
+
+<div class="diagram-box"><pre class="mermaid">
+flowchart TD
+  Sup["Superkeys<br/>Any unique combination"] --> Cand["Remove<br/>redundant attributes"]
+  Cand --> CK["Candidate Key<br/>(StudentID, CourseID, Semester)<br/>Minimal — cannot remove any"]
+  CK --> PK["Primary Key<br/>Chosen by designer"]
+  PK -.-> Comp["Composite Key<br/>Multiple attributes"]
+  style Sup fill:#fef3c7,stroke:#f59e0b
+  style CK fill:#dbeafe,stroke:#3b82f6
+  style PK fill:#f0fdf4,stroke:#059669
+  style Comp fill:#f3e8ff,stroke:#9333ea
+</pre></div>`
+          },
+          {
+            title: 'Easy Analogy & Exam Shortcut',
+            body: `<p>Think about identifying students in a school:</p>
+
+<ul>
+  <li><strong>Superkey:</strong> You identify a student using <code>(StudentID, Name, Phone, Email)</code>. It works, but it's more than necessary.</li>
+  <li><strong>Candidate Key:</strong> You discover <code>StudentID</code> alone is enough. This is the <strong>smallest</strong> identifier.</li>
+  <li><strong>Primary Key:</strong> The school officially decides: "Student ID will be our official identifier."</li>
+  <li><strong>Composite Key:</strong> If the school had no single StudentID and instead used <code>(FirstName, LastName, DOB)</code> — all three together. That's a Composite Key.</li>
+</ul>
+
+<div class="highlight-box"><strong>Exam Shortcut — Easy way to remember:</strong></div>
+
+<table>
+  <tr><th>Key Type</th><th>How to remember</th></tr>
+  <tr><td><strong>Superkey</strong></td><td>Any combination that uniquely identifies a row (may have extra attributes)</td></tr>
+  <tr><td><strong>Candidate Key</strong></td><td>The <strong>smallest</strong> Superkey — no unnecessary attributes</td></tr>
+  <tr><td><strong>Primary Key</strong></td><td>The Candidate Key <strong>chosen</strong> by the designer</td></tr>
+  <tr><td><strong>Composite Key</strong></td><td>A Primary Key with <strong>two or more</strong> attributes</td></tr>
+</table>
+
+<p style="margin-top: 12px;"><strong>Memory trick:</strong> Every Primary Key is a Candidate Key, every Candidate Key is a Superkey — but not every Superkey is a Candidate Key, because a Superkey may include unnecessary attributes.</p>`
+          }
+        ],
+        recap: [
+          'Key hierarchy: Superkey → Candidate Key → Primary Key (Composite Key if multi-attribute).',
+          'A primary key must be minimal, unique, and stable — never use values that change (like Grade) as part of a key.',
+          "Memory trick: Every PK is a CK, every CK is a Superkey — but not every Superkey is a CK."
+        ]
+      },
+      {
+        number: 5, title: 'Primary Keys, Foreign Keys & Referential Integrity',
+        intro: "Relationships between tables are created using primary keys and foreign keys. Referential integrity ensures these relationships stay valid.",
+        steps: [
+          {
+            title: 'Identifying Keys in Related Tables',
+            body: `<p>Consider these two tables:</p>
+
+<p><code>DEPARTMENT(DeptID, DeptName)</code></p>
+<p><code>EMPLOYEE(EmpID, EmpName, DeptID)</code></p>
+
+<table>
+  <tr><th>Table</th><th>Primary Key</th><th>Foreign Key</th></tr>
+  <tr><td>DEPARTMENT</td><td>DeptID</td><td>&mdash;</td></tr>
+  <tr><td>EMPLOYEE</td><td>EmpID</td><td>DeptID (references DEPARTMENT.DeptID)</td></tr>
+</table>
+
+<div class="diagram-box"><pre class="mermaid">
+flowchart LR
+  D[DEPARTMENT] --- PK1[PK: DeptID]
+  E[EMPLOYEE] --- PK2[PK: EmpID]
+  E --- FK[FK: DeptID]
+  FK -.-> PK1
+  style D fill:#dbeafe,stroke:#3b82f6,stroke-width:2px
+  style E fill:#f0fdf4,stroke:#059669,stroke-width:2px
+</pre></div>`
+          },
+          {
+            title: 'What is Referential Integrity?',
+            body: `<strong>Referential integrity</strong> is a constraint that ensures every foreign key value in a referencing table must either:
+<ol>
+  <li><strong>Match</strong> a primary key value in the referenced table, or</li>
+  <li>Be <strong>NULL</strong> (if the column allows nulls)</li>
+</ol>
+
+<div class="highlight-box">This constraint guarantees that relationships between tables remain consistent &mdash; an employee <strong>cannot</strong> be assigned to a department that does not exist.</div>`
+          },
+          {
+            title: 'What Happens With an Invalid Foreign Key?',
+            body: `<p>If an employee record contains a DeptID that doesn't exist in the DEPARTMENT table, we have an <strong>orphan row</strong> &mdash; an employee linked to a non-existent department.</p>
+
+<p>The DBMS handles this automatically:</p>
+<ul>
+  <li>Any <code>INSERT</code> or <code>UPDATE</code> that produces an invalid DeptID is <strong>rejected</strong> with an integrity constraint violation error</li>
+  <li>Some systems offer <strong>cascade options</strong>:</li>
+  <li><code>ON DELETE CASCADE</code> &mdash; delete employee when department is deleted</li>
+  <li><code>ON DELETE SET NULL</code> &mdash; set DeptID to NULL when department is deleted</li>
+</ul>
+
+<p>By default, however, the operation simply fails &mdash; protecting data integrity.</p>`
+          }
+        ],
+        recap: [
+          'Foreign keys link tables; a foreign key in one table references the primary key in another.',
+          'Referential integrity ensures no orphan records — every FK value must exist in the referenced table (or be NULL).'
+        ]
+      },
+      {
+        number: 6, title: 'Relational Schemas & Relationships',
+        intro: "Now let's see how to model real-world data by converting information into relational schemas with proper relationships.",
+        steps: [
+          {
+            title: 'Converting Customer & Order Data',
+            body: `<p>Given this data:</p>
+
+<table>
+  <tr><th>CustomerID</th><th>CustomerName</th><th>OrderID</th><th>OrderDate</th></tr>
+  <tr><td>C001</td><td>Ali</td><td>O101</td><td>10-Jan-2026</td></tr>
+  <tr><td>C002</td><td>Siti</td><td>O102</td><td>12-Jan-2026</td></tr>
+</table>
+
+<p>We convert this into two relational schemas:</p>
+
+<div class="highlight-box">
+<code>CUSTOMER(<strong>CustomerID</strong>, CustomerName)</code><br>
+<code>ORDER(<strong>OrderID</strong>, OrderDate, <em>CustomerID*</em>)</code>
+</div>
+
+<p>Primary keys are in <strong>bold</strong>; foreign keys are marked with <strong>*</strong>.</p>`
+          },
+          {
+            title: 'Understanding the One-to-Many Relationship',
+            body: `<p>The relationship between CUSTOMER and ORDER is <strong>One-to-Many (1:M)</strong>:</p>
+
+<ul>
+  <li><strong>One</strong> customer can place <strong>many</strong> orders</li>
+  <li>Each order belongs to <strong>exactly one</strong> customer</li>
+</ul>
+
+<div class="diagram-box"><pre class="mermaid">
+flowchart LR
+  C[CUSTOMER] -- 1 --- M{places}
+  M -- many --- O[ORDER]
+  C --- CID[PK: CustomerID]
+  O --- OID[PK: OrderID]
+  O --- FK[FK: CustomerID]
+  FK -.-> CID
+  style C fill:#dbeafe,stroke:#3b82f6,stroke-width:2px
+  style O fill:#f0fdf4,stroke:#059669,stroke-width:2px
+</pre></div>
+
+<p>This is implemented by embedding the <code>CustomerID</code> foreign key inside the <code>ORDER</code> table. Every order knows which customer it belongs to.</p>`
+          },
+          {
+            title: 'Extending the Model: Adding ORDER_LINE & PRODUCT',
+            body: `<p>The CUSTOMER &#8594; ORDER relationship can be extended further. Each order contains <strong>many products</strong>, and each product can appear in <strong>many orders</strong> — a Many-to-Many (M:N) relationship resolved with a <strong>linking table</strong>.</p>
+
+<div class="diagram-box"><pre class="mermaid">
+flowchart LR
+  C[CUSTOMER] -- 1 --- P1{places}
+  P1 -- many --- O[ORDER]
+  O -- 1 --- C1{contains}
+  C1 -- many --- OL[ORDER_LINE]
+  OL -- many --- I{references}
+  I -- 1 --- PR[PRODUCT]
+  C --- CID[PK: CustomerID]
+  O --- OID[PK: OrderID]
+  O --- FK1[FK: CustomerID]
+  OL --- OID2[FK: OrderID]
+  OL --- PID[FK: ProductID]
+  PR --- PID2[PK: ProductID]
+  FK1 -.-> CID
+  OID2 -.-> OID
+  PID -.-> PID2
+  style C fill:#dbeafe,stroke:#3b82f6,stroke-width:2px
+  style O fill:#f0fdf4,stroke:#059669,stroke-width:2px
+  style OL fill:#fef3c7,stroke:#f59e0b,stroke-width:2px
+  style PR fill:#f3e8ff,stroke:#9333ea,stroke-width:2px
+</pre></div>
+
+<p><strong>The extended schema:</strong></p>
+
+<div class="highlight-box">
+<code>CUSTOMER(<strong>CustomerID</strong>, CustomerName)</code><br>
+<code>ORDER(<strong>OrderID</strong>, OrderDate, CustomerName, <em>CustomerID*</em>)</code><br>
+<code>ORDER_LINE(<strong>OrderID*</strong>, <strong>ProductID*</strong>, Quantity, UnitPrice)</code><br>
+<code>PRODUCT(<strong>ProductID</strong>, ProductName, Category, StockLevel)</code>
+</div>
+
+<table>
+  <tr><th>Table</th><th>Primary Key</th><th>Foreign Key(s)</th></tr>
+  <tr><td>CUSTOMER</td><td>CustomerID</td><td>—</td></tr>
+  <tr><td>ORDER</td><td>OrderID</td><td>CustomerID &#8594; CUSTOMER</td></tr>
+  <tr><td>ORDER_LINE</td><td>(OrderID, ProductID) <em>composite</em></td><td>OrderID &#8594; ORDER, ProductID &#8594; PRODUCT</td></tr>
+  <tr><td>PRODUCT</td><td>ProductID</td><td>—</td></tr>
+</table>
+
+<p><strong>Example data — CUSTOMER table:</strong></p>
+<table>
+  <tr><th>CustomerID (PK)</th><th>CustomerName</th><th>Phone</th></tr>
+  <tr><td>C001</td><td>Ali</td><td>012-3456789</td></tr>
+  <tr><td>C002</td><td>Siti</td><td>014-9876543</td></tr>
+</table>
+
+<p><strong>Example data — ORDER table:</strong></p>
+<table>
+  <tr><th>OrderID (PK)</th><th>OrderDate</th><th>CustomerID (FK)</th></tr>
+  <tr><td>O101</td><td>10-Jan-2026</td><td>C001</td></tr>
+  <tr><td>O102</td><td>10-Jan-2026</td><td>C001</td></tr>
+  <tr><td>O103</td><td>12-Jan-2026</td><td>C002</td></tr>
+</table>
+
+<p>Ali (C001) placed two orders; Siti placed one.</p>
+
+<p><strong>Example data — PRODUCT table:</strong></p>
+<table>
+  <tr><th>ProductID (PK)</th><th>ProductName</th><th>Category</th><th>UnitPrice</th></tr>
+  <tr><td>P001</td><td>Wireless Mouse</td><td>Electronics</td><td>45.00</td></tr>
+  <tr><td>P002</td><td>USB-C Cable</td><td>Electronics</td><td>15.00</td></tr>
+  <tr><td>P003</td><td>Notebook A5</td><td>Stationery</td><td>8.50</td></tr>
+</table>
+
+<p><strong>Example data — ORDER_LINE table (the bridge):</strong></p>
+<table>
+  <tr><th>OrderID (FK)</th><th>ProductID (FK)</th><th>Quantity</th><th>UnitPrice</th></tr>
+  <tr><td>O101</td><td>P001</td><td>2</td><td>45.00</td></tr>
+  <tr><td>O101</td><td>P003</td><td>5</td><td>8.50</td></tr>
+  <tr><td>O102</td><td>P002</td><td>10</td><td>15.00</td></tr>
+  <tr><td>O103</td><td>P001</td><td>1</td><td>45.00</td></tr>
+  <tr><td>O103</td><td>P002</td><td>3</td><td>15.00</td></tr>
+</table>
+
+<p>Notice ORDER_LINE has a <strong>composite primary key</strong> (OrderID + ProductID). Each row represents one product line in one order.</p>
+
+<div class="recap-box">
+  <h4>🔗 How the data connects</h4>
+  <ul>
+    <li><strong>Ali</strong> placed <strong>Order O101</strong> → contains <em>2 × Wireless Mouse</em> (RM90) + <em>5 × Notebook A5</em> (RM42.50)</li>
+    <li><strong>Ali</strong> placed <strong>Order O102</strong> → contains <em>10 × USB-C Cable</em> (RM150)</li>
+    <li><strong>Siti</strong> placed <strong>Order O103</strong> → contains <em>1 × Wireless Mouse</em> (RM45) + <em>3 × USB-C Cable</em> (RM45)</li>
+  </ul>
+</div>
+
+<div class="highlight-box"><strong>How it works:</strong> An order contains multiple products, so we cannot store product IDs directly in the ORDER table (that would violate 1NF). Instead, ORDER_LINE acts as a <strong>bridge</strong> — one row per product per order. Each ORDER_LINE row records the quantity and price for that specific product in that specific order. This decomposes the original 1:M (Customer → Order) into a chain: Customer 1 → M Order 1 → M Order_Line M → 1 Product.</div>`
+          }
+        ],
+        recap: [
+          'Convert denormalized data into separate tables with clear primary keys and foreign key relationships.',
+          'One-to-Many relationships are implemented by placing a foreign key in the "many" side table.',
+          'Extend with ORDER_LINE to bridge the M:N between ORDER and PRODUCT — each order can have many products, each product in many orders.'
+        ]
+      },
+      {
+        number: 7, title: 'Relationship Types (1:1, 1:M, M:N)',
+        intro: "Databases model three main types of relationships between entities. Understanding them is crucial for good database design.",
+        steps: [
+          {
+            title: 'The Three Relationship Types',
+            body: `<table>
+  <tr><th>Type</th><th>Definition</th><th>Crow\'s Foot</th></tr>
+  <tr><td><strong>One-to-One (1:1)</strong></td><td>One entity in A relates to at most one entity in B, and vice versa</td><td>—∥—∥</td></tr>
+  <tr><td><strong>One-to-Many (1:M)</strong></td><td>One entity in A relates to many in B; each B relates to one A</td><td>—∥—&lt;</td></tr>
+  <tr><td><strong>Many-to-Many (M:N)</strong></td><td>One in A relates to many in B, and one in B relates to many in A</td><td>—&lt;&gt;—</td></tr>
+</table>`
+          },
+          {
+            title: 'Real-World Examples',
+            body: `<p><strong>1:1 — Person and Passport:</strong> Each person holds at most one passport, and each passport belongs to exactly one person. This is implemented by placing the foreign key on either side (or using a separate linking table).</p>
+
+<p><strong>1:M — Department and Employee:</strong> One department employs many employees; each employee works in exactly one department. Implemented by placing a foreign key (DeptID) in the Employee table.</p>
+
+<p><strong>M:N — Student and Course:</strong> A student enrolls in multiple courses, and each course contains many students. This requires a <strong>junction table</strong> to resolve.</p>`
+          },
+          {
+            title: 'Why M:N Needs a Junction Table',
+            body: `<p>M:N relationships <strong>cannot be directly implemented</strong> in a relational database. Here's why:</p>
+
+<div class="highlight-box">Relational tables store data as rows with <strong>fixed attribute sets</strong>. An M:N relationship implies that one row in table A can be associated with an <strong>arbitrary number</strong> of rows in table B &mdash; storing this directly would require a variable-length attribute, which violates the <strong>atomicity rule of First Normal Form (1NF)</strong>.</div>
+
+<p>The solution is to introduce a <strong>bridge (junction) table</strong> that decomposes the M:N relationship into <strong>two 1:M relationships</strong>:</p>
+
+<p><code>Student <strong>1:M</strong> Enrolment <strong>M:1</strong> Course</code></p>
+
+<p>The junction table <code>Enrolment(StudentID, CourseID)</code> has a composite primary key of both foreign keys, resolving the many-to-many.</p>`
+          }
+        ],
+        recap: [
+          'Three relationship types: 1:1 (Person↔Passport), 1:M (Department↔Employee), M:N (Student↔Course).',
+          'M:N relationships require a junction table to break them into two 1:M relationships.'
+        ]
+      },
+      {
+        number: 8, title: 'Data Dictionary & Metadata',
+        intro: "Every database needs a way to describe itself. That's the job of the data dictionary and metadata.",
+        steps: [
+          {
+            title: 'What is a Data Dictionary?',
+            body: `<p>A <strong>data dictionary</strong> (also called a <em>system catalog</em>) is a centralized repository of metadata that describes the structure, constraints, and properties of all database objects.</p>
+
+<p>It stores information such as:</p>
+<ul>
+  <li><strong>Table names</strong> and their owners</li>
+  <li><strong>Column definitions</strong> &mdash; names, data types, sizes</li>
+  <li><strong>Primary and foreign keys</strong></li>
+  <li><strong>Indexes</strong> and their structure</li>
+  <li><strong>Views</strong> (saved queries)</li>
+  <li><strong>User permissions</strong> and roles</li>
+  <li><strong>Storage parameters</strong></li>
+</ul>`
+          },
+          {
+            title: 'The Role of Metadata',
+            body: `<strong>Metadata</strong> provides the DBMS with a <strong>self-describing framework</strong> for managing data. Without it, the DBMS would have no knowledge of the database's own structure.
+
+<div class="highlight-box">When a query is submitted, the DBMS <strong>consults the metadata</strong> to:
+<ul>
+  <li>Resolve table and column names</li>
+  <li>Verify access rights</li>
+  <li>Check constraint compliance</li>
+  <li>Retrieve statistics for query optimization</li>
+</ul></div>
+
+<p>Think of metadata as the <strong>table of contents</strong> for your database &mdash; without it, you'd have to search through every page to find anything.</p>`
+          },
+          {
+            title: 'Three Benefits of a System Catalog',
+            body: `<ol>
+  <li><strong>Data Consistency & Standardization:</strong> The catalog enforces uniform naming conventions and data-type rules across all tables. Changes to a column definition are immediately visible to all users and applications.</li>
+  <li><strong>Access Control & Security:</strong> The catalog stores user privileges at the table, column, and operation levels. The DBMS checks these permissions on every query, ensuring only authorized users can access sensitive data.</li>
+  <li><strong>Query Optimization:</strong> The catalog maintains statistics &mdash; row counts, index selectivity, data distribution &mdash; that the query optimizer uses to choose efficient execution plans, like index scans versus full table scans.</li>
+</ol>`
+          }
+        ],
+        recap: [
+          'Data dictionary = centralized metadata repository describing all database objects.',
+          'Metadata enables self-description, access control, consistency, and query optimization.'
+        ]
+      },
+      {
+        number: 9, title: 'Relational Algebra (SELECT & PROJECT)',
+        intro: "Relational algebra is the theoretical foundation of SQL. Two of its most important operations are SELECT and PROJECT &mdash; let's understand the difference.",
+        steps: [
+          {
+            title: 'SELECT vs PROJECT: The Core Difference',
+            body: `<p>Given the relation: <code>STUDENT(StudentID, StudentName, Programme)</code></p>
+
+<table>
+  <tr><th>Operation</th><th>Symbol</th><th>What it does</th><th>Example</th></tr>
+  <tr><td><strong>SELECT</strong></td><td>&sigma;</td><td>Filters <strong>rows</strong> based on a condition<br/>Reduces <em>cardinality</em> (# of tuples)</td><td>Get all CS students</td></tr>
+  <tr><td><strong>PROJECT</strong></td><td>&pi;</td><td>Filters <strong>columns</strong>, keeps only named attributes<br/>Reduces <em>degree</em> (# of attributes)</td><td>Show only names and IDs</td></tr>
+</table>
+
+<div class="highlight-box"><strong>Easy way to remember:</strong> SELECT = SELECT rows (like SQL WHERE). PROJECT = PROJECT columns (like SQL SELECT clause).</div>`
+          },
+          {
+            title: 'Writing Relational Algebra Expressions',
+            body: `<p><strong>Example 1:</strong> Retrieve all students from the "Computer Science" programme:</p>
+
+<div class="highlight-box" style="font-size: 16px; text-align: center;">
+  &sigma;<sub>Programme = "Computer Science"</sub>(STUDENT)
+</div>
+
+<p><strong>Example 2:</strong> Display only StudentID and StudentName for CS students:</p>
+
+<div class="highlight-box" style="font-size: 16px; text-align: center;">
+  &pi;<sub>StudentID, StudentName</sub>(&sigma;<sub>Programme = "Computer Science"</sub>(STUDENT))
+</div>
+
+<p>Notice how operations can be <strong>composed</strong> &mdash; we first SELECT the rows, then PROJECT the columns. This compositional nature is a key strength of relational algebra.</p>`
+          },
+          {
+            title: 'UNION vs INTERSECT',
+            body: `<table>
+  <tr><th>Op</th><th>Result</th><th>Example</th></tr>
+  <tr><td><strong>UNION</strong> (R &cup; S)</td><td>All tuples in R <strong>or</strong> S (or both), duplicates removed</td><td><code>&pi;<sub>Programme</sub>(STUDENT) &cup; &pi;<sub>Programme</sub>(STAFF)</code> returns all unique programmes across both</td></tr>
+  <tr><td><strong>INTERSECT</strong> (R &cap; S)</td><td>Only tuples <strong>in both</strong> R and S</td><td><code>&pi;<sub>Programme</sub>(STUDENT) &cap; &pi;<sub>Programme</sub>(STAFF)</code> returns only programmes that exist in both</td></tr>
+</table>
+
+<p>Both operations require the operand relations to be <strong>union-compatible</strong> &mdash; same number of attributes with compatible data types.</p>`
+          }
+        ],
+        recap: [
+          'SELECT (σ) filters rows; PROJECT (π) filters columns — they are often composed together.',
+          'UNION combines; INTERSECT finds common elements — both require union-compatible operands.'
+        ]
+      },
+      {
+        number: 10, title: 'Data Redundancy & Indexing',
+        intro: "We revisit data redundancy in the context of the relational model and learn about indexing &mdash; one of the most important performance optimization techniques.",
+        steps: [
+          {
+            title: 'Data Redundancy in Relational Databases',
+            body: `<strong>Data redundancy</strong> refers to the unnecessary duplication of data values across multiple records or tables within a database.
+
+<div class="highlight-box">While <strong>controlled redundancy</strong> (like foreign keys) is essential for representing relationships, <strong>uncontrolled redundancy</strong> wastes storage and leads to maintenance problems.</div>
+
+<p>Two anomalies from excessive redundancy:</p>
+<ul>
+  <li><strong>Update Anomaly:</strong> Changing a student's address stored in both ENROLMENT and STUDENT tables requires updating multiple rows &mdash; miss one and the database is inconsistent.</li>
+  <li><strong>Deletion Anomaly:</strong> If course details are stored redundantly within enrolment records, deleting the last enrolment for a course also deletes the course information.</li>
+</ul>`
+          },
+          {
+            title: 'What is an Index?',
+            body: `<p>An <strong>index</strong> is an auxiliary data structure &mdash; commonly a <strong>B⁺-tree</strong> &mdash; that provides fast access paths to rows based on column values.</p>
+
+<div class="diagram-box"><pre class="mermaid">
+flowchart TD
+  Q[Query:<br/>WHERE Name = 'Ali'] --> IDX[Index]
+  IDX --> Found[Find 'Ali' in B+-tree<br/>O(log n) comparisons]
+  Found --> Pages[Locate exact disk page]
+  Pages --> Row[Return matching row]
+  style IDX fill:#dbeafe,stroke:#3b82f6,stroke-width:2px
+  style Row fill:#f0fdf4,stroke:#059669,stroke-width:2px
+</pre></div>
+
+<p>Indexes sacrifice <strong>write performance</strong> (inserts/updates become slower because the index must be maintained) and <strong>storage space</strong> to accelerate <strong>read operations</strong>.</p>`
+          },
+          {
+            title: 'How Indexes Improve Query Performance',
+            body: `<p>Without an index, the DBMS must perform a <strong>full table scan</strong> &mdash; reading every row sequentially from disk.</p>
+
+<div class="highlight-box">An index allows the DBMS to navigate directly to the relevant disk pages using <strong>balanced-tree search</strong>, reducing the search from <strong>O(n)</strong> to <strong>O(log n)</strong> comparisons. For large tables, this means orders-of-magnitude fewer disk I/O operations.</div>
+
+<p>Indexes also help with:</p>
+<ul>
+  <li><strong>JOIN operations</strong> &mdash; fast lookup of matching foreign keys</li>
+  <li><strong>ORDER BY and GROUP BY</strong> &mdash; scan the index in sorted order instead of sorting the entire result set</li>
+</ul>`
+          }
+        ],
+        recap: [
+          'Uncontrolled data redundancy causes update and deletion anomalies even in relational databases.',
+          'Indexes (B+-trees) accelerate queries from O(n) to O(log n) searches, but cost storage and write performance.'
+        ]
+      }
+    ]
+  }
+];
+
+const tabsContainer = document.getElementById('tabsContainer');
+const sidebarList = document.getElementById('sidebarList');
+const mainContent = document.getElementById('mainContent');
+const glossaryModal = document.getElementById('glossaryModal');
+const glossaryTermTitle = document.getElementById('glossaryTermTitle');
+const glossaryTermDef = document.getElementById('glossaryTermDef');
+
+let currentTutorialIdx = 0;
+let currentLessonIdx = 0;
+let currentStepIdx = 0;
+
+function renderTabs() {
+  tabsContainer.innerHTML = tutorials.map((t, i) =>
+    `<button class="tab-btn ${i === currentTutorialIdx ? 'active' : ''}" onclick="switchTutorial(${i})">
+      ${t.title}
+      <span class="tab-badge">${t.questions.length} lessons</span>
+    </button>`
+  ).join('');
+}
+
+function switchTutorial(idx) {
+  currentTutorialIdx = idx;
+  currentLessonIdx = 0;
+  currentStepIdx = 0;
+  renderTabs();
+  renderSidebar();
+  renderLesson();
+}
+
+function renderSidebar() {
+  const t = tutorials[currentTutorialIdx];
+  sidebarList.innerHTML = t.questions.map((q, i) => {
+    const isActive = i === currentLessonIdx;
+    const cls = isActive ? 'active' : '';
+    return `<li><a class="${cls}" onclick="switchLesson(${i})">
+      <span class="q-num">Q${q.number}</span> ${q.title}
+    </a></li>`;
+  }).join('');
+}
+
+function switchLesson(idx, stepIdx) {
+  currentLessonIdx = idx;
+  currentStepIdx = stepIdx || 0;
+  renderSidebar();
+  renderLesson();
+}
+
+function renderLesson() {
+  const t = tutorials[currentTutorialIdx];
+  const q = t.questions[currentLessonIdx];
+  if (!q) {
+    mainContent.innerHTML = `<div class="empty-state"><h2>Select a lesson</h2><p>Choose a lesson from the sidebar.</p></div>`;
+    return;
+  }
+
+  const step = q.steps[currentStepIdx];
+  const totalSteps = q.steps.length;
+  const isLastStep = currentStepIdx === totalSteps - 1;
+
+  const stepDots = q.steps.map((_, i) =>
+    `<span class="step-dot ${i === currentStepIdx ? 'current active' : i < currentStepIdx ? 'done' : ''}"></span>`
+  ).join('');
+
+  const bodyHtml = processBody(step.body);
+
+  let diagramHtml = '';
+  if (step.diagram) {
+    diagramHtml = `<div class="diagram-box"><pre class="mermaid">${escapeHtml(step.diagram)}</pre></div>`;
+  }
+
+  let recapHtml = '';
+  if (isLastStep && q.recap) {
+    recapHtml = `<div class="recap-box">
+      <h4>📝 Lesson Summary</h4>
+      <ul>${q.recap.map(r => `<li>${r}</li>`).join('')}</ul>
+    </div>`;
+  }
+
+  mainContent.innerHTML = `
+    <div class="lesson-card">
+      <div class="lesson-header">
+        <span class="q-label">Question ${q.number}</span>
+        <h2>${q.title}</h2>
+        <div class="lesson-intro">${q.intro}</div>
+      </div>
+      <div class="steps-container">
+        <div class="steps-progress">
+          ${stepDots}
+          <span class="step-label">${currentStepIdx + 1} / ${totalSteps}</span>
+        </div>
+        <div class="step-content">
+          <h3>${step.title}</h3>
+          ${bodyHtml}
+          ${diagramHtml}
+          ${recapHtml}
+        </div>
+        <div class="step-nav">
+          <button class="btn-prev" onclick="prevStep()" ${currentStepIdx === 0 ? 'disabled' : ''}>
+            ← Previous
+          </button>
+          ${isLastStep
+            ? `<button class="btn-finish" onclick="nextLesson()">Next Lesson →</button>`
+            : `<button class="btn-next" onclick="nextStep()">Continue →</button>`
+          }
+        </div>
+      </div>
+    </div>
+  `;
+
+  initMermaid();
+  attachGlossaryListeners();
+  updateSidebarProgress();
+}
+
+function nextStep() {
+  const q = tutorials[currentTutorialIdx].questions[currentLessonIdx];
+  if (currentStepIdx < q.steps.length - 1) {
+    currentStepIdx++;
+    renderLesson();
+  }
+}
+
+function prevStep() {
+  if (currentStepIdx > 0) {
+    currentStepIdx--;
+    renderLesson();
+  }
+}
+
+function nextLesson() {
+  const t = tutorials[currentTutorialIdx];
+  if (currentLessonIdx < t.questions.length - 1) {
+    currentLessonIdx++;
+    currentStepIdx = 0;
+    renderSidebar();
+    renderLesson();
+  }
+}
+
+function updateSidebarProgress() {
+  const t = tutorials[currentTutorialIdx];
+  const links = sidebarList.querySelectorAll('a');
+  links.forEach((a, i) => {
+    a.classList.remove('done');
+  });
+  if (currentStepIdx === 0) return; // hasn't completed any step yet
+  links.forEach((a, i) => {
+    if (i < currentLessonIdx) a.classList.add('done');
+  });
+  // Mark current lesson as done only if we're past step 0
+  if (currentStepIdx > 0) {
+    links[currentLessonIdx]?.classList.add('done');
+  }
+}
+
+function processBody(html) {
+  return html.replace(/\{\{(.+?)\}\}/g, (_, term) => {
+    const key = Object.keys(glossary).find(k => k.toLowerCase() === term.toLowerCase());
+    if (key) {
+      return `<span class="glossary-term" data-term="${key}">${key}</span>`;
+    }
+    return term;
+  });
+}
+
+function attachGlossaryListeners() {
+  document.querySelectorAll('.glossary-term').forEach(el => {
+    el.addEventListener('click', () => {
+      const term = el.dataset.term;
+      if (glossary[term]) {
+        glossaryTermTitle.textContent = term;
+        glossaryTermDef.innerHTML = glossary[term];
+        glossaryModal.classList.add('show');
+      }
+    });
+  });
+}
+
+function closeGlossary() {
+  glossaryModal.classList.remove('show');
+}
+
+function initMermaid() {
+  if (typeof mermaid !== 'undefined') {
+    mermaid.initialize({ startOnLoad: false, theme: 'neutral', fontSize: 14 });
+    mermaid.run({ querySelector: '.mermaid' }).catch(() => {});
+  }
+}
+
+function escapeHtml(str) {
+  return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
+glossaryModal.addEventListener('click', (e) => {
+  if (e.target === glossaryModal) closeGlossary();
+});
+/* ---- Search ---- */
+let searchIndex = [];
+let searchHighlightIdx = -1;
+
+function buildSearchIndex() {
+  searchIndex = [];
+  tutorials.forEach((t, ti) => {
+    t.questions.forEach((q, qi) => {
+      searchIndex.push({
+        tutorialIdx: ti, lessonIdx: qi, stepIdx: -1,
+        sortKey: `${String(ti)}-${String(qi).padStart(2,'0')}-000`,
+        path: `${t.short} · Q${q.number}`,
+        title: q.title,
+        fullText: stripHtml(q.intro)
+      });
+      q.steps.forEach((s, si) => {
+        searchIndex.push({
+          tutorialIdx: ti, lessonIdx: qi, stepIdx: si,
+          sortKey: `${String(ti)}-${String(qi).padStart(2,'0')}-${String(si).padStart(3,'0')}`,
+          path: `${t.short} · Q${q.number}`,
+          title: `${q.title} — ${s.title}`,
+          fullText: stripHtml(s.body)
+        });
+      });
+    });
+  });
+}
+
+function stripHtml(html) {
+  return html.replace(/<[^>]*>/g, ' ').replace(/&mdash;/g,'—').replace(/&amp;/g,'&')
+    .replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&nbsp;/g,' ')
+    .replace(/\s+/g,' ').trim();
+}
+
+function makeSnippet(text, query, contextLen) {
+  contextLen = contextLen || 50;
+  const q = query.toLowerCase();
+  const t = text.toLowerCase();
+  const idx = t.indexOf(q);
+  if (idx < 0) return text.substring(0, 120);
+  const start = Math.max(0, idx - contextLen);
+  const end = Math.min(text.length, idx + q.length + contextLen);
+  let out = '';
+  if (start > 0) out += '…';
+  out += text.substring(start, end);
+  if (end < text.length) out += '…';
+  return out;
+}
+
+function performSearch(query) {
+  const q = query.toLowerCase().trim();
+  if (!q) return [];
+  const results = [];
+  searchIndex.forEach(item => {
+    const searchText = (item.title + ' ' + item.fullText).toLowerCase();
+    if (searchText.includes(q)) {
+      const snippet = makeSnippet(item.fullText, q, 55);
+      const highlighted = snippet.replace(
+        new RegExp('(' + q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi'),
+        '<em>$1</em>'
+      );
+      results.push({ ...item, snippet: highlighted });
+    }
+  });
+  return results.slice(0, 20);
+}
+
+function renderSearchResults(results) {
+  const container = document.getElementById('searchResults');
+  const input = document.getElementById('searchInput');
+  const clear = document.getElementById('searchClear');
+  if (!results.length) {
+    container.innerHTML = `<div class="search-empty">${input.value.trim() ? 'No results found' : 'Type to search lessons…'}</div>`;
+    container.classList.add('show');
+    clear.style.display = input.value.trim() ? 'block' : 'none';
+    return;
+  }
+  container.innerHTML = results.map((r, i) =>
+    `<div class="search-result-item ${i === searchHighlightIdx ? 'highlighted' : ''}" data-idx="${i}" onclick="selectSearchResult(${i})" onmouseenter="searchHighlightIdx=${i};renderSearchResults(performSearch(document.getElementById('searchInput').value))">
+      <div class="sr-path">${r.path}</div>
+      <div class="sr-title">${r.title}</div>
+      <div class="sr-preview">${r.snippet}</div>
+    </div>`
+  ).join('');
+  container.classList.add('show');
+  clear.style.display = 'block';
+}
+
+function selectSearchResult(idx) {
+  const results = performSearch(document.getElementById('searchInput').value);
+  if (!results[idx]) return;
+  const r = results[idx];
+  closeSearch();
+  if (currentTutorialIdx !== r.tutorialIdx) switchTutorial(r.tutorialIdx);
+  switchLesson(r.lessonIdx, r.stepIdx >= 0 ? r.stepIdx : 0);
+}
+
+function closeSearch() {
+  document.getElementById('searchResults').classList.remove('show');
+  document.getElementById('searchClear').style.display = 'none';
+  searchHighlightIdx = -1;
+}
+
+function clearSearch() {
+  document.getElementById('searchInput').value = '';
+  closeSearch();
+  document.getElementById('searchInput').focus();
+}
+
+buildSearchIndex();
+
+document.getElementById('searchInput').addEventListener('input', function() {
+  searchHighlightIdx = -1;
+  const results = performSearch(this.value);
+  renderSearchResults(results);
+});
+
+document.getElementById('searchInput').addEventListener('blur', function() {
+  setTimeout(closeSearch, 200);
+});
+
+document.getElementById('searchInput').addEventListener('keydown', function(e) {
+  const results = performSearch(this.value);
+  if (e.key === 'Escape') { closeSearch(); this.blur(); return; }
+  if (e.key === 'ArrowDown') {
+    e.preventDefault();
+    searchHighlightIdx = Math.min(searchHighlightIdx + 1, results.length - 1);
+    renderSearchResults(performSearch(this.value));
+    const el = document.querySelector('.search-result-item.highlighted');
+    if (el) el.scrollIntoView({ block: 'nearest' });
+  }
+  if (e.key === 'ArrowUp') {
+    e.preventDefault();
+    searchHighlightIdx = Math.max(searchHighlightIdx - 1, -1);
+    renderSearchResults(performSearch(this.value));
+  }
+  if (e.key === 'Enter' && searchHighlightIdx >= 0) {
+    e.preventDefault();
+    selectSearchResult(searchHighlightIdx);
+  }
+});
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeGlossary();
+  if (e.key === 'ArrowRight') nextStep();
+  if (e.key === 'ArrowLeft') prevStep();
+  if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+    e.preventDefault();
+    document.getElementById('searchInput').focus();
+  }
+  if ((e.metaKey || e.ctrlKey) && e.key === 'f') {
+    e.preventDefault();
+    document.getElementById('searchInput').focus();
+  }
+});
+
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('.search-wrapper')) closeSearch();
+});
+
+renderTabs();
+renderSidebar();
+switchLesson(0);
+</script>
+</body>
+</html>

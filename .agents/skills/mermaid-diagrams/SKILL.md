@@ -195,7 +195,8 @@ flowchart LR
 ## Common Pitfalls
 
 - **Breaking characters** - Avoid `{}` in comments, use proper escape sequences for special characters
-- **Syntax errors** - Misspellings break diagrams; validate syntax in Mermaid Live
+- **Parentheses in `[...]` node labels** - In Mermaid 10.9+, `(` inside `[text]` is parsed as a node shape delimiter, causing a syntax error on line with `(StudentID, CourseID`. **Fix:** wrap label text in double quotes: `CK["Candidate Key<br/>(ID, Name)"]`. This tells the parser to treat the content as literal text. Always use `["..."]` when the label contains parentheses.
+- **Syntax errors** - Misspellings break diagrams; validate syntax in Mermaid Live or via CLI: `npx @mermaid-js/mermaid-cli -i input.mmd -o output.png`
 - **Overcomplexity** - Split complex diagrams into multiple focused views
 - **Missing relationships** - Document all important connections between entities
 

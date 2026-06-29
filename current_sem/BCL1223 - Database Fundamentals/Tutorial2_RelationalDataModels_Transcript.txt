@@ -1,0 +1,37 @@
+This is the answer guide for Tutorial 2, Relational Data Models.
+
+Question 1 A: Define the relational database model.
+Answer: The relational database model, introduced by Codd in 1970, organizes data into relations, which are two-dimensional tables composed of tuples or rows, and attributes or columns.
+
+Question 1 B: Explain two advantages of the relational database model compared to hierarchical and network database models.
+Answer: The first advantage is logical simplicity and data independence. The second advantage is flexible ad-hoc querying using SQL.
+
+Question 1 C: Differentiate between logical data independence and physical data independence.
+Answer: Logical data independence protects external schemas from changes to the conceptual schema. Physical data independence protects the conceptual schema from changes to the internal storage.
+
+Question 2: Explain the meaning of relation, tuple, and attribute using the student table.
+Answer: A relation is the entire table. A tuple is an individual row. An attribute is a named column.
+
+Question 3: Define functional dependency and explain why EmpID determines other attributes.
+Answer: An attribute X functionally determines attribute Y if each value of X is associated with exactly one value of Y. EmpID determines employee details because it is a unique identifier.
+
+Question 4: Define superkey, candidate key, primary key, and composite key.
+Answer: A superkey is a set of attributes that uniquely identifies a tuple. A candidate key is a minimal superkey. A primary key is the chosen candidate key. A composite key is a primary key with multiple attributes.
+
+Question 5: Identify primary keys and foreign keys in the department and employee tables.
+Answer: In the department table, DeptID is the primary key. In the employee table, EmpID is the primary key and DeptID is a foreign key referencing department.
+
+Question 6: Convert customer and order information into relational schemas.
+Answer: The customer table has CustomerID as primary key and CustomerName. The order table has OrderID as primary key, OrderDate, and CustomerID as a foreign key.
+
+Question 7: Differentiate between one-to-one, one-to-many, and many-to-many relationships.
+Answer: A one-to-one relationship means each entity relates to at most one other. A one-to-many relationship means one entity relates to many. A many-to-many relationship requires a junction table to resolve.
+
+Question 8: Define a data dictionary and explain the role of metadata.
+Answer: A data dictionary is a centralized repository of metadata. Metadata provides the DBMS with a self-describing framework for managing data.
+
+Question 9: Differentiate between SELECT and PROJECT operations in relational algebra.
+Answer: The SELECT operation filters rows based on a condition. The PROJECT operation filters columns.
+
+Question 10: Define data redundancy and explain data anomalies.
+Answer: Data redundancy is unnecessary duplication of data. It leads to update, insertion, and deletion anomalies.
