@@ -1859,11 +1859,74 @@ flowchart LR
           },
           {
             title: 'Real-World Examples',
-            body: `<p><strong>1:1 — Person and Passport:</strong> Each person holds at most one passport, and each passport belongs to exactly one person. This is implemented by placing the foreign key on either side (or using a separate linking table).</p>
+            body: `<p><strong>1:1 — Person and Passport:</strong> Each person holds at most one passport, and each passport belongs to exactly one person. Implemented by placing a foreign key on either side — here, PersonID is embedded in PASSPORT.</p>
 
-<p><strong>1:M — Department and Employee:</strong> One department employs many employees; each employee works in exactly one department. Implemented by placing a foreign key (DeptID) in the Employee table.</p>
+<p><strong>PERSON table:</strong></p>
+<table>
+  <tr><th>PersonID (PK)</th><th>PersonName</th></tr>
+  <tr><td>P01</td><td>Ali</td></tr>
+  <tr><td>P02</td><td>Siti</td></tr>
+</table>
 
-<p><strong>M:N — Student and Course:</strong> A student enrolls in multiple courses, and each course contains many students. This requires a <strong>junction table</strong> to resolve.</p>`
+<p><strong>PASSPORT table:</strong></p>
+<table>
+  <tr><th>PassportNo (PK)</th><th>ExpiryDate</th><th>PersonID (FK — UNIQUE)</th></tr>
+  <tr><td>A123456</td><td>15-Dec-2030</td><td>P01</td></tr>
+  <tr><td>B789012</td><td>22-Jun-2028</td><td>P02</td></tr>
+</table>
+
+<p>The <code>UNIQUE</code> constraint on PersonID in PASSPORT ensures no two passports belong to the same person — enforcing 1:1.</p>
+
+<hr style="margin: 20px 0; border: none; border-top: 1px solid var(--border);">
+
+<p><strong>1:M — Department and Employee:</strong> One department employs many employees; each employee works in exactly one department. Implemented by placing DeptID as a foreign key in the EMPLOYEE table.</p>
+
+<p><strong>DEPARTMENT table:</strong></p>
+<table>
+  <tr><th>DeptID (PK)</th><th>DeptName</th></tr>
+  <tr><td>D01</td><td>IT</td></tr>
+  <tr><td>D02</td><td>HR</td></tr>
+</table>
+
+<p><strong>EMPLOYEE table:</strong></p>
+<table>
+  <tr><th>EmpID (PK)</th><th>EmpName</th><th>DeptID (FK)</th></tr>
+  <tr><td>E001</td><td>Ahmad</td><td>D01</td></tr>
+  <tr><td>E002</td><td>Mei Ling</td><td>D01</td></tr>
+  <tr><td>E003</td><td>Raj</td><td>D02</td></tr>
+</table>
+
+<p>DeptID can repeat in EMPLOYEE (many employees per department) — that is what makes it 1:M. No UNIQUE constraint needed on the FK side.</p>
+
+<hr style="margin: 20px 0; border: none; border-top: 1px solid var(--border);">
+
+<p><strong>M:N — Student and Course:</strong> A student enrolls in multiple courses, and each course contains many students. This requires a <strong>junction table</strong> to resolve.</p>
+
+<p><strong>STUDENT table:</strong></p>
+<table>
+  <tr><th>StudentID (PK)</th><th>StudentName</th></tr>
+  <tr><td>S100</td><td>Ali</td></tr>
+  <tr><td>S101</td><td>Siti</td></tr>
+  <tr><td>S102</td><td>Raj</td></tr>
+</table>
+
+<p><strong>COURSE table:</strong></p>
+<table>
+  <tr><th>CourseID (PK)</th><th>CourseName</th></tr>
+  <tr><td>C01</td><td>Database</td></tr>
+  <tr><td>C02</td><td>Python</td></tr>
+</table>
+
+<p><strong>ENROLMENT table (junction/bridge):</strong></p>
+<table>
+  <tr><th>StudentID (FK)</th><th>CourseID (FK)</th><th>Grade</th></tr>
+  <tr><td>S100</td><td>C01</td><td>A</td></tr>
+  <tr><td>S100</td><td>C02</td><td>B+</td></tr>
+  <tr><td>S101</td><td>C01</td><td>A-</td></tr>
+  <tr><td>S102</td><td>C02</td><td>B</td></tr>
+</table>
+
+<p>ENROLMENT has a <strong>composite primary key</strong> (StudentID + CourseID). Ali takes both Database and Python; Database has both Ali and Siti — the junction table makes this M:N possible.</p>`
           },
           {
             title: 'Why M:N Needs a Junction Table',
