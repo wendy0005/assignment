@@ -133,6 +133,15 @@ When the source markdown contains Mermaid diagrams (in ````mermaid ... ```` bloc
 4. Include as `diagram` property in the step data
 5. The diagram will render automatically via Mermaid.js
 
+⚠️ **Mermaid Gotcha — double quotes inside `[...]` node labels:**
+  Mermaid 10.x treats `"` inside square bracket node labels as syntax, causing parse errors.
+  ```
+  S[Sensor: "value"]   → ✨ Syntax error in Mermaid 10.x
+  S[Sensor: value]     → ✅ OK
+  S[Sensor: #quot;value#quot;]  → ✅ OK (if quotes are essential)
+  ```
+  Always strip literal double quotes from node label text, or use `#quot;` entity.
+
 ### Review Questions in Source Material
 Source material often has multiple-choice review questions (MCQs, true/false, matching tasks). The interactive lesson format does NOT make these auto-checkable — they are displayed as plain text within step body content for the student to think about. Do not add quiz/answer-checking logic.
 

@@ -195,6 +195,7 @@ flowchart LR
 ## Common Pitfalls
 
 - **Breaking characters** - Avoid `{}` in comments, use proper escape sequences for special characters
+- **Literal double quotes inside `[...]` node labels** - `S[Sensor: "value"]` causes parse errors in Mermaid 10.x. Either remove quotes or use `#quot;` entity: `S[Sensor: #quot;value#quot;]`
 - **Syntax errors** - Misspellings break diagrams; validate syntax in Mermaid Live
 - **Overcomplexity** - Split complex diagrams into multiple focused views
 - **Missing relationships** - Document all important connections between entities

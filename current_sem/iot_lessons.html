@@ -991,11 +991,11 @@ graph TD
 
 <div class="diagram-box"><pre class="mermaid">
 flowchart LR
-  S[Sensor<br/>Publishes: "temperature"] --> B((MQTT Broker))
-  B --> D[Database<br/>Subscribed: "temperature"]
-  B --> A[Mobile App<br/>Subscribed: "temperature"]
+  S[Sensor<br/>Publishes: temperature] --> B((MQTT Broker))
+  B --> D[Database<br/>Subscribed: temperature]
+  B --> A[Mobile App<br/>Subscribed: temperature]
   C[Cloud Command] --> B
-  B --> S2[Sensor<br/>Subscribed: "commands"]
+  B --> S2[Sensor<br/>Subscribed: commands]
   style S fill:#fef3c7,stroke:#f59e0b
   style S2 fill:#fef3c7,stroke:#f59e0b
   style B fill:#3b82f6,color:#fff
