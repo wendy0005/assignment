@@ -205,37 +205,20 @@
 <div class="mermaid">
 graph TD
     subgraph "Hybrid Work Monitoring System"
-        HWMS["0
-Hybrid Work
-Monitoring
+        S["0
 System"]
     end
-    E["Employee"] -->|"Check-In/Check-Out Request
-Task Status Update
-Profile Update"| HWMS
-    HWMS -->|"Attendance Confirmation
-Task Assignment Notification
-Dashboard View"| E
-    M["Manager"] -->|"Task Assignment
-Approval Request
-Report Request"| HWMS
-    HWMS -->|"Team Attendance Report
-Task Progress Report
-Dashboard Data"| M
-    H["HR Administrator"] -->|"Employee Details
-Policy Configuration
-Report Request"| HWMS
-    HWMS -->|"Attendance Report
-Compliance Report
-Payroll Data"| H
-    I["IT Administrator"] -->|"System Config
-User Account Mgmt
-Security Settings"| HWMS
-    HWMS -->|"System Health Status
-Audit Log"| I
-    N["Notification
-System"] -->|"Email/Push Triggers"| HWMS
-    HWMS -->|"Notification Request"| N
+    E["Employee"] -->|"Check In/Out"| S
+    S -->|"Status"| E
+    M["Manager"] -->|"Assign Tasks"| S
+    S -->|"Reports"| M
+    H["HR"] -->|"Employee Data"| S
+    S -->|"Attendance Report"| H
+    I["IT Admin"] -->|"Config"| S
+    S -->|"Logs"| I
+    N["Email
+System"] -->|"Triggers"| S
+    S -->|"Send"| N
 </div>
 <p class="figure-caption">Figure 1: Context Diagram — Hybrid Work Monitoring System</p>
 
@@ -254,55 +237,44 @@ System"] -->|"Email/Push Triggers"| HWMS
 
 <div class="mermaid">
 graph TD
-    Employee -->|"Check-In/Check-Out
-Task Status Update"| P1["1.0
+    Employee -->|"Check-In/Out
+Task Update"| P1["1.0
 Manage
 Attendance"]
-    Employee -->|"Task Progress"| P2["2.0
+    Employee -->|"Progress"| P2["2.0
 Manage
 Tasks"]
-    Manager -->|"Task Assignment
-& Approval"| P2
-    Manager -->|"Report Request"| P3["3.0
+    Manager -->|"Assign Tasks"| P2
+    Manager -->|"Request"| P3["3.0
 Generate
 Reports"]
-    HR_Admin -->|"Employee Data
-Policy Config"| P5["5.0
+    HR -->|"Employee Data"| P5["5.0
 Manage
-Users &
-Config"]
-    IT_Admin -->|"System Config
-User Accounts"| P5
-    P1 -->|"Attendance Record"| D1["D1
+Users"]
+    IT -->|"Config"| P5
+    P1 -->|"Attendance"| D1["D1
 Attendance
-Database"]
-    P2 -->|"Task Record"| D2["D2
+DB"]
+    P2 -->|"Tasks"| D2["D2
 Task
-Database"]
-    P2 -->|"Task Status"| D2
-    P1 -->|"Work Location"| D1
-    P3 -->|"Read Attendance"| D1
-    P3 -->|"Read Tasks"| D2
-    P3 -->|"Read Employees"| D3["D3
+DB"]
+    P3 -->|"Read"| D1
+    P3 -->|"Read"| D2
+    P3 -->|"Read"| D3["D3
 Employee
-Database"]
-    P5 -->|"Employee Record"| D3
-    P5 -->|"Policy Rules"| D4["D4
-Policy &
-Config
-Database"]
-    P1 -->|"Anomaly Alert"| P4["4.0
-Send
-Notifications"]
-    P2 -->|"Deadline Reminder"| P4
-    P4 -->|"Email/Push"| Notification_System
+DB"]
+    P5 -->|"Records"| D3
+    P1 -->|"Alert"| P4["4.0
+Notify"]
+    P2 -->|"Reminder"| P4
+    P4 -->|"Email/Push"| Notif["Notification
+System"]
     P3 -->|"Report"| Manager
-    P3 -->|"Report"| HR_Admin
-    P1 -->|"Attendance Status"| Employee
-    P2 -->|"Task Confirmation"| Employee
-    P2 -->|"Progress View"| Manager
-    P5 -->|"Config Confirmation"| IT_Admin
-    P5 -->|"User Confirmation"| HR_Admin
+    P3 -->|"Report"| HR
+    P1 -->|"Status"| Employee
+    P2 -->|"Confirmation"| Employee
+    P5 -->|"OK"| IT
+    P5 -->|"OK"| HR
 </div>
 <p class="figure-caption">Figure 2: Level 0 DFD — Hybrid Work Monitoring System</p>
 
@@ -340,40 +312,30 @@ Notifications"]
 
 <div class="mermaid">
 graph TD
-    Employee -->|"Check-In Request"| P11["1.1
-Process
-Check-In"]
-    Employee -->|"Check-Out Request"| P12["1.2
-Process
-Check-Out"]
-    P11 -->|"Timestamp +
+    Employee -->|"Check In"| P11["1.1
+Check In"]
+    Employee -->|"Check Out"| P12["1.2
+Check Out"]
+    P11 -->|"Time +
 Location"| P13["1.3
-Validate
-Attendance"]
-    P12 -->|"Timestamp"| P13
-    P13 -->|"Validated Record"| P14["1.4
-Record
-Attendance"]
-    P14 -->|"Attendance Record"| D1["D1
+Validate"]
+    P12 -->|"Time"| P13
+    P13 -->|"Valid Data"| P14["1.4
+Record"]
+    P14 -->|"Save"| D1["D1
 Attendance
-Database"]
-    P13 -->|"Anomaly Flag"| P15["1.5
+DB"]
+    P13 -->|"Flag"| P15["1.5
 Handle
-Anomaly"]
-    P15 -->|"Alert Data"| P4["4.0
-Send
-Notifications"]
-    P11 -->|"Location Data"| P13
-    P14 -->|"Attendance Status"| Employee
-    P4 -->|"Late Alert
-Reminder"| Employee
-    P13 -->|"Schedule"| D4["D4
-Policy &
-Config
-Database"]
-    P14 -->|"Read Employee"| D3["D3
-Employee
-Database"]
+Error"]
+    P15 -->|"Alert"| P4["4.0
+Notify"]
+    P14 -->|"Status"| Employee
+    P4 -->|"Late Notice"| Employee
+    P13 -->|"Check
+Schedule"| D4["D4
+Policy
+DB"]
 </div>
 <p class="figure-caption">Figure 3: Level 1 DFD — Manage Attendance (Process 1.0)</p>
 
@@ -399,25 +361,16 @@ Database"]
 
 <div class="mermaid">
 graph LR
-    subgraph HWMS["Hybrid Work Monitoring System"]
-        UC1["Check In /
-Check Out"]
-        UC2["View Personal
-Attendance"]
-        UC3["Manage
-Tasks"]
-        UC4["View
-Dashboard"]
-        UC5["Generate
-Reports"]
-        UC6["Manage User
-Accounts"]
-        UC7["Configure
-System Settings"]
-        UC8["View
-Audit Log"]
-        UC9["Login /
-Authenticate"]
+    subgraph HWMS["System"]
+        UC1["Check In/Out"]
+        UC2["View Attendance"]
+        UC3["Manage Tasks"]
+        UC4["View Dashboard"]
+        UC5["Reports"]
+        UC6["Manage Users"]
+        UC7["Settings"]
+        UC8["Audit Log"]
+        UC9["Login"]
     end
 
     Employee --> UC1
@@ -426,15 +379,15 @@ Authenticate"]
     Manager --> UC3
     Manager --> UC4
     Manager --> UC5
-    HRA["HR Administrator"] --> UC5
-    HRA --> UC6
-    ITA["IT Administrator"] --> UC6
-    ITA --> UC7
-    ITA --> UC8
+    HR --> UC5
+    HR --> UC6
+    IT --> UC6
+    IT --> UC7
+    IT --> UC8
 
-    UC3 -.-> UC9
     UC1 -.-> UC9
     UC2 -.-> UC9
+    UC3 -.-> UC9
     UC4 -.-> UC9
     UC5 -.-> UC9
 
