@@ -44,7 +44,7 @@
   .header-badge span { color: var(--teal); }
   .header-link {
     color: #94a3b8; text-decoration: none; font-size: 13px; font-weight: 500;
-    padding: 6px 14px; border-radius: 8px; margin-left: auto;
+    padding: 6px 14px; border-radius: 8px; margin-left: 16px;
     transition: all var(--transition); white-space: nowrap;
   }
   .header-link:hover { background: rgba(255,255,255,.1); color: #fff; }
@@ -415,6 +415,34 @@
     color: var(--slate-light);
     font-style: italic;
   }
+  /* ---- Profiles / SQLite Memory ---- */
+  .user-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(255,255,255,.08); padding: 8px 16px; border-radius: 20px;
+    font-size: 13px; font-weight: 600; color: #fff; cursor: pointer;
+    transition: all var(--transition); border: 1px solid rgba(255,255,255,.1);
+    margin-left: 16px; white-space: nowrap;
+  }
+  .user-badge:hover {
+    background: rgba(255,255,255,.15);
+    box-shadow: 0 0 10px rgba(59,130,246,.25);
+  }
+  .user-icon {
+    font-size: 14px;
+  }
+  .profile-item {
+    padding: 12px 16px; background: var(--bg); border: 1px solid var(--border);
+    border-radius: var(--radius-sm); font-size: 14px; font-weight: 600;
+    color: var(--slate); text-align: left; cursor: pointer;
+    transition: all var(--transition); display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 4px;
+  }
+  .profile-item:hover {
+    border-color: var(--blue); background: var(--blue-light); color: var(--navy);
+  }
+  .profile-item.active {
+    border-color: var(--blue); background: var(--blue-light); color: var(--navy);
+  }
 </style>
 </head>
 <body>
@@ -432,6 +460,10 @@
     <input class="search-input" id="searchInput" type="text" placeholder="Search study slides..." autocomplete="off">
     <button class="search-clear" id="searchClear" onclick="clearSearch()">✕</button>
     <div class="search-results" id="searchResults"></div>
+  </div>
+  <div class="user-badge" id="userBadge" onclick="openProfileModal()">
+    <span class="user-icon">👤</span>
+    <span id="activeUserLabel">Guest</span>
   </div>
   <a class="header-link" href="../index.html">📚 All Courses</a>
 </header>
@@ -456,6 +488,19 @@
     <h3 id="glossaryTermTitle"></h3>
     <p id="glossaryTermDef"></p>
     <button class="modal-close" onclick="closeGlossary()">Got it</button>
+  </div>
+</div>
+
+<div class="modal-overlay" id="profileModal">
+  <div class="modal-box" style="max-width: 400px; text-align: center;">
+    <h3 style="margin-bottom: 16px; font-size: 20px;">Who is studying today?</h3>
+    <div id="profileList" style="margin-bottom: 20px; display: flex; flex-direction: column; gap: 10px; max-height: 200px; overflow-y: auto;">
+      <!-- Existing profiles will be rendered here -->
+    </div>
+    <div style="border-top: 1px solid var(--border); padding-top: 20px; margin-top: 10px; display: flex; flex-direction: column; gap: 10px;">
+      <input type="text" id="newProfileInput" placeholder="Enter name (e.g. Wendy)..." style="width: 100%; padding: 12px 16px; border: 1px solid var(--border); border-radius: var(--radius-sm); outline: none; font-family: var(--font-sans); font-size: 14px; box-sizing: border-box;" />
+      <button class="btn-check" onclick="handleCreateProfile()" style="width: 100%; margin-left: 0; padding: 12px; font-size: 13px; font-weight: 700; border-radius: var(--radius-sm); background: var(--blue); color: #fff; border: none;">Create & Start</button>
+    </div>
   </div>
 </div>
 
@@ -3025,6 +3070,7 @@ function switchTutorial(idx) {
   renderTabs();
   renderSidebar();
   renderLesson();
+  saveProgress();
 }
 
 function renderSidebar() {
@@ -3059,6 +3105,7 @@ function switchLesson(idx, stepIdx) {
   currentStepIdx = stepIdx || 0;
   renderSidebar();
   renderLesson();
+  saveProgress();
 }
 
 function renderLesson() {
@@ -3142,6 +3189,7 @@ function nextStep() {
   if (currentStepIdx < q.steps.length - 1) {
     currentStepIdx++;
     renderLesson();
+    saveProgress();
   }
 }
 
@@ -3153,6 +3201,7 @@ function prevStep() {
   if (currentStepIdx > 0) {
     currentStepIdx--;
     renderLesson();
+    saveProgress();
   }
 }
 
@@ -3163,6 +3212,7 @@ function nextLesson() {
     currentStepIdx = 0;
     renderSidebar();
     renderLesson();
+    saveProgress();
   } else {
     switchToQuiz();
   }
@@ -3236,6 +3286,7 @@ function switchToQuiz() {
   viewingQuiz = true;
   renderSidebar();
   renderQuiz();
+  saveProgress();
 }
 
 function renderQuiz() {
@@ -3439,6 +3490,7 @@ function selectQuizAnswer(optIdx) {
   
   const checkBtn = document.getElementById('checkQuizBtn');
   if (checkBtn) checkBtn.disabled = false;
+  saveProgress();
 }
 
 function checkQuizAnswer() {
@@ -3451,6 +3503,7 @@ function checkQuizAnswer() {
   
   state.results[state.currentIdx] = (selectedOpt === q.a) ? 'correct' : 'wrong';
   renderQuiz();
+  saveProgress();
 }
 
 function nextQuizQuestion() {
@@ -3459,6 +3512,7 @@ function nextQuizQuestion() {
   if (state.currentIdx < state.questions.length) {
     state.currentIdx++;
     renderQuiz();
+    saveProgress();
   }
 }
 
@@ -3677,7 +3731,254 @@ document.addEventListener('click', function(e) {
   if (!e.target.closest('.search-wrapper')) closeSearch();
 });
 
-switchTutorial(0);
+/* ---- Profiles & SQLite API Sync ---- */
+let activeUser = null;
+let isOfflineMode = false;
+
+async function checkServerConnection() {
+  try {
+    const res = await fetch('/api/users', { method: 'POST', body: JSON.stringify({}), headers: { 'Content-Type': 'application/json' } });
+    if (res.ok) {
+      isOfflineMode = false;
+      return true;
+    }
+  } catch(e) {}
+  isOfflineMode = true;
+  return false;
+}
+
+async function fetchUsers() {
+  if (isOfflineMode) {
+    return JSON.parse(localStorage.getItem('study_users') || '[]');
+  } else {
+    try {
+      const res = await fetch('/api/users', { method: 'POST', headers: { 'Content-Type': 'application/json' } });
+      const data = await res.json();
+      return data.users || [];
+    } catch(e) {
+      console.warn("Backend users fetch failed, falling back to local storage list", e);
+      return JSON.parse(localStorage.getItem('study_users') || '[]');
+    }
+  }
+}
+
+async function saveProgress() {
+  if (!activeUser) return;
+  
+  const savedQuizStates = {};
+  for (let key in quizStates) {
+    const s = quizStates[key];
+    if (s) {
+      savedQuizStates[key] = {
+        answers: s.answers,
+        currentIdx: s.currentIdx,
+        results: s.results,
+        shuffled: s.shuffled,
+        shuffledQuestions: s.questions ? s.questions.map(q => q.q) : null
+      };
+    }
+  }
+
+  const payload = {
+    username: activeUser,
+    last_chapter: currentTutorialIdx,
+    last_card: currentLessonIdx,
+    last_step: currentStepIdx,
+    viewing_quiz: viewingQuiz,
+    quiz_states: savedQuizStates
+  };
+
+  if (isOfflineMode) {
+    localStorage.setItem(`progress_${activeUser}`, JSON.stringify(payload));
+  } else {
+    try {
+      const res = await fetch('/api/save', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      const data = await res.json();
+      if (!data.success) {
+        localStorage.setItem(`progress_${activeUser}`, JSON.stringify(payload));
+      }
+    } catch(e) {
+      console.warn("API save progress failed, saving locally", e);
+      localStorage.setItem(`progress_${activeUser}`, JSON.stringify(payload));
+    }
+  }
+}
+
+async function loadProgress(username) {
+  let progress = null;
+  if (isOfflineMode) {
+    const stored = localStorage.getItem(`progress_${username}`);
+    if (stored) progress = JSON.parse(stored);
+  } else {
+    try {
+      const res = await fetch('/api/load', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username })
+      });
+      const data = await res.json();
+      if (data.success) {
+        progress = data;
+      } else {
+        const stored = localStorage.getItem(`progress_${username}`);
+        if (stored) progress = JSON.parse(stored);
+      }
+    } catch(e) {
+      console.warn("API load progress failed, loading locally", e);
+      const stored = localStorage.getItem(`progress_${username}`);
+      if (stored) progress = JSON.parse(stored);
+    }
+  }
+  return progress;
+}
+
+async function openProfileModal() {
+  const modal = document.getElementById('profileModal');
+  const listContainer = document.getElementById('profileList');
+  listContainer.innerHTML = '<div style="color: var(--slate-light); font-size:13px; padding:10px 0;">Loading profiles...</div>';
+  modal.classList.add('show');
+  
+  await checkServerConnection();
+  const users = await fetchUsers();
+  listContainer.innerHTML = '';
+  
+  if (users.length === 0) {
+    listContainer.innerHTML = '<div style="color: var(--slate-light); padding: 10px 0; font-size: 13px;">No profiles found. Create one below to begin!</div>';
+  } else {
+    users.forEach(u => {
+      const isCurrent = (u === activeUser);
+      const activeCls = isCurrent ? 'active' : '';
+      const badge = isCurrent ? '<span style="font-size: 11px; background: var(--blue); color: #fff; padding: 2px 8px; border-radius: 10px;">Active</span>' : '';
+      listContainer.innerHTML += `
+        <div class="profile-item ${activeCls}" onclick="selectProfile('${u.replace(/'/g, "\\'")}')">
+          <span>👤 ${u}</span>
+          ${badge}
+        </div>
+      `;
+    });
+  }
+}
+
+async function selectProfile(username) {
+  activeUser = username;
+  localStorage.setItem('active_study_user', username);
+  
+  const labelEl = document.getElementById('activeUserLabel');
+  if (isOfflineMode) {
+    labelEl.textContent = `${username} (Offline)`;
+    labelEl.style.color = '#94a3b8';
+  } else {
+    labelEl.textContent = username;
+    labelEl.style.color = '#fff';
+  }
+  
+  document.getElementById('profileModal').classList.remove('show');
+  
+  const progress = await loadProgress(username);
+  if (progress) {
+    currentTutorialIdx = progress.last_chapter || 0;
+    currentLessonIdx = progress.last_card !== undefined ? progress.last_card : 0;
+    currentStepIdx = progress.last_step || 0;
+    viewingQuiz = progress.viewing_quiz || false;
+    
+    if (progress.quiz_states) {
+      for (let k in progress.quiz_states) {
+        const storedState = progress.quiz_states[k];
+        quizStates[k] = {
+          answers: storedState.answers || {},
+          currentIdx: storedState.currentIdx || 0,
+          results: storedState.results || {},
+          shuffled: storedState.shuffled || false,
+          originalQuestions: ALL_QUESTIONS.filter(q => q.c === parseInt(k)),
+          questions: ALL_QUESTIONS.filter(q => q.c === parseInt(k))
+        };
+        if (storedState.shuffledQuestions) {
+          const qs = quizStates[k].questions;
+          const mapped = [];
+          storedState.shuffledQuestions.forEach(qStr => {
+            const match = qs.find(q => q.q === qStr);
+            if (match) mapped.push(match);
+          });
+          if (mapped.length === qs.length) {
+            quizStates[k].questions = mapped;
+            quizStates[k].shuffled = true;
+          }
+        }
+      }
+    }
+    
+    renderTabs();
+    if (viewingQuiz) {
+      currentLessonIdx = -1;
+      renderSidebar();
+      renderQuiz();
+    } else {
+      renderSidebar();
+      renderLesson();
+    }
+  } else {
+    currentTutorialIdx = 0;
+    currentLessonIdx = 0;
+    currentStepIdx = 0;
+    viewingQuiz = false;
+    renderTabs();
+    renderSidebar();
+    renderLesson();
+  }
+}
+
+async function handleCreateProfile() {
+  const input = document.getElementById('newProfileInput');
+  const username = input.value.trim();
+  if (!username) {
+    alert("Please enter a profile name.");
+    return;
+  }
+  
+  const users = await fetchUsers();
+  if (users.includes(username)) {
+    alert("This profile name already exists.");
+    return;
+  }
+  
+  if (isOfflineMode) {
+    users.push(username);
+    localStorage.setItem('study_users', JSON.stringify(users));
+  } else {
+    try {
+      await fetch('/api/save', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, last_chapter: 0, last_card: 0, last_step: 0, viewing_quiz: false })
+      });
+      users.push(username);
+      localStorage.setItem('study_users', JSON.stringify(users));
+    } catch(e) {
+      console.error(e);
+      users.push(username);
+      localStorage.setItem('study_users', JSON.stringify(users));
+    }
+  }
+  
+  input.value = '';
+  await selectProfile(username);
+}
+
+async function initProfile() {
+  await checkServerConnection();
+  const savedUser = localStorage.getItem('active_study_user');
+  if (savedUser) {
+    await selectProfile(savedUser);
+  } else {
+    openProfileModal();
+  }
+}
+
+initProfile();
 </script>
 </body>
 </html>
