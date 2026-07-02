@@ -150,6 +150,31 @@ Source material often has multiple-choice review questions (MCQs, true/false, ma
 - Keep paragraphs short — 2-4 sentences max
 - Use step titles as mini-headings that reveal one new idea per step
 
+### Embedding External Images
+When teaching hardware, protocols, or physical concepts (e.g., RS-232 pinouts, CAN bus topology, sensor wiring), embed real-world reference images from **Wikimedia Commons** to help students visually identify components and architectures.
+
+**CSS classes to add in `<style>`:**
+```css
+.img-box { background: #fff; border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 16px; margin: 18px 0; text-align: center; }
+.img-box img { max-width: 100%; height: auto; border-radius: 4px; }
+.img-box .img-caption { font-size: 12px; color: var(--slate-light); margin-top: 8px; font-style: italic; }
+```
+
+**Usage in step body:**
+```html
+<div class="img-box">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/..." alt="Brief description">
+  <div class="img-caption">Caption explaining what the image shows.</div>
+</div>
+```
+
+**Where to find images:**
+- Wikipedia articles for the topic (e.g., RS-232, CAN bus) — extract `.svg` or `.png` URLs from the infobox or figures
+- Use the Wikimedia Commons URL pattern: `https://upload.wikimedia.org/wikipedia/commons/...`
+- Prefer `.svg` diagrams for schematics/pinouts (scalable); `.png` for photographs of hardware
+- Always include an `alt` attribute for accessibility and a caption `<div>` for context
+- Add an `<h4>` heading before each image group to structure the content
+
 ### Mermaid Diagrams to Include
 
 | Subject | Diagram Type | Concepts |
@@ -243,6 +268,7 @@ This avoids the bug where long step bodies had their searchable content truncate
    - Navigation buttons work (Continue, Previous, Next Lesson)
    - Glossary terms are clickable and show modal
    - Mermaid diagrams render (check browser console for errors)
+   - External images load (check browser console for 404s — no broken image links)
    - Search works (test multiple terms, verify results highlight in body text)
    - Progress ✓ marks update in sidebar
    - "All Courses" link goes to index.html

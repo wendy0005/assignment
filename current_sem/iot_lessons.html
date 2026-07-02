@@ -168,6 +168,9 @@
   .glossary-term:hover { background: var(--blue-light); }
   .diagram-box { background: #fff; border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 20px; margin: 18px 0; overflow-x: auto; }
   .diagram-box .mermaid { display: flex; justify-content: center; }
+  .img-box { background: #fff; border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 16px; margin: 18px 0; text-align: center; }
+  .img-box img { max-width: 100%; height: auto; border-radius: 4px; }
+  .img-box .img-caption { font-size: 12px; color: var(--slate-light); margin-top: 8px; font-style: italic; }
   .step-nav { display: flex; gap: 10px; margin-top: 28px; padding-top: 20px; border-top: 1px solid var(--border); }
   .step-nav button { padding: 10px 24px; font-family: var(--font-sans); font-size: 13px; font-weight: 600; border: none; border-radius: var(--radius-sm); cursor: pointer; transition: all var(--transition); }
   .step-nav .btn-prev { background: var(--bg); color: var(--slate); }
@@ -728,9 +731,77 @@ flowchart LR
   <tr><td><strong>CAN Bus</strong></td><td>Differential</td><td>~40 m</td><td>Broadcast bus</td><td>Vehicle electronics, industrial machines</td></tr>
 </table>
 
-<p><strong>RS-485</strong> uses differential signaling, making it resistant to electrical noise — critical in factories with heavy machinery. It's also multi-drop, meaning many devices share the same two wires.</p>
+<h4>RS-232 — Point-to-Point Serial Connection</h4>
 
-<p><strong>CAN Bus (Controller Area Network)</strong> was originally designed for automotive use. It allows multiple microcontrollers to communicate without a central host, with built-in error detection and real-time guarantees.</p>`
+<p>RS-232 is a <strong>single-ended</strong> standard where a DTE (computer) connects to a DCE (modem/device) over a serial cable, typically DB-25 or DE-9 connectors. It's limited to ~20 m and connects only two devices.</p>
+
+<div class="img-box">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/RS-232_POTS_DTE_DCE.svg/500px-RS-232_POTS_DTE_DCE.svg.png" alt="RS-232 DTE/DCE network diagram">
+  <div class="img-caption">RS-232 connects Data Terminal Equipment (DTE) to Data Circuit-terminating Equipment (DCE) — typically a computer to a modem or serial device.</div>
+</div>
+
+<div class="img-box">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/DB25_Diagram.svg/500px-DB25_Diagram.svg.png" alt="DB-25 connector pinout">
+  <div class="img-caption">A DB-25 connector as described in the RS-232 standard — 25 pins for data, control, and timing signals.</div>
+</div>
+
+<div class="img-box">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/d/d7/Serielle_schnittstelle.jpg" alt="Real DB9 serial port on a computer motherboard">
+  <div class="img-caption">Real-life DB9 serial port on a computer motherboard — the physical DE-9 connector (male) used for RS-232 communication.</div>
+</div>
+
+<div class="img-box">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/b/b7/01DB9Macho.jpg" alt="Close-up of a DB9 male connector">
+  <div class="img-caption">Close-up of a DB9 male connector with 9 pins — the most common RS-232 connector found on PCs, modems, and industrial equipment.</div>
+</div>
+
+<h4>RS-485 — Differential Multi-Drop Bus</h4>
+
+<p><strong>RS-485</strong> uses differential signaling over a twisted pair, making it highly resistant to electrical noise — critical in factories with heavy machinery. It's <strong>multi-drop</strong>, meaning up to 32+ devices share the same two wires over 1,200 m.</p>
+
+<div class="img-box">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/RS-485_transceiver.svg/500px-RS-485_transceiver.svg.png" alt="RS-485 transceiver diagram">
+  <div class="img-caption">RS-485 transceiver — single-ended signals from the controller are converted to differential A/B signals for noise-resistant long-distance transmission.</div>
+</div>
+
+<div class="img-box">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Rs485-bias-termination.svg/500px-Rs485-bias-termination.svg.png" alt="RS-485 bias and termination network">
+  <div class="img-caption">RS-485 bus with termination resistors (120 &Omega;) at each end and bias resistors to maintain known voltage levels when the bus is idle.</div>
+</div>
+
+<div class="img-box">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/4/4a/Honeywell_4600g_-_board_1_-_Texas_Instruments_VN08-9677.jpg" alt="Texas Instruments RS-485 transceiver chip on a circuit board">
+  <div class="img-caption">Real-life RS-485 transceiver chip (Texas Instruments SN75HVD08) on a circuit board — the actual silicon component that converts logic signals to differential A/B pairs for noise-resistant communication.</div>
+</div>
+
+<h4>CAN Bus — Broadcast Bus for Real-Time Control</h4>
+
+<p><strong>CAN Bus (Controller Area Network)</strong> was originally designed for automotive use by Bosch in 1983. It allows multiple microcontrollers to communicate without a central host, with built-in error detection, message prioritisation via arbitration, and real-time guarantees.</p>
+
+<div class="img-box">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/CAN-Bus_Elektrische_Zweidrahtleitung.svg/500px-CAN-Bus_Elektrische_Zweidrahtleitung.svg.png" alt="CAN bus electrical 2-wire topology">
+  <div class="img-caption">CAN bus physical topology — a linear bus with two wires (CAN-High and CAN-Low) terminated at each end with 120 &Omega; resistors.</div>
+</div>
+
+<div class="img-box">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/b/bc/CAN_ISO11898-2_Network.png" alt="High-speed CAN bus network">
+  <div class="img-caption">High-speed CAN (ISO 11898-2) — multiple nodes (ECUs) connected to a single twisted-pair bus, each with a CAN controller and transceiver.</div>
+</div>
+
+<div class="img-box">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/c/c0/CAN_Node.png" alt="CAN bus node architecture">
+  <div class="img-caption">Each CAN node consists of a host processor, CAN controller, and CAN transceiver — together they handle message filtering, arbitration, and physical signal conversion.</div>
+</div>
+
+<div class="img-box">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/6/64/Arduino-CANbus_structure.JPG" alt="Arduino CAN-Bus shield module">
+  <div class="img-caption">Real-life CAN-Bus module for Arduino — a practical IoT development board with CAN transceiver (SN65HVD230), terminal block, and jumper configuration for connecting to a vehicle's CAN network.</div>
+</div>
+
+<div class="img-box">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/b/ba/CAN_BUS_Shield_V2.jpg" alt="CAN-BUS Shield V2 for Arduino">
+  <div class="img-caption">CAN-BUS Shield V2 — another popular Arduino shield with MCP2515 CAN controller + MCP2551 transceiver, showing the screw terminals for CAN-H and CAN-L wiring.</div>
+</div>`
           },
           {
             title: 'Bluetooth & Wi-Fi',
@@ -924,8 +995,9 @@ flowchart LR
   B --> D[Database<br/>Subscribed: "temperature"]
   B --> A[Mobile App<br/>Subscribed: "temperature"]
   C[Cloud Command] --> B
-  B --> S[Sensor<br/>Subscribed: "commands"]
+  B --> S2[Sensor<br/>Subscribed: "commands"]
   style S fill:#fef3c7,stroke:#f59e0b
+  style S2 fill:#fef3c7,stroke:#f59e0b
   style B fill:#3b82f6,color:#fff
 </pre></div>
 
