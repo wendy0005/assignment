@@ -44,6 +44,11 @@ This skill provides a rigorous workflow for transforming assignment briefs or re
     - **Step 2 (HTML Preview):** Generate a professionally styled HTML version based on the Markdown content. Ensure you include the **Mermaid.js** script and a custom renderer (e.g., in `marked.js`) that converts `mermaid` code blocks into `<div class="mermaid">` elements. Use a listener (like `mermaid.run()`) to trigger the rendering.
     - **Step 3 (PDF Generation):** Use the `mcp_playwright_browser_run_code` tool to convert the HTML to a professional A4 PDF. **Crucially, your Playwright script MUST wait for the Mermaid diagrams to finish rendering.** Use `await page.waitForSelector('.mermaid svg', { timeout: 10000 });` to ensure all diagrams have been converted to SVG before calling `page.pdf()`. **Note:** Do not use `require('fs')` inside the browser context as it is not supported. Instead, pass the HTML content as a string variable or navigate to a local file.
 
+## Student Identity Configuration
+ALWAYS include the following student information in the cover page and header/footer of every generated report:
+- **Student Name:** Chan Jing Yi
+- **Student ID:** SUOL2500321
+
 ## Final Output Structure
 ALWAYS deliver both:
 1.  **Markdown Source:** The `.md` file for version control and raw text access.
