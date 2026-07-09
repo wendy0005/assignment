@@ -1,0 +1,2533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GitHub Foundations — Practice Quiz</title>
+<link rel="icon" type="image/png" href="../favicon.png">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  
+  :root {
+    --bg: #0b0f19;
+    --card: #151d30;
+    --card-hover: #1e2942;
+    --border: rgba(255, 255, 255, 0.08);
+    --border-hover: rgba(255, 255, 255, 0.15);
+    --text: #f8fafc;
+    --text-muted: #94a3b8;
+    --blue: #3b82f6;
+    --blue-glow: rgba(59, 130, 246, 0.15);
+    --green: #10b981;
+    --green-glow: rgba(16, 185, 129, 0.15);
+    --red: #ef4444;
+    --red-glow: rgba(239, 68, 68, 0.15);
+    --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: radial-gradient(circle at top, #1e2942 0%, var(--bg) 100%);
+    color: var(--text);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  header {
+    background: rgba(11, 15, 25, 0.8);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 16px 32px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  header h1 {
+    font-size: 20px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    background: linear-gradient(90deg, #60a5fa, #34d399);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  header .sub {
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+
+  .header-link {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 16px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    transition: all var(--transition);
+    background: rgba(255, 255, 255, 0.02);
+  }
+
+  .header-link:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--text);
+    border-color: var(--border-hover);
+  }
+
+  .profile-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: auto;
+    font-size: 13px;
+    font-weight: 600;
+  }
+
+  .status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #64748b;
+  }
+
+  .status-dot.online {
+    background: var(--green);
+    box-shadow: 0 0 8px var(--green);
+  }
+
+  .status-dot.offline {
+    background: #f59e0b;
+    box-shadow: 0 0 8px #f59e0b;
+  }
+
+  .container {
+    max-width: 850px;
+    margin: 0 auto;
+    padding: 32px 20px 80px;
+    width: 100%;
+    flex-grow: 1;
+  }
+
+  .controls {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 24px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 16px 20px;
+  }
+
+  .controls label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-muted);
+  }
+
+  .controls select, .controls button {
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 10px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    border: 1px solid var(--border);
+    background: rgba(255, 255, 255, 0.03);
+    color: var(--text);
+    transition: all var(--transition);
+  }
+
+  .controls select {
+    background-image: linear-gradient(45deg, transparent 50%, var(--text-muted) 50%), linear-gradient(135deg, var(--text-muted) 50%, transparent 50%);
+    background-position: calc(100% - 20px) calc(1em + 2px), calc(100% - 15px) calc(1em + 2px);
+    background-size: 5px 5px, 5px 5px;
+    background-repeat: no-repeat;
+    padding-right: 30px;
+    appearance: none;
+  }
+
+  .controls select:hover, .controls button:hover {
+    border-color: var(--border-hover);
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  .controls .btn-primary {
+    background: var(--blue);
+    color: #fff;
+    border: none;
+  }
+
+  .controls .btn-primary:hover {
+    background: #2563eb;
+    box-shadow: 0 0 15px var(--blue-glow);
+  }
+
+  .stats {
+    display: flex;
+    gap: 16px;
+    margin-left: auto;
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  .stats .correct { color: var(--green); }
+  .stats .wrong { color: var(--red); }
+
+  .progress-bar {
+    width: 100%;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    margin-bottom: 24px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--blue), var(--green));
+    border-radius: 10px;
+    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    width: 0%;
+  }
+
+  .q-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    animation: slideUp 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .q-header {
+    padding: 28px 32px 20px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .q-meta {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+  }
+
+  .q-domain {
+    display: inline-block;
+    background: var(--blue-glow);
+    color: #60a5fa;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border: 1px solid rgba(59, 130, 246, 0.2);
+  }
+
+  .q-num {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-muted);
+  }
+
+  .q-text {
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.5;
+    color: var(--text);
+  }
+
+  .q-options {
+    padding: 28px 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .q-option {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    text-align: left;
+    padding: 14px 20px;
+    border: 2px solid var(--border);
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.01);
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text);
+    cursor: pointer;
+    transition: all var(--transition);
+  }
+
+  .q-option:hover:not(.disabled) {
+    border-color: var(--blue);
+    background: rgba(59, 130, 246, 0.05);
+    transform: translateX(4px);
+  }
+
+  .q-option .letter {
+    display: inline-block;
+    width: 28px;
+    height: 28px;
+    line-height: 28px;
+    text-align: center;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--text-muted);
+    margin-right: 14px;
+    flex-shrink: 0;
+    transition: all var(--transition);
+  }
+
+  .q-option:hover:not(.disabled) .letter {
+    background: var(--blue);
+    color: #fff;
+  }
+
+  .q-option.selected {
+    border-color: var(--blue);
+    background: rgba(59, 130, 246, 0.08);
+  }
+
+  .q-option.selected .letter {
+    background: var(--blue);
+    color: #fff;
+  }
+
+  .q-option.correct {
+    border-color: var(--green);
+    background: rgba(16, 185, 129, 0.08);
+  }
+
+  .q-option.correct .letter {
+    background: var(--green);
+    color: #fff;
+  }
+
+  .q-option.wrong {
+    border-color: var(--red);
+    background: rgba(239, 68, 68, 0.08);
+  }
+
+  .q-option.wrong .letter {
+    background: var(--red);
+    color: #fff;
+  }
+
+  .q-option.disabled {
+    cursor: default;
+    opacity: 0.7;
+  }
+
+  .q-option.show-correct {
+    border-color: var(--green);
+    background: rgba(16, 185, 129, 0.08);
+  }
+
+  .q-option.show-correct .letter {
+    background: var(--green);
+    color: #fff;
+  }
+
+  .feedback {
+    padding: 0 32px 28px;
+    display: none;
+  }
+
+  .feedback.show {
+    display: block;
+    animation: fadeIn 0.3s ease-out;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  .feedback-inner {
+    padding: 16px 20px;
+    border-radius: 10px;
+    font-size: 14px;
+    border: 1px solid var(--border);
+  }
+
+  .feedback-inner.correct {
+    background: var(--green-glow);
+    border-color: rgba(16, 185, 129, 0.2);
+  }
+
+  .feedback-inner.wrong {
+    background: var(--red-glow);
+    border-color: rgba(239, 68, 68, 0.2);
+  }
+
+  .feedback-title {
+    font-weight: 700;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .feedback-explanation {
+    color: var(--text-muted);
+    font-weight: 400;
+    line-height: 1.6;
+    margin-top: 8px;
+  }
+
+  .q-nav {
+    display: flex;
+    gap: 12px;
+    padding: 24px 32px;
+    border-top: 1px solid var(--border);
+    align-items: center;
+  }
+
+  .q-nav button {
+    padding: 12px 24px;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all var(--transition);
+    background: rgba(255, 255, 255, 0.02);
+    color: var(--text);
+  }
+
+  .q-nav button:hover:not(:disabled) {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: var(--border-hover);
+  }
+
+  .q-nav button:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
+
+  .q-nav .btn-check {
+    background: var(--blue);
+    color: #fff;
+    border: none;
+  }
+
+  .q-nav .btn-check:hover:not(:disabled) {
+    background: #2563eb;
+    box-shadow: 0 0 15px var(--blue-glow);
+  }
+
+  .q-nav .q-counter {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-muted);
+    margin-right: auto;
+  }
+
+  .results {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 48px 40px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,.3);
+    animation: slideUp 0.5s ease-out;
+  }
+
+  .results h2 {
+    font-size: 26px;
+    font-weight: 800;
+    margin-bottom: 24px;
+  }
+
+  .results .score {
+    font-size: 72px;
+    font-weight: 800;
+    color: var(--text);
+    line-height: 1;
+    background: linear-gradient(90deg, #60a5fa, #34d399);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 8px;
+  }
+
+  .results .score-label {
+    font-size: 14px;
+    color: var(--text-muted);
+    margin-bottom: 24px;
+  }
+
+  .domain-breakdown {
+    text-align: left;
+    margin: 32px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .domain-score-row {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--border);
+    padding: 14px 18px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .domain-score-name {
+    font-size: 13px;
+    font-weight: 600;
+  }
+
+  .domain-score-val {
+    font-size: 14px;
+    font-weight: 700;
+    color: #60a5fa;
+    white-space: nowrap;
+  }
+
+  .domain-score-val.pass { color: var(--green); }
+  .domain-score-val.fail { color: var(--red); }
+
+  .empty {
+    text-align: center;
+    padding: 60px 40px;
+    color: var(--text-muted);
+  }
+
+  .empty h2 {
+    font-size: 20px;
+    color: var(--text);
+    margin-bottom: 8px;
+  }
+
+  /* Profile Modal Styles */
+  .modal {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(11, 15, 25, 0.85);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    z-index: 1000;
+  }
+
+  .modal.show {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .modal-content {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    width: 100%;
+    max-width: 440px;
+    padding: 32px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    transform: scale(0.95);
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .modal.show .modal-content {
+    transform: scale(1);
+  }
+
+  .modal h3 {
+    font-size: 18px;
+    font-weight: 800;
+    margin-bottom: 16px;
+  }
+
+  .profile-list {
+    max-height: 200px;
+    overflow-y: auto;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding-right: 4px;
+  }
+
+  .profile-list::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .profile-list::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 4px;
+  }
+
+  .profile-item {
+    padding: 12px 16px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all var(--transition);
+  }
+
+  .profile-item:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: var(--border-hover);
+  }
+
+  .profile-item.active {
+    border-color: var(--blue);
+    background: var(--blue-glow);
+  }
+
+  .create-profile-box {
+    border-top: 1px solid var(--border);
+    padding-top: 20px;
+    display: flex;
+    gap: 10px;
+  }
+
+  .create-profile-box input {
+    flex-grow: 1;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 14px;
+    color: #fff;
+    font-family: inherit;
+    font-size: 13px;
+  }
+
+  .create-profile-box input:focus {
+    outline: none;
+    border-color: var(--blue);
+  }
+
+  .create-profile-box button {
+    background: var(--blue);
+    color: #fff;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all var(--transition);
+  }
+
+  .create-profile-box button:hover {
+    background: #2563eb;
+  }
+
+  @media (max-width: 600px) {
+    header { padding: 12px 16px; }
+    .container { padding: 16px 12px 40px; }
+    .controls { padding: 12px 16px; }
+    .q-header { padding: 20px 20px 14px; }
+    .q-options { padding: 20px 20px; }
+    .feedback { padding: 0 20px 20px; }
+    .q-nav { padding: 20px; }
+    .results { padding: 32px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div>
+    <h1>🐙 GitHub Foundations Practice Quiz</h1>
+    <div class="sub">Validate your foundational Git and GitHub knowledge</div>
+  </div>
+  <button class="header-link" id="profileBtn" onclick="openProfileModal()">👤 Select Profile</button>
+  <a class="header-link" href="../index.html">📚 Course Hub</a>
+  
+  <div class="profile-status">
+    <span id="activeUserLabel" style="color: var(--text-muted)">Guest User</span>
+    <span class="status-dot" id="syncStatusDot"></span>
+  </div>
+</header>
+
+<div class="container" id="app">
+  <div class="controls">
+    <label for="domainSelect">Domain:</label>
+    <select id="domainSelect" onchange="changeDomain()"></select>
+    <button class="btn-outline" id="shuffleBtn" onclick="toggleShuffle()">🔀 Shuffle: Off</button>
+    <button class="btn-primary" onclick="resetAllProgress()">🔄 Reset Progress</button>
+    
+    <div class="stats">
+      <span class="correct" id="correctCount">0 ✓</span>
+      <span class="wrong" id="wrongCount">0 ✗</span>
+    </div>
+  </div>
+  
+  <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+  
+  <div id="quizContent">
+    <div class="empty"><h2>Loading questions...</h2></div>
+  </div>
+</div>
+
+<!-- Profile Modal -->
+<div class="modal" id="profileModal">
+  <div class="modal-content">
+    <h3>Switch User Profile</h3>
+    <div class="profile-list" id="profileList"></div>
+    <div class="create-profile-box">
+      <input type="text" id="newProfileInput" placeholder="Enter new profile name..." onkeydown="if(event.key === 'Enter') handleCreateProfile()">
+      <button onclick="handleCreateProfile()">Create</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const DOMAINS = [
+  "Introduction to Git and GitHub",
+  "Working with GitHub Repositories",
+  "Collaboration Features",
+  "Modern Development",
+  "Project Management",
+  "Privacy, Security, and Administration",
+  "Benefits of the GitHub Community"
+];
+
+const ALL_QUESTIONS = [
+  // DOMAIN 1: Introduction to Git and GitHub (c: 0)
+  {
+    c: 0,
+    q: "What is the key difference between Git and GitHub?",
+    o: [
+      "Git is a cloud hosting provider, while GitHub is a command-line utility.",
+      "Git is a local, distributed version control tool, while GitHub is a cloud-based service that hosts Git repositories.",
+      "Git is only for open-source software, while GitHub is designed exclusively for private corporate code.",
+      "Git requires a paid commercial license, while GitHub is open-source and always free."
+    ],
+    a: 1,
+    e: "Git is the underlying version control command-line engine that runs locally on your workstation. GitHub is a remote web-based platform built around Git that adds rich team collaboration, hosting, and project management tools."
+  },
+  {
+    c: 0,
+    q: "Which property of a Distributed Version Control System (DVCS) like Git provides safety against server failures?",
+    o: [
+      "The server restricts files so only one person can check out files at a time.",
+      "Files are stored in a centralized database that cannot be duplicated.",
+      "Every developer's local clone contains a full copy of the project history and all files.",
+      "It requires a real-time connection to lock and unlock files on the main branch."
+    ],
+    a: 2,
+    e: "In Git, every clone is a complete backup of the repository, including all files and the entire commit logs database. If the central server crashes, any developer's local repo can be used to restore the remote server."
+  },
+  {
+    c: 0,
+    q: "In Git terminology, what does the term 'remote' represent?",
+    o: [
+      "A physical backup drive directly plugged into your computer.",
+      "A connection configuration to a version of your repository hosted on the internet or a network.",
+      "A script that deletes local repository records.",
+      "An editor plugin used to compile code."
+    ],
+    a: 1,
+    e: "A 'remote' in Git refers to a hosted version of the repository (e.g., on GitHub) that collaborators use to share changes by pushing commits or pulling updates."
+  },
+  {
+    c: 0,
+    q: "What are the three primary types of accounts that can be created on GitHub?",
+    o: [
+      "Standard, Premium, and Business",
+      "Personal, Organization, and Enterprise",
+      "Free, Pro, and Team",
+      "Developer, Manager, and Owner"
+    ],
+    a: 1,
+    e: "GitHub provides Personal accounts (for individuals), Organization accounts (for groups/teams sharing repos), and Enterprise accounts (allowing central control over multiple organizations)."
+  },
+  {
+    c: 0,
+    q: "If an enterprise wants to use GitHub but needs all infrastructure, servers, and updates fully hosted and managed by GitHub, which deployment option should they choose?",
+    o: [
+      "GitHub Enterprise Server (GHES)",
+      "GitHub Enterprise Cloud (GHEC)",
+      "GitHub Enterprise Local (GHEL)",
+      "GitHub Personal Pro"
+    ],
+    a: 1,
+    e: "GitHub Enterprise Cloud (GHEC) is fully hosted and managed by GitHub. GitHub Enterprise Server (GHES) is self-hosted on-premise or within a private cloud (AWS, Azure, GCP)."
+  },
+  {
+    c: 0,
+    q: "Which GitHub Flavored Markdown (GFM) code creates an interactive task list containing one completed and one incomplete item?",
+    o: [
+      "[x] Item A\n[ ] Item B",
+      "- [x] Item A\n- [ ] Item B",
+      "* (x) Item A\n* ( ) Item B",
+      "# [x] Item A\n# [ ] Item B"
+    ],
+    a: 1,
+    e: "GFM task lists are written using list markers (`-` or `*`) followed by `[x]` for completed tasks or `[ ]` for incomplete tasks. Note that spacing within the brackets is mandatory."
+  },
+  {
+    c: 0,
+    q: "How can you trigger the autocomplete slash commands menu in a GitHub issue comment editor?",
+    o: [
+      "Type `cmd/` in the text area",
+      "Press `Ctrl + Space` on your keyboard",
+      "Type `/` at the beginning of a new line",
+      "Double-click inside the comment field"
+    ],
+    a: 2,
+    e: "Typing `/` on a new empty line in a GitHub markdown editor triggers the slash commands menu, offering shortcuts for inserting templates, task lists, code blocks, and references."
+  },
+  {
+    c: 0,
+    q: "Which of the following is a key feature of the GitHub Mobile app?",
+    o: [
+      "It compiles and builds mobile apps locally on your smartphone.",
+      "It lets you triage notifications, review code, submit comments, and merge pull requests on the go.",
+      "It runs local self-hosted Actions runners directly on mobile processors.",
+      "It acts as a replacement for standard local Git CLI clients."
+    ],
+    a: 1,
+    e: "GitHub Mobile is designed for portability, letting you review pull request diffs, reply to discussions, manage issues, triage notifications, and approve/merge pull requests from your mobile phone."
+  },
+
+  // DOMAIN 2: Working with GitHub Repositories (c: 1)
+  {
+    c: 1,
+    q: "Which repository file is recommended for specifying who is automatically requested to review pull requests that affect particular paths?",
+    o: [
+      "LICENSE",
+      "CONTRIBUTING.md",
+      "CODEOWNERS",
+      "README.md"
+    ],
+    a: 2,
+    e: "The `CODEOWNERS` file defines which users or teams own specific files/folders in the repository. When a PR is created that alters those paths, the matching owners are automatically added as reviewers."
+  },
+  {
+    c: 1,
+    q: "What is the primary function of a `CONTRIBUTING.md` file in a public GitHub repository?",
+    o: [
+      "It specifies the software license parameters and legal guidelines.",
+      "It guides potential contributors on how to set up the environment, write tests, and submit patches.",
+      "It locks write permissions on public repositories.",
+      "It lists the financial sponsors of the repository."
+    ],
+    a: 1,
+    e: "A `CONTRIBUTING.md` file outlines the rules, conventions, and guidelines for open-source contributors, explaining how to report bugs, request features, and submit pull requests."
+  },
+  {
+    c: 1,
+    q: "Which repository feature allows you to initialize a brand-new repository with files, branches, and directory structures copied from an existing repository?",
+    o: [
+      "Repository Archives",
+      "Repository Templates",
+      "Forking",
+      "Branch Protection Rules"
+    ],
+    a: 1,
+    e: "Marking a repository as a 'template' allows users to quickly generate a new repository based on its structure and files, without inheriting the commit history of the template repository."
+  },
+  {
+    c: 1,
+    q: "Under which repository tab can you find metrics showing page view counts, visitor numbers, and commit frequencies over time?",
+    o: [
+      "Settings",
+      "Insights",
+      "Projects",
+      "Actions"
+    ],
+    a: 1,
+    e: "The 'Insights' tab displays telemetry on traffic (views/clones), network dependency graphs, commit distributions, and active contributions."
+  },
+  {
+    c: 1,
+    q: "What does 'starring' a repository on GitHub do?",
+    o: [
+      "It prioritizes your pull requests in that repository.",
+      "It bookmarks the repository for easy search later and shows appreciation to the maintainers.",
+      "It locks the branch from further writes.",
+      "It automatically sends emails for every commit on the repository."
+    ],
+    a: 1,
+    e: "Starring a repository is equivalent to bookmarking it. It helps you keep track of interesting projects and acts as a rating/popularity indicator in the GitHub community."
+  },
+  {
+    c: 1,
+    q: "Where in GitHub can a user activate beta features that are still in development before they are rolled out globally?",
+    o: [
+      "Repository Settings",
+      "The Feature Previews dropdown in your profile settings",
+      "GitHub Desktop Settings",
+      "The organization billing tab"
+    ],
+    a: 1,
+    e: "GitHub provides a 'Feature Previews' menu under the personal profile picture menu, allowing users to enable and test pre-release beta features and send feedback."
+  },
+
+  // DOMAIN 3: Collaboration Features (c: 2)
+  {
+    c: 2,
+    q: "How can you link a pull request to an issue so the issue automatically closes when the PR is merged into the default branch?",
+    o: [
+      "Add a label named 'auto-close' to the issue.",
+      "Mention the issue in the PR description or commit using keywords like 'Closes #12' or 'Fixes #12'.",
+      "Link them in the repository's Settings menu under 'Connect Issue'.",
+      "Tag the owner of the issue in a comment on the PR."
+    ],
+    a: 1,
+    e: "By placing keywords like Closes, Fixes, or Resolves followed by the issue number (e.g., 'Fixes #42') in the PR description, GitHub links the two and automatically closes the issue when the PR merges."
+  },
+  {
+    c: 2,
+    q: "Which communication tool on GitHub is best for open-ended community questions, announcements, and polls?",
+    o: [
+      "Issues",
+      "Discussions",
+      "Pull Requests",
+      "Wikis"
+    ],
+    a: 1,
+    e: "Discussions are designed for collaborative, community-facing conversations (like polls, Q&As, and announcements) that don't represent a bug or an actionable unit of work."
+  },
+  {
+    c: 2,
+    q: "In a GitHub Pull Request context, what is the difference between the base branch and the compare branch?",
+    o: [
+      "The base branch is where code is compared, and the compare branch is where developers pull code.",
+      "The base branch is the target branch receiving code changes, while the compare branch is the source branch containing your new commits.",
+      "The base is always local, while the compare is always remote.",
+      "The base is a draft, while the compare is production ready."
+    ],
+    a: 1,
+    e: "When creating a pull request, the base branch is the branch you want to merge your changes into (e.g. `main`), and the compare branch contains the new commits you want to apply."
+  },
+  {
+    c: 2,
+    q: "What is a main benefit of creating a 'Draft' Pull Request?",
+    o: [
+      "It hides your code from all other users in public repositories.",
+      "It prevents CI checks from running to save compute actions.",
+      "It signals that the code is not yet finished, disabling the merge button and preventing review notifications.",
+      "It allows you to bypass branch protection rules."
+    ],
+    a: 2,
+    e: "Draft Pull Requests allow developers to share work-in-progress code. They prevent accidental merging and do not notify code owners until the draft is marked as 'Ready for Review'."
+  },
+  {
+    c: 2,
+    q: "Which pull request tab should you open to examine code changes line-by-line and submit suggestions or comments directly on specific lines?",
+    o: [
+      "Conversation tab",
+      "Commits tab",
+      "Checks tab",
+      "Files Changed tab"
+    ],
+    a: 3,
+    e: "The 'Files Changed' tab displays a diff. Hovering over a line of code reveals a '+' icon, allowing reviewers to comment, create multi-line reviews, or insert code suggestions."
+  },
+  {
+    c: 2,
+    q: "How can you mark a comment as the accepted solution in a GitHub Discussion thread?",
+    o: [
+      "Assign the 'Solved' label to the discussion thread.",
+      "Only possible in Q&A discussion categories, where the author or a maintainer clicks 'Mark as answer'.",
+      "By adding a thumbs-up emoji reaction to the comment.",
+      "By committing a wiki edit pointing to the comment."
+    ],
+    a: 1,
+    e: "In GitHub Discussions, discussions set in the 'Q&A' category support choosing a specific reply as the accepted answer. The author of the discussion or repository maintainers can mark the answer."
+  },
+  {
+    c: 2,
+    q: "What is the visibility behaviour of GitHub Wiki pages?",
+    o: [
+      "They are always public to promote open source.",
+      "They inherit their visibility from the parent repository (public repos have public wikis, private repos have private wikis).",
+      "You must manually pay for private wikis in private repositories.",
+      "Only the owner can view wikis, regardless of repo status."
+    ],
+    a: 1,
+    e: "A repository wiki's visibility is tied to the parent repository. If the repository is public, the wiki is public. If the repository is private, the wiki is private to the collaborators."
+  },
+  {
+    c: 2,
+    q: "How does a 'secret' Gist differ from a 'public' Gist?",
+    o: [
+      "Secret Gists are encrypted with a password, while public Gists are plain text.",
+      "Secret Gists are only visible to the creator, while public Gists are visible to anyone.",
+      "Secret Gists do not show up in searches or discoverability listings, but anyone with the link can view them.",
+      "Secret Gists require a GitHub Enterprise subscription."
+    ],
+    a: 2,
+    e: "Secret Gists are not indexed in public search results, making them helpful for storing snippets. However, they are not completely private: anyone with the URL can view them."
+  },
+
+  // DOMAIN 4: Modern Development (c: 3)
+  {
+    c: 3,
+    q: "Where in a repository must you place a YAML file to define a GitHub Actions workflow?",
+    o: [
+      "At the repository root directory.",
+      "In the `.github/workflows/` directory.",
+      "In the `.github/actions/` directory.",
+      "In the `scripts/actions/` directory."
+    ],
+    a: 1,
+    e: "To register a workflow, the YAML configuration file must be stored in the `.github/workflows/` directory of the repository on the target branch."
+  },
+  {
+    c: 3,
+    q: "What is the primary function of GitHub Copilot?",
+    o: [
+      "To automatically run tests and verify build integrity on GitHub.",
+      "To serve as an AI pair programmer suggesting lines of code, functions, and documentation as you type inside your IDE.",
+      "To scan repositories for vulnerable NPM dependencies.",
+      "To deploy Docker containers to Azure or AWS."
+    ],
+    a: 1,
+    e: "GitHub Copilot is an AI assistant that integrates into local IDEs (like VS Code, JetBrains, or Visual Studio) to provide real-time autocomplete code, function definitions, and unit test suggestions."
+  },
+  {
+    c: 3,
+    q: "How does GitHub Copilot for Business differ from GitHub Copilot for Individuals?",
+    o: [
+      "Copilot for Business is free, while Individuals is paid.",
+      "Copilot for Business includes organization-level license management, policy configuration, corporate billing, and privacy protections.",
+      "Copilot for Business runs entirely on on-premise local servers.",
+      "Copilot for Business only supports COBOL and Java."
+    ],
+    a: 1,
+    e: "GitHub Copilot for Business adds corporate governance, such as centralized seat provisioning, billing administration, and policy options to block code suggestions that match public code."
+  },
+  {
+    c: 3,
+    q: "What is a GitHub Codespace?",
+    o: [
+      "A storage block in the GitHub cloud.",
+      "A secure, remote containerized virtual machine pre-configured with development dependencies.",
+      "A folder in the user profile highlighting open-source repositories.",
+      "A peer-to-peer programming stream."
+    ],
+    a: 1,
+    e: "GitHub Codespaces is a cloud-based development environment running in a container. It allows you to write, build, test, and debug code without installing complex tools locally."
+  },
+  {
+    c: 3,
+    q: "Which file is used to configure dev containers for customizing your GitHub Codespace environment?",
+    o: [
+      "`.github/workflows/main.yml`",
+      "`.devcontainer/devcontainer.json`",
+      "`.codespace/setup.sh`",
+      "`Dockerfile` in the root folder"
+    ],
+    a: 1,
+    e: "The `.devcontainer/devcontainer.json` file configures the codespace environment by specifying the container image, runtimes, preloaded IDE extensions, and settings configuration."
+  },
+  {
+    c: 3,
+    q: "What is the primary difference between the github.dev web editor and a GitHub Codespace?",
+    o: [
+      "github.dev requires a paid license, whereas Codespaces is free.",
+      "github.dev is a lightweight file editor running entirely in your browser with no compute backend (no terminal or tests); Codespaces is a full cloud VM with compute resources.",
+      "github.dev allows committing changes, while Codespaces is read-only.",
+      "github.dev only supports editing Markdown documents."
+    ],
+    a: 1,
+    e: "Pressing `.` on a repository opens `github.dev`, a static in-browser editor (no computer runner, no terminal). A Codespace spun up from a repository spins up a virtual machine with a terminal, allowing you to run compilers and tests."
+  },
+  {
+    c: 3,
+    q: "Which of the following describes the correct lifecycle sequence of a GitHub Codespace?",
+    o: [
+      "Active -> Stopped -> Idle (automatically after inactivity) -> Deleted (manually or after retention timeout)",
+      "Active -> Idle (automatically after inactivity) -> Stopped -> Deleted (manually or after retention timeout)",
+      "Active -> Deleted -> Stopped -> Idle",
+      "Codespaces are permanent and can never be stopped or deleted."
+    ],
+    a: 1,
+    e: "A Codespace is Active during use. It transitions to Idle after inactivity, then enters the Stopped state to conserve resources. Finally, it can be Deleted manually or automatically after its retention period."
+  },
+
+  // DOMAIN 5: Project Management (c: 4)
+  {
+    c: 4,
+    q: "What are the three main layout views available in the new GitHub Projects?",
+    o: [
+      "Table, Board, and Roadmap",
+      "List, Calendar, and Chart",
+      "Grid, Timeline, and Tree",
+      "Gantt, Sprint, and Backlog"
+    ],
+    a: 0,
+    e: "GitHub Projects provides Board (Kanban cards), Table (spreadsheet columns/rows), and Roadmap (timeline with gantt-style bars) views for flexible project management."
+  },
+  {
+    c: 4,
+    q: "What is the primary difference between 'Projects' and 'Projects (Classic)'?",
+    o: [
+      "Projects (Classic) is built on YAML files, while Projects is built on JSON.",
+      "Projects is the new, database-backed, highly customizable tool with custom fields, workflows, and multiple layout views; Projects Classic was column/card-only.",
+      "Projects is only for public repositories, while Projects Classic is only for private repositories.",
+      "Projects is a paid feature, while Projects Classic is free."
+    ],
+    a: 1,
+    e: "The modern GitHub Projects is built on a separate customizable metadata schema supporting spreadsheets, custom fields, filters, and roadmaps, replacing the static columns of Projects (Classic)."
+  },
+  {
+    c: 4,
+    q: "What is a 'Saved Reply' on GitHub?",
+    o: [
+      "An automated bot response that replies when you are out of office.",
+      "A reusable message template defined in your personal settings to quickly insert into comment areas.",
+      "A commit message saved for future use.",
+      "An archiving utility for old emails."
+    ],
+    a: 1,
+    e: "Saved Replies are custom comment templates you save in your user settings, allowing you to quickly insert them into PR comments or issues to save typing time."
+  },
+  {
+    c: 4,
+    q: "How does a Milestone differ from a Project board on GitHub?",
+    o: [
+      "Milestones cost money, while project boards are free.",
+      "Milestones group issues/PRs under a specific target date or release version, showing a completion percentage progress bar.",
+      "Milestones restrict code commits to specific branches.",
+      "Milestones are only editable by the owner of the organization."
+    ],
+    a: 1,
+    e: "A Milestone is a simple target date or release marker. It aggregates issues and pull requests, tracking completion progress as items are closed."
+  },
+  {
+    c: 4,
+    q: "Which project management feature lets you display charts, burn-up rates, and field breakdowns within a Project?",
+    o: [
+      "Repository Insights",
+      "Project Insights",
+      "Actions Logs",
+      "Security Dashboard"
+    ],
+    a: 1,
+    e: "The 'Insights' tab inside the new GitHub Projects allows creators to build custom charts, cumulative flow diagrams, and historical views to track team progress."
+  },
+  {
+    c: 4,
+    q: "What is the primary advantage of using an Issue Form (YAML) over a standard Markdown Issue Template?",
+    o: [
+      "Issue Forms cost less than standard Markdown templates.",
+      "Issue Forms provide structured fields (text boxes, drop-downs, checklists) and can enforce validation or required fields before submission.",
+      "Issue Forms run automation scripts on the submitter's workstation.",
+      "Issue Forms are encrypted on the server."
+    ],
+    a: 1,
+    e: "Issue Forms (configured via YAML files) construct structured web forms with drop-downs and input validation. This ensures contributors provide correct, structured information compared to freeform Markdown templates."
+  },
+
+  // DOMAIN 6: Privacy, Security, and Administration (c: 5)
+  {
+    c: 5,
+    q: "What is an EMU (Enterprise Managed User) on GitHub?",
+    o: [
+      "An account that automatically deletes inactive repositories.",
+      "A user account managed entirely by an external Identity Provider (IdP) via SAML/SCIM, restricting the user from modifying profile details.",
+      "A contractor account with read-only permissions.",
+      "An automated bot account that scans code for secrets."
+    ],
+    a: 1,
+    e: "Enterprise Managed Users (EMUs) are accounts fully provisioned and managed by an enterprise identity provider (IdP). This prevents users from altering profile pictures or usernames, securing corporate identity."
+  },
+  {
+    c: 5,
+    q: "Which repository permission level is required to change repository settings, add collaborators, or delete the repository?",
+    o: [
+      "Read",
+      "Write",
+      "Maintain",
+      "Admin"
+    ],
+    a: 3,
+    e: "The 'Admin' permission level grants complete administrative control over a repository, including settings modifications, visibility changes, collaborator management, and repository deletion."
+  },
+  {
+    c: 5,
+    q: "What are the three visibility settings available for repositories under a GitHub Enterprise account?",
+    o: [
+      "Local, Cloud, and Hybrid",
+      "Public, Private, and Internal",
+      "Open, Restricted, and Secure",
+      "Personal, Shared, and Global"
+    ],
+    a: 1,
+    e: "Repositories on GitHub Enterprise can be Public (visible to everyone), Private (visible only to explicit collaborators), or Internal (visible to all logged-in members of the enterprise)."
+  },
+  {
+    c: 5,
+    q: "Where should you go to configure branch restrictions, such as requiring code reviews or status checks before code is merged into the main branch?",
+    o: [
+      "The CODEOWNERS file only",
+      "Repository Settings under Branch Protection Rules",
+      "The security tab under Secret Scanning",
+      "The repository Insights traffic graph"
+    ],
+    a: 1,
+    e: "Branch Protection Rules in repository settings allow admins to configure rules such as requiring reviews, status checks, signed commits, or restricting merge privileges on specific branches."
+  },
+  {
+    c: 5,
+    q: "Which Security tab feature scans dependencies in your package files and automatically submits pull requests to resolve vulnerable versions?",
+    o: [
+      "CodeQL scanning",
+      "Dependabot",
+      "Secret Scanning",
+      "Security Advisories"
+    ],
+    a: 1,
+    e: "Dependabot monitors dependencies in package files, alerts developers to security vulnerabilities, and automatically opens pull requests to update outdated, vulnerable libraries."
+  },
+  {
+    c: 5,
+    q: "What is the primary objective of the GitHub Secret Scanning feature?",
+    o: [
+      "To encrypt private repositories from unauthorized reads.",
+      "To identify credentials, tokens, or private keys committed to repositories and alert admins or block the push.",
+      "To password-protect sensitive files inside a repository.",
+      "To store credentials for GitHub Actions."
+    ],
+    a: 1,
+    e: "Secret Scanning scans repository files and commit history for exposed passwords, keys, or API tokens, helping prevent breaches caused by accidentally committed credentials."
+  },
+  {
+    c: 5,
+    q: "Which permission level is best suited for external contractors who need to push code, open PRs, and triage issues, but should not manage repository settings?",
+    o: [
+      "Read",
+      "Triage",
+      "Write",
+      "Admin"
+    ],
+    a: 2,
+    e: "The 'Write' permission level allows developers to push changes, pull code, create branches, and manage issues/PRs, but restricts them from modifying repository administrative settings."
+  },
+
+  // DOMAIN 7: Benefits of the GitHub Community (c: 6)
+  {
+    c: 6,
+    q: "What is GitHub Sponsors?",
+    o: [
+      "A corporate advertising program on GitHub's home page.",
+      "A tool that enables individuals and organizations to financially support developers who maintain open-source projects they rely on.",
+      "A grant from GitHub for university student research.",
+      "A paid tier of GitHub Actions runners."
+    ],
+    a: 1,
+    e: "GitHub Sponsors allows the community to financially support open-source maintainers directly through their GitHub accounts, helping sustain open-source development."
+  },
+  {
+    c: 6,
+    q: "What does the term 'InnerSource' refer to?",
+    o: [
+      "A search engine developed by GitHub for indexing private code.",
+      "The practice of applying open-source collaboration methodologies and workflows internally within a single enterprise or corporation.",
+      "Using local physical servers rather than cloud hosting.",
+      "A proprietary code obfuscator."
+    ],
+    a: 1,
+    e: "InnerSource is the adoption of open-source best practices (like forks, issues, PR reviews, and open documentation) internally within a company to increase reuse and remove development silos."
+  },
+  {
+    c: 6,
+    q: "What does 'forking' a repository do?",
+    o: [
+      "It completely deletes the repository from the main project group.",
+      "It creates a copy of the repository under your personal GitHub account, allowing you to freely modify the code and propose changes back via pull requests.",
+      "It divides the commits into two separate branches inside the same repository.",
+      "It transfers ownership of the repository to GitHub."
+    ],
+    a: 1,
+    e: "Forking copies the repository onto your own account. You can then make modifications independently and, if desired, propose changes back to the upstream repository using a pull request."
+  },
+  {
+    c: 6,
+    q: "What is the GitHub Marketplace?",
+    o: [
+      "A store for buying physical GitHub brand merchandise.",
+      "A central portal where developers can discover, install, or purchase developer tools, integrations, and GitHub Actions to expand their workflows.",
+      "A dashboard for hiring developers.",
+      "A list of available enterprise servers."
+    ],
+    a: 1,
+    e: "GitHub Marketplace is a platform where third-party developers share extensions, apps, and custom GitHub Actions that users can integrate to automate and customize their developer pipeline."
+  },
+  {
+    c: 6,
+    q: "Which files are most important to include to ensure an open-source repository is discoverable and contributor-friendly?",
+    o: [
+      "README.md, LICENSE, and CONTRIBUTING.md",
+      "`.gitignore` and `.env`",
+      "`package.json` and `.nvmrc`",
+      "`.github/workflows/main.yml`"
+    ],
+    a: 0,
+    e: "A README.md welcomes users, a LICENSE defines how they can legal-wise use the code, and a CONTRIBUTING.md outlines instructions on how to contribute, forming the triad of a welcoming open-source project."
+  },
+  {
+    c: 6,
+    q: "What is a major benefit of following other users or organizations on GitHub?",
+    o: [
+      "You gain write permissions to their public repositories automatically.",
+      "You receive notifications of their public activity, releases, and projects, which helps you discover new tools and stay updated on community trends.",
+      "You get a discount on your GitHub Pro subscription.",
+      "You bypass their repository branch protection rules."
+    ],
+    a: 1,
+    e: "Following users or organizations highlights their actions (like staring, creating repositories, or releasing packages) in your dashboard feed, keeping you connected to active projects."
+  },
+  {
+    c: 6,
+    q: "How does GitHub help advance open-source software projects?",
+    o: [
+      "By charging licensing fees to all developers.",
+      "By offering free public hosting, collaboration workflows, security analysis tools, and sponsorship capabilities to open-source developers.",
+      "By forcing all public code to use the MIT license.",
+      "By reviewing and compiling every line of public code manually."
+    ],
+    a: 1,
+    e: "GitHub supports the open-source ecosystem by providing free repository hosting, community management tools (issues, PRs, discussions), automated build pipelines, and sponsorship tools."
+  },
+
+  // --- ADDITIONAL 50 QUESTIONS ---
+
+  // DOMAIN 1: Introduction to Git and GitHub (c: 0)
+  {
+    c: 0,
+    q: "When using Git, which area represents the directory of files you are currently editing on your computer before staging them?",
+    o: [
+      "Staging Area (Index)",
+      "Working Directory",
+      "Commit History",
+      "Remote Repository"
+    ],
+    a: 1,
+    e: "The Working Directory is the local directory on your filesystem where you make active edits to files. Files must be staged (moved to the index) before they can be committed."
+  },
+  {
+    c: 0,
+    q: "What does a 'commit' represent in Git?",
+    o: [
+      "A command that downloads files from a remote server.",
+      "A snapshot of your project's files at a specific point in time, saved to the Git history.",
+      "A conflict between two branches.",
+      "A temporary stash that is discarded when you log out."
+    ],
+    a: 1,
+    e: "A commit is a saved snapshot of staged changes in the Git repository's history, marked with a unique SHA-1 hash, author, and timestamp."
+  },
+  {
+    c: 0,
+    q: "What is the purpose of 'branching' in Git?",
+    o: [
+      "To split a file into multiple sub-files.",
+      "To work on different features or bug fixes in isolation from the main codebase.",
+      "To connect a repository to another cloud hosting provider.",
+      "To download files to your local drive."
+    ],
+    a: 1,
+    e: "Branching allows developers to diverge from the main line of development and work independently in isolation, preventing unstable work-in-progress code from affecting production."
+  },
+  {
+    c: 0,
+    q: "According to the GitHub Flow, what is the first step you should take when you want to start working on a new feature or fix?",
+    o: [
+      "Push changes directly to the main branch.",
+      "Create a new branch from the default branch.",
+      "Open a Pull Request.",
+      "Merge the default branch into your working directory."
+    ],
+    a: 1,
+    e: "The GitHub Flow begins by creating a descriptively named branch off the default branch (such as main) so that your changes are developed in isolation."
+  },
+  {
+    c: 0,
+    q: "Which of the following features is part of a user's profile metadata on GitHub?",
+    o: [
+      "The user's private billing history.",
+      "Pinned repositories, achievements, stars, and the profile README.",
+      "The user's local directory path.",
+      "The user's terminal shell configuration."
+    ],
+    a: 1,
+    e: "A GitHub user profile publicly showcases pinned repositories, achievements/badges, repositories, starred projects, contributions graph, and an optional profile README."
+  },
+  {
+    c: 0,
+    q: "What is the main structural difference between a Personal account and an Organization account on GitHub?",
+    o: [
+      "Personal accounts can only host private repositories.",
+      "Organization accounts are owned and managed by a single individual who cannot share administrative rights.",
+      "Organization accounts support shared billing, team-based access permissions, and multiple owners.",
+      "Personal accounts do not support Git commands."
+    ],
+    a: 2,
+    e: "Personal accounts are owned by one individual. Organization accounts are shared spaces where organizations can manage multiple members, divide them into teams, configure group permissions, and handle billing centrally."
+  },
+  {
+    c: 0,
+    q: "Which Markdown syntax is used to embed a clickable hyperlink in a comment?",
+    o: [
+      "(Click Here)[https://github.com]",
+      "[Click Here](https://github.com)",
+      "{Click Here}{https://github.com}",
+      "href=\"https://github.com\" Click Here"
+    ],
+    a: 1,
+    e: "Standard markdown links use brackets for the display text followed by parentheses for the URL: [display text](url)."
+  },
+
+  // DOMAIN 2: Working with GitHub Repositories (c: 1)
+  {
+    c: 1,
+    q: "If a developer wants to find which open-source license is appropriate for their project, where on GitHub can they find guidance?",
+    o: [
+      "In the Security tab of their repository.",
+      "On choosealicense.com (a site created and maintained by GitHub).",
+      "In the repository Insights traffic report.",
+      "On the GitHub status page."
+    ],
+    a: 1,
+    e: "choosealicense.com is a site created by GitHub to help developers understand different licenses (e.g., MIT, Apache 2.0, GPLv3) and choose the best one."
+  },
+  {
+    c: 1,
+    q: "When creating a new repository on GitHub, what option can you select to avoid committing local configuration files or node modules?",
+    o: [
+      "Add a license template.",
+      "Add a .gitignore file template.",
+      "Create a branch protection rule.",
+      "Add a CODEOWNERS file."
+    ],
+    a: 1,
+    e: "A .gitignore file lists patterns of files and folders (like build directories, cache, or credentials) that Git should ignore and not track."
+  },
+  {
+    c: 1,
+    q: "Which Git command is used to record staged changes in the local repository's version history?",
+    o: [
+      "git add",
+      "git commit",
+      "git push",
+      "git merge"
+    ],
+    a: 1,
+    e: "git commit saves the changes currently staged in the index to the local Git repository history."
+  },
+  {
+    c: 1,
+    q: "Which of the following file formats is standard for a README file to render rich text elements on GitHub?",
+    o: [
+      ".txt",
+      ".md (Markdown)",
+      ".html",
+      ".json"
+    ],
+    a: 1,
+    e: "README files are typically written in Markdown (.md or .markdown) and are automatically rendered by GitHub on the repository's home page."
+  },
+  {
+    c: 1,
+    q: "How can you add existing local files to a GitHub repository from the command line after running git init?",
+    o: [
+      "Run git clone followed by git commit.",
+      "Use git add <file> to stage, git commit to save, and git push to upload to the remote.",
+      "Drag and drop them onto your local command line window.",
+      "Run git fork."
+    ],
+    a: 1,
+    e: "The standard Git workflow is: stage files with git add, commit them to history with git commit, and upload them to the remote with git push."
+  },
+  {
+    c: 1,
+    q: "What is the default branch name created automatically when initializing a new repository on GitHub?",
+    o: [
+      "master",
+      "main",
+      "trunk",
+      "develop"
+    ],
+    a: 1,
+    e: "GitHub uses main as the default branch name for all new repositories."
+  },
+
+  // DOMAIN 3: Collaboration Features (c: 2)
+  {
+    c: 2,
+    q: "If you want to create a branch directly from a GitHub Issue in the web interface, what does GitHub automatically do?",
+    o: [
+      "It closes the issue immediately.",
+      "It creates a branch, links it to the issue, and can draft a matching pull request.",
+      "It deletes the issue comments.",
+      "It forks the repository to your personal profile."
+    ],
+    a: 1,
+    e: "Clicking 'Create a branch for this issue' under the development section of an issue creates a branch pre-linked to the issue, streamlining development work."
+  },
+  {
+    c: 2,
+    q: "Which type of GitHub template allows you to define a structured form (with drop-downs and input fields) that users fill out when submitting bugs or requests?",
+    o: [
+      "Markdown Issue Template",
+      "YAML-based Issue Form",
+      "Pull Request Template",
+      "README Template"
+    ],
+    a: 1,
+    e: "YAML-based Issue Forms enable structured fields, check boxes, drop-downs, and input validation, helping maintainers receive consistent report formats."
+  },
+  {
+    c: 2,
+    q: "In a pull request, what is shown in the 'Checks' tab?",
+    o: [
+      "The list of project milestones.",
+      "The status of running integrations, CI/CD workflows, or third-party test runners (like GitHub Actions).",
+      "The profile details of the code owners.",
+      "The billing history for actions compute minutes."
+    ],
+    a: 1,
+    e: "The Checks tab displays the status of automated tests, linters, and CI/CD pipelines configured to run on commits in the pull request."
+  },
+  {
+    c: 2,
+    q: "What are the four main tabs visible at the top of a Pull Request page?",
+    o: [
+      "Conversation, Commits, Checks, Files Changed",
+      "Settings, Security, Actions, Wiki",
+      "Readme, License, Codeowners, Gitignore",
+      "Issues, Discussions, Projects, Wiki"
+    ],
+    a: 0,
+    e: "The four PR tabs are: Conversation (discussion/review thread), Commits (list of commits), Checks (CI status), and Files Changed (diff view for review)."
+  },
+  {
+    c: 2,
+    q: "When commenting on a Pull Request, what does selecting 'Request changes' prevent?",
+    o: [
+      "The developer from pushing new commits to the branch.",
+      "The pull request from being merged (if branch protections enforce required approvals).",
+      "Other users from commenting on the PR.",
+      "The CI pipeline from starting."
+    ],
+    a: 1,
+    e: "Submitting a review with 'Request changes' blocks the pull request from being merged when branch protection rules requiring approved reviews are active. The blocks remain until the changes are resolved or dismissed."
+  },
+  {
+    c: 2,
+    q: "What is the purpose of Gists on GitHub?",
+    o: [
+      "To host full-scale cloud web applications.",
+      "To quickly share single code snippets, configuration files, or notes without creating a full repository.",
+      "To serve as a container registry.",
+      "To manage project milestone diagrams."
+    ],
+    a: 1,
+    e: "Gists are lightweight Git repositories designed for sharing single snippets of code or notes."
+  },
+  {
+    c: 2,
+    q: "How can you configure notifications to only alert you when you are specifically mentioned or when someone assigns a task to you?",
+    o: [
+      "Unsubscribe from the repository.",
+      "Set your notification preference to 'Participating' (or 'Mentions') rather than 'Watching'.",
+      "Set the repository visibility to Private.",
+      "Delete your profile README."
+    ],
+    a: 1,
+    e: "Setting notification preferences to 'Only mentions' or 'Participating' filters out general repository updates, notifying you only when you are at-mentioned (@username), assigned, or participating in a thread."
+  },
+
+  // DOMAIN 4: Modern Development (c: 3)
+  {
+    c: 3,
+    q: "What are the three core components that compose a GitHub Actions workflow?",
+    o: [
+      "Triggers, Files, and Folders",
+      "Events (Triggers), Jobs (Runs-on), and Steps (Actions)",
+      "Servers, Clients, and Repositories",
+      "Pulls, Commits, and Merges"
+    ],
+    a: 1,
+    e: "A workflow is triggered by an event (e.g., push, pull_request), runs one or more jobs on a runner machine, and executes sequential steps (running scripts or pre-made Actions)."
+  },
+  {
+    c: 3,
+    q: "Where can you find and install pre-built GitHub Actions created by the community and verified partners?",
+    o: [
+      "In the repository Insights page.",
+      "On the GitHub Marketplace.",
+      "In the local Git configuration.",
+      "In the branch protection rules."
+    ],
+    a: 1,
+    e: "The GitHub Marketplace contains thousands of pre-made Actions that developers can reference in their workflow YAML files to automate builds, tests, and deployments."
+  },
+  {
+    c: 3,
+    q: "If you want to automatically set up editor configurations (like tab sizes or default plugins) for all developers opening a Codespace in your repository, where should you place this configuration?",
+    o: [
+      "In the package.json file.",
+      "In the settings section of the .devcontainer/devcontainer.json file.",
+      "In the repository README.md.",
+      "In the server database."
+    ],
+    a: 1,
+    e: "The .devcontainer/devcontainer.json file can include a customizations.vscode.settings or extensions property to automatically configure settings and pre-install plugins for users."
+  },
+  {
+    c: 3,
+    q: "What happens to your files in a Codespace when it changes status from Active to Stopped?",
+    o: [
+      "All files and uncommitted changes are immediately deleted.",
+      "Your changes are preserved in the container disk, ready for when you restart the Codespace.",
+      "The files are pushed automatically to the main branch.",
+      "The Codespace is converted to a Gist."
+    ],
+    a: 1,
+    e: "Stopping a Codespace shuts down the compute engine to save resources, but all files, installed dependencies, and modifications on the virtual disk are saved."
+  },
+  {
+    c: 3,
+    q: "How can you share a deep link to allow a colleague to quickly launch a Codespace with a specific configuration?",
+    o: [
+      "By sending them a link to the repository Settings tab.",
+      "By sharing a URL structured with https://github.com/codespaces/new?repo=OWNER/REPO.",
+      "By exporting the database rows of progress.db.",
+      "Codespaces cannot be shared via links."
+    ],
+    a: 1,
+    e: "Sharing a link starting with https://github.com/codespaces/new?repo= allows other authorized users to quickly spin up a Codespace directly from that repository."
+  },
+  {
+    c: 3,
+    q: "What is the default compute limit for idle Codespaces (when they auto-suspend)?",
+    o: [
+      "Codespaces never stop automatically.",
+      "Codespaces automatically stop after 30 minutes of inactivity by default (configurable in settings).",
+      "Codespaces stop after 24 hours.",
+      "Codespaces stop immediately when you close the tab."
+    ],
+    a: 1,
+    e: "To prevent unnecessary billing, Codespaces automatically transition to the 'Stopped' state after a period of inactivity (typically 30 minutes by default)."
+  },
+  {
+    c: 3,
+    q: "What is the correct way to add dotfiles to customize your personal shell environment across all Codespaces you create?",
+    o: [
+      "Add them to every repository you work on.",
+      "Create a public repository named dotfiles on your personal GitHub account; Codespaces will automatically clone and install it.",
+      "Upload them to the GitHub Marketplace.",
+      "Email them to GitHub support."
+    ],
+    a: 1,
+    e: "GitHub Codespaces has a feature that automatically detects and uses a public repository named dotfiles on your account to customize shell scripts, alias settings, and configuration files on launch."
+  },
+
+  // DOMAIN 5: Project Management (c: 4)
+  {
+    c: 4,
+    q: "In the new GitHub Projects, what layout is best for tracking tasks across timelines and displaying project schedules?",
+    o: [
+      "Board view",
+      "Table view",
+      "Roadmap view",
+      "Pie Chart view"
+    ],
+    a: 2,
+    e: "The Roadmap layout allows teams to plan work across a timeline, visualising start/target dates and dependencies."
+  },
+  {
+    c: 4,
+    q: "How can you assign multiple team members to a single Issue or Pull Request?",
+    o: [
+      "Issues can only have one assignee; you must create separate issues.",
+      "Click the 'Assignees' section in the sidebar and select up to 10 users.",
+      "Type their names in the repository license.",
+      "Mention them in the .gitignore file."
+    ],
+    a: 1,
+    e: "GitHub allows you to select and assign multiple users (up to 10 assignees) to an issue or pull request to indicate shared responsibility."
+  },
+  {
+    c: 4,
+    q: "What is the maximum number of items you can pin to a repository's Issues tab for quick access by the community?",
+    o: [
+      "1",
+      "3",
+      "5",
+      "Untitled limit"
+    ],
+    a: 1,
+    e: "GitHub allows maintainers to pin up to 3 important issues to the top of the issues list, making them immediately visible to contributors."
+  },
+  {
+    c: 4,
+    q: "What is the benefit of using 'Saved Replies' in GitHub?",
+    o: [
+      "They automatically compile your code when you reply.",
+      "They allow inserting pre-written response templates into comments, helping maintainers respond to issues and PRs quickly.",
+      "They store credit card information for organization billing.",
+      "They enable private offline messaging."
+    ],
+    a: 1,
+    e: "Saved replies prevent typing repetitive responses (e.g. thanking contributors, asking for log files), letting maintainers use keyboard shortcuts to select a template."
+  },
+  {
+    c: 4,
+    q: "How do project workflows inside the new GitHub Projects help teams?",
+    o: [
+      "They automatically write code fixes.",
+      "They automate item status transitions, such as moving an item to 'Todo' when added, or 'Done' when an issue is closed.",
+      "They run unit tests in the cloud.",
+      "They upload deliverables to the App Store."
+    ],
+    a: 1,
+    e: "Project workflows allow setting up simple automation rules within a project (e.g., auto-adding items, updating status to 'In Progress' when a PR is linked, or 'Done' when merged)."
+  },
+  {
+    c: 4,
+    q: "What is the main purpose of 'labels' in GitHub Issues and Pull Requests?",
+    o: [
+      "To restrict user access permissions.",
+      "To categorize, filter, and organize issues and pull requests by topic, difficulty, or status.",
+      "To change the repository visual theme.",
+      "To trigger releases to the production server."
+    ],
+    a: 1,
+    e: "Labels (like bug, enhancement, good first issue) are color-coded tags that categorize items, making search and filtering easy."
+  },
+  {
+    c: 4,
+    q: "Which of the following is true about Projects (Classic)?",
+    o: [
+      "It is actively receiving new feature updates.",
+      "It is a legacy board-only project layout that has been succeeded by the new metadata-driven Projects.",
+      "It only runs on local desktop environments.",
+      "It requires a command line client."
+    ],
+    a: 1,
+    e: "Projects (Classic) is the legacy Kanban board tool. It has been replaced by the new database-driven GitHub Projects."
+  },
+
+  // DOMAIN 6: Privacy, Security, and Administration (c: 5)
+  {
+    c: 5,
+    q: "Which multi-factor authentication (MFA) methods are supported by GitHub to secure your account?",
+    o: [
+      "Security keys (WebAuthn), TOTP authenticator apps, and SMS.",
+      "Direct credit card verification only.",
+      "Local file decryption keys.",
+      "Email verification links only."
+    ],
+    a: 0,
+    e: "GitHub supports strong two-factor authentication (2FA) including hardware keys/passkeys (WebAuthn), Authenticator apps (TOTP), and SMS as a backup."
+  },
+  {
+    c: 5,
+    q: "What does the repository permission level 'Triage' allow a collaborator to do?",
+    o: [
+      "Edit settings and delete the repository.",
+      "Manage issues and pull requests (apply labels, assignees, close, reopen) without write access to push code.",
+      "Push commits directly to protected branches.",
+      "Configure GitHub Actions secrets."
+    ],
+    a: 1,
+    e: "The 'Triage' role is designed for project coordinators. It allows editing labels, milestones, and issues/PR details, but does not allow pushing code."
+  },
+  {
+    c: 5,
+    q: "What type of repository visibility allows only members of the organization or enterprise to see and access the repository?",
+    o: [
+      "Public",
+      "Private",
+      "Internal",
+      "Sealed"
+    ],
+    a: 2,
+    e: "'Internal' visibility is an enterprise-specific setting where repositories are hidden from the public but visible to all authenticated members of the enterprise."
+  },
+  {
+    c: 5,
+    q: "What is a required reviewer setting in branch protection rules?",
+    o: [
+      "A list of external security auditors who must review the repo.",
+      "A rule specifying that a pull request must receive a set number of approvals from authorized reviewers before it can be merged.",
+      "A constraint that stops developers from editing the README.",
+      "A script that checks code syntax."
+    ],
+    a: 1,
+    e: "Requiring reviews in branch protection rules ensures that changes are reviewed by peers or code owners before merging, preventing unreviewed changes from going to production."
+  },
+  {
+    c: 5,
+    q: "What is the function of Dependabot Alerts?",
+    o: [
+      "To alert you when a team member commits code.",
+      "To notify you when a dependency in your repository has a known CVE vulnerability.",
+      "To warn you about server outages on GitHub.",
+      "To block pull requests that have syntax errors."
+    ],
+    a: 1,
+    e: "Dependabot scans your dependency manifest files and alerts repository owners if it detects package versions with known security vulnerabilities."
+  },
+  {
+    c: 5,
+    q: "How can you prevent collaborators from pushing secrets or API keys to your repository in the first place?",
+    o: [
+      "Turn on 'Push Protection' under Secret Scanning settings.",
+      "Delete the git command line tools.",
+      "Keep the repository public.",
+      "Add a license file."
+    ],
+    a: 0,
+    e: "If Push Protection is enabled, GitHub scans pushed commits in real-time. If it detects a known token pattern, it blocks the push and requests the developer to remove the secret."
+  },
+  {
+    c: 5,
+    q: "Which repository tab contains security-focused features like Dependabot, Code scanning, and Secret scanning?",
+    o: [
+      "Insights",
+      "Security",
+      "Actions",
+      "Settings"
+    ],
+    a: 1,
+    e: "The 'Security' tab contains configuration panels and report dashboards for code scanning, Dependabot alerts, secret scanning, and security advisories."
+  },
+
+  // DOMAIN 7: Benefits of the GitHub Community (c: 6)
+  {
+    c: 6,
+    q: "What does the term 'open source' mean?",
+    o: [
+      "Code that is free of charge but cannot be modified.",
+      "Code whose source is publicly available for anyone to inspect, modify, and distribute under a licensing agreement.",
+      "Code that runs only inside web browsers.",
+      "Software built exclusively by GitHub employees."
+    ],
+    a: 1,
+    e: "Open source software is code designed to be publicly accessible—anyone can view, modify, distribute, and contribute to it under open-source license terms."
+  },
+  {
+    c: 6,
+    q: "What are the components of a 'discoverable' repository on GitHub?",
+    o: [
+      "Private visibility and branch protections.",
+      "A clear description, relevant topics/tags, a README, and public visibility.",
+      "A billing contact and a paid subscription.",
+      "A .devcontainer configuration."
+    ],
+    a: 1,
+    e: "High discoverability relies on public visibility, descriptive summaries, repository topics (tags), a complete README, and an open-source license."
+  },
+  {
+    c: 6,
+    q: "What is the GitHub Community Forum?",
+    o: [
+      "A local command-line chat application.",
+      "A public space for GitHub users to discuss technical issues, share tips, learn new concepts, and give feedback to GitHub.",
+      "A dashboard for tracking milestones.",
+      "A repository templates index."
+    ],
+    a: 1,
+    e: "The GitHub Community Forum is a global forum where developers and GitHub employees discuss workflows and features."
+  },
+  {
+    c: 6,
+    q: "How does a Pull Request Template benefit an open-source project?",
+    o: [
+      "It speeds up the Git push command.",
+      "It provides a pre-populated checklist/description form that contributors see when opening a PR, ensuring they provide testing steps and context.",
+      "It automatically approves reviews.",
+      "It encrypts the changes on compile."
+    ],
+    a: 1,
+    e: "Pull Request Templates (saved in .github/pull_request_template.md) prompt authors to answer questions about their changes, list issues fixed, and outline tests performed, improving review quality."
+  },
+  {
+    c: 6,
+    q: "What does it mean to 'follow' a user on GitHub?",
+    o: [
+      "You get read/write permissions on all their personal repositories.",
+      "You see their public activity (e.g. repositories they star, follow, or create) in your personal dashboard feed.",
+      "You can inspect their private git commits.",
+      "You pay for their GitHub account subscriptions."
+    ],
+    a: 1,
+    e: "Following a user updates your personal home feed with their activity, making it easier to discover projects they are building or contributing to."
+  },
+  {
+    c: 6,
+    q: "What does it mean to 'follow' an organization on GitHub?",
+    o: [
+      "You become an administrator of the organization.",
+      "You receive updates about the organization's public repositories, active discussions, and releases on your dashboard.",
+      "You get a billing discount on team seats.",
+      "Your personal profile is managed by the organization."
+    ],
+    a: 1,
+    e: "Following an organization keeps you updated on their public announcements, repository creation, and releases."
+  },
+  {
+    c: 6,
+    q: "What is the purpose of the GitHub Sponsors program?",
+    o: [
+      "To pay developers for corporate marketing tasks.",
+      "To allow individuals and organizations to make recurring or one-time financial payments to open-source maintainers.",
+      "To fund GitHub's server hosting bills.",
+      "To buy templates on the marketplace."
+    ],
+    a: 1,
+    e: "GitHub Sponsors is a funding platform designed to help open-source creators receive direct financial support from users who benefit from their code."
+  },
+  {
+    c: 6,
+    q: "What is a key difference between open-source projects and InnerSource projects?",
+    o: [
+      "InnerSource projects do not use Git version control.",
+      "Open-source projects are accessible to the public, whereas InnerSource projects apply open-source collaboration practices internally within a single enterprise.",
+      "InnerSource projects require paid software tools.",
+      "Open-source projects cannot use pull requests."
+    ],
+    a: 1,
+    e: "Open-source is public-facing. InnerSource borrows open-source workflows (issues, forks, PRs, inner collaboration) but restricts project visibility within the company walls."
+  },
+  {
+    c: 6,
+    q: "Which repository file outlines instructions, codes of conduct, and reporting procedures for security vulnerabilities?",
+    o: [
+      "LICENSE",
+      "SECURITY.md",
+      "CODEOWNERS",
+      "CONTRIBUTING.md"
+    ],
+    a: 1,
+    e: "The SECURITY.md file tells users how to responsibly report security vulnerabilities found in the project without disclosing them publicly."
+  }
+];
+
+// State variables
+let currentQuestions = [];
+let currentIdx = 0;
+let results = {}; // key: "domainIndex_qIndex" -> { answered: true, correct: boolean, selectedOpt: number }
+let isShuffled = false;
+let selectedDomain = 'all';
+let activeUser = null;
+let isOfflineMode = false;
+
+// Initialize connection check and setup
+async function init() {
+  // Populates the domain dropdown
+  const sel = document.getElementById('domainSelect');
+  sel.innerHTML = '<option value="all">All Domains</option>' +
+    DOMAINS.map((n, i) => `<option value="${i}">Domain ${i+1}: ${n}</option>`).join('');
+
+  await checkServerConnection();
+  await initProfile();
+  loadQuestions();
+}
+
+async function checkServerConnection() {
+  try {
+    const res = await fetch('/api/users', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({}) });
+    isOfflineMode = !res.ok;
+  } catch(e) {
+    isOfflineMode = true;
+  }
+  
+  const dot = document.getElementById('syncStatusDot');
+  if (isOfflineMode) {
+    dot.className = 'status-dot offline';
+    dot.title = "Offline Mode (saving locally)";
+  } else {
+    dot.className = 'status-dot online';
+    dot.title = "Connected to local server";
+  }
+}
+
+// Profile management
+async function fetchUsers() {
+  if (isOfflineMode) {
+    return JSON.parse(localStorage.getItem('gh_study_users') || '[]');
+  } else {
+    try {
+      const res = await fetch('/api/users', { method: 'POST', headers: { 'Content-Type': 'application/json' } });
+      const data = await res.json();
+      return data.users || [];
+    } catch(e) {
+      console.warn("Backend fetch failed, falling back to local storage", e);
+      return JSON.parse(localStorage.getItem('gh_study_users') || '[]');
+    }
+  }
+}
+
+async function saveProgress(username, key, answerData) {
+  if (!username) return;
+  
+  // Load existing progress to merge properly without erasing other chapters
+  let progress = null;
+  if (!isOfflineMode) {
+    try {
+      const res = await fetch('/api/load', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username })
+      });
+      const data = await res.json();
+      if (data.success) progress = data;
+    } catch(e) {
+      console.warn("Failed to load existing progress before save, falling back to local storage merging", e);
+    }
+  }
+
+  if (!progress) {
+    const stored = localStorage.getItem(`progress_${username}`);
+    if (stored) progress = JSON.parse(stored);
+  }
+
+  const existingQuizStates = progress && progress.quiz_states ? progress.quiz_states : {};
+  
+  // Update the quiz_states map. 
+  // We use key format e.g. "gh_domainIdx" so it doesn't conflict with Security+ (integers 0-15)
+  if (!existingQuizStates[key]) {
+    existingQuizStates[key] = {
+      answers: {},
+      results: {}
+    };
+  }
+  
+  // Update this specific answer in the key
+  existingQuizStates[key].answers[answerData.qIdx] = answerData.selectedOpt;
+  existingQuizStates[key].results[answerData.qIdx] = answerData.isCorrect ? 'correct' : 'wrong';
+
+  const payload = {
+    username: username,
+    last_chapter: selectedDomain === 'all' ? 0 : parseInt(selectedDomain),
+    last_card: currentIdx,
+    last_step: 0,
+    viewing_quiz: true,
+    quiz_states: existingQuizStates
+  };
+
+  localStorage.setItem(`progress_${username}`, JSON.stringify(payload));
+
+  if (!isOfflineMode) {
+    try {
+      await fetch('/api/save', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+    } catch(e) {
+      console.warn("API save progress failed", e);
+    }
+  }
+}
+
+async function loadProgress(username) {
+  let progress = null;
+  if (!isOfflineMode) {
+    try {
+      const res = await fetch('/api/load', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username })
+      });
+      const data = await res.json();
+      if (data.success) progress = data;
+    } catch(e) {
+      console.warn("API load progress failed", e);
+    }
+  }
+  if (!progress) {
+    const stored = localStorage.getItem(`progress_${username}`);
+    if (stored) progress = JSON.parse(stored);
+  }
+  return progress;
+}
+
+async function openProfileModal() {
+  const modal = document.getElementById('profileModal');
+  const listContainer = document.getElementById('profileList');
+  listContainer.innerHTML = '<div style="color: var(--text-muted); font-size: 13px;">Loading profiles...</div>';
+  modal.classList.add('show');
+  
+  await checkServerConnection();
+  const users = await fetchUsers();
+  listContainer.innerHTML = '';
+  
+  if (users.length === 0) {
+    listContainer.innerHTML = '<div style="color: var(--text-muted); padding: 8px 0; font-size: 13px;">No profiles found. Create one below to begin!</div>';
+  } else {
+    users.forEach(u => {
+      const isCurrent = (u === activeUser);
+      const activeCls = isCurrent ? 'active' : '';
+      const badge = isCurrent ? '<span style="font-size: 11px; background: var(--blue); color: #fff; padding: 2px 8px; border-radius: 10px;">Active</span>' : '';
+      listContainer.innerHTML += `
+        <div class="profile-item ${activeCls}" onclick="selectProfile('${u.replace(/'/g, "\\'")}')">
+          <span>👤 ${u}</span>
+          ${badge}
+        </div>
+      `;
+    });
+  }
+}
+
+async function selectProfile(username) {
+  activeUser = username;
+  localStorage.setItem('active_study_user', username);
+  
+  const labelEl = document.getElementById('activeUserLabel');
+  labelEl.textContent = isOfflineMode ? `${username} (Offline)` : username;
+  
+  document.getElementById('profileModal').classList.remove('show');
+  document.getElementById('profileBtn').textContent = `👤 ${username}`;
+
+  // Load progress into UI state
+  results = {};
+  const progress = await loadProgress(username);
+  if (progress && progress.quiz_states) {
+    for (let k in progress.quiz_states) {
+      if (k.startsWith('gh_')) {
+        const storedState = progress.quiz_states[k];
+        const domainIdx = k.replace('gh_', '');
+        
+        if (storedState.answers) {
+          for (let qIdx in storedState.answers) {
+            const isCorrect = storedState.results[qIdx] === 'correct';
+            results[`${domainIdx}_${qIdx}`] = {
+              answered: true,
+              correct: isCorrect,
+              selectedOpt: parseInt(storedState.answers[qIdx])
+            };
+          }
+        }
+      }
+    }
+  }
+  
+  loadQuestions();
+}
+
+async function handleCreateProfile() {
+  const input = document.getElementById('newProfileInput');
+  const username = input.value.trim();
+  if (!username) {
+    alert("Please enter a profile name.");
+    return;
+  }
+  
+  const users = await fetchUsers();
+  if (users.includes(username)) {
+    alert("This profile name already exists.");
+    return;
+  }
+  
+  if (isOfflineMode) {
+    users.push(username);
+    localStorage.setItem('gh_study_users', JSON.stringify(users));
+  } else {
+    try {
+      await fetch('/api/save', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, last_chapter: 0, last_card: 0, last_step: 0, viewing_quiz: true })
+      });
+      users.push(username);
+      localStorage.setItem('gh_study_users', JSON.stringify(users));
+    } catch(e) {
+      console.error(e);
+      users.push(username);
+      localStorage.setItem('gh_study_users', JSON.stringify(users));
+    }
+  }
+  
+  input.value = '';
+  await selectProfile(username);
+}
+
+async function initProfile() {
+  const savedUser = localStorage.getItem('active_study_user');
+  if (savedUser) {
+    await selectProfile(savedUser);
+  } else {
+    openProfileModal();
+  }
+}
+
+// Question loading and filtering
+function loadQuestions() {
+  // Store reference to original index in ALL_QUESTIONS
+  const mapped = ALL_QUESTIONS.map((q, idx) => ({ ...q, originalIdx: idx }));
+  
+  if (selectedDomain === 'all') {
+    currentQuestions = mapped.slice();
+  } else {
+    currentQuestions = mapped.filter(q => q.c === parseInt(selectedDomain));
+  }
+  
+  if (isShuffled) {
+    shuffleArray(currentQuestions);
+  }
+  
+  // Find first unanswered question in the active list
+  const firstUnanswered = currentQuestions.findIndex(q => {
+    const stateKey = `${q.c}_${q.originalIdx}`;
+    return !results[stateKey] || !results[stateKey].answered;
+  });
+  
+  currentIdx = firstUnanswered !== -1 ? firstUnanswered : currentQuestions.length;
+  render();
+}
+
+function shuffleArray(arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+}
+
+function toggleShuffle() {
+  isShuffled = !isShuffled;
+  document.getElementById('shuffleBtn').textContent = isShuffled ? "🔀 Shuffle: On" : "🔀 Shuffle: Off";
+  document.getElementById('shuffleBtn').classList.toggle('btn-primary', isShuffled);
+  loadQuestions();
+}
+
+function changeDomain() {
+  selectedDomain = document.getElementById('domainSelect').value;
+  loadQuestions();
+}
+
+function resetAllProgress() {
+  if (!confirm('Are you sure you want to reset all your answers for GitHub Foundations? This will clear all correct/incorrect flags.')) return;
+  
+  results = {};
+  if (activeUser) {
+    saveResetProgress('all');
+  } else {
+    loadQuestions();
+  }
+}
+
+async function saveResetProgress(domainToClear = 'all') {
+  let progress = await loadProgress(activeUser);
+  if (progress && progress.quiz_states) {
+    if (domainToClear === 'all') {
+      for (let k in progress.quiz_states) {
+        if (k.startsWith('gh_')) {
+          delete progress.quiz_states[k];
+        }
+      }
+    } else {
+      delete progress.quiz_states[`gh_${domainToClear}`];
+    }
+  }
+  
+  const payload = {
+    username: activeUser,
+    last_chapter: selectedDomain === 'all' ? 0 : parseInt(selectedDomain),
+    last_card: 0,
+    last_step: 0,
+    viewing_quiz: true,
+    quiz_states: progress ? progress.quiz_states : {}
+  };
+  
+  localStorage.setItem(`progress_${activeUser}`, JSON.stringify(payload));
+  if (!isOfflineMode) {
+    try {
+      await fetch('/api/save', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+    } catch(e) {
+      console.error(e);
+    }
+  }
+  loadQuestions();
+}
+
+// Rendering Quiz Core
+function render() {
+  const container = document.getElementById('quizContent');
+  
+  if (!currentQuestions.length) {
+    container.innerHTML = '<div class="empty"><h2>No questions match.</h2></div>';
+    updateStats();
+    return;
+  }
+
+  // If past the last question, show the results page!
+  if (currentIdx >= currentQuestions.length) {
+    renderResults();
+    return;
+  }
+
+  const q = currentQuestions[currentIdx];
+  const total = currentQuestions.length;
+  const letters = ['A', 'B', 'C', 'D'];
+  const stateKey = `${q.c}_${q.originalIdx}`;
+  
+  const state = results[stateKey];
+  const answered = state && state.answered;
+  const isCorrect = state && state.correct;
+  const selectedOpt = state && state.selectedOpt;
+  
+  const progressPct = ((currentIdx) / total) * 100;
+  document.getElementById('progressFill').style.width = `${progressPct}%`;
+
+  const optsHtml = q.o.map((opt, i) => {
+    let cls = '';
+    let disabledAttr = answered ? 'disabled' : '';
+    
+    if (answered) {
+      cls += ' disabled';
+      if (i === q.a) cls += ' correct';
+      else if (i === selectedOpt) cls += ' wrong';
+    } else {
+      if (selectedOpt === i) cls += ' selected';
+    }
+    
+    return `<button class="q-option ${cls}" onclick="selectOption(${i})" ${disabledAttr}>
+      <span class="letter">${letters[i]}</span>
+      <span class="opt-text">${escapeHtml(opt)}</span>
+    </button>`;
+  }).join('');
+
+  const feedbackHtml = answered
+    ? `<div class="feedback show">
+        <div class="feedback-inner ${isCorrect ? 'correct' : 'wrong'}">
+          <div class="feedback-title">
+            <span>${isCorrect ? '✓ Correct' : '✗ Incorrect'}</span>
+          </div>
+          <div class="feedback-explanation">${escapeHtml(q.e)}</div>
+        </div>
+      </div>`
+    : '';
+
+  container.innerHTML = `
+    <div class="q-card">
+      <div class="q-header">
+        <div class="q-meta">
+          <span class="q-domain">Domain ${q.c + 1} — ${DOMAINS[q.c]}</span>
+          <span class="q-num">Question ${currentIdx + 1} of ${total}</span>
+        </div>
+        <div class="q-text">${escapeHtml(q.q)}</div>
+      </div>
+      <div class="q-options">${optsHtml}</div>
+      ${feedbackHtml}
+      <div class="q-nav">
+        <span class="q-counter">Question ${currentIdx + 1} / ${total}</span>
+        <button onclick="prevQ()" ${currentIdx === 0 ? 'disabled' : ''}>← Back</button>
+        <button class="btn-check" id="checkBtn" onclick="checkAnswer()" ${answered || selectedOpt === undefined ? 'disabled' : ''}>Check Answer</button>
+        <button class="btn-next" onclick="nextQ()">${currentIdx === total - 1 ? 'Finish →' : 'Next →'}</button>
+      </div>
+    </div>
+  `;
+
+  updateStats();
+}
+
+function selectOption(idx) {
+  // Store temporarily selected index in our results tracking
+  const q = currentQuestions[currentIdx];
+  const stateKey = `${q.c}_${q.originalIdx}`;
+  
+  if (!results[stateKey]) {
+    results[stateKey] = {};
+  }
+  
+  results[stateKey].selectedOpt = idx;
+  
+  // Toggle selection classes in DOM
+  document.querySelectorAll('.q-option').forEach((el, i) => {
+    el.classList.toggle('selected', i === idx);
+  });
+  
+  document.getElementById('checkBtn').disabled = false;
+}
+
+async function checkAnswer() {
+  const q = currentQuestions[currentIdx];
+  const stateKey = `${q.c}_${q.originalIdx}`;
+  const state = results[stateKey];
+  if (!state || state.selectedOpt === undefined) return;
+  
+  const isCorrect = state.selectedOpt === q.a;
+  state.answered = true;
+  state.correct = isCorrect;
+  
+  render();
+  
+  if (activeUser) {
+    const key = `gh_${q.c}`;
+    await saveProgress(activeUser, key, {
+      qIdx: q.originalIdx,
+      selectedOpt: state.selectedOpt,
+      isCorrect: isCorrect
+    });
+  }
+}
+
+function nextQ() {
+  currentIdx++;
+  render();
+}
+
+function prevQ() {
+  if (currentIdx > 0) {
+    currentIdx--;
+    render();
+  }
+}
+
+function updateStats() {
+  let correct = 0;
+  let wrong = 0;
+  
+  // Calculate statistics based only on questions inside currentQuestions
+  currentQuestions.forEach(q => {
+    const stateKey = `${q.c}_${q.originalIdx}`;
+    const state = results[stateKey];
+    if (state && state.answered) {
+      if (state.correct) correct++;
+      else wrong++;
+    }
+  });
+
+  document.getElementById('correctCount').textContent = correct + ' ✓';
+  document.getElementById('wrongCount').textContent = wrong + ' ✗';
+}
+
+function renderResults() {
+  const container = document.getElementById('quizContent');
+  document.getElementById('progressFill').style.width = '100%';
+  
+  let totalCorrect = 0;
+  let totalAnswered = 0;
+  
+  // Calculate breakdown per domain
+  const domainStats = DOMAINS.map((name, i) => {
+    return { name: name, correct: 0, total: 0 };
+  });
+  
+  currentQuestions.forEach(q => {
+    const stateKey = `${q.c}_${q.originalIdx}`;
+    const state = results[stateKey];
+    domainStats[q.c].total++;
+    if (state && state.answered) {
+      totalAnswered++;
+      if (state.correct) {
+        totalCorrect++;
+        domainStats[q.c].correct++;
+      }
+    }
+  });
+
+  const finalPct = totalAnswered > 0 ? Math.round((totalCorrect / totalAnswered) * 100) : 0;
+  const passRequirement = 70; // typical passing score
+  const passed = finalPct >= passRequirement;
+
+  let breakdownHtml = domainStats.map((stat, i) => {
+    if (stat.total === 0) return '';
+    const pct = Math.round((stat.correct / stat.total) * 100);
+    const passClass = pct >= passRequirement ? 'pass' : 'fail';
+    return `
+      <div class="domain-score-row">
+        <span class="domain-score-name">Domain ${i+1}: ${stat.name}</span>
+        <span class="domain-score-val ${passClass}">${stat.correct} / ${stat.total} (${pct}%)</span>
+      </div>
+    `;
+  }).join('');
+
+  container.innerHTML = `
+    <div class="results">
+      <h2>Quiz Completed!</h2>
+      <div class="score">${finalPct}%</div>
+      <div class="score-label">Correct answers: ${totalCorrect} of ${totalAnswered} questions answered.</div>
+      
+      <p style="font-size:15px; font-weight:600; color: ${passed ? 'var(--green)' : 'var(--red)'}; margin-bottom: 24px;">
+        ${passed ? '🎉 Congratulations! You met the target passing score of 70%.' : '⚠️ You scored below the target passing score of 70%. We recommend reviewing the domains below.'}
+      </p>
+
+      <h3 style="text-align: left; font-size:16px; margin-bottom: 12px; border-bottom: 1px solid var(--border); padding-bottom:8px;">Domain Performance Breakdown</h3>
+      <div class="domain-breakdown">
+        ${breakdownHtml}
+      </div>
+
+      <button class="btn-primary" onclick="restartQuiz()" style="padding: 12px 30px; font-size:14px; font-weight:700; border-radius: 8px;">Try Again</button>
+    </div>
+  `;
+}
+
+function restartQuiz() {
+  if (confirm('Retake this quiz? This will reset your answers for the current selection.')) {
+    if (selectedDomain === 'all') {
+      results = {};
+      if (activeUser) {
+        saveResetProgress('all');
+      } else {
+        loadQuestions();
+      }
+    } else {
+      const domainIdx = parseInt(selectedDomain);
+      for (let k in results) {
+        if (k.startsWith(`${domainIdx}_`)) {
+          delete results[k];
+        }
+      }
+      if (activeUser) {
+        saveResetProgress(domainIdx);
+      } else {
+        loadQuestions();
+      }
+    }
+  }
+}
+
+function escapeHtml(str) {
+  if (!str) return '';
+  return str.replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+}
+
+init();
+</script>
+</body>
+</html>

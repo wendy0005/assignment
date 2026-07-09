@@ -22,6 +22,21 @@ def init_db():
     print("SQLite database initialized successfully.")
 
 class ProgressHandler(http.server.SimpleHTTPRequestHandler):
+    def do_GET(self):
+        if self.path == '/favicon.ico':
+            try:
+                base_dir = os.path.dirname(os.path.abspath(__file__))
+                favicon_path = os.path.join(base_dir, 'favicon.png')
+                with open(favicon_path, 'rb') as f:
+                    self.send_response(200)
+                    self.send_header('Content-Type', 'image/png')
+                    self.end_headers()
+                    self.wfile.write(f.read())
+            except Exception as e:
+                self.send_error(404, "Favicon not found")
+            return
+        super().do_GET()
+
     def do_POST(self):
         # Enable CORS for local development
         
