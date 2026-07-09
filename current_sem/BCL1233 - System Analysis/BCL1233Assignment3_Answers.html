@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+  @page { size: A4; margin: 25mm 25mm 25mm 25mm; }
+  * { box-sizing: border-box; }
+  body {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 12pt;
+    line-height: 1.5;
+    color: #000;
+    margin: 0; padding: 0;
+  }
+  .cover-page {
+    text-align: center; padding-top: 120px; page-break-after: always;
+  }
+  .cover-page .cc { font-size: 16pt; font-weight: bold; }
+  .cover-page .cn { font-size: 14pt; margin-bottom: 40px; }
+  .cover-page .at { font-size: 18pt; font-weight: bold; margin: 50px 0; }
+  .cover-page .si { font-size: 13pt; margin-top: 50px; line-height: 2; }
+  h1 { font-size: 16pt; margin-top: 30px; margin-bottom: 16px; page-break-before: always; }
+  h1:first-of-type { page-break-before: avoid; }
+  h2 { font-size: 14pt; margin-top: 24px; margin-bottom: 12px; border-bottom: 1px solid #333; padding-bottom: 4px; }
+  h3 { font-size: 13pt; margin-top: 20px; margin-bottom: 10px; }
+  h4 { font-size: 12pt; margin-top: 16px; margin-bottom: 8px; font-weight: bold; }
+  p { text-align: justify; margin: 8px 0; }
+  table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 10pt; }
+  th, td { border: 1px solid #000; padding: 6px 8px; text-align: left; vertical-align: top; }
+  th { background-color: #e0e0e0; font-weight: bold; }
+  ul, ol { margin: 8px 0; padding-left: 24px; }
+  li { margin: 4px 0; }
+  hr { border: none; border-top: 1px solid #ccc; margin: 20px 0; }
+  .mermaid { text-align: center; margin: 6px 0; page-break-inside: avoid; overflow: hidden; }
+  .mermaid svg { max-width: 100%; max-height: 500px; width: auto; height: auto; }
+  strong { font-weight: bold; }
+  em { font-style: italic; }
+  .footer-note { text-align: center; font-size: 10pt; color: #666; margin-top: 40px; }
+</style>
+</head>
+<body>
+<div class="cover-page">
+  <div class="cc">BCL1233</div>
+  <div class="cn">System Analysis and Design</div>
+  <hr style="width:60%; margin:20px auto;">
+  <div class="at">Assignment 3<br>Logic and Data Modeling for a<br>Hybrid Work Monitoring System</div>
+  <hr style="width:60%; margin:30px auto;">
+  <div class="si">
+    <strong>Student Name:</strong> Chan Jing Yi<br>
+    <strong>Student ID:</strong> SUOL2500321<br>
+    <strong>Course:</strong> Bachelor of Computer Science (ODL)<br>
+    <strong>Submission Date:</strong> July 2026
+  </div>
+</div>
+<h1>BCL1233 — System Analysis and Design</h1>
+<h2>Assignment 3: Logic and Data Modeling for a Hybrid Work Monitoring System</h2>
+
+<strong>Student Name:</strong> Chan Jing Yi
+<strong>Student ID:</strong> SUOL2500321
+<strong>Course:</strong> Bachelor of Computer Science (ODL)
+<strong>Submission Date:</strong> July 2026
+
+<hr>
+
+<h2>Section 1: Logic Modeling (40 marks)</h2>
+
+<h3>1.1 Analysis of Business Rules</h3>
+
+<p>The Hybrid Work Schedule Approval Process is governed by four distinct business rules. Each rule imposes a specific constraint that must be evaluated before a hybrid work request can be approved or rejected.</p>
+
+<table>
+<tr><th>Rule</th><th>Description</th><th>Type</th></tr>
+<tr><td>BR-01</td><td>Employees may work remotely for a maximum of three days per week.</td><td>Capacity constraint (individual)</td></tr>
+<tr><td>BR-02</td><td>Requests must be submitted at least two days before the requested date.</td><td>Timing constraint</td></tr>
+<tr><td>BR-03</td><td>Supervisor approval is required for all requests.</td><td>Authorization constraint</td></tr>
+<tr><td>BR-04</td><td>Each department must maintain at least 50% on-site staff availability.</td><td>Capacity constraint (departmental)</td></tr>
+</table>
+<p>A Decision Table was selected to model these rules because it exhaustively enumerates all condition combinations, eliminates ambiguity, and is particularly well-suited to scenarios where multiple binary conditions must be evaluated in parallel to determine an outcome.</p>
+
+<h3>1.2 Decision Table</h3>
+
+<h4>Conditions</h4>
+
+<table>
+<tr><th>ID</th><th>Condition</th><th>Values</th></tr>
+<tr><td>C1</td><td>Is the request submitted at least two days before the requested date?</td><td>Y / N</td></tr>
+<tr><td>C2</td><td>Would approving this request keep the employee's remote work days at three or fewer per week?</td><td>Y / N</td></tr>
+<tr><td>C3</td><td>Does the supervisor approve the request?</td><td>Y / N</td></tr>
+<tr><td>C4</td><td>Would approving this request keep the department's on-site staffing at or above 50%?</td><td>Y / N</td></tr>
+</table>
+<h4>Actions</h4>
+
+<table>
+<tr><th>ID</th><th>Action</th></tr>
+<tr><td>A1</td><td>Approve the request and update the employee's work schedule</td></tr>
+<tr><td>A2</td><td>Reject the request and send a notification to the employee</td></tr>
+</table>
+<h4>Reduced Decision Table</h4>
+
+<table>
+<tr><th></th><th>Rule 1</th><th>Rule 2</th><th>Rule 3</th><th>Rule 4</th><th>Rule 5</th></tr>
+<tr><td><strong>Conditions</strong></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>C1: Submitted ≥ 2 days before?</td><td>N</td><td>Y</td><td>Y</td><td>Y</td><td>Y</td></tr>
+<tr><td>C2: Remote days ≤ 3 per week?</td><td>—</td><td>N</td><td>Y</td><td>Y</td><td>Y</td></tr>
+<tr><td>C3: Supervisor approves?</td><td>—</td><td>—</td><td>N</td><td>Y</td><td>Y</td></tr>
+<tr><td>C4: Department ≥ 50% on-site?</td><td>—</td><td>—</td><td>—</td><td>N</td><td>Y</td></tr>
+<tr><td><strong>Actions</strong></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>A1: Approve and update schedule</td><td></td><td></td><td></td><td></td><td>X</td></tr>
+<tr><td>A2: Reject and notify employee</td><td>X</td><td>X</td><td>X</td><td>X</td><td></td></tr>
+</table>
+<em>Note: "—" indicates that the condition is irrelevant (a "don't care" state) for that rule.</em>
+
+<strong>Rule Descriptions</strong>
+
+<table>
+<tr><th>Rule</th><th>Scenario</th><th>Outcome</th></tr>
+<tr><td>1</td><td>The employee failed to submit the request at least two days in advance. Regardless of all other conditions, the request cannot proceed.</td><td>Rejected</td></tr>
+<tr><td>2</td><td>The request was submitted on time but would cause the employee to exceed three remote work days in the week.</td><td>Rejected</td></tr>
+<tr><td>3</td><td>The request is valid under C1 and C2, but the supervisor does not approve it.</td><td>Rejected</td></tr>
+<tr><td>4</td><td>The supervisor approved the request, but approving it would drop the department's on-site staffing below the 50% threshold.</td><td>Rejected</td></tr>
+<tr><td>5</td><td>All four conditions are satisfied. The request is approved, the employee's schedule is updated, and a confirmation notification is sent.</td><td>Approved</td></tr>
+</table>
+<h3>1.3 Explanation of the Selected Logic Model</h3>
+
+<p>A decision table is a structured modeling technique that maps combinations of conditions to corresponding actions. Each column, or rule, represents a unique scenario defined by the truth values of the conditions. The technique is especially valuable in system analysis because it forces the analyst to consider every possible combination, revealing gaps or contradictions that might otherwise go unnoticed.</p>
+
+<p>For the Hybrid Work Schedule Approval Process, the decision table captures the interplay between individual constraints (remote day limit), procedural constraints (advance notice), human judgment (supervisor approval), and organizational constraints (department staffing). The table clarifies that a request can be rejected at four distinct checkpoints, and only when all checks pass does approval occur. This explicit traceability makes the decision table a natural bridge between the business rules provided by stakeholders and the system logic that developers will implement.</p>
+
+<hr>
+
+<h2>Section 2: Entity Relationship Diagram — ERD (35 marks)</h2>
+
+<h3>2.1 Entity Identification</h3>
+
+<p>The following entities were identified by analysing the Hybrid Work Schedule Approval Process and its associated business rules:</p>
+
+<table>
+<tr><th>Entity</th><th>Description</th></tr>
+<tr><td>Employee</td><td>A staff member who may submit hybrid work requests and be assigned a work schedule</td></tr>
+<tr><td>Department</td><td>An organisational unit with a mandated minimum on-site staffing percentage</td></tr>
+<tr><td>HybridWorkRequest</td><td>A formal request submitted by an employee to work remotely on specific dates</td></tr>
+<tr><td>WorkSchedule</td><td>The approved weekly schedule indicating the work location for each day</td></tr>
+<tr><td>Notification</td><td>A record of a system-generated message sent to an employee regarding request status</td></tr>
+</table>
+<h3>2.2 Entity Relationship Diagram</h3>
+
+
+<div class="mermaid">erDiagram
+    Department {
+        int DepartmentID PK
+        string DepartmentName
+        int MinOnSitePercent
+    }
+
+    Employee {
+        int EmployeeID PK
+        string Name
+        string Email
+        int DepartmentID FK
+    }
+
+    HybridWorkRequest {
+        int RequestID PK
+        int EmployeeID FK
+        date RequestedDate
+        date SubmissionDate
+        int RemoteDaysCount
+        string Status
+        int ReviewedBy FK
+        date ReviewDate
+        string RejectionReason
+    }
+
+    WorkSchedule {
+        int ScheduleID PK
+        int EmployeeID FK
+        int RequestID FK
+        date WeekStartDate
+        string Monday
+        string Tuesday
+        string Wednesday
+        string Thursday
+        string Friday
+    }
+
+    Notification {
+        int NotificationID PK
+        int EmployeeID FK
+        int RequestID FK
+        datetime SentDate
+        string Type
+        string Message
+        boolean IsRead
+    }
+
+    Department ||--o{ Employee : contains
+    Employee ||--o{ HybridWorkRequest : submits
+    Employee ||--o{ HybridWorkRequest : reviews
+    Employee ||--o{ WorkSchedule : has
+    Employee ||--o{ Notification : receives
+    HybridWorkRequest ||--|| WorkSchedule : generates
+    HybridWorkRequest ||--o{ Notification : triggers
+    Department ||--o{ WorkSchedule : governs</div>
+
+
+<h3>2.3 Entity and Attribute Details</h3>
+
+<h4>Department</h4>
+<table>
+<tr><th>Attribute</th><th>Type</th><th>PK/FK</th><th>Description</th></tr>
+<tr><td>DepartmentID</td><td>INT</td><td>PK</td><td>Unique identifier for each department</td></tr>
+<tr><td>DepartmentName</td><td>VARCHAR(100)</td><td>—</td><td>Name of the department</td></tr>
+<tr><td>MinOnSitePercent</td><td>INT</td><td>—</td><td>Minimum percentage of staff that must be on-site (enforces BR-04)</td></tr>
+</table>
+<h4>Employee</h4>
+<table>
+<tr><th>Attribute</th><th>Type</th><th>PK/FK</th><th>Description</th></tr>
+<tr><td>EmployeeID</td><td>INT</td><td>PK</td><td>Unique identifier for each employee</td></tr>
+<tr><td>Name</td><td>VARCHAR(100)</td><td>—</td><td>Full name of the employee</td></tr>
+<tr><td>Email</td><td>VARCHAR(150)</td><td>—</td><td>Corporate email address for notifications</td></tr>
+<tr><td>DepartmentID</td><td>INT</td><td>FK</td><td>References the department the employee belongs to</td></tr>
+</table>
+
+<h4>HybridWorkRequest</h4>
+<table>
+<tr><th>Attribute</th><th>Type</th><th>PK/FK</th><th>Description</th></tr>
+<tr><td>RequestID</td><td>INT</td><td>PK</td><td>Unique identifier for each request</td></tr>
+<tr><td>EmployeeID</td><td>INT</td><td>FK</td><td>References the employee who submitted the request</td></tr>
+<tr><td>RequestedDate</td><td>DATE</td><td>—</td><td>The specific date for which remote work is requested</td></tr>
+<tr><td>SubmissionDate</td><td>DATE</td><td>—</td><td>The date the request was submitted (used to evaluate BR-02)</td></tr>
+<tr><td>RemoteDaysCount</td><td>INT</td><td>—</td><td>Number of remote work days requested for that week (used to evaluate BR-01)</td></tr>
+<tr><td>Status</td><td>VARCHAR(20)</td><td>—</td><td>Current status: Pending, Approved, or Rejected</td></tr>
+<tr><td>ReviewedBy</td><td>INT</td><td>FK</td><td>References the EmployeeID of the supervisor who reviewed the request</td></tr>
+<tr><td>ReviewDate</td><td>DATE</td><td>—</td><td>The date the supervisor made the approval decision</td></tr>
+<tr><td>RejectionReason</td><td>VARCHAR(255)</td><td>—</td><td>Reason provided if the request is rejected</td></tr>
+</table>
+<h4>WorkSchedule</h4>
+<table>
+<tr><th>Attribute</th><th>Type</th><th>PK/FK</th><th>Description</th></tr>
+<tr><td>ScheduleID</td><td>INT</td><td>PK</td><td>Unique identifier for each schedule record</td></tr>
+<tr><td>EmployeeID</td><td>INT</td><td>FK</td><td>References the employee whose schedule this is</td></tr>
+<tr><td>RequestID</td><td>INT</td><td>FK</td><td>References the approved request that generated this schedule</td></tr>
+<tr><td>WeekStartDate</td><td>DATE</td><td>—</td><td>The Monday of the scheduled week</td></tr>
+<tr><td>Monday</td><td>VARCHAR(10)</td><td>—</td><td>Work location for Monday (Office/Remote/Leave)</td></tr>
+<tr><td>Tuesday</td><td>VARCHAR(10)</td><td>—</td><td>Work location for Tuesday</td></tr>
+<tr><td>Wednesday</td><td>VARCHAR(10)</td><td>—</td><td>Work location for Wednesday</td></tr>
+<tr><td>Thursday</td><td>VARCHAR(10)</td><td>—</td><td>Work location for Thursday</td></tr>
+<tr><td>Friday</td><td>VARCHAR(10)</td><td>—</td><td>Work location for Friday</td></tr>
+</table>
+<h4>Notification</h4>
+<table>
+<tr><th>Attribute</th><th>Type</th><th>PK/FK</th><th>Description</th></tr>
+<tr><td>NotificationID</td><td>INT</td><td>PK</td><td>Unique identifier for each notification</td></tr>
+<tr><td>EmployeeID</td><td>INT</td><td>FK</td><td>References the employee who receives the notification</td></tr>
+<tr><td>RequestID</td><td>INT</td><td>FK</td><td>References the request that triggered the notification</td></tr>
+<tr><td>SentDate</td><td>DATETIME</td><td>—</td><td>Timestamp of when the notification was sent</td></tr>
+<tr><td>Type</td><td>VARCHAR(20)</td><td>—</td><td>Notification type: Approved, Rejected, or Reminder</td></tr>
+<tr><td>Message</td><td>VARCHAR(500)</td><td>—</td><td>Human-readable notification content</td></tr>
+<tr><td>IsRead</td><td>BOOLEAN</td><td>—</td><td>Whether the employee has viewed the notification</td></tr>
+</table>
+<h3>2.4 Relationship Summary</h3>
+
+<table>
+<tr><th>Relationship</th><th>Parent</th><th>Child</th><th>Cardinality</th><th>Description</th></tr>
+<tr><td>Contains</td><td>Department</td><td>Employee</td><td>1:M</td><td>One department contains many employees</td></tr>
+<tr><td>Submits</td><td>Employee</td><td>HybridWorkRequest</td><td>1:M</td><td>One employee submits many requests</td></tr>
+<tr><td>Reviews</td><td>Employee</td><td>HybridWorkRequest</td><td>1:M</td><td>One supervisor reviews many requests</td></tr>
+<tr><td>Has</td><td>Employee</td><td>WorkSchedule</td><td>1:M</td><td>One employee has multiple weekly schedules</td></tr>
+<tr><td>Receives</td><td>Employee</td><td>Notification</td><td>1:M</td><td>One employee receives many notifications</td></tr>
+<tr><td>Generates</td><td>HybridWorkRequest</td><td>WorkSchedule</td><td>1:1</td><td>One approved request generates one schedule entry</td></tr>
+<tr><td>Triggers</td><td>HybridWorkRequest</td><td>Notification</td><td>1:M</td><td>One request triggers one or more notifications</td></tr>
+<tr><td>Governs</td><td>Department</td><td>WorkSchedule</td><td>1:M</td><td>One department's rules govern many schedule entries</td></tr>
+</table>
+<hr>
+
+<h2>Section 3: Data Dictionary (15 marks)</h2>
+
+<h3>3.1 Data Dictionary</h3>
+
+<h4>Entity: Department</h4>
+
+<table>
+<tr><th>Attribute Name</th><th>Description</th><th>Data Type</th><th>Key Type</th><th>Validation Rules</th></tr>
+<tr><td>DepartmentID</td><td>Unique identifier for each department</td><td>INT</td><td>PK</td><td>Auto-increment; not null</td></tr>
+<tr><td>DepartmentName</td><td>Name of the department</td><td>VARCHAR(100)</td><td>—</td><td>Not null; must be unique; max 100 characters</td></tr>
+<tr><td>MinOnSitePercent</td><td>Minimum percentage of staff that must work on-site</td><td>INT</td><td>—</td><td>Not null; value between 0 and 100; default 50</td></tr>
+</table>
+<h4>Entity: Employee</h4>
+
+<table>
+<tr><th>Attribute Name</th><th>Description</th><th>Data Type</th><th>Key Type</th><th>Validation Rules</th></tr>
+<tr><td>EmployeeID</td><td>Unique identifier for each employee</td><td>INT</td><td>PK</td><td>Auto-increment; not null</td></tr>
+<tr><td>Name</td><td>Full name of the employee</td><td>VARCHAR(100)</td><td>—</td><td>Not null; max 100 characters</td></tr>
+<tr><td>Email</td><td>Corporate email address</td><td>VARCHAR(150)</td><td>—</td><td>Not null; must be unique; valid email format</td></tr>
+<tr><td>DepartmentID</td><td>References the department the employee belongs to</td><td>INT</td><td>FK</td><td>Not null; must exist in Department table</td></tr>
+</table>
+<h4>Entity: HybridWorkRequest</h4>
+
+<table>
+<tr><th>Attribute Name</th><th>Description</th><th>Data Type</th><th>Key Type</th><th>Validation Rules</th></tr>
+<tr><td>RequestID</td><td>Unique identifier for each request</td><td>INT</td><td>PK</td><td>Auto-increment; not null</td></tr>
+<tr><td>EmployeeID</td><td>References the employee who submitted the request</td><td>INT</td><td>FK</td><td>Not null; must exist in Employee table</td></tr>
+<tr><td>RequestedDate</td><td>The date for which remote work is requested</td><td>DATE</td><td>—</td><td>Not null; must be a future date</td></tr>
+<tr><td>SubmissionDate</td><td>The date the request was submitted</td><td>DATE</td><td>—</td><td>Not null; must be on or before RequestedDate minus 2 days (BR-02)</td></tr>
+<tr><td>RemoteDaysCount</td><td>Number of remote days requested in the same week</td><td>INT</td><td>—</td><td>Not null; must be between 1 and 3 (BR-01)</td></tr>
+<tr><td>Status</td><td>Current status of the request</td><td>VARCHAR(20)</td><td>—</td><td>Not null; must be 'Pending', 'Approved', or 'Rejected'; default 'Pending'</td></tr>
+<tr><td>ReviewedBy</td><td>References the supervisor who reviewed the request</td><td>INT</td><td>FK</td><td>Nullable until reviewed; must exist in Employee table</td></tr>
+<tr><td>ReviewDate</td><td>Date the supervisor made the decision</td><td>DATE</td><td>—</td><td>Nullable until reviewed; must be on or after SubmissionDate</td></tr>
+<tr><td>RejectionReason</td><td>Explanation if the request was rejected</td><td>VARCHAR(255)</td><td>—</td><td>Nullable; required only if Status = 'Rejected'</td></tr>
+</table>
+<h4>Entity: WorkSchedule</h4>
+
+<table>
+<tr><th>Attribute Name</th><th>Description</th><th>Data Type</th><th>Key Type</th><th>Validation Rules</th></tr>
+<tr><td>ScheduleID</td><td>Unique identifier for each schedule record</td><td>INT</td><td>PK</td><td>Auto-increment; not null</td></tr>
+<tr><td>EmployeeID</td><td>References the employee</td><td>INT</td><td>FK</td><td>Not null; must exist in Employee table</td></tr>
+<tr><td>RequestID</td><td>References the approved request</td><td>INT</td><td>FK</td><td>Not null; must exist in HybridWorkRequest table</td></tr>
+<tr><td>WeekStartDate</td><td>The Monday of the scheduled week</td><td>DATE</td><td>—</td><td>Not null; must be a Monday</td></tr>
+<tr><td>Monday</td><td>Work location for Monday</td><td>VARCHAR(10)</td><td>—</td><td>Not null; must be 'Office', 'Remote', or 'Leave'</td></tr>
+<tr><td>Tuesday</td><td>Work location for Tuesday</td><td>VARCHAR(10)</td><td>—</td><td>Not null; must be 'Office', 'Remote', or 'Leave'</td></tr>
+<tr><td>Wednesday</td><td>Work location for Wednesday</td><td>VARCHAR(10)</td><td>—</td><td>Not null; must be 'Office', 'Remote', or 'Leave'</td></tr>
+<tr><td>Thursday</td><td>Work location for Thursday</td><td>VARCHAR(10)</td><td>—</td><td>Not null; must be 'Office', 'Remote', or 'Leave'</td></tr>
+<tr><td>Friday</td><td>Work location for Friday</td><td>VARCHAR(10)</td><td>—</td><td>Not null; must be 'Office', 'Remote', or 'Leave'</td></tr>
+</table>
+<h4>Entity: Notification</h4>
+
+<table>
+<tr><th>Attribute Name</th><th>Description</th><th>Data Type</th><th>Key Type</th><th>Validation Rules</th></tr>
+<tr><td>NotificationID</td><td>Unique identifier for each notification</td><td>INT</td><td>PK</td><td>Auto-increment; not null</td></tr>
+<tr><td>EmployeeID</td><td>References the recipient employee</td><td>INT</td><td>FK</td><td>Not null; must exist in Employee table</td></tr>
+<tr><td>RequestID</td><td>References the triggering request</td><td>INT</td><td>FK</td><td>Not null; must exist in HybridWorkRequest table</td></tr>
+<tr><td>SentDate</td><td>Timestamp of when the notification was sent</td><td>DATETIME</td><td>—</td><td>Not null; default current timestamp</td></tr>
+<tr><td>Type</td><td>Category of the notification</td><td>VARCHAR(20)</td><td>—</td><td>Not null; must be 'Approved', 'Rejected', or 'Reminder'</td></tr>
+<tr><td>Message</td><td>Content of the notification</td><td>VARCHAR(500)</td><td>—</td><td>Not null; max 500 characters</td></tr>
+<tr><td>IsRead</td><td>Whether the notification has been viewed</td><td>BOOLEAN</td><td>—</td><td>Not null; default false</td></tr>
+</table>
+<hr>
+
+<h2>Section 4: Model Validation and Integration (10 marks)</h2>
+
+<h3>4.1 Role of the Logic Model in the Approval Process</h3>
+
+<p>The decision table defines the precise evaluation sequence governing every hybrid work request. Each of the four business rules maps directly to a condition in the table, and every possible combination is accounted for across the five rules. This eliminates ambiguity during implementation: a developer translating the table into code knows exactly which checks to perform, in what logical order, and what action to take for each outcome. Without the decision table, the interaction of timing constraints (BR-02), individual limits (BR-01), managerial judgement (BR-03), and departmental staffing rules (BR-04) would be open to subjective interpretation, increasing the risk of inconsistent approval decisions.</p>
+
+<h3>4.2 Relationship Between the ERD, Data Dictionary, and Assignment 1 Requirements</h3>
+
+<p>The ERD and data dictionary operationalise the functional requirements documented in Assignment 1. Requirement FR-01 (Digital Check-In/Check-Out) is supported by the WorkSchedule entity, which records the approved location for each day and enables the check-in process to validate whether the employee is at their assigned location. FR-03 (Notification Engine) is realised through the Notification entity, which stores every system-generated message triggered by request approvals and rejections. Non-functional requirement NFR-01 (99.5% uptime) influenced the data dictionary design by mandating that all key validation rules (such as the check that ReviewDate follows SubmissionDate) be enforced at the database level rather than solely in application logic, reducing the risk of data corruption during brief outages. The data dictionary provides the implementation-level detail — data types, key constraints, and validation rules — that transforms the conceptual entities from the ERD into a precise database schema specification.</p>
+
+<h3>4.3 Relationship Between This Assignment's Models and Assignment 2's Process Models</h3>
+
+<p>The models developed here integrate directly with the process models from Assignment 2. The HybridWorkRequest entity corresponds to data flows entering Process 5.0 (Manage Users & Config), where policy rules are maintained, and Process 4.0 (Send Notifications), which is triggered whenever a request reaches a final status. The WorkSchedule entity feeds into the Attendance Database (D1), which Process 1.0 (Manage Attendance) reads during check-in to validate the employee's expected work location. The Department entity aligns with the Policy & Config Database (D4), storing the 50% on-site minimum rule referenced by the context diagram's external entities. Together, these models form a consistent chain: the context diagram and DFDs established <em>what</em> the system does, the decision table specifies <em>how</em> the approval logic works, and the ERD with data dictionary defines <em>what data</em> the system needs to store to support those processes.</p>
+
+<hr>
+
+<h2>References</h2>
+
+<p>Dennis, A., Wixom, B. H., & Tegarden, D. P. (2012). <em>Systems Analysis and Design with UML: An Object-Oriented Approach</em> (4th ed.). John Wiley & Sons.</p>
+
+<p>Shelly, G. B., & Rosenblatt, H. J. (2016). <em>Systems Analysis and Design</em> (10th ed.). Cengage Learning.</p>
+
+<p>McConnell, S. (2004). <em>Code Complete: A Practical Handbook of Software Construction</em> (2nd ed.). Microsoft Press.</p>
+
+<div class="footer-note"><em>BCL1233 — System Analysis and Design — Assignment 3</em></div>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true,theme:'default',securityLevel:'loose',fontFamily:'Times New Roman, Times, serif'});</script>
+</body>
+</html>
