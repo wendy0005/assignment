@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{ course_name }} — Interactive Lessons</title>
+<link rel="icon" type="image/png" href="/favicon.png">
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Merriweather:wght@400;700&display=swap');
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --navy: #0f172a; --slate: #334155; --slate-light: #64748b;
+    --blue: #3b82f6; --blue-light: #eff6ff; --blue-dark: #1e40af;
+    --teal: #14b8a6; --teal-light: #f0fdfa;
+    --amber: #f59e0b; --amber-light: #fffbeb;
+    --rose: #f43f5e; --rose-light: #fff1f2;
+    --bg: #f8fafc; --card: #ffffff; --border: #e2e8f0;
+    --shadow: 0 1px 3px rgba(0,0,0,.08), 0 1px 2px rgba(0,0,0,.06);
+    --shadow-lg: 0 10px 25px rgba(0,0,0,.08);
+    --radius: 12px; --radius-sm: 8px;
+    --font-sans: 'Inter', -apple-system, sans-serif;
+    --font-serif: 'Merriweather', Georgia, serif;
+    --transition: .25s cubic-bezier(.4,0,.2,1);
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--font-sans); background: var(--bg); color: var(--slate);
+    line-height: 1.7; -webkit-font-smoothing: antialiased;
+  }
+  header {
+    background: linear-gradient(135deg, var(--navy) 0%, #1e293b 100%);
+    color: #fff; padding: 20px 40px; position: sticky; top: 0;
+    z-index: 100; box-shadow: 0 2px 12px rgba(0,0,0,.15);
+    display: flex; align-items: center; gap: 24px;
+  }
+  header .header-left { flex-shrink: 0; }
+  header h1 { font-size: 22px; font-weight: 800; letter-spacing: -.5px; }
+  header p { font-size: 13px; color: #94a3b8; margin-top: 2px; font-weight: 500; }
+  .header-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(255,255,255,.1); padding: 4px 14px; border-radius: 20px;
+    font-size: 11px; font-weight: 600; margin-top: 6px; letter-spacing: .3px;
+  }
+  .header-badge span { color: var(--teal); }
+  .header-link {
+    color: #94a3b8; text-decoration: none; font-size: 13px; font-weight: 500;
+    margin-left: auto; padding: 6px 14px; border-radius: 8px;
+    transition: all var(--transition); white-space: nowrap;
+  }
+  .header-link:hover { background: rgba(255,255,255,.1); color: #fff; }
+
+  .search-wrapper { position: relative; flex-shrink: 0; min-width: 200px; }
+  .search-input {
+    width: 100%; padding: 10px 16px 10px 38px;
+    border: 1px solid rgba(255,255,255,.2); border-radius: 10px;
+    background: rgba(255,255,255,.1); color: #fff;
+    font-family: var(--font-sans); font-size: 13px; font-weight: 500;
+    outline: none; transition: all var(--transition);
+  }
+  .search-input::placeholder { color: rgba(255,255,255,.4); font-weight: 400; }
+  .search-input:focus { border-color: var(--blue); background: rgba(255,255,255,.15); }
+  .search-icon { position: absolute; left: 13px; top: 50%; transform: translateY(-50%); font-size: 14px; opacity: .5; pointer-events: none; }
+  .search-clear {
+    position: absolute; right: 10px; top: 50%; transform: translateY(-50%);
+    background: none; border: none; color: rgba(255,255,255,.4);
+    font-size: 16px; cursor: pointer; display: none; padding: 2px;
+    line-height: 1; border-radius: 4px;
+  }
+  .search-clear:hover { color: #fff; }
+  .search-results {
+    position: absolute; top: calc(100% + 6px); left: 0; right: 0;
+    background: #fff; border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-lg); max-height: 380px; overflow-y: auto;
+    display: none; z-index: 200;
+  }
+  .search-results.show { display: block; }
+  .search-result-item { padding: 12px 16px; cursor: pointer; border-bottom: 1px solid var(--border); transition: background var(--transition); }
+  .search-result-item:last-child { border-bottom: none; }
+  .search-result-item:hover, .search-result-item.highlighted { background: var(--blue-light); }
+  .search-result-item .sr-path { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .3px; color: var(--blue); margin-bottom: 2px; }
+  .search-result-item .sr-title { font-size: 14px; font-weight: 600; color: var(--navy); margin-bottom: 3px; }
+  .search-result-item .sr-preview { font-size: 12px; color: var(--slate-light); line-height: 1.4; }
+  .search-result-item .sr-preview em { background: #fef3c7; font-style: normal; padding: 0 2px; color: #92400e; font-weight: 600; }
+  .search-empty { padding: 20px; text-align: center; color: var(--slate-light); font-size: 13px; }
+
+  .tabs {
+    display: flex; background: #fff; border-bottom: 1px solid var(--border);
+    padding: 0 40px; position: sticky; top: 110px; z-index: 99;
+    box-shadow: 0 1px 2px rgba(0,0,0,.04); overflow-x: auto;
+  }
+  .tab-btn {
+    padding: 14px 20px; font-family: var(--font-sans); font-size: 13px;
+    font-weight: 600; border: none; background: none; cursor: pointer;
+    color: var(--slate-light); position: relative; white-space: nowrap;
+    transition: color var(--transition);
+  }
+  .tab-btn:hover { color: var(--slate); }
+  .tab-btn.active { color: var(--navy); }
+  .tab-btn.active::after {
+    content: ''; position: absolute; bottom: 0; left: 20px; right: 20px;
+    height: 3px; background: var(--blue); border-radius: 3px 3px 0 0;
+  }
+  .tab-badge {
+    display: inline-block; background: var(--border); padding: 0 8px;
+    border-radius: 10px; font-size: 10px; font-weight: 700;
+    margin-left: 5px; color: var(--slate-light);
+  }
+  .tab-btn.active .tab-badge { background: var(--blue-light); color: var(--blue); }
+
+  .app-layout { display: flex; max-width: 1400px; margin: 0 auto; min-height: calc(100vh - 170px); }
+  .sidebar {
+    width: 280px; flex-shrink: 0; background: #fff;
+    border-right: 1px solid var(--border); padding: 20px 16px;
+    position: sticky; top: 170px; height: calc(100vh - 170px); overflow-y: auto;
+  }
+  .sidebar h3 { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .6px; color: var(--slate-light); margin-bottom: 12px; padding: 0 8px; }
+  .sidebar-list { list-style: none; }
+  .sidebar-list li { margin-bottom: 2px; }
+  .sidebar-list a {
+    display: flex; align-items: center; gap: 10px;
+    padding: 8px 10px; border-radius: var(--radius-sm);
+    font-size: 13px; font-weight: 500; color: var(--slate);
+    text-decoration: none; transition: all var(--transition); cursor: pointer;
+  }
+  .sidebar-list a:hover { background: var(--bg); }
+  .sidebar-list a.active { background: var(--blue-light); color: var(--blue); font-weight: 600; }
+  .sidebar-list a .q-num {
+    width: 24px; height: 24px; border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 700; flex-shrink: 0;
+    background: var(--bg); color: var(--slate-light);
+    transition: all var(--transition);
+  }
+  .sidebar-list a.active .q-num { background: var(--blue); color: #fff; }
+  .sidebar-list a.done .q-num { background: #d1fae5; color: #065f46; }
+  .sidebar-list a.done::after { content: '✓'; margin-left: auto; font-size: 13px; color: #059669; }
+
+  .main-content { flex: 1; padding: 32px 48px; min-width: 0; }
+  .lesson-card { background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; animation: fadeIn .4s ease-out; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+  .lesson-header { padding: 28px 32px 0; }
+  .lesson-header .q-label { display: inline-block; background: var(--blue-light); color: var(--blue); font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 6px; text-transform: uppercase; letter-spacing: .3px; margin-bottom: 10px; }
+  .lesson-header h2 { font-family: var(--font-serif); font-weight: 700; font-size: 22px; color: var(--navy); line-height: 1.3; }
+  .lesson-intro { margin-top: 14px; padding: 16px 20px; background: var(--amber-light); border-left: 3px solid var(--amber); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; font-size: 14px; color: var(--slate); line-height: 1.7; }
+  .lesson-intro::before { content: '🧑‍🏫 '; font-size: 16px; }
+  .steps-container { padding: 24px 32px 32px; }
+  .steps-progress { display: flex; align-items: center; gap: 8px; margin-bottom: 24px; }
+  .step-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--border); transition: all var(--transition); }
+  .step-dot.active { background: var(--blue); transform: scale(1.3); }
+  .step-dot.done { background: var(--teal); }
+  .step-dot.current ~ .step-dot { opacity: .4; }
+  .step-label { font-size: 11px; font-weight: 600; color: var(--slate-light); margin-left: auto; text-transform: uppercase; letter-spacing: .3px; }
+  .step-content { animation: fadeIn .35s ease-out; }
+  .step-content h3 { font-family: var(--font-serif); font-size: 17px; color: var(--navy); margin-bottom: 14px; font-weight: 700; }
+  .step-content p { font-size: 15px; line-height: 1.8; margin-bottom: 14px; color: var(--slate); }
+  .step-content p:last-child { margin-bottom: 0; }
+  .step-content ul, .step-content ol { margin: 10px 0 14px; padding-left: 22px; }
+  .step-content li { font-size: 15px; line-height: 1.7; margin-bottom: 6px; }
+  .step-content strong { color: var(--navy); font-weight: 600; }
+  .step-content .highlight-box { background: var(--teal-light); border-left: 3px solid var(--teal); padding: 14px 18px; border-radius: 0 var(--radius-sm) var(--radius-sm) 0; margin: 14px 0; font-size: 14px; }
+  .step-content .example-box { background: var(--blue-light); border-left: 3px solid var(--blue); padding: 14px 18px; border-radius: 0 var(--radius-sm) var(--radius-sm) 0; margin: 14px 0; font-size: 14px; }
+  .step-content .example-box::before { content: '💡 '; font-weight: 600; color: var(--blue-dark); font-size: 13px; }
+  .step-content table { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 14px; border-radius: var(--radius-sm); overflow: hidden; }
+  .step-content th { background: var(--bg); font-weight: 600; text-align: left; padding: 10px 14px; color: var(--navy); font-size: 12px; text-transform: uppercase; letter-spacing: .3px; }
+  .step-content td { padding: 10px 14px; border-bottom: 1px solid var(--border); }
+  .step-content tr:last-child td { border-bottom: none; }
+  .glossary-term { color: var(--blue); cursor: pointer; border-bottom: 1px dashed var(--blue); font-weight: 500; transition: all var(--transition); }
+  .glossary-term:hover { background: var(--blue-light); }
+  .diagram-box { background: #fff; border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 20px; margin: 18px 0; overflow-x: auto; }
+  .diagram-box .mermaid { display: flex; justify-content: center; }
+  .img-box { background: #fff; border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 16px; margin: 18px 0; text-align: center; }
+  .img-box img { max-width: 100%; height: auto; border-radius: 4px; }
+  .img-box .img-caption { font-size: 12px; color: var(--slate-light); margin-top: 8px; font-style: italic; }
+  .step-nav { display: flex; gap: 10px; margin-top: 28px; padding-top: 20px; border-top: 1px solid var(--border); }
+  .step-nav button { padding: 10px 24px; font-family: var(--font-sans); font-size: 13px; font-weight: 600; border: none; border-radius: var(--radius-sm); cursor: pointer; transition: all var(--transition); }
+  .step-nav .btn-prev { background: var(--bg); color: var(--slate); }
+  .step-nav .btn-prev:hover { background: var(--border); }
+  .step-nav .btn-next { background: var(--blue); color: #fff; margin-left: auto; }
+  .step-nav .btn-next:hover { background: var(--blue-dark); transform: translateY(-1px); }
+  .step-nav .btn-next:disabled { opacity: .5; cursor: default; transform: none; }
+  .step-nav .btn-finish { background: #059669; color: #fff; margin-left: auto; }
+  .step-nav .btn-finish:hover { background: #047857; }
+  .recap-box { margin: 18px 0 0; padding: 20px 24px; background: linear-gradient(135deg, #f0fdf4, #f0fdfa); border: 1px solid #bbf7d0; border-radius: var(--radius-sm); }
+  .recap-box h4 { font-size: 12px; text-transform: uppercase; letter-spacing: .5px; color: #059669; margin-bottom: 10px; font-weight: 700; }
+  .recap-box ul { list-style: none; padding: 0; margin: 0; }
+  .recap-box li { padding: 6px 0; font-size: 14px; font-weight: 500; color: #065f46; }
+  .recap-box li::before { content: '✓ '; font-weight: 700; }
+
+  .modal-overlay { display: none; position: fixed; inset: 0; z-index: 999; background: rgba(15,23,42,.6); backdrop-filter: blur(4px); justify-content: center; align-items: center; }
+  .modal-overlay.show { display: flex; }
+  .modal-box { background: #fff; border-radius: var(--radius); padding: 32px; max-width: 480px; width: 90%; box-shadow: var(--shadow-lg); animation: fadeIn .2s ease-out; }
+  .modal-box h3 { font-size: 18px; font-weight: 700; color: var(--navy); margin-bottom: 10px; }
+  .modal-box p { font-size: 15px; line-height: 1.7; color: var(--slate); }
+  .modal-close { margin-top: 20px; padding: 8px 20px; font-family: var(--font-sans); font-size: 13px; font-weight: 600; border: none; border-radius: var(--radius-sm); cursor: pointer; background: var(--bg); color: var(--slate); transition: background var(--transition); }
+  .modal-close:hover { background: var(--border); }
+  .empty-state { text-align: center; padding: 60px 40px; color: var(--slate-light); }
+  .empty-state h2 { font-size: 20px; color: var(--slate); margin-bottom: 8px; }
+  .empty-state p { font-size: 14px; }
+
+  @media (max-width: 900px) {
+    header { padding: 16px 20px; flex-wrap: wrap; gap: 12px; }
+    .header-link { margin-left: 0; }
+    .search-wrapper { min-width: 0; width: 100%; order: 3; }
+    .tabs { padding: 0 16px; top: 170px; }
+    .sidebar { display: none; }
+    .main-content { padding: 20px; }
+    .lesson-header { padding: 20px 20px 0; }
+    .steps-container { padding: 16px 20px 24px; }
+    .step-nav { flex-wrap: wrap; }
+    .step-nav .btn-prev { order: 1; flex: 1; }
+    .step-nav .btn-next, .step-nav .btn-finish { order: 2; flex: 1; }
+    .app-layout { min-height: auto; }
+  }
+  @media (max-width: 600px) {
+    header h1 { font-size: 18px; }
+    .tab-btn { padding: 12px 14px; font-size: 12px; }
+    .tab-btn.active::after { left: 14px; right: 14px; }
+    .lesson-header h2 { font-size: 18px; }
+    .step-content p { font-size: 14px; }
+    .modal-box { padding: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-left">
+    <h1>{{ course_icon }} {{ course_name }}</h1>
+    <p>{{ course_code }} — Interactive Lessons</p>
+    <div class="header-badge">🧑‍🏫 <span>Teacher Mode</span> — Learn step by step</div>
+  </div>
+  <div class="search-wrapper" id="searchWrapper">
+    <span class="search-icon">🔍</span>
+    <input class="search-input" id="searchInput" type="text" placeholder="Search lessons…" autocomplete="off">
+    <button class="search-clear" id="searchClear" onclick="clearSearch()">✕</button>
+    <div class="search-results" id="searchResults"></div>
+  </div>
+  <a class="header-link" href="/">📚 All Courses</a>
+</header>
+
+<div class="tabs" id="tabsContainer"></div>
+
+<div class="app-layout">
+  <aside class="sidebar" id="sidebar">
+    <h3>Lessons</h3>
+    <ul class="sidebar-list" id="sidebarList"></ul>
+  </aside>
+  <main class="main-content" id="mainContent">
+    <div class="empty-state"><h2>Select a lesson</h2><p>Choose a topic tab above, then click a lesson.</p></div>
+  </main>
+</div>
+
+<div class="modal-overlay" id="glossaryModal">
+  <div class="modal-box">
+    <h3 id="glossaryTermTitle"></h3>
+    <p id="glossaryTermDef"></p>
+    <button class="modal-close" onclick="closeGlossary()">Got it</button>
+  </div>
+</div>
+
+<script>
+const glossary = {{ glossary_json | safe }};
+
+const topics = {{ tutorials_json | safe }};
+
+const tabsContainer = document.getElementById('tabsContainer');
+const sidebarList = document.getElementById('sidebarList');
+const mainContent = document.getElementById('mainContent');
+const glossaryModal = document.getElementById('glossaryModal');
+const glossaryTermTitle = document.getElementById('glossaryTermTitle');
+const glossaryTermDef = document.getElementById('glossaryTermDef');
+
+let currentTutorialIdx = 0;
+let currentLessonIdx = 0;
+let currentStepIdx = 0;
+
+function renderTabs() {
+  tabsContainer.innerHTML = topics.map((t, i) =>
+    `<button class="tab-btn ${i === currentTutorialIdx ? 'active' : ''}" onclick="switchTutorial(${i})">
+      ${t.title}
+      <span class="tab-badge">${t.questions.length} lessons</span>
+    </button>`
+  ).join('');
+}
+
+function switchTutorial(idx) {
+  currentTutorialIdx = idx;
+  currentLessonIdx = 0;
+  currentStepIdx = 0;
+  renderTabs();
+  renderSidebar();
+  renderLesson();
+}
+
+function renderSidebar() {
+  const t = topics[currentTutorialIdx];
+  sidebarList.innerHTML = t.questions.map((q, i) => {
+    const isActive = i === currentLessonIdx;
+    const cls = isActive ? 'active' : '';
+    return `<li><a class="${cls}" onclick="switchLesson(${i})">
+      <span class="q-num">L${q.number}</span> ${q.title}
+    </a></li>`;
+  }).join('');
+}
+
+function switchLesson(idx, stepIdx) {
+  currentLessonIdx = idx;
+  currentStepIdx = stepIdx || 0;
+  renderSidebar();
+  renderLesson();
+}
+
+function renderLesson() {
+  const t = topics[currentTutorialIdx];
+  const q = t.questions[currentLessonIdx];
+  if (!q) {
+    mainContent.innerHTML = `<div class="empty-state"><h2>Select a lesson</h2><p>Choose a lesson from the sidebar.</p></div>`;
+    return;
+  }
+  const step = q.steps[currentStepIdx];
+  const totalSteps = q.steps.length;
+  const isLastStep = currentStepIdx === totalSteps - 1;
+  const stepDots = q.steps.map((_, i) =>
+    `<span class="step-dot ${i === currentStepIdx ? 'current active' : i < currentStepIdx ? 'done' : ''}"></span>`
+  ).join('');
+  const bodyHtml = processBody(step.body);
+  let diagramHtml = '';
+  if (step.diagram) {
+    diagramHtml = `<div class="diagram-box"><pre class="mermaid">${escapeHtml(step.diagram)}</pre></div>`;
+  }
+  let recapHtml = '';
+  if (isLastStep && q.recap) {
+    recapHtml = `<div class="recap-box">
+      <h4>📝 Lesson Summary</h4>
+      <ul>${q.recap.map(r => `<li>${r}</li>`).join('')}</ul>
+    </div>`;
+  }
+  mainContent.innerHTML = `
+    <div class="lesson-card">
+      <div class="lesson-header">
+        <span class="q-label">Lesson ${q.number}</span>
+        <h2>${q.title}</h2>
+        <div class="lesson-intro">${q.intro}</div>
+      </div>
+      <div class="steps-container">
+        <div class="steps-progress">
+          ${stepDots}
+          <span class="step-label">${currentStepIdx + 1} / ${totalSteps}</span>
+        </div>
+        <div class="step-content">
+          <h3>${step.title}</h3>
+          ${bodyHtml}
+          ${diagramHtml}
+          ${recapHtml}
+        </div>
+        <div class="step-nav">
+          <button class="btn-prev" onclick="prevStep()" ${currentStepIdx === 0 ? 'disabled' : ''}>← Previous</button>
+          ${isLastStep
+            ? `<button class="btn-finish" onclick="nextLesson()">Next Lesson →</button>`
+            : `<button class="btn-next" onclick="nextStep()">Continue →</button>`
+          }
+        </div>
+      </div>
+    </div>`;
+  initMermaid();
+  attachGlossaryListeners();
+  updateSidebarProgress();
+}
+
+function nextStep() {
+  const q = topics[currentTutorialIdx].questions[currentLessonIdx];
+  if (currentStepIdx < q.steps.length - 1) { currentStepIdx++; renderLesson(); }
+}
+function prevStep() {
+  if (currentStepIdx > 0) { currentStepIdx--; renderLesson(); }
+}
+function nextLesson() {
+  const t = topics[currentTutorialIdx];
+  if (currentLessonIdx < t.questions.length - 1) {
+    currentLessonIdx++; currentStepIdx = 0; renderSidebar(); renderLesson();
+  }
+}
+function updateSidebarProgress() {
+  const t = topics[currentTutorialIdx];
+  const links = sidebarList.querySelectorAll('a');
+  links.forEach(a => a.classList.remove('done'));
+  if (currentStepIdx > 0) links[currentLessonIdx]?.classList.add('done');
+}
+function processBody(html) {
+  return html.replace(/\{\{(.+?)\}\}/g, (_, term) => {
+    const key = Object.keys(glossary).find(k => k.toLowerCase() === term.toLowerCase());
+    return key ? `<span class="glossary-term" data-term="${key}">${key}</span>` : term;
+  });
+}
+function attachGlossaryListeners() {
+  document.querySelectorAll('.glossary-term').forEach(el => {
+    el.addEventListener('click', () => {
+      const term = el.dataset.term;
+      if (glossary[term]) { glossaryTermTitle.textContent = term; glossaryTermDef.innerHTML = glossary[term]; glossaryModal.classList.add('show'); }
+    });
+  });
+}
+function closeGlossary() { glossaryModal.classList.remove('show'); }
+function initMermaid() {
+  if (typeof mermaid !== 'undefined') {
+    mermaid.initialize({ startOnLoad: false, theme: 'neutral', fontSize: 14 });
+    mermaid.run({ querySelector: '.mermaid' }).catch(() => {});
+  }
+}
+function escapeHtml(str) {
+  return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
+glossaryModal.addEventListener('click', (e) => { if (e.target === glossaryModal) closeGlossary(); });
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') { closeGlossary(); closeSearch(); }
+  if (e.key === 'ArrowRight' && !e.target.closest('.search-input')) nextStep();
+  if (e.key === 'ArrowLeft' && !e.target.closest('.search-input')) prevStep();
+  if ((e.metaKey || e.ctrlKey) && (e.key === 'k' || e.key === 'f')) { e.preventDefault(); document.getElementById('searchInput').focus(); }
+});
+
+/* ---- Search ---- */
+let searchIndex = [];
+let searchHighlightIdx = -1;
+
+function buildSearchIndex() {
+  searchIndex = [];
+  topics.forEach((t, ti) => {
+    t.questions.forEach((q, qi) => {
+      searchIndex.push({
+        tutorialIdx: ti, lessonIdx: qi, stepIdx: -1,
+        sortKey: `${String(ti)}-${String(qi).padStart(2,'0')}-000`,
+        path: `${t.short} · L${q.number}`,
+        title: q.title,
+        fullText: stripHtml(q.intro)
+      });
+      q.steps.forEach((s, si) => {
+        searchIndex.push({
+          tutorialIdx: ti, lessonIdx: qi, stepIdx: si,
+          sortKey: `${String(ti)}-${String(qi).padStart(2,'0')}-${String(si).padStart(3,'0')}`,
+          path: `${t.short} · L${q.number}`,
+          title: `${q.title} — ${s.title}`,
+          fullText: stripHtml(s.body)
+        });
+      });
+    });
+  });
+}
+function stripHtml(html) {
+  return html.replace(/<[^>]*>/g, ' ').replace(/&mdash;/g,'—').replace(/&amp;/g,'&').replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&nbsp;/g,' ').replace(/\s+/g,' ').trim();
+}
+function makeSnippet(text, query, contextLen) {
+  contextLen = contextLen || 50;
+  const q = query.toLowerCase();
+  const t = text.toLowerCase();
+  const idx = t.indexOf(q);
+  if (idx < 0) return text.substring(0, 120);
+  const start = Math.max(0, idx - contextLen);
+  const end = Math.min(text.length, idx + q.length + contextLen);
+  let out = '';
+  if (start > 0) out += '…';
+  out += text.substring(start, end);
+  if (end < text.length) out += '…';
+  return out;
+}
+function performSearch(query) {
+  const q = query.toLowerCase().trim();
+  if (!q) return [];
+  const results = [];
+  searchIndex.forEach(item => {
+    const searchText = (item.title + ' ' + item.fullText).toLowerCase();
+    if (searchText.includes(q)) {
+      const snippet = makeSnippet(item.fullText, q, 55);
+      const highlighted = snippet.replace(new RegExp('(' + q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi'), '<em>$1</em>');
+      results.push({ ...item, snippet: highlighted });
+    }
+  });
+  return results.slice(0, 20);
+}
+function renderSearchResults(results) {
+  const container = document.getElementById('searchResults');
+  const input = document.getElementById('searchInput');
+  const clear = document.getElementById('searchClear');
+  if (!results.length) {
+    container.innerHTML = `<div class="search-empty">${input.value.trim() ? 'No results found' : 'Type to search…'}</div>`;
+    container.classList.add('show');
+    clear.style.display = input.value.trim() ? 'block' : 'none';
+    return;
+  }
+  container.innerHTML = results.map((r, i) =>
+    `<div class="search-result-item ${i === searchHighlightIdx ? 'highlighted' : ''}" data-idx="${i}" onclick="selectSearchResult(${i})" onmouseenter="searchHighlightIdx=${i};renderSearchResults(performSearch(document.getElementById('searchInput').value))">
+      <div class="sr-path">${r.path}</div>
+      <div class="sr-title">${r.title}</div>
+      <div class="sr-preview">${r.snippet}</div>
+    </div>`
+  ).join('');
+  container.classList.add('show');
+  clear.style.display = 'block';
+}
+function selectSearchResult(idx) {
+  const results = performSearch(document.getElementById('searchInput').value);
+  if (!results[idx]) return;
+  const r = results[idx];
+  closeSearch();
+  if (currentTutorialIdx !== r.tutorialIdx) switchTutorial(r.tutorialIdx);
+  switchLesson(r.lessonIdx, r.stepIdx >= 0 ? r.stepIdx : 0);
+}
+function closeSearch() { document.getElementById('searchResults').classList.remove('show'); document.getElementById('searchClear').style.display = 'none'; searchHighlightIdx = -1; }
+function clearSearch() { document.getElementById('searchInput').value = ''; closeSearch(); document.getElementById('searchInput').focus(); }
+
+buildSearchIndex();
+document.getElementById('searchInput').addEventListener('input', function() { searchHighlightIdx = -1; renderSearchResults(performSearch(this.value)); });
+document.getElementById('searchInput').addEventListener('blur', function() { setTimeout(closeSearch, 200); });
+document.getElementById('searchInput').addEventListener('keydown', function(e) {
+  const results = performSearch(this.value);
+  if (e.key === 'Escape') { closeSearch(); this.blur(); return; }
+  if (e.key === 'ArrowDown') { e.preventDefault(); searchHighlightIdx = Math.min(searchHighlightIdx + 1, results.length - 1); renderSearchResults(performSearch(this.value)); const el = document.querySelector('.search-result-item.highlighted'); if (el) el.scrollIntoView({ block: 'nearest' }); }
+  if (e.key === 'ArrowUp') { e.preventDefault(); searchHighlightIdx = Math.max(searchHighlightIdx - 1, -1); renderSearchResults(performSearch(this.value)); }
+  if (e.key === 'Enter' && searchHighlightIdx >= 0) { e.preventDefault(); selectSearchResult(searchHighlightIdx); }
+});
+document.addEventListener('click', function(e) { if (!e.target.closest('.search-wrapper')) closeSearch(); });
+
+renderTabs();
+renderSidebar();
+switchLesson(0);
+</script>
+</body>
+</html>

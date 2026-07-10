@@ -8,3 +8,4 @@ Markdown
 edge-tts
 tabulate
 aiohttp
+flask

@@ -1,6 +1,6 @@
 ---
 name: interactive-lesson-generator
-description: "Generate self-contained interactive HTML lesson pages from tutorial transcripts, answer guides, or module lecture notes (PDF/markdown). Trigger when the user asks to create interactive learning, study guides, teaching materials, online lessons, or flashcard-style content from Q&A transcripts, lecture notes, or tutorial answers. Best for course content where material has structured sections (definitions, explanations, examples, review questions). Output is a single .html file with step-by-step progressive disclosure, Mermaid diagrams, glossary popups, search, and progress tracking. Also generates course hub index.html pages connecting multiple courses. Do NOT use for general web development, non-educational content, or PDF/PPTX conversion."
+description: "Generate interactive lesson content stored in SQLite from tutorial transcripts, answer guides, or module lecture notes (PDF/markdown). Trigger when the user asks to create interactive learning, study guides, teaching materials, online lessons, or flashcard-style content from Q&A transcripts, lecture notes, or tutorial answers. Best for course content where material has structured sections (definitions, explanations, examples, review questions). Output is a Python migration script that inserts lesson data into progress.db for serving via Flask templates (step-by-step progressive disclosure, Mermaid diagrams, glossary popups, full-text search, and progress tracking). Also updates the course hub at templates/index.html. Do NOT use for general web development, non-educational content, or PDF/PPTX conversion."
 allowed-tools: Read(*), Write(*), Edit(*), Bash(*), Glob(*), Grep(*), playwright_browser_navigate(*), playwright_browser_run_code_unsafe(*)
 ---
 
@@ -14,94 +14,86 @@ Supports two content formats:
 
 ## Architecture
 
-The output is a single `.html` file with:
-1. **Embedded CSS** — full styling, responsive layout, dark header, card-based lesson UI
-2. **Embedded JavaScript** — step navigation, tab switching, glossary modals, progress tracking, search, keyboard shortcuts
-3. **Mermaid.js** via CDN — renders live diagrams
-4. **JSON data structure** — lesson content defined as a JS array of objects
+The output is a Python script that inserts lesson content into SQLite (`progress.db`). The Flask server + Jinja2 templates handle all rendering, so no HTML file is generated.
 
-## Course Hub (index.html)
+Three content types exist:
+1. **Interactive Lessons** — step-by-step with tabs, sidebar, search, Mermaid diagrams, glossary
+2. **Practice Quizzes** — multiple choice with chapter filtering, shuffle, score tracking
+3. **Answer Documents** — static print-formatted answer sheets for assignments/tests
 
-When creating or updating a course hub at the project root:
-- Create `index.html` with styled cards linking to each course's lesson page
-- Each lesson page should have a `📚 All Courses` link in the header pointing back to `index.html`
-- Use relative paths: `current_sem/BCL1223 - Database Fundamentals/database_interactive_lessons.html`
-- Design: dark gradient background, glassmorphism cards, course code tags
+## Course Hub
 
-## Required Output Structure
+The course hub is `templates/index.html` — a hardcoded page with 4 course cards. To add a new course:
+1. Insert content into SQLite via the migration script
+2. Add a new `<a class="course-card">` element to `templates/index.html`
+3. Link to `/course/<course_id>/lessons` (for lessons) or `/course/<course_id>/quiz` (for quizzes)
 
-```
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Course Name — Interactive Lessons</title>
-    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
-    <style> /* ALL CSS */ </style>
-  </head>
-  <body>
-    <header>
-      <div class="header-left"> /* Title, subtitle, Teacher Mode badge */ </div>
-      <div class="search-wrapper"> /* Search input + results dropdown */ </div>
-      <a class="header-link" href="index.html">📚 All Courses</a>
-    </header>
-    <div class="tabs" id="tabsContainer"></div>
-    <div class="app-layout">
-      <aside class="sidebar" id="sidebar">
-        <h3>Lessons</h3>
-        <ul class="sidebar-list" id="sidebarList"></ul>
-      </aside>
-      <main class="main-content" id="mainContent"></main>
-    </div>
-    <div class="modal-overlay" id="glossaryModal"> /* Glossary popup */ </div>
-    <script> /* ALL JavaScript */ </script>
-  </body>
-</html>
-```
+## Output: Python Migration Script
 
-## Lesson Data Structure (JavaScript)
+Write a Python script like `datamigrate.py` that inserts content into `progress.db`:
 
-For Q&A transcripts, each tutorial tab contains 10 questions as lessons:
-```javascript
-const tutorials = [
-  {
-    id: 'tutorial1',
-    title: 'Tutorial 1 — Topic',
-    short: 'Short Name',
-    questions: [
-      {
-        number: 1,
-        title: 'Question 1 Title',
-        intro: 'Teacher-style paragraph explaining why this matters.',
-        steps: [
-          { title: 'Step Title', body: 'HTML content', diagram: null },
-          // 2-5 steps total
-        ],
-        recap: ['Key takeaway 1', 'Key takeaway 2']
-      }
-    ]
-  }
-];
+```python
+import json, sqlite3
+from pathlib import Path
+
+BASE_DIR = Path(__file__).parent
+DB_PATH = BASE_DIR / 'progress.db'
+
+def migrate(conn):
+    c = conn.cursor()
+    
+    # 1. Insert course
+    c.execute("INSERT OR REPLACE INTO courses (id, code, name, description, icon, course_type) VALUES (?,?,?,?,?,?)",
+              ('course_id', 'CODE123', 'Course Name', 'Description', '📖', 'lesson'))
+    
+    # 2. Insert glossary terms
+    c.execute("INSERT OR REPLACE INTO glossary (course_id, term, definition) VALUES (?,?,?)",
+              ('course_id', 'Term', 'Definition'))
+    
+    # 3. Insert tutorials (tabs)
+    c.execute("INSERT OR REPLACE INTO tutorials (id, course_id, title, short_title, sort_order) VALUES (?,?,?,?,?)",
+              ('tutorial1', 'course_id', 'Tutorial 1 — Topic', 'Short', 0))
+    
+    # 4. Insert lessons (with steps and recaps)
+    c.execute("INSERT INTO lessons (tutorial_id, number, title, intro, sort_order) VALUES (?,?,?,?,?)",
+              ('tutorial1', 1, 'Lesson Title', 'Intro paragraph...', 0))
+    lesson_id = c.lastrowid
+    
+    c.execute("INSERT INTO lesson_steps (lesson_id, title, body_html, diagram_mermaid, sort_order) VALUES (?,?,?,?,?)",
+              (lesson_id, 'Step Title', '<p>HTML content</p>', None, 0))
+    
+    c.execute("INSERT INTO lesson_recaps (lesson_id, text, sort_order) VALUES (?,?,?)",
+              (lesson_id, 'Key takeaway', 0))
+    
+    conn.commit()
+
+if __name__ == '__main__':
+    conn = sqlite3.connect(str(DB_PATH))
+    conn.execute("PRAGMA journal_mode=WAL")
+    migrate(conn)
+    conn.close()
+    print("Migration complete")
 ```
 
-For lecture/module content, each topic tab contains 2 lessons:
-```javascript
-const topics = [
-  {
-    id: 'topic1',
-    title: 'Topic 1 — Name',
-    short: 'Short Name',
-    questions: [
-      {
-        number: 1, // Lesson number (1-10 across all topics)
-        title: 'Lesson Title',
-        intro: 'Teacher intro',
-        steps: [ /* steps */ ],
-        recap: [ /* takeaways */ ]
-      }
-    ]
-  }
-];
+## Lesson Data Structure
+
+Content is stored across these SQLite tables:
+
 ```
+courses (id, code, name, description, icon, course_type)
+tutorials (id, course_id, title, short_title, sort_order)
+lessons (id, tutorial_id, number, title, intro, sort_order)
+lesson_steps (id, lesson_id, title, body_html, diagram_mermaid, sort_order)
+lesson_recaps (id, lesson_id, text, sort_order)
+glossary (id, course_id, term, definition)
+quiz_questions (id, course_id, chapter_idx, question_text, options_json, correct_idx, explanation, sort_order)
+quiz_chapters (id, course_id, chapter_idx, name)
+document_sections (id, course_id, section_number, title, content_html, sort_order)
+```
+
+For Q&A transcripts, each tutorial tab contains ~10 questions as lessons. For lecture/module content, each topic tab contains ~2 lessons.
+
+The same content structuring rules apply as before — each lesson has 2-5 steps, an intro, and a recap.
 
 ## Content Processing Rules
 
@@ -269,27 +261,41 @@ This avoids the bug where long step bodies had their searchable content truncate
    - For Q&A: extract all questions and sub-questions
    - For lecture markdown: extract topics, sections, embedded diagrams, review questions
 2. **Structure content** — Group into tutorials/topics. Each gets 2-10 lessons. Each lesson gets 2-5 steps.
-3. **Write the HTML file** — Follow the full architecture (CSS + JS + data)
-4. **Create/update course hub** — If other courses exist, update `index.html` to include the new course
-5. **Verify** — Serve locally with `python3 -m http.server 8000` and check:
-   - All tabs render with correct badge counts
-   - All lessons load and display content correctly
-   - Navigation buttons work (Continue, Previous, Next Lesson)
-   - Glossary terms are clickable and show modal
-   - Mermaid diagrams render (check browser console for errors)
-   - External images load (check browser console for 404s — no broken image links)
-   - Search works (test multiple terms, verify results highlight in body text)
-   - Progress ✓ marks update in sidebar
-   - "All Courses" link goes to index.html
-   - Responsive: test at 600px and 1200px widths
-   - Keyboard navigation (ArrowRight, ArrowLeft, Escape, ⌘K)
+3. **Write the migration script** — Create a Python script (or add to `datamigrate.py`) that inserts the structured content into `progress.db` using the SQLite tables described above.
+4. **Run the migration** — Execute the script to populate the database:
+   ```bash
+   cd /path/to/project && .venv/bin/python3 your_migration_script.py
+   ```
+5. **Add course card to hub** — Edit `templates/index.html` to add a new `<a class="course-card">` for the new course, linking to `/course/<course_id>/lessons` or `/course/<course_id>/quiz`.
+6. **Verify** — Start the Flask server and check:
+   ```bash
+   PORT=8080 .venv/bin/python3 server.py
+   ```
+   - Visit `http://localhost:8080/course/<course_id>/lessons` and verify:
+     - All tabs render with correct badge counts
+     - All lessons load and display content correctly
+     - Navigation buttons work (Continue, Previous, Next Lesson)
+     - Glossary terms are clickable and show modal
+     - Mermaid diagrams render (check browser console for errors)
+     - External images load (check browser console for 404s)
+     - Search works (test multiple terms, verify results highlight in body text)
+     - Progress ✓ marks update in sidebar
+     - "All Courses" link goes to `/`
+     - Keyboard navigation (ArrowRight, ArrowLeft, Escape, ⌘K)
 
 ## Reference Files
 
-- `assets/template.html` — Database Fundamentals example (20 lessons across 2 tutorials, Q&A format, 1825 lines)
-- `../../../iot_lessons.html` — Internet of Things example (10 lessons across 5 topics, lecture format)
+- `server.py` — Flask app with all routes and DB initialization
+- `templates/lesson.html` — Lesson viewer template (copy of iot_lessons.html with data injection)
+- `templates/quiz.html` — Quiz template (for Security+ style quizzes)
+- `templates/quiz_ghf.html` — Quiz template with profile system (for GitHub Foundations style)
+- `templates/document.html` — Answer document template
+- `datamigrate.py` — Example migration script showing all table insert patterns
+- `progress.db` — SQLite database with all migrated content
 
 ## Dependencies
-- Mermaid.js v10 CDN (`https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js`)
-- Google Fonts (Inter + Merriweather)
-- No other external dependencies — pure HTML/CSS/JS
+- Flask (`pip install flask`)
+- json5 (`pip install json5`) — for parsing JS literals in migration scripts
+- Python 3.10+
+- Mermaid.js v10 CDN (loaded by templates)
+- Google Fonts Inter + Merriweather (loaded by templates)
