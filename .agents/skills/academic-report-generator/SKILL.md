@@ -40,15 +40,15 @@ This skill provides a rigorous workflow for transforming assignment briefs or re
     - **Specific Technical Depth:** Use precise industry terminology and deep-dive into specific architectural details (e.g., mentioning specific register names or instruction pipeline stages) to move away from generic AI descriptions.
 
 4. **Technical & Visual Rigor:**
-    - **Latex Support:** Use LaTeX syntax ($ ... $) for all mathematical formulas and calculations.
+    - **Latex Support:** Use LaTeX syntax ($ ... $) only for actual complex mathematical formulas, equations, and calculations. **Do NOT use raw dollar signs for simple non-mathematical terms or ratios (e.g., database cardinalities like M:N, 1:M, or 1:1)**; use regular bold text or code blocks instead.
     - **Step-by-Step Working:** Show every logical step for any calculations.
     - **Mermaid Diagrams:** Integrate Mermaid.js for flowcharts, architecture diagrams, and logic circuits.
     - **Academic Styling:** Use "Times New Roman" or "Arial", 12pt/11pt font, and 1.5 line spacing as the standard for academic reports.
 
 5. **Professional Rendering Workflow:**
     - **Step 1 (Markdown Source):** Create a clean, well-structured `.md` file containing all text, LaTeX formulas, and Mermaid diagrams. This serves as the editable source and raw submission.
-    - **Step 2 (HTML Preview):** Generate a professionally styled HTML version based on the Markdown content. Ensure you include the **Mermaid.js** script and a custom renderer (e.g., in `marked.js`) that converts `mermaid` code blocks into `<div class="mermaid">` elements. Use a listener (like `mermaid.run()`) to trigger the rendering.
-    - **Step 3 (PDF Generation):** Use the `mcp_playwright_browser_run_code` tool to convert the HTML to a professional A4 PDF. **Crucially, your Playwright script MUST wait for the Mermaid diagrams to finish rendering.** Use `await page.waitForSelector('.mermaid svg', { timeout: 10000 });` to ensure all diagrams have been converted to SVG before calling `page.pdf()`. **Note:** Do not use `require('fs')` inside the browser context as it is not supported. Instead, pass the HTML content as a string variable or navigate to a local file.
+    - **Step 2 (HTML Preview):** Generate a professionally styled HTML version based on the Markdown content. If LaTeX is used in the markdown, ensure the HTML preview includes **MathJax** or **KaTeX** loading and config scripts (e.g., via CDN) to render math elements correctly. Ensure you include the **Mermaid.js** script and a custom renderer (e.g., in `marked.js`) that converts `mermaid` code blocks into `<div class="mermaid">` elements. Use a listener (like `mermaid.run()`) to trigger the rendering.
+    - **Step 3 (PDF Generation):** Use the `mcp_playwright_browser_run_code` tool to convert the HTML to a professional A4 PDF. **Crucially, your Playwright script MUST wait for both the Mermaid diagrams and MathJax/KaTeX (if loaded) to finish rendering.** Use `await page.waitForSelector('.mermaid svg', { timeout: 10000 });` and appropriate wait loops for math elements to ensure they are fully drawn before calling `page.pdf()`. **Note:** Do not use `require('fs')` inside the browser context as it is not supported. Instead, pass the HTML content as a string variable or navigate to a local file.
 
 ## Student Identity Configuration
 ALWAYS include the following student information in the cover page and header/footer of every generated report:
