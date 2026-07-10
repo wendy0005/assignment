@@ -4,3 +4,7 @@ pdfplumber
 pdf2image
 pyyaml
 lxml
+Markdown
+edge-tts
+tabulate
+aiohttp

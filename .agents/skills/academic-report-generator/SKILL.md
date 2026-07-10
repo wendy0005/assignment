@@ -1,6 +1,12 @@
 ---
 name: academic-report-generator
-description: A comprehensive workflow for producing "Excellent" (A-grade) academic assignments and technical reports. Use this skill whenever the user wants to generate or refine a formal assignment, research paper, or technical report, especially when a source PDF or marking scheme is provided. It handles schema analysis, academic tone refinement (less AI, more scholarly), visual integration (Mermaid/LaTeX), and professional PDF rendering via Playwright.
+description: >
+  A comprehensive workflow for producing "Excellent" (A-grade) academic assignments and technical reports.
+  Use this skill whenever the user wants to generate or refine a formal assignment, research paper, technical report,
+  or answer tutorial/subject questions in academic format, especially when a source PDF or marking scheme is provided.
+  It handles schema analysis, academic tone refinement (less AI, more scholarly), visual integration (Mermaid/LaTeX),
+  and professional PDF rendering via Playwright. Trigger phrases: "use this to answer", "use this skill to answer",
+  "answer using academic", "generate report".
 ---
 
 # Academic Report Generator Skill
