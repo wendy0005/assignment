@@ -167,14 +167,27 @@ def course_lessons(course_id):
     glossary_raw = conn.execute("SELECT term, definition FROM glossary WHERE course_id=?", (course_id,)).fetchall()
     glossary = {r['term']: r['definition'] for r in glossary_raw}
 
+    # secplus study page also needs quiz data (ALL_QUESTIONS)
+    template = 'lesson.html'
+    extra_vars = {}
+    if course_id == 'secplus':
+        template = 'study.html'
+        quiz_raw = conn.execute(
+            "SELECT * FROM quiz_questions WHERE course_id='secplus' ORDER BY sort_order", ()
+        ).fetchall()
+        quiz = [{'c': q['chapter_idx'], 'q': q['question_text'], 'o': json.loads(q['options_json']),
+                 'a': q['correct_idx'], 'exp': dict(q).get('explanation', '') or ''} for q in quiz_raw]
+        extra_vars['questions_json'] = json.dumps(quiz, ensure_ascii=False)
+
     conn.close()
 
-    return render_template('lesson.html',
+    return render_template(template,
         course_name=course['name'],
         course_code=course.get('code', ''),
         course_icon=course.get('icon', '📖'),
         tutorials_json=json.dumps(tutorials, ensure_ascii=False),
-        glossary_json=json.dumps(glossary, ensure_ascii=False)
+        glossary_json=json.dumps(glossary, ensure_ascii=False),
+        **extra_vars
     )
 
 # Quiz pages
