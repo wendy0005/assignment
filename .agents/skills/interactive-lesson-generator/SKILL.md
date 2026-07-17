@@ -261,13 +261,18 @@ This avoids the bug where long step bodies had their searchable content truncate
    - For Q&A: extract all questions and sub-questions
    - For lecture markdown: extract topics, sections, embedded diagrams, review questions
 2. **Structure content** — Group into tutorials/topics. Each gets 2-10 lessons. Each lesson gets 2-5 steps.
-3. **Write the migration script** — Create a Python script (or add to `datamigrate.py`) that inserts the structured content into `progress.db` using the SQLite tables described above.
-4. **Run the migration** — Execute the script to populate the database:
+3. **Check for existing overlap** — Before writing or running any migration, inspect the current `progress.db` for related courses, tutorials, lessons, or glossary terms. Use the preflight helper in this skill (`.agents/skills/interactive-lesson-generator/scripts/preflight.py`) or run an equivalent query.
+   - Search `courses` by name/description.
+   - Search `tutorials` and `lessons` by title.
+   - Search `glossary` by term.
+   - If any overlap is found, **stop and ask the user how to proceed** (e.g., skip, merge into existing course, add as a new tutorial under the same course, replace, or choose a different course ID). Do not silently duplicate content.
+4. **Write the migration script** — Create a Python script (or add to `datamigrate.py`) that inserts the structured content into `progress.db` using the SQLite tables described above.
+5. **Run the migration** — Execute the script to populate the database:
    ```bash
    cd /path/to/project && .venv/bin/python3 your_migration_script.py
    ```
-5. **Add course card to hub** — Edit `templates/index.html` to add a new `<a class="course-card">` for the new course, linking to `/course/<course_id>/lessons` or `/course/<course_id>/quiz`.
-6. **Verify** — Start the Flask server and check:
+6. **Add course card to hub** — Edit `templates/index.html` to add a new `<a class="course-card">` for the new course, linking to `/course/<course_id>/lessons` or `/course/<course_id>/quiz`.
+7. **Verify** — Start the Flask server and check:
    ```bash
    PORT=8080 .venv/bin/python3 server.py
    ```

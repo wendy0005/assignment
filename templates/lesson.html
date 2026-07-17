@@ -23,17 +23,34 @@
     --font-serif: 'Merriweather', Georgia, serif;
     --transition: .25s cubic-bezier(.4,0,.2,1);
   }
+  body.dark {
+    color-scheme: dark;
+    --navy: #e2e8f0; --slate: #94a3b8; --slate-light: #64748b;
+    --blue-light: rgba(59,130,246,.18); --blue-dark: #60a5fa;
+    --teal-light: rgba(20,184,166,.18);
+    --amber-light: rgba(245,158,11,.18);
+    --rose-light: rgba(244,63,94,.18);
+    --bg: #0f172a; --card: #1e293b; --border: #334155;
+    --shadow: 0 1px 3px rgba(0,0,0,.3), 0 1px 2px rgba(0,0,0,.25);
+    --shadow-lg: 0 10px 25px rgba(0,0,0,.35);
+  }
   html { scroll-behavior: smooth; }
   body {
     font-family: var(--font-sans); background: var(--bg); color: var(--slate);
     line-height: 1.7; -webkit-font-smoothing: antialiased;
   }
   header {
-    background: linear-gradient(135deg, var(--navy) 0%, #1e293b 100%);
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
     color: #fff; padding: 20px 40px; position: sticky; top: 0;
     z-index: 100; box-shadow: 0 2px 12px rgba(0,0,0,.15);
     display: flex; align-items: center; gap: 24px;
   }
+  .theme-toggle {
+    background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.2);
+    color: #fff; border-radius: 8px; padding: 8px 12px; cursor: pointer;
+    font-size: 14px; transition: background var(--transition);
+  }
+  .theme-toggle:hover { background: rgba(255,255,255,.2); }
   header .header-left { flex-shrink: 0; }
   header h1 { font-size: 22px; font-weight: 800; letter-spacing: -.5px; }
   header p { font-size: 13px; color: #94a3b8; margin-top: 2px; font-weight: 500; }
@@ -70,7 +87,7 @@
   .search-clear:hover { color: #fff; }
   .search-results {
     position: absolute; top: calc(100% + 6px); left: 0; right: 0;
-    background: #fff; border-radius: var(--radius-sm);
+    background: var(--card); border-radius: var(--radius-sm);
     box-shadow: var(--shadow-lg); max-height: 380px; overflow-y: auto;
     display: none; z-index: 200;
   }
@@ -81,11 +98,11 @@
   .search-result-item .sr-path { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .3px; color: var(--blue); margin-bottom: 2px; }
   .search-result-item .sr-title { font-size: 14px; font-weight: 600; color: var(--navy); margin-bottom: 3px; }
   .search-result-item .sr-preview { font-size: 12px; color: var(--slate-light); line-height: 1.4; }
-  .search-result-item .sr-preview em { background: #fef3c7; font-style: normal; padding: 0 2px; color: #92400e; font-weight: 600; }
+  .search-result-item .sr-preview em { background: var(--amber-light); font-style: normal; padding: 0 2px; color: var(--amber); font-weight: 600; }
   .search-empty { padding: 20px; text-align: center; color: var(--slate-light); font-size: 13px; }
 
   .tabs {
-    display: flex; background: #fff; border-bottom: 1px solid var(--border);
+    display: flex; background: var(--card); border-bottom: 1px solid var(--border);
     padding: 0 40px; position: sticky; top: 110px; z-index: 99;
     box-shadow: 0 1px 2px rgba(0,0,0,.04); overflow-x: auto;
   }
@@ -110,7 +127,7 @@
 
   .app-layout { display: flex; max-width: 1400px; margin: 0 auto; min-height: calc(100vh - 170px); }
   .sidebar {
-    width: 280px; flex-shrink: 0; background: #fff;
+    width: 280px; flex-shrink: 0; background: var(--card);
     border-right: 1px solid var(--border); padding: 20px 16px;
     position: sticky; top: 170px; height: calc(100vh - 170px); overflow-y: auto;
   }
@@ -167,9 +184,9 @@
   .step-content tr:last-child td { border-bottom: none; }
   .glossary-term { color: var(--blue); cursor: pointer; border-bottom: 1px dashed var(--blue); font-weight: 500; transition: all var(--transition); }
   .glossary-term:hover { background: var(--blue-light); }
-  .diagram-box { background: #fff; border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 20px; margin: 18px 0; overflow-x: auto; }
+  .diagram-box { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 20px; margin: 18px 0; overflow-x: auto; }
   .diagram-box .mermaid { display: flex; justify-content: center; }
-  .img-box { background: #fff; border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 16px; margin: 18px 0; text-align: center; }
+  .img-box { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 16px; margin: 18px 0; text-align: center; }
   .img-box img { max-width: 100%; height: auto; border-radius: 4px; }
   .img-box .img-caption { font-size: 12px; color: var(--slate-light); margin-top: 8px; font-style: italic; }
   .step-nav { display: flex; gap: 10px; margin-top: 28px; padding-top: 20px; border-top: 1px solid var(--border); }
@@ -189,13 +206,13 @@
 
   .modal-overlay { display: none; position: fixed; inset: 0; z-index: 999; background: rgba(15,23,42,.6); backdrop-filter: blur(4px); justify-content: center; align-items: center; }
   .modal-overlay.show { display: flex; }
-  .modal-box { background: #fff; border-radius: var(--radius); padding: 32px; max-width: 480px; width: 90%; box-shadow: var(--shadow-lg); animation: fadeIn .2s ease-out; }
+  .modal-box { background: var(--card); border-radius: var(--radius); padding: 32px; max-width: 480px; width: 90%; box-shadow: var(--shadow-lg); animation: fadeIn .2s ease-out; }
   .modal-box h3 { font-size: 18px; font-weight: 700; color: var(--navy); margin-bottom: 10px; }
   .modal-box p { font-size: 15px; line-height: 1.7; color: var(--slate); }
   .modal-close { margin-top: 20px; padding: 8px 20px; font-family: var(--font-sans); font-size: 13px; font-weight: 600; border: none; border-radius: var(--radius-sm); cursor: pointer; background: var(--bg); color: var(--slate); transition: background var(--transition); }
   .modal-close:hover { background: var(--border); }
   .empty-state { text-align: center; padding: 60px 40px; color: var(--slate-light); }
-  .empty-state h2 { font-size: 20px; color: var(--slate); margin-bottom: 8px; }
+  .empty-state h2 { font-size: 20px; color: var(--navy); margin-bottom: 8px; }
   .empty-state p { font-size: 14px; }
 
   @media (max-width: 900px) {
@@ -236,6 +253,7 @@
     <button class="search-clear" id="searchClear" onclick="clearSearch()">✕</button>
     <div class="search-results" id="searchResults"></div>
   </div>
+  <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" title="Toggle dark mode">🌙</button>
   <a class="header-link" href="/">📚 All Courses</a>
 </header>
 
@@ -263,6 +281,7 @@
 const glossary = {{ glossary_json | safe }};
 
 const topics = {{ tutorials_json | safe }};
+const courseId = {{ course_id | tojson }};
 
 const tabsContainer = document.getElementById('tabsContainer');
 const sidebarList = document.getElementById('sidebarList');
@@ -274,6 +293,59 @@ const glossaryTermDef = document.getElementById('glossaryTermDef');
 let currentTutorialIdx = 0;
 let currentLessonIdx = 0;
 let currentStepIdx = 0;
+let completedLessons = {}; // { tutorialId: Set of completed lesson numbers }
+
+const progressKey = `lesson_progress_${courseId}`;
+
+function loadProgress() {
+  try {
+    const stored = localStorage.getItem(progressKey);
+    if (stored) {
+      const state = JSON.parse(stored);
+      currentTutorialIdx = Math.max(0, Math.min(state.currentTutorialIdx || 0, topics.length - 1));
+      currentLessonIdx = Math.max(0, Math.min(state.currentLessonIdx || 0, topics[currentTutorialIdx].questions.length - 1));
+      currentStepIdx = Math.max(0, Math.min(state.currentStepIdx || 0, topics[currentTutorialIdx].questions[currentLessonIdx].steps.length - 1));
+      completedLessons = state.completedLessons || {};
+    }
+  } catch (e) {
+    console.warn('Failed to load lesson progress', e);
+  }
+}
+
+function saveProgress() {
+  try {
+    const state = {
+      currentTutorialIdx,
+      currentLessonIdx,
+      currentStepIdx,
+      completedLessons
+    };
+    localStorage.setItem(progressKey, JSON.stringify(state));
+  } catch (e) {
+    console.warn('Failed to save lesson progress', e);
+  }
+}
+
+function markLessonComplete(tutorialIdx, lessonIdx) {
+  const t = topics[tutorialIdx];
+  if (!t) return;
+  const q = t.questions[lessonIdx];
+  if (!q) return;
+  if (!completedLessons[t.id]) {
+    completedLessons[t.id] = [];
+  }
+  if (!completedLessons[t.id].includes(q.number)) {
+    completedLessons[t.id].push(q.number);
+  }
+}
+
+function isLessonComplete(tutorialIdx, lessonIdx) {
+  const t = topics[tutorialIdx];
+  if (!t) return false;
+  const q = t.questions[lessonIdx];
+  if (!q) return false;
+  return (completedLessons[t.id] || []).includes(q.number);
+}
 
 function renderTabs() {
   tabsContainer.innerHTML = topics.map((t, i) =>
@@ -288,6 +360,7 @@ function switchTutorial(idx) {
   currentTutorialIdx = idx;
   currentLessonIdx = 0;
   currentStepIdx = 0;
+  saveProgress();
   renderTabs();
   renderSidebar();
   renderLesson();
@@ -297,7 +370,8 @@ function renderSidebar() {
   const t = topics[currentTutorialIdx];
   sidebarList.innerHTML = t.questions.map((q, i) => {
     const isActive = i === currentLessonIdx;
-    const cls = isActive ? 'active' : '';
+    const done = isLessonComplete(currentTutorialIdx, i);
+    const cls = [isActive ? 'active' : '', done ? 'done' : ''].join(' ');
     return `<li><a class="${cls}" onclick="switchLesson(${i})">
       <span class="q-num">L${q.number}</span> ${q.title}
     </a></li>`;
@@ -307,6 +381,7 @@ function renderSidebar() {
 function switchLesson(idx, stepIdx) {
   currentLessonIdx = idx;
   currentStepIdx = stepIdx || 0;
+  saveProgress();
   renderSidebar();
   renderLesson();
 }
@@ -370,22 +445,30 @@ function renderLesson() {
 
 function nextStep() {
   const q = topics[currentTutorialIdx].questions[currentLessonIdx];
-  if (currentStepIdx < q.steps.length - 1) { currentStepIdx++; renderLesson(); }
+  if (currentStepIdx < q.steps.length - 1) { currentStepIdx++; saveProgress(); renderLesson(); }
 }
 function prevStep() {
-  if (currentStepIdx > 0) { currentStepIdx--; renderLesson(); }
+  if (currentStepIdx > 0) { currentStepIdx--; saveProgress(); renderLesson(); }
 }
 function nextLesson() {
   const t = topics[currentTutorialIdx];
+  markLessonComplete(currentTutorialIdx, currentLessonIdx);
   if (currentLessonIdx < t.questions.length - 1) {
-    currentLessonIdx++; currentStepIdx = 0; renderSidebar(); renderLesson();
+    currentLessonIdx++; currentStepIdx = 0;
   }
+  saveProgress();
+  renderSidebar();
+  renderLesson();
 }
 function updateSidebarProgress() {
   const t = topics[currentTutorialIdx];
   const links = sidebarList.querySelectorAll('a');
-  links.forEach(a => a.classList.remove('done'));
-  if (currentStepIdx > 0) links[currentLessonIdx]?.classList.add('done');
+  links.forEach((a, i) => {
+    a.classList.remove('done');
+    if (isLessonComplete(currentTutorialIdx, i)) {
+      a.classList.add('done');
+    }
+  });
 }
 function processBody(html) {
   return html.replace(/\{\{(.+?)\}\}/g, (_, term) => {
@@ -404,9 +487,30 @@ function attachGlossaryListeners() {
 function closeGlossary() { glossaryModal.classList.remove('show'); }
 function initMermaid() {
   if (typeof mermaid !== 'undefined') {
-    mermaid.initialize({ startOnLoad: false, theme: 'neutral', fontSize: 14 });
+    const theme = document.body.classList.contains('dark') ? 'dark' : 'neutral';
+    mermaid.initialize({ startOnLoad: false, theme, fontSize: 14 });
     mermaid.run({ querySelector: '.mermaid' }).catch(() => {});
   }
+}
+
+const themeKey = 'lesson_theme';
+function loadTheme() {
+  const saved = localStorage.getItem(themeKey);
+  const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const useDark = saved ? saved === 'dark' : prefersDark;
+  if (useDark) document.body.classList.add('dark');
+  else document.body.classList.remove('dark');
+  updateThemeIcon();
+}
+function toggleTheme() {
+  document.body.classList.toggle('dark');
+  localStorage.setItem(themeKey, document.body.classList.contains('dark') ? 'dark' : 'light');
+  updateThemeIcon();
+  initMermaid();
+}
+function updateThemeIcon() {
+  const btn = document.getElementById('themeToggle');
+  if (btn) btn.textContent = document.body.classList.contains('dark') ? '☀️' : '🌙';
 }
 function escapeHtml(str) {
   return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
@@ -522,9 +626,11 @@ document.getElementById('searchInput').addEventListener('keydown', function(e) {
 });
 document.addEventListener('click', function(e) { if (!e.target.closest('.search-wrapper')) closeSearch(); });
 
+loadTheme();
+loadProgress();
 renderTabs();
 renderSidebar();
-switchLesson(0);
+renderLesson();
 </script>
 </body>
 </html>

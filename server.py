@@ -182,6 +182,7 @@ def course_lessons(course_id):
     conn.close()
 
     return render_template(template,
+        course_id=course_id,
         course_name=course['name'],
         course_code=course.get('code', ''),
         course_icon=course.get('icon', '📖'),
@@ -331,6 +332,6 @@ def serve_static(filename):
 
 if __name__ == '__main__':
     init_db()
-    port = int(os.environ.get('PORT', 5000))
+    port = int(os.environ.get('PORT', 8000))
     print(f"Starting Flask server on port {port}... Open http://localhost:{port}/")
     app.run(host='0.0.0.0', port=port, debug=True)
