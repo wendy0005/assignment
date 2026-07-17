@@ -39,4 +39,5 @@ build/
 out/
 *.docx
 *.db
+!progress.db
 *.pyc
