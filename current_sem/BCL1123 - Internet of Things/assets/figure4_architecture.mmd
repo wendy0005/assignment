@@ -1,0 +1,68 @@
+---
+title: SentinelSleep Four-Layer System Architecture
+config:
+  theme: base
+  themeVariables:
+    fontFamily: Arial
+    primaryColor: "#EAF4F7"
+    primaryTextColor: "#17324D"
+    primaryBorderColor: "#0B6E99"
+    lineColor: "#0B6E99"
+    fontSize: 22px
+    secondaryColor: "#F1ECFA"
+    tertiaryColor: "#FFF4E4"
+    clusterBkg: "#F7FAFC"
+    clusterBorder: "#8AA8B6"
+  flowchart:
+    curve: basis
+    nodeSpacing: 28
+    rankSpacing: 55
+---
+flowchart LR
+    subgraph EDGE["EDGE LAYER - BEDROOM"]
+        direction TB
+        SENSORS["DHT22 | PIR | Photoresistor | MQ-2"]
+        ESP["ESP32 local rules<br/>and fail-safe state"]
+        ACT["Light and fan relays<br/>Night light | RGB LED | Buzzer<br/>Optional curtain servo"]
+        SENSORS -->|Sensor readings| ESP
+        ESP -->|Local decisions| ACT
+    end
+
+    subgraph CONNECTIVITY["CONNECTIVITY LAYER"]
+        direction TB
+        WIFI["2.4 GHz Wi-Fi"]
+        MQTT["MQTT over TLS<br/>QoS 1 alerts | Last Will"]
+        WIFI <--> MQTT
+    end
+
+    subgraph CLOUD["CLOUD LAYER"]
+        direction TB
+        BROKER["IoT message broker"]
+        RULES["Rules and event processing"]
+        DATA["Time-series data<br/>and device state"]
+        NOTIFY["Notification service"]
+        BROKER --> RULES
+        RULES --> DATA
+        RULES --> NOTIFY
+    end
+
+    subgraph APP["APPLICATION LAYER"]
+        direction TB
+        UI["Mobile dashboard<br/>Safety | Readings | Device state"]
+        CONTROL["Modes and manual controls<br/>Alerts and history"]
+        UI <--> CONTROL
+    end
+
+    ESP <-->|Telemetry / commands| WIFI
+    MQTT <-->|Publish / subscribe| BROKER
+    NOTIFY -->|Urgent alerts| CONTROL
+    DATA -->|Current and historical state| UI
+
+    classDef edge fill:#E9F5F7,stroke:#0B6E99,color:#17324D,stroke-width:2px;
+    classDef network fill:#EAF0FA,stroke:#4169A1,color:#17324D,stroke-width:2px;
+    classDef cloud fill:#F1ECFA,stroke:#7652A8,color:#17324D,stroke-width:2px;
+    classDef app fill:#FFF4E4,stroke:#B7791F,color:#17324D,stroke-width:2px;
+    class SENSORS,ESP,ACT edge;
+    class WIFI,MQTT network;
+    class BROKER,RULES,DATA,NOTIFY cloud;
+    class UI,CONTROL app;
