@@ -159,6 +159,7 @@ def course_lessons(course_id):
             })
         tutorials.append({
             'id': t['id'],
+            'cIdx': t['c_idx'],
             'title': t['title'],
             'short': t['short_title'],
             'questions': questions

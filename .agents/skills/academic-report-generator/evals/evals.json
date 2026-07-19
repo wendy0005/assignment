@@ -18,6 +18,12 @@
       "prompt": "Calculate the performance of a CPU with a 3GHz clock, 10^9 instructions, and 1.2 CPI. Show all steps using LaTeX and provide a critical interpretation of the result in a professional paragraph. Render the final result as a PDF.",
       "expected_output": "A document with precise LaTeX calculations and professional interpretation, rendered as a PDF.",
       "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "Complete a database assignment that requires an Oracle schema, SQL queries, a report, and a live demonstration. Use any local tools needed to verify it, but make the final PDF suitable for direct LMS submission.",
+      "expected_output": "A self-contained academic report that discusses Oracle implementation and demonstration evidence without exposing local paths, Docker or container details, helper scripts, rendering tools, credentials, or unnecessary supporting filenames.",
+      "files": []
     }
   ]
 }

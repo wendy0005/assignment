@@ -50,6 +50,16 @@ This skill provides a rigorous workflow for transforming assignment briefs or re
     - **Step 2 (HTML Preview):** Generate a professionally styled HTML version based on the Markdown content. If LaTeX is used in the markdown, ensure the HTML preview includes **MathJax** or **KaTeX** loading and config scripts (e.g., via CDN) to render math elements correctly. Ensure you include the **Mermaid.js** script and a custom renderer (e.g., in `marked.js`) that converts `mermaid` code blocks into `<div class="mermaid">` elements. Use a listener (like `mermaid.run()`) to trigger the rendering.
     - **Step 3 (PDF Generation):** Use the `mcp_playwright_browser_run_code` tool to convert the HTML to a professional A4 PDF. **Crucially, your Playwright script MUST wait for both the Mermaid diagrams and MathJax/KaTeX (if loaded) to finish rendering.** Use `await page.waitForSelector('.mermaid svg', { timeout: 10000 });` and appropriate wait loops for math elements to ensure they are fully drawn before calling `page.pdf()`. **Note:** Do not use `require('fs')` inside the browser context as it is not supported. Instead, pass the HTML content as a string variable or navigate to a local file.
 
+## Submission-Facing Cleanliness
+
+Write the final report for the marker or assessor, not as a record of the agent's production process. The document should stand on its own and should not expose internal implementation details that do not answer the brief.
+
+- Do not mention local paths, generated filenames, helper scripts, containers, Docker, Playwright, browser automation, temporary credentials, or internal rendering commands unless the brief explicitly requires a methodology section or the user asks for those details in the report.
+- Do not defer required content with sentences such as “the complete answer appears in `filename.ext`.” State the implementation directly and include enough explanation or evidence in the report itself. Deliver supplementary SQL, datasets, logs, Markdown, HTML, or source files separately without making the report depend on their names.
+- When a brief requires a live demonstration, describe what the student must show in platform-neutral terms. Keep machine-specific start-up commands in a separate handoff note or chat response rather than the submission document.
+- Distinguish submission artifacts from production artifacts. Markdown, HTML, rendering scripts and execution logs may be retained for reproducibility, but only identify them inside the report when the assessment instructions require them.
+- Mention the target academic or technical platform when relevant (for example, Oracle SQL), but omit how the platform was hosted or automated unless that hosting choice is itself assessed.
+
 ## Student Identity Configuration
 ALWAYS include the following student information in the cover page and header/footer of every generated report:
 - **Student Name:** Chan Jing Yi

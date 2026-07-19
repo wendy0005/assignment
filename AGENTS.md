@@ -1,33 +1,55 @@
-# Directory Overview
+# Workspace Overview
 
-This workspace is dedicated to the generation and management of high-quality academic and technical reports, specifically focused on the subject of **Computer Architecture**. It utilizes specialized AI-driven tools (Agents) to automate the analysis of assignment briefs, drafting of technical content (including LaTeX and Mermaid diagrams), and the professional rendering of PDF documents.
+This workspace hosts a **Flask + SQLite** interactive course platform for technical/security education. Content is served dynamically; standalone hardcoded HTML files are **not used**.
 
-## Project Structure
+## Architecture
 
-- **`.agents/skills/`**: Contains specialized AI skills that extend the capabilities of the Gemini CLI:
-    - **`academic-report-generator`**: The core workflow for creating A-grade reports. It manages tone, visual integration, and PDF rendering.
-    - **`mermaid-diagrams`**: Provides references and guides for creating various software and architectural diagrams.
-    - **`pdf`**: Documentation and scripts for advanced PDF processing and form filling.
-    - **`skill-creator`**: Tools for developing and evaluating new AI skills.
-- **`20260321_Computer_Architecture_Assignments/`**: A dated repository for completed assignment artifacts. Files are prefixed with `YYYYMMDD_` for organizational clarity.
-    - Includes both Markdown (`.md`) sources and professionally rendered PDFs.
-- **`Computer_Architecture_Assignment.pdf`**: A sample/reference assignment document.
-- **`eTutorialCOMPUTERARCHITECTURE_DegreeWK-ODLJAN2026.pdf`**: A course-specific tutorial brief.
-- **`FACOMPUTERARCHITECTURE_DegreeWK-ODLJAN2026.pdf`**: A Final Assessment brief for the Computer Architecture module.
-- **`circuit_mockup.html`**: A visual logic breadboard mockup for a Smart Home Security system, used for illustrating digital logic concepts.
+- **`server.py`** — Flask app that serves course pages from `templates/` using data from `progress.db`
+- **`templates/`** — Jinja2 templates (`study.html`, `quiz.html`, `index.html`, etc.)
+- **`progress.db`** — SQLite database with all course content, glossary, and quiz questions
+- **`current_sem/`** — Generated/exported files (backup snapshots, not authoritative)
 
-## Usage
+## Adding Learning Material — CRITICAL
 
-### Generating Reports
-To generate a new report, activate the `academic-report-generator` skill. The general workflow is:
-1.  **Analyze**: Read the provided PDF or text brief (e.g., `FACOMPUTERARCHITECTURE...pdf`).
-2.  **Draft**: Create a structured Markdown file (`.md`) incorporating technical analysis, LaTeX formulas, and Mermaid diagrams.
-3.  **Render**: Use the Playwright-based rendering workflow within the skill to convert the Markdown/HTML into a submission-ready PDF.
+**NEVER hardcode learning data into standalone HTML files.** All content must go into SQLite via a Python migration script.
 
-### Organization Convention
-New files and folders should be prefixed with the current date in **YYYYMMDD** format (e.g., `20260321_filename`). Submissions should always deliver both the Markdown source and the final PDF.
+### Pattern (follow `migrate_netfund.py` or `migrate_wireshark.py`):
 
-### Technical Tools
-- **Mermaid.js**: Used for all architectural and flow diagrams.
-- **MathJax/LaTeX**: Used for all mathematical calculations and performance metrics.
-- **Playwright**: Used for converting styled HTML templates into professional A4 PDF documents.
+1. Create `migrate_<topic>.py` in the project root
+2. Define `GLOSSARY`, `TUTORIALS` (with lessons, steps, recaps), and `QUIZ_QUESTIONS`
+3. Use the insert pattern:
+   - `tutorials` table: course link, title, `c_idx`, `sort_order`
+   - `lessons` table: tutorial link, number, title, intro
+   - `lesson_steps` table: lesson link, title, body_html (may contain glossary {{terms}}), optional mermaid diagram
+   - `lesson_recaps` table: lesson link, summary text
+   - `glossary` table: course link, term, definition
+   - `quiz_questions` table: course link, chapter_idx, question text, options JSON, correct_idx, explanation, optional card_ref
+4. Run the script: `python3 migrate_<topic>.py`
+5. Restart Flask: `python3 server.py`
+
+### Data Flow
+
+```
+migrate_*.py → SQLite (progress.db) → Flask (server.py) → templates/study.html
+```
+
+### Quiz Chapter Mapping
+
+Match `quiz_questions.chapter_idx` to the `c_idx` of the tutorial it belongs to. For a new chapter N, use `chapter_idx = N` and `c_idx = N`.
+
+## Key Courses in Database
+
+| Course ID | Name | Type |
+|-----------|------|------|
+| `secplus` | CompTIA Security+ (18 chapters incl. Wireshark) | Study + Quiz |
+| `netfund` | Networking for Security+ | Study |
+| `iot` | Internet of Things | Study |
+| `bcl1223` | Database Fundamentals | Study |
+| `ghf` | GitHub Foundations | Quiz only |
+
+## Running Locally
+
+```bash
+python3 server.py
+# Opens http://localhost:8000/
+```
