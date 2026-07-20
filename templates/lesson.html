@@ -189,6 +189,170 @@
   .img-box { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 16px; margin: 18px 0; text-align: center; }
   .img-box img { max-width: 100%; height: auto; border-radius: 4px; }
   .img-box .img-caption { font-size: 12px; color: var(--slate-light); margin-top: 8px; font-style: italic; }
+  .interactive-lab {
+    margin: 20px 0; border: 1px solid color-mix(in srgb, var(--blue) 35%, var(--border));
+    border-radius: var(--radius); overflow: hidden; background: var(--card);
+    box-shadow: 0 8px 24px rgba(59,130,246,.08);
+  }
+  .lab-heading { padding: 18px 20px; background: linear-gradient(135deg, var(--blue-light), var(--teal-light)); border-bottom: 1px solid var(--border); }
+  .lab-heading h4 { font-size: 17px; color: var(--navy); margin: 5px 0 4px; }
+  .lab-heading p { margin: 0; font-size: 13px; line-height: 1.55; }
+  .lab-badge { display: inline-flex; padding: 3px 9px; border-radius: 999px; background: var(--blue); color: #fff; font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: .5px; }
+  .lab-stage { padding: 20px; }
+  .lab-progress { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 14px; font-size: 12px; font-weight: 700; color: var(--slate-light); }
+  .lab-progress-track { flex: 1; max-width: 220px; height: 7px; border-radius: 999px; background: var(--border); overflow: hidden; }
+  .lab-progress-fill { height: 100%; background: linear-gradient(90deg, var(--blue), var(--teal)); transition: width var(--transition); }
+  .lab-card { padding: 16px; border: 1px solid var(--border); border-radius: var(--radius-sm); background: var(--bg); margin-bottom: 12px; }
+  .lab-card-title { display: flex; align-items: center; justify-content: space-between; gap: 10px; color: var(--navy); font-weight: 700; font-size: 14px; margin-bottom: 10px; }
+  .lab-card code { font-size: 13px; }
+  .lab-options { display: flex; flex-wrap: wrap; gap: 8px; }
+  .lab-option, .lab-action, .lab-reset, .lab-zone, .lab-chip {
+    font: 600 13px var(--font-sans); border-radius: 8px; border: 1px solid var(--border);
+    background: var(--card); color: var(--slate); padding: 8px 12px; cursor: pointer;
+    transition: border-color var(--transition), background var(--transition), color var(--transition), transform var(--transition);
+  }
+  .lab-option:hover, .lab-zone:hover, .lab-chip:hover { border-color: var(--blue); transform: translateY(-1px); }
+  .lab-option.selected, .lab-chip.selected { border-color: var(--blue); background: var(--blue-light); color: var(--blue-dark); }
+  .lab-option.correct { border-color: #10b981; background: #ecfdf5; color: #047857; }
+  .lab-option.incorrect { border-color: var(--rose); background: var(--rose-light); color: #be123c; }
+  .lab-action { background: var(--blue); border-color: var(--blue); color: #fff; }
+  .lab-action:hover { background: var(--blue-dark); }
+  .lab-action:disabled { opacity: .45; cursor: not-allowed; transform: none; }
+  .lab-reset { background: transparent; }
+  .lab-toolbar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: 14px; }
+  .lab-feedback { margin-top: 10px; padding: 10px 12px; border-radius: 8px; font-size: 13px; line-height: 1.5; }
+  .lab-feedback.success { background: #ecfdf5; color: #065f46; border: 1px solid #a7f3d0; }
+  .lab-feedback.error { background: var(--rose-light); color: #9f1239; border: 1px solid #fecdd3; }
+  .lab-feedback.info { background: var(--blue-light); color: var(--blue-dark); border: 1px solid #bfdbfe; }
+  .lab-relation { text-align: center; padding: 16px; border-radius: 10px; background: var(--navy); color: var(--card); font-weight: 800; letter-spacing: .2px; margin: 12px 0; overflow-x: auto; }
+  body.dark .lab-relation { background: #0f172a; color: #f8fafc; }
+  .lab-select-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .lab-field label { display: block; color: var(--slate-light); font-size: 11px; font-weight: 700; margin-bottom: 5px; }
+  .lab-field select { width: 100%; padding: 9px 10px; border: 1px solid var(--border); border-radius: 8px; background: var(--card); color: var(--navy); font: 600 13px var(--font-sans); }
+  .lab-dnd { display: grid; grid-template-columns: minmax(180px, .8fr) minmax(0, 2fr); gap: 14px; }
+  .lab-palette, .lab-zones { padding: 12px; border: 1px dashed var(--border); border-radius: 10px; }
+  .lab-palette h5, .lab-zones h5 { margin-bottom: 10px; color: var(--navy); font-size: 12px; }
+  .lab-palette-list { display: flex; flex-wrap: wrap; gap: 7px; }
+  .lab-chip { padding: 7px 9px; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+  .lab-chip.placed { opacity: .45; }
+  .lab-zone { display: block; width: 100%; text-align: left; margin-bottom: 7px; min-height: 43px; }
+  .lab-zone.drag-over { border-color: var(--blue); background: var(--blue-light); }
+  .lab-zone-items { display: inline-flex; flex-wrap: wrap; gap: 5px; margin-left: 7px; }
+  .lab-zone-token { padding: 2px 6px; background: var(--blue-light); color: var(--blue-dark); border-radius: 5px; font: 600 11px ui-monospace, monospace; }
+  .lab-table-wrap { overflow-x: auto; margin: 12px 0; }
+  .lab-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+  .lab-table th, .lab-table td { padding: 8px 10px; border: 1px solid var(--border); white-space: nowrap; }
+  .lab-table th { background: var(--bg); }
+  .lab-key { background: var(--amber-light); color: var(--navy); font-weight: 700; }
+  .lab-facts { margin: 8px 0 0; padding-left: 18px; font-size: 13px; }
+  .lab-complete { display: inline-flex; align-items: center; gap: 5px; color: #047857; font-size: 12px; font-weight: 800; }
+  .interactive-lab.erd-expanded { background: #020617; border-color: #1e293b; color: #cbd5e1; box-shadow: 0 20px 55px rgba(2,6,23,.3); }
+  .interactive-lab.erd-expanded .lab-heading { background: linear-gradient(135deg, #0f172a, #111827); border-color: #1e293b; }
+  .interactive-lab.erd-expanded .lab-heading h4 { color: #f8fafc; }
+  .interactive-lab.erd-expanded .lab-heading p { color: #94a3b8; }
+  .interactive-lab.erd-expanded .lab-badge { background: rgba(99,102,241,.18); color: #a5b4fc; border: 1px solid rgba(129,140,248,.3); }
+  .interactive-lab.erd-expanded .lab-stage { padding: 0; }
+  .interactive-lab.erd-expanded:fullscreen,
+  .interactive-lab.erd-expanded.erd-maximized {
+    width: 100vw; height: 100vh; max-width: none; margin: 0; border: 0; border-radius: 0;
+    background: #020617; display: flex; flex-direction: column;
+  }
+  .interactive-lab.erd-expanded.erd-maximized { position: fixed; inset: 0; z-index: 1000; }
+  .interactive-lab.erd-expanded:fullscreen .lab-heading,
+  .interactive-lab.erd-expanded.erd-maximized .lab-heading { flex: 0 0 auto; }
+  .interactive-lab.erd-expanded:fullscreen .lab-stage,
+  .interactive-lab.erd-expanded.erd-maximized .lab-stage { flex: 1 1 auto; min-height: 0; overflow: hidden; }
+  .interactive-lab.erd-expanded:fullscreen .erd-shell,
+  .interactive-lab.erd-expanded.erd-maximized .erd-shell { height: 100%; display: flex; flex-direction: column; }
+  .interactive-lab.erd-expanded:fullscreen .erd-workspace,
+  .interactive-lab.erd-expanded.erd-maximized .erd-workspace { flex: 1 1 auto; min-height: 0; }
+  .interactive-lab.erd-expanded:fullscreen .erd-inspector,
+  .interactive-lab.erd-expanded.erd-maximized .erd-inspector { max-height: none; }
+  body.erd-modal-open { overflow: hidden; }
+  .erd-shell { background: #020617; color: #cbd5e1; font-family: var(--font-sans); }
+  .erd-topbar { padding: 16px 18px; border-bottom: 1px solid #1e293b; background: rgba(15,23,42,.92); }
+  .erd-topbar-row { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
+  .erd-kicker { color: #818cf8; font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: .8px; }
+  .erd-title { color: #fff; font-size: 18px; font-weight: 800; line-height: 1.25; margin: 3px 0; }
+  .erd-subtitle { color: #94a3b8; font-size: 12px; line-height: 1.5; max-width: 720px; }
+  .erd-controls, .erd-presets, .erd-legend { display: flex; align-items: center; flex-wrap: wrap; gap: 7px; }
+  .erd-controls { justify-content: flex-end; flex-shrink: 0; }
+  .erd-control, .erd-preset {
+    border: 1px solid #334155; background: #0f172a; color: #cbd5e1; border-radius: 8px;
+    padding: 7px 10px; font: 700 11px var(--font-sans); cursor: pointer; transition: all var(--transition);
+  }
+  .erd-control:hover, .erd-preset:hover { border-color: #6366f1; color: #fff; background: #1e293b; }
+  .erd-control:disabled { opacity: .4; cursor: default; }
+  .erd-preset.active { border-color: #818cf8; color: #fff; background: #4f46e5; box-shadow: 0 6px 18px rgba(79,70,229,.25); }
+  .erd-presets { margin-top: 13px; padding-top: 13px; border-top: 1px solid #1e293b; }
+  .erd-presets-label { color: #64748b; font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: .6px; margin-right: 3px; }
+  .erd-workspace { display: grid; grid-template-columns: minmax(0, 1fr) 300px; min-height: 690px; }
+  .erd-viewport { position: relative; overflow: auto; min-width: 0; background-color: #020617; background-image: radial-gradient(#1e293b 1px, transparent 1px); background-size: 22px 22px; border-right: 1px solid #1e293b; }
+  .erd-board-wrap { width: 1720px; min-height: 720px; transform-origin: 0 0; transition: transform .18s ease; }
+  .erd-board { width: 1720px; min-height: 720px; position: relative; display: grid; grid-template-columns: repeat(4, 260px); gap: 180px; padding: 28px 50px 60px; }
+  .erd-lines { position: absolute; inset: 0; width: 1720px; height: 720px; z-index: 3; overflow: visible; pointer-events: none; }
+  .erd-labels { position: absolute; inset: 0; width: 1720px; height: 720px; z-index: 3; overflow: visible; pointer-events: none; }
+  .erd-line-visible { fill: none; stroke: #64748b; stroke-width: 2.4; filter: drop-shadow(0 0 1px rgba(165,180,252,.4)); transition: opacity .2s ease, stroke .2s ease, stroke-width .2s ease; pointer-events: none; }
+  .erd-line-visible.active, .erd-line-visible.hovered { stroke: #818cf8; stroke-width: 3.5; stroke-dasharray: 9 5; animation: dash 1.5s linear infinite; }
+  .erd-line-visible.composite.active, .erd-line-visible.composite.hovered { stroke: #f43f5e; }
+  .erd-line-visible.dimmed { opacity: .13; }
+  .erd-line-visible.dimmed.hovered { opacity: 1; }
+  .erd-line-hit { fill: none; stroke: transparent; stroke-width: 16; pointer-events: stroke; cursor: pointer; }
+  .erd-line-label { fill: #94a3b8; font: 700 10px var(--font-sans); paint-order: stroke; stroke: #020617; stroke-width: 5px; stroke-linejoin: round; pointer-events: none; }
+  .erd-line-label.active, .erd-relationship-labels.hovered .erd-line-label { fill: #e0e7ff; }
+  .erd-relationship-labels { opacity: 0; transition: opacity .14s ease; }
+  .erd-relationship-labels.active, .erd-relationship-labels.hovered { opacity: 1; }
+  .erd-endpoint-badge { pointer-events: none; }
+  .erd-endpoint-badge rect { fill: #111827; stroke: #818cf8; stroke-width: 1.5; rx: 7; filter: drop-shadow(0 3px 5px rgba(0,0,0,.55)); }
+  .erd-endpoint-badge text { fill: #f8fafc; font: 900 10px ui-monospace, SFMono-Regular, Menlo, monospace; }
+  .erd-endpoint-badge.from rect { fill: #172554; }
+  .erd-endpoint-badge.to rect { fill: #312e81; }
+  .erd-endpoint-badge.composite rect { stroke: #fb7185; }
+  .erd-layer { position: relative; z-index: 2; min-width: 0; }
+  .erd-layer-head { text-align: center; padding: 0 4px 8px; margin-bottom: 15px; border-bottom: 1px solid #312e81; }
+  .erd-layer-label { color: #6366f1; font-size: 9px; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; }
+  .erd-layer-title { color: #94a3b8; font-size: 10px; font-weight: 700; margin-top: 2px; }
+  .erd-layer-nodes { display: flex; flex-direction: column; gap: 100px; }
+  .erd-node { width: 100%; position: relative; text-align: left; border: 1px solid #334155; border-radius: 11px; background: #0f172a; color: #cbd5e1; padding: 0; overflow: hidden; cursor: pointer; box-shadow: 0 12px 25px rgba(0,0,0,.18); transition: opacity .2s ease, border-color .2s ease, transform .2s ease, box-shadow .2s ease; }
+  .erd-node:hover, .erd-node:focus-visible { border-color: #64748b; transform: translateY(-2px); outline: none; }
+  .erd-node.active { border-color: #818cf8; box-shadow: 0 0 0 2px rgba(99,102,241,.35), 0 18px 36px rgba(0,0,0,.3); }
+  .erd-node.junction.active, .erd-node.lock.active { border-color: #fb7185; box-shadow: 0 0 0 2px rgba(244,63,94,.3), 0 18px 36px rgba(0,0,0,.3); }
+  .erd-node.dimmed { opacity: .2; }
+  .erd-node-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; background: #111827; border-bottom: 1px solid #1e293b; padding: 9px 10px; }
+  .erd-node-name { color: #a5b4fc; font: 800 11px ui-monospace, SFMono-Regular, Menlo, monospace; }
+  .erd-node.junction .erd-node-name, .erd-node.lock .erd-node-name { color: #fb7185; }
+  .erd-node-kind { color: #64748b; border: 1px solid #334155; border-radius: 999px; padding: 1px 6px; font-size: 8px; font-weight: 800; text-transform: uppercase; }
+  .erd-node-cols { padding: 8px 10px; display: flex; flex-direction: column; gap: 4px; }
+  .erd-col { display: flex; align-items: center; gap: 5px; min-width: 0; font: 500 9.5px ui-monospace, SFMono-Regular, Menlo, monospace; }
+  .erd-col-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .erd-col-keys { display: flex; gap: 3px; margin-left: auto; }
+  .erd-key { border-radius: 4px; padding: 1px 4px; font: 800 7px var(--font-sans); }
+  .erd-key.PK { background: rgba(99,102,241,.18); color: #a5b4fc; }
+  .erd-key.FK { background: rgba(245,158,11,.16); color: #fbbf24; }
+  .erd-key.UK { background: rgba(20,184,166,.15); color: #5eead4; }
+  .erd-key.CHECK { background: rgba(148,163,184,.12); color: #94a3b8; }
+  .erd-inspector { padding: 18px; background: #0f172a; overflow-y: auto; max-height: 720px; }
+  .erd-inspector-badge { display: inline-flex; color: #a5b4fc; border: 1px solid #3730a3; background: rgba(79,70,229,.13); border-radius: 999px; padding: 3px 8px; font-size: 9px; font-weight: 900; text-transform: uppercase; letter-spacing: .6px; }
+  .erd-inspector-title { color: #fff; font-size: 17px; line-height: 1.25; font-weight: 800; margin: 9px 0 7px; }
+  .erd-inspector-copy { color: #fff; font-size: 12px; line-height: 1.6; }
+  .step-content p.erd-inspector-copy { color: #fff !important; }
+  .erd-inspector-section { margin-top: 16px; padding-top: 14px; border-top: 1px solid #1e293b; }
+  .erd-inspector-section h5 { color: #64748b; font-size: 9px; text-transform: uppercase; letter-spacing: .8px; margin-bottom: 8px; }
+  .erd-inspector-row { padding: 8px; margin-bottom: 6px; border: 1px solid #1e293b; border-radius: 7px; background: #020617; }
+  .erd-inspector-row-top { display: flex; gap: 8px; align-items: center; justify-content: space-between; font: 700 10px ui-monospace, monospace; color: #cbd5e1; }
+  .erd-inspector-type { color: #64748b; font-weight: 500; }
+  .erd-rule { padding: 11px; border-left: 3px solid #6366f1; background: #020617; border-radius: 0 8px 8px 0; color: #fff; font-size: 12px; line-height: 1.55; }
+  .erd-notation-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 10px; }
+  .erd-notation-card { padding: 10px; border: 1px solid #1e293b; border-radius: 8px; background: #020617; }
+  .erd-notation-card h6 { color: #e0e7ff; font: 800 10px/1.4 ui-monospace, monospace; margin-bottom: 6px; }
+  .erd-notation-line { display: flex; justify-content: space-between; gap: 8px; padding: 3px 0; color: #94a3b8; font-size: 10px; }
+  .erd-notation-line strong { color: #cbd5e1; text-align: right; }
+  .erd-constraint { margin-top: 9px; color: #fbbf24; font: 600 10px/1.5 ui-monospace, monospace; overflow-wrap: anywhere; }
+  .erd-shell strong { color: #fff; font-weight: 700; }
+  .erd-legend { padding: 12px 18px; border-top: 1px solid #1e293b; background: #0b1120; color: #94a3b8; font-size: 10px; }
+  .erd-legend strong { color: #e2e8f0; }
+  .erd-legend-item { display: inline-flex; align-items: center; gap: 5px; padding-right: 8px; }
+  .erd-legend-symbol { color: #a5b4fc; font: 900 12px ui-monospace, monospace; }
   .step-nav { display: flex; gap: 10px; margin-top: 28px; padding-top: 20px; border-top: 1px solid var(--border); }
   .step-nav button { padding: 10px 24px; font-family: var(--font-sans); font-size: 13px; font-weight: 600; border: none; border-radius: var(--radius-sm); cursor: pointer; transition: all var(--transition); }
   .step-nav .btn-prev { background: var(--bg); color: var(--slate); }
@@ -228,6 +392,9 @@
     .step-nav .btn-prev { order: 1; flex: 1; }
     .step-nav .btn-next, .step-nav .btn-finish { order: 2; flex: 1; }
     .app-layout { min-height: auto; }
+    .erd-workspace { grid-template-columns: 1fr; }
+    .erd-viewport { border-right: none; border-bottom: 1px solid #1e293b; min-height: 600px; }
+    .erd-inspector { max-height: none; }
   }
   @media (max-width: 600px) {
     header h1 { font-size: 18px; }
@@ -236,6 +403,14 @@
     .lesson-header h2 { font-size: 18px; }
     .step-content p { font-size: 14px; }
     .modal-box { padding: 24px; }
+    .lab-stage { padding: 14px; }
+    .lab-select-grid, .lab-dnd { grid-template-columns: 1fr; }
+    .lab-option, .lab-action, .lab-reset { min-height: 42px; }
+    .erd-topbar-row { flex-direction: column; }
+    .erd-controls { justify-content: flex-start; }
+    .erd-workspace { min-height: 0; }
+    .erd-viewport { min-height: 520px; }
+    .erd-notation-grid { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -294,18 +469,46 @@ let currentTutorialIdx = 0;
 let currentLessonIdx = 0;
 let currentStepIdx = 0;
 let completedLessons = {}; // { tutorialId: Set of completed lesson numbers }
+let labStates = {}; // Persisted answers for interactive activities
 
 const progressKey = `lesson_progress_${courseId}`;
+const assignmentLabTutorialId = 'bcl1223_assignment_lab';
+const assignmentLabContentVersion = 2;
+
+function migrateAssignmentLabProgress(state) {
+  if (courseId !== 'bcl1223' || (state.assignmentLabContentVersion || 1) >= assignmentLabContentVersion) return state;
+  const tutorialIndex = topics.findIndex(topic => topic.id === assignmentLabTutorialId);
+  const completed = state.completedLessons && state.completedLessons[assignmentLabTutorialId];
+  if (Array.isArray(completed)) {
+    state.completedLessons[assignmentLabTutorialId] = completed.map(number => Number(number) + 1);
+  }
+  if (state.labStates) {
+    const migrated = {};
+    Object.entries(state.labStates).forEach(([key, value]) => {
+      const parts = key.split(':');
+      if (parts[0] === assignmentLabTutorialId && parts.length >= 4) parts[1] = String(Number(parts[1]) + 1);
+      migrated[parts.join(':')] = value;
+    });
+    state.labStates = migrated;
+  }
+  if (tutorialIndex >= 0 && Number(state.currentTutorialIdx) === tutorialIndex) {
+    state.currentLessonIdx = Number(state.currentLessonIdx || 0) + 1;
+  }
+  state.assignmentLabContentVersion = assignmentLabContentVersion;
+  localStorage.setItem(progressKey, JSON.stringify(state));
+  return state;
+}
 
 function loadProgress() {
   try {
     const stored = localStorage.getItem(progressKey);
     if (stored) {
-      const state = JSON.parse(stored);
+      const state = migrateAssignmentLabProgress(JSON.parse(stored));
       currentTutorialIdx = Math.max(0, Math.min(state.currentTutorialIdx || 0, topics.length - 1));
       currentLessonIdx = Math.max(0, Math.min(state.currentLessonIdx || 0, topics[currentTutorialIdx].questions.length - 1));
       currentStepIdx = Math.max(0, Math.min(state.currentStepIdx || 0, topics[currentTutorialIdx].questions[currentLessonIdx].steps.length - 1));
       completedLessons = state.completedLessons || {};
+      labStates = state.labStates || {};
     }
   } catch (e) {
     console.warn('Failed to load lesson progress', e);
@@ -318,7 +521,9 @@ function saveProgress() {
       currentTutorialIdx,
       currentLessonIdx,
       currentStepIdx,
-      completedLessons
+      completedLessons,
+      labStates,
+      assignmentLabContentVersion
     };
     localStorage.setItem(progressKey, JSON.stringify(state));
   } catch (e) {
@@ -387,6 +592,9 @@ function switchLesson(idx, stepIdx) {
 }
 
 function renderLesson() {
+  mainContent.querySelectorAll('.interactive-lab').forEach(root => {
+    if (root._erdObserver) root._erdObserver.disconnect();
+  });
   const t = topics[currentTutorialIdx];
   const q = t.questions[currentLessonIdx];
   if (!q) {
@@ -440,6 +648,7 @@ function renderLesson() {
     </div>`;
   initMermaid();
   attachGlossaryListeners();
+  initInteractiveLabs();
   updateSidebarProgress();
 }
 
@@ -493,6 +702,530 @@ function initMermaid() {
   }
 }
 
+/* ---- Data-driven interactive concept labs ---- */
+function labKey(index) {
+  const topic = topics[currentTutorialIdx];
+  const lesson = topic.questions[currentLessonIdx];
+  return `${topic.id}:${lesson.number}:${currentStepIdx}:${index}`;
+}
+
+function getLabState(index, defaults) {
+  const key = labKey(index);
+  if (!labStates[key]) labStates[key] = JSON.parse(JSON.stringify(defaults || {}));
+  return labStates[key];
+}
+
+function saveLabState() { saveProgress(); }
+
+function labProgress(done, total) {
+  const pct = total ? Math.round((done / total) * 100) : 0;
+  return `<div class="lab-progress"><span>${done} of ${total} complete</span><div class="lab-progress-track"><div class="lab-progress-fill" style="width:${pct}%"></div></div>${done === total && total ? '<span class="lab-complete">✓ Mastered</span>' : ''}</div>`;
+}
+
+function labFeedback(kind, text) {
+  return text ? `<div class="lab-feedback ${kind}">${text}</div>` : '';
+}
+
+function initInteractiveLabs() {
+  document.querySelectorAll('.interactive-lab').forEach((root, index) => {
+    root.dataset.labIndex = index;
+    const configElement = root.querySelector('.lab-config');
+    if (!configElement) return;
+    let config;
+    try { config = JSON.parse(configElement.textContent); }
+    catch (error) {
+      root.querySelector('.lab-stage').innerHTML = labFeedback('error', 'This activity could not load.');
+      console.error('Invalid interactive lab configuration', error);
+      return;
+    }
+    const type = root.dataset.labType;
+    const renderers = {
+      'classifier': renderClassifierLab,
+      'multiplicity': renderMultiplicityLab,
+      'junction-builder': renderSorterLab,
+      'normalization-sorter': renderSorterLab,
+      'composite-key': renderCompositeKeyLab,
+      'integrity-simulator': renderIntegrityLab,
+      'erd-tutor': renderErdTutorLab
+    };
+    if (renderers[type]) renderers[type](root, config, index);
+  });
+}
+
+function resetLab(index) {
+  delete labStates[labKey(index)];
+  saveLabState();
+  renderLesson();
+}
+
+function erdFocus(config, state) {
+  let entities = [];
+  let relationships = [];
+  if (state.preset) {
+    const preset = config.presets.find(item => item.id === state.preset);
+    if (preset) { entities = preset.entities || []; relationships = preset.relationships || []; }
+  } else if (state.selectedRelationship) {
+    const relationship = config.relationships.find(item => item.id === state.selectedRelationship);
+    if (relationship) { entities = [relationship.from, relationship.to]; relationships = [relationship.id]; }
+  } else if (state.selectedEntity) {
+    entities = [state.selectedEntity];
+    relationships = config.relationships.filter(item => item.from === state.selectedEntity || item.to === state.selectedEntity).map(item => item.id);
+    relationships.forEach(id => {
+      const relationship = config.relationships.find(item => item.id === id);
+      if (relationship) entities.push(relationship.from, relationship.to);
+    });
+  }
+  return { entities: [...new Set(entities)], relationships: [...new Set(relationships)], active: Boolean(state.preset || state.selectedRelationship || state.selectedEntity) };
+}
+
+function erdNotationParts(value) {
+  const map = {
+    '1': { ordinality: '1 — mandatory', cardinality: 'One', meaning: 'Exactly one' },
+    '0..1': { ordinality: '0 — optional', cardinality: 'One', meaning: 'Zero or one' },
+    '0..*': { ordinality: '0 — optional', cardinality: 'Many', meaning: 'Zero or many' },
+    '1..*': { ordinality: '1 — mandatory', cardinality: 'Many', meaning: 'One or many' }
+  };
+  return map[value] || { ordinality: 'Unknown', cardinality: 'Unknown', meaning: value };
+}
+
+function erdEndpointCard(entity, opposite, value) {
+  const notation = erdNotationParts(value);
+  return `<div class="erd-notation-card"><h6>${escapeHtml(entity.name)} endpoint<br><span style="color:#64748b">for one ${escapeHtml(opposite.name)}</span></h6><div class="erd-notation-line"><span>Ordinality · minimum</span><strong>${escapeHtml(notation.ordinality)}</strong></div><div class="erd-notation-line"><span>Cardinality · maximum</span><strong>${escapeHtml(notation.cardinality)}</strong></div><div class="erd-notation-line"><span>Combined</span><strong>${escapeHtml(value)} · ${escapeHtml(notation.meaning)}</strong></div></div>`;
+}
+
+function erdInspectorHtml(config, state) {
+  if (state.selectedRelationship) {
+    const relationship = config.relationships.find(item => item.id === state.selectedRelationship);
+    if (relationship) {
+      const from = config.entities.find(item => item.id === relationship.from);
+      const to = config.entities.find(item => item.id === relationship.to);
+      return `<span class="erd-inspector-badge">Relationship notation</span><h4 class="erd-inspector-title">${escapeHtml(from.name)} ${escapeHtml(relationship.label)} ${escapeHtml(to.name)}</h4><p class="erd-inspector-copy">${escapeHtml(relationship.rule)}</p><div class="erd-inspector-section"><h5>Cardinality and ordinality at both endpoints</h5><div class="erd-rule"><strong>${escapeHtml(from.name)} [${escapeHtml(relationship.fromMultiplicity)}]</strong> — ${escapeHtml(relationship.label)} — <strong>[${escapeHtml(relationship.toMultiplicity)}] ${escapeHtml(to.name)}</strong></div><div class="erd-notation-grid">${erdEndpointCard(from, to, relationship.fromMultiplicity)}${erdEndpointCard(to, from, relationship.toMultiplicity)}</div><div class="erd-constraint">${escapeHtml(relationship.constraint)}</div></div>${relationship.example ? `<div class="erd-inspector-section"><h5>Example</h5><p class="erd-inspector-copy">${escapeHtml(relationship.example)}</p></div>` : ''}`;
+    }
+  }
+  if (state.selectedEntity) {
+    const entity = config.entities.find(item => item.id === state.selectedEntity);
+    if (entity) {
+      return `<span class="erd-inspector-badge">Entity details</span><h4 class="erd-inspector-title">${escapeHtml(entity.name)}</h4><p class="erd-inspector-copy">${escapeHtml(entity.description)}</p><div class="erd-inspector-section"><h5>Attributes</h5>${entity.columns.map(column => `<div class="erd-inspector-row"><div class="erd-inspector-row-top"><span>${escapeHtml(column.name)}</span><span class="erd-inspector-type">${escapeHtml(column.type)}</span></div><div class="erd-col-keys">${column.keys.map(key => `<span class="erd-key ${key}">${escapeHtml(key)}</span>`).join('')}</div></div>`).join('')}</div><div class="erd-inspector-section"><h5>Key constraints</h5>${entity.constraints.map(constraint => `<div class="erd-constraint">${escapeHtml(constraint)}</div>`).join('')}</div>`;
+    }
+  }
+  if (state.preset) {
+    const preset = config.presets.find(item => item.id === state.preset);
+    if (preset) return `<span class="erd-inspector-badge">Guided focus</span><h4 class="erd-inspector-title">${escapeHtml(preset.title)}</h4><p class="erd-inspector-copy">${escapeHtml(preset.description)}</p><div class="erd-inspector-section"><h5>What is highlighted</h5><div class="erd-rule">${preset.entities.length} entities and ${preset.relationships.length} relationship paths. Click a highlighted card or connector for its exact keys.</div></div>`;
+  }
+  return `<span class="erd-inspector-badge">Interactive tutor</span><h4 class="erd-inspector-title">Explore the complete database</h4><p class="erd-inspector-copy">Choose a guided focus above, select an entity card, or select a relationship line. The canvas will dim unrelated structures and explain the selected rule here.</p><div class="erd-inspector-section"><h5>Suggested path</h5><div class="erd-rule">Start with <strong>M:N Junction</strong>, then follow <strong>President Rule</strong> and <strong>Registration Lock</strong>.</div></div>`;
+}
+
+function erdMarkerDefinitions(prefix) {
+  return `<defs>
+    <marker id="${prefix}-one" viewBox="0 0 18 18" refX="9" refY="9" markerWidth="18" markerHeight="18" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path d="M5 2V16 M12 2V16" stroke="#e0e7ff" stroke-width="2.5" fill="none"/></marker>
+    <marker id="${prefix}-optional-one" viewBox="0 0 24 18" refX="12" refY="9" markerWidth="24" markerHeight="18" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><circle cx="6" cy="9" r="4" stroke="#e0e7ff" stroke-width="2.4" fill="#0f172a"/><path d="M17 2V16" stroke="#e0e7ff" stroke-width="2.5"/></marker>
+    <marker id="${prefix}-optional-many" viewBox="0 0 30 22" refX="15" refY="11" markerWidth="30" markerHeight="22" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><circle cx="6" cy="11" r="4" stroke="#e0e7ff" stroke-width="2.4" fill="#0f172a"/><path d="M27 2L16 11L27 20 M16 2V20" stroke="#e0e7ff" stroke-width="2.4" fill="none"/></marker>
+    <marker id="${prefix}-many" viewBox="0 0 30 22" refX="15" refY="11" markerWidth="30" markerHeight="22" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path d="M5 2V20 M27 2L16 11L27 20 M16 2V20" stroke="#e0e7ff" stroke-width="2.4" fill="none"/></marker>
+  </defs>`;
+}
+
+function erdMarkerId(prefix, multiplicity) {
+  if (multiplicity === '0..1') return `${prefix}-optional-one`;
+  if (multiplicity === '0..*') return `${prefix}-optional-many`;
+  if (multiplicity === '1..*') return `${prefix}-many`;
+  return `${prefix}-one`;
+}
+
+function erdNotationSymbol(multiplicity) {
+  if (multiplicity === '0..1') return 'o|';
+  if (multiplicity === '0..*') return 'o{';
+  if (multiplicity === '1..*') return '|{';
+  return '||';
+}
+
+function erdEndpointBadgeWidth(entityName, multiplicity) {
+  const label = `${entityName}  ${erdNotationSymbol(multiplicity)}  ${multiplicity}`;
+  return Math.max(96, Math.min(180, label.length * 6.5 + 20));
+}
+
+function erdEndpointBadgeHtml(point, multiplicity, composite, entityName, side) {
+  const label = `${entityName}  ${erdNotationSymbol(multiplicity)}  ${multiplicity}`;
+  const width = erdEndpointBadgeWidth(entityName, multiplicity);
+  return `<g class="erd-endpoint-badge ${side} ${composite ? 'composite' : ''}" transform="translate(${point.x - width / 2} ${point.y - 11})"><rect width="${width}" height="22"></rect><text x="${width / 2}" y="15" text-anchor="middle">${escapeHtml(label)}</text></g>`;
+}
+
+function renderErdTutorLab(root, config, index) {
+  root.classList.add('erd-expanded');
+  const stage = root.querySelector('.lab-stage');
+  const state = getLabState(index, { selectedEntity: null, selectedRelationship: null, preset: null, zoom: 1, scrollLeft: 0, scrollTop: 0 });
+  state.zoom = Math.max(.65, Math.min(Number(state.zoom) || 1, 1.3));
+  const focus = erdFocus(config, state);
+  const markerPrefix = `erd-${index}-${currentLessonIdx}-${currentStepIdx}`;
+  const fullscreenActive = document.fullscreenElement === root || root.classList.contains('erd-maximized');
+  const layerHtml = config.layers.map(layer => {
+    const entities = config.entities.filter(entity => entity.layer === layer.id);
+    return `<section class="erd-layer" data-layer="${escapeHtml(layer.id)}"><div class="erd-layer-head"><div class="erd-layer-label">${escapeHtml(layer.label)}</div><div class="erd-layer-title">${escapeHtml(layer.title)}</div></div><div class="erd-layer-nodes">${entities.map(entity => {
+      const active = focus.entities.includes(entity.id);
+      const dimmed = focus.active && !active;
+      return `<button type="button" class="erd-node ${escapeHtml(entity.kind)} ${active ? 'active' : ''} ${dimmed ? 'dimmed' : ''}" data-erd-entity="${escapeHtml(entity.id)}" aria-pressed="${state.selectedEntity === entity.id}"><span class="erd-node-head"><span class="erd-node-name">${escapeHtml(entity.name)}</span><span class="erd-node-kind">${escapeHtml(entity.kind)}</span></span><span class="erd-node-cols">${entity.columns.map(column => `<span class="erd-col"><span class="erd-col-name">${escapeHtml(column.name)}</span><span class="erd-col-keys">${column.keys.map(key => `<span class="erd-key ${key}">${escapeHtml(key)}</span>`).join('')}</span></span>`).join('')}</span></button>`;
+    }).join('')}</div></section>`;
+  }).join('');
+  stage.innerHTML = `<div class="erd-shell"><div class="erd-topbar"><div class="erd-topbar-row"><div><div class="erd-kicker">Interactive schema explorer</div><div class="erd-title">${escapeHtml(config.title)}</div><div class="erd-subtitle">${escapeHtml(config.subtitle)}</div></div><div class="erd-controls"><button type="button" class="erd-control" data-erd-zoom-out aria-label="Zoom out" ${state.zoom <= .65 ? 'disabled' : ''}>−</button><span class="erd-control" aria-live="polite">${Math.round(state.zoom * 100)}%</span><button type="button" class="erd-control" data-erd-zoom-in aria-label="Zoom in" ${state.zoom >= 1.3 ? 'disabled' : ''}>+</button><button type="button" class="erd-control" data-erd-fit>Fit</button><button type="button" class="erd-control" data-erd-fullscreen>${fullscreenActive ? '⤢ Exit full screen' : '⛶ Full screen'}</button><button type="button" class="erd-control" data-erd-reset>Reset focus</button></div></div><div class="erd-presets"><span class="erd-presets-label">Guided focus</span>${config.presets.map(preset => `<button type="button" class="erd-preset ${state.preset === preset.id ? 'active' : ''}" data-erd-preset="${escapeHtml(preset.id)}">${escapeHtml(preset.label)}</button>`).join('')}</div></div><div class="erd-workspace"><div class="erd-viewport" tabindex="0" aria-label="Scrollable entity relationship diagram canvas"><div class="erd-board-wrap" style="transform:scale(${state.zoom})"><div class="erd-board"><svg class="erd-lines" aria-label="Relationship connectors">${erdMarkerDefinitions(markerPrefix)}<g data-erd-lines></g></svg>${layerHtml}<svg class="erd-labels" aria-label="Relationship labels"><g data-erd-labels></g></svg></div></div></div><aside class="erd-inspector" aria-live="polite">${erdInspectorHtml(config, state)}</aside></div><div class="erd-legend"><strong>ERD endpoint notation:</strong>${config.legend.map(item => `<span class="erd-legend-item" title="Ordinality: ${escapeHtml(item.ordinality)}; Cardinality: ${escapeHtml(item.cardinality)}"><span class="erd-legend-symbol">${escapeHtml(item.symbol)}</span><strong>${escapeHtml(item.value)}</strong> · O: ${escapeHtml(item.ordinality)} · C: ${escapeHtml(item.cardinality)}</span>`).join('')}<span class="erd-legend-item"><span class="erd-key PK">PK</span>Primary</span><span class="erd-legend-item"><span class="erd-key FK">FK</span>Foreign</span><span class="erd-legend-item"><span class="erd-key UK">UK</span>Unique</span></div></div>`;
+
+  const viewport = stage.querySelector('.erd-viewport');
+  viewport.scrollLeft = state.scrollLeft || 0;
+  viewport.scrollTop = state.scrollTop || 0;
+  const rerender = () => {
+    state.scrollLeft = viewport.scrollLeft;
+    state.scrollTop = viewport.scrollTop;
+    saveLabState();
+    renderErdTutorLab(root, config, index);
+  };
+  stage.querySelectorAll('[data-erd-entity]').forEach(button => button.addEventListener('click', () => {
+    const id = button.dataset.erdEntity;
+    state.selectedEntity = state.selectedEntity === id && !state.preset ? null : id;
+    state.selectedRelationship = null; state.preset = null; rerender();
+  }));
+  stage.querySelectorAll('[data-erd-preset]').forEach(button => button.addEventListener('click', () => {
+    state.preset = state.preset === button.dataset.erdPreset ? null : button.dataset.erdPreset;
+    state.selectedEntity = null; state.selectedRelationship = null; rerender();
+  }));
+  stage.querySelector('[data-erd-zoom-out]').addEventListener('click', () => { state.zoom = Math.max(.65, state.zoom - .1); rerender(); });
+  stage.querySelector('[data-erd-zoom-in]').addEventListener('click', () => { state.zoom = Math.min(1.3, state.zoom + .1); rerender(); });
+  stage.querySelector('[data-erd-fit]').addEventListener('click', () => {
+    const boardWidth = stage.querySelector('.erd-board')?.scrollWidth || 1720;
+    state.zoom = Math.max(.65, Math.min(1, (viewport.clientWidth - 20) / boardWidth));
+    state.scrollLeft = 0; state.scrollTop = 0; rerender();
+  });
+  stage.querySelector('[data-erd-fullscreen]').addEventListener('click', async () => {
+    try {
+      if (document.fullscreenElement === root) {
+        await document.exitFullscreen();
+      } else if (root.requestFullscreen) {
+        await root.requestFullscreen();
+      } else {
+        root.classList.toggle('erd-maximized');
+        document.body.classList.toggle('erd-modal-open', root.classList.contains('erd-maximized'));
+      }
+    } catch (error) {
+      root.classList.toggle('erd-maximized');
+      document.body.classList.toggle('erd-modal-open', root.classList.contains('erd-maximized'));
+    }
+    const active = document.fullscreenElement === root || root.classList.contains('erd-maximized');
+    const button = root.querySelector('[data-erd-fullscreen]');
+    if (button) button.textContent = active ? '⤢ Exit full screen' : '⛶ Full screen';
+    requestAnimationFrame(() => drawErdConnections(root, config, state, index, markerPrefix));
+  });
+  stage.querySelector('[data-erd-reset]').addEventListener('click', () => { state.selectedEntity = null; state.selectedRelationship = null; state.preset = null; rerender(); });
+
+  let pan = null;
+  viewport.addEventListener('pointerdown', event => {
+    if (event.target.closest('.erd-node, .erd-line-hit, button')) return;
+    pan = { x: event.clientX, y: event.clientY, left: viewport.scrollLeft, top: viewport.scrollTop };
+    viewport.setPointerCapture(event.pointerId);
+  });
+  viewport.addEventListener('pointermove', event => {
+    if (!pan) return;
+    viewport.scrollLeft = pan.left - (event.clientX - pan.x);
+    viewport.scrollTop = pan.top - (event.clientY - pan.y);
+  });
+  viewport.addEventListener('pointerup', event => {
+    if (!pan) return;
+    pan = null; viewport.releasePointerCapture(event.pointerId);
+    state.scrollLeft = viewport.scrollLeft; state.scrollTop = viewport.scrollTop; saveLabState();
+  });
+
+  const draw = () => drawErdConnections(root, config, state, index, markerPrefix);
+  if (!root._erdFullscreenHandler) {
+    root._erdFullscreenHandler = () => {
+      const active = document.fullscreenElement === root || root.classList.contains('erd-maximized');
+      document.body.classList.toggle('erd-modal-open', active);
+      const button = root.querySelector('[data-erd-fullscreen]');
+      if (button) button.textContent = active ? '⤢ Exit full screen' : '⛶ Full screen';
+      requestAnimationFrame(() => drawErdConnections(root, config, state, index, markerPrefix));
+    };
+    document.addEventListener('fullscreenchange', root._erdFullscreenHandler);
+  }
+  requestAnimationFrame(draw);
+  if (root._erdObserver) root._erdObserver.disconnect();
+  if (typeof ResizeObserver !== 'undefined') {
+    root._erdObserver = new ResizeObserver(() => requestAnimationFrame(draw));
+    root._erdObserver.observe(viewport);
+  }
+}
+
+function drawErdConnections(root, config, state, index, markerPrefix) {
+  const board = root.querySelector('.erd-board');
+  const linesGroup = root.querySelector('[data-erd-lines]');
+  const labelsGroup = root.querySelector('[data-erd-labels]');
+  if (!board || !linesGroup || !labelsGroup) return;
+  const focus = erdFocus(config, state);
+  const boardRect = board.getBoundingClientRect();
+  const zoom = Math.max(.01, Number(state.zoom) || 1);
+  const width = board.scrollWidth || 1720;
+  const height = Math.max(720, board.scrollHeight);
+  const svg = root.querySelector('.erd-lines');
+  const labelsSvg = root.querySelector('.erd-labels');
+  svg.setAttribute('viewBox', `0 0 ${width} ${height}`);
+  svg.setAttribute('width', width);
+  svg.setAttribute('height', height);
+  labelsSvg.setAttribute('viewBox', `0 0 ${width} ${height}`);
+  labelsSvg.setAttribute('width', width);
+  labelsSvg.setAttribute('height', height);
+  const parts = [];
+  const labelParts = [];
+  const badgeSlotCounts = new Map();
+  const occupiedBadgeRects = [];
+  const nextBadgeSlot = key => {
+    const index = badgeSlotCounts.get(key) || 0;
+    badgeSlotCounts.set(key, index + 1);
+    if (index === 0) return 0;
+    const distance = Math.ceil(index / 2);
+    return index % 2 === 1 ? -distance : distance;
+  };
+  const placeBadgeWithoutOverlap = (point, badgeWidth) => {
+    const offsets = [0, -32, 32, -64, 64, -96, 96, -128, 128];
+    for (const offset of offsets) {
+      const candidate = { x: point.x, y: point.y + offset };
+      const rect = { left: candidate.x - badgeWidth / 2, right: candidate.x + badgeWidth / 2, top: candidate.y - 11, bottom: candidate.y + 11 };
+      const overlaps = occupiedBadgeRects.some(used => rect.left < used.right + 4 && rect.right > used.left - 4 && rect.top < used.bottom + 4 && rect.bottom > used.top - 4);
+      if (!overlaps) {
+        occupiedBadgeRects.push(rect);
+        return candidate;
+      }
+    }
+    occupiedBadgeRects.push({ left: point.x - badgeWidth / 2, right: point.x + badgeWidth / 2, top: point.y - 11, bottom: point.y + 11 });
+    return point;
+  };
+  config.relationships.forEach(relationship => {
+    const fromElement = root.querySelector(`[data-erd-entity="${relationship.from}"]`);
+    const toElement = root.querySelector(`[data-erd-entity="${relationship.to}"]`);
+    if (!fromElement || !toElement) return;
+    const fromRect = fromElement.getBoundingClientRect();
+    const toRect = toElement.getBoundingClientRect();
+    const from = { left: (fromRect.left - boardRect.left) / zoom, right: (fromRect.right - boardRect.left) / zoom, top: (fromRect.top - boardRect.top) / zoom, bottom: (fromRect.bottom - boardRect.top) / zoom };
+    const to = { left: (toRect.left - boardRect.left) / zoom, right: (toRect.right - boardRect.left) / zoom, top: (toRect.top - boardRect.top) / zoom, bottom: (toRect.bottom - boardRect.top) / zoom };
+    const fromCenter = { x: (from.left + from.right) / 2, y: (from.top + from.bottom) / 2 };
+    const toCenter = { x: (to.left + to.right) / 2, y: (to.top + to.bottom) / 2 };
+    const horizontal = Math.abs(toCenter.x - fromCenter.x) >= Math.abs(toCenter.y - fromCenter.y);
+    let start, end, path;
+    if (horizontal) {
+      const forward = toCenter.x >= fromCenter.x;
+      const direction = forward ? 1 : -1;
+      start = { x: (forward ? from.right : from.left) + direction * 20, y: fromCenter.y };
+      end = { x: (forward ? to.left : to.right) - direction * 20, y: toCenter.y };
+      const offset = Math.max(35, Math.abs(end.x - start.x) * .42);
+      path = `M ${start.x} ${start.y} C ${start.x + (forward ? offset : -offset)} ${start.y}, ${end.x - (forward ? offset : -offset)} ${end.y}, ${end.x} ${end.y}`;
+    } else {
+      const downward = toCenter.y >= fromCenter.y;
+      const direction = downward ? 1 : -1;
+      start = { x: fromCenter.x, y: (downward ? from.bottom : from.top) + direction * 20 };
+      end = { x: toCenter.x, y: (downward ? to.top : to.bottom) - direction * 20 };
+      const offset = Math.max(28, Math.abs(end.y - start.y) * .42);
+      path = `M ${start.x} ${start.y} C ${start.x} ${start.y + (downward ? offset : -offset)}, ${end.x} ${end.y - (downward ? offset : -offset)}, ${end.x} ${end.y}`;
+    }
+    const active = focus.relationships.includes(relationship.id);
+    const dimmed = focus.active && !active;
+    const composite = /Composite|composite/.test(relationship.constraint);
+    const labelX = (start.x + end.x) / 2;
+    const labelY = (start.y + end.y) / 2 - 5;
+    const fromEntity = config.entities.find(entity => entity.id === relationship.from);
+    const toEntity = config.entities.find(entity => entity.id === relationship.to);
+    const fromName = fromEntity?.name || relationship.from;
+    const toName = toEntity?.name || relationship.to;
+    const fromBadgeWidth = erdEndpointBadgeWidth(fromName, relationship.fromMultiplicity);
+    const toBadgeWidth = erdEndpointBadgeWidth(toName, relationship.toMultiplicity);
+    let fromBadge, toBadge;
+    if (horizontal) {
+      const direction = end.x >= start.x ? 1 : -1;
+      const fromSlot = active ? nextBadgeSlot(`${relationship.from}:${direction > 0 ? 'right' : 'left'}`) : 0;
+      const toSlot = active ? nextBadgeSlot(`${relationship.to}:${direction > 0 ? 'left' : 'right'}`) : 0;
+      fromBadge = { x: start.x + direction * (fromBadgeWidth / 2 - 16), y: start.y - 20 + fromSlot * 32 };
+      toBadge = { x: end.x - direction * (toBadgeWidth / 2 - 16), y: end.y + 20 + toSlot * 32 };
+    } else {
+      const direction = end.y >= start.y ? 1 : -1;
+      const fromSlot = active ? nextBadgeSlot(`${relationship.from}:${direction > 0 ? 'bottom' : 'top'}`) : 0;
+      const toSlot = active ? nextBadgeSlot(`${relationship.to}:${direction > 0 ? 'top' : 'bottom'}`) : 0;
+      fromBadge = { x: start.x - fromBadgeWidth / 2 - 16 + fromSlot * 40, y: start.y - direction * 5 };
+      toBadge = { x: end.x + toBadgeWidth / 2 + 16 + toSlot * 40, y: end.y + direction * 5 };
+    }
+    if (active) {
+      fromBadge = placeBadgeWithoutOverlap(fromBadge, fromBadgeWidth);
+      toBadge = placeBadgeWithoutOverlap(toBadge, toBadgeWidth);
+    }
+    const endpointBadges = `${erdEndpointBadgeHtml(fromBadge, relationship.fromMultiplicity, composite, fromName, 'from')}${erdEndpointBadgeHtml(toBadge, relationship.toMultiplicity, composite, toName, 'to')}`;
+    parts.push(`<g data-erd-relationship="${escapeHtml(relationship.id)}"><path class="erd-line-hit" d="${path}"/><path class="erd-line-visible ${active ? 'active' : ''} ${dimmed ? 'dimmed' : ''} ${composite ? 'composite' : ''}" d="${path}" marker-start="url(#${erdMarkerId(markerPrefix, relationship.fromMultiplicity)})" marker-end="url(#${erdMarkerId(markerPrefix, relationship.toMultiplicity)})"/></g>`);
+    labelParts.push(`<g class="erd-relationship-labels ${active ? 'active' : ''}" data-erd-labels-for="${escapeHtml(relationship.id)}"><text class="erd-line-label ${active ? 'active' : ''}" x="${labelX}" y="${labelY}" text-anchor="middle">${escapeHtml(relationship.label)}</text>${endpointBadges}</g>`);
+  });
+  linesGroup.innerHTML = parts.join('');
+  labelsGroup.innerHTML = labelParts.join('');
+  linesGroup.querySelectorAll('[data-erd-relationship]').forEach(group => {
+    const id = group.dataset.erdRelationship;
+    const hitPath = group.querySelector('.erd-line-hit');
+    const visiblePath = group.querySelector('.erd-line-visible');
+    const relationshipLabels = labelsGroup.querySelector(`[data-erd-labels-for="${id}"]`);
+    const setHovered = hovered => {
+      visiblePath.classList.toggle('hovered', hovered);
+      relationshipLabels?.classList.toggle('hovered', hovered);
+    };
+    hitPath.addEventListener('mouseenter', () => setHovered(true));
+    hitPath.addEventListener('mouseleave', () => setHovered(false));
+    const select = () => {
+      state.selectedRelationship = state.selectedRelationship === id && !state.preset ? null : id;
+      state.selectedEntity = null; state.preset = null; saveLabState(); renderErdTutorLab(root, config, index);
+    };
+    hitPath.addEventListener('click', select);
+  });
+}
+
+function renderClassifierLab(root, config, index) {
+  const stage = root.querySelector('.lab-stage');
+  const state = getLabState(index, { answers: {} });
+  const correctCount = config.items.filter((item, i) => Number(state.answers[i]) === item.answer).length;
+  stage.innerHTML = labProgress(correctCount, config.items.length) + config.items.map((item, itemIndex) => {
+    const selected = state.answers[itemIndex];
+    const feedback = selected === undefined ? '' : Number(selected) === item.answer
+      ? labFeedback('success', `✓ ${item.why}`)
+      : labFeedback('error', `Not quite. ${item.why}`);
+    return `<div class="lab-card"><div class="lab-card-title"><code>${escapeHtml(item.label)}</code></div><div class="lab-options">${config.categories.map((category, categoryIndex) => {
+      let cls = Number(selected) === categoryIndex ? 'selected' : '';
+      if (selected !== undefined && Number(selected) === categoryIndex) cls += categoryIndex === item.answer ? ' correct' : ' incorrect';
+      return `<button type="button" class="lab-option ${cls}" data-item="${itemIndex}" data-answer="${categoryIndex}">${escapeHtml(category)}</button>`;
+    }).join('')}</div>${feedback}</div>`;
+  }).join('') + `<div class="lab-toolbar"><button type="button" class="lab-reset" data-reset>Reset activity</button></div>`;
+  stage.querySelectorAll('[data-answer]').forEach(button => button.addEventListener('click', () => {
+    state.answers[button.dataset.item] = Number(button.dataset.answer);
+    saveLabState(); renderClassifierLab(root, config, index);
+  }));
+  stage.querySelector('[data-reset]').addEventListener('click', () => resetLab(index));
+}
+
+function renderMultiplicityLab(root, config, index) {
+  const stage = root.querySelector('.lab-stage');
+  const state = getLabState(index, { scenario: 0, answers: {}, results: {} });
+  const scenarioIndex = Math.max(0, Math.min(state.scenario || 0, config.scenarios.length - 1));
+  const scenario = config.scenarios[scenarioIndex];
+  const answer = state.answers[scenarioIndex] || { left: '', right: '' };
+  const result = state.results[scenarioIndex];
+  const completed = Object.values(state.results).filter(Boolean).length;
+  const relation = `${scenario.left} [${answer.left || '?'}] — ${scenario.verb} — [${answer.right || '?'}] ${scenario.right}`;
+  const correctLeft = erdNotationParts(scenario.leftAnswer);
+  const correctRight = erdNotationParts(scenario.rightAnswer);
+  const notationExplanation = `<br><strong>${escapeHtml(scenario.left)} endpoint:</strong> ordinality ${escapeHtml(correctLeft.ordinality)}, cardinality ${escapeHtml(correctLeft.cardinality)}. <strong>${escapeHtml(scenario.right)} endpoint:</strong> ordinality ${escapeHtml(correctRight.ordinality)}, cardinality ${escapeHtml(correctRight.cardinality)}.`;
+  let feedback = '';
+  if (result === true) feedback = labFeedback('success', `✓ ${scenario.rule}${notationExplanation}`);
+  if (result === false) feedback = labFeedback('error', `Check both directions. ${scenario.rule}${notationExplanation}`);
+  stage.innerHTML = `${labProgress(completed, config.scenarios.length)}
+    <div class="lab-card"><div class="lab-card-title"><span>Scenario ${scenarioIndex + 1}</span><span>${escapeHtml(scenario.left)} ↔ ${escapeHtml(scenario.right)}</span></div>
+      <p>${escapeHtml(scenario.rule)}</p><div class="lab-relation">${escapeHtml(relation)}</div>
+      <div class="lab-select-grid">
+        <div class="lab-field"><label>For one ${escapeHtml(scenario.right)}, how many ${escapeHtml(scenario.left)}?</label><select data-side="left"><option value="">Choose…</option>${config.options.map(option => `<option value="${option}" ${answer.left === option ? 'selected' : ''}>${option}</option>`).join('')}</select></div>
+        <div class="lab-field"><label>For one ${escapeHtml(scenario.left)}, how many ${escapeHtml(scenario.right)}?</label><select data-side="right"><option value="">Choose…</option>${config.options.map(option => `<option value="${option}" ${answer.right === option ? 'selected' : ''}>${option}</option>`).join('')}</select></div>
+      </div>${feedback}
+      <div class="lab-toolbar"><button type="button" class="lab-action" data-check ${!answer.left || !answer.right ? 'disabled' : ''}>Check notation</button>${result === true && scenarioIndex < config.scenarios.length - 1 ? '<button type="button" class="lab-option" data-next>Next scenario →</button>' : ''}${result === true && scenarioIndex === config.scenarios.length - 1 ? '<span class="lab-complete">✓ All relationships decoded</span>' : ''}<button type="button" class="lab-reset" data-reset>Reset</button></div>
+    </div>`;
+  stage.querySelectorAll('select[data-side]').forEach(select => select.addEventListener('change', () => {
+    if (!state.answers[scenarioIndex]) state.answers[scenarioIndex] = { left: '', right: '' };
+    state.answers[scenarioIndex][select.dataset.side] = select.value;
+    delete state.results[scenarioIndex];
+    saveLabState(); renderMultiplicityLab(root, config, index);
+  }));
+  const check = stage.querySelector('[data-check]');
+  if (check) check.addEventListener('click', () => {
+    state.results[scenarioIndex] = answer.left === scenario.leftAnswer && answer.right === scenario.rightAnswer;
+    saveLabState(); renderMultiplicityLab(root, config, index);
+  });
+  const next = stage.querySelector('[data-next]');
+  if (next) next.addEventListener('click', () => { state.scenario = scenarioIndex + 1; saveLabState(); renderMultiplicityLab(root, config, index); });
+  stage.querySelector('[data-reset]').addEventListener('click', () => resetLab(index));
+}
+
+function renderSorterLab(root, config, index) {
+  const stage = root.querySelector('.lab-stage');
+  const items = config.columns || config.items;
+  const state = getLabState(index, { assignments: {}, selected: null, checked: false });
+  const correctCount = items.filter((item, i) => Number(state.assignments[i]) === item.answer).length;
+  const assignedCount = Object.keys(state.assignments).length;
+  const explanation = state.checked
+    ? (correctCount === items.length
+      ? labFeedback('success', '✓ Every fact is stored with the key that determines it.')
+      : labFeedback('error', items.filter((item, i) => Number(state.assignments[i]) !== item.answer).map(item => `<strong>${escapeHtml(item.label)}</strong>: ${escapeHtml(item.why)}`).join('<br>')))
+    : '';
+  const palette = items.map((item, itemIndex) => `<button type="button" draggable="true" class="lab-chip ${Number(state.selected) === itemIndex ? 'selected' : ''} ${state.assignments[itemIndex] !== undefined ? 'placed' : ''}" data-item="${itemIndex}">${escapeHtml(item.label)}</button>`).join('');
+  const zones = config.tables.map((table, tableIndex) => {
+    const placed = items.map((item, itemIndex) => ({ item, itemIndex })).filter(entry => Number(state.assignments[entry.itemIndex]) === tableIndex);
+    return `<button type="button" class="lab-zone" data-zone="${tableIndex}"><strong>${escapeHtml(table)}</strong><span class="lab-zone-items">${placed.map(entry => `<span class="lab-zone-token">${escapeHtml(entry.item.label)}</span>`).join('')}</span></button>`;
+  }).join('');
+  stage.innerHTML = `${labProgress(state.checked ? correctCount : assignedCount, items.length)}<div class="lab-dnd"><div class="lab-palette"><h5>1. Select or drag a column</h5><div class="lab-palette-list">${palette}</div></div><div class="lab-zones"><h5>2. Choose its destination table</h5>${zones}</div></div>${explanation}<div class="lab-toolbar"><button type="button" class="lab-action" data-check ${assignedCount !== items.length ? 'disabled' : ''}>Check design</button><button type="button" class="lab-reset" data-reset>Reset</button></div>`;
+  stage.querySelectorAll('[data-item]').forEach(chip => {
+    chip.addEventListener('click', () => { state.selected = Number(chip.dataset.item); saveLabState(); renderSorterLab(root, config, index); });
+    chip.addEventListener('dragstart', event => event.dataTransfer.setData('text/plain', chip.dataset.item));
+  });
+  stage.querySelectorAll('[data-zone]').forEach(zone => {
+    zone.addEventListener('click', () => {
+      if (state.selected === null || state.selected === undefined) return;
+      state.assignments[state.selected] = Number(zone.dataset.zone); state.selected = null; state.checked = false;
+      saveLabState(); renderSorterLab(root, config, index);
+    });
+    zone.addEventListener('dragover', event => { event.preventDefault(); zone.classList.add('drag-over'); });
+    zone.addEventListener('dragleave', () => zone.classList.remove('drag-over'));
+    zone.addEventListener('drop', event => {
+      event.preventDefault(); zone.classList.remove('drag-over');
+      const itemIndex = Number(event.dataTransfer.getData('text/plain'));
+      state.assignments[itemIndex] = Number(zone.dataset.zone); state.selected = null; state.checked = false;
+      saveLabState(); renderSorterLab(root, config, index);
+    });
+  });
+  stage.querySelector('[data-check]').addEventListener('click', () => { state.checked = true; saveLabState(); renderSorterLab(root, config, index); });
+  stage.querySelector('[data-reset]').addEventListener('click', () => resetLab(index));
+}
+
+function renderCompositeKeyLab(root, config, index) {
+  const stage = root.querySelector('.lab-stage');
+  const state = getLabState(index, { selected: [], checked: false, attempts: {} });
+  const sameKey = state.selected.length === config.answer.length && config.answer.every(column => state.selected.includes(column));
+  const signatures = config.rows.map(row => state.selected.map(column => row[column]).join('|'));
+  const unique = new Set(signatures).size === signatures.length;
+  const attemptCount = Object.keys(state.attempts).length;
+  const done = (state.checked && sameKey ? 1 : 0) + attemptCount;
+  const keyFeedback = state.checked ? (sameKey
+    ? labFeedback('success', '✓ The complete pair is minimal and unique: neither column can be removed.')
+    : labFeedback('error', unique ? 'The selected values happen to be unique in this small sample, but they are not the minimal business identifier.' : 'Those columns produce duplicate identifiers in the sample rows.')) : '';
+  const table = `<div class="lab-table-wrap"><table class="lab-table"><tr>${config.columns.map(column => `<th class="${state.selected.includes(column) ? 'lab-key' : ''}">${escapeHtml(column)}</th>`).join('')}</tr>${config.rows.map(row => `<tr>${config.columns.map(column => `<td class="${state.selected.includes(column) ? 'lab-key' : ''}">${escapeHtml(row[column])}</td>`).join('')}</tr>`).join('')}</table></div>`;
+  const attempts = config.candidates.map((candidate, candidateIndex) => {
+    const attempted = state.attempts[candidateIndex];
+    const label = `Add (${candidate.club_id}, ${candidate.student_id})`;
+    const feedback = attempted === undefined ? '' : candidate.valid
+      ? labFeedback('success', `Accepted. ${candidate.why}`)
+      : labFeedback('error', `Rejected. ${candidate.why}`);
+    return `<div class="lab-card"><div class="lab-card-title"><code>${escapeHtml(label)}</code></div><button type="button" class="lab-option" data-candidate="${candidateIndex}">Try INSERT</button>${feedback}</div>`;
+  }).join('');
+  stage.innerHTML = `${labProgress(done, config.candidates.length + 1)}<div class="lab-card"><div class="lab-card-title">Select the primary-key columns</div><div class="lab-options">${config.columns.map(column => `<button type="button" class="lab-option ${state.selected.includes(column) ? 'selected' : ''}" data-column="${column}">${escapeHtml(column)}</button>`).join('')}</div>${table}<div class="lab-feedback info">Current identifiers are <strong>${unique ? 'unique in this sample' : 'not unique'}</strong>. Sample uniqueness alone is not enough; the key must match the business rule.</div>${keyFeedback}<div class="lab-toolbar"><button type="button" class="lab-action" data-check>Check key</button></div></div><h5 style="margin:16px 0 8px;color:var(--navy)">Test the chosen identity rule</h5>${attempts}<div class="lab-toolbar"><button type="button" class="lab-reset" data-reset>Reset activity</button></div>`;
+  stage.querySelectorAll('[data-column]').forEach(button => button.addEventListener('click', () => {
+    const column = button.dataset.column;
+    state.selected = state.selected.includes(column) ? state.selected.filter(value => value !== column) : [...state.selected, column];
+    state.checked = false; saveLabState(); renderCompositeKeyLab(root, config, index);
+  }));
+  stage.querySelector('[data-check]').addEventListener('click', () => { state.checked = true; saveLabState(); renderCompositeKeyLab(root, config, index); });
+  stage.querySelectorAll('[data-candidate]').forEach(button => button.addEventListener('click', () => {
+    state.attempts[button.dataset.candidate] = true; saveLabState(); renderCompositeKeyLab(root, config, index);
+  }));
+  stage.querySelector('[data-reset]').addEventListener('click', () => resetLab(index));
+}
+
+function renderIntegrityLab(root, config, index) {
+  const stage = root.querySelector('.lab-stage');
+  const state = getLabState(index, { answers: {} });
+  const correctCount = config.transactions.filter((transaction, i) => state.answers[i] !== undefined && Boolean(state.answers[i]) === transaction.valid).length;
+  stage.innerHTML = labProgress(correctCount, config.transactions.length) + config.transactions.map((transaction, transactionIndex) => {
+    const answer = state.answers[transactionIndex];
+    const feedback = answer === undefined ? '' : Boolean(answer) === transaction.valid
+      ? labFeedback('success', `✓ ${escapeHtml(transaction.why)}`)
+      : labFeedback('error', `Look at the exact key values. ${escapeHtml(transaction.why)}`);
+    return `<div class="lab-card"><div class="lab-card-title"><span>${escapeHtml(transaction.sql)}</span></div><ul class="lab-facts">${transaction.facts.map(fact => `<li>${escapeHtml(fact)}</li>`).join('')}</ul><div class="lab-options"><button type="button" class="lab-option ${answer === true ? (transaction.valid ? 'correct' : 'incorrect') : ''}" data-transaction="${transactionIndex}" data-decision="true">Accept</button><button type="button" class="lab-option ${answer === false ? (!transaction.valid ? 'correct' : 'incorrect') : ''}" data-transaction="${transactionIndex}" data-decision="false">Reject</button></div>${feedback}</div>`;
+  }).join('') + `<div class="lab-toolbar"><button type="button" class="lab-reset" data-reset>Reset activity</button></div>`;
+  stage.querySelectorAll('[data-transaction]').forEach(button => button.addEventListener('click', () => {
+    state.answers[button.dataset.transaction] = button.dataset.decision === 'true';
+    saveLabState(); renderIntegrityLab(root, config, index);
+  }));
+  stage.querySelector('[data-reset]').addEventListener('click', () => resetLab(index));
+}
+
 const themeKey = 'lesson_theme';
 function loadTheme() {
   const saved = localStorage.getItem(themeKey);
@@ -520,8 +1253,9 @@ glossaryModal.addEventListener('click', (e) => { if (e.target === glossaryModal)
 
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') { closeGlossary(); closeSearch(); }
-  if (e.key === 'ArrowRight' && !e.target.closest('.search-input')) nextStep();
-  if (e.key === 'ArrowLeft' && !e.target.closest('.search-input')) prevStep();
+  const inControl = e.target.closest('.search-input, .interactive-lab, button, select, input');
+  if (e.key === 'ArrowRight' && !inControl) nextStep();
+  if (e.key === 'ArrowLeft' && !inControl) prevStep();
   if ((e.metaKey || e.ctrlKey) && (e.key === 'k' || e.key === 'f')) { e.preventDefault(); document.getElementById('searchInput').focus(); }
 });
 
