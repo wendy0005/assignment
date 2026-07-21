@@ -1,0 +1,1927 @@
+[
+  {
+    "text": "The",
+    "startMs": 240,
+    "endMs": 720,
+    "timestampMs": 240,
+    "confidence": 0.6585
+  },
+  {
+    "text": " flowchart",
+    "startMs": 720,
+    "endMs": 1240,
+    "timestampMs": 720,
+    "confidence": 0.5651
+  },
+  {
+    "text": " begins",
+    "startMs": 1240,
+    "endMs": 1740,
+    "timestampMs": 1240,
+    "confidence": 0.9922
+  },
+  {
+    "text": " when",
+    "startMs": 1740,
+    "endMs": 2100,
+    "timestampMs": 1740,
+    "confidence": 0.9921
+  },
+  {
+    "text": " the",
+    "startMs": 2100,
+    "endMs": 2300,
+    "timestampMs": 2100,
+    "confidence": 0.8046
+  },
+  {
+    "text": " ESP32",
+    "startMs": 2300,
+    "endMs": 3280,
+    "timestampMs": 2300,
+    "confidence": 0.8977
+  },
+  {
+    "text": " starts",
+    "startMs": 3280,
+    "endMs": 3700,
+    "timestampMs": 3280,
+    "confidence": 0.2606
+  },
+  {
+    "text": " or",
+    "startMs": 3700,
+    "endMs": 4000,
+    "timestampMs": 3700,
+    "confidence": 0.7246
+  },
+  {
+    "text": " wakes.",
+    "startMs": 4000,
+    "endMs": 4360,
+    "timestampMs": 4000,
+    "confidence": 0.3151
+  },
+  {
+    "text": " It",
+    "startMs": 5180,
+    "endMs": 5260,
+    "timestampMs": 5180,
+    "confidence": 0.9591
+  },
+  {
+    "text": " reads",
+    "startMs": 5260,
+    "endMs": 5580,
+    "timestampMs": 5260,
+    "confidence": 0.9956
+  },
+  {
+    "text": " the",
+    "startMs": 5580,
+    "endMs": 5860,
+    "timestampMs": 5580,
+    "confidence": 0.953
+  },
+  {
+    "text": " DHT22,",
+    "startMs": 5860,
+    "endMs": 7040,
+    "timestampMs": 5860,
+    "confidence": 0.6369
+  },
+  {
+    "text": " PIR",
+    "startMs": 7360,
+    "endMs": 7640,
+    "timestampMs": 7360,
+    "confidence": 0.8557
+  },
+  {
+    "text": " sensor,",
+    "startMs": 7640,
+    "endMs": 8180,
+    "timestampMs": 7640,
+    "confidence": 0.9495
+  },
+  {
+    "text": " photoresistor",
+    "startMs": 8480,
+    "endMs": 9140,
+    "timestampMs": 8480,
+    "confidence": 0.6169
+  },
+  {
+    "text": " and",
+    "startMs": 9460,
+    "endMs": 9500,
+    "timestampMs": 9460,
+    "confidence": 0.9013
+  },
+  {
+    "text": " MQ-2",
+    "startMs": 9500,
+    "endMs": 10820,
+    "timestampMs": 9500,
+    "confidence": 0.6339
+  },
+  {
+    "text": " gas",
+    "startMs": 10820,
+    "endMs": 11160,
+    "timestampMs": 10820,
+    "confidence": 0.7236
+  },
+  {
+    "text": " sensor.",
+    "startMs": 11160,
+    "endMs": 11560,
+    "timestampMs": 11160,
+    "confidence": 0.8796
+  },
+  {
+    "text": " The",
+    "startMs": 11940,
+    "endMs": 12060,
+    "timestampMs": 11940,
+    "confidence": 0.984
+  },
+  {
+    "text": " first",
+    "startMs": 12060,
+    "endMs": 12340,
+    "timestampMs": 12060,
+    "confidence": 0.9904
+  },
+  {
+    "text": " decision",
+    "startMs": 12340,
+    "endMs": 12740,
+    "timestampMs": 12340,
+    "confidence": 0.9676
+  },
+  {
+    "text": " checks",
+    "startMs": 12740,
+    "endMs": 13180,
+    "timestampMs": 12740,
+    "confidence": 0.8676
+  },
+  {
+    "text": " whether",
+    "startMs": 13180,
+    "endMs": 13560,
+    "timestampMs": 13180,
+    "confidence": 0.9846
+  },
+  {
+    "text": " the",
+    "startMs": 13560,
+    "endMs": 13840,
+    "timestampMs": 13560,
+    "confidence": 0.9821
+  },
+  {
+    "text": " readings",
+    "startMs": 13840,
+    "endMs": 14020,
+    "timestampMs": 13840,
+    "confidence": 0.9944
+  },
+  {
+    "text": " are",
+    "startMs": 14020,
+    "endMs": 14440,
+    "timestampMs": 14020,
+    "confidence": 0.9948
+  },
+  {
+    "text": " valid.",
+    "startMs": 14440,
+    "endMs": 14740,
+    "timestampMs": 14440,
+    "confidence": 0.993
+  },
+  {
+    "text": " If",
+    "startMs": 15200,
+    "endMs": 15380,
+    "timestampMs": 15200,
+    "confidence": 0.9908
+  },
+  {
+    "text": " a",
+    "startMs": 15380,
+    "endMs": 15580,
+    "timestampMs": 15380,
+    "confidence": 0.97
+  },
+  {
+    "text": " reading",
+    "startMs": 15580,
+    "endMs": 15740,
+    "timestampMs": 15580,
+    "confidence": 0.8952
+  },
+  {
+    "text": " is",
+    "startMs": 15740,
+    "endMs": 15940,
+    "timestampMs": 15740,
+    "confidence": 0.9944
+  },
+  {
+    "text": " invalid,",
+    "startMs": 15940,
+    "endMs": 16360,
+    "timestampMs": 15940,
+    "confidence": 0.9988
+  },
+  {
+    "text": " the",
+    "startMs": 16780,
+    "endMs": 16781,
+    "timestampMs": 16780,
+    "confidence": 0.9888
+  },
+  {
+    "text": " system",
+    "startMs": 16780,
+    "endMs": 17240,
+    "timestampMs": 16780,
+    "confidence": 0.8925
+  },
+  {
+    "text": " retains",
+    "startMs": 17240,
+    "endMs": 17680,
+    "timestampMs": 17240,
+    "confidence": 0.336
+  },
+  {
+    "text": " its",
+    "startMs": 17680,
+    "endMs": 18020,
+    "timestampMs": 17680,
+    "confidence": 0.9589
+  },
+  {
+    "text": " last",
+    "startMs": 18020,
+    "endMs": 18300,
+    "timestampMs": 18020,
+    "confidence": 0.9871
+  },
+  {
+    "text": " safe",
+    "startMs": 18300,
+    "endMs": 18680,
+    "timestampMs": 18300,
+    "confidence": 0.9822
+  },
+  {
+    "text": " state,",
+    "startMs": 18680,
+    "endMs": 19180,
+    "timestampMs": 18680,
+    "confidence": 0.982
+  },
+  {
+    "text": " records",
+    "startMs": 20060,
+    "endMs": 20061,
+    "timestampMs": 20060,
+    "confidence": 0.1795
+  },
+  {
+    "text": " the",
+    "startMs": 20060,
+    "endMs": 20360,
+    "timestampMs": 20060,
+    "confidence": 0.9874
+  },
+  {
+    "text": " fault",
+    "startMs": 20360,
+    "endMs": 20660,
+    "timestampMs": 20360,
+    "confidence": 0.8366
+  },
+  {
+    "text": " and",
+    "startMs": 20660,
+    "endMs": 21060,
+    "timestampMs": 20660,
+    "confidence": 0.913
+  },
+  {
+    "text": " tries",
+    "startMs": 21060,
+    "endMs": 21520,
+    "timestampMs": 21060,
+    "confidence": 0.9726
+  },
+  {
+    "text": " again",
+    "startMs": 21520,
+    "endMs": 22140,
+    "timestampMs": 21520,
+    "confidence": 0.9785
+  },
+  {
+    "text": " instead",
+    "startMs": 22140,
+    "endMs": 22500,
+    "timestampMs": 22140,
+    "confidence": 0.9147
+  },
+  {
+    "text": " of",
+    "startMs": 22500,
+    "endMs": 22680,
+    "timestampMs": 22500,
+    "confidence": 0.9983
+  },
+  {
+    "text": " treating",
+    "startMs": 22680,
+    "endMs": 22980,
+    "timestampMs": 22680,
+    "confidence": 0.9795
+  },
+  {
+    "text": " an",
+    "startMs": 22980,
+    "endMs": 23260,
+    "timestampMs": 22980,
+    "confidence": 0.9876
+  },
+  {
+    "text": " error",
+    "startMs": 23260,
+    "endMs": 23560,
+    "timestampMs": 23260,
+    "confidence": 0.9989
+  },
+  {
+    "text": " as",
+    "startMs": 23560,
+    "endMs": 23880,
+    "timestampMs": 23560,
+    "confidence": 0.9821
+  },
+  {
+    "text": " a",
+    "startMs": 23880,
+    "endMs": 24080,
+    "timestampMs": 23880,
+    "confidence": 0.9822
+  },
+  {
+    "text": " normal",
+    "startMs": 24080,
+    "endMs": 24340,
+    "timestampMs": 24080,
+    "confidence": 0.9984
+  },
+  {
+    "text": " reading.",
+    "startMs": 24340,
+    "endMs": 24620,
+    "timestampMs": 24340,
+    "confidence": 0.9826
+  },
+  {
+    "text": " After",
+    "startMs": 31280,
+    "endMs": 32360,
+    "timestampMs": 31280,
+    "confidence": 0.7505
+  },
+  {
+    "text": " validation,",
+    "startMs": 32360,
+    "endMs": 33240,
+    "timestampMs": 32360,
+    "confidence": 0.9076
+  },
+  {
+    "text": " the",
+    "startMs": 33600,
+    "endMs": 33601,
+    "timestampMs": 33600,
+    "confidence": 0.9801
+  },
+  {
+    "text": " gas",
+    "startMs": 33600,
+    "endMs": 33860,
+    "timestampMs": 33600,
+    "confidence": 0.8313
+  },
+  {
+    "text": " threshold",
+    "startMs": 33860,
+    "endMs": 34500,
+    "timestampMs": 33860,
+    "confidence": 0.9728
+  },
+  {
+    "text": " is",
+    "startMs": 34500,
+    "endMs": 35000,
+    "timestampMs": 34500,
+    "confidence": 0.9848
+  },
+  {
+    "text": " checked",
+    "startMs": 35000,
+    "endMs": 35640,
+    "timestampMs": 35000,
+    "confidence": 0.4241
+  },
+  {
+    "text": " before",
+    "startMs": 35640,
+    "endMs": 36120,
+    "timestampMs": 35640,
+    "confidence": 0.9938
+  },
+  {
+    "text": " any",
+    "startMs": 36120,
+    "endMs": 36480,
+    "timestampMs": 36120,
+    "confidence": 0.9938
+  },
+  {
+    "text": " comfort",
+    "startMs": 36480,
+    "endMs": 37200,
+    "timestampMs": 36480,
+    "confidence": 0.7932
+  },
+  {
+    "text": " automation.",
+    "startMs": 37200,
+    "endMs": 37920,
+    "timestampMs": 37200,
+    "confidence": 0.8798
+  },
+  {
+    "text": " This",
+    "startMs": 38460,
+    "endMs": 38740,
+    "timestampMs": 38460,
+    "confidence": 0.9804
+  },
+  {
+    "text": " gives",
+    "startMs": 38740,
+    "endMs": 39180,
+    "timestampMs": 38740,
+    "confidence": 0.9792
+  },
+  {
+    "text": " safety",
+    "startMs": 39180,
+    "endMs": 40060,
+    "timestampMs": 39180,
+    "confidence": 0.8637
+  },
+  {
+    "text": " the",
+    "startMs": 40060,
+    "endMs": 40360,
+    "timestampMs": 40060,
+    "confidence": 0.9926
+  },
+  {
+    "text": " highest",
+    "startMs": 40360,
+    "endMs": 40680,
+    "timestampMs": 40360,
+    "confidence": 0.9981
+  },
+  {
+    "text": " priority.",
+    "startMs": 40680,
+    "endMs": 41240,
+    "timestampMs": 40680,
+    "confidence": 0.9964
+  },
+  {
+    "text": " When",
+    "startMs": 41740,
+    "endMs": 41840,
+    "timestampMs": 41740,
+    "confidence": 0.9756
+  },
+  {
+    "text": " the",
+    "startMs": 41840,
+    "endMs": 41960,
+    "timestampMs": 41840,
+    "confidence": 0.6824
+  },
+  {
+    "text": " MQ-2",
+    "startMs": 41960,
+    "endMs": 42560,
+    "timestampMs": 41960,
+    "confidence": 0.5524
+  },
+  {
+    "text": " digital",
+    "startMs": 42560,
+    "endMs": 43020,
+    "timestampMs": 42560,
+    "confidence": 0.8767
+  },
+  {
+    "text": " output",
+    "startMs": 43020,
+    "endMs": 43400,
+    "timestampMs": 43020,
+    "confidence": 0.9956
+  },
+  {
+    "text": " becomes",
+    "startMs": 43400,
+    "endMs": 43800,
+    "timestampMs": 43400,
+    "confidence": 0.9511
+  },
+  {
+    "text": " low,",
+    "startMs": 43800,
+    "endMs": 44180,
+    "timestampMs": 43800,
+    "confidence": 0.9933
+  },
+  {
+    "text": " the",
+    "startMs": 44440,
+    "endMs": 44441,
+    "timestampMs": 44440,
+    "confidence": 0.9339
+  },
+  {
+    "text": " ESP32",
+    "startMs": 44440,
+    "endMs": 45160,
+    "timestampMs": 44440,
+    "confidence": 0.9641
+  },
+  {
+    "text": " stops",
+    "startMs": 45160,
+    "endMs": 45700,
+    "timestampMs": 45160,
+    "confidence": 0.9903
+  },
+  {
+    "text": " the",
+    "startMs": 45700,
+    "endMs": 46120,
+    "timestampMs": 45700,
+    "confidence": 0.9742
+  },
+  {
+    "text": " normal",
+    "startMs": 46120,
+    "endMs": 46460,
+    "timestampMs": 46120,
+    "confidence": 0.9587
+  },
+  {
+    "text": " lighting",
+    "startMs": 46460,
+    "endMs": 46900,
+    "timestampMs": 46460,
+    "confidence": 0.9091
+  },
+  {
+    "text": " and",
+    "startMs": 46900,
+    "endMs": 47580,
+    "timestampMs": 46900,
+    "confidence": 0.9169
+  },
+  {
+    "text": " fan",
+    "startMs": 47580,
+    "endMs": 47880,
+    "timestampMs": 47580,
+    "confidence": 0.9876
+  },
+  {
+    "text": " rules,",
+    "startMs": 47880,
+    "endMs": 48260,
+    "timestampMs": 47880,
+    "confidence": 0.5607
+  },
+  {
+    "text": " activates",
+    "startMs": 48720,
+    "endMs": 49000,
+    "timestampMs": 48720,
+    "confidence": 0.5712
+  },
+  {
+    "text": " the",
+    "startMs": 49000,
+    "endMs": 49280,
+    "timestampMs": 49000,
+    "confidence": 0.9956
+  },
+  {
+    "text": " buzzer,",
+    "startMs": 49280,
+    "endMs": 49640,
+    "timestampMs": 49280,
+    "confidence": 0.5984
+  },
+  {
+    "text": " changes",
+    "startMs": 49640,
+    "endMs": 50080,
+    "timestampMs": 49640,
+    "confidence": 0.8786
+  },
+  {
+    "text": " the",
+    "startMs": 50080,
+    "endMs": 50460,
+    "timestampMs": 50080,
+    "confidence": 0.9626
+  },
+  {
+    "text": " status",
+    "startMs": 50460,
+    "endMs": 50940,
+    "timestampMs": 50460,
+    "confidence": 0.9964
+  },
+  {
+    "text": " indicator",
+    "startMs": 50940,
+    "endMs": 51420,
+    "timestampMs": 50940,
+    "confidence": 0.7135
+  },
+  {
+    "text": " to",
+    "startMs": 51420,
+    "endMs": 51780,
+    "timestampMs": 51420,
+    "confidence": 0.9861
+  },
+  {
+    "text": " red",
+    "startMs": 51780,
+    "endMs": 51980,
+    "timestampMs": 51780,
+    "confidence": 0.3338
+  },
+  {
+    "text": " and",
+    "startMs": 51980,
+    "endMs": 52300,
+    "timestampMs": 51980,
+    "confidence": 0.9644
+  },
+  {
+    "text": " publishes",
+    "startMs": 52300,
+    "endMs": 52720,
+    "timestampMs": 52300,
+    "confidence": 0.9287
+  },
+  {
+    "text": " an",
+    "startMs": 52720,
+    "endMs": 53060,
+    "timestampMs": 52720,
+    "confidence": 0.9727
+  },
+  {
+    "text": " urgent",
+    "startMs": 53060,
+    "endMs": 53400,
+    "timestampMs": 53060,
+    "confidence": 0.9874
+  },
+  {
+    "text": " MQTT",
+    "startMs": 53400,
+    "endMs": 54160,
+    "timestampMs": 53400,
+    "confidence": 0.9901
+  },
+  {
+    "text": " alert.",
+    "startMs": 54160,
+    "endMs": 54500,
+    "timestampMs": 54160,
+    "confidence": 0.9926
+  },
+  {
+    "text": " The",
+    "startMs": 54500,
+    "endMs": 55220,
+    "timestampMs": 54500,
+    "confidence": 0.4634
+  },
+  {
+    "text": " system",
+    "startMs": 55220,
+    "endMs": 55500,
+    "timestampMs": 55220,
+    "confidence": 0.8953
+  },
+  {
+    "text": " continues",
+    "startMs": 55500,
+    "endMs": 56060,
+    "timestampMs": 55500,
+    "confidence": 0.9189
+  },
+  {
+    "text": " monitoring",
+    "startMs": 56060,
+    "endMs": 56740,
+    "timestampMs": 56060,
+    "confidence": 0.9879
+  },
+  {
+    "text": " the",
+    "startMs": 56740,
+    "endMs": 57020,
+    "timestampMs": 56740,
+    "confidence": 0.9877
+  },
+  {
+    "text": " sensor",
+    "startMs": 57020,
+    "endMs": 57400,
+    "timestampMs": 57020,
+    "confidence": 0.922
+  },
+  {
+    "text": " and",
+    "startMs": 57400,
+    "endMs": 57780,
+    "timestampMs": 57400,
+    "confidence": 0.9174
+  },
+  {
+    "text": " clears",
+    "startMs": 57780,
+    "endMs": 58160,
+    "timestampMs": 57780,
+    "confidence": 0.9512
+  },
+  {
+    "text": " the",
+    "startMs": 58160,
+    "endMs": 58420,
+    "timestampMs": 58160,
+    "confidence": 0.9937
+  },
+  {
+    "text": " warning",
+    "startMs": 58420,
+    "endMs": 58660,
+    "timestampMs": 58420,
+    "confidence": 0.9786
+  },
+  {
+    "text": " only",
+    "startMs": 58660,
+    "endMs": 59060,
+    "timestampMs": 58660,
+    "confidence": 0.9776
+  },
+  {
+    "text": " after",
+    "startMs": 59060,
+    "endMs": 59620,
+    "timestampMs": 59060,
+    "confidence": 0.9843
+  },
+  {
+    "text": " three",
+    "startMs": 59620,
+    "endMs": 60260,
+    "timestampMs": 59620,
+    "confidence": 0.5735
+  },
+  {
+    "text": " consecutive",
+    "startMs": 60260,
+    "endMs": 60920,
+    "timestampMs": 60260,
+    "confidence": 0.9974
+  },
+  {
+    "text": " safe",
+    "startMs": 60920,
+    "endMs": 61380,
+    "timestampMs": 60920,
+    "confidence": 0.8634
+  },
+  {
+    "text": " readings.",
+    "startMs": 61380,
+    "endMs": 61760,
+    "timestampMs": 61380,
+    "confidence": 0.988
+  },
+  {
+    "text": " If",
+    "startMs": 68750,
+    "endMs": 69510,
+    "timestampMs": 68750,
+    "confidence": 0.9232
+  },
+  {
+    "text": " there",
+    "startMs": 69510,
+    "endMs": 69790,
+    "timestampMs": 69510,
+    "confidence": 0.9918
+  },
+  {
+    "text": " is",
+    "startMs": 69790,
+    "endMs": 69950,
+    "timestampMs": 69790,
+    "confidence": 0.9278
+  },
+  {
+    "text": " no",
+    "startMs": 69950,
+    "endMs": 70150,
+    "timestampMs": 69950,
+    "confidence": 0.9906
+  },
+  {
+    "text": " gas",
+    "startMs": 70150,
+    "endMs": 70470,
+    "timestampMs": 70150,
+    "confidence": 0.8956
+  },
+  {
+    "text": " alert,",
+    "startMs": 70470,
+    "endMs": 70970,
+    "timestampMs": 70470,
+    "confidence": 0.9728
+  },
+  {
+    "text": " the",
+    "startMs": 71370,
+    "endMs": 71390,
+    "timestampMs": 71370,
+    "confidence": 0.9914
+  },
+  {
+    "text": " controller",
+    "startMs": 71390,
+    "endMs": 71830,
+    "timestampMs": 71390,
+    "confidence": 0.989
+  },
+  {
+    "text": " evaluates",
+    "startMs": 71830,
+    "endMs": 72690,
+    "timestampMs": 71830,
+    "confidence": 0.9928
+  },
+  {
+    "text": " the",
+    "startMs": 72690,
+    "endMs": 72970,
+    "timestampMs": 72690,
+    "confidence": 0.9845
+  },
+  {
+    "text": " time",
+    "startMs": 72970,
+    "endMs": 73330,
+    "timestampMs": 72970,
+    "confidence": 0.9878
+  },
+  {
+    "text": " of",
+    "startMs": 73330,
+    "endMs": 73610,
+    "timestampMs": 73330,
+    "confidence": 0.9808
+  },
+  {
+    "text": " day.",
+    "startMs": 73610,
+    "endMs": 73890,
+    "timestampMs": 73610,
+    "confidence": 0.7998
+  },
+  {
+    "text": " During",
+    "startMs": 74130,
+    "endMs": 74290,
+    "timestampMs": 74130,
+    "confidence": 0.9829
+  },
+  {
+    "text": " sleeping",
+    "startMs": 74290,
+    "endMs": 74690,
+    "timestampMs": 74290,
+    "confidence": 0.947
+  },
+  {
+    "text": " hours,",
+    "startMs": 74690,
+    "endMs": 75130,
+    "timestampMs": 74690,
+    "confidence": 0.9896
+  },
+  {
+    "text": " motion",
+    "startMs": 75890,
+    "endMs": 76110,
+    "timestampMs": 75890,
+    "confidence": 0.7176
+  },
+  {
+    "text": " combined",
+    "startMs": 76110,
+    "endMs": 76590,
+    "timestampMs": 76110,
+    "confidence": 0.7463
+  },
+  {
+    "text": " with",
+    "startMs": 76590,
+    "endMs": 76790,
+    "timestampMs": 76590,
+    "confidence": 0.9915
+  },
+  {
+    "text": " very",
+    "startMs": 76790,
+    "endMs": 77030,
+    "timestampMs": 76790,
+    "confidence": 0.9767
+  },
+  {
+    "text": " low",
+    "startMs": 77030,
+    "endMs": 77290,
+    "timestampMs": 77030,
+    "confidence": 0.9949
+  },
+  {
+    "text": " illumination",
+    "startMs": 77290,
+    "endMs": 78110,
+    "timestampMs": 77290,
+    "confidence": 0.8224
+  },
+  {
+    "text": " activates",
+    "startMs": 78110,
+    "endMs": 78610,
+    "timestampMs": 78110,
+    "confidence": 0.7302
+  },
+  {
+    "text": " the",
+    "startMs": 78610,
+    "endMs": 78890,
+    "timestampMs": 78610,
+    "confidence": 0.9832
+  },
+  {
+    "text": " low-output",
+    "startMs": 78890,
+    "endMs": 79230,
+    "timestampMs": 78890,
+    "confidence": 0.8291
+  },
+  {
+    "text": " night",
+    "startMs": 79230,
+    "endMs": 79570,
+    "timestampMs": 79230,
+    "confidence": 0.8291
+  },
+  {
+    "text": " light",
+    "startMs": 79570,
+    "endMs": 80490,
+    "timestampMs": 79570,
+    "confidence": 0.7185
+  },
+  {
+    "text": " instead",
+    "startMs": 80490,
+    "endMs": 81250,
+    "timestampMs": 80490,
+    "confidence": 0.9405
+  },
+  {
+    "text": " of",
+    "startMs": 81250,
+    "endMs": 81450,
+    "timestampMs": 81250,
+    "confidence": 0.9979
+  },
+  {
+    "text": " the",
+    "startMs": 81450,
+    "endMs": 81630,
+    "timestampMs": 81450,
+    "confidence": 0.9853
+  },
+  {
+    "text": " main",
+    "startMs": 81630,
+    "endMs": 81950,
+    "timestampMs": 81630,
+    "confidence": 0.9938
+  },
+  {
+    "text": " bedroom",
+    "startMs": 81950,
+    "endMs": 82430,
+    "timestampMs": 81950,
+    "confidence": 0.9487
+  },
+  {
+    "text": " light.",
+    "startMs": 82430,
+    "endMs": 82870,
+    "timestampMs": 82430,
+    "confidence": 0.9596
+  },
+  {
+    "text": " Outside",
+    "startMs": 82870,
+    "endMs": 83530,
+    "timestampMs": 82870,
+    "confidence": 0.0379
+  },
+  {
+    "text": " sleeping",
+    "startMs": 83530,
+    "endMs": 83910,
+    "timestampMs": 83530,
+    "confidence": 0.0104
+  },
+  {
+    "text": " hours,",
+    "startMs": 83910,
+    "endMs": 84450,
+    "timestampMs": 83910,
+    "confidence": 0.9596
+  },
+  {
+    "text": " motion",
+    "startMs": 85050,
+    "endMs": 85250,
+    "timestampMs": 85050,
+    "confidence": 0.8977
+  },
+  {
+    "text": " and",
+    "startMs": 85250,
+    "endMs": 85590,
+    "timestampMs": 85250,
+    "confidence": 0.9776
+  },
+  {
+    "text": " darkness",
+    "startMs": 85590,
+    "endMs": 86010,
+    "timestampMs": 85590,
+    "confidence": 0.9934
+  },
+  {
+    "text": " activate",
+    "startMs": 86010,
+    "endMs": 86570,
+    "timestampMs": 86010,
+    "confidence": 0.8818
+  },
+  {
+    "text": " the",
+    "startMs": 86570,
+    "endMs": 86810,
+    "timestampMs": 86570,
+    "confidence": 0.99
+  },
+  {
+    "text": " main",
+    "startMs": 86810,
+    "endMs": 87050,
+    "timestampMs": 86810,
+    "confidence": 0.9862
+  },
+  {
+    "text": " light.",
+    "startMs": 87050,
+    "endMs": 87330,
+    "timestampMs": 87050,
+    "confidence": 0.9855
+  },
+  {
+    "text": " The",
+    "startMs": 87670,
+    "endMs": 87810,
+    "timestampMs": 87670,
+    "confidence": 0.9452
+  },
+  {
+    "text": " production",
+    "startMs": 87810,
+    "endMs": 88190,
+    "timestampMs": 87810,
+    "confidence": 0.9851
+  },
+  {
+    "text": " proposal",
+    "startMs": 88190,
+    "endMs": 88770,
+    "timestampMs": 88190,
+    "confidence": 0.9715
+  },
+  {
+    "text": " uses",
+    "startMs": 88770,
+    "endMs": 89150,
+    "timestampMs": 88770,
+    "confidence": 0.9851
+  },
+  {
+    "text": " a",
+    "startMs": 89150,
+    "endMs": 89490,
+    "timestampMs": 89150,
+    "confidence": 0.9732
+  },
+  {
+    "text": " five-minute",
+    "startMs": 89490,
+    "endMs": 90010,
+    "timestampMs": 89490,
+    "confidence": 0.3928
+  },
+  {
+    "text": " vacancy",
+    "startMs": 90010,
+    "endMs": 90590,
+    "timestampMs": 90010,
+    "confidence": 0.8078
+  },
+  {
+    "text": " timeout;",
+    "startMs": 90590,
+    "endMs": 91230,
+    "timestampMs": 90590,
+    "confidence": 0.5904
+  },
+  {
+    "text": " Both",
+    "startMs": 100760,
+    "endMs": 100860,
+    "timestampMs": 100760,
+    "confidence": 0.1689
+  },
+  {
+    "text": " lighting",
+    "startMs": 100860,
+    "endMs": 101440,
+    "timestampMs": 100860,
+    "confidence": 0.4664
+  },
+  {
+    "text": " paths",
+    "startMs": 101440,
+    "endMs": 102040,
+    "timestampMs": 101440,
+    "confidence": 0.9556
+  },
+  {
+    "text": " then",
+    "startMs": 102040,
+    "endMs": 102420,
+    "timestampMs": 102040,
+    "confidence": 0.9717
+  },
+  {
+    "text": " lead",
+    "startMs": 102420,
+    "endMs": 102620,
+    "timestampMs": 102420,
+    "confidence": 0.9568
+  },
+  {
+    "text": " to",
+    "startMs": 102620,
+    "endMs": 102900,
+    "timestampMs": 102620,
+    "confidence": 0.9924
+  },
+  {
+    "text": " the",
+    "startMs": 102900,
+    "endMs": 103120,
+    "timestampMs": 102900,
+    "confidence": 0.8484
+  },
+  {
+    "text": " fan",
+    "startMs": 103120,
+    "endMs": 103220,
+    "timestampMs": 103120,
+    "confidence": 0.9878
+  },
+  {
+    "text": " rule.",
+    "startMs": 103220,
+    "endMs": 103520,
+    "timestampMs": 103220,
+    "confidence": 0.0593
+  },
+  {
+    "text": " The",
+    "startMs": 103900,
+    "endMs": 104080,
+    "timestampMs": 103900,
+    "confidence": 0.9868
+  },
+  {
+    "text": " fan",
+    "startMs": 104080,
+    "endMs": 104300,
+    "timestampMs": 104080,
+    "confidence": 0.9964
+  },
+  {
+    "text": " operates",
+    "startMs": 104300,
+    "endMs": 104660,
+    "timestampMs": 104300,
+    "confidence": 0.9673
+  },
+  {
+    "text": " only",
+    "startMs": 104660,
+    "endMs": 104960,
+    "timestampMs": 104660,
+    "confidence": 0.9959
+  },
+  {
+    "text": " when",
+    "startMs": 104960,
+    "endMs": 105200,
+    "timestampMs": 104960,
+    "confidence": 0.9963
+  },
+  {
+    "text": " the",
+    "startMs": 105200,
+    "endMs": 105400,
+    "timestampMs": 105200,
+    "confidence": 0.9945
+  },
+  {
+    "text": " room",
+    "startMs": 105400,
+    "endMs": 105640,
+    "timestampMs": 105400,
+    "confidence": 0.9072
+  },
+  {
+    "text": " is",
+    "startMs": 105640,
+    "endMs": 105860,
+    "timestampMs": 105640,
+    "confidence": 0.9932
+  },
+  {
+    "text": " occupied",
+    "startMs": 105860,
+    "endMs": 106420,
+    "timestampMs": 105860,
+    "confidence": 0.9932
+  },
+  {
+    "text": " and",
+    "startMs": 106420,
+    "endMs": 106780,
+    "timestampMs": 106420,
+    "confidence": 0.9336
+  },
+  {
+    "text": " the",
+    "startMs": 106780,
+    "endMs": 106940,
+    "timestampMs": 106780,
+    "confidence": 0.9888
+  },
+  {
+    "text": " temperature",
+    "startMs": 106940,
+    "endMs": 107300,
+    "timestampMs": 106940,
+    "confidence": 0.9969
+  },
+  {
+    "text": " reaches",
+    "startMs": 107300,
+    "endMs": 107840,
+    "timestampMs": 107300,
+    "confidence": 0.9988
+  },
+  {
+    "text": " 28",
+    "startMs": 107840,
+    "endMs": 108560,
+    "timestampMs": 107840,
+    "confidence": 0.9756
+  },
+  {
+    "text": " degrees",
+    "startMs": 108560,
+    "endMs": 108980,
+    "timestampMs": 108560,
+    "confidence": 0.4179
+  },
+  {
+    "text": " Celsius.",
+    "startMs": 108980,
+    "endMs": 109340,
+    "timestampMs": 108980,
+    "confidence": 0.8081
+  },
+  {
+    "text": " It",
+    "startMs": 110000,
+    "endMs": 110180,
+    "timestampMs": 110000,
+    "confidence": 0.9854
+  },
+  {
+    "text": " switches",
+    "startMs": 110180,
+    "endMs": 110560,
+    "timestampMs": 110180,
+    "confidence": 0.9865
+  },
+  {
+    "text": " off",
+    "startMs": 110560,
+    "endMs": 110880,
+    "timestampMs": 110560,
+    "confidence": 0.995
+  },
+  {
+    "text": " when",
+    "startMs": 110880,
+    "endMs": 111140,
+    "timestampMs": 110880,
+    "confidence": 0.9937
+  },
+  {
+    "text": " the",
+    "startMs": 111140,
+    "endMs": 111300,
+    "timestampMs": 111140,
+    "confidence": 0.9921
+  },
+  {
+    "text": " room",
+    "startMs": 111300,
+    "endMs": 111460,
+    "timestampMs": 111300,
+    "confidence": 0.9981
+  },
+  {
+    "text": " becomes",
+    "startMs": 111460,
+    "endMs": 111840,
+    "timestampMs": 111460,
+    "confidence": 0.9802
+  },
+  {
+    "text": " vacant",
+    "startMs": 111840,
+    "endMs": 112200,
+    "timestampMs": 111840,
+    "confidence": 0.9976
+  },
+  {
+    "text": " or",
+    "startMs": 112200,
+    "endMs": 112520,
+    "timestampMs": 112200,
+    "confidence": 0.8869
+  },
+  {
+    "text": " the",
+    "startMs": 112520,
+    "endMs": 112620,
+    "timestampMs": 112520,
+    "confidence": 0.9739
+  },
+  {
+    "text": " temperature",
+    "startMs": 112620,
+    "endMs": 112920,
+    "timestampMs": 112620,
+    "confidence": 0.9957
+  },
+  {
+    "text": " falls",
+    "startMs": 112920,
+    "endMs": 113300,
+    "timestampMs": 112920,
+    "confidence": 0.9825
+  },
+  {
+    "text": " to",
+    "startMs": 113300,
+    "endMs": 113620,
+    "timestampMs": 113300,
+    "confidence": 0.9909
+  },
+  {
+    "text": " 26",
+    "startMs": 113620,
+    "endMs": 114080,
+    "timestampMs": 113620,
+    "confidence": 0.984
+  },
+  {
+    "text": " degrees.",
+    "startMs": 114080,
+    "endMs": 114440,
+    "timestampMs": 114080,
+    "confidence": 0.9773
+  },
+  {
+    "text": " This",
+    "startMs": 114940,
+    "endMs": 115727,
+    "timestampMs": 114940,
+    "confidence": 0.118
+  },
+  {
+    "text": " two-degree",
+    "startMs": 115727,
+    "endMs": 116513,
+    "timestampMs": 115727,
+    "confidence": 0.118
+  },
+  {
+    "text": " hysteresis",
+    "startMs": 116513,
+    "endMs": 117300,
+    "timestampMs": 116513,
+    "confidence": 0.118
+  },
+  {
+    "text": " gap",
+    "startMs": 117300,
+    "endMs": 117800,
+    "timestampMs": 117300,
+    "confidence": 0.9048
+  },
+  {
+    "text": " prevents",
+    "startMs": 117800,
+    "endMs": 118740,
+    "timestampMs": 117800,
+    "confidence": 0.52
+  },
+  {
+    "text": " the",
+    "startMs": 118740,
+    "endMs": 119020,
+    "timestampMs": 118740,
+    "confidence": 0.9886
+  },
+  {
+    "text": " relay",
+    "startMs": 119020,
+    "endMs": 119300,
+    "timestampMs": 119020,
+    "confidence": 0.958
+  },
+  {
+    "text": " from",
+    "startMs": 119300,
+    "endMs": 119800,
+    "timestampMs": 119300,
+    "confidence": 0.9899
+  },
+  {
+    "text": " switching",
+    "startMs": 119800,
+    "endMs": 120520,
+    "timestampMs": 119800,
+    "confidence": 0.997
+  },
+  {
+    "text": " rapidly",
+    "startMs": 120520,
+    "endMs": 120980,
+    "timestampMs": 120520,
+    "confidence": 0.9567
+  },
+  {
+    "text": " when",
+    "startMs": 120980,
+    "endMs": 121400,
+    "timestampMs": 120980,
+    "confidence": 0.9832
+  },
+  {
+    "text": " the",
+    "startMs": 121400,
+    "endMs": 121540,
+    "timestampMs": 121400,
+    "confidence": 0.9644
+  },
+  {
+    "text": " temperature",
+    "startMs": 121540,
+    "endMs": 121940,
+    "timestampMs": 121540,
+    "confidence": 0.9927
+  },
+  {
+    "text": " fluctuates",
+    "startMs": 121940,
+    "endMs": 122620,
+    "timestampMs": 121940,
+    "confidence": 0.9878
+  },
+  {
+    "text": " around",
+    "startMs": 122620,
+    "endMs": 123060,
+    "timestampMs": 122620,
+    "confidence": 0.9848
+  },
+  {
+    "text": " one",
+    "startMs": 123060,
+    "endMs": 123380,
+    "timestampMs": 123060,
+    "confidence": 0.9285
+  },
+  {
+    "text": " threshold.",
+    "startMs": 123380,
+    "endMs": 123920,
+    "timestampMs": 123380,
+    "confidence": 0.9317
+  },
+  {
+    "text": " At",
+    "startMs": 129500,
+    "endMs": 129780,
+    "timestampMs": 129500,
+    "confidence": 0.9504
+  },
+  {
+    "text": " the",
+    "startMs": 129780,
+    "endMs": 130020,
+    "timestampMs": 129780,
+    "confidence": 0.9893
+  },
+  {
+    "text": " end",
+    "startMs": 130020,
+    "endMs": 130380,
+    "timestampMs": 130020,
+    "confidence": 0.9504
+  },
+  {
+    "text": " of",
+    "startMs": 130380,
+    "endMs": 130800,
+    "timestampMs": 130380,
+    "confidence": 0.9936
+  },
+  {
+    "text": " every",
+    "startMs": 130800,
+    "endMs": 131180,
+    "timestampMs": 130800,
+    "confidence": 0.8745
+  },
+  {
+    "text": " cycle,",
+    "startMs": 131180,
+    "endMs": 131620,
+    "timestampMs": 131180,
+    "confidence": 0.9982
+  },
+  {
+    "text": " the",
+    "startMs": 131880,
+    "endMs": 131920,
+    "timestampMs": 131880,
+    "confidence": 0.9746
+  },
+  {
+    "text": " ESP32",
+    "startMs": 131920,
+    "endMs": 132900,
+    "timestampMs": 131920,
+    "confidence": 0.9468
+  },
+  {
+    "text": " updates",
+    "startMs": 132900,
+    "endMs": 133520,
+    "timestampMs": 132900,
+    "confidence": 0.9677
+  },
+  {
+    "text": " the",
+    "startMs": 133520,
+    "endMs": 133860,
+    "timestampMs": 133520,
+    "confidence": 0.9804
+  },
+  {
+    "text": " local",
+    "startMs": 133860,
+    "endMs": 134200,
+    "timestampMs": 133860,
+    "confidence": 0.9891
+  },
+  {
+    "text": " indicators",
+    "startMs": 134200,
+    "endMs": 134840,
+    "timestampMs": 134200,
+    "confidence": 0.922
+  },
+  {
+    "text": " and",
+    "startMs": 134840,
+    "endMs": 135620,
+    "timestampMs": 134840,
+    "confidence": 0.925
+  },
+  {
+    "text": " publishes",
+    "startMs": 135620,
+    "endMs": 136040,
+    "timestampMs": 135620,
+    "confidence": 0.9806
+  },
+  {
+    "text": " the",
+    "startMs": 136040,
+    "endMs": 136380,
+    "timestampMs": 136040,
+    "confidence": 0.9974
+  },
+  {
+    "text": " latest",
+    "startMs": 136380,
+    "endMs": 136760,
+    "timestampMs": 136380,
+    "confidence": 0.9987
+  },
+  {
+    "text": " sensor",
+    "startMs": 136760,
+    "endMs": 137580,
+    "timestampMs": 136760,
+    "confidence": 0.9607
+  },
+  {
+    "text": " and",
+    "startMs": 138380,
+    "endMs": 138420,
+    "timestampMs": 138380,
+    "confidence": 0.6641
+  },
+  {
+    "text": " actuator",
+    "startMs": 138420,
+    "endMs": 139340,
+    "timestampMs": 138420,
+    "confidence": 0.9946
+  },
+  {
+    "text": " state",
+    "startMs": 139340,
+    "endMs": 139852,
+    "timestampMs": 139340,
+    "confidence": 0.168
+  },
+  {
+    "text": " through",
+    "startMs": 139852,
+    "endMs": 140364,
+    "timestampMs": 139852,
+    "confidence": 0.168
+  },
+  {
+    "text": " MQTT.",
+    "startMs": 140364,
+    "endMs": 140876,
+    "timestampMs": 140364,
+    "confidence": 0.168
+  },
+  {
+    "text": " It",
+    "startMs": 140876,
+    "endMs": 141388,
+    "timestampMs": 140876,
+    "confidence": 0.168
+  },
+  {
+    "text": " then",
+    "startMs": 141388,
+    "endMs": 141900,
+    "timestampMs": 141388,
+    "confidence": 0.168
+  },
+  {
+    "text": " waits",
+    "startMs": 142020,
+    "endMs": 142180,
+    "timestampMs": 142020,
+    "confidence": 0.8867
+  },
+  {
+    "text": " two",
+    "startMs": 142180,
+    "endMs": 142980,
+    "timestampMs": 142180,
+    "confidence": 0.5671
+  },
+  {
+    "text": " seconds",
+    "startMs": 142980,
+    "endMs": 143340,
+    "timestampMs": 142980,
+    "confidence": 0.992
+  },
+  {
+    "text": " before",
+    "startMs": 143340,
+    "endMs": 143740,
+    "timestampMs": 143340,
+    "confidence": 0.968
+  },
+  {
+    "text": " reading",
+    "startMs": 143740,
+    "endMs": 144000,
+    "timestampMs": 143740,
+    "confidence": 0.9971
+  },
+  {
+    "text": " the",
+    "startMs": 144000,
+    "endMs": 144180,
+    "timestampMs": 144000,
+    "confidence": 0.9955
+  },
+  {
+    "text": " sensors",
+    "startMs": 144180,
+    "endMs": 144440,
+    "timestampMs": 144180,
+    "confidence": 0.9933
+  },
+  {
+    "text": " again.",
+    "startMs": 144440,
+    "endMs": 144860,
+    "timestampMs": 144440,
+    "confidence": 0.9834
+  },
+  {
+    "text": " The",
+    "startMs": 144860,
+    "endMs": 146060,
+    "timestampMs": 144860,
+    "confidence": 0.9117
+  },
+  {
+    "text": " return",
+    "startMs": 146060,
+    "endMs": 146380,
+    "timestampMs": 146060,
+    "confidence": 0.7142
+  },
+  {
+    "text": " arrow",
+    "startMs": 146380,
+    "endMs": 146700,
+    "timestampMs": 146380,
+    "confidence": 0.7142
+  },
+  {
+    "text": " shows",
+    "startMs": 146700,
+    "endMs": 147140,
+    "timestampMs": 146700,
+    "confidence": 0.9847
+  },
+  {
+    "text": " that",
+    "startMs": 147140,
+    "endMs": 147700,
+    "timestampMs": 147140,
+    "confidence": 0.9677
+  },
+  {
+    "text": " this",
+    "startMs": 147700,
+    "endMs": 148020,
+    "timestampMs": 147700,
+    "confidence": 0.9695
+  },
+  {
+    "text": " is",
+    "startMs": 148020,
+    "endMs": 148220,
+    "timestampMs": 148020,
+    "confidence": 0.9878
+  },
+  {
+    "text": " continuous",
+    "startMs": 148220,
+    "endMs": 148660,
+    "timestampMs": 148220,
+    "confidence": 0.8176
+  },
+  {
+    "text": " control",
+    "startMs": 148660,
+    "endMs": 149140,
+    "timestampMs": 148660,
+    "confidence": 0.9596
+  },
+  {
+    "text": " loop",
+    "startMs": 149140,
+    "endMs": 149500,
+    "timestampMs": 149140,
+    "confidence": 0.5082
+  },
+  {
+    "text": " rather",
+    "startMs": 149500,
+    "endMs": 149840,
+    "timestampMs": 149500,
+    "confidence": 0.9443
+  },
+  {
+    "text": " than",
+    "startMs": 149840,
+    "endMs": 150100,
+    "timestampMs": 149840,
+    "confidence": 0.995
+  },
+  {
+    "text": " a",
+    "startMs": 150100,
+    "endMs": 150360,
+    "timestampMs": 150100,
+    "confidence": 0.6524
+  },
+  {
+    "text": " one-time",
+    "startMs": 150360,
+    "endMs": 150620,
+    "timestampMs": 150360,
+    "confidence": 0.6524
+  },
+  {
+    "text": " sequence.",
+    "startMs": 150620,
+    "endMs": 150980,
+    "timestampMs": 150620,
+    "confidence": 0.9975
+  }
+]

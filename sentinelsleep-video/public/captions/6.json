@@ -1,0 +1,436 @@
+[
+  {
+    "text": "The",
+    "startMs": 500,
+    "endMs": 960,
+    "timestampMs": 500,
+    "confidence": 0.8602
+  },
+  {
+    "text": " first",
+    "startMs": 960,
+    "endMs": 1200,
+    "timestampMs": 960,
+    "confidence": 0.9798
+  },
+  {
+    "text": " banner",
+    "startMs": 1200,
+    "endMs": 1580,
+    "timestampMs": 1200,
+    "confidence": 0.6394
+  },
+  {
+    "text": " answers",
+    "startMs": 1580,
+    "endMs": 2060,
+    "timestampMs": 1580,
+    "confidence": 0.4982
+  },
+  {
+    "text": " the",
+    "startMs": 2060,
+    "endMs": 2800,
+    "timestampMs": 2060,
+    "confidence": 0.981
+  },
+  {
+    "text": " most",
+    "startMs": 2800,
+    "endMs": 3020,
+    "timestampMs": 2800,
+    "confidence": 0.9706
+  },
+  {
+    "text": " important",
+    "startMs": 3020,
+    "endMs": 3680,
+    "timestampMs": 3020,
+    "confidence": 0.9916
+  },
+  {
+    "text": " question:",
+    "startMs": 3680,
+    "endMs": 4060,
+    "timestampMs": 3680,
+    "confidence": 0.8646
+  },
+  {
+    "text": " whether",
+    "startMs": 4600,
+    "endMs": 4900,
+    "timestampMs": 4600,
+    "confidence": 0.9455
+  },
+  {
+    "text": " the",
+    "startMs": 4900,
+    "endMs": 5140,
+    "timestampMs": 4900,
+    "confidence": 0.991
+  },
+  {
+    "text": " room",
+    "startMs": 5140,
+    "endMs": 5320,
+    "timestampMs": 5140,
+    "confidence": 0.9975
+  },
+  {
+    "text": " is",
+    "startMs": 5320,
+    "endMs": 5540,
+    "timestampMs": 5320,
+    "confidence": 0.9951
+  },
+  {
+    "text": " safe.",
+    "startMs": 5540,
+    "endMs": 6040,
+    "timestampMs": 5540,
+    "confidence": 0.9972
+  },
+  {
+    "text": " Four",
+    "startMs": 6620,
+    "endMs": 6880,
+    "timestampMs": 6620,
+    "confidence": 0.8134
+  },
+  {
+    "text": " cards",
+    "startMs": 6880,
+    "endMs": 7260,
+    "timestampMs": 6880,
+    "confidence": 0.9845
+  },
+  {
+    "text": " show",
+    "startMs": 7260,
+    "endMs": 7820,
+    "timestampMs": 7260,
+    "confidence": 0.9625
+  },
+  {
+    "text": " temperature,",
+    "startMs": 7820,
+    "endMs": 8480,
+    "timestampMs": 7820,
+    "confidence": 0.9667
+  },
+  {
+    "text": " humidity,",
+    "startMs": 8880,
+    "endMs": 9400,
+    "timestampMs": 8880,
+    "confidence": 0.9991
+  },
+  {
+    "text": " illumination",
+    "startMs": 9980,
+    "endMs": 10560,
+    "timestampMs": 9980,
+    "confidence": 0.4508
+  },
+  {
+    "text": " and",
+    "startMs": 11100,
+    "endMs": 11160,
+    "timestampMs": 11100,
+    "confidence": 0.9777
+  },
+  {
+    "text": " occupancy.",
+    "startMs": 11160,
+    "endMs": 11740,
+    "timestampMs": 11160,
+    "confidence": 0.9955
+  },
+  {
+    "text": " The",
+    "startMs": 12180,
+    "endMs": 12420,
+    "timestampMs": 12180,
+    "confidence": 0.9913
+  },
+  {
+    "text": " device",
+    "startMs": 12420,
+    "endMs": 12700,
+    "timestampMs": 12420,
+    "confidence": 0.9548
+  },
+  {
+    "text": " panel",
+    "startMs": 12700,
+    "endMs": 13160,
+    "timestampMs": 12700,
+    "confidence": 0.9874
+  },
+  {
+    "text": " shows",
+    "startMs": 13160,
+    "endMs": 13760,
+    "timestampMs": 13160,
+    "confidence": 0.9476
+  },
+  {
+    "text": " whether",
+    "startMs": 13760,
+    "endMs": 14180,
+    "timestampMs": 13760,
+    "confidence": 0.9444
+  },
+  {
+    "text": " the",
+    "startMs": 14180,
+    "endMs": 14380,
+    "timestampMs": 14180,
+    "confidence": 0.9926
+  },
+  {
+    "text": " main",
+    "startMs": 14380,
+    "endMs": 14520,
+    "timestampMs": 14380,
+    "confidence": 0.8757
+  },
+  {
+    "text": " light,",
+    "startMs": 14520,
+    "endMs": 14840,
+    "timestampMs": 14520,
+    "confidence": 0.983
+  },
+  {
+    "text": " fan",
+    "startMs": 15300,
+    "endMs": 15380,
+    "timestampMs": 15300,
+    "confidence": 0.9912
+  },
+  {
+    "text": " and",
+    "startMs": 15660,
+    "endMs": 15720,
+    "timestampMs": 15660,
+    "confidence": 0.9858
+  },
+  {
+    "text": " night",
+    "startMs": 15720,
+    "endMs": 16120,
+    "timestampMs": 15720,
+    "confidence": 0.9757
+  },
+  {
+    "text": " light",
+    "startMs": 16120,
+    "endMs": 16560,
+    "timestampMs": 16120,
+    "confidence": 0.8005
+  },
+  {
+    "text": " are",
+    "startMs": 16560,
+    "endMs": 16840,
+    "timestampMs": 16560,
+    "confidence": 0.9822
+  },
+  {
+    "text": " operating,",
+    "startMs": 16840,
+    "endMs": 17520,
+    "timestampMs": 16840,
+    "confidence": 0.9941
+  },
+  {
+    "text": " together",
+    "startMs": 17920,
+    "endMs": 18460,
+    "timestampMs": 17920,
+    "confidence": 0.9963
+  },
+  {
+    "text": " with",
+    "startMs": 18460,
+    "endMs": 18760,
+    "timestampMs": 18460,
+    "confidence": 0.9976
+  },
+  {
+    "text": " the",
+    "startMs": 18760,
+    "endMs": 18920,
+    "timestampMs": 18760,
+    "confidence": 0.9742
+  },
+  {
+    "text": " reason",
+    "startMs": 18920,
+    "endMs": 19160,
+    "timestampMs": 18920,
+    "confidence": 0.9702
+  },
+  {
+    "text": " for",
+    "startMs": 19160,
+    "endMs": 19460,
+    "timestampMs": 19160,
+    "confidence": 0.9924
+  },
+  {
+    "text": " each",
+    "startMs": 19460,
+    "endMs": 19680,
+    "timestampMs": 19460,
+    "confidence": 0.9988
+  },
+  {
+    "text": " action.",
+    "startMs": 19680,
+    "endMs": 20380,
+    "timestampMs": 19680,
+    "confidence": 0.4348
+  },
+  {
+    "text": " Modes",
+    "startMs": 20380,
+    "endMs": 21080,
+    "timestampMs": 20380,
+    "confidence": 0.4348
+  },
+  {
+    "text": " include",
+    "startMs": 21080,
+    "endMs": 21540,
+    "timestampMs": 21080,
+    "confidence": 0.4249
+  },
+  {
+    "text": " Auto,",
+    "startMs": 21540,
+    "endMs": 22180,
+    "timestampMs": 21540,
+    "confidence": 0.3086
+  },
+  {
+    "text": " Sleep,",
+    "startMs": 22320,
+    "endMs": 22680,
+    "timestampMs": 22320,
+    "confidence": 0.9468
+  },
+  {
+    "text": " Study",
+    "startMs": 23120,
+    "endMs": 23200,
+    "timestampMs": 23120,
+    "confidence": 0.794
+  },
+  {
+    "text": " and",
+    "startMs": 23500,
+    "endMs": 23520,
+    "timestampMs": 23500,
+    "confidence": 0.9611
+  },
+  {
+    "text": " Away.",
+    "startMs": 23520,
+    "endMs": 24000,
+    "timestampMs": 23520,
+    "confidence": 0.6719
+  },
+  {
+    "text": " Manual",
+    "startMs": 24820,
+    "endMs": 24940,
+    "timestampMs": 24820,
+    "confidence": 0.8275
+  },
+  {
+    "text": " control",
+    "startMs": 24940,
+    "endMs": 25460,
+    "timestampMs": 24940,
+    "confidence": 0.9727
+  },
+  {
+    "text": " is",
+    "startMs": 25460,
+    "endMs": 25760,
+    "timestampMs": 25460,
+    "confidence": 0.9845
+  },
+  {
+    "text": " time-limited",
+    "startMs": 25760,
+    "endMs": 26540,
+    "timestampMs": 25760,
+    "confidence": 0.85
+  },
+  {
+    "text": " so",
+    "startMs": 26960,
+    "endMs": 27000,
+    "timestampMs": 26960,
+    "confidence": 0.9436
+  },
+  {
+    "text": " an",
+    "startMs": 27000,
+    "endMs": 27280,
+    "timestampMs": 27000,
+    "confidence": 0.9654
+  },
+  {
+    "text": " override",
+    "startMs": 27280,
+    "endMs": 27660,
+    "timestampMs": 27280,
+    "confidence": 0.8932
+  },
+  {
+    "text": " cannot",
+    "startMs": 27660,
+    "endMs": 27960,
+    "timestampMs": 27660,
+    "confidence": 0.8129
+  },
+  {
+    "text": " leave",
+    "startMs": 27960,
+    "endMs": 28400,
+    "timestampMs": 27960,
+    "confidence": 0.9804
+  },
+  {
+    "text": " a",
+    "startMs": 28400,
+    "endMs": 29060,
+    "timestampMs": 28400,
+    "confidence": 0.8933
+  },
+  {
+    "text": " device",
+    "startMs": 29060,
+    "endMs": 29460,
+    "timestampMs": 29060,
+    "confidence": 0.9968
+  },
+  {
+    "text": " running",
+    "startMs": 29460,
+    "endMs": 29840,
+    "timestampMs": 29460,
+    "confidence": 0.9975
+  },
+  {
+    "text": " indefinitely.",
+    "startMs": 29840,
+    "endMs": 30960,
+    "timestampMs": 29840,
+    "confidence": 0.9909
+  }
+]

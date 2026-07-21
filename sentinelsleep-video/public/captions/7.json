@@ -1,0 +1,716 @@
+[
+  {
+    "text": "Commercial",
+    "startMs": 210,
+    "endMs": 830,
+    "timestampMs": 210,
+    "confidence": 0.4395
+  },
+  {
+    "text": " products",
+    "startMs": 830,
+    "endMs": 1370,
+    "timestampMs": 830,
+    "confidence": 0.9319
+  },
+  {
+    "text": " usually",
+    "startMs": 1370,
+    "endMs": 1810,
+    "timestampMs": 1370,
+    "confidence": 0.9931
+  },
+  {
+    "text": " specialise.",
+    "startMs": 1810,
+    "endMs": 2390,
+    "timestampMs": 1810,
+    "confidence": 0.503
+  },
+  {
+    "text": " A",
+    "startMs": 3010,
+    "endMs": 3050,
+    "timestampMs": 3010,
+    "confidence": 0.8772
+  },
+  {
+    "text": " smart",
+    "startMs": 3050,
+    "endMs": 3270,
+    "timestampMs": 3050,
+    "confidence": 0.7911
+  },
+  {
+    "text": " motion",
+    "startMs": 3270,
+    "endMs": 3650,
+    "timestampMs": 3270,
+    "confidence": 0.8844
+  },
+  {
+    "text": " sensor",
+    "startMs": 3650,
+    "endMs": 3990,
+    "timestampMs": 3650,
+    "confidence": 0.9921
+  },
+  {
+    "text": " can",
+    "startMs": 3990,
+    "endMs": 4250,
+    "timestampMs": 3990,
+    "confidence": 0.9956
+  },
+  {
+    "text": " automate",
+    "startMs": 4250,
+    "endMs": 4690,
+    "timestampMs": 4250,
+    "confidence": 0.8947
+  },
+  {
+    "text": " lights,",
+    "startMs": 4690,
+    "endMs": 5090,
+    "timestampMs": 4690,
+    "confidence": 0.7487
+  },
+  {
+    "text": " a",
+    "startMs": 5550,
+    "endMs": 5551,
+    "timestampMs": 5550,
+    "confidence": 0.9222
+  },
+  {
+    "text": " room",
+    "startMs": 5550,
+    "endMs": 5890,
+    "timestampMs": 5550,
+    "confidence": 0.9701
+  },
+  {
+    "text": " sensor",
+    "startMs": 5890,
+    "endMs": 6310,
+    "timestampMs": 5890,
+    "confidence": 0.9775
+  },
+  {
+    "text": " can",
+    "startMs": 6310,
+    "endMs": 6610,
+    "timestampMs": 6310,
+    "confidence": 0.9913
+  },
+  {
+    "text": " support",
+    "startMs": 6610,
+    "endMs": 7230,
+    "timestampMs": 6610,
+    "confidence": 0.9938
+  },
+  {
+    "text": " temperature",
+    "startMs": 7230,
+    "endMs": 7650,
+    "timestampMs": 7230,
+    "confidence": 0.9913
+  },
+  {
+    "text": " control,",
+    "startMs": 7650,
+    "endMs": 8210,
+    "timestampMs": 7650,
+    "confidence": 0.8934
+  },
+  {
+    "text": " and",
+    "startMs": 8410,
+    "endMs": 8530,
+    "timestampMs": 8410,
+    "confidence": 0.9867
+  },
+  {
+    "text": " a",
+    "startMs": 8530,
+    "endMs": 8750,
+    "timestampMs": 8530,
+    "confidence": 0.9879
+  },
+  {
+    "text": " certified",
+    "startMs": 8750,
+    "endMs": 9230,
+    "timestampMs": 8750,
+    "confidence": 0.9867
+  },
+  {
+    "text": " alarm",
+    "startMs": 9230,
+    "endMs": 9670,
+    "timestampMs": 9230,
+    "confidence": 0.9974
+  },
+  {
+    "text": " focuses",
+    "startMs": 9670,
+    "endMs": 10310,
+    "timestampMs": 9670,
+    "confidence": 0.941
+  },
+  {
+    "text": " on",
+    "startMs": 10310,
+    "endMs": 10670,
+    "timestampMs": 10310,
+    "confidence": 0.9963
+  },
+  {
+    "text": " smoke",
+    "startMs": 10670,
+    "endMs": 10970,
+    "timestampMs": 10670,
+    "confidence": 0.8755
+  },
+  {
+    "text": " or",
+    "startMs": 10970,
+    "endMs": 11210,
+    "timestampMs": 10970,
+    "confidence": 0.9431
+  },
+  {
+    "text": " carbon",
+    "startMs": 11210,
+    "endMs": 11410,
+    "timestampMs": 11210,
+    "confidence": 0.9938
+  },
+  {
+    "text": " monoxide.",
+    "startMs": 11410,
+    "endMs": 12270,
+    "timestampMs": 11410,
+    "confidence": 0.7517
+  },
+  {
+    "text": " SentinelSleep",
+    "startMs": 13270,
+    "endMs": 13870,
+    "timestampMs": 13270,
+    "confidence": 0.476
+  },
+  {
+    "text": " is",
+    "startMs": 13870,
+    "endMs": 14130,
+    "timestampMs": 13870,
+    "confidence": 0.9706
+  },
+  {
+    "text": " different",
+    "startMs": 14130,
+    "endMs": 14470,
+    "timestampMs": 14130,
+    "confidence": 0.9948
+  },
+  {
+    "text": " because",
+    "startMs": 14470,
+    "endMs": 14890,
+    "timestampMs": 14470,
+    "confidence": 0.9639
+  },
+  {
+    "text": " it",
+    "startMs": 14890,
+    "endMs": 15290,
+    "timestampMs": 14890,
+    "confidence": 0.9838
+  },
+  {
+    "text": " combines",
+    "startMs": 15290,
+    "endMs": 15850,
+    "timestampMs": 15290,
+    "confidence": 0.996
+  },
+  {
+    "text": " occupancy,",
+    "startMs": 15850,
+    "endMs": 16510,
+    "timestampMs": 15850,
+    "confidence": 0.9898
+  },
+  {
+    "text": " illumination,",
+    "startMs": 16870,
+    "endMs": 17110,
+    "timestampMs": 16870,
+    "confidence": 0.3661
+  },
+  {
+    "text": " comfort",
+    "startMs": 17910,
+    "endMs": 18070,
+    "timestampMs": 17910,
+    "confidence": 0.7892
+  },
+  {
+    "text": " and",
+    "startMs": 18630,
+    "endMs": 18670,
+    "timestampMs": 18630,
+    "confidence": 0.9955
+  },
+  {
+    "text": " supplementary",
+    "startMs": 18670,
+    "endMs": 19170,
+    "timestampMs": 18670,
+    "confidence": 0.9885
+  },
+  {
+    "text": " warning",
+    "startMs": 19170,
+    "endMs": 19630,
+    "timestampMs": 19170,
+    "confidence": 0.9812
+  },
+  {
+    "text": " in",
+    "startMs": 19630,
+    "endMs": 19990,
+    "timestampMs": 19630,
+    "confidence": 0.9794
+  },
+  {
+    "text": " one",
+    "startMs": 19990,
+    "endMs": 20290,
+    "timestampMs": 19990,
+    "confidence": 0.9633
+  },
+  {
+    "text": " explainable",
+    "startMs": 20290,
+    "endMs": 20890,
+    "timestampMs": 20290,
+    "confidence": 0.9547
+  },
+  {
+    "text": " rule",
+    "startMs": 20890,
+    "endMs": 21190,
+    "timestampMs": 20890,
+    "confidence": 0.5747
+  },
+  {
+    "text": " engine.",
+    "startMs": 21190,
+    "endMs": 21570,
+    "timestampMs": 21190,
+    "confidence": 0.9492
+  },
+  {
+    "text": " It",
+    "startMs": 22390,
+    "endMs": 22610,
+    "timestampMs": 22390,
+    "confidence": 0.9855
+  },
+  {
+    "text": " also",
+    "startMs": 22610,
+    "endMs": 22990,
+    "timestampMs": 22610,
+    "confidence": 0.9922
+  },
+  {
+    "text": " continues",
+    "startMs": 22990,
+    "endMs": 23530,
+    "timestampMs": 22990,
+    "confidence": 0.9545
+  },
+  {
+    "text": " its",
+    "startMs": 23530,
+    "endMs": 23890,
+    "timestampMs": 23530,
+    "confidence": 0.9445
+  },
+  {
+    "text": " core",
+    "startMs": 23890,
+    "endMs": 24150,
+    "timestampMs": 23890,
+    "confidence": 0.5145
+  },
+  {
+    "text": " logic",
+    "startMs": 24150,
+    "endMs": 24530,
+    "timestampMs": 24150,
+    "confidence": 0.8769
+  },
+  {
+    "text": " locally",
+    "startMs": 24530,
+    "endMs": 25070,
+    "timestampMs": 24530,
+    "confidence": 0.937
+  },
+  {
+    "text": " if",
+    "startMs": 25070,
+    "endMs": 25410,
+    "timestampMs": 25070,
+    "confidence": 0.9682
+  },
+  {
+    "text": " cloud",
+    "startMs": 25410,
+    "endMs": 25750,
+    "timestampMs": 25410,
+    "confidence": 0.9716
+  },
+  {
+    "text": " access",
+    "startMs": 25750,
+    "endMs": 26190,
+    "timestampMs": 25750,
+    "confidence": 0.4942
+  },
+  {
+    "text": " fails.",
+    "startMs": 26190,
+    "endMs": 26590,
+    "timestampMs": 26190,
+    "confidence": 0.9951
+  },
+  {
+    "text": " The",
+    "startMs": 27810,
+    "endMs": 28530,
+    "timestampMs": 27810,
+    "confidence": 0.7811
+  },
+  {
+    "text": " unique",
+    "startMs": 28530,
+    "endMs": 28810,
+    "timestampMs": 28530,
+    "confidence": 0.2762
+  },
+  {
+    "text": " feature",
+    "startMs": 28810,
+    "endMs": 29190,
+    "timestampMs": 28810,
+    "confidence": 0.9937
+  },
+  {
+    "text": " is",
+    "startMs": 29190,
+    "endMs": 29590,
+    "timestampMs": 29190,
+    "confidence": 0.9908
+  },
+  {
+    "text": " priority-aware",
+    "startMs": 29590,
+    "endMs": 30450,
+    "timestampMs": 29590,
+    "confidence": 0.4323
+  },
+  {
+    "text": " sensor",
+    "startMs": 30450,
+    "endMs": 30770,
+    "timestampMs": 30450,
+    "confidence": 0.9731
+  },
+  {
+    "text": " fusion.",
+    "startMs": 30770,
+    "endMs": 31350,
+    "timestampMs": 30770,
+    "confidence": 0.9932
+  },
+  {
+    "text": " The",
+    "startMs": 31670,
+    "endMs": 31910,
+    "timestampMs": 31670,
+    "confidence": 0.9689
+  },
+  {
+    "text": " system",
+    "startMs": 31910,
+    "endMs": 32190,
+    "timestampMs": 31910,
+    "confidence": 0.9478
+  },
+  {
+    "text": " does",
+    "startMs": 32190,
+    "endMs": 32550,
+    "timestampMs": 32190,
+    "confidence": 0.981
+  },
+  {
+    "text": " not",
+    "startMs": 32550,
+    "endMs": 32850,
+    "timestampMs": 32550,
+    "confidence": 0.9961
+  },
+  {
+    "text": " react",
+    "startMs": 32850,
+    "endMs": 33230,
+    "timestampMs": 32850,
+    "confidence": 0.9779
+  },
+  {
+    "text": " to",
+    "startMs": 33230,
+    "endMs": 33450,
+    "timestampMs": 33230,
+    "confidence": 0.9941
+  },
+  {
+    "text": " one",
+    "startMs": 33450,
+    "endMs": 33650,
+    "timestampMs": 33450,
+    "confidence": 0.8824
+  },
+  {
+    "text": " reading",
+    "startMs": 33650,
+    "endMs": 33870,
+    "timestampMs": 33650,
+    "confidence": 0.8391
+  },
+  {
+    "text": " in",
+    "startMs": 33870,
+    "endMs": 34230,
+    "timestampMs": 33870,
+    "confidence": 0.9855
+  },
+  {
+    "text": " isolation.",
+    "startMs": 34230,
+    "endMs": 34770,
+    "timestampMs": 34230,
+    "confidence": 0.9952
+  },
+  {
+    "text": " It",
+    "startMs": 35250,
+    "endMs": 35390,
+    "timestampMs": 35250,
+    "confidence": 0.9875
+  },
+  {
+    "text": " checks",
+    "startMs": 35390,
+    "endMs": 35650,
+    "timestampMs": 35390,
+    "confidence": 0.9945
+  },
+  {
+    "text": " safety",
+    "startMs": 35650,
+    "endMs": 36050,
+    "timestampMs": 35650,
+    "confidence": 0.3255
+  },
+  {
+    "text": " state,",
+    "startMs": 36050,
+    "endMs": 36450,
+    "timestampMs": 36050,
+    "confidence": 0.6345
+  },
+  {
+    "text": " occupancy,",
+    "startMs": 36950,
+    "endMs": 37270,
+    "timestampMs": 36950,
+    "confidence": 0.9972
+  },
+  {
+    "text": " light",
+    "startMs": 37690,
+    "endMs": 37850,
+    "timestampMs": 37690,
+    "confidence": 0.9482
+  },
+  {
+    "text": " level,",
+    "startMs": 37850,
+    "endMs": 38230,
+    "timestampMs": 37850,
+    "confidence": 0.9178
+  },
+  {
+    "text": " time",
+    "startMs": 38550,
+    "endMs": 38810,
+    "timestampMs": 38550,
+    "confidence": 0.987
+  },
+  {
+    "text": " and",
+    "startMs": 39110,
+    "endMs": 39130,
+    "timestampMs": 39110,
+    "confidence": 0.9638
+  },
+  {
+    "text": " manual",
+    "startMs": 39130,
+    "endMs": 39430,
+    "timestampMs": 39130,
+    "confidence": 0.9675
+  },
+  {
+    "text": " override,",
+    "startMs": 39430,
+    "endMs": 39930,
+    "timestampMs": 39430,
+    "confidence": 0.8165
+  },
+  {
+    "text": " then",
+    "startMs": 40270,
+    "endMs": 40490,
+    "timestampMs": 40270,
+    "confidence": 0.9483
+  },
+  {
+    "text": " reports",
+    "startMs": 40490,
+    "endMs": 40850,
+    "timestampMs": 40490,
+    "confidence": 0.9576
+  },
+  {
+    "text": " why",
+    "startMs": 40850,
+    "endMs": 41310,
+    "timestampMs": 40850,
+    "confidence": 0.736
+  },
+  {
+    "text": " an",
+    "startMs": 41310,
+    "endMs": 41823,
+    "timestampMs": 41310,
+    "confidence": 0.4804
+  },
+  {
+    "text": " action",
+    "startMs": 41823,
+    "endMs": 42337,
+    "timestampMs": 41823,
+    "confidence": 0.4804
+  },
+  {
+    "text": " occurred.",
+    "startMs": 42337,
+    "endMs": 42850,
+    "timestampMs": 42337,
+    "confidence": 0.4804
+  },
+  {
+    "text": " Privacy",
+    "startMs": 43510,
+    "endMs": 43511,
+    "timestampMs": 43510,
+    "confidence": 0.9456
+  },
+  {
+    "text": " is",
+    "startMs": 43510,
+    "endMs": 43790,
+    "timestampMs": 43510,
+    "confidence": 0.9933
+  },
+  {
+    "text": " protected",
+    "startMs": 43790,
+    "endMs": 44270,
+    "timestampMs": 43790,
+    "confidence": 0.993
+  },
+  {
+    "text": " because",
+    "startMs": 44270,
+    "endMs": 44930,
+    "timestampMs": 44270,
+    "confidence": 0.9271
+  },
+  {
+    "text": " occupancy",
+    "startMs": 44930,
+    "endMs": 45430,
+    "timestampMs": 44930,
+    "confidence": 0.9881
+  },
+  {
+    "text": " is",
+    "startMs": 45430,
+    "endMs": 45690,
+    "timestampMs": 45430,
+    "confidence": 0.7448
+  },
+  {
+    "text": " sensed",
+    "startMs": 45690,
+    "endMs": 46010,
+    "timestampMs": 45690,
+    "confidence": 0.2917
+  },
+  {
+    "text": " without",
+    "startMs": 46010,
+    "endMs": 46510,
+    "timestampMs": 46010,
+    "confidence": 0.9813
+  },
+  {
+    "text": " a",
+    "startMs": 46510,
+    "endMs": 47510,
+    "timestampMs": 46510,
+    "confidence": 0.8894
+  },
+  {
+    "text": " camera",
+    "startMs": 47510,
+    "endMs": 47970,
+    "timestampMs": 47510,
+    "confidence": 0.9781
+  },
+  {
+    "text": " or",
+    "startMs": 47970,
+    "endMs": 48410,
+    "timestampMs": 47970,
+    "confidence": 0.9781
+  },
+  {
+    "text": " microphone.",
+    "startMs": 48410,
+    "endMs": 48870,
+    "timestampMs": 48410,
+    "confidence": 0.9234
+  }
+]

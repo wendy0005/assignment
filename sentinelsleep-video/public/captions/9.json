@@ -1,0 +1,268 @@
+[
+  {
+    "text": "SentinelSleep",
+    "startMs": 720,
+    "endMs": 2080,
+    "timestampMs": 720,
+    "confidence": 0.3963
+  },
+  {
+    "text": " presents",
+    "startMs": 2080,
+    "endMs": 2880,
+    "timestampMs": 2080,
+    "confidence": 0.9922
+  },
+  {
+    "text": " a",
+    "startMs": 2880,
+    "endMs": 3340,
+    "timestampMs": 2880,
+    "confidence": 0.9818
+  },
+  {
+    "text": " feasible",
+    "startMs": 3340,
+    "endMs": 3900,
+    "timestampMs": 3340,
+    "confidence": 0.9481
+  },
+  {
+    "text": " IoT",
+    "startMs": 3900,
+    "endMs": 5540,
+    "timestampMs": 3900,
+    "confidence": 0.819
+  },
+  {
+    "text": " proposal",
+    "startMs": 5540,
+    "endMs": 6160,
+    "timestampMs": 5540,
+    "confidence": 0.986
+  },
+  {
+    "text": " that",
+    "startMs": 6160,
+    "endMs": 6560,
+    "timestampMs": 6160,
+    "confidence": 0.9799
+  },
+  {
+    "text": " improves",
+    "startMs": 6560,
+    "endMs": 6940,
+    "timestampMs": 6560,
+    "confidence": 0.9571
+  },
+  {
+    "text": " bedroom",
+    "startMs": 6940,
+    "endMs": 7260,
+    "timestampMs": 6940,
+    "confidence": 0.3792
+  },
+  {
+    "text": " energy",
+    "startMs": 7260,
+    "endMs": 7780,
+    "timestampMs": 7260,
+    "confidence": 0.9781
+  },
+  {
+    "text": " control,",
+    "startMs": 7780,
+    "endMs": 8380,
+    "timestampMs": 7780,
+    "confidence": 0.9547
+  },
+  {
+    "text": " comfort",
+    "startMs": 8680,
+    "endMs": 8980,
+    "timestampMs": 8680,
+    "confidence": 0.989
+  },
+  {
+    "text": " awareness",
+    "startMs": 8980,
+    "endMs": 9500,
+    "timestampMs": 8980,
+    "confidence": 0.9794
+  },
+  {
+    "text": " and",
+    "startMs": 9960,
+    "endMs": 10020,
+    "timestampMs": 9960,
+    "confidence": 0.9917
+  },
+  {
+    "text": " environmental",
+    "startMs": 10020,
+    "endMs": 10600,
+    "timestampMs": 10020,
+    "confidence": 0.9905
+  },
+  {
+    "text": " visibility",
+    "startMs": 10600,
+    "endMs": 11240,
+    "timestampMs": 10600,
+    "confidence": 0.9951
+  },
+  {
+    "text": " while",
+    "startMs": 11240,
+    "endMs": 11760,
+    "timestampMs": 11240,
+    "confidence": 0.8061
+  },
+  {
+    "text": " preserving",
+    "startMs": 11760,
+    "endMs": 12380,
+    "timestampMs": 11760,
+    "confidence": 0.9994
+  },
+  {
+    "text": " privacy",
+    "startMs": 12380,
+    "endMs": 12880,
+    "timestampMs": 12380,
+    "confidence": 0.9846
+  },
+  {
+    "text": " and",
+    "startMs": 12880,
+    "endMs": 13080,
+    "timestampMs": 12880,
+    "confidence": 0.9684
+  },
+  {
+    "text": " local",
+    "startMs": 13080,
+    "endMs": 13360,
+    "timestampMs": 13080,
+    "confidence": 0.4299
+  },
+  {
+    "text": " reliability.",
+    "startMs": 13360,
+    "endMs": 14180,
+    "timestampMs": 13360,
+    "confidence": 0.9967
+  },
+  {
+    "text": " Its",
+    "startMs": 15000,
+    "endMs": 15120,
+    "timestampMs": 15000,
+    "confidence": 0.8716
+  },
+  {
+    "text": " Wokwi-compatible",
+    "startMs": 15120,
+    "endMs": 16180,
+    "timestampMs": 15120,
+    "confidence": 0.053
+  },
+  {
+    "text": " hardware",
+    "startMs": 16180,
+    "endMs": 16840,
+    "timestampMs": 16180,
+    "confidence": 0.9804
+  },
+  {
+    "text": " and",
+    "startMs": 16840,
+    "endMs": 17200,
+    "timestampMs": 16840,
+    "confidence": 0.9653
+  },
+  {
+    "text": " four-layer",
+    "startMs": 17200,
+    "endMs": 17700,
+    "timestampMs": 17200,
+    "confidence": 0.6186
+  },
+  {
+    "text": " architecture",
+    "startMs": 17700,
+    "endMs": 18520,
+    "timestampMs": 17700,
+    "confidence": 0.9634
+  },
+  {
+    "text": " provide",
+    "startMs": 18520,
+    "endMs": 19060,
+    "timestampMs": 18520,
+    "confidence": 0.8736
+  },
+  {
+    "text": " a",
+    "startMs": 19060,
+    "endMs": 19300,
+    "timestampMs": 19060,
+    "confidence": 0.99
+  },
+  {
+    "text": " practical",
+    "startMs": 19300,
+    "endMs": 19840,
+    "timestampMs": 19300,
+    "confidence": 0.9993
+  },
+  {
+    "text": " foundation",
+    "startMs": 19840,
+    "endMs": 20300,
+    "timestampMs": 19840,
+    "confidence": 0.9946
+  },
+  {
+    "text": " for",
+    "startMs": 20300,
+    "endMs": 20600,
+    "timestampMs": 20300,
+    "confidence": 0.9954
+  },
+  {
+    "text": " the",
+    "startMs": 20600,
+    "endMs": 20740,
+    "timestampMs": 20600,
+    "confidence": 0.9867
+  },
+  {
+    "text": " Final",
+    "startMs": 20740,
+    "endMs": 20940,
+    "timestampMs": 20740,
+    "confidence": 0.9919
+  },
+  {
+    "text": " Project.",
+    "startMs": 20940,
+    "endMs": 21420,
+    "timestampMs": 20940,
+    "confidence": 0.9882
+  },
+  {
+    "text": " Thank",
+    "startMs": 22000,
+    "endMs": 22160,
+    "timestampMs": 22000,
+    "confidence": 0.988
+  },
+  {
+    "text": " you.",
+    "startMs": 22160,
+    "endMs": 22400,
+    "timestampMs": 22160,
+    "confidence": 0.9645
+  }
+]

@@ -1,0 +1,821 @@
+[
+  {
+    "text": "The",
+    "startMs": 850,
+    "endMs": 1350,
+    "timestampMs": 850,
+    "confidence": 0.9016
+  },
+  {
+    "text": " working",
+    "startMs": 1350,
+    "endMs": 1730,
+    "timestampMs": 1350,
+    "confidence": 0.0642
+  },
+  {
+    "text": " Wokwi",
+    "startMs": 1730,
+    "endMs": 2290,
+    "timestampMs": 1730,
+    "confidence": 0.7267
+  },
+  {
+    "text": " prototype",
+    "startMs": 2290,
+    "endMs": 3170,
+    "timestampMs": 2290,
+    "confidence": 0.8947
+  },
+  {
+    "text": " demonstrates",
+    "startMs": 3170,
+    "endMs": 3950,
+    "timestampMs": 3170,
+    "confidence": 0.9836
+  },
+  {
+    "text": " live",
+    "startMs": 3950,
+    "endMs": 4450,
+    "timestampMs": 3950,
+    "confidence": 0.6145
+  },
+  {
+    "text": " sensor",
+    "startMs": 4450,
+    "endMs": 4950,
+    "timestampMs": 4450,
+    "confidence": 0.9178
+  },
+  {
+    "text": " readings,",
+    "startMs": 5390,
+    "endMs": 5670,
+    "timestampMs": 5390,
+    "confidence": 0.9451
+  },
+  {
+    "text": " occupancy-aware",
+    "startMs": 6370,
+    "endMs": 7110,
+    "timestampMs": 6370,
+    "confidence": 0.5731
+  },
+  {
+    "text": " lighting",
+    "startMs": 7110,
+    "endMs": 7590,
+    "timestampMs": 7110,
+    "confidence": 0.5776
+  },
+  {
+    "text": " and",
+    "startMs": 8030,
+    "endMs": 8170,
+    "timestampMs": 8030,
+    "confidence": 0.992
+  },
+  {
+    "text": " fan",
+    "startMs": 8170,
+    "endMs": 8390,
+    "timestampMs": 8170,
+    "confidence": 0.7574
+  },
+  {
+    "text": " rules,",
+    "startMs": 8390,
+    "endMs": 8790,
+    "timestampMs": 8390,
+    "confidence": 0.8423
+  },
+  {
+    "text": " MQTT",
+    "startMs": 9630,
+    "endMs": 10030,
+    "timestampMs": 9630,
+    "confidence": 0.9824
+  },
+  {
+    "text": " telemetry,",
+    "startMs": 10030,
+    "endMs": 10710,
+    "timestampMs": 10030,
+    "confidence": 0.842
+  },
+  {
+    "text": " and",
+    "startMs": 11270,
+    "endMs": 11330,
+    "timestampMs": 11270,
+    "confidence": 0.9957
+  },
+  {
+    "text": " the",
+    "startMs": 11330,
+    "endMs": 11570,
+    "timestampMs": 11330,
+    "confidence": 0.9684
+  },
+  {
+    "text": " priority",
+    "startMs": 11570,
+    "endMs": 11770,
+    "timestampMs": 11570,
+    "confidence": 0.5275
+  },
+  {
+    "text": " gas-alert",
+    "startMs": 11770,
+    "endMs": 12610,
+    "timestampMs": 11770,
+    "confidence": 0.6801
+  },
+  {
+    "text": " path.",
+    "startMs": 12610,
+    "endMs": 12930,
+    "timestampMs": 12610,
+    "confidence": 0.9629
+  },
+  {
+    "text": " The",
+    "startMs": 13430,
+    "endMs": 13570,
+    "timestampMs": 13430,
+    "confidence": 0.9876
+  },
+  {
+    "text": " public",
+    "startMs": 13570,
+    "endMs": 13910,
+    "timestampMs": 13570,
+    "confidence": 0.9773
+  },
+  {
+    "text": " simulation",
+    "startMs": 13910,
+    "endMs": 14550,
+    "timestampMs": 13910,
+    "confidence": 0.9932
+  },
+  {
+    "text": " is",
+    "startMs": 14550,
+    "endMs": 14950,
+    "timestampMs": 14550,
+    "confidence": 0.9948
+  },
+  {
+    "text": " available",
+    "startMs": 14950,
+    "endMs": 15290,
+    "timestampMs": 14950,
+    "confidence": 0.9987
+  },
+  {
+    "text": " at",
+    "startMs": 15290,
+    "endMs": 15710,
+    "timestampMs": 15290,
+    "confidence": 0.9913
+  },
+  {
+    "text": " this",
+    "startMs": 15710,
+    "endMs": 15970,
+    "timestampMs": 15710,
+    "confidence": 0.9876
+  },
+  {
+    "text": " link.",
+    "startMs": 15970,
+    "endMs": 16330,
+    "timestampMs": 15970,
+    "confidence": 0.9967
+  },
+  {
+    "text": " The",
+    "startMs": 18390,
+    "endMs": 18630,
+    "timestampMs": 18390,
+    "confidence": 0.9932
+  },
+  {
+    "text": " proposal",
+    "startMs": 18630,
+    "endMs": 18950,
+    "timestampMs": 18630,
+    "confidence": 0.9912
+  },
+  {
+    "text": " has",
+    "startMs": 18950,
+    "endMs": 19430,
+    "timestampMs": 18950,
+    "confidence": 0.9945
+  },
+  {
+    "text": " clear",
+    "startMs": 19430,
+    "endMs": 19890,
+    "timestampMs": 19430,
+    "confidence": 0.989
+  },
+  {
+    "text": " limitations.",
+    "startMs": 19890,
+    "endMs": 20510,
+    "timestampMs": 19890,
+    "confidence": 0.9878
+  },
+  {
+    "text": " Thresholds",
+    "startMs": 21250,
+    "endMs": 21510,
+    "timestampMs": 21250,
+    "confidence": 0.7876
+  },
+  {
+    "text": " must",
+    "startMs": 21510,
+    "endMs": 21910,
+    "timestampMs": 21510,
+    "confidence": 0.9864
+  },
+  {
+    "text": " be",
+    "startMs": 21910,
+    "endMs": 22150,
+    "timestampMs": 21910,
+    "confidence": 0.9973
+  },
+  {
+    "text": " tuned",
+    "startMs": 22150,
+    "endMs": 22470,
+    "timestampMs": 22150,
+    "confidence": 0.9158
+  },
+  {
+    "text": " in",
+    "startMs": 22470,
+    "endMs": 22750,
+    "timestampMs": 22470,
+    "confidence": 0.9822
+  },
+  {
+    "text": " the",
+    "startMs": 22750,
+    "endMs": 22870,
+    "timestampMs": 22750,
+    "confidence": 0.8388
+  },
+  {
+    "text": " real",
+    "startMs": 22870,
+    "endMs": 23110,
+    "timestampMs": 22870,
+    "confidence": 0.7311
+  },
+  {
+    "text": " bedroom.",
+    "startMs": 23110,
+    "endMs": 23610,
+    "timestampMs": 23110,
+    "confidence": 0.848
+  },
+  {
+    "text": " PIR",
+    "startMs": 23610,
+    "endMs": 24410,
+    "timestampMs": 23610,
+    "confidence": 0.4956
+  },
+  {
+    "text": " movement",
+    "startMs": 24410,
+    "endMs": 24810,
+    "timestampMs": 24410,
+    "confidence": 0.8934
+  },
+  {
+    "text": " is",
+    "startMs": 24810,
+    "endMs": 25250,
+    "timestampMs": 24810,
+    "confidence": 0.9791
+  },
+  {
+    "text": " only",
+    "startMs": 25250,
+    "endMs": 25590,
+    "timestampMs": 25250,
+    "confidence": 0.9851
+  },
+  {
+    "text": " an",
+    "startMs": 25590,
+    "endMs": 25990,
+    "timestampMs": 25590,
+    "confidence": 0.8357
+  },
+  {
+    "text": " estimate",
+    "startMs": 25990,
+    "endMs": 26390,
+    "timestampMs": 25990,
+    "confidence": 0.8357
+  },
+  {
+    "text": " of",
+    "startMs": 26390,
+    "endMs": 26850,
+    "timestampMs": 26390,
+    "confidence": 0.9891
+  },
+  {
+    "text": " occupancy,",
+    "startMs": 26850,
+    "endMs": 27350,
+    "timestampMs": 26850,
+    "confidence": 0.9876
+  },
+  {
+    "text": " and",
+    "startMs": 27350,
+    "endMs": 27830,
+    "timestampMs": 27350,
+    "confidence": 0.9634
+  },
+  {
+    "text": " the",
+    "startMs": 27830,
+    "endMs": 27970,
+    "timestampMs": 27830,
+    "confidence": 0.4118
+  },
+  {
+    "text": " MQ-2",
+    "startMs": 27970,
+    "endMs": 28970,
+    "timestampMs": 27970,
+    "confidence": 0.688
+  },
+  {
+    "text": " is",
+    "startMs": 28970,
+    "endMs": 29250,
+    "timestampMs": 28970,
+    "confidence": 0.9324
+  },
+  {
+    "text": " not",
+    "startMs": 29250,
+    "endMs": 29470,
+    "timestampMs": 29250,
+    "confidence": 0.9956
+  },
+  {
+    "text": " certified",
+    "startMs": 29470,
+    "endMs": 30090,
+    "timestampMs": 29470,
+    "confidence": 0.9968
+  },
+  {
+    "text": " life-safety",
+    "startMs": 30450,
+    "endMs": 31250,
+    "timestampMs": 30450,
+    "confidence": 0.4397
+  },
+  {
+    "text": " sensor.",
+    "startMs": 31250,
+    "endMs": 31790,
+    "timestampMs": 31250,
+    "confidence": 0.6571
+  },
+  {
+    "text": " Mains-powered",
+    "startMs": 32810,
+    "endMs": 33330,
+    "timestampMs": 32810,
+    "confidence": 0.6221
+  },
+  {
+    "text": " relays",
+    "startMs": 33330,
+    "endMs": 33850,
+    "timestampMs": 33330,
+    "confidence": 0.6221
+  },
+  {
+    "text": " require",
+    "startMs": 33850,
+    "endMs": 34730,
+    "timestampMs": 33850,
+    "confidence": 0.7082
+  },
+  {
+    "text": " proper",
+    "startMs": 34730,
+    "endMs": 35250,
+    "timestampMs": 34730,
+    "confidence": 0.8446
+  },
+  {
+    "text": " isolation",
+    "startMs": 35250,
+    "endMs": 35770,
+    "timestampMs": 35250,
+    "confidence": 0.5587
+  },
+  {
+    "text": " and",
+    "startMs": 35770,
+    "endMs": 36290,
+    "timestampMs": 35770,
+    "confidence": 0.9731
+  },
+  {
+    "text": " competent",
+    "startMs": 36290,
+    "endMs": 36750,
+    "timestampMs": 36290,
+    "confidence": 0.5136
+  },
+  {
+    "text": " installation.",
+    "startMs": 36750,
+    "endMs": 37590,
+    "timestampMs": 36750,
+    "confidence": 0.8917
+  },
+  {
+    "text": " Security",
+    "startMs": 38830,
+    "endMs": 39010,
+    "timestampMs": 38830,
+    "confidence": 0.9825
+  },
+  {
+    "text": " also",
+    "startMs": 39010,
+    "endMs": 39390,
+    "timestampMs": 39010,
+    "confidence": 0.9821
+  },
+  {
+    "text": " matters,",
+    "startMs": 39390,
+    "endMs": 39850,
+    "timestampMs": 39390,
+    "confidence": 0.4755
+  },
+  {
+    "text": " so",
+    "startMs": 40490,
+    "endMs": 40650,
+    "timestampMs": 40490,
+    "confidence": 0.9609
+  },
+  {
+    "text": " device",
+    "startMs": 40650,
+    "endMs": 41190,
+    "timestampMs": 40650,
+    "confidence": 0.8817
+  },
+  {
+    "text": " certificates,",
+    "startMs": 41190,
+    "endMs": 41990,
+    "timestampMs": 41190,
+    "confidence": 0.732
+  },
+  {
+    "text": " encrypted",
+    "startMs": 41990,
+    "endMs": 42690,
+    "timestampMs": 41990,
+    "confidence": 0.7569
+  },
+  {
+    "text": " communication",
+    "startMs": 42690,
+    "endMs": 43490,
+    "timestampMs": 42690,
+    "confidence": 0.6095
+  },
+  {
+    "text": " and",
+    "startMs": 43490,
+    "endMs": 44050,
+    "timestampMs": 43490,
+    "confidence": 0.7904
+  },
+  {
+    "text": " least-privilege",
+    "startMs": 44050,
+    "endMs": 44990,
+    "timestampMs": 44050,
+    "confidence": 0.8221
+  },
+  {
+    "text": " access",
+    "startMs": 44990,
+    "endMs": 45450,
+    "timestampMs": 44990,
+    "confidence": 0.4786
+  },
+  {
+    "text": " are",
+    "startMs": 45450,
+    "endMs": 45830,
+    "timestampMs": 45450,
+    "confidence": 0.8747
+  },
+  {
+    "text": " part",
+    "startMs": 45830,
+    "endMs": 46070,
+    "timestampMs": 45830,
+    "confidence": 0.9653
+  },
+  {
+    "text": " of",
+    "startMs": 46070,
+    "endMs": 46350,
+    "timestampMs": 46070,
+    "confidence": 0.9981
+  },
+  {
+    "text": " the",
+    "startMs": 46350,
+    "endMs": 46410,
+    "timestampMs": 46350,
+    "confidence": 0.9557
+  },
+  {
+    "text": " proposed",
+    "startMs": 46410,
+    "endMs": 46850,
+    "timestampMs": 46410,
+    "confidence": 0.987
+  },
+  {
+    "text": " design.",
+    "startMs": 46850,
+    "endMs": 47310,
+    "timestampMs": 46850,
+    "confidence": 0.9767
+  },
+  {
+    "text": " The",
+    "startMs": 48030,
+    "endMs": 48690,
+    "timestampMs": 48030,
+    "confidence": 0.7722
+  },
+  {
+    "text": " Wokwi",
+    "startMs": 48690,
+    "endMs": 49170,
+    "timestampMs": 48690,
+    "confidence": 0.3705
+  },
+  {
+    "text": " simulation",
+    "startMs": 49170,
+    "endMs": 49510,
+    "timestampMs": 49170,
+    "confidence": 0.7408
+  },
+  {
+    "text": " has",
+    "startMs": 49510,
+    "endMs": 50170,
+    "timestampMs": 49510,
+    "confidence": 0.9503
+  },
+  {
+    "text": " now",
+    "startMs": 50170,
+    "endMs": 50450,
+    "timestampMs": 50170,
+    "confidence": 0.9542
+  },
+  {
+    "text": " been",
+    "startMs": 50450,
+    "endMs": 50630,
+    "timestampMs": 50450,
+    "confidence": 0.9625
+  },
+  {
+    "text": " built",
+    "startMs": 50630,
+    "endMs": 50950,
+    "timestampMs": 50630,
+    "confidence": 0.8832
+  },
+  {
+    "text": " and",
+    "startMs": 50950,
+    "endMs": 51190,
+    "timestampMs": 50950,
+    "confidence": 0.982
+  },
+  {
+    "text": " tested.",
+    "startMs": 51190,
+    "endMs": 51710,
+    "timestampMs": 51190,
+    "confidence": 0.98
+  },
+  {
+    "text": " The",
+    "startMs": 52250,
+    "endMs": 52251,
+    "timestampMs": 52250,
+    "confidence": 0.9521
+  },
+  {
+    "text": " next",
+    "startMs": 52250,
+    "endMs": 52470,
+    "timestampMs": 52250,
+    "confidence": 0.9691
+  },
+  {
+    "text": " stage",
+    "startMs": 52470,
+    "endMs": 52790,
+    "timestampMs": 52470,
+    "confidence": 0.9666
+  },
+  {
+    "text": " is",
+    "startMs": 52790,
+    "endMs": 53090,
+    "timestampMs": 52790,
+    "confidence": 0.9923
+  },
+  {
+    "text": " to",
+    "startMs": 53090,
+    "endMs": 53270,
+    "timestampMs": 53090,
+    "confidence": 0.9884
+  },
+  {
+    "text": " insert",
+    "startMs": 53270,
+    "endMs": 53670,
+    "timestampMs": 53270,
+    "confidence": 0.988
+  },
+  {
+    "text": " the",
+    "startMs": 53670,
+    "endMs": 53930,
+    "timestampMs": 53670,
+    "confidence": 0.8334
+  },
+  {
+    "text": " original",
+    "startMs": 53930,
+    "endMs": 54370,
+    "timestampMs": 53930,
+    "confidence": 0.9845
+  },
+  {
+    "text": " bedroom",
+    "startMs": 54370,
+    "endMs": 54790,
+    "timestampMs": 54370,
+    "confidence": 0.0965
+  },
+  {
+    "text": " photographs,",
+    "startMs": 54790,
+    "endMs": 55630,
+    "timestampMs": 54790,
+    "confidence": 0.8548
+  },
+  {
+    "text": " test",
+    "startMs": 56210,
+    "endMs": 56790,
+    "timestampMs": 56210,
+    "confidence": 0.9337
+  },
+  {
+    "text": " additional",
+    "startMs": 56790,
+    "endMs": 57750,
+    "timestampMs": 56790,
+    "confidence": 0.6991
+  },
+  {
+    "text": " normal",
+    "startMs": 57750,
+    "endMs": 59730,
+    "timestampMs": 57750,
+    "confidence": 0.9207
+  },
+  {
+    "text": " and",
+    "startMs": 59730,
+    "endMs": 60110,
+    "timestampMs": 59730,
+    "confidence": 0.9425
+  },
+  {
+    "text": " fault",
+    "startMs": 60110,
+    "endMs": 60510,
+    "timestampMs": 60110,
+    "confidence": 0.436
+  },
+  {
+    "text": " scenarios,",
+    "startMs": 60510,
+    "endMs": 61170,
+    "timestampMs": 60510,
+    "confidence": 0.9327
+  },
+  {
+    "text": " and",
+    "startMs": 61630,
+    "endMs": 61650,
+    "timestampMs": 61630,
+    "confidence": 0.9782
+  },
+  {
+    "text": " adjust",
+    "startMs": 61650,
+    "endMs": 62010,
+    "timestampMs": 61650,
+    "confidence": 0.9932
+  },
+  {
+    "text": " the",
+    "startMs": 62010,
+    "endMs": 62210,
+    "timestampMs": 62010,
+    "confidence": 0.9806
+  },
+  {
+    "text": " thresholds",
+    "startMs": 62210,
+    "endMs": 62570,
+    "timestampMs": 62210,
+    "confidence": 0.8624
+  },
+  {
+    "text": " using",
+    "startMs": 62570,
+    "endMs": 63130,
+    "timestampMs": 62570,
+    "confidence": 0.9688
+  },
+  {
+    "text": " observations",
+    "startMs": 63130,
+    "endMs": 63910,
+    "timestampMs": 63130,
+    "confidence": 0.8379
+  },
+  {
+    "text": " from",
+    "startMs": 63910,
+    "endMs": 64770,
+    "timestampMs": 63910,
+    "confidence": 0.9824
+  },
+  {
+    "text": " the",
+    "startMs": 64770,
+    "endMs": 64950,
+    "timestampMs": 64770,
+    "confidence": 0.9824
+  },
+  {
+    "text": " actual",
+    "startMs": 64950,
+    "endMs": 65270,
+    "timestampMs": 64950,
+    "confidence": 0.9929
+  },
+  {
+    "text": " room.",
+    "startMs": 65270,
+    "endMs": 65510,
+    "timestampMs": 65270,
+    "confidence": 0.9778
+  }
+]

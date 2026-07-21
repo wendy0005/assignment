@@ -1,0 +1,884 @@
+[
+  {
+    "text": "The",
+    "startMs": 0,
+    "endMs": 340,
+    "timestampMs": 0,
+    "confidence": 0.8703
+  },
+  {
+    "text": " edge",
+    "startMs": 340,
+    "endMs": 620,
+    "timestampMs": 340,
+    "confidence": 0.1898
+  },
+  {
+    "text": " layer",
+    "startMs": 620,
+    "endMs": 1000,
+    "timestampMs": 620,
+    "confidence": 0.9779
+  },
+  {
+    "text": " contains",
+    "startMs": 1000,
+    "endMs": 1540,
+    "timestampMs": 1000,
+    "confidence": 0.9846
+  },
+  {
+    "text": " the",
+    "startMs": 1540,
+    "endMs": 1860,
+    "timestampMs": 1540,
+    "confidence": 0.9549
+  },
+  {
+    "text": " sensors,",
+    "startMs": 1860,
+    "endMs": 2360,
+    "timestampMs": 1860,
+    "confidence": 0.8855
+  },
+  {
+    "text": " actuators",
+    "startMs": 2680,
+    "endMs": 3300,
+    "timestampMs": 2680,
+    "confidence": 0.9789
+  },
+  {
+    "text": " and",
+    "startMs": 3580,
+    "endMs": 3600,
+    "timestampMs": 3580,
+    "confidence": 0.975
+  },
+  {
+    "text": " ESP32.",
+    "startMs": 3600,
+    "endMs": 4640,
+    "timestampMs": 3600,
+    "confidence": 0.8532
+  },
+  {
+    "text": " It",
+    "startMs": 5340,
+    "endMs": 5560,
+    "timestampMs": 5340,
+    "confidence": 0.9613
+  },
+  {
+    "text": " reads",
+    "startMs": 5560,
+    "endMs": 5800,
+    "timestampMs": 5560,
+    "confidence": 0.6691
+  },
+  {
+    "text": " data,",
+    "startMs": 5800,
+    "endMs": 6220,
+    "timestampMs": 5800,
+    "confidence": 0.9501
+  },
+  {
+    "text": " validates",
+    "startMs": 6420,
+    "endMs": 6820,
+    "timestampMs": 6420,
+    "confidence": 0.9234
+  },
+  {
+    "text": " it",
+    "startMs": 6820,
+    "endMs": 7160,
+    "timestampMs": 6820,
+    "confidence": 0.522
+  },
+  {
+    "text": " and",
+    "startMs": 7160,
+    "endMs": 7440,
+    "timestampMs": 7160,
+    "confidence": 0.9939
+  },
+  {
+    "text": " runs",
+    "startMs": 7440,
+    "endMs": 7860,
+    "timestampMs": 7440,
+    "confidence": 0.939
+  },
+  {
+    "text": " local",
+    "startMs": 7860,
+    "endMs": 8200,
+    "timestampMs": 7860,
+    "confidence": 0.9636
+  },
+  {
+    "text": " rules.",
+    "startMs": 8200,
+    "endMs": 8860,
+    "timestampMs": 8200,
+    "confidence": 0.8741
+  },
+  {
+    "text": " Local",
+    "startMs": 9760,
+    "endMs": 9761,
+    "timestampMs": 9760,
+    "confidence": 0.9816
+  },
+  {
+    "text": " processing",
+    "startMs": 9760,
+    "endMs": 10300,
+    "timestampMs": 9760,
+    "confidence": 0.9838
+  },
+  {
+    "text": " keeps",
+    "startMs": 10300,
+    "endMs": 10720,
+    "timestampMs": 10300,
+    "confidence": 0.9922
+  },
+  {
+    "text": " the",
+    "startMs": 10720,
+    "endMs": 10980,
+    "timestampMs": 10720,
+    "confidence": 0.984
+  },
+  {
+    "text": " system",
+    "startMs": 10980,
+    "endMs": 11260,
+    "timestampMs": 10980,
+    "confidence": 0.996
+  },
+  {
+    "text": " responsive",
+    "startMs": 11260,
+    "endMs": 11680,
+    "timestampMs": 11260,
+    "confidence": 0.9763
+  },
+  {
+    "text": " and",
+    "startMs": 11680,
+    "endMs": 12120,
+    "timestampMs": 11680,
+    "confidence": 0.8995
+  },
+  {
+    "text": " allows",
+    "startMs": 12120,
+    "endMs": 12480,
+    "timestampMs": 12120,
+    "confidence": 0.9918
+  },
+  {
+    "text": " it",
+    "startMs": 12480,
+    "endMs": 12740,
+    "timestampMs": 12480,
+    "confidence": 0.9933
+  },
+  {
+    "text": " to",
+    "startMs": 12740,
+    "endMs": 12960,
+    "timestampMs": 12740,
+    "confidence": 0.9943
+  },
+  {
+    "text": " work",
+    "startMs": 12960,
+    "endMs": 13540,
+    "timestampMs": 12960,
+    "confidence": 0.9901
+  },
+  {
+    "text": " when",
+    "startMs": 13540,
+    "endMs": 13900,
+    "timestampMs": 13540,
+    "confidence": 0.9756
+  },
+  {
+    "text": " the",
+    "startMs": 13900,
+    "endMs": 14100,
+    "timestampMs": 13900,
+    "confidence": 0.9892
+  },
+  {
+    "text": " internet",
+    "startMs": 14100,
+    "endMs": 14300,
+    "timestampMs": 14100,
+    "confidence": 0.5277
+  },
+  {
+    "text": " is",
+    "startMs": 14300,
+    "endMs": 14540,
+    "timestampMs": 14300,
+    "confidence": 0.9932
+  },
+  {
+    "text": " unavailable.",
+    "startMs": 14540,
+    "endMs": 15100,
+    "timestampMs": 14540,
+    "confidence": 0.9893
+  },
+  {
+    "text": " The",
+    "startMs": 16980,
+    "endMs": 17320,
+    "timestampMs": 16980,
+    "confidence": 0.9726
+  },
+  {
+    "text": " connectivity",
+    "startMs": 17320,
+    "endMs": 17760,
+    "timestampMs": 17320,
+    "confidence": 0.9681
+  },
+  {
+    "text": " layer",
+    "startMs": 17760,
+    "endMs": 18380,
+    "timestampMs": 17760,
+    "confidence": 0.9907
+  },
+  {
+    "text": " uses",
+    "startMs": 18380,
+    "endMs": 18720,
+    "timestampMs": 18380,
+    "confidence": 0.8415
+  },
+  {
+    "text": " 2.4",
+    "startMs": 18720,
+    "endMs": 19580,
+    "timestampMs": 18720,
+    "confidence": 0.5986
+  },
+  {
+    "text": " gigahertz",
+    "startMs": 19580,
+    "endMs": 20440,
+    "timestampMs": 19580,
+    "confidence": 0.5986
+  },
+  {
+    "text": " Wi-Fi",
+    "startMs": 20440,
+    "endMs": 21300,
+    "timestampMs": 20440,
+    "confidence": 0.5986
+  },
+  {
+    "text": " and",
+    "startMs": 21300,
+    "endMs": 21540,
+    "timestampMs": 21300,
+    "confidence": 0.9641
+  },
+  {
+    "text": " MQTT",
+    "startMs": 21540,
+    "endMs": 22120,
+    "timestampMs": 21540,
+    "confidence": 0.9834
+  },
+  {
+    "text": " over",
+    "startMs": 22120,
+    "endMs": 22520,
+    "timestampMs": 22120,
+    "confidence": 0.9129
+  },
+  {
+    "text": " TLS",
+    "startMs": 22520,
+    "endMs": 23000,
+    "timestampMs": 22520,
+    "confidence": 0.9029
+  },
+  {
+    "text": " in",
+    "startMs": 23000,
+    "endMs": 23540,
+    "timestampMs": 23000,
+    "confidence": 0.978
+  },
+  {
+    "text": " the",
+    "startMs": 23540,
+    "endMs": 23680,
+    "timestampMs": 23540,
+    "confidence": 0.9502
+  },
+  {
+    "text": " proposed",
+    "startMs": 23680,
+    "endMs": 24200,
+    "timestampMs": 23680,
+    "confidence": 0.9534
+  },
+  {
+    "text": " production",
+    "startMs": 24200,
+    "endMs": 24960,
+    "timestampMs": 24200,
+    "confidence": 0.9664
+  },
+  {
+    "text": " design.",
+    "startMs": 24960,
+    "endMs": 25580,
+    "timestampMs": 24960,
+    "confidence": 0.8713
+  },
+  {
+    "text": " MQTT",
+    "startMs": 25580,
+    "endMs": 26780,
+    "timestampMs": 25580,
+    "confidence": 0.8182
+  },
+  {
+    "text": " provides",
+    "startMs": 26780,
+    "endMs": 27380,
+    "timestampMs": 26780,
+    "confidence": 0.7834
+  },
+  {
+    "text": " lightweight",
+    "startMs": 27380,
+    "endMs": 28100,
+    "timestampMs": 27380,
+    "confidence": 0.9222
+  },
+  {
+    "text": " publish-and-subscribe",
+    "startMs": 28100,
+    "endMs": 29480,
+    "timestampMs": 28100,
+    "confidence": 0.6171
+  },
+  {
+    "text": " messaging",
+    "startMs": 29480,
+    "endMs": 30120,
+    "timestampMs": 29480,
+    "confidence": 0.9055
+  },
+  {
+    "text": " between",
+    "startMs": 30120,
+    "endMs": 30500,
+    "timestampMs": 30120,
+    "confidence": 0.9468
+  },
+  {
+    "text": " the",
+    "startMs": 30500,
+    "endMs": 30740,
+    "timestampMs": 30500,
+    "confidence": 0.6018
+  },
+  {
+    "text": " ESP32",
+    "startMs": 30740,
+    "endMs": 31740,
+    "timestampMs": 30740,
+    "confidence": 0.9428
+  },
+  {
+    "text": " and",
+    "startMs": 31740,
+    "endMs": 32180,
+    "timestampMs": 31740,
+    "confidence": 0.9766
+  },
+  {
+    "text": " cloud",
+    "startMs": 32180,
+    "endMs": 32500,
+    "timestampMs": 32180,
+    "confidence": 0.2601
+  },
+  {
+    "text": " broker.",
+    "startMs": 32500,
+    "endMs": 32920,
+    "timestampMs": 32500,
+    "confidence": 0.9894
+  },
+  {
+    "text": " The",
+    "startMs": 33440,
+    "endMs": 33540,
+    "timestampMs": 33440,
+    "confidence": 0.8948
+  },
+  {
+    "text": " cloud",
+    "startMs": 33540,
+    "endMs": 33800,
+    "timestampMs": 33540,
+    "confidence": 0.9627
+  },
+  {
+    "text": " layer",
+    "startMs": 33800,
+    "endMs": 34200,
+    "timestampMs": 33800,
+    "confidence": 0.9881
+  },
+  {
+    "text": " authenticates",
+    "startMs": 34200,
+    "endMs": 36020,
+    "timestampMs": 34200,
+    "confidence": 0.921
+  },
+  {
+    "text": " the",
+    "startMs": 36020,
+    "endMs": 36260,
+    "timestampMs": 36020,
+    "confidence": 0.9853
+  },
+  {
+    "text": " device,",
+    "startMs": 36260,
+    "endMs": 36740,
+    "timestampMs": 36260,
+    "confidence": 0.9785
+  },
+  {
+    "text": " receives",
+    "startMs": 37180,
+    "endMs": 37680,
+    "timestampMs": 37180,
+    "confidence": 0.7996
+  },
+  {
+    "text": " messages,",
+    "startMs": 37680,
+    "endMs": 39040,
+    "timestampMs": 37680,
+    "confidence": 0.8408
+  },
+  {
+    "text": " stores",
+    "startMs": 39780,
+    "endMs": 39900,
+    "timestampMs": 39780,
+    "confidence": 0.3318
+  },
+  {
+    "text": " selected",
+    "startMs": 39900,
+    "endMs": 40740,
+    "timestampMs": 39900,
+    "confidence": 0.6097
+  },
+  {
+    "text": " readings,",
+    "startMs": 40740,
+    "endMs": 41200,
+    "timestampMs": 40740,
+    "confidence": 0.9326
+  },
+  {
+    "text": " maintains",
+    "startMs": 41500,
+    "endMs": 41880,
+    "timestampMs": 41500,
+    "confidence": 0.9876
+  },
+  {
+    "text": " desired",
+    "startMs": 41880,
+    "endMs": 42460,
+    "timestampMs": 41880,
+    "confidence": 0.4097
+  },
+  {
+    "text": " and",
+    "startMs": 42460,
+    "endMs": 42820,
+    "timestampMs": 42460,
+    "confidence": 0.9732
+  },
+  {
+    "text": " reported",
+    "startMs": 42820,
+    "endMs": 43300,
+    "timestampMs": 42820,
+    "confidence": 0.5948
+  },
+  {
+    "text": " state,",
+    "startMs": 43300,
+    "endMs": 43840,
+    "timestampMs": 43300,
+    "confidence": 0.7553
+  },
+  {
+    "text": " and",
+    "startMs": 44620,
+    "endMs": 44700,
+    "timestampMs": 44620,
+    "confidence": 0.9864
+  },
+  {
+    "text": " routes",
+    "startMs": 44700,
+    "endMs": 45100,
+    "timestampMs": 44700,
+    "confidence": 0.3266
+  },
+  {
+    "text": " alerts.",
+    "startMs": 45100,
+    "endMs": 45540,
+    "timestampMs": 45100,
+    "confidence": 0.9199
+  },
+  {
+    "text": " AWS",
+    "startMs": 46160,
+    "endMs": 46460,
+    "timestampMs": 46160,
+    "confidence": 0.9915
+  },
+  {
+    "text": " IoT",
+    "startMs": 46460,
+    "endMs": 47180,
+    "timestampMs": 46460,
+    "confidence": 0.9722
+  },
+  {
+    "text": " Core",
+    "startMs": 47180,
+    "endMs": 47580,
+    "timestampMs": 47180,
+    "confidence": 0.7621
+  },
+  {
+    "text": " is",
+    "startMs": 47580,
+    "endMs": 47820,
+    "timestampMs": 47580,
+    "confidence": 0.9882
+  },
+  {
+    "text": " a",
+    "startMs": 47820,
+    "endMs": 48080,
+    "timestampMs": 47820,
+    "confidence": 0.9261
+  },
+  {
+    "text": " reference",
+    "startMs": 48080,
+    "endMs": 48420,
+    "timestampMs": 48080,
+    "confidence": 0.9802
+  },
+  {
+    "text": " implementation",
+    "startMs": 48420,
+    "endMs": 49100,
+    "timestampMs": 48420,
+    "confidence": 0.9168
+  },
+  {
+    "text": " rather",
+    "startMs": 49100,
+    "endMs": 49540,
+    "timestampMs": 49100,
+    "confidence": 0.0956
+  },
+  {
+    "text": " than",
+    "startMs": 49540,
+    "endMs": 49940,
+    "timestampMs": 49540,
+    "confidence": 0.9694
+  },
+  {
+    "text": " a",
+    "startMs": 49940,
+    "endMs": 50140,
+    "timestampMs": 49940,
+    "confidence": 0.9547
+  },
+  {
+    "text": " compulsory",
+    "startMs": 50140,
+    "endMs": 50580,
+    "timestampMs": 50140,
+    "confidence": 0.9862
+  },
+  {
+    "text": " platform.",
+    "startMs": 50580,
+    "endMs": 51200,
+    "timestampMs": 50580,
+    "confidence": 0.995
+  },
+  {
+    "text": " The",
+    "startMs": 52200,
+    "endMs": 52740,
+    "timestampMs": 52200,
+    "confidence": 0.778
+  },
+  {
+    "text": " application",
+    "startMs": 52740,
+    "endMs": 53200,
+    "timestampMs": 52740,
+    "confidence": 0.8015
+  },
+  {
+    "text": " layer",
+    "startMs": 53200,
+    "endMs": 53680,
+    "timestampMs": 53200,
+    "confidence": 0.991
+  },
+  {
+    "text": " is",
+    "startMs": 53680,
+    "endMs": 54080,
+    "timestampMs": 53680,
+    "confidence": 0.9933
+  },
+  {
+    "text": " the",
+    "startMs": 54080,
+    "endMs": 54600,
+    "timestampMs": 54080,
+    "confidence": 0.9511
+  },
+  {
+    "text": " mobile",
+    "startMs": 54600,
+    "endMs": 55640,
+    "timestampMs": 54600,
+    "confidence": 0.0659
+  },
+  {
+    "text": " dashboard.",
+    "startMs": 55640,
+    "endMs": 56260,
+    "timestampMs": 55640,
+    "confidence": 0.971
+  },
+  {
+    "text": " It",
+    "startMs": 57020,
+    "endMs": 57120,
+    "timestampMs": 57020,
+    "confidence": 0.9866
+  },
+  {
+    "text": " displays",
+    "startMs": 57120,
+    "endMs": 57480,
+    "timestampMs": 57120,
+    "confidence": 0.7209
+  },
+  {
+    "text": " room",
+    "startMs": 57480,
+    "endMs": 57860,
+    "timestampMs": 57480,
+    "confidence": 0.968
+  },
+  {
+    "text": " safety,",
+    "startMs": 57860,
+    "endMs": 58360,
+    "timestampMs": 57860,
+    "confidence": 0.9795
+  },
+  {
+    "text": " comfort",
+    "startMs": 58700,
+    "endMs": 59080,
+    "timestampMs": 58700,
+    "confidence": 0.9987
+  },
+  {
+    "text": " readings,",
+    "startMs": 60060,
+    "endMs": 60061,
+    "timestampMs": 60060,
+    "confidence": 0.9426
+  },
+  {
+    "text": " occupancy,",
+    "startMs": 60340,
+    "endMs": 60840,
+    "timestampMs": 60340,
+    "confidence": 0.999
+  },
+  {
+    "text": " actuator",
+    "startMs": 61400,
+    "endMs": 62010,
+    "timestampMs": 61400,
+    "confidence": 0.5893
+  },
+  {
+    "text": " states,",
+    "startMs": 62010,
+    "endMs": 62621,
+    "timestampMs": 62010,
+    "confidence": 0.5893
+  },
+  {
+    "text": " alerts",
+    "startMs": 62620,
+    "endMs": 63040,
+    "timestampMs": 62620,
+    "confidence": 0.908
+  },
+  {
+    "text": " and",
+    "startMs": 63460,
+    "endMs": 63500,
+    "timestampMs": 63460,
+    "confidence": 0.9937
+  },
+  {
+    "text": " history.",
+    "startMs": 63500,
+    "endMs": 64000,
+    "timestampMs": 63500,
+    "confidence": 0.976
+  },
+  {
+    "text": " Commands",
+    "startMs": 64860,
+    "endMs": 65100,
+    "timestampMs": 64860,
+    "confidence": 0.9372
+  },
+  {
+    "text": " move",
+    "startMs": 65100,
+    "endMs": 65660,
+    "timestampMs": 65100,
+    "confidence": 0.9302
+  },
+  {
+    "text": " down",
+    "startMs": 65660,
+    "endMs": 66440,
+    "timestampMs": 65660,
+    "confidence": 0.9043
+  },
+  {
+    "text": " through",
+    "startMs": 66440,
+    "endMs": 67060,
+    "timestampMs": 66440,
+    "confidence": 0.9148
+  },
+  {
+    "text": " the",
+    "startMs": 67060,
+    "endMs": 67220,
+    "timestampMs": 67060,
+    "confidence": 0.9929
+  },
+  {
+    "text": " same",
+    "startMs": 67220,
+    "endMs": 67400,
+    "timestampMs": 67220,
+    "confidence": 0.9839
+  },
+  {
+    "text": " layers,",
+    "startMs": 67400,
+    "endMs": 67760,
+    "timestampMs": 67400,
+    "confidence": 0.8791
+  },
+  {
+    "text": " and",
+    "startMs": 67760,
+    "endMs": 68160,
+    "timestampMs": 67760,
+    "confidence": 0.8941
+  },
+  {
+    "text": " confirmed",
+    "startMs": 68160,
+    "endMs": 68620,
+    "timestampMs": 68160,
+    "confidence": 0.9584
+  },
+  {
+    "text": " device",
+    "startMs": 68620,
+    "endMs": 69140,
+    "timestampMs": 68620,
+    "confidence": 0.5134
+  },
+  {
+    "text": " state",
+    "startMs": 69140,
+    "endMs": 69480,
+    "timestampMs": 69140,
+    "confidence": 0.626
+  },
+  {
+    "text": " returns",
+    "startMs": 69680,
+    "endMs": 69960,
+    "timestampMs": 69680,
+    "confidence": 0.8475
+  },
+  {
+    "text": " to",
+    "startMs": 69960,
+    "endMs": 70240,
+    "timestampMs": 69960,
+    "confidence": 0.9963
+  },
+  {
+    "text": " the",
+    "startMs": 70240,
+    "endMs": 70360,
+    "timestampMs": 70240,
+    "confidence": 0.9875
+  },
+  {
+    "text": " application.",
+    "startMs": 70360,
+    "endMs": 70820,
+    "timestampMs": 70360,
+    "confidence": 0.8749
+  }
+]

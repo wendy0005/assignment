@@ -1,0 +1,562 @@
+[
+  {
+    "text": "The",
+    "startMs": 370,
+    "endMs": 830,
+    "timestampMs": 370,
+    "confidence": 0.5719
+  },
+  {
+    "text": " bedroom",
+    "startMs": 830,
+    "endMs": 990,
+    "timestampMs": 830,
+    "confidence": 0.9846
+  },
+  {
+    "text": " is",
+    "startMs": 990,
+    "endMs": 1210,
+    "timestampMs": 990,
+    "confidence": 0.9889
+  },
+  {
+    "text": " used",
+    "startMs": 1210,
+    "endMs": 1370,
+    "timestampMs": 1210,
+    "confidence": 0.9897
+  },
+  {
+    "text": " for",
+    "startMs": 1370,
+    "endMs": 1610,
+    "timestampMs": 1370,
+    "confidence": 0.99
+  },
+  {
+    "text": " sleeping,",
+    "startMs": 1610,
+    "endMs": 1890,
+    "timestampMs": 1610,
+    "confidence": 0.991
+  },
+  {
+    "text": " studying",
+    "startMs": 2110,
+    "endMs": 2370,
+    "timestampMs": 2110,
+    "confidence": 0.7515
+  },
+  {
+    "text": " and",
+    "startMs": 2550,
+    "endMs": 2670,
+    "timestampMs": 2550,
+    "confidence": 0.9755
+  },
+  {
+    "text": " resting,",
+    "startMs": 2670,
+    "endMs": 2990,
+    "timestampMs": 2670,
+    "confidence": 0.9919
+  },
+  {
+    "text": " so",
+    "startMs": 3390,
+    "endMs": 3450,
+    "timestampMs": 3390,
+    "confidence": 0.9774
+  },
+  {
+    "text": " its",
+    "startMs": 3450,
+    "endMs": 3730,
+    "timestampMs": 3450,
+    "confidence": 0.9094
+  },
+  {
+    "text": " needs",
+    "startMs": 3730,
+    "endMs": 4070,
+    "timestampMs": 3730,
+    "confidence": 0.9781
+  },
+  {
+    "text": " change",
+    "startMs": 4070,
+    "endMs": 4551,
+    "timestampMs": 4070,
+    "confidence": 0.3179
+  },
+  {
+    "text": " by",
+    "startMs": 4550,
+    "endMs": 4810,
+    "timestampMs": 4550,
+    "confidence": 0.974
+  },
+  {
+    "text": " time",
+    "startMs": 4810,
+    "endMs": 5130,
+    "timestampMs": 4810,
+    "confidence": 0.9789
+  },
+  {
+    "text": " and",
+    "startMs": 5130,
+    "endMs": 5350,
+    "timestampMs": 5130,
+    "confidence": 0.9564
+  },
+  {
+    "text": " occupancy.",
+    "startMs": 5350,
+    "endMs": 5970,
+    "timestampMs": 5350,
+    "confidence": 0.996
+  },
+  {
+    "text": " Existing",
+    "startMs": 6530,
+    "endMs": 6830,
+    "timestampMs": 6530,
+    "confidence": 0.323
+  },
+  {
+    "text": " light",
+    "startMs": 6830,
+    "endMs": 7170,
+    "timestampMs": 6830,
+    "confidence": 0.8724
+  },
+  {
+    "text": " and",
+    "startMs": 7170,
+    "endMs": 7430,
+    "timestampMs": 7170,
+    "confidence": 0.9762
+  },
+  {
+    "text": " fan",
+    "startMs": 7430,
+    "endMs": 7710,
+    "timestampMs": 7430,
+    "confidence": 0.9814
+  },
+  {
+    "text": " controls",
+    "startMs": 7710,
+    "endMs": 8170,
+    "timestampMs": 7710,
+    "confidence": 0.9191
+  },
+  {
+    "text": " depend",
+    "startMs": 8170,
+    "endMs": 8550,
+    "timestampMs": 8170,
+    "confidence": 0.8498
+  },
+  {
+    "text": " on",
+    "startMs": 8550,
+    "endMs": 8810,
+    "timestampMs": 8550,
+    "confidence": 0.9916
+  },
+  {
+    "text": " the",
+    "startMs": 8810,
+    "endMs": 8970,
+    "timestampMs": 8810,
+    "confidence": 0.9901
+  },
+  {
+    "text": " occupant",
+    "startMs": 8970,
+    "endMs": 9310,
+    "timestampMs": 8970,
+    "confidence": 0.8623
+  },
+  {
+    "text": " remembering",
+    "startMs": 9310,
+    "endMs": 9890,
+    "timestampMs": 9310,
+    "confidence": 0.978
+  },
+  {
+    "text": " to",
+    "startMs": 9890,
+    "endMs": 10190,
+    "timestampMs": 9890,
+    "confidence": 0.9796
+  },
+  {
+    "text": " operate",
+    "startMs": 10190,
+    "endMs": 10730,
+    "timestampMs": 10190,
+    "confidence": 0.966
+  },
+  {
+    "text": " them.",
+    "startMs": 10730,
+    "endMs": 11090,
+    "timestampMs": 10730,
+    "confidence": 0.9623
+  },
+  {
+    "text": " A",
+    "startMs": 11610,
+    "endMs": 11890,
+    "timestampMs": 11610,
+    "confidence": 0.8222
+  },
+  {
+    "text": " light",
+    "startMs": 11890,
+    "endMs": 12110,
+    "timestampMs": 11890,
+    "confidence": 0.9979
+  },
+  {
+    "text": " can",
+    "startMs": 12110,
+    "endMs": 12350,
+    "timestampMs": 12110,
+    "confidence": 0.9864
+  },
+  {
+    "text": " remain",
+    "startMs": 12350,
+    "endMs": 12670,
+    "timestampMs": 12350,
+    "confidence": 0.9686
+  },
+  {
+    "text": " on",
+    "startMs": 12670,
+    "endMs": 13030,
+    "timestampMs": 12670,
+    "confidence": 0.9883
+  },
+  {
+    "text": " when",
+    "startMs": 13030,
+    "endMs": 13390,
+    "timestampMs": 13030,
+    "confidence": 0.9606
+  },
+  {
+    "text": " the",
+    "startMs": 13390,
+    "endMs": 13510,
+    "timestampMs": 13390,
+    "confidence": 0.9839
+  },
+  {
+    "text": " room",
+    "startMs": 13510,
+    "endMs": 13670,
+    "timestampMs": 13510,
+    "confidence": 0.9962
+  },
+  {
+    "text": " is",
+    "startMs": 13670,
+    "endMs": 13870,
+    "timestampMs": 13670,
+    "confidence": 0.997
+  },
+  {
+    "text": " empty,",
+    "startMs": 13870,
+    "endMs": 14310,
+    "timestampMs": 13870,
+    "confidence": 0.9985
+  },
+  {
+    "text": " and",
+    "startMs": 14890,
+    "endMs": 14930,
+    "timestampMs": 14890,
+    "confidence": 0.9482
+  },
+  {
+    "text": " a",
+    "startMs": 14930,
+    "endMs": 15070,
+    "timestampMs": 14930,
+    "confidence": 0.8905
+  },
+  {
+    "text": " fan",
+    "startMs": 15070,
+    "endMs": 15210,
+    "timestampMs": 15070,
+    "confidence": 0.9985
+  },
+  {
+    "text": " can",
+    "startMs": 15210,
+    "endMs": 15410,
+    "timestampMs": 15210,
+    "confidence": 0.9845
+  },
+  {
+    "text": " continue",
+    "startMs": 15410,
+    "endMs": 15730,
+    "timestampMs": 15410,
+    "confidence": 0.9935
+  },
+  {
+    "text": " running",
+    "startMs": 15730,
+    "endMs": 16050,
+    "timestampMs": 15730,
+    "confidence": 0.9976
+  },
+  {
+    "text": " after",
+    "startMs": 16050,
+    "endMs": 16670,
+    "timestampMs": 16050,
+    "confidence": 0.9859
+  },
+  {
+    "text": " the",
+    "startMs": 16670,
+    "endMs": 17010,
+    "timestampMs": 16670,
+    "confidence": 0.9705
+  },
+  {
+    "text": " occupant",
+    "startMs": 17010,
+    "endMs": 17410,
+    "timestampMs": 17010,
+    "confidence": 0.9825
+  },
+  {
+    "text": " leaves.",
+    "startMs": 17410,
+    "endMs": 17710,
+    "timestampMs": 17410,
+    "confidence": 0.6722
+  },
+  {
+    "text": " Temperature",
+    "startMs": 18430,
+    "endMs": 18730,
+    "timestampMs": 18430,
+    "confidence": 0.9736
+  },
+  {
+    "text": " and",
+    "startMs": 18730,
+    "endMs": 19130,
+    "timestampMs": 18730,
+    "confidence": 0.9941
+  },
+  {
+    "text": " humidity",
+    "startMs": 19130,
+    "endMs": 19450,
+    "timestampMs": 19130,
+    "confidence": 0.9997
+  },
+  {
+    "text": " are",
+    "startMs": 19450,
+    "endMs": 19730,
+    "timestampMs": 19450,
+    "confidence": 0.991
+  },
+  {
+    "text": " not",
+    "startMs": 19730,
+    "endMs": 19910,
+    "timestampMs": 19730,
+    "confidence": 0.9917
+  },
+  {
+    "text": " measured,",
+    "startMs": 19910,
+    "endMs": 20310,
+    "timestampMs": 19910,
+    "confidence": 0.9867
+  },
+  {
+    "text": " so",
+    "startMs": 20650,
+    "endMs": 20790,
+    "timestampMs": 20650,
+    "confidence": 0.9933
+  },
+  {
+    "text": " comfort",
+    "startMs": 20790,
+    "endMs": 21130,
+    "timestampMs": 20790,
+    "confidence": 0.9563
+  },
+  {
+    "text": " decisions",
+    "startMs": 21130,
+    "endMs": 21570,
+    "timestampMs": 21130,
+    "confidence": 0.9444
+  },
+  {
+    "text": " are",
+    "startMs": 21570,
+    "endMs": 21910,
+    "timestampMs": 21570,
+    "confidence": 0.9969
+  },
+  {
+    "text": " reactive.",
+    "startMs": 21910,
+    "endMs": 22410,
+    "timestampMs": 21910,
+    "confidence": 0.8758
+  },
+  {
+    "text": " Safety",
+    "startMs": 22410,
+    "endMs": 23190,
+    "timestampMs": 22410,
+    "confidence": 0.9245
+  },
+  {
+    "text": " alarms",
+    "startMs": 23190,
+    "endMs": 23730,
+    "timestampMs": 23190,
+    "confidence": 0.9603
+  },
+  {
+    "text": " also",
+    "startMs": 23730,
+    "endMs": 24170,
+    "timestampMs": 23730,
+    "confidence": 0.532
+  },
+  {
+    "text": " operate",
+    "startMs": 24170,
+    "endMs": 24610,
+    "timestampMs": 24170,
+    "confidence": 0.532
+  },
+  {
+    "text": " separately",
+    "startMs": 24610,
+    "endMs": 25590,
+    "timestampMs": 24610,
+    "confidence": 0.9843
+  },
+  {
+    "text": " from",
+    "startMs": 25590,
+    "endMs": 25950,
+    "timestampMs": 25590,
+    "confidence": 0.9598
+  },
+  {
+    "text": " comfort",
+    "startMs": 25950,
+    "endMs": 26970,
+    "timestampMs": 25950,
+    "confidence": 0.954
+  },
+  {
+    "text": " controls,",
+    "startMs": 26970,
+    "endMs": 27710,
+    "timestampMs": 26970,
+    "confidence": 0.8859
+  },
+  {
+    "text": " and",
+    "startMs": 28530,
+    "endMs": 28531,
+    "timestampMs": 28530,
+    "confidence": 0.9812
+  },
+  {
+    "text": " ordinary",
+    "startMs": 28530,
+    "endMs": 29090,
+    "timestampMs": 28530,
+    "confidence": 0.9758
+  },
+  {
+    "text": " switches",
+    "startMs": 29090,
+    "endMs": 29490,
+    "timestampMs": 29090,
+    "confidence": 0.5299
+  },
+  {
+    "text": " do",
+    "startMs": 29490,
+    "endMs": 29830,
+    "timestampMs": 29490,
+    "confidence": 0.9768
+  },
+  {
+    "text": " not",
+    "startMs": 29830,
+    "endMs": 29970,
+    "timestampMs": 29830,
+    "confidence": 0.9991
+  },
+  {
+    "text": " explain",
+    "startMs": 29970,
+    "endMs": 30370,
+    "timestampMs": 29970,
+    "confidence": 0.9909
+  },
+  {
+    "text": " why",
+    "startMs": 30370,
+    "endMs": 30750,
+    "timestampMs": 30370,
+    "confidence": 0.9931
+  },
+  {
+    "text": " an",
+    "startMs": 30750,
+    "endMs": 30970,
+    "timestampMs": 30750,
+    "confidence": 0.8648
+  },
+  {
+    "text": " automated",
+    "startMs": 30970,
+    "endMs": 31470,
+    "timestampMs": 30970,
+    "confidence": 0.9875
+  },
+  {
+    "text": " action",
+    "startMs": 31470,
+    "endMs": 31930,
+    "timestampMs": 31470,
+    "confidence": 0.714
+  },
+  {
+    "text": " occurred.",
+    "startMs": 31930,
+    "endMs": 32350,
+    "timestampMs": 31930,
+    "confidence": 0.9853
+  }
+]

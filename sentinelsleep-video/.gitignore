@@ -1,0 +1,12 @@
+# Private source media
+/public/*.mp4
+/public/audio/
+/public/room.jpeg
+/public/switch_panel.jpeg
+/public/visuals/room.jpeg
+/public/visuals/switch_panel.jpeg
+
+# Generated or obsolete local artifacts
+/public/captions.json
+/public/captions/transcript.txt
+/out/

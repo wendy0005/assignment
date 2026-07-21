@@ -1,0 +1,345 @@
+[
+  {
+    "text": "My",
+    "startMs": 620,
+    "endMs": 1140,
+    "timestampMs": 620,
+    "confidence": 0.4983
+  },
+  {
+    "text": " name",
+    "startMs": 1140,
+    "endMs": 1320,
+    "timestampMs": 1140,
+    "confidence": 0.9257
+  },
+  {
+    "text": " is",
+    "startMs": 1320,
+    "endMs": 1480,
+    "timestampMs": 1320,
+    "confidence": 0.235
+  },
+  {
+    "text": " Chan",
+    "startMs": 1480,
+    "endMs": 1700,
+    "timestampMs": 1480,
+    "confidence": 0.0001
+  },
+  {
+    "text": " Jing",
+    "startMs": 1700,
+    "endMs": 1860,
+    "timestampMs": 1700,
+    "confidence": 0.0017
+  },
+  {
+    "text": " Yi,",
+    "startMs": 1860,
+    "endMs": 2060,
+    "timestampMs": 1860,
+    "confidence": 0.2355
+  },
+  {
+    "text": " My",
+    "startMs": 2200,
+    "endMs": 2300,
+    "timestampMs": 2200,
+    "confidence": 0.8247
+  },
+  {
+    "text": " proposal",
+    "startMs": 2300,
+    "endMs": 2700,
+    "timestampMs": 2300,
+    "confidence": 0.988
+  },
+  {
+    "text": " is",
+    "startMs": 2700,
+    "endMs": 3140,
+    "timestampMs": 2700,
+    "confidence": 0.9883
+  },
+  {
+    "text": " called",
+    "startMs": 3140,
+    "endMs": 3340,
+    "timestampMs": 3140,
+    "confidence": 0.9918
+  },
+  {
+    "text": " SentinelSleep,",
+    "startMs": 3340,
+    "endMs": 4320,
+    "timestampMs": 3340,
+    "confidence": 0.3265
+  },
+  {
+    "text": " an",
+    "startMs": 4920,
+    "endMs": 5020,
+    "timestampMs": 4920,
+    "confidence": 0.7481
+  },
+  {
+    "text": " occupancy-aware",
+    "startMs": 5020,
+    "endMs": 5760,
+    "timestampMs": 5020,
+    "confidence": 0.9039
+  },
+  {
+    "text": " smart",
+    "startMs": 5760,
+    "endMs": 6220,
+    "timestampMs": 5760,
+    "confidence": 0.9144
+  },
+  {
+    "text": " bedroom",
+    "startMs": 6220,
+    "endMs": 6600,
+    "timestampMs": 6220,
+    "confidence": 0.8259
+  },
+  {
+    "text": " comfort,",
+    "startMs": 6600,
+    "endMs": 7060,
+    "timestampMs": 6600,
+    "confidence": 0.8216
+  },
+  {
+    "text": " energy",
+    "startMs": 7060,
+    "endMs": 7440,
+    "timestampMs": 7060,
+    "confidence": 0.2596
+  },
+  {
+    "text": " and",
+    "startMs": 7440,
+    "endMs": 7740,
+    "timestampMs": 7440,
+    "confidence": 0.9564
+  },
+  {
+    "text": " safety",
+    "startMs": 7740,
+    "endMs": 8020,
+    "timestampMs": 7740,
+    "confidence": 0.9968
+  },
+  {
+    "text": " system.",
+    "startMs": 8020,
+    "endMs": 8580,
+    "timestampMs": 8020,
+    "confidence": 0.9917
+  },
+  {
+    "text": " The",
+    "startMs": 9040,
+    "endMs": 9280,
+    "timestampMs": 9040,
+    "confidence": 0.9757
+  },
+  {
+    "text": " project",
+    "startMs": 9280,
+    "endMs": 9580,
+    "timestampMs": 9280,
+    "confidence": 0.998
+  },
+  {
+    "text": " focuses",
+    "startMs": 9580,
+    "endMs": 9920,
+    "timestampMs": 9580,
+    "confidence": 0.9928
+  },
+  {
+    "text": " on",
+    "startMs": 9920,
+    "endMs": 10300,
+    "timestampMs": 9920,
+    "confidence": 0.9974
+  },
+  {
+    "text": " one",
+    "startMs": 10300,
+    "endMs": 10600,
+    "timestampMs": 10300,
+    "confidence": 0.9669
+  },
+  {
+    "text": " bedroom",
+    "startMs": 10600,
+    "endMs": 10980,
+    "timestampMs": 10600,
+    "confidence": 0.9897
+  },
+  {
+    "text": " in",
+    "startMs": 10980,
+    "endMs": 11220,
+    "timestampMs": 10980,
+    "confidence": 0.9938
+  },
+  {
+    "text": " my",
+    "startMs": 11220,
+    "endMs": 11380,
+    "timestampMs": 11220,
+    "confidence": 0.9954
+  },
+  {
+    "text": " current",
+    "startMs": 11380,
+    "endMs": 11600,
+    "timestampMs": 11380,
+    "confidence": 0.9981
+  },
+  {
+    "text": " accommodation.",
+    "startMs": 11600,
+    "endMs": 12240,
+    "timestampMs": 11600,
+    "confidence": 0.9865
+  },
+  {
+    "text": " It",
+    "startMs": 12740,
+    "endMs": 13000,
+    "timestampMs": 12740,
+    "confidence": 0.9887
+  },
+  {
+    "text": " addresses",
+    "startMs": 13000,
+    "endMs": 13500,
+    "timestampMs": 13000,
+    "confidence": 0.9874
+  },
+  {
+    "text": " three",
+    "startMs": 13500,
+    "endMs": 13960,
+    "timestampMs": 13500,
+    "confidence": 0.9015
+  },
+  {
+    "text": " connected",
+    "startMs": 13960,
+    "endMs": 14560,
+    "timestampMs": 13960,
+    "confidence": 0.9196
+  },
+  {
+    "text": " issues:",
+    "startMs": 14560,
+    "endMs": 15100,
+    "timestampMs": 14560,
+    "confidence": 0.9266
+  },
+  {
+    "text": " unnecessary",
+    "startMs": 15920,
+    "endMs": 16220,
+    "timestampMs": 15920,
+    "confidence": 0.9696
+  },
+  {
+    "text": " energy",
+    "startMs": 16220,
+    "endMs": 16880,
+    "timestampMs": 16220,
+    "confidence": 0.9984
+  },
+  {
+    "text": " use,",
+    "startMs": 16880,
+    "endMs": 17280,
+    "timestampMs": 16880,
+    "confidence": 0.9689
+  },
+  {
+    "text": " reactive",
+    "startMs": 17460,
+    "endMs": 17900,
+    "timestampMs": 17460,
+    "confidence": 0.9905
+  },
+  {
+    "text": " comfort",
+    "startMs": 17900,
+    "endMs": 18400,
+    "timestampMs": 17900,
+    "confidence": 0.9765
+  },
+  {
+    "text": " control,",
+    "startMs": 18400,
+    "endMs": 18780,
+    "timestampMs": 18400,
+    "confidence": 0.9899
+  },
+  {
+    "text": " and",
+    "startMs": 18920,
+    "endMs": 18960,
+    "timestampMs": 18920,
+    "confidence": 0.9939
+  },
+  {
+    "text": " limited",
+    "startMs": 18960,
+    "endMs": 19240,
+    "timestampMs": 18960,
+    "confidence": 0.9701
+  },
+  {
+    "text": " visibility",
+    "startMs": 19240,
+    "endMs": 19820,
+    "timestampMs": 19240,
+    "confidence": 0.9942
+  },
+  {
+    "text": " of",
+    "startMs": 19820,
+    "endMs": 20220,
+    "timestampMs": 19820,
+    "confidence": 0.9938
+  },
+  {
+    "text": " environmental",
+    "startMs": 20220,
+    "endMs": 20960,
+    "timestampMs": 20220,
+    "confidence": 0.9715
+  },
+  {
+    "text": " or",
+    "startMs": 20960,
+    "endMs": 21420,
+    "timestampMs": 20960,
+    "confidence": 0.964
+  },
+  {
+    "text": " safety",
+    "startMs": 21420,
+    "endMs": 21760,
+    "timestampMs": 21420,
+    "confidence": 0.9972
+  },
+  {
+    "text": " events.",
+    "startMs": 21760,
+    "endMs": 22260,
+    "timestampMs": 21760,
+    "confidence": 0.9908
+  }
+]
