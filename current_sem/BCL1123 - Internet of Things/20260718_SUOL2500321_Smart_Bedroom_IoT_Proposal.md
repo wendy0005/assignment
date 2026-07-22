@@ -38,11 +38,13 @@ The proposal is distinct from a single-purpose smart light or temperature sensor
 
 The selected environment is one bedroom in the student's current accommodation. The room is treated as a combined sleeping, studying, and personal-rest area. Its control requirements change across the day: bright task lighting and thermal comfort matter during study, low-disturbance lighting matters at night, and safety monitoring must remain active at all times.
 
-**Figure 1 placeholder - Original bedroom overview photograph**  
-*Insert a clear original photograph showing the bed, main light, fan or air-conditioning outlet, window, and room entrance. Caption: “Figure 1. Overview of the selected bedroom and current control points. Source: Student's own photograph (2026).”*
+**Figure 1. Overview of the selected bedroom and current control points.**
 
-**Figure 2 placeholder - Original control-point photograph**  
-*Insert a closer original photograph showing the current light/fan switches or another limitation discussed below. Caption: “Figure 2. Existing manual controls and proposed sensor location. Source: Student's own photograph (2026).”*
+![room](room.jpeg)
+
+**Figure 2. Existing manual controls and proposed sensor location.**
+
+![switch_panel](switch_panel.jpeg)
 
 ### 2.2 Current limitations and problem justification
 

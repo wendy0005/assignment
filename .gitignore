@@ -41,3 +41,8 @@ out/
 *.db
 !progress.db
 *.pyc
+
+# Private BCL1123 presentation media
+/current_sem/BCL1123 - Internet of Things/room.jpeg
+/current_sem/BCL1123 - Internet of Things/switch_panel.jpeg
+/current_sem/BCL1123 - Internet of Things/videos/
