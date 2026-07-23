@@ -53,3 +53,12 @@ Match `quiz_questions.chapter_idx` to the `c_idx` of the tutorial it belongs to.
 python3 server.py
 # Opens http://localhost:8000/
 ```
+
+## Google Calendar Management — CRITICAL
+
+When adding or modifying calendar events for course deadlines:
+1. **Always Extract Course Details**: Locate the course code (e.g., `BCL1123`, `BCL1223`) and its full course name.
+2. **Standardized Event Title Format**: Always use the format `[Course Code] [Course Name] [Event/Assignment Name]` (e.g., `BCL1223 Database Fundamentals Assignment`). Avoid generic summaries like "Assignment Submission".
+3. **Keep Detailed Descriptions**: Include any context, due date labels, and attachment list references in the description field.
+4. **Time Alignment**: By default, schedule the event to end exactly at the deadline time (e.g., `23:59:00` or `00:00:00`) and start 30 minutes prior.
+

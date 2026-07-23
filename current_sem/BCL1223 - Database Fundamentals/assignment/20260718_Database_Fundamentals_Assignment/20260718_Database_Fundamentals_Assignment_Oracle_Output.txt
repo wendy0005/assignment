@@ -1,0 +1,411 @@
+================================================================
+BCL1223 STUDENT CLUBS DATABASE - BUILD AND VERIFICATION
+================================================================
+
+PL/SQL procedure successfully completed.
+
+
+PL/SQL procedure successfully completed.
+
+
+PL/SQL procedure successfully completed.
+
+
+PL/SQL procedure successfully completed.
+
+
+PL/SQL procedure successfully completed.
+
+
+PL/SQL procedure successfully completed.
+
+
+PL/SQL procedure successfully completed.
+
+
+PL/SQL procedure successfully completed.
+
+
+PL/SQL procedure successfully completed.
+
+
+PL/SQL procedure successfully completed.
+
+
+PL/SQL procedure successfully completed.
+
+=== TASK 2.1: CREATE TABLES AND CONSTRAINTS ===
+
+Table created.
+
+
+Table created.
+
+
+Table created.
+
+
+Table created.
+
+
+Table created.
+
+
+Table created.
+
+
+Table created.
+
+
+Table created.
+
+
+Table created.
+
+
+Table created.
+
+
+Table created.
+
+
+Index created.
+
+
+Index created.
+
+
+Index created.
+
+
+Index created.
+
+
+Index created.
+
+
+Index created.
+
+
+Index created.
+
+
+Index created.
+
+=== TASK 2.2: POPULATE TABLES WITH MEANINGFUL DATA ===
+
+10 rows created.
+
+
+10 rows created.
+
+
+10 rows created.
+
+
+3 rows created.
+
+
+30 rows created.
+
+
+15 rows created.
+
+
+10 rows created.
+
+
+50 rows created.
+
+
+15 rows created.
+
+
+45 rows created.
+
+
+30 rows created.
+
+
+Commit complete.
+
+=== DATABASE VERSION ===
+
+BANNER_FULL
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Oracle AI Database 26ai Free Release 23.26.2.0.0 - Develop, Learn, and Run for Free
+Version 23.26.2.0.0
+
+
+1 row selected.
+
+=== TABLE ROW COUNTS ===
+
+TABLE_NAME               ROW_COUNT
+------------------------ ---------
+FACULTY                         10
+ADVISOR                         10
+VENUE_PIC                       10
+SEMESTER                         3
+STUDENT                         30
+CLUB                            15
+VENUE                           10
+MEMBERSHIP                      50
+CLUB_PRESIDENT                  15
+EVENT                           45
+EVENT_REGISTRATION              30
+
+11 rows selected.
+
+=== INTEGRITY AUDIT: EXPECT ZERO INVALID EVENT REGISTRATIONS ===
+
+INVALID_EVENT_REGISTRATIONS
+---------------------------
+                          0
+
+1 row selected.
+
+=== DATE AUDIT: EXPECT ZERO EVENTS OUTSIDE THEIR SEMESTER ===
+
+EVENTS_OUTSIDE_SEMESTER
+-----------------------
+                      0
+
+1 row selected.
+
+=== COVERAGE AUDIT: EXPECT THREE EVENTS PER CLUB ===
+
+CLUB_I CLUB_NAME                                                                                            EVENT_COUNT
+------ ---------------------------------------------------------------------------------------------------- -----------
+C001   Information Technology Club                                                                                    3
+C002   Dance Club                                                                                                     3
+C003   Music Club                                                                                                     3
+C004   Accounting Club                                                                                                3
+C005   Robotics Club                                                                                                  3
+C006   Debate Club                                                                                                    3
+C007   Entrepreneurship Club                                                                                          3
+C008   Photography Club                                                                                               3
+C009   Environmental Club                                                                                             3
+C010   Sports Club                                                                                                    3
+C011   Volunteer Club                                                                                                 3
+C012   Drama Club                                                                                                     3
+C013   Cybersecurity Club                                                                                             3
+C014   Culinary Club                                                                                                  3
+C015   Chess Club                                                                                                     3
+
+15 rows selected.
+
+=== CONSTRAINT REJECTION TESTS: EACH LINE SHOULD REPORT PASS ===
+PASS - malformed student ID rejected (-2290)
+PASS - invalid approval status rejected (-2290)
+PASS - duplicate club membership rejected (-1)
+PASS - club with missing advisor rejected (-2291)
+PASS - president who is not a member of the club rejected (-2291)
+PASS - event registration by a non-member rejected (-2291)
+
+PL/SQL procedure successfully completed.
+
+================================================================
+TASK 3.1 - STUDENT PHONE LIST, ORDERED BY NAME
+================================================================
+
+STUDENT_ID STUDENT_NAME             PHONE_NUMBER
+---------- ------------------------ ----------------
+aa1001     Adam Abdullah            012-810-1001
+aa1027     Amirul Anwar             012-810-1027
+bb1028     Bella Bahar              012-810-1028
+bb1002     Brenda Balan             012-810-1002
+cc1029     Caleb Chan               012-810-1029
+cc1003     Chong Cai Wen            012-810-1003
+dd1004     Devi Krishnan            012-810-1004
+dd1030     Diyana Daud              012-810-1030
+ee1005     Ethan Elias              012-810-1005
+ff1006     Farah Faisal             012-810-1006
+gg1007     Gan Hui Min              012-810-1007
+hh1008     Harith Hakim             012-810-1008
+ii1009     Irene Ismail             012-810-1009
+jj1010     Jason Jamil              012-810-1010
+kk1011     Kavitha Kumar            012-810-1011
+ll1012     Lee Li Ann               012-810-1012
+mm1013     Muhammad Malik           012-810-1013
+nn1014     Nur Nabila               012-810-1014
+oo1015     Ong Ooi Wei              012-810-1015
+pp1016     Pravin Prakash           012-810-1016
+qq1017     Qistina Qamar            012-810-1017
+rr1018     Rachel Raj               012-810-1018
+ss1019     Syafiq Salleh            012-810-1019
+tt1020     Tan Tze Wei              012-810-1020
+uu1021     Umair Usman              012-810-1021
+vv1022     Vanessa Voon             012-810-1022
+ww1023     Wong Wai Kit             012-810-1023
+xx1024     Xavier Xian              012-810-1024
+yy1025     Yasmin Yusof             012-810-1025
+zz1026     Zara Zainal              012-810-1026
+
+30 rows selected.
+
+================================================================
+TASK 3.2 - ADVISORS RESPONSIBLE FOR MORE THAN ONE CLUB
+================================================================
+
+ADVISO ADVISOR_NAME             NUMBER_OF_CLUBS ASSIGNED_CLUBS
+------ ------------------------ --------------- ----------------------------------------------------------------------------------------------------
+A001   Dr. Aisha Rahman                       3 Cybersecurity Club; Information Technology Club; Robotics Club
+A004   Dr. Kelvin Wong                        2 Accounting Club; Photography Club
+A002   Mr. Daniel Lee                         2 Dance Club; Debate Club
+A003   Ms. Nur Izzati                         2 Entrepreneurship Club; Music Club
+
+4 rows selected.
+
+================================================================
+TASK 3.3 - STUDENTS MISSING THE FACULTY APPROVAL FORM
+================================================================
+
+STUDENT_ID STUDENT_NAME             PHONE_NUMBER     MISSING_FORM
+---------- ------------------------ ---------------- ----------------------------
+cc1029     Caleb Chan               012-810-1029     Faculty Approval Form
+cc1003     Chong Cai Wen            012-810-1003     Faculty Approval Form
+ee1005     Ethan Elias              012-810-1005     Faculty Approval Form
+hh1008     Harith Hakim             012-810-1008     Faculty Approval Form
+kk1011     Kavitha Kumar            012-810-1011     Faculty Approval Form
+nn1014     Nur Nabila               012-810-1014     Faculty Approval Form
+qq1017     Qistina Qamar            012-810-1017     Faculty Approval Form
+tt1020     Tan Tze Wei              012-810-1020     Faculty Approval Form
+ww1023     Wong Wai Kit             012-810-1023     Faculty Approval Form
+zz1026     Zara Zainal              012-810-1026     Faculty Approval Form
+
+10 rows selected.
+
+================================================================
+TASK 3.4 - ADVISORS, CLUBS, EVENTS AND EVENT DATES
+================================================================
+
+ADVISOR_NAME             CLUB_NAME                      ACTIVITY_NAME                      SEMESTER_NAME    EVENT_DATE
+------------------------ ------------------------------ ---------------------------------- ---------------- --------------------
+Dr. Aisha Rahman         Information Technology Club    Python Coding Clinic               May-Aug 2026     06-JUN-2026
+Dr. Aisha Rahman         Robotics Club                  Line-Following Robot Lab           May-Aug 2026     20-JUN-2026
+Dr. Aisha Rahman         Cybersecurity Club             Phishing Defence Workshop          May-Aug 2026     18-JUL-2026
+Dr. Aisha Rahman         Information Technology Club    Web Application Hackathon          Sep-Dec 2026     12-SEP-2026
+Dr. Aisha Rahman         Robotics Club                  Drone Navigation Challenge         Sep-Dec 2026     10-OCT-2026
+Dr. Aisha Rahman         Cybersecurity Club             Capture-the-Flag Practice          Sep-Dec 2026     05-DEC-2026
+Dr. Aisha Rahman         Information Technology Club    Database Design Sprint             Jan-Apr 2027     16-JAN-2027
+Dr. Aisha Rahman         Robotics Club                  Robotics Open Day                  Jan-Apr 2027     13-FEB-2027
+Dr. Aisha Rahman         Cybersecurity Club             Secure Coding Clinic               Jan-Apr 2027     10-APR-2027
+Dr. Farid Iskandar       Chess Club                     Rapid Chess Tournament             May-Aug 2026     25-JUL-2026
+Dr. Farid Iskandar       Chess Club                     Team Chess League                  Sep-Dec 2026     19-DEC-2026
+Dr. Farid Iskandar       Chess Club                     Intercollege Chess Cup             Jan-Apr 2027     24-APR-2027
+Dr. Kelvin Wong          Accounting Club                Budgeting Challenge                May-Aug 2026     14-JUN-2026
+Dr. Kelvin Wong          Photography Club               Portrait Photography Lab           May-Aug 2026     28-JUN-2026
+Dr. Kelvin Wong          Accounting Club                Tax Literacy Seminar               Sep-Dec 2026     03-OCT-2026
+Dr. Kelvin Wong          Photography Club               Night Photography Walk             Sep-Dec 2026     31-OCT-2026
+Dr. Kelvin Wong          Accounting Club                Investment Case Competition        Jan-Apr 2027     06-FEB-2027
+Dr. Kelvin Wong          Photography Club               Documentary Photo Exhibition       Jan-Apr 2027     06-MAR-2027
+Dr. Siti Hamidah         Volunteer Club                 Community Care Packing             May-Aug 2026     11-JUL-2026
+Dr. Siti Hamidah         Volunteer Club                 Food Bank Collection               Sep-Dec 2026     21-NOV-2026
+Dr. Siti Hamidah         Volunteer Club                 Volunteer Leadership Forum         Jan-Apr 2027     27-MAR-2027
+Mr. Daniel Lee           Dance Club                     Cultural Dance Workshop            May-Aug 2026     07-JUN-2026
+Mr. Daniel Lee           Debate Club                    Interfaculty Debate                May-Aug 2026     21-JUN-2026
+Mr. Daniel Lee           Dance Club                     Contemporary Dance Clinic          Sep-Dec 2026     19-SEP-2026
+Mr. Daniel Lee           Debate Club                    Public Speaking Bootcamp           Sep-Dec 2026     17-OCT-2026
+Mr. Daniel Lee           Dance Club                     Traditional Dance Exchange         Jan-Apr 2027     23-JAN-2027
+Mr. Daniel Lee           Debate Club                    Policy Debate Finals               Jan-Apr 2027     20-FEB-2027
+Mr. Hafiz Osman          Sports Club                    Interclub Sports Day               May-Aug 2026     05-JUL-2026
+Mr. Hafiz Osman          Sports Club                    Wellness Fun Run                   Sep-Dec 2026     14-NOV-2026
+Mr. Hafiz Osman          Sports Club                    Campus Badminton Open              Jan-Apr 2027     20-MAR-2027
+Mr. Marcus Tan           Drama Club                     One-Act Play Festival              May-Aug 2026     12-JUL-2026
+Mr. Marcus Tan           Drama Club                     Stagecraft Workshop                Sep-Dec 2026     28-NOV-2026
+Mr. Marcus Tan           Drama Club                     Student Theatre Premiere           Jan-Apr 2027     03-APR-2027
+Ms. Joanne Lim           Culinary Club                  Malaysian Cuisine Workshop         May-Aug 2026     19-JUL-2026
+Ms. Joanne Lim           Culinary Club                  Healthy Baking Lab                 Sep-Dec 2026     12-DEC-2026
+Ms. Joanne Lim           Culinary Club                  Sustainable Cooking Challenge      Jan-Apr 2027     17-APR-2027
+Ms. Nur Izzati           Music Club                     Campus Music Showcase              May-Aug 2026     13-JUN-2026
+Ms. Nur Izzati           Entrepreneurship Club          Student Startup Pitch              May-Aug 2026     27-JUN-2026
+Ms. Nur Izzati           Music Club                     Acoustic Night                     Sep-Dec 2026     26-SEP-2026
+Ms. Nur Izzati           Entrepreneurship Club          Social Enterprise Forum            Sep-Dec 2026     24-OCT-2026
+Ms. Nur Izzati           Music Club                     Battle of the Bands                Jan-Apr 2027     30-JAN-2027
+Ms. Nur Izzati           Entrepreneurship Club          Business Model Workshop            Jan-Apr 2027     27-FEB-2027
+Ms. Priya Nair           Environmental Club             Campus Recycling Drive             May-Aug 2026     04-JUL-2026
+Ms. Priya Nair           Environmental Club             Tree Planting Day                  Sep-Dec 2026     07-NOV-2026
+Ms. Priya Nair           Environmental Club             Earth Hour Campaign                Jan-Apr 2027     13-MAR-2027
+
+45 rows selected.
+
+================================================================
+TASK 3.5 - NUMBER OF EVENTS PER ADVISOR AND SEMESTER (PIVOT)
+================================================================
+
+ADVISOR_NAME             MAY_AUG_2026 SEP_DEC_2026 JAN_APR_2027
+------------------------ ------------ ------------ ------------
+Dr. Aisha Rahman                    3            3            3
+Dr. Farid Iskandar                  1            1            1
+Dr. Kelvin Wong                     2            2            2
+Dr. Siti Hamidah                    1            1            1
+Mr. Daniel Lee                      2            2            2
+Mr. Hafiz Osman                     1            1            1
+Mr. Marcus Tan                      1            1            1
+Ms. Joanne Lim                      1            1            1
+Ms. Nur Izzati                      2            2            2
+Ms. Priya Nair                      1            1            1
+
+10 rows selected.
+
+================================================================
+TASK 3.6 - CLUBS AND STUDENTS ASSIGNED TO THEM
+================================================================
+
+CLUB_NAME                      STUDENT_ID STUDENT_NAME             DATE_REGISTERED
+------------------------------ ---------- ------------------------ --------------------
+Accounting Club                aa1027     Amirul Anwar             06-MAY-2026
+Accounting Club                dd1004     Devi Krishnan            03-MAY-2026
+Accounting Club                yy1025     Yasmin Yusof             04-MAY-2026
+Accounting Club                zz1026     Zara Zainal              05-MAY-2026
+Chess Club                     oo1015     Ong Ooi Wei              10-MAY-2026
+Chess Club                     tt1020     Tan Tze Wei              11-MAY-2026
+Chess Club                     uu1021     Umair Usman              12-MAY-2026
+Culinary Club                  nn1014     Nur Nabila               10-MAY-2026
+Culinary Club                  rr1018     Rachel Raj               11-MAY-2026
+Culinary Club                  ss1019     Syafiq Salleh            12-MAY-2026
+Cybersecurity Club             mm1013     Muhammad Malik           10-MAY-2026
+Cybersecurity Club             pp1016     Pravin Prakash           11-MAY-2026
+Cybersecurity Club             qq1017     Qistina Qamar            12-MAY-2026
+Dance Club                     bb1002     Brenda Balan             03-MAY-2026
+Dance Club                     ss1019     Syafiq Salleh            04-MAY-2026
+Dance Club                     tt1020     Tan Tze Wei              05-MAY-2026
+Dance Club                     uu1021     Umair Usman              06-MAY-2026
+Debate Club                    aa1001     Adam Abdullah            08-MAY-2026
+Debate Club                    bb1002     Brenda Balan             09-MAY-2026
+Debate Club                    ff1006     Farah Faisal             07-MAY-2026
+Drama Club                     ll1012     Lee Li Ann               10-MAY-2026
+Drama Club                     nn1014     Nur Nabila               11-MAY-2026
+Drama Club                     oo1015     Ong Ooi Wei              12-MAY-2026
+Entrepreneurship Club          cc1003     Chong Cai Wen            08-MAY-2026
+Entrepreneurship Club          dd1004     Devi Krishnan            09-MAY-2026
+Entrepreneurship Club          gg1007     Gan Hui Min              07-MAY-2026
+Environmental Club             gg1007     Gan Hui Min              08-MAY-2026
+Environmental Club             hh1008     Harith Hakim             09-MAY-2026
+Environmental Club             ii1009     Irene Ismail             07-MAY-2026
+Information Technology Club    aa1001     Adam Abdullah            03-MAY-2026
+Information Technology Club    pp1016     Pravin Prakash           04-MAY-2026
+Information Technology Club    qq1017     Qistina Qamar            05-MAY-2026
+Information Technology Club    rr1018     Rachel Raj               06-MAY-2026
+Music Club                     cc1003     Chong Cai Wen            03-MAY-2026
+Music Club                     vv1022     Vanessa Voon             04-MAY-2026
+Music Club                     ww1023     Wong Wai Kit             05-MAY-2026
+Music Club                     xx1024     Xavier Xian              06-MAY-2026
+Photography Club               ee1005     Ethan Elias              08-MAY-2026
+Photography Club               ff1006     Farah Faisal             09-MAY-2026
+Photography Club               hh1008     Harith Hakim             07-MAY-2026
+Robotics Club                  bb1028     Bella Bahar              04-MAY-2026
+Robotics Club                  cc1029     Caleb Chan               05-MAY-2026
+Robotics Club                  dd1030     Diyana Daud              06-MAY-2026
+Robotics Club                  ee1005     Ethan Elias              03-MAY-2026
+Sports Club                    ii1009     Irene Ismail             08-MAY-2026
+Sports Club                    jj1010     Jason Jamil              07-MAY-2026
+Sports Club                    kk1011     Kavitha Kumar            09-MAY-2026
+Volunteer Club                 kk1011     Kavitha Kumar            10-MAY-2026
+Volunteer Club                 ll1012     Lee Li Ann               11-MAY-2026
+Volunteer Club                 mm1013     Muhammad Malik           12-MAY-2026
+
+50 rows selected.
+
+=== END OF VERIFIED ASSIGNMENT SCRIPT ===

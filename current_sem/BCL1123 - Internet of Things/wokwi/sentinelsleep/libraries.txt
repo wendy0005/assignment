@@ -1,2 +1,0 @@
-DHT sensor library@1.4.6
-PubSubClient@2.8
