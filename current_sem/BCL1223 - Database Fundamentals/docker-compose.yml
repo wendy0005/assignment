@@ -1,0 +1,17 @@
+services:
+  oracle-db:
+    image: gvenzl/oracle-xe:21
+    container_name: bcl1223_oracle
+    environment:
+      ORACLE_SID: XE
+      ORACLE_PDB: XEPDB1
+      ORACLE_PASSWORD: OraclePass123
+    ports:
+      - "1521:1521"
+      - "5500:5500"
+    volumes:
+      - oracle_data:/opt/oracle/oradata
+    shm_size: 2g
+
+volumes:
+  oracle_data:
