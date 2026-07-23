@@ -21,9 +21,8 @@ The implemented Oracle schema contains eleven normalized relations, 10 faculties
 1. Task 1 — Database Design  
 2. Task 2 — Data Definition and Population  
 3. Task 3 — Data Manipulation and Queries  
-4. Task 4 — Demonstration Guide  
-5. References  
-6. Appendices  
+4. References  
+5. Appendices  
 
 ---
 
@@ -223,6 +222,8 @@ erDiagram
 ## 2.1 Oracle Schema and Constraints (15 Marks)
 
 The database schema was implemented in Oracle using named primary-key, foreign-key, unique, check and not-null constraints. Naming each constraint allows an Oracle error to be traced to the business rule that rejected the operation. The following extract shows the two most consequential junction structures.
+
+The complete executable Oracle DDL for all 11 tables and eight supporting indexes is provided in Appendix B. The extracts below highlight the composite-key structures used to enforce the most important business rules.
 
 ```sql
 CREATE TABLE membership (
@@ -516,12 +517,6 @@ The query uses `MEMBERSHIP` as the authoritative club assignment. The database s
 
 ---
 
-# Task 4 — Demonstration Guide
-
-During the Week 11 demonstration, the completed report and the populated Oracle database should be open and ready for inspection. The demonstration can proceed in four short stages: show the ERD and explain the two junction tables; inspect the named constraints; show the row counts and rejection-test passes; run Tasks 3.2, 3.3 and 3.5 as representative join, correlated-subquery and pivot queries. This sequence connects the conceptual model to its physical implementation and then to the reports required by Student Affairs.
-
----
-
 # References
 
 Elmasri, R., & Navathe, S. B. (2016). *Fundamentals of database systems* (7th ed.). Pearson. https://www.pearson.com/en-us/subject-catalog/p/Elmasri-Fundamentals-of-Database-Systems-7th-Edition/P200000003546/9780133970777
@@ -539,3 +534,163 @@ SEGi College Petaling Jaya. (n.d.). *Student clubs & societies*. https://college
 ## Appendix A — Verification Statement
 
 The SQL script was executed repeatedly from an empty student schema on Oracle AI Database 26ai Free 23.26.2.0.0 on 18 July 2026. The repeated execution proved that the cleanup blocks and rebuild sequence are rerunnable. Eleven tables, eight explicit foreign-key indexes and 228 seed rows were created. All six rejection tests passed, all clubs returned three events, the event-registration orphan count was zero, every event date fell within its referenced semester, and the six assessment queries completed without Oracle errors.
+
+## Appendix B — Complete Oracle DDL
+
+The following executable DDL is reproduced from the submitted `20260718_Database_Fundamentals_Assignment.sql` file. It provides direct evidence of all 11 table definitions, their named constraints and the eight supporting foreign-key indexes.
+
+```sql
+CREATE TABLE faculty (
+    faculty_id       VARCHAR2(6),
+    faculty_name     VARCHAR2(100) NOT NULL,
+    CONSTRAINT pk_faculty PRIMARY KEY (faculty_id),
+    CONSTRAINT uq_faculty_name UNIQUE (faculty_name)
+);
+
+CREATE TABLE advisor (
+    advisor_id       VARCHAR2(6),
+    advisor_name     VARCHAR2(100) NOT NULL,
+    office_room      VARCHAR2(10) NOT NULL,
+    office_phone     VARCHAR2(20) NOT NULL,
+    CONSTRAINT pk_advisor PRIMARY KEY (advisor_id),
+    CONSTRAINT uq_advisor_phone UNIQUE (office_phone)
+);
+
+CREATE TABLE venue_pic (
+    pic_id           VARCHAR2(6),
+    pic_name         VARCHAR2(100) NOT NULL,
+    phone_number     VARCHAR2(20) NOT NULL,
+    office_room      VARCHAR2(10) NOT NULL,
+    CONSTRAINT pk_venue_pic PRIMARY KEY (pic_id),
+    CONSTRAINT uq_venue_pic_phone UNIQUE (phone_number)
+);
+
+CREATE TABLE semester (
+    semester_id      VARCHAR2(8),
+    semester_name    VARCHAR2(30) NOT NULL,
+    start_date       DATE NOT NULL,
+    end_date         DATE NOT NULL,
+    CONSTRAINT pk_semester PRIMARY KEY (semester_id),
+    CONSTRAINT uq_semester_name UNIQUE (semester_name),
+    CONSTRAINT ck_semester_dates CHECK (end_date > start_date)
+);
+
+CREATE TABLE student (
+    student_id       VARCHAR2(6),
+    student_name     VARCHAR2(100) NOT NULL,
+    phone_number     VARCHAR2(20) NOT NULL,
+    faculty_id       VARCHAR2(6) NOT NULL,
+    approval_form    CHAR(1) DEFAULT 'N' NOT NULL,
+    scholarship      CHAR(1) DEFAULT 'N' NOT NULL,
+    CONSTRAINT pk_student PRIMARY KEY (student_id),
+    CONSTRAINT uq_student_phone UNIQUE (phone_number),
+    CONSTRAINT fk_student_faculty FOREIGN KEY (faculty_id)
+        REFERENCES faculty (faculty_id),
+    CONSTRAINT ck_student_id_format CHECK
+        (REGEXP_LIKE(student_id, '^[[:alpha:]]{2}[[:digit:]]{4}$', 'c')),
+    CONSTRAINT ck_student_approval CHECK (approval_form IN ('Y', 'N')),
+    CONSTRAINT ck_student_scholarship CHECK (scholarship IN ('Y', 'N'))
+);
+
+CREATE TABLE club (
+    club_id          VARCHAR2(6),
+    club_name        VARCHAR2(100) NOT NULL,
+    advisor_id       VARCHAR2(6) NOT NULL,
+    club_notes       VARCHAR2(500),
+    CONSTRAINT pk_club PRIMARY KEY (club_id),
+    CONSTRAINT uq_club_name UNIQUE (club_name),
+    CONSTRAINT fk_club_advisor FOREIGN KEY (advisor_id)
+        REFERENCES advisor (advisor_id)
+);
+
+CREATE TABLE venue (
+    venue_id         VARCHAR2(6),
+    venue_name       VARCHAR2(100) NOT NULL,
+    venue_type       VARCHAR2(30) NOT NULL,
+    capacity         NUMBER(4) NOT NULL,
+    pic_id           VARCHAR2(6) NOT NULL,
+    CONSTRAINT pk_venue PRIMARY KEY (venue_id),
+    CONSTRAINT uq_venue_name UNIQUE (venue_name),
+    CONSTRAINT fk_venue_pic FOREIGN KEY (pic_id)
+        REFERENCES venue_pic (pic_id),
+    CONSTRAINT ck_venue_capacity CHECK (capacity > 0),
+    CONSTRAINT ck_venue_type CHECK
+        (venue_type IN ('CLASSROOM', 'LABORATORY', 'HALL', 'STUDIO', 'OUTDOOR'))
+);
+
+CREATE TABLE membership (
+    club_id          VARCHAR2(6),
+    student_id       VARCHAR2(6),
+    date_registered  DATE DEFAULT SYSDATE NOT NULL,
+    membership_status VARCHAR2(10) DEFAULT 'ACTIVE' NOT NULL,
+    CONSTRAINT pk_membership PRIMARY KEY (club_id, student_id),
+    CONSTRAINT fk_membership_club FOREIGN KEY (club_id)
+        REFERENCES club (club_id) ON DELETE CASCADE,
+    CONSTRAINT fk_membership_student FOREIGN KEY (student_id)
+        REFERENCES student (student_id) ON DELETE CASCADE,
+    CONSTRAINT ck_membership_status CHECK
+        (membership_status IN ('ACTIVE', 'INACTIVE'))
+);
+
+CREATE TABLE club_president (
+    club_id          VARCHAR2(6),
+    student_id       VARCHAR2(6) NOT NULL,
+    appointment_date DATE NOT NULL,
+    CONSTRAINT pk_club_president PRIMARY KEY (club_id),
+    CONSTRAINT uq_club_president_pair UNIQUE (club_id, student_id),
+    CONSTRAINT fk_president_membership FOREIGN KEY (club_id, student_id)
+        REFERENCES membership (club_id, student_id)
+);
+
+CREATE TABLE event (
+    event_id         VARCHAR2(8),
+    club_id          VARCHAR2(6) NOT NULL,
+    venue_id         VARCHAR2(6) NOT NULL,
+    semester_id      VARCHAR2(8) NOT NULL,
+    president_student_id VARCHAR2(6) NOT NULL,
+    activity_name    VARCHAR2(150) NOT NULL,
+    event_date       DATE NOT NULL,
+    CONSTRAINT pk_event PRIMARY KEY (event_id),
+    CONSTRAINT uq_event_club_pair UNIQUE (event_id, club_id),
+    CONSTRAINT fk_event_club FOREIGN KEY (club_id)
+        REFERENCES club (club_id),
+    CONSTRAINT fk_event_venue FOREIGN KEY (venue_id)
+        REFERENCES venue (venue_id),
+    CONSTRAINT fk_event_semester FOREIGN KEY (semester_id)
+        REFERENCES semester (semester_id),
+    CONSTRAINT fk_event_president FOREIGN KEY (club_id, president_student_id)
+        REFERENCES club_president (club_id, student_id)
+);
+
+CREATE TABLE event_registration (
+    event_id         VARCHAR2(8),
+    club_id          VARCHAR2(6),
+    student_id       VARCHAR2(6),
+    registration_date DATE DEFAULT SYSDATE NOT NULL,
+    attendance_status VARCHAR2(10) DEFAULT 'REGISTERED' NOT NULL,
+    CONSTRAINT pk_event_registration PRIMARY KEY (event_id, student_id),
+    CONSTRAINT fk_registration_event FOREIGN KEY (event_id, club_id)
+        REFERENCES event (event_id, club_id) ON DELETE CASCADE,
+    CONSTRAINT fk_registration_member FOREIGN KEY (club_id, student_id)
+        REFERENCES membership (club_id, student_id),
+    CONSTRAINT ck_attendance_status
+        CHECK (attendance_status IN ('REGISTERED', 'ATTENDED', 'ABSENT'))
+);
+
+CREATE INDEX ix_student_faculty
+    ON student (faculty_id);
+CREATE INDEX ix_club_advisor
+    ON club (advisor_id);
+CREATE INDEX ix_venue_pic
+    ON venue (pic_id);
+CREATE INDEX ix_membership_student
+    ON membership (student_id);
+CREATE INDEX ix_event_club
+    ON event (club_id);
+CREATE INDEX ix_event_venue
+    ON event (venue_id);
+CREATE INDEX ix_event_semester
+    ON event (semester_id);
+CREATE INDEX ix_registration_member
+    ON event_registration (club_id, student_id);
+```
