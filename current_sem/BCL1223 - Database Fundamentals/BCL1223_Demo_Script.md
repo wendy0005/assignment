@@ -10,7 +10,7 @@
 
 ## Before Demo (have these ready)
 
-- [ ] **Browser 1**: Oracle Live SQL (logged in, database populated)
+- [ ] **Browser 1**: [OneCompiler Oracle Playground](https://onecompiler.com/oracle#draft-hn67) (or Oracle Live SQL) (database populated)
 - [ ] **Browser 2** or PDF: Your report open
 - [ ] **Camera**: On. No need to dress up, just be presentable
 - [ ] **Mute notifications** on your PC
