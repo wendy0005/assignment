@@ -20,6 +20,7 @@ Given a root folder with multiple dated assignment folders and course materials:
 1. Create `current_sem/` and `previous_sems/` directories at the root
 2. Move current semester items into `current_sem/`:
    - Module folders (e.g., `BCL1223 - Database Fundamentals/`)
+     - **Assignment Nesting**: Within each module folder, put all assignment-related files inside a nested `assignment/` directory, grouped by a dated folder (e.g., `assignment/YYYYMMDD_[Assignment_Name]/`). Keep general lecture slides, tutorial materials, and ultimate notes at the module's root.
    - Module topic files (e.g., `camu-module-topics-*.md`)
 3. Move all dated/past semester items into `previous_sems/`:
    - Past assignment folders (e.g., `20260321_*/`, `20260405_*/`)
