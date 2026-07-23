@@ -42,6 +42,9 @@
 Run row count:
 
 ```sql
+-- Queries Oracle metadata schema to list all user tables.
+-- Note: This returns 1 metadata row per table name. 
+-- To get actual data rows inside tables, use: SELECT table_name, num_rows FROM user_tables;
 SELECT table_name, COUNT(*) AS row_count FROM user_tables GROUP BY table_name;
 ```
 
