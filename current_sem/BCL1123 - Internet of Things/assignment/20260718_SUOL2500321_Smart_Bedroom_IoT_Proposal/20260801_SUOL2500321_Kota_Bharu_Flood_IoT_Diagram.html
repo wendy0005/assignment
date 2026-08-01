@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Kota Bharu Flood IoT Diagram</title>
+  <style>
+    html, body { margin: 0; background: #ffffff; }
+    body { padding: 42px; font-family: Arial, sans-serif; }
+    .frame { width: 1420px; margin: 0 auto; padding: 28px; border: 2px solid #d9e2e6; border-radius: 18px; background: #fff; }
+    .mermaid { display: flex; justify-content: center; }
+    .note { margin: 16px 0 0; text-align: center; color: #555; font-size: 18px; }
+  </style>
+</head>
+<body>
+  <main class="frame">
+    <pre class="mermaid">
+flowchart TD
+    TITLE["Kota Bharu, Kelantan&lt;br/&gt;IoT Flood Monitoring and Warning System"]
+
+    P["PHYSICAL / PERCEPTION LAYER&lt;br/&gt;&lt;br/&gt;Ultrasonic water-level sensor&lt;br/&gt;Tipping-bucket rain gauge&lt;br/&gt;Sungai Kelantan and flood-prone drains"]
+    N["NETWORK LAYER&lt;br/&gt;&lt;br/&gt;Low-power LoRaWAN sensor node&lt;br/&gt;LoRaWAN gateway&lt;br/&gt;Internet backhaul"]
+    M["MIDDLEWARE / PROCESSING LAYER&lt;br/&gt;&lt;br/&gt;IoT platform and database&lt;br/&gt;Threshold and rising-water analysis&lt;br/&gt;Alert-rule engine"]
+    A["APPLICATION LAYER&lt;br/&gt;&lt;br/&gt;JPS Kelantan / local-authority dashboard&lt;br/&gt;Public mobile alert&lt;br/&gt;Road warning sign and local siren"]
+
+    TITLE --&gt; P
+    P --&gt;|"Water level and rainfall readings"| N
+    N --&gt;|"LoRaWAN data packets"| M
+    M --&gt;|"Normal, alert, warning or danger"| A
+
+    classDef title fill:#0B5D6B,stroke:#063D46,stroke-width:3px,color:#FFFFFF
+    classDef physical fill:#DDEBF7,stroke:#2F75B5,stroke-width:3px,color:#17365D
+    classDef network fill:#E2F0D9,stroke:#70AD47,stroke-width:3px,color:#375623
+    classDef middleware fill:#FFF2CC,stroke:#BF9000,stroke-width:3px,color:#7F6000
+    classDef application fill:#FCE4D6,stroke:#C65911,stroke-width:3px,color:#843C0C
+
+    class TITLE title
+    class P physical
+    class N network
+    class M middleware
+    class A application
+    </pre>
+    <p class="note">Reference layout only — copy this diagram by hand, then add Student ID SUOL2500321 and your signature.</p>
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+  <script>
+    mermaid.initialize({ startOnLoad: true, theme: "base", flowchart: { curve: "basis", htmlLabels: true } });
+  </script>
+</body>
+</html>
