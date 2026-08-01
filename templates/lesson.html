@@ -44,7 +44,25 @@
     color: #fff; padding: 20px 40px; position: sticky; top: 0;
     z-index: 100; box-shadow: 0 2px 12px rgba(0,0,0,.15);
     display: flex; align-items: center; gap: 24px;
+    transition: height .3s cubic-bezier(.4,0,.2,1), padding .3s cubic-bezier(.4,0,.2,1);
+    overflow: hidden;
   }
+  header.collapsed { height: 42px; padding: 6px 16px; min-height: 0; }
+  header.collapsed .header-left,
+  header.collapsed .search-wrapper,
+  header.collapsed .theme-toggle,
+  header.collapsed .header-link { display: none; }
+  header.collapsed .header-toggle { margin: 0 auto; transform: rotate(180deg); }
+  header.collapsed ~ .tabs { top: 42px; }
+  header.collapsed ~ .app-layout { min-height: calc(100vh - 102px); }
+  header.collapsed ~ .app-layout .sidebar { top: 102px; height: calc(100vh - 102px); }
+  .header-toggle {
+    background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.2);
+    color: #fff; border-radius: 8px; padding: 6px 10px; cursor: pointer;
+    font-size: 13px; transition: all var(--transition); flex-shrink: 0; line-height: 1;
+    margin-left: auto;
+  }
+  .header-toggle:hover { background: rgba(255,255,255,.2); }
   .theme-toggle {
     background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.2);
     color: #fff; border-radius: 8px; padding: 8px 12px; cursor: pointer;
@@ -130,8 +148,19 @@
     width: 280px; flex-shrink: 0; background: var(--card);
     border-right: 1px solid var(--border); padding: 20px 16px;
     position: sticky; top: 170px; height: calc(100vh - 170px); overflow-y: auto;
+    transition: width .3s cubic-bezier(.4,0,.2,1), padding .3s cubic-bezier(.4,0,.2,1), border .3s cubic-bezier(.4,0,.2,1);
   }
-  .sidebar h3 { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .6px; color: var(--slate-light); margin-bottom: 12px; padding: 0 8px; }
+  .sidebar.collapsed { width: 0; padding: 20px 0; border-right-color: transparent; overflow: hidden; }
+  .sidebar-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; padding: 0 8px; }
+  .sidebar-header h3 { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .6px; color: var(--slate-light); margin: 0; }
+  .sidebar-toggle {
+    background: none; border: 1px solid var(--border); border-radius: 6px;
+    color: var(--slate-light); cursor: pointer; font-size: 12px;
+    width: 26px; height: 26px; display: flex; align-items: center; justify-content: center;
+    transition: all var(--transition); flex-shrink: 0; line-height: 1;
+  }
+  .sidebar-toggle:hover { background: var(--bg); color: var(--navy); }
+  .sidebar.collapsed .sidebar-toggle { position: fixed; left: 8px; top: 180px; z-index: 50; }
   .sidebar-list { list-style: none; }
   .sidebar-list li { margin-bottom: 2px; }
   .sidebar-list a {
@@ -381,6 +410,8 @@
 
   @media (max-width: 900px) {
     header { padding: 16px 20px; flex-wrap: wrap; gap: 12px; }
+    header.collapsed { height: 42px; padding: 6px 16px; flex-wrap: nowrap; }
+    header.collapsed ~ .tabs { top: 42px; }
     .header-link { margin-left: 0; }
     .search-wrapper { min-width: 0; width: 100%; order: 3; }
     .tabs { padding: 0 16px; top: 170px; }
@@ -429,14 +460,19 @@
     <div class="search-results" id="searchResults"></div>
   </div>
   <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" title="Toggle dark mode">🌙</button>
+  {% if course_type == 'both' %}<a class="header-link" href="/course/{{ course_id }}/quiz">📝 Practice Quiz</a>{% endif %}
   <a class="header-link" href="/">📚 All Courses</a>
+  <button class="header-toggle" id="headerToggle" onclick="toggleHeader()" title="Collapse header">▼</button>
 </header>
 
 <div class="tabs" id="tabsContainer"></div>
 
 <div class="app-layout">
   <aside class="sidebar" id="sidebar">
-    <h3>Lessons</h3>
+    <div class="sidebar-header">
+      <h3>Lessons</h3>
+      <button class="sidebar-toggle" id="sidebarToggle" onclick="toggleSidebar()" title="Collapse sidebar">◀</button>
+    </div>
     <ul class="sidebar-list" id="sidebarList"></ul>
   </aside>
   <main class="main-content" id="mainContent">
@@ -662,8 +698,12 @@ function prevStep() {
 function nextLesson() {
   const t = topics[currentTutorialIdx];
   markLessonComplete(currentTutorialIdx, currentLessonIdx);
-  if (currentLessonIdx < t.questions.length - 1) {
+  const isLastLesson = currentLessonIdx >= t.questions.length - 1;
+  if (!isLastLesson) {
     currentLessonIdx++; currentStepIdx = 0;
+  } else if (currentTutorialIdx < topics.length - 1) {
+    currentTutorialIdx++; currentLessonIdx = 0; currentStepIdx = 0;
+    switchTutorial(currentTutorialIdx);
   }
   saveProgress();
   renderSidebar();
@@ -1245,6 +1285,42 @@ function updateThemeIcon() {
   const btn = document.getElementById('themeToggle');
   if (btn) btn.textContent = document.body.classList.contains('dark') ? '☀️' : '🌙';
 }
+function toggleHeader() {
+  const header = document.querySelector('header');
+  const btn = document.getElementById('headerToggle');
+  header.classList.toggle('collapsed');
+  const collapsed = header.classList.contains('collapsed');
+  btn.textContent = collapsed ? '▲' : '▼';
+  btn.title = collapsed ? 'Expand header' : 'Collapse header';
+  localStorage.setItem('header_collapsed', collapsed ? '1' : '0');
+  setTimeout(initMermaid, 100);
+}
+function initHeader() {
+  if (localStorage.getItem('header_collapsed') === '1') {
+    const header = document.querySelector('header');
+    const btn = document.getElementById('headerToggle');
+    if (header) header.classList.add('collapsed');
+    if (btn) { btn.textContent = '▲'; btn.title = 'Expand header'; }
+  }
+}
+function toggleSidebar() {
+  const sidebar = document.getElementById('sidebar');
+  const btn = document.getElementById('sidebarToggle');
+  sidebar.classList.toggle('collapsed');
+  const collapsed = sidebar.classList.contains('collapsed');
+  btn.textContent = collapsed ? '▶' : '◀';
+  btn.title = collapsed ? 'Expand sidebar' : 'Collapse sidebar';
+  localStorage.setItem('sidebar_collapsed', collapsed ? '1' : '0');
+  setTimeout(initMermaid, 100);
+}
+function initSidebar() {
+  if (localStorage.getItem('sidebar_collapsed') === '1') {
+    const sidebar = document.getElementById('sidebar');
+    const btn = document.getElementById('sidebarToggle');
+    if (sidebar) sidebar.classList.add('collapsed');
+    if (btn) { btn.textContent = '▶'; btn.title = 'Expand sidebar'; }
+  }
+}
 function escapeHtml(str) {
   return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 }
@@ -1257,6 +1333,7 @@ document.addEventListener('keydown', (e) => {
   if (e.key === 'ArrowRight' && !inControl) nextStep();
   if (e.key === 'ArrowLeft' && !inControl) prevStep();
   if ((e.metaKey || e.ctrlKey) && (e.key === 'k' || e.key === 'f')) { e.preventDefault(); document.getElementById('searchInput').focus(); }
+  if ((e.metaKey || e.ctrlKey) && e.key === 'b') { e.preventDefault(); toggleSidebar(); }
 });
 
 /* ---- Search ---- */
@@ -1361,6 +1438,8 @@ document.getElementById('searchInput').addEventListener('keydown', function(e) {
 document.addEventListener('click', function(e) { if (!e.target.closest('.search-wrapper')) closeSearch(); });
 
 loadTheme();
+initHeader();
+initSidebar();
 loadProgress();
 renderTabs();
 renderSidebar();

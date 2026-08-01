@@ -23,8 +23,16 @@
   header { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); color: #fff; padding: 16px 32px; display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
   header h1 { font-size: 20px; font-weight: 800; }
   header .sub { font-size: 12px; color: #94a3b8; }
-  .header-link { color: #94a3b8; text-decoration: none; font-size: 13px; font-weight: 500; padding: 6px 14px; border-radius: 8px; margin-left: auto; transition: all var(--transition); }
+  .header-link { color: #94a3b8; text-decoration: none; font-size: 13px; font-weight: 500; padding: 6px 14px; border-radius: 8px; margin-left: auto; transition: all var(--transition); white-space: nowrap; }
   .header-link:hover { background: rgba(255,255,255,.1); color: #fff; }
+  .user-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(255,255,255,.08); padding: 6px 14px; border-radius: 20px;
+    font-size: 13px; font-weight: 600; color: #fff; cursor: pointer;
+    transition: all var(--transition); border: 1px solid rgba(255,255,255,.1);
+    white-space: nowrap;
+  }
+  .user-badge:hover { background: rgba(255,255,255,.15); }
   .container { max-width: 900px; margin: 0 auto; padding: 24px 20px 60px; }
   .controls { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; margin-bottom: 24px; background: var(--card); border-radius: var(--radius); padding: 16px 20px; box-shadow: var(--shadow); }
   .controls label { font-size: 13px; font-weight: 600; }
@@ -82,6 +90,21 @@
   .results .score-fill { height: 100%; border-radius: 5px; transition: width 1s ease-out; background: linear-gradient(90deg, var(--red), #f59e0b, var(--green)); }
   .empty { text-align: center; padding: 60px 40px; color: var(--slate-light); }
   .empty h2 { font-size: 20px; color: var(--slate); margin-bottom: 8px; }
+  /* Profile Modal */
+  .modal { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(15,23,42,.6); backdrop-filter: blur(4px); display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity .3s ease; z-index: 1000; }
+  .modal.show { opacity: 1; pointer-events: auto; }
+  .modal-content { background: var(--card); border-radius: var(--radius); width: 100%; max-width: 420px; padding: 28px; box-shadow: var(--shadow-lg); transform: scale(.95); transition: transform .3s cubic-bezier(.34,1.56,.64,1); }
+  .modal.show .modal-content { transform: scale(1); }
+  .modal h3 { font-size: 18px; font-weight: 700; color: var(--navy); margin-bottom: 16px; }
+  .profile-list { max-height: 200px; overflow-y: auto; margin-bottom: 16px; display: flex; flex-direction: column; gap: 8px; }
+  .profile-item { padding: 10px 14px; background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-sm); cursor: pointer; font-size: 14px; font-weight: 600; color: var(--slate); display: flex; justify-content: space-between; align-items: center; transition: all var(--transition); }
+  .profile-item:hover { border-color: var(--blue); background: var(--blue-light); }
+  .profile-item.active { border-color: var(--blue); background: var(--blue-light); color: var(--blue); }
+  .create-box { border-top: 1px solid var(--border); padding-top: 16px; display: flex; gap: 8px; }
+  .create-box input { flex: 1; padding: 10px 12px; border: 1px solid var(--border); border-radius: var(--radius-sm); font-family: var(--font); font-size: 13px; outline: none; }
+  .create-box input:focus { border-color: var(--blue); }
+  .create-box button { background: var(--blue); color: #fff; border: none; padding: 10px 16px; border-radius: var(--radius-sm); font-weight: 600; cursor: pointer; font-family: var(--font); font-size: 13px; }
+  .create-box button:hover { background: var(--blue-dark); }
   @media (max-width: 600px) {
     .container { padding: 16px 12px 40px; }
     .controls { padding: 12px 16px; }
@@ -91,6 +114,8 @@
     .q-nav { padding: 16px; flex-wrap: wrap; }
     .results { padding: 24px; }
     .results .score { font-size: 48px; }
+    header { padding: 12px 16px; }
+    .user-badge { font-size: 12px; padding: 4px 10px; }
   }
 </style>
 </head>
@@ -98,10 +123,13 @@
 
 <header>
   <div>
-    <h1>📝 CompTIA Security+ Practice Quiz</h1>
-    <div class="sub">Exam SY0-701 — 327 questions from all 18 chapters</div>
+    <h1>📝 {{ course_name }} — Practice Quiz</h1>
+    <div class="sub">{{ course_code }}</div>
   </div>
-  <a class="header-link" href="/course/secplus/lessons">📖 Study Slides</a>
+  <div class="user-badge" onclick="openProfileModal()">
+    <span>👤</span>
+    <span id="activeUserLabel">Guest</span>
+  </div>
   <a class="header-link" href="/">📚 Home</a>
 </header>
 
@@ -122,17 +150,152 @@
   </div>
 </div>
 
+<div class="modal" id="profileModal">
+  <div class="modal-content">
+    <h3>Who is studying?</h3>
+    <div class="profile-list" id="profileList"></div>
+    <div class="create-box">
+      <input type="text" id="newProfileInput" placeholder="Enter profile name..." onkeydown="if(event.key==='Enter') handleCreateProfile()">
+      <button onclick="handleCreateProfile()">Create</button>
+    </div>
+  </div>
+</div>
+
 <script>
+const COURSE_ID = '{{ course_id }}';
 const CH_NAMES = {{ chapters_json | safe }};
 const ALL_QUESTIONS = {{ questions_json | safe }};
 
 // State
 let currentQuestions = [];
 let currentIdx = 0;
-let results = {}; // idx -> 'correct' | 'wrong'
+let results = {}; // key -> 'correct' | 'wrong', key + '_sel' -> selected option index
 let shuffled = false;
 let chapterFilter = 'all';
+let activeUser = null;
+let isOfflineMode = false;
 
+/* ---- Profile Management ---- */
+async function checkServerConnection() {
+  try {
+    const res = await fetch('/api/users', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: '{}' });
+    isOfflineMode = !res.ok;
+  } catch(e) { isOfflineMode = true; }
+}
+
+async function fetchUsers() {
+  if (isOfflineMode) return JSON.parse(localStorage.getItem('quiz_users_' + COURSE_ID) || '[]');
+  try {
+    const res = await fetch('/api/users', { method: 'POST', headers: { 'Content-Type': 'application/json' } });
+    const d = await res.json();
+    return d.users || [];
+  } catch(e) { return JSON.parse(localStorage.getItem('quiz_users_' + COURSE_ID) || '[]'); }
+}
+
+async function saveProgress() {
+  if (!activeUser) return;
+  const payload = {
+    username: activeUser,
+    last_chapter: chapterFilter === 'all' ? 0 : parseInt(chapterFilter),
+    last_card: currentIdx,
+    last_step: 0,
+    viewing_quiz: true,
+    quiz_states: { [`quiz_${COURSE_ID}`]: { results } }
+  };
+  localStorage.setItem(`progress_${COURSE_ID}_${activeUser}`, JSON.stringify(payload));
+  if (!isOfflineMode) {
+    try { await fetch('/api/save', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) }); }
+    catch(e) { /* fallback to local */ }
+  }
+}
+
+async function loadProgress(username) {
+  let progress = null;
+  if (!isOfflineMode) {
+    try {
+      const res = await fetch('/api/load', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ username }) });
+      const d = await res.json();
+      if (d.success) progress = d;
+    } catch(e) {}
+  }
+  const stored = localStorage.getItem(`progress_${COURSE_ID}_${username}`);
+  if (stored) {
+    const local = JSON.parse(stored);
+    if (progress) {
+      const courseKey = `quiz_${COURSE_ID}`;
+      const localR = local.quiz_states?.[courseKey]?.results;
+      const serverR = progress.quiz_states?.[courseKey]?.results;
+      if (localR && serverR) {
+        if (!progress.quiz_states) progress.quiz_states = {};
+        if (!progress.quiz_states[courseKey]) progress.quiz_states[courseKey] = {};
+        progress.quiz_states[courseKey].results = { ...serverR, ...localR };
+      } else if (localR) {
+        if (!progress.quiz_states) progress.quiz_states = {};
+        if (!progress.quiz_states[courseKey]) progress.quiz_states[courseKey] = {};
+        progress.quiz_states[courseKey].results = localR;
+      }
+    } else {
+      progress = local;
+    }
+  }
+  return progress;
+}
+
+async function openProfileModal() {
+  const modal = document.getElementById('profileModal');
+  const list = document.getElementById('profileList');
+  list.innerHTML = '<div style="color:var(--slate-light);font-size:13px;padding:8px 0;">Loading...</div>';
+  modal.classList.add('show');
+  await checkServerConnection();
+  const users = await fetchUsers();
+  list.innerHTML = users.length ? '' : '<div style="color:var(--slate-light);font-size:13px;padding:8px 0;">No profiles yet.</div>';
+  users.forEach(u => {
+    const active = u === activeUser ? 'active' : '';
+    const badge = u === activeUser ? '<span style="font-size:11px;color:var(--blue)">✓ Active</span>' : '';
+    list.innerHTML += `<div class="profile-item ${active}" onclick="selectProfile('${u.replace(/'/g, "\\'")}')"><span>👤 ${u}</span>${badge}</div>`;
+  });
+}
+
+async function selectProfile(username) {
+  activeUser = username;
+  localStorage.setItem('active_quiz_user_' + COURSE_ID, username);
+  document.getElementById('activeUserLabel').textContent = username;
+  document.getElementById('profileModal').classList.remove('show');
+  results = {};
+  const progress = await loadProgress(username);
+  if (progress && progress.quiz_states) {
+    const s = progress.quiz_states[`quiz_${COURSE_ID}`];
+    if (s && s.results) results = s.results;
+  }
+  loadQuestions();
+}
+
+async function handleCreateProfile() {
+  const input = document.getElementById('newProfileInput');
+  const username = input.value.trim();
+  if (!username) return;
+  const users = await fetchUsers();
+  if (users.includes(username)) { alert('Profile already exists.'); return; }
+  users.push(username);
+  if (isOfflineMode) {
+    localStorage.setItem('quiz_users_' + COURSE_ID, JSON.stringify(users));
+  } else {
+    try { await fetch('/api/save', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ username, last_chapter: 0, last_card: 0, last_step: 0, viewing_quiz: true }) }); }
+    catch(e) {}
+    localStorage.setItem('quiz_users_' + COURSE_ID, JSON.stringify(users));
+  }
+  input.value = '';
+  await selectProfile(username);
+}
+
+async function initProfile() {
+  await checkServerConnection();
+  const saved = localStorage.getItem('active_quiz_user_' + COURSE_ID);
+  if (saved) await selectProfile(saved);
+  else openProfileModal();
+}
+
+/* ---- Quiz Logic ---- */
 function init() {
   const sel = document.getElementById('chapterSelect');
   sel.innerHTML = '<option value="all">All Chapters</option>' +
@@ -142,12 +305,14 @@ function init() {
 
 function loadQuestions() {
   if (chapterFilter === 'all') {
-    currentQuestions = ALL_QUESTIONS.slice();
+    currentQuestions = ALL_QUESTIONS.map((q, i) => ({ ...q, _oidx: i }));
   } else {
-    currentQuestions = ALL_QUESTIONS.filter(q => q.c === parseInt(chapterFilter));
+    currentQuestions = ALL_QUESTIONS.map((q, i) => ({ ...q, _oidx: i })).filter(q => q.c === parseInt(chapterFilter));
   }
   if (shuffled) shuffle();
-  currentIdx = 0;
+
+  const firstUnanswered = currentQuestions.findIndex(q => results[q._oidx] === undefined);
+  currentIdx = firstUnanswered !== -1 ? firstUnanswered : 0;
   render();
 }
 
@@ -159,10 +324,8 @@ function shuffle() {
       [currentQuestions[i], currentQuestions[j]] = [currentQuestions[j], currentQuestions[i]];
     }
   } else {
-    // Restore original order if all questions
-    if (chapterFilter === 'all') {
-      currentQuestions = ALL_QUESTIONS.slice();
-    }
+    currentQuestions = ALL_QUESTIONS.map((q, i) => ({ ...q, _oidx: i }));
+    if (chapterFilter !== 'all') currentQuestions = currentQuestions.filter(q => q.c === parseInt(chapterFilter));
   }
   currentIdx = 0;
   render();
@@ -178,7 +341,8 @@ function resetAll() {
   if (!confirm('Reset all progress? This will clear correct/wrong marks.')) return;
   results = {};
   currentIdx = 0;
-  render();
+  if (activeUser) saveProgress();
+  loadQuestions();
 }
 
 function render() {
@@ -195,9 +359,9 @@ function render() {
   const total = qs.length;
   const letters = ['A', 'B', 'C', 'D'];
   
-  const answered = results[currentQuestions.indexOf(q)] !== undefined;
-  const isCorrect = results[currentQuestions.indexOf(q)] === 'correct';
-  const selectedOpt = results[currentQuestions.indexOf(q) + '_sel'];
+  const answered = results[q._oidx] !== undefined;
+  const isCorrect = results[q._oidx] === 'correct';
+  const selectedOpt = results[q._oidx + '_sel'];
   
   const progressPct = ((currentIdx + 1) / total) * 100;
 
@@ -241,23 +405,23 @@ function render() {
 }
 
 function selectAnswer(idx) {
-  // Just style the selected option
   document.querySelectorAll('.q-option').forEach((el, i) => {
     el.classList.toggle('selected', i === idx);
   });
   document.getElementById('checkBtn').disabled = false;
 }
 
-function revealAnswer() {
+async function revealAnswer() {
   const q = currentQuestions[currentIdx];
   const selected = document.querySelector('.q-option.selected');
   if (!selected) return;
   const idx = Array.from(document.querySelectorAll('.q-option')).indexOf(selected);
-  const key = currentQuestions.indexOf(q);
+  const key = q._oidx;
   
   results[key] = idx === q.a ? 'correct' : 'wrong';
   results[key + '_sel'] = idx;
   render();
+  await saveProgress();
 }
 
 function nextQ() {
@@ -281,7 +445,10 @@ function updateStats() {
   document.getElementById('wrongCount').textContent = wrong + ' ✗';
 }
 
-init();
+(async function() {
+  await initProfile();
+  init();
+})();
 </script>
 </body>
 </html>

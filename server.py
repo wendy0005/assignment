@@ -168,17 +168,21 @@ def course_lessons(course_id):
     glossary_raw = conn.execute("SELECT term, definition FROM glossary WHERE course_id=?", (course_id,)).fetchall()
     glossary = {r['term']: r['definition'] for r in glossary_raw}
 
-    # secplus study page also needs quiz data (ALL_QUESTIONS)
+    # Courses with both lessons and quiz get the combined study template
     template = 'lesson.html'
     extra_vars = {}
-    if course_id == 'secplus':
-        template = 'study.html'
-        quiz_raw = conn.execute(
-            "SELECT * FROM quiz_questions WHERE course_id='secplus' ORDER BY sort_order", ()
-        ).fetchall()
-        quiz = [{'c': q['chapter_idx'], 'q': q['question_text'], 'o': json.loads(q['options_json']),
-                 'a': q['correct_idx'], 'exp': dict(q).get('explanation', '') or ''} for q in quiz_raw]
-        extra_vars['questions_json'] = json.dumps(quiz, ensure_ascii=False)
+    if course.get('course_type') in ('both', 'study'):
+        has_quiz = conn.execute(
+            "SELECT COUNT(*) as cnt FROM quiz_questions WHERE course_id=?", (course_id,)
+        ).fetchone()['cnt']
+        if has_quiz:
+            template = 'study.html'
+            quiz_raw = conn.execute(
+                "SELECT * FROM quiz_questions WHERE course_id=? ORDER BY sort_order", (course_id,)
+            ).fetchall()
+            quiz = [{'c': q['chapter_idx'], 'q': q['question_text'], 'o': json.loads(q['options_json']),
+                     'a': q['correct_idx'], 'exp': dict(q).get('explanation', '') or ''} for q in quiz_raw]
+            extra_vars['questions_json'] = json.dumps(quiz, ensure_ascii=False)
 
     conn.close()
 
@@ -187,6 +191,7 @@ def course_lessons(course_id):
         course_name=course['name'],
         course_code=course.get('code', ''),
         course_icon=course.get('icon', '📖'),
+        course_type=course.get('course_type', 'lesson'),
         tutorials_json=json.dumps(tutorials, ensure_ascii=False),
         glossary_json=json.dumps(glossary, ensure_ascii=False),
         **extra_vars
@@ -221,7 +226,8 @@ def course_quiz(course_id):
             'q': qr['question_text'],
             'o': json.loads(qr['options_json']),
             'a': qr['correct_idx'],
-            'e': qr.get('explanation', '') or ''
+            'e': qr.get('explanation', '') or '',
+            'card': qr.get('card_ref')
         })
 
     conn.close()
@@ -230,6 +236,7 @@ def course_quiz(course_id):
     template = template_map.get(course_id, 'quiz.html')
 
     return render_template(template,
+        course_id=course_id,
         course_name=course['name'],
         course_code=course.get('code', ''),
         course_icon=course.get('icon', '📖'),
@@ -253,6 +260,7 @@ def course_document(course_id):
 
     content_html = '\n'.join(s['content_html'] for s in sections)
     return render_template('document.html',
+        course_id=course_id,
         course_name=course['name'],
         content_html=content_html
     )
@@ -265,6 +273,15 @@ def api_save():
     if not username:
         return jsonify({'success': False, 'msg': 'Username required'}), 400
     conn = get_db()
+
+    existing = conn.execute(
+        'SELECT quiz_states FROM user_progress WHERE username = ?',
+        (username,)
+    ).fetchone()
+    existing_states = json.loads(existing['quiz_states']) if existing and existing['quiz_states'] else {}
+    incoming_states = data.get('quiz_states', {})
+    existing_states.update(incoming_states)
+
     conn.execute('''
         INSERT OR REPLACE INTO user_progress
         (username, last_chapter, last_card, last_step, viewing_quiz, quiz_states, last_updated)
@@ -275,7 +292,7 @@ def api_save():
         data.get('last_card', 0),
         data.get('last_step', 0),
         1 if data.get('viewing_quiz') else 0,
-        json.dumps(data.get('quiz_states', {}))
+        json.dumps(existing_states)
     ))
     conn.commit()
     conn.close()
@@ -295,13 +312,17 @@ def api_load():
     ).fetchone()
     conn.close()
     if row:
+        try:
+            quiz_states = json.loads(row['quiz_states']) if row['quiz_states'] else {}
+        except (json.JSONDecodeError, TypeError):
+            quiz_states = {}
         resp = {
             'success': True,
             'last_chapter': row['last_chapter'],
             'last_card': row['last_card'],
             'last_step': row['last_step'],
             'viewing_quiz': bool(row['viewing_quiz']),
-            'quiz_states': json.loads(row['quiz_states'] or '{}')
+            'quiz_states': quiz_states
         }
     else:
         resp = {'success': False, 'msg': 'User not found'}
@@ -327,7 +348,8 @@ def api_courses():
 @app.route('/<path:filename>')
 def serve_static(filename):
     filepath = BASE_DIR / filename
-    if filepath.is_file() and not str(filepath).endswith('.py'):
+    excluded = ('.py', '.db', '.sqlite', '.sqlite3', '.json')
+    if filepath.is_file() and not str(filepath).endswith(excluded):
         return send_from_directory(str(BASE_DIR), filename)
     abort(404)
 

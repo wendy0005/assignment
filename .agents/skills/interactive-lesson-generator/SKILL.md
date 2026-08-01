@@ -19,6 +19,8 @@ The output is a Python script that inserts lesson content into SQLite (`progress
 Three content types exist:
 1. **Interactive Lessons** — step-by-step with tabs, sidebar, search, Mermaid diagrams, glossary
 2. **Practice Quizzes** — multiple choice with chapter filtering, shuffle, score tracking
+   - **All quiz templates now persist answers** via user profiles (saved to both `localStorage` and server `/api/save`)
+   - Quiz progress survives page refresh and browser restart
 3. **Answer Documents** — static print-formatted answer sheets for assignments/tests
 
 ## Course Hub
@@ -27,6 +29,7 @@ The course hub is `templates/index.html` — a hardcoded page with 4 course card
 1. Insert content into SQLite via the migration script
 2. Add a new `<a class="course-card">` element to `templates/index.html`
 3. Link to `/course/<course_id>/lessons` (for lessons) or `/course/<course_id>/quiz` (for quizzes)
+   - The quiz route in `server.py` passes `course_id` to the template (required for answer persistence)
 
 ## Output: Python Migration Script
 
@@ -292,8 +295,8 @@ This avoids the bug where long step bodies had their searchable content truncate
 
 - `server.py` — Flask app with all routes and DB initialization
 - `templates/lesson.html` — Lesson viewer template (copy of iot_lessons.html with data injection)
-- `templates/quiz.html` — Quiz template (for Security+ style quizzes)
-- `templates/quiz_ghf.html` — Quiz template with profile system (for GitHub Foundations style)
+- `templates/quiz.html` — Quiz template with profile system and answer persistence (all courses; saves to `/api/save` + `localStorage`)
+- `templates/quiz_ghf.html` — Quiz template with profile system (GitHub Foundations; saves to `/api/save` + `localStorage`)
 - `templates/document.html` — Answer document template
 - `datamigrate.py` — Example migration script showing all table insert patterns
 - `progress.db` — SQLite database with all migrated content
