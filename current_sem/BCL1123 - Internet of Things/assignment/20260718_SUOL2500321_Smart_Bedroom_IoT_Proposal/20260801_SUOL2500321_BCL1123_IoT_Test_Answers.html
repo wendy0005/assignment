@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>BCL1123 Internet of Things Test Answers</title>
+<style>
+  @page { size: A4; margin: 20mm 18mm 20mm; }
+  * { box-sizing: border-box; }
+  body { font-family: Arial, sans-serif; color: #111; font-size: 11pt; line-height: 1.5; margin: 0; }
+  h1 { font-size: 20pt; text-align: center; margin: 0 0 12pt; color: #111; }
+  h2 { font-size: 15pt; margin: 18pt 0 8pt; border-bottom: 1.5pt solid #0a6f86; padding-bottom: 4pt; break-after: avoid; }
+  h3 { font-size: 12pt; margin: 14pt 0 5pt; color: #064f61; break-after: avoid; }
+  p { margin: 0 0 8pt; text-align: justify; orphans: 3; widows: 3; }
+  h1 + p { text-align: center; }
+  table { border-collapse: collapse; width: 100%; margin: 8pt 0 14pt; break-inside: avoid; }
+  th, td { border: 0.75pt solid #888; padding: 5pt 8pt; text-align: center; }
+  th { background: #0a6f86; color: white; }
+  tbody tr:nth-child(even) { background: #eef6f8; }
+  blockquote { margin: 10pt 0 14pt; min-height: 90pt; padding: 14pt; border: 1.5pt solid #c65911; background: #fff2cc; display: flex; align-items: center; }
+  blockquote p { margin: 0; color: #9c0006; font-weight: 700; text-align: center; width: 100%; }
+  a { color: #064f61; overflow-wrap: anywhere; }
+  ul { margin-top: 4pt; padding-left: 20pt; }
+  li { margin-bottom: 4pt; }
+  .identity { text-align: center; border-top: 1pt solid #999; padding-top: 7pt; margin-top: 8pt; font-size: 9pt; color: #555; }
+</style>
+</head>
+<body>
+<h1>BCL1123 Internet of Things — Test Answers</h1>
+<p><strong>Student Name:</strong> Chan Jing Yi<br />
+<strong>Student ID:</strong> SUOL2500321<br />
+<strong>Semester:</strong> May–August 2026</p>
+<h2>Section A: Multiple-Choice Questions</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Question</th>
+<th style="text-align: center;">Answer</th>
+<th style="text-align: right;">Question</th>
+<th style="text-align: center;">Answer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1</td>
+<td style="text-align: center;">B</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: center;">C</td>
+</tr>
+<tr>
+<td style="text-align: right;">2</td>
+<td style="text-align: center;">D</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: center;">A</td>
+</tr>
+<tr>
+<td style="text-align: right;">3</td>
+<td style="text-align: center;">B</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: center;">B</td>
+</tr>
+<tr>
+<td style="text-align: right;">4</td>
+<td style="text-align: center;">C</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: center;">C</td>
+</tr>
+<tr>
+<td style="text-align: right;">5</td>
+<td style="text-align: center;">B</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: center;">B</td>
+</tr>
+</tbody>
+</table>
+<h2>Section B: Structured Questions</h2>
+<h3>Question 11(a)</h3>
+<p>The M2M era centred on direct, task-specific communication between a small number of machines. A sensor or controller normally sent telemetry to another machine through a proprietary wired link, cellular modem, or closed supervisory system. Human involvement was limited, data often remained inside an organisational silo, and adding a new vendor’s device usually required a custom gateway. M2M therefore prioritised reliable point-to-point automation rather than broad service integration.</p>
+<p>The modern IoT ecosystem connects physical and virtual things through Internet Protocol networks, cloud or edge platforms, application programming interfaces, and user-facing applications. A single device’s data can be stored, analysed, combined with other sources, and used by several services. IoT also supports many-to-many communication, remote device management, scalable analytics, and human interaction through dashboards or mobile alerts. This openness creates more value than isolated M2M telemetry, although it also introduces wider cybersecurity, privacy, governance, and interoperability responsibilities.</p>
+<h3>Question 11(b)</h3>
+<p>The Middleware or Processing Layer sits between device connectivity and business applications. Devices made by different manufacturers may transmit different payload formats and use protocols such as MQTT, HTTP, or CoAP. Middleware hides that heterogeneity through protocol adapters, gateways, device registries, and common application programming interfaces. It identifies each device, translates messages into a shared data model, validates units and timestamps, and exposes normalised information to applications. A dashboard can therefore consume one consistent temperature field even when the original sensors encode that reading differently.</p>
+<p>The layer also performs message brokering, event processing, data filtering, aggregation, storage, and rule execution. For example, it can convert Fahrenheit to Celsius, reject an impossible reading, combine several sensor values, and publish a standard alarm event. Semantic metadata clarifies what a value represents, while service discovery enables authorised applications to find the appropriate device capability without depending on its manufacturer’s implementation.</p>
+<p>Interoperability still requires governance. Middleware should enforce standard schemas and APIs, maintain version compatibility, authenticate devices, authorise access, encrypt data in transit, and record audit logs. It does not automatically correct a poorly documented proprietary protocol; an adapter or vendor-supported standard is still required. With those controls, applications remain decoupled from hardware brands and devices can be replaced or expanded without redesigning the complete IoT service.</p>
+<h3>Question 12(a)</h3>
+<p>The first critical component is a calibrated multi-sensor data logger placed with the biological samples. A digital temperature probe provides a continuous, time-stamped record, while a humidity sensor and door-open or shock sensor can reveal condensation, handling, or package breaches. The logger needs local memory and a backup battery so that evidence is retained during aircraft loading, customs inspection, or a temporary loss of network coverage. Calibration records and device identity link every reading to the correct shipment.</p>
+<p>The second component is a secure communications and location unit, consisting of a low-power controller, GNSS positioning, and cellular or LPWAN connectivity. It periodically sends the sensor readings, location, battery state, and shipment identifier to an IoT platform. Edge rules should trigger an audible or visual local warning when a safe threshold is crossed, while the platform alerts the control centre. Buffered store-and-forward transmission prevents a coverage gap from becoming a gap in the compliance record.</p>
+<h3>Question 12(b)</h3>
+<p>Real-time analytics converts the sensor stream into operational decisions. The platform compares each reading with the product-specific temperature and humidity limits, checks the duration of an excursion, and combines the result with location, route, weather, and estimated arrival time. A predictive rule can warn staff before the sample becomes unusable—for example, by detecting a rising temperature trend rather than waiting for a fixed limit to be exceeded. The control centre can then instruct a driver to inspect the container, increase cooling, move the shipment to qualified storage, or reroute it to a nearer approved facility.</p>
+<p>That early intervention reduces waste because the firm does not automatically discard every shipment after a minor event. A complete time–temperature history supports a risk-based decision on whether the biological sample remained within its validated stability envelope. Analytics can also compare lanes, carriers, containers, and packaging designs to identify repeated delays or thermal weak points. Maintenance can then be scheduled before a refrigeration unit fails, and inefficient routes or excessive refrigerant use can be corrected.</p>
+<p>Compliance improves when the platform preserves calibrated, time-stamped, tamper-evident records and applies the correct rules for each product and destination. Automated exception reports, chain-of-custody logs, acknowledgement records, and audit trails give regulators and customers consistent evidence. Role-based access and encryption protect sensitive shipment data. Sensor calibration drift, false alarms, and missing connectivity remain risks, so the firm should use calibration schedules, redundant critical sensors, local buffering, and human review before releasing or rejecting a shipment.</p>
+<h3>Question 13(a)</h3>
+<blockquote>
+<p><strong>Student action required:</strong> Insert a real selfie showing Chan Jing Yi beside the bedroom study desk and its lamp or wall-switch panel. The student and the selected area must both be clearly visible. A room-only photograph does not satisfy the question.</p>
+</blockquote>
+<h3>Question 13(b)</h3>
+<p>The first sensor would be a passive infrared (PIR) occupancy sensor positioned to detect movement around the bedroom study desk. It is appropriate because the main requirement is to distinguish an occupied work area from an empty room without recording identifiable video. Its low data rate and modest power requirement also suit continuous indoor monitoring. A short timeout can reduce false “vacant” decisions when the user is sitting relatively still.</p>
+<p>The second sensor would be a digital ambient-light sensor such as the BH1750, mounted where it measures desk illumination rather than looking directly into the lamp. It reports light level in lux, allowing the controller to distinguish daylight, adequate artificial light, and an under-lit workspace. This is more precise than a simple light-dependent resistor and permits a configurable comfort threshold for reading or computer work.</p>
+<h3>Question 13(c)</h3>
+<p>The controller would combine occupancy and lux rather than acting on either value alone. When the PIR detects a user and desk illumination is below the chosen threshold, it would switch on or dim up the desk lamp through a safe relay or smart-light interface. If daylight is already sufficient, the lamp would remain off. When no movement is detected for a defined period, the system would send a warning and then switch the lamp off; a manual switch must always override the automation.</p>
+<p>The platform would store only time-stamped occupancy state, lux, lamp state, and energy use. These records can reveal how long lights remain on unnecessarily and help tune the threshold and timeout. The user receives appropriate lighting without repeated manual adjustment, reduces wasted electricity when leaving the room, and retains privacy because the design uses motion and light measurements rather than a camera.</p>
+<h3>Question 14(a)</h3>
+<p>The selected city is <strong>Kuala Lumpur, Malaysia</strong>. Low-lying roads and drains around the city can become unsafe during intense rainfall when water accumulates faster than the drainage system can carry it. Flash flooding disrupts traffic and may leave drivers entering a flooded road before a warning is displayed.</p>
+<p>An IoT network could place non-contact ultrasonic water-level sensors above critical drains and road underpasses, supported by tipping-bucket rain gauges at nearby locations. Each node would report water depth, rate of rise, rainfall intensity, battery condition, and location. Combining several nearby readings would give the city control centre earlier and more reliable evidence than a single visual report, allowing targeted warnings, drain inspections, road closures, and pump or siren activation.</p>
+<h3>Question 14(b)</h3>
+<p>LoRaWAN is a low-power wide-area technology designed for small, infrequent sensor messages. A gateway can cover a broad urban area, although buildings, terrain, antenna height, and interference reduce the practical range. Battery nodes can sleep for most of the time and wake briefly to transmit a water-level packet, supporting long service life. Its limitations are low data rate, duty-cycle constraints, and less predictable latency, so it is unsuitable for continuous high-resolution video.</p>
+<p>5G uses licensed cellular infrastructure and provides higher capacity, mobility support, and lower-latency service classes. Coverage depends on the operator and radio band: lower-frequency cells cover wider areas, while high-frequency cells provide capacity over shorter distances. A 5G modem normally consumes more energy than a sleeping LoRaWAN node because it performs more complex radio processing and network signalling, although 5G is preferable when a site needs video, frequent large uploads, or rapid closed-loop control.</p>
+<p>LoRaWAN is the more practical primary link for Kuala Lumpur’s distributed drain and underpass sensors because each node sends only a few bytes, many locations lack convenient mains power, and battery replacement beside drains creates cost and safety problems. Gateways can be mounted at council facilities and forward data through fibre or cellular backhaul. Critical sites should use acknowledged alarms, repeated transmissions, local sirens, and a cellular fallback because no single wireless link should be the only flood-safety control.</p>
+<h3>Question 14(c)</h3>
+<blockquote>
+<p><strong>Student action required:</strong> Hand-draw this path on physical paper: <strong>Water-level sensor + rain gauge (Physical/Perception Layer) → LoRaWAN node and gateway (Network Layer) → IoT platform, database, threshold and trend analytics (Middleware/Processing Layer) → DBKL/KLCCC dashboard, mobile alert, electronic sign and local siren (Application Layer).</strong> Write <strong>SUOL2500321</strong> and your signature in a corner, then photograph the full sheet clearly and insert it into the answer script.</p>
+</blockquote>
+<h2>Selected Technical Sources</h2>
+<ul>
+<li>3rd Generation Partnership Project. (2023). <em>Ultra reliable and low latency communications</em>. https://www.3gpp.org/technologies/urlcc-2022</li>
+<li>Dewan Bandaraya Kuala Lumpur. (2026). <em>Department of Civil Engineering and Drainage</em>. https://www.dbkl.gov.my/en/departments/jabatan-kejuruteraan-awam-dan-saliran</li>
+<li>International Telecommunication Union. (2012). <em>Recommendation ITU-T Y.4000/Y.2060: Overview of the Internet of things</em>. https://www.itu.int/itu-t/recommendations/rec.aspx?rec=Y.2060</li>
+<li>LoRa Alliance. (n.d.). <em>What is LoRaWAN?</em> https://lora-alliance.org/resource_hub/what-is-lorawan/</li>
+<li>World Health Organization. (2026). <em>Cold chain equipment and dry store temperature mapping tool</em>. https://www.who.int/publications/m/item/cold-chain-equipment-and-dry-store-temperature-mapping-tool</li>
+</ul>
+<div class="identity">Chan Jing Yi | SUOL2500321 | BCL1123 Internet of Things</div>
+</body>
+</html>

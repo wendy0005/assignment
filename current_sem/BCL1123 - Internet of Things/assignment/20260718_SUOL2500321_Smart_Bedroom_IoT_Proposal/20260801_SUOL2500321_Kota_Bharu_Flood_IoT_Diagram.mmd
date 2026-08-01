@@ -1,0 +1,24 @@
+flowchart TD
+    TITLE["Kota Bharu, Kelantan<br/>IoT Flood Monitoring and Warning System"]
+
+    P["PHYSICAL / PERCEPTION LAYER<br/><br/>Ultrasonic water-level sensor<br/>Tipping-bucket rain gauge<br/>Sungai Kelantan and flood-prone drains"]
+    N["NETWORK LAYER<br/><br/>Low-power LoRaWAN sensor node<br/>LoRaWAN gateway<br/>Internet backhaul"]
+    M["MIDDLEWARE / PROCESSING LAYER<br/><br/>IoT platform and database<br/>Threshold and rising-water analysis<br/>Alert-rule engine"]
+    A["APPLICATION LAYER<br/><br/>JPS Kelantan / local-authority dashboard<br/>Public mobile alert<br/>Road warning sign and local siren"]
+
+    TITLE --> P
+    P -->|"Water level and rainfall readings"| N
+    N -->|"LoRaWAN data packets"| M
+    M -->|"Normal, alert, warning or danger"| A
+
+    classDef title fill:#0B5D6B,stroke:#063D46,stroke-width:3px,color:#FFFFFF
+    classDef physical fill:#DDEBF7,stroke:#2F75B5,stroke-width:3px,color:#17365D
+    classDef network fill:#E2F0D9,stroke:#70AD47,stroke-width:3px,color:#375623
+    classDef middleware fill:#FFF2CC,stroke:#BF9000,stroke-width:3px,color:#7F6000
+    classDef application fill:#FCE4D6,stroke:#C65911,stroke-width:3px,color:#843C0C
+
+    class TITLE title
+    class P physical
+    class N network
+    class M middleware
+    class A application

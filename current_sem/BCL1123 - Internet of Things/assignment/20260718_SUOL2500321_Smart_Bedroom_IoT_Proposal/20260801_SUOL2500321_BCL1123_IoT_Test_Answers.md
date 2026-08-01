@@ -62,9 +62,9 @@ The platform would store only time-stamped occupancy state, lux, lamp state, and
 
 ### Question 14(a)
 
-The selected city is **Kuala Lumpur, Malaysia**. Low-lying roads and drains around the city can become unsafe during intense rainfall when water accumulates faster than the drainage system can carry it. Flash flooding disrupts traffic and may leave drivers entering a flooded road before a warning is displayed.
+The selected city is **Kota Bharu, Kelantan, Malaysia**. Low-lying neighbourhoods, roads, and drains near Sungai Kelantan can become unsafe during intense rainfall and the monsoon when river and drain levels rise. Floodwater disrupts travel and may leave residents or drivers entering an affected area before a warning reaches them. The Department of Irrigation and Drainage already monitors Kota Bharu stations such as Sungai Kelantan at Tambatan D’Raja, so additional local sensor nodes could increase coverage between existing stations.
 
-An IoT network could place non-contact ultrasonic water-level sensors above critical drains and road underpasses, supported by tipping-bucket rain gauges at nearby locations. Each node would report water depth, rate of rise, rainfall intensity, battery condition, and location. Combining several nearby readings would give the city control centre earlier and more reliable evidence than a single visual report, allowing targeted warnings, drain inspections, road closures, and pump or siren activation.
+An IoT network could place non-contact ultrasonic water-level sensors above critical drains and flood-prone roads, supported by tipping-bucket rain gauges at nearby locations. Each node would report water depth, rate of rise, rainfall intensity, battery condition, and location. Combining several nearby readings would give JPS Kelantan and the local authority earlier and more reliable evidence than a single visual report, allowing targeted warnings, drain inspections, road closures, evacuation preparation, and siren activation.
 
 ### Question 14(b)
 
@@ -72,17 +72,16 @@ LoRaWAN is a low-power wide-area technology designed for small, infrequent senso
 
 5G uses licensed cellular infrastructure and provides higher capacity, mobility support, and lower-latency service classes. Coverage depends on the operator and radio band: lower-frequency cells cover wider areas, while high-frequency cells provide capacity over shorter distances. A 5G modem normally consumes more energy than a sleeping LoRaWAN node because it performs more complex radio processing and network signalling, although 5G is preferable when a site needs video, frequent large uploads, or rapid closed-loop control.
 
-LoRaWAN is the more practical primary link for Kuala Lumpur’s distributed drain and underpass sensors because each node sends only a few bytes, many locations lack convenient mains power, and battery replacement beside drains creates cost and safety problems. Gateways can be mounted at council facilities and forward data through fibre or cellular backhaul. Critical sites should use acknowledged alarms, repeated transmissions, local sirens, and a cellular fallback because no single wireless link should be the only flood-safety control.
+LoRaWAN is the more practical primary link for Kota Bharu’s distributed river, drain, and low-lying-road sensors because each node sends only a few bytes, many locations lack convenient mains power, and battery replacement beside waterways creates cost and safety problems. Gateways can be mounted at JPS or local-authority facilities and forward data through fibre or cellular backhaul. Critical sites should use acknowledged alarms, repeated transmissions, local sirens, and a cellular fallback because no single wireless link should be the only flood-safety control.
 
 ### Question 14(c)
 
-> **Student action required:** Hand-draw this path on physical paper: **Water-level sensor + rain gauge (Physical/Perception Layer) → LoRaWAN node and gateway (Network Layer) → IoT platform, database, threshold and trend analytics (Middleware/Processing Layer) → DBKL/KLCCC dashboard, mobile alert, electronic sign and local siren (Application Layer).** Write **SUOL2500321** and your signature in a corner, then photograph the full sheet clearly and insert it into the answer script.
+> **Student action required:** Hand-draw this path on physical paper: **Water-level sensor + rain gauge near Sungai Kelantan and flood-prone drains (Physical/Perception Layer) → LoRaWAN node and gateway (Network Layer) → IoT platform, database, threshold and rising-water analysis (Middleware/Processing Layer) → JPS Kelantan/local-authority dashboard, public mobile alert, road warning sign and local siren (Application Layer).** Write **SUOL2500321** and your signature in a corner, then photograph the full sheet clearly and insert it into the answer script.
 
 ## Selected Technical Sources
 
 - 3rd Generation Partnership Project. (2023). *Ultra reliable and low latency communications*. https://www.3gpp.org/technologies/urlcc-2022
-- Dewan Bandaraya Kuala Lumpur. (2026). *Department of Civil Engineering and Drainage*. https://www.dbkl.gov.my/en/departments/jabatan-kejuruteraan-awam-dan-saliran
+- Department of Irrigation and Drainage Malaysia. (2026). *River water-level data: Kelantan*. https://publicinfobanjir.water.gov.my/aras-air/data-paras-air/?lang=en&state=KEL
 - International Telecommunication Union. (2012). *Recommendation ITU-T Y.4000/Y.2060: Overview of the Internet of things*. https://www.itu.int/itu-t/recommendations/rec.aspx?rec=Y.2060
 - LoRa Alliance. (n.d.). *What is LoRaWAN?* https://lora-alliance.org/resource_hub/what-is-lorawan/
 - World Health Organization. (2026). *Cold chain equipment and dry store temperature mapping tool*. https://www.who.int/publications/m/item/cold-chain-equipment-and-dry-store-temperature-mapping-tool
-
