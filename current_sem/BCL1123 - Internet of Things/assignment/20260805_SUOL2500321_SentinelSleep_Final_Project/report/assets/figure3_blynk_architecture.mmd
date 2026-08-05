@@ -1,0 +1,33 @@
+---
+config:
+  theme: base
+  themeVariables:
+    primaryColor: "#e8f1fb"
+    primaryBorderColor: "#215a8e"
+    lineColor: "#34495e"
+---
+flowchart LR
+    subgraph Bedroom["Edge layer - smart bedroom"]
+        S["DHT22 | PIR | LDR | MQ-2"] --> C["ESP32 local rule engine"]
+        C --> A["Light relay | Fan relay | Night light | RGB | Buzzer | Servo"]
+    end
+    subgraph Network["Connectivity layer"]
+        W["Wokwi-GUEST Wi-Fi"] --> T["Blynk authenticated streaming connection"]
+    end
+    subgraph Cloud["Cloud layer - Blynk IoT"]
+        D["Device identity and auth token"]
+        V["Virtual datastreams V0-V14"]
+        E["Events and historical telemetry"]
+        D --> V --> E
+    end
+    subgraph App["Application layer"]
+        UI["Web and mobile dashboards"]
+        N["Status | trends | controls | notifications"]
+        UI --> N
+    end
+    C <--> W
+    T <--> D
+    E --> UI
+    UI -->|"Desired mode and overrides"| V
+    V -->|"Confirmed device state"| UI
+

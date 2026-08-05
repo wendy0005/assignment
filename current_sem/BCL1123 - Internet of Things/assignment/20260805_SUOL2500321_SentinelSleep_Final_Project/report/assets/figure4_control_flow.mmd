@@ -1,0 +1,28 @@
+---
+config:
+  theme: base
+  themeVariables:
+    primaryColor: "#f4f8fc"
+    primaryBorderColor: "#1f4e79"
+    lineColor: "#34495e"
+---
+flowchart TD
+    A(["Two-second timer tick"]) --> B["Read DHT22, PIR, LDR and MQ-2"]
+    B --> C{"Sensor data valid?"}
+    C -->|"No"| D["Retain last valid values and log sensor fault"]
+    C -->|"Yes"| E{"MQ-2 digital threshold active?"}
+    D --> E
+    E -->|"Yes"| F["Gas alert: buzzer and red indicator; comfort outputs off"]
+    F --> G["Publish alert when Blynk is available"]
+    G --> A
+    E -->|"No"| H{"Operating mode?"}
+    H -->|"Away"| I["Comfort outputs off; safety monitoring stays active"]
+    H -->|"Auto, Sleep or Study"| J{"Dashboard override active?"}
+    J -->|"Yes"| K["Apply authenticated light or fan override"]
+    J -->|"No"| L["Apply occupancy, light, time and temperature rules"]
+    I --> M["Write relays, LEDs and servo"]
+    K --> M
+    L --> M
+    M --> N["Publish telemetry and confirmed output states"]
+    N --> A
+

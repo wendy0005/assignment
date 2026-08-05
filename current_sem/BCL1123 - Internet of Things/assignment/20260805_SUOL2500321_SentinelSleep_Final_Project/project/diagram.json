@@ -1,0 +1,42 @@
+{
+  "version": 1,
+  "author": "Chan Jing Yi - SUOL2500321",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": 110, "left": -60, "attrs": {} },
+    { "type": "wokwi-dht22", "id": "dht1", "top": -145, "left": 140, "attrs": { "temperature": "27.3", "humidity": "65" } },
+    { "type": "wokwi-pir-motion-sensor", "id": "pir1", "top": -145, "left": 350, "attrs": {} },
+    { "type": "wokwi-photoresistor-sensor", "id": "ldr1", "top": -40, "left": 140, "attrs": { "lux": "500" } },
+    { "type": "wokwi-gas-sensor", "id": "gas1", "top": -40, "left": 350, "attrs": { "ppm": "10", "threshold": "4.8" } },
+    { "type": "wokwi-relay-module", "id": "relayLight", "top": 35, "left": 555, "attrs": {} },
+    { "type": "wokwi-relay-module", "id": "relayFan", "top": 145, "left": 555, "attrs": {} },
+    { "type": "wokwi-led", "id": "mainLight", "top": -210, "left": 125, "attrs": { "color": "yellow", "label": "Main Light" } },
+    { "type": "wokwi-led", "id": "fanLed", "top": -210, "left": 230, "attrs": { "color": "blue", "label": "Fan" } },
+    { "type": "wokwi-led", "id": "nightLight", "top": -210, "left": 325, "attrs": { "color": "white", "label": "Night Light" } },
+    { "type": "wokwi-buzzer", "id": "buzzer", "top": 245, "left": 350, "attrs": { "volume": "0.05" } },
+    { "type": "wokwi-led", "id": "ledR", "top": -210, "left": 435, "attrs": { "color": "red" } },
+    { "type": "wokwi-led", "id": "ledG", "top": -210, "left": 485, "attrs": { "color": "green" } },
+    { "type": "wokwi-led", "id": "ledB", "top": -210, "left": 535, "attrs": { "color": "blue" } },
+    { "type": "wokwi-servo", "id": "curtainServo", "top": 255, "left": 555, "attrs": {} }
+  ],
+  "connections": [
+    ["esp:TX", "$serialMonitor:RX", "", []],
+    ["esp:RX", "$serialMonitor:TX", "", []],
+    ["dht1:VCC", "esp:5V", "red", []], ["dht1:SDA", "esp:15", "green", []], ["dht1:GND", "esp:GND.1", "black", []],
+    ["pir1:VCC", "esp:5V", "red", []], ["pir1:OUT", "esp:16", "green", []], ["pir1:GND", "esp:GND.1", "black", []],
+    ["ldr1:VCC", "esp:5V", "red", []], ["ldr1:AO", "esp:34", "green", []], ["ldr1:GND", "esp:GND.1", "black", []],
+    ["gas1:VCC", "esp:5V", "red", []], ["gas1:AOUT", "esp:35", "green", []], ["gas1:DOUT", "esp:17", "green", []], ["gas1:GND", "esp:GND.1", "black", []],
+    ["relayLight:VCC", "esp:5V", "red", []], ["relayLight:IN", "esp:23", "green", []], ["relayLight:GND", "esp:GND.1", "black", []],
+    ["relayFan:VCC", "esp:5V", "red", []], ["relayFan:IN", "esp:22", "green", []], ["relayFan:GND", "esp:GND.1", "black", []],
+    ["mainLight:A", "esp:23", "yellow", []], ["mainLight:C", "esp:GND.1", "black", []],
+    ["fanLed:A", "esp:22", "blue", []], ["fanLed:C", "esp:GND.1", "black", []],
+    ["nightLight:A", "esp:19", "white", []], ["nightLight:C", "esp:GND.1", "black", []],
+    ["buzzer:1", "esp:18", "orange", []], ["buzzer:2", "esp:GND.1", "black", []],
+    ["ledR:A", "esp:25", "red", []], ["ledR:C", "esp:GND.1", "black", []],
+    ["ledG:A", "esp:26", "green", []], ["ledG:C", "esp:GND.1", "black", []],
+    ["ledB:A", "esp:27", "blue", []], ["ledB:C", "esp:GND.1", "black", []],
+    ["curtainServo:V+", "esp:5V", "red", []], ["curtainServo:PWM", "esp:13", "gray", []], ["curtainServo:GND", "esp:GND.1", "black", []]
+  ],
+  "dependencies": {}
+}
+
