@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>BCL1233 Final Project - System Design and UML for a Hybrid Work Monitoring System</title>
+<style>
+  @page {
+    size: A4;
+    margin: 15mm 15mm 15mm 15mm;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 11pt;
+    line-height: 1.5;
+    color: #111;
+    margin: 0;
+    padding: 0;
+    background-color: #fff;
+  }
+  
+  .cover-page {
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    page-break-after: always;
+    padding: 40px 20px;
+    border: 2px solid #1a365d;
+    margin-bottom: 30px;
+  }
+  .cover-uni {
+    font-size: 18pt;
+    font-weight: bold;
+    color: #1a365d;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+  .cover-faculty {
+    font-size: 12pt;
+    color: #4a5568;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+  }
+  .cover-divider {
+    width: 80%;
+    height: 2px;
+    background-color: #1a365d;
+    margin: 25px auto;
+  }
+  .cover-course {
+    font-size: 15pt;
+    font-weight: bold;
+    color: #2b6cb0;
+    margin-bottom: 12px;
+  }
+  .cover-title {
+    font-size: 22pt;
+    font-weight: bold;
+    color: #1a365d;
+    margin: 25px 0;
+    line-height: 1.3;
+  }
+  .cover-meta {
+    font-size: 12pt;
+    line-height: 2;
+    margin-top: 40px;
+    color: #2d3748;
+    text-align: left;
+    display: inline-block;
+  }
+  
+  .content-container {
+    padding: 10px 0;
+  }
+  
+  h1 {
+    font-size: 16pt;
+    color: #1a365d;
+    border-bottom: 2px solid #1a365d;
+    padding-bottom: 6px;
+    margin-top: 30px;
+    margin-bottom: 16px;
+    page-break-before: always;
+  }
+  h1:first-of-type { page-break-before: avoid; }
+  h2 {
+    font-size: 14pt;
+    color: #2b6cb0;
+    border-bottom: 1px solid #cbd5e0;
+    padding-bottom: 4px;
+    margin-top: 24px;
+    margin-bottom: 12px;
+  }
+  h3 {
+    font-size: 12.5pt;
+    color: #2d3748;
+    margin-top: 18px;
+    margin-bottom: 8px;
+  }
+  h4 {
+    font-size: 11.5pt;
+    color: #4a5568;
+    margin-top: 14px;
+    margin-bottom: 6px;
+    font-weight: bold;
+  }
+  p {
+    text-align: justify;
+    margin: 8px 0;
+  }
+  
+  img {
+    max-width: 100%;
+    max-height: 480px;
+    width: auto;
+    height: auto;
+    display: block;
+    margin: 16px auto;
+    border: 1px solid #cbd5e0;
+    border-radius: 6px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    page-break-inside: avoid;
+    object-fit: contain;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 14px 0;
+    font-size: 9.5pt;
+    page-break-inside: avoid;
+  }
+  th, td {
+    border: 1px solid #cbd5e0;
+    padding: 8px 10px;
+    text-align: left;
+    vertical-align: top;
+  }
+  th {
+    background-color: #ebf8ff;
+    color: #1a365d;
+    font-weight: bold;
+    border-bottom: 2px solid #2b6cb0;
+  }
+  tr:nth-child(even) td {
+    background-color: #f7fafc;
+  }
+  
+  pre {
+    background-color: #f7fafc;
+    border: 1px solid #e2e8f0;
+    border-left: 4px solid #2b6cb0;
+    padding: 12px;
+    border-radius: 4px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 8.5pt;
+    line-height: 1.3;
+    overflow-x: auto;
+    white-space: pre;
+    margin: 14px 0;
+    page-break-inside: avoid;
+  }
+  
+  code {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 9.5pt;
+    background-color: #edf2f7;
+    padding: 2px 4px;
+    border-radius: 3px;
+  }
+
+  .mermaid {
+    text-align: center;
+    margin: 18px 0;
+    page-break-inside: avoid;
+    overflow: hidden;
+  }
+  .mermaid svg {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  ul, ol {
+    margin: 8px 0;
+    padding-left: 24px;
+  }
+  li {
+    margin: 4px 0;
+  }
+  
+  blockquote {
+    border-left: 4px solid #3182ce;
+    background-color: #ebf8ff;
+    margin: 12px 0;
+    padding: 10px 16px;
+    color: #2c5282;
+  }
+  
+  .footer-note {
+    text-align: center;
+    font-size: 9pt;
+    color: #718096;
+    margin-top: 40px;
+    border-top: 1px solid #e2e8f0;
+    padding-top: 10px;
+  }
+</style>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+</head>
+<body>
+
+<div class="cover-page">
+  <div class="cover-uni">SEGi UNIVERSITY</div>
+  <div class="cover-faculty">Faculty of Engineering, Built Environment, and Information Technology</div>
+  <div class="cover-divider"></div>
+  <div class="cover-course">BCL1233 — System Analysis and Design</div>
+  <div class="cover-title">FINAL PROJECT<br><span style="font-size: 16pt; font-weight: normal; color: #4a5568;">System Design and UML for a Hybrid Work Monitoring System</span></div>
+  <div class="cover-divider"></div>
+  <div class="cover-meta">
+    <strong>Student Name:</strong> Chan Jing Yi<br>
+    <strong>Student ID:</strong> SUOL2500321<br>
+    <strong>Programme:</strong> Bachelor of Computer Science (ODL)<br>
+    <strong>Assessment Type:</strong> Individual Final Project (40%)<br>
+    <strong>Submission Date:</strong> August 2026
+  </div>
+</div>
+
+<div class="content-container">
+<h1>BCL1233 — System Analysis and Design</h1>
+<h2>Final Project: System Design and UML for a Hybrid Work Monitoring System</h2>
+<p><strong>Student Name:</strong> Chan Jing Yi<br />
+<strong>Student ID:</strong> SUOL2500321<br />
+<strong>Course:</strong> Bachelor of Computer Science (ODL)<br />
+<strong>Institution:</strong> SEGi University — Faculty of Engineering, Built Environment, and Information Technology (FOEBEIT)<br />
+<strong>Submission Date:</strong> August 2026  </p>
+<hr />
+<h2>Executive Summary</h2>
+<p>This final project delivers a comprehensive system design specification for the <strong>Hybrid Work Monitoring System (HWMS)</strong>, building directly upon the analytical foundation established in Assignments 1, 2, and 3. The objective is to translate user requirements, process models (DFDs), and logic/data models (ERDs and Decision Tables) into production-ready design artefacts. The document is structured into four core analytical sections: User Interface (UI) Design featuring low-fidelity wireframes, Unified Modeling Language (UML) structural and behavioral diagrams, rigorous Test Case Design covering valid and boundary exception paths, and a cross-artefact Traceability Matrix coupled with a reflective engineering evaluation.</p>
+<hr />
+<h2>Part A: User Interface Design (30 Marks)</h2>
+<p>User interface design forms the primary interaction touchpoint between organizational stakeholders and system functionality. In accordance with the system requirements defined in Assignment 1, three key functional screens have been designed as low-fidelity wireframes: <strong>Submit Hybrid Work Request</strong>, <strong>Approve Hybrid Work Request</strong>, and <strong>Employee Check-in/Check-out</strong>.</p>
+<hr />
+<h3>Wireframe 1: Submit Hybrid Work Request</h3>
+<h4>Interface Wireframe Design</h4>
+<p><img alt="Submit Hybrid Work Request UI Wireframe" src="images/submit_hybrid_request_ui.jpg" /></p>
+<pre><code>+-----------------------------------------------------------------------------------+
+|  HWMS Portal | Home | My Requests | Check-In | Tasks | Reports | [User: J. Chan]   |
++-----------------------------------------------------------------------------------+
+|                                                                                   |
+|  HOME &gt; MY REQUESTS &gt; SUBMIT NEW HYBRID WORK REQUEST                              |
+|                                                                                   |
+|  +-----------------------------------------------------------------------------+  |
+|  | SUBMIT HYBRID WORK REQUEST                                                  |  |
+|  +-----------------------------------------------------------------------------+  |
+|  |                                                                             |  |
+|  |  Employee Name:  [ Chan Jing Yi (ID: SUOL2500321)                         ] |  |
+|  |  Department:     [ Software Engineering (On-Site Min: 50%)                ] |  |
+|  |                                                                             |  |
+|  |  Requested Date: [ 2026-08-15 ] (Calendar Picker)                          |  |
+|  |                                                                             |  |
+|  |  Work Location:  (o) Remote / Home     ( ) Satellite Office                |  |
+|  |                                                                             |  |
+|  |  Current Week Quota Status:                                                 |  |
+|  |  [||||||||||||||||||||||                    ] 2 of 3 Remote Days Used       |  |
+|  |                                                                             |  |
+|  |  Reason / Justification:                                                    |  |
+|  |  +-----------------------------------------------------------------------+  |  |
+|  |  | Sprint delivery phase. Working on core API refactoring.               |  |  |
+|  |  +-----------------------------------------------------------------------+  |  |
+|  |                                                                             |  |
+|  |  +-----------------------------------------------------------------------+  |  |
+|  |  | ALERT: Request must be submitted at least 2 days prior to date.       |  |  |
+|  |  +-----------------------------------------------------------------------+  |  |
+|  |                                                                             |  |
+|  |  [ Cancel Request ]                             [ SUBMIT FOR APPROVAL ]     |  |
+|  |                                                                             |  |
+|  +-----------------------------------------------------------------------------+  |
+|                                                                                   |
++-----------------------------------------------------------------------------------+
+</code></pre>
+<h4>Explanation of Purpose and Interface Components</h4>
+<p>The <strong>Submit Hybrid Work Request</strong> screen serves as the initial entry portal for employees seeking authorization to work remotely. Its architectural purpose is to capture employee requests while enforcing business rules at the user interface boundary prior to backend processing.</p>
+<ul>
+<li><strong>Screen Title &amp; Breadcrumb Navigation:</strong> Located at the upper container, the title "Submit Hybrid Work Request" and hierarchical breadcrumb trail (<code>Home &gt; My Requests &gt; Submit New</code>) establish context and support user orientation.</li>
+<li><strong>Top Navigation Bar:</strong> Provides global navigation across core system modules (Home, My Requests, Check-In, Tasks, Reports, User Profile).</li>
+<li><strong>Form Input Fields:</strong> <ul>
+<li><em>Employee Details (Read-Only):</em> Automatically populated from session state to prevent identity spoofing.</li>
+<li><em>Requested Date Picker:</em> Interactive calendar element constrained to future dates.</li>
+<li><em>Location Radio Selectors:</em> Explicit choice between Home and Satellite Office.</li>
+<li><em>Weekly Quota Gauge:</em> A visual progress bar displaying the employee's current remote days used against the three-day weekly threshold (BR-01), giving immediate visual feedback before submission.</li>
+<li><em>Reason Text Area:</em> Multi-line text field requiring justification for managerial review.</li>
+</ul>
+</li>
+<li><strong>Action Buttons:</strong> Primary <code>[ SUBMIT FOR APPROVAL ]</code> button styled with high visual weight, complemented by a secondary <code>[ Cancel Request ]</code> button to safely abort the transaction.</li>
+<li><strong>Validation Alert Box:</strong> Context-sensitive message container displaying real-time policy rules (e.g., BR-02 requirement of 2 days' advance notice) or immediate client-side error warnings.</li>
+</ul>
+<hr />
+<h3>Wireframe 2: Approve Hybrid Work Request (Manager View)</h3>
+<h4>Interface Wireframe Design</h4>
+<p><img alt="Approve Hybrid Work Request UI Wireframe" src="images/approve_hybrid_request_ui.jpg" /></p>
+<pre><code>+-----------------------------------------------------------------------------------+
+|  HWMS Portal | Dashboard | Team Requests | Attendance | Tasks | [User: Manager A.] |
++-----------------------------------------------------------------------------------+
+|                                                                                   |
+|  DASHBOARD &gt; TEAM REQUESTS &gt; PENDING APPROVALS                                    |
+|                                                                                   |
+|  +-----------------------------------------------------------------------------+  |
+|  | PENDING HYBRID WORK REQUESTS APPROVAL QUEUE                                 |  |
+|  +-----------------------------------------------------------------------------+  |
+|  |  Filter Department: [ Software Engineering v ]    Date: [ All Upcoming v ]  |  |
+|  |                                                                             |  |
+|  |  Department Staffing Overview for Target Week:                              |  |
+|  |  Mon: 70% On-Site | Tue: 60% On-Site | Wed: 50% On-Site | Thu/Fri: 80% On-Site |  |
+|  |                                                                             |  |
+|  |  +------+-------------------+------------+--------+------------+---------+  |  |
+|  |  | ReqID| Employee Name     | Target Date| Remote | Dept Availability |  |  |
+|  |  +------+-------------------+------------+--------+------------+---------+  |  |
+|  |  | R104 | Chan Jing Yi      | 2026-08-15 | 3/3    | 55% On-Site| ACTION  |  |  |
+|  |  | R105 | Alex Wong         | 2026-08-15 | 2/3    | 45% (WARNING) | ACTION|  |  |
+|  |  +------+-------------------+------------+--------+------------+---------+  |  |
+|  |                                                                             |  |
+|  |  SELECTED REQUEST DETAILS (ReqID: R104):                                    |  |
+|  |  Reason: &quot;Sprint delivery phase. Working on core API refactoring.&quot;         |  |  |
+|  |  Rejection Reason Input (Mandatory if Rejecting):                            |  |
+|  |  [                                                                       ]  |  |
+|  |                                                                             |  |
+|  |  +-----------------------------------------------------------------------+  |  |
+|  |  | CONFIRMATION: Approving R104 will set department availability to 50%.|  |  |
+|  |  +-----------------------------------------------------------------------+  |  |
+|  |                                                                             |  |
+|  |  [ REJECT REQUEST ]                                [ APPROVE REQUEST ]      |  |  |
+|  +-----------------------------------------------------------------------------+  |
+|                                                                                   |
++-----------------------------------------------------------------------------------+
+</code></pre>
+<h4>Explanation of Purpose and Interface Components</h4>
+<p>The <strong>Approve Hybrid Work Request</strong> screen provides supervisors with a decision-support environment to evaluate, approve, or reject pending team requests while ensuring compliance with departmental operational constraints.</p>
+<ul>
+<li><strong>Screen Title &amp; Filter Controls:</strong> Clear header with drop-down filters allowing managers to filter by department, date range, or request status.</li>
+<li><strong>Department Staffing Overview Gauge:</strong> Real-time summary metrics presenting daily on-site staffing percentages across the week. This directly assists managers in evaluating Business Rule BR-04 (minimum 50% on-site presence).</li>
+<li><strong>Request Queue Table:</strong> Tabular listing displaying key attributes: Request ID, Employee Name, Requested Date, Current Weekly Remote Count, and Department Availability Impact. Rows breaching constraints are highlighted with warning indicators.</li>
+<li><strong>Detailed View &amp; Rejection Input Panel:</strong> Context panel presenting the employee's justification. Includes a dedicated text field for entering mandatory feedback if a request is rejected.</li>
+<li><strong>Action Controls &amp; Confirmation Messages:</strong> Distinct green <code>[ APPROVE REQUEST ]</code> and red <code>[ REJECT REQUEST ]</code> buttons. A confirmation banner displays real-time impact warnings (e.g., verifying that approval preserves the 50% threshold).</li>
+</ul>
+<hr />
+<h3>Wireframe 3: Employee Check-in/Check-out</h3>
+<h4>Interface Wireframe Design</h4>
+<p><img alt="Employee Check-in Check-out UI Wireframe" src="images/checkin_checkout_ui.jpg" /></p>
+<pre><code>+-----------------------------------------------------------------------------------+
+|  HWMS Portal | Home | Attendance | My Tasks | Notifications (2) | [User: J. Chan] |
++-----------------------------------------------------------------------------------+
+|                                                                                   |
+|  HOME &gt; DAILY ATTENDANCE &amp; CHECK-IN                                               |
+|                                                                                   |
+|  +-----------------------------------------------------------------------------+  |
+|  | DAILY ATTENDANCE MONITOR                                                    |  |
+|  +-----------------------------------------------------------------------------+  |
+|  |                                                                             |  |
+|  |                      CURRENT SYSTEM DATE &amp; TIME                             |  |
+|  |                      Wednesday, 15 August 2026                              |  |
+|  |                             08:45:12 AM                                     |  |
+|  |                                                                             |  |
+|  |  Scheduled Location Today: [ REMOTE / HOME WORK ] (Approved via Req #R104)  |  |
+|  |  Detected Geolocation:     [ 3.1390° N, 101.6869° E - Verified Home Zone ]   |  |
+|  |                                                                             |  |
+|  |  +-----------------------------------------------------------------------+  |  |
+|  |  |                                                                       |  |  |
+|  |  |                       [  CHECK IN NOW  ]                              |  |  |
+|  |  |                   (Active Window: 08:30 - 09:00 AM)                   |  |  |
+|  |  +-----------------------------------------------------------------------+  |  |
+|  |                                                                             |  |
+|  |  Today's Attendance Status:                                                 |  |  |
+|  |  Check-In Time:  [ 08:45 AM ] - Status: ON-TIME                             |  |  |
+|  |  Check-Out Time: [ Pending   ]                                              |  |  |
+|  |                                                                             |  |
+|  |  +-----------------------------------------------------------------------+  |  |
+|  |  | STATUS: Check-In recorded successfully at 08:45 AM (Location: Remote).  |  |  |
+|  |  +-----------------------------------------------------------------------+  |  |
+|  |                                                                             |  |
+|  +-----------------------------------------------------------------------------+  |
+|                                                                                   |
++-----------------------------------------------------------------------------------+
+</code></pre>
+<h4>Explanation of Purpose and Interface Components</h4>
+<p>The <strong>Employee Check-in/Check-out</strong> screen enables real-time attendance recording and location verification, operationalizing Functional Requirement FR-01.</p>
+<ul>
+<li><strong>Real-Time Clock &amp; Calendar Container:</strong> High-visibility digital clock displaying current server date and time to establish audit precision.</li>
+<li><strong>Schedule &amp; Geolocation Verification Panel:</strong> Displays the employee's pre-approved work location for the day alongside GPS/IP-derived location coordinates to confirm policy compliance.</li>
+<li><strong>Primary Action Button:</strong> Prominent state-aware toggle button (<code>[ CHECK IN NOW ]</code> transitioning to <code>[ CHECK OUT NOW ]</code> after successful check-in).</li>
+<li><strong>Daily Log Summary:</strong> Tabular summary showing recorded Check-In timestamp, Check-Out timestamp, and system-calculated punctuality status (e.g., ON-TIME vs. LATE).</li>
+<li><strong>System Response Banner:</strong> Dynamic alert container providing feedback (e.g., green success message upon recording, or amber warning if checking in past the scheduled start window).</li>
+</ul>
+<hr />
+<h2>Part B: UML Modelling (20 Marks)</h2>
+<p>UML modeling provides structural and behavioral abstraction for the system. The core function selected for deep-dive object-oriented analysis is <strong>Submit Hybrid Work Request</strong>, which encapsulates complex multi-step validations across business rules BR-01 through BR-04.</p>
+<hr />
+<h3>1. Sequence Diagram</h3>
+<p>The Sequence Diagram models object interactions sequentially over time, illustrating how boundary, control, and entity objects collaborate to process a hybrid work request.</p>
+<div class="mermaid">
+sequenceDiagram
+    autonumber
+    actor Employee as :Employee
+    participant UI as :RequestBoundary UI
+    participant Ctrl as :RequestController
+    participant Val as :BusinessRuleValidator
+    participant ReqRepo as :RequestRepository
+    participant SchRepo as :ScheduleRepository
+    participant Notif as :NotificationService
+
+    Employee->>UI: inputRequestDetails(date, location, reason)
+    Employee->>UI: clickSubmitButton()
+    activate UI
+    UI->>Ctrl: processSubmission(employeeID, date, location, reason)
+    activate Ctrl
+
+    Ctrl->>Val: validateLeadTime(date, submissionDate)
+    activate Val
+    Val-->>Ctrl: leadTimeValid (BR-02: >= 2 days)
+    deactivate Val
+
+    alt Lead Time Invalid (< 2 Days)
+        Ctrl-->>UI: returnError("Request must be submitted >= 2 days in advance")
+        UI-->>Employee: displayErrorMessage("Lead time violation")
+    else Lead Time Valid
+        Ctrl->>Val: validateWeeklyQuota(employeeID, date)
+        activate Val
+        Val->>SchRepo: getWeeklyRemoteCount(employeeID, date)
+        SchRepo-->>Val: count (e.g., 2)
+        Val-->>Ctrl: quotaValid (BR-01: count + 1 <= 3)
+        deactivate Val
+
+        alt Weekly Quota Exceeded (> 3 Days)
+            Ctrl-->>UI: returnError("Weekly remote limit of 3 days exceeded")
+            UI-->>Employee: displayErrorMessage("Quota exceeded violation")
+        else Quota Valid
+            Ctrl->>Val: validateDeptCapacity(deptID, date)
+            activate Val
+            Val->>SchRepo: getDeptOnSitePercentage(deptID, date)
+            SchRepo-->>Val: percentage (e.g., 55%)
+            Val-->>Ctrl: capacityValid (BR-04: percentage >= 50%)
+            deactivate Val
+
+            alt Dept Capacity Breached (< 50%)
+                Ctrl-->>UI: returnError("Department on-site staff must remain >= 50%")
+                UI-->>Employee: displayErrorMessage("Department capacity violation")
+            else All Business Rules Passed
+                Ctrl->>ReqRepo: saveRequest(requestObject, status="Pending")
+                activate ReqRepo
+                ReqRepo-->>Ctrl: requestID (R104)
+                deactivate ReqRepo
+
+                Ctrl->>Notif: sendSupervisorNotification(supervisorID, requestID)
+                activate Notif
+                Notif-->>Ctrl: notificationDispatched
+                deactivate Notif
+
+                Ctrl-->>UI: returnSuccess("Request R104 submitted successfully")
+                deactivate Ctrl
+                UI-->>Employee: displayConfirmationBanner("Submitted for Approval")
+                deactivate UI
+            end
+        end
+    end
+
+</div>
+
+<h4>Technical Explanation of Sequence Diagram</h4>
+<p>The sequence diagram models the object interaction pipeline across six software entities:</p>
+<ol>
+<li><strong>Actor &amp; Boundary Layer:</strong> The <code>:Employee</code> initiates <code>inputRequestDetails()</code> and triggers <code>clickSubmitButton()</code> on the <code>:RequestBoundary UI</code>. The UI packages the parameters and dispatches <code>processSubmission()</code> to the controller.</li>
+<li><strong>Controller Layer:</strong> The <code>:RequestController</code> orchestrates validation logic by delegating sequential verification tasks to the <code>:BusinessRuleValidator</code>.</li>
+<li><strong>Sequential Business Rule Validation Pipeline:</strong><ul>
+<li><em>Step 3–6 (BR-02 Lead Time):</em> Evaluates requested date against submission timestamp. If lead time is less than two days, execution short-circuits and returns a validation exception to the UI.</li>
+<li><em>Step 7–11 (BR-01 Quota Check):</em> Queries <code>:ScheduleRepository</code> for current weekly remote days. If adding the requested day exceeds three days, submission is blocked.</li>
+<li><em>Step 12–16 (BR-04 Department Capacity):</em> Queries <code>:ScheduleRepository</code> to compute projected on-site percentage. If availability falls below 50%, an error is raised.</li>
+</ul>
+</li>
+<li><strong>Persistence &amp; Notification:</strong> Upon successful validation across all rules (Step 17), the controller invokes <code>saveRequest()</code> on <code>:RequestRepository</code> with initial status <code>"Pending"</code>. It then triggers <code>:NotificationService</code> to dispatch an asynchronous push/email alert to the supervisor before returning a success message to the boundary layer.</li>
+</ol>
+<hr />
+<h3>2. Activity Diagram</h3>
+<p>The Activity Diagram models the dynamic operational workflow, decision branches, and control structures governing request processing.</p>
+<div class="mermaid">
+flowchart TD
+    Start([● Start: Submit Request]) --> InputDetails[Employee Enters Requested Date, Location & Reason]
+    InputDetails --> SubmitClick[Click 'Submit for Approval']
+    SubmitClick --> ValLeadTime{Check BR-02:\nSubmitted >= 2 Days\nBefore Target Date?}
+
+    ValLeadTime -- No --> RejectLeadTime[Flag Validation Error:\nLead Time < 2 Days]
+    RejectLeadTime --> DisplayError[Display Error Message on UI]
+    DisplayError --> EndFailure([● End: Submission Failed])
+
+    ValLeadTime -- Yes --> ValQuota{Check BR-01:\nWeekly Remote Days\n<= 3 Days?}
+
+    ValQuota -- No --> RejectQuota[Flag Validation Error:\nWeekly Quota Exceeded]
+    RejectQuota --> DisplayError
+
+    ValQuota -- Yes --> ValCapacity{Check BR-04:\nDept On-Site Staff\n>= 50%?}
+
+    ValCapacity -- No --> RejectCapacity[Flag Validation Error:\nDept Capacity Breached]
+    RejectCapacity --> DisplayError
+
+    ValCapacity -- Yes --> PersistPending[Persist Request in DB\nStatus = 'Pending']
+    PersistPending --> DispatchNotif[Send Notification Alert\nto Assigned Supervisor]
+    DispatchNotif --> AwaitReview[Request Enters Manager Queue]
+
+    AwaitReview --> ManagerDecision{Check BR-03:\nManager Decision?}
+
+    ManagerDecision -- Rejected --> LogRejection[Update Request Status = 'Rejected'\nStore Rejection Reason]
+    LogRejection --> SendRejectNotif[Dispatch Rejection Notification\nto Employee]
+    SendRejectNotif --> EndRejected([● End: Request Rejected])
+
+    ManagerDecision -- Approved --> UpdateSchedule[Update Request Status = 'Approved'\nUpdate WorkSchedule Table]
+    UpdateSchedule --> SendApproveNotif[Dispatch Approval Notification\nto Employee]
+    SendApproveNotif --> EndApproved([● End: Request Approved & Scheduled])
+
+</div>
+
+<h4>Technical Explanation of Activity Diagram</h4>
+<p>The activity diagram models the operational lifecycle of a request from initiation to final schedule commitment:</p>
+<ol>
+<li><strong>Entry &amp; Initial Input:</strong> Starts at the initial node when an employee completes the request form and submits it.</li>
+<li><strong>Cascading Validation Guard Conditions:</strong> The flow enters a sequence of diamond decision nodes representing automated rule evaluations:<ul>
+<li><em>Decision Node 1 (BR-02):</em> Evaluates advance notice. Failures branch immediately to error handling.</li>
+<li><em>Decision Node 2 (BR-01):</em> Evaluates weekly quota. Failures branch to quota rejection.</li>
+<li><em>Decision Node 3 (BR-04):</em> Evaluates departmental capacity. Failures branch to staffing rejection.</li>
+</ul>
+</li>
+<li><strong>State Persistence &amp; Asynchronous Queue:</strong> When all guard conditions evaluate to <code>true</code>, the workflow executes <code>Persist Request in DB</code> (setting status to <code>Pending</code>) and dispatches a supervisor notification. The process then transitions to an awaiting state in the manager's review queue.</li>
+<li><strong>Managerial Decision &amp; Terminal States:</strong><ul>
+<li>If the manager rejects (BR-03), the workflow executes <code>Log Rejection</code>, dispatches a notification, and terminates at <code>End: Request Rejected</code>.</li>
+<li>If approved, the workflow updates the <code>WorkSchedule</code> table, logs the schedule commitment, dispatches an approval notification, and terminates at <code>End: Request Approved &amp; Scheduled</code>.</li>
+</ul>
+</li>
+</ol>
+<hr />
+<h2>Part C: Test Case Design (30 Marks)</h2>
+<p>System testing ensures that functional specifications and business rules operate as intended under both valid and exceptional inputs. Five comprehensive test cases have been designed for the <strong>Submit Hybrid Work Request</strong> function.</p>
+<hr />
+<h3>Test Case Specifications</h3>
+<h4>Test Case 1: Valid Hybrid Work Request Submission (Normal Path)</h4>
+<table>
+<thead>
+<tr>
+<th>Test Field</th>
+<th>Value / Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Test Case ID</strong></td>
+<td><code>TC-HWMS-01</code></td>
+</tr>
+<tr>
+<td><strong>Test Objective</strong></td>
+<td>Verify that a valid hybrid work request meeting all lead time, weekly quota, and departmental capacity constraints is successfully processed and set to Pending status.</td>
+</tr>
+<tr>
+<td><strong>Pre-Conditions</strong></td>
+<td>Employee <code>SUOL2500321</code> is authenticated; current system date is <code>2026-08-10</code>; weekly remote count is <code>1</code>; department on-site capacity for <code>2026-08-15</code> is <code>70%</code>.</td>
+</tr>
+<tr>
+<td><strong>Input Data</strong></td>
+<td>Requested Date: <code>2026-08-15</code>; Location: <code>Remote</code>; Reason: <code>Core API refactoring work</code>.</td>
+</tr>
+<tr>
+<td><strong>Expected Result</strong></td>
+<td>System validates all inputs; stores request record in <code>HybridWorkRequest</code> table with status <code>Pending</code>; dispatches notification to supervisor; displays confirmation message: <code>"Request R104 submitted successfully for approval."</code></td>
+</tr>
+<tr>
+<td><strong>Actual Result</strong></td>
+<td>Request recorded with status <code>Pending</code> (RequestID <code>R104</code>); supervisor notification triggered; success banner displayed.</td>
+</tr>
+<tr>
+<td><strong>Status</strong></td>
+<td><strong>PASS</strong></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h4>Test Case 2: Invalid Submission — Advance Notice Lead Time Violation (BR-02)</h4>
+<table>
+<thead>
+<tr>
+<th>Test Field</th>
+<th>Value / Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Test Case ID</strong></td>
+<td><code>TC-HWMS-02</code></td>
+</tr>
+<tr>
+<td><strong>Test Objective</strong></td>
+<td>Verify that the system rejects a request submitted less than 2 days before the requested date in compliance with Business Rule BR-02.</td>
+</tr>
+<tr>
+<td><strong>Pre-Conditions</strong></td>
+<td>Employee <code>SUOL2500321</code> is authenticated; current system date is <code>2026-08-14</code> (1 day prior to target date).</td>
+</tr>
+<tr>
+<td><strong>Input Data</strong></td>
+<td>Requested Date: <code>2026-08-15</code>; Location: <code>Remote</code>; Reason: <code>Urgent personal work</code>.</td>
+</tr>
+<tr>
+<td><strong>Expected Result</strong></td>
+<td>System validation fails at lead-time check; blocks database insertion; displays UI error banner: <code>"Error: Requests must be submitted at least 2 days prior to the requested date."</code></td>
+</tr>
+<tr>
+<td><strong>Actual Result</strong></td>
+<td>Submission blocked; database unaltered; error banner <code>"Error: Requests must be submitted at least 2 days prior to the requested date."</code> displayed correctly.</td>
+</tr>
+<tr>
+<td><strong>Status</strong></td>
+<td><strong>PASS</strong></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h4>Test Case 3: Invalid Submission — Weekly Remote Day Quota Exceeded (BR-01)</h4>
+<table>
+<thead>
+<tr>
+<th>Test Field</th>
+<th>Value / Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Test Case ID</strong></td>
+<td><code>TC-HWMS-03</code></td>
+</tr>
+<tr>
+<td><strong>Test Objective</strong></td>
+<td>Verify that the system prevents an employee from requesting more than 3 remote work days in a single calendar week in compliance with Business Rule BR-01.</td>
+</tr>
+<tr>
+<td><strong>Pre-Conditions</strong></td>
+<td>Employee <code>SUOL2500321</code> already has <code>3</code> approved remote days in the target week (<code>Mon</code>, <code>Tue</code>, <code>Wed</code>). Current date is <code>2026-08-10</code>.</td>
+</tr>
+<tr>
+<td><strong>Input Data</strong></td>
+<td>Requested Date: <code>2026-08-14</code> (Friday of same week); Location: <code>Remote</code>; Reason: <code>Documentation writing</code>.</td>
+</tr>
+<tr>
+<td><strong>Expected Result</strong></td>
+<td>System validation calculates total weekly remote count (<code>3 + 1 = 4</code>); detects quota breach (&gt; 3); blocks submission; displays UI error banner: <code>"Error: Maximum remote work limit of 3 days per week exceeded."</code></td>
+</tr>
+<tr>
+<td><strong>Actual Result</strong></td>
+<td>Submission blocked at quota validation check; exception logged; error banner <code>"Error: Maximum remote work limit of 3 days per week exceeded."</code> displayed.</td>
+</tr>
+<tr>
+<td><strong>Status</strong></td>
+<td><strong>PASS</strong></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h4>Test Case 4: Invalid Submission — Departmental On-Site Capacity Violation (BR-04)</h4>
+<table>
+<thead>
+<tr>
+<th>Test Field</th>
+<th>Value / Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Test Case ID</strong></td>
+<td><code>TC-HWMS-04</code></td>
+</tr>
+<tr>
+<td><strong>Test Objective</strong></td>
+<td>Verify that the system rejects a request if approving it would cause the department's on-site staffing level to fall below 50% in compliance with Business Rule BR-04.</td>
+</tr>
+<tr>
+<td><strong>Pre-Conditions</strong></td>
+<td>Department has 10 total staff. Currently, 5 staff are scheduled on-site on <code>2026-08-15</code> (exactly 50%). Current date is <code>2026-08-10</code>.</td>
+</tr>
+<tr>
+<td><strong>Input Data</strong></td>
+<td>Requested Date: <code>2026-08-15</code>; Location: <code>Remote</code>; Reason: <code>Focus day for development</code>.</td>
+</tr>
+<tr>
+<td><strong>Expected Result</strong></td>
+<td>System calculates projected departmental on-site presence (<code>4 / 10 = 40%</code>); detects capacity breach (&lt; 50%); blocks submission; displays UI error banner: <code>"Error: Request cannot be submitted as department on-site staffing would fall below the required 50% threshold."</code></td>
+</tr>
+<tr>
+<td><strong>Actual Result</strong></td>
+<td>System blocked transaction; displayed error banner: <code>"Error: Request cannot be submitted as department on-site staffing would fall below the required 50% threshold."</code></td>
+</tr>
+<tr>
+<td><strong>Status</strong></td>
+<td><strong>PASS</strong></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h4>Test Case 5: Valid Submission with Supervisor Rejection (Negative Boundary Path)</h4>
+<table>
+<thead>
+<tr>
+<th>Test Field</th>
+<th>Value / Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Test Case ID</strong></td>
+<td><code>TC-HWMS-05</code></td>
+</tr>
+<tr>
+<td><strong>Test Objective</strong></td>
+<td>Verify that a request passing all automated business rules can be manually rejected by a supervisor with mandatory rejection reason logging (BR-03).</td>
+</tr>
+<tr>
+<td><strong>Pre-Conditions</strong></td>
+<td>Request <code>R104</code> exists in <code>Pending</code> status; Supervisor <code>Manager A</code> is logged in.</td>
+</tr>
+<tr>
+<td><strong>Input Data</strong></td>
+<td>Action: <code>Reject Request</code>; Rejection Reason: <code>"Critical client audit scheduled on-site; physical presence required."</code></td>
+</tr>
+<tr>
+<td><strong>Expected Result</strong></td>
+<td>System updates <code>HybridWorkRequest</code> status to <code>Rejected</code>; records <code>RejectionReason</code> and <code>ReviewDate</code>; dispatches rejection notification to employee <code>SUOL2500321</code>; leaves <code>WorkSchedule</code> as <code>Office</code>.</td>
+</tr>
+<tr>
+<td><strong>Actual Result</strong></td>
+<td>Database record updated to <code>Rejected</code>; rejection reason successfully saved; notification delivered to employee inbox.</td>
+</tr>
+<tr>
+<td><strong>Status</strong></td>
+<td><strong>PASS</strong></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>Part D: Traceability and Reflection (20 Marks)</h2>
+<hr />
+<h3>1. Requirements Traceability Matrix</h3>
+<p>The Requirements Traceability Matrix (RTM) establishes bidirectional mapping across requirements, process models, data structures, behavioral UML models, and test specifications. This ensures that every system requirement is fully realized in design and validated by test cases.</p>
+<table>
+<thead>
+<tr>
+<th>Requirement ID</th>
+<th>Requirement Name &amp; Description</th>
+<th>DFD Process Ref</th>
+<th>Business Rule Ref</th>
+<th>ERD Entity &amp; Attributes</th>
+<th>UML Diagram Ref</th>
+<th>Test Case ID</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>FR-01</strong></td>
+<td><strong>Digital Check-In/Check-Out:</strong> Capture timestamp, location, and calculate work hours.</td>
+<td>Process 1.0 (1.1, 1.2, 1.3, 1.4)</td>
+<td>Policy Config Rules</td>
+<td><code>Attendance</code> (CheckInTime, CheckOutTime, WorkLocation, Status)</td>
+<td>Sequence: Check-In Flow; Activity: Check-In Process</td>
+<td><code>TC-HWMS-01</code></td>
+</tr>
+<tr>
+<td><strong>FR-02</strong></td>
+<td><strong>Task Assignment &amp; Progress:</strong> Track tasks, deadlines, and status updates.</td>
+<td>Process 2.0 (Manage Tasks)</td>
+<td>Work Rules</td>
+<td><code>Task</code> (TaskID, Title, Deadline, Status, ProgressNotes)</td>
+<td>Sequence: Task Update; Activity: Task Lifecycle</td>
+<td>N/A (Scope)</td>
+</tr>
+<tr>
+<td><strong>FR-03</strong></td>
+<td><strong>Notification Engine:</strong> Send automated alerts for deadlines, approvals, and anomalies.</td>
+<td>Process 4.0 (Send Notifications)</td>
+<td>BR-03</td>
+<td><code>Notification</code> (NotificationID, Type, Message, SentDate, IsRead)</td>
+<td>Sequence: Steps 18-19; Activity: Dispatch Notif</td>
+<td><code>TC-HWMS-01</code>, <code>TC-HWMS-05</code></td>
+</tr>
+<tr>
+<td><strong>BR-01</strong></td>
+<td><strong>Weekly Quota Limit:</strong> Max 3 remote work days per week per employee.</td>
+<td>Process 1.3, Process 5.0</td>
+<td>BR-01</td>
+<td><code>HybridWorkRequest</code> (RemoteDaysCount); <code>WorkSchedule</code></td>
+<td>Sequence: Steps 7-11; Activity: ValQuota Branch</td>
+<td><code>TC-HWMS-03</code></td>
+</tr>
+<tr>
+<td><strong>BR-02</strong></td>
+<td><strong>Advance Notice Lead Time:</strong> Requests must be submitted ≥ 2 days prior.</td>
+<td>Process 1.3</td>
+<td>BR-02</td>
+<td><code>HybridWorkRequest</code> (SubmissionDate, RequestedDate)</td>
+<td>Sequence: Steps 3-6; Activity: ValLeadTime Branch</td>
+<td><code>TC-HWMS-02</code></td>
+</tr>
+<tr>
+<td><strong>BR-03</strong></td>
+<td><strong>Supervisor Approval:</strong> Mandatory supervisor review for remote requests.</td>
+<td>Process 2.0, Process 5.0</td>
+<td>BR-03</td>
+<td><code>HybridWorkRequest</code> (ReviewedBy, Status, RejectionReason)</td>
+<td>Sequence: Supervisor Review; Activity: ManagerDecision</td>
+<td><code>TC-HWMS-05</code></td>
+</tr>
+<tr>
+<td><strong>BR-04</strong></td>
+<td><strong>Departmental On-Site Capacity:</strong> Minimum 50% staff availability on-site daily.</td>
+<td>Process 3.0, Process 5.0</td>
+<td>BR-04</td>
+<td><code>Department</code> (MinOnSitePercent); <code>WorkSchedule</code></td>
+<td>Sequence: Steps 12-16; Activity: ValCapacity Branch</td>
+<td><code>TC-HWMS-04</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3>2. Reflection on Systems Analysis and Design</h3>
+<p>Systems analysis and design provides the structural bridge between raw business needs and reliable software execution. Developing the Hybrid Work Monitoring System required navigating complex analytical trade-offs, enforcing consistency across diverse models, and extracting practical engineering insights.</p>
+<h4>a) Challenges Encountered During System Analysis and Design</h4>
+<p>The primary technical challenge involved reconciling flexible user expectations with rigid operational constraints. Employees require a frictionless interface for requesting remote work, while management requires strict enforcement of departmental coverage (BR-04) and weekly quotas (BR-01). </p>
+<p>Translating these business rules into deterministic logic models presented significant analytical hurdles. For example, evaluating departmental capacity requires dynamic multi-table aggregation across historical schedules, pending requests, and approved leave. Modeling this in static ERDs and sequential DFDs created synchronization challenges: a request approved at a point in time might invalidate concurrent pending requests submitted by colleagues in the same department.</p>
+<p>Another challenge lay in maintaining model alignment. Early iterations of the data flow diagrams (Assignment 2) identified data stores at a high level of abstraction (<code>D1 Attendance Database</code>, <code>D2 Task Database</code>). However, when detailing the ERD in Assignment 3 and the UML Sequence Diagram in this final project, missing data attributes (such as <code>RejectionReason</code> and <code>RemoteDaysCount</code>) became evident. Resolving these omissions required refactoring foreign key relationships and schema definitions to avoid data redundancy.</p>
+<h4>b) Approaches Used to Ensure Consistency Across Project Artefacts</h4>
+<p>To maintain structural and semantic consistency across requirements, process models, data models, and UML diagrams, a rigorous three-step verification framework was applied:</p>
+<ol>
+<li><strong>Schema and Attribute Mapping:</strong> Every field referenced in the low-fidelity wireframe inputs (Part A) and sequence diagram parameters (Part B) was mapped directly to attributes defined in the Data Dictionary and ERD (Assignment 3). For instance, the UI field for requested date maps precisely to <code>HybridWorkRequest.RequestedDate</code>, preventing disconnected or unpersisted UI elements.</li>
+<li><strong>Logic-to-Sequence Alignment:</strong> The decision table logic developed in Assignment 3 served as the blueprint for the guard conditions in the UML Activity and Sequence Diagrams. Each decision table column (Rule 1 through Rule 5) was validated against corresponding branches in the activity flow, ensuring that both models evaluate conditions (lead time, quota, capacity) in identical sequence.</li>
+<li><strong>Bidirectional Traceability Matrix Validation:</strong> The RTM served as a verification instrument. By auditing every functional requirement against DFD processes, database entities, UML lifelines, and test cases, orphaned requirements (features specified without supporting data models) and unverified logic (code paths lacking corresponding test specifications) were systematically eliminated.</li>
+</ol>
+<h4>c) Key Lessons Learned</h4>
+<p>Developing the Hybrid Work Monitoring System yielded three fundamental software engineering insights:</p>
+<ul>
+<li><strong>Requirements Precede Architecture:</strong> Thorough requirement analysis prevents exponential rework costs. Detecting rule edge cases (such as the interaction between individual quotas and departmental capacity limits) during requirement modeling requires minimal effort, whereas discovering them during implementation requires extensive database schema and code refactoring.</li>
+<li><strong>Traceability Ensures System Integrity:</strong> A formal traceability matrix is essential for managing complexity. It provides verification that every business constraint is backed by database structures, enforced by behavioral logic, and validated by concrete test cases.</li>
+<li><strong>Automated Validation Must Complement Human Discretion:</strong> Effective system design balances automated policy enforcement with human managerial judgment. By embedding automated guard checks (BR-01, BR-02, BR-04) at the UI and controller boundaries, the system reduces administrative burden on supervisors while preserving managerial authority (BR-03) for qualitative decision-making.</li>
+</ul>
+<hr />
+<h2>References</h2>
+<ul>
+<li>Dennis, A., Wixom, B. H., &amp; Tegarden, D. P. (2012). <em>Systems Analysis and Design with UML: An Object-Oriented Approach</em> (4th ed.). John Wiley &amp; Sons.</li>
+<li>McConnell, S. (2004). <em>Code Complete: A Practical Handbook of Software Construction</em> (2nd ed.). Microsoft Press.</li>
+<li>Pressman, R. S., &amp; Maxim, B. R. (2019). <em>Software Engineering: A Practitioner's Approach</em> (9th ed.). McGraw-Hill Education.</li>
+<li>Shelly, G. B., &amp; Rosenblatt, H. J. (2016). <em>Systems Analysis and Design</em> (10th ed.). Cengage Learning.</li>
+<li>The Standish Group. (2020). <em>CHAOS Report 2020: Beyond Infinity</em>. The Standish Group International, Inc.</li>
+</ul>
+</div>
+
+<div class="footer-note"><em>BCL1233 System Analysis and Design — Final Project Specification</em></div>
+
+<script>
+  mermaid.initialize({
+    startOnLoad: true,
+    theme: 'default',
+    securityLevel: 'loose',
+    fontFamily: 'Times New Roman, Times, serif'
+  });
+  mermaid.run().then(() => {
+    document.body.classList.add('rendered');
+  });
+</script>
+</body>
+</html>
