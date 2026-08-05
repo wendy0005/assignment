@@ -1,93 +1,111 @@
-# SentinelSleep Final Demonstration Script
+# SentinelSleep Final Demonstration Speech Script
 
-Target duration: **12–14 minutes**. The presenter’s face must remain visible throughout, including screen demonstrations. Use a picture-in-picture camera layout rather than cutting to a full-screen recording without the presenter.
+## Introduction
 
-## 0:00–0:45 — Introduction
+“Hello, my name is Chan Jing Yi, and my student ID is SUOL2500321. This is my BCL1123 Internet of Things final project, called SentinelSleep.
 
-**Show:** Title, face camera, student name and ID.
+SentinelSleep is a smart-bedroom system built using an ESP32, Wokwi simulation and the Blynk IoT platform. It monitors temperature, humidity, room brightness, occupancy and gas safety. It can control the main light, fan, night light, buzzer and curtain servo.”
 
-“Hello, I am Chan Jing Yi, student ID SUOL2500321. This is my BCL1123 Internet of Things final project, SentinelSleep. It implements my smart-bedroom proposal using an ESP32 simulation in Wokwi and an authenticated Blynk dashboard. I will demonstrate the hardware integration, local rules, cloud data, controls, security measures and failure behavior.”
+## Hardware and architecture
 
-## 0:45–1:45 — Environment and objective
+“This is the Wokwi circuit. The DHT22 measures temperature and humidity. The PIR sensor detects occupancy. The photoresistor measures illuminance, and the MQ-2 provides gas-safety input.
 
-**Show:** Bedroom and switch-panel photographs.
+The system also contains relays for the main light and fan, RGB status indicators, a night-light indicator, a buzzer and a curtain servo.
 
-Explain that the bedroom supports sleeping and study, while its existing controls cannot combine occupancy, brightness, temperature, mode and safety. State that the prototype coordinates these conditions without using a bedroom camera or microphone.
+The ESP32 processes the sensor readings locally. It then sends telemetry to Blynk through virtual datastreams. The Blynk dashboard displays both sensor readings and confirmed actuator states.”
 
-## 1:45–3:00 — Wokwi hardware
+## Baseline operation
 
-**Show:** Full Wokwi circuit, then zoom into each input/output.
+“First, I will demonstrate the normal operating condition.
 
-Identify the DHT22, PIR, photoresistor, MQ-2, light and fan relays, night light, RGB indicators, buzzer and curtain servo. Mention the exact ESP32 pins only when pointing at the corresponding wires. Explain that the relay and MQ-2 paths are simulations and not certified physical safety equipment.
+The device is online. The temperature is approximately 27.3 degrees Celsius, humidity is 65 percent, illuminance is about 499 lux, and gas voltage is approximately 4.43 volts.
 
-## 3:00–4:00 — Architecture and cloud contract
+The system status is SAFE, and the comfort outputs are currently inactive.”
 
-**Show:** Figure 4 architecture, then Blynk device dashboard.
+## Normal lighting
 
-Explain the path from sensors to the ESP32, through Wokwi Wi-Fi to Blynk virtual datastreams, and into the web/mobile interface. Point out that V10–V14 carry desired controls while V5–V9 report confirmed state and reasons.
+“Next, I will reduce the illuminance below the lighting threshold and trigger the PIR sensor.
 
-## 4:00–5:20 — Normal lighting test
+The room is now dark and occupied. The ESP32 detects these conditions and activates the main light.
 
-**Show:** Wokwi and Blynk side by side.
+The Blynk dashboard confirms the occupancy state, the main-light state and the action reason. When motion stops, the demonstration vacancy timer expires and the light turns off again.”
 
-1. Start with 500 lux and no motion; show that lighting is off.
-2. Reduce light below 100 lux and trigger PIR motion.
-3. Show the main-light output and confirm V4/V5 plus the action reason on Blynk.
-4. Stop motion and wait for the shortened five-second demonstration timeout.
+## Temperature and humidity
 
-Explain that production timing would be longer; the short timeout makes the live logic observable within the assessment video.
+“Now I will increase the temperature to approximately 30 degrees Celsius while the room is occupied.
 
-## 5:20–6:35 — Temperature, fan and humidity
+The fan activates because the temperature is above the fan threshold. When the temperature is reduced, the hysteresis logic prevents the fan from switching rapidly between states.
 
-1. Trigger occupancy and set temperature to 28 °C; show fan activation.
-2. Lower temperature into the 26–28 °C band; show that hysteresis keeps the fan stable.
-3. Lower to 26 °C; show fan release.
-4. Raise humidity to 70%; show the yellow warning and Blynk event.
+I will now raise the humidity above 70 percent. The Blynk dashboard changes to COMFORT WARNING, and the Wokwi red and green RGB channels illuminate together to show the warning condition.”
 
-## 6:35–7:45 — Modes and overrides
+## Sleep mode
 
-**Show:** Blynk controls and confirmed outputs.
+“I will now select Sleep mode.
 
-Demonstrate Sleep, Study and Away. Then show the light and fan Auto/Off/On overrides. State that the dashboard requests a change, but the separate reported-state indicators confirm what the ESP32 actually applied.
+The illuminance is approximately 25 lux, which is below the sleep lighting threshold, and the PIR detects occupancy.
 
-## 7:45–8:20 — Curtain servo
+The night light activates, while the main light and fan remain off. This provides low-level lighting that is suitable for sleeping.”
 
-Move the curtain slider from 0 to 90 and 180 degrees. Show the Wokwi servo and the confirmed Blynk value.
+## Study mode
 
-## 8:20–9:50 — Gas safety priority
+“Next, I will select Study mode.
 
-1. Increase the MQ-2 concentration until its digital output becomes active-low.
-2. Show the red indicator, buzzer and comfort outputs turning off.
-3. Show the Blynk `gas_alert` event and GAS ALERT status.
-4. Press acknowledgement and show that the local alarm remains active.
-5. Lower the concentration and wait for three safe reads before the alarm clears.
+The temperature is approximately 30.2 degrees Celsius and the illuminance is below 100 lux. Study mode treats the room as occupied.
 
-State clearly that the prototype supplements rather than replaces certified smoke or carbon-monoxide alarms.
+The Blynk dashboard shows occupancy, main light and fan active. The Wokwi indicators and relays show the same confirmed output state.”
 
-## 9:50–10:50 — Network interruption
+## Away mode
 
-Interrupt the simulated network or Blynk connection. Show through the serial monitor that sensor reads and local rules continue. Restore connectivity and show the device returning online, telemetry refreshing and the reconnect event.
+“I will now select Away mode.
 
-## 10:50–11:50 — Code and security
+The dashboard reports that Away mode has disabled the comfort outputs. The main light, fan and night light are off.
 
-**Show:** Selected code only; never show `secrets.h`.
+The Wokwi circuit confirms that the corresponding outputs are also inactive. This prevents unnecessary operation when the room is unoccupied.”
 
-Point to `BlynkTimer`, constrained enum values, the gas-priority branch, bounded reconnection and the gitignored secret file. Explain that the private examiner README contains login information only because the brief requires it; credentials are not committed publicly or printed in logs.
+## Light override
 
-## 11:50–12:40 — Reflection
+“I will set the operating mode back to Auto and select Light Override On.
 
-Discuss the MQ-2 threshold issue, why a blocking cloud connection was unsuitable, and why desired dashboard controls had to be separated from reported actuator state. Mention the limits of simulation: it verifies logic and cloud interaction, not mains safety or sensor calibration.
+The main light turns on immediately. The Blynk dashboard reports the override and the active main-light state, while the Wokwi main-light indicator and relay also activate.”
 
-## 12:40–13:10 — Closing
+## Fan override
 
-“SentinelSleep demonstrates stable ESP32 integration, local priority-based control, authenticated cloud telemetry, dashboard interaction and explicit security boundaries. Thank you.”
+“Now I will select Fan Override On.
 
-## Recording checklist
+The fan indicator turns on in Blynk, and the Wokwi fan indicator and relay activate. This demonstrates that the manual command is applied and that the confirmed output state is reported separately from the requested control.”
 
-- Face visible continuously.
-- Screen text readable at 1080p.
-- No auth token, password, email inbox or unrelated private tabs visible.
-- Blynk and Wokwi clocks/readings synchronized with the spoken test.
-- Final duration below 15 minutes.
-- Test the exported MP4 from beginning to end before upload.
+## Curtain servo
 
+“I will now move the curtain control from zero degrees to 90 degrees and then to 180 degrees.
+
+The Wokwi servo follows the selected position, and the Blynk dashboard reports the confirmed curtain position.”
+
+## Gas alert and acknowledgement
+
+“Next, I will increase the MQ-2 gas value until the safety threshold is reached.
+
+The system now reports GAS ALERT. The red indicator and buzzer activate, and the comfort outputs are forced off because gas safety has the highest priority.
+
+I will press the Acknowledge Alert control. The acknowledgement is recorded, but the alarm remains active while the gas condition is still unsafe.
+
+After lowering the gas value, the system waits for multiple safe readings before clearing the alarm and returning to the SAFE state.”
+
+## Network and security
+
+“The ESP32 continues running its sensor and safety logic locally, even if the cloud connection is interrupted. When the connection is restored, the device reconnects and the Blynk telemetry updates again.
+
+For security, the Blynk token is stored in a private ignored secrets file. It is not displayed in the video or committed as a public credential.”
+
+## Reflection
+
+“This project demonstrates the importance of separating requested control states from confirmed actuator states. It also shows why gas safety must take priority over comfort controls.
+
+The system is validated through simulation and cloud interaction. However, the Wokwi prototype does not replace certified gas alarms, mains-safety testing or real sensor calibration.”
+
+## Closing
+
+“To conclude, SentinelSleep demonstrates ESP32 sensor integration, local priority-based automation, Blynk cloud monitoring, operating modes, manual overrides and gas-safety handling.
+
+The system provides explainable output decisions while keeping safety logic active at the device level.
+
+Thank you for watching.”
