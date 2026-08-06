@@ -174,12 +174,16 @@
 
   .mermaid {
     text-align: center;
-    margin: 18px 0;
+    margin: 20px 0;
     page-break-inside: avoid;
-    overflow: hidden;
+    page-break-before: auto;
+    page-break-after: auto;
+    overflow: visible;
   }
   .mermaid svg {
     max-width: 100%;
+    max-height: 220mm;
+    width: auto;
     height: auto;
   }
   
@@ -246,41 +250,6 @@
 <h3>Wireframe 1: Submit Hybrid Work Request</h3>
 <h4>Interface Wireframe Design</h4>
 <p><img alt="Submit Hybrid Work Request UI Wireframe" src="images/submit_hybrid_request_ui.jpg" /></p>
-<pre><code>+-----------------------------------------------------------------------------------+
-|  HWMS Portal | Home | My Requests | Check-In | Tasks | Reports | [User: J. Chan]   |
-+-----------------------------------------------------------------------------------+
-|                                                                                   |
-|  HOME &gt; MY REQUESTS &gt; SUBMIT NEW HYBRID WORK REQUEST                              |
-|                                                                                   |
-|  +-----------------------------------------------------------------------------+  |
-|  | SUBMIT HYBRID WORK REQUEST                                                  |  |
-|  +-----------------------------------------------------------------------------+  |
-|  |                                                                             |  |
-|  |  Employee Name:  [ Chan Jing Yi (ID: SUOL2500321)                         ] |  |
-|  |  Department:     [ Software Engineering (On-Site Min: 50%)                ] |  |
-|  |                                                                             |  |
-|  |  Requested Date: [ 2026-08-15 ] (Calendar Picker)                          |  |
-|  |                                                                             |  |
-|  |  Work Location:  (o) Remote / Home     ( ) Satellite Office                |  |
-|  |                                                                             |  |
-|  |  Current Week Quota Status:                                                 |  |
-|  |  [||||||||||||||||||||||                    ] 2 of 3 Remote Days Used       |  |
-|  |                                                                             |  |
-|  |  Reason / Justification:                                                    |  |
-|  |  +-----------------------------------------------------------------------+  |  |
-|  |  | Sprint delivery phase. Working on core API refactoring.               |  |  |
-|  |  +-----------------------------------------------------------------------+  |  |
-|  |                                                                             |  |
-|  |  +-----------------------------------------------------------------------+  |  |
-|  |  | ALERT: Request must be submitted at least 2 days prior to date.       |  |  |
-|  |  +-----------------------------------------------------------------------+  |  |
-|  |                                                                             |  |
-|  |  [ Cancel Request ]                             [ SUBMIT FOR APPROVAL ]     |  |
-|  |                                                                             |  |
-|  +-----------------------------------------------------------------------------+  |
-|                                                                                   |
-+-----------------------------------------------------------------------------------+
-</code></pre>
 <h4>Explanation of Purpose and Interface Components</h4>
 <p>The <strong>Submit Hybrid Work Request</strong> screen serves as the initial entry portal for employees seeking authorization to work remotely. Its architectural purpose is to capture employee requests while enforcing business rules at the user interface boundary prior to backend processing.</p>
 <ul>
@@ -298,44 +267,10 @@
 <li><strong>Validation Alert Box:</strong> Context-sensitive message container displaying real-time policy rules (e.g., BR-02 requirement of 2 days' advance notice) or immediate client-side error warnings.</li>
 </ul>
 <hr />
+<p><br> <br> <br>  </p>
 <h3>Wireframe 2: Approve Hybrid Work Request (Manager View)</h3>
 <h4>Interface Wireframe Design</h4>
 <p><img alt="Approve Hybrid Work Request UI Wireframe" src="images/approve_hybrid_request_ui.jpg" /></p>
-<pre><code>+-----------------------------------------------------------------------------------+
-|  HWMS Portal | Dashboard | Team Requests | Attendance | Tasks | [User: Manager A.] |
-+-----------------------------------------------------------------------------------+
-|                                                                                   |
-|  DASHBOARD &gt; TEAM REQUESTS &gt; PENDING APPROVALS                                    |
-|                                                                                   |
-|  +-----------------------------------------------------------------------------+  |
-|  | PENDING HYBRID WORK REQUESTS APPROVAL QUEUE                                 |  |
-|  +-----------------------------------------------------------------------------+  |
-|  |  Filter Department: [ Software Engineering v ]    Date: [ All Upcoming v ]  |  |
-|  |                                                                             |  |
-|  |  Department Staffing Overview for Target Week:                              |  |
-|  |  Mon: 70% On-Site | Tue: 60% On-Site | Wed: 50% On-Site | Thu/Fri: 80% On-Site |  |
-|  |                                                                             |  |
-|  |  +------+-------------------+------------+--------+------------+---------+  |  |
-|  |  | ReqID| Employee Name     | Target Date| Remote | Dept Availability |  |  |
-|  |  +------+-------------------+------------+--------+------------+---------+  |  |
-|  |  | R104 | Chan Jing Yi      | 2026-08-15 | 3/3    | 55% On-Site| ACTION  |  |  |
-|  |  | R105 | Alex Wong         | 2026-08-15 | 2/3    | 45% (WARNING) | ACTION|  |  |
-|  |  +------+-------------------+------------+--------+------------+---------+  |  |
-|  |                                                                             |  |
-|  |  SELECTED REQUEST DETAILS (ReqID: R104):                                    |  |
-|  |  Reason: &quot;Sprint delivery phase. Working on core API refactoring.&quot;         |  |  |
-|  |  Rejection Reason Input (Mandatory if Rejecting):                            |  |
-|  |  [                                                                       ]  |  |
-|  |                                                                             |  |
-|  |  +-----------------------------------------------------------------------+  |  |
-|  |  | CONFIRMATION: Approving R104 will set department availability to 50%.|  |  |
-|  |  +-----------------------------------------------------------------------+  |  |
-|  |                                                                             |  |
-|  |  [ REJECT REQUEST ]                                [ APPROVE REQUEST ]      |  |  |
-|  +-----------------------------------------------------------------------------+  |
-|                                                                                   |
-+-----------------------------------------------------------------------------------+
-</code></pre>
 <h4>Explanation of Purpose and Interface Components</h4>
 <p>The <strong>Approve Hybrid Work Request</strong> screen provides supervisors with a decision-support environment to evaluate, approve, or reject pending team requests while ensuring compliance with departmental operational constraints.</p>
 <ul>
@@ -349,41 +284,6 @@
 <h3>Wireframe 3: Employee Check-in/Check-out</h3>
 <h4>Interface Wireframe Design</h4>
 <p><img alt="Employee Check-in Check-out UI Wireframe" src="images/checkin_checkout_ui.jpg" /></p>
-<pre><code>+-----------------------------------------------------------------------------------+
-|  HWMS Portal | Home | Attendance | My Tasks | Notifications (2) | [User: J. Chan] |
-+-----------------------------------------------------------------------------------+
-|                                                                                   |
-|  HOME &gt; DAILY ATTENDANCE &amp; CHECK-IN                                               |
-|                                                                                   |
-|  +-----------------------------------------------------------------------------+  |
-|  | DAILY ATTENDANCE MONITOR                                                    |  |
-|  +-----------------------------------------------------------------------------+  |
-|  |                                                                             |  |
-|  |                      CURRENT SYSTEM DATE &amp; TIME                             |  |
-|  |                      Wednesday, 15 August 2026                              |  |
-|  |                             08:45:12 AM                                     |  |
-|  |                                                                             |  |
-|  |  Scheduled Location Today: [ REMOTE / HOME WORK ] (Approved via Req #R104)  |  |
-|  |  Detected Geolocation:     [ 3.1390° N, 101.6869° E - Verified Home Zone ]   |  |
-|  |                                                                             |  |
-|  |  +-----------------------------------------------------------------------+  |  |
-|  |  |                                                                       |  |  |
-|  |  |                       [  CHECK IN NOW  ]                              |  |  |
-|  |  |                   (Active Window: 08:30 - 09:00 AM)                   |  |  |
-|  |  +-----------------------------------------------------------------------+  |  |
-|  |                                                                             |  |
-|  |  Today's Attendance Status:                                                 |  |  |
-|  |  Check-In Time:  [ 08:45 AM ] - Status: ON-TIME                             |  |  |
-|  |  Check-Out Time: [ Pending   ]                                              |  |  |
-|  |                                                                             |  |
-|  |  +-----------------------------------------------------------------------+  |  |
-|  |  | STATUS: Check-In recorded successfully at 08:45 AM (Location: Remote).  |  |  |
-|  |  +-----------------------------------------------------------------------+  |  |
-|  |                                                                             |  |
-|  +-----------------------------------------------------------------------------+  |
-|                                                                                   |
-+-----------------------------------------------------------------------------------+
-</code></pre>
 <h4>Explanation of Purpose and Interface Components</h4>
 <p>The <strong>Employee Check-in/Check-out</strong> screen enables real-time attendance recording and location verification, operationalizing Functional Requirement FR-01.</p>
 <ul>
@@ -402,82 +302,56 @@
 <div class="mermaid">
 sequenceDiagram
     autonumber
-    actor Employee as :Employee
-    participant UI as :RequestBoundary UI
-    participant Ctrl as :RequestController
-    participant Val as :BusinessRuleValidator
-    participant ReqRepo as :RequestRepository
-    participant SchRepo as :ScheduleRepository
-    participant Notif as :NotificationService
+    actor Employee as Employee
+    participant UI as Web Portal (UI)
+    participant System as System Controller
+    participant DB as Database
+    participant Notif as Notification System
 
-    Employee->>UI: inputRequestDetails(date, location, reason)
-    Employee->>UI: clickSubmitButton()
+    Employee->>UI: Submit Request (Date, Location, Reason)
     activate UI
-    UI->>Ctrl: processSubmission(employeeID, date, location, reason)
-    activate Ctrl
+    UI->>System: Process Submission Details
+    activate System
 
-    Ctrl->>Val: validateLeadTime(date, submissionDate)
-    activate Val
-    Val-->>Ctrl: leadTimeValid (BR-02: >= 2 days)
-    deactivate Val
+    System->>DB: Validate Business Rules (Lead Time, Quota, Capacity)
+    activate DB
+    DB-->>System: Validation Passed
+    deactivate DB
 
-    alt Lead Time Invalid (< 2 Days)
-        Ctrl-->>UI: returnError("Request must be submitted >= 2 days in advance")
-        UI-->>Employee: displayErrorMessage("Lead time violation")
-    else Lead Time Valid
-        Ctrl->>Val: validateWeeklyQuota(employeeID, date)
-        activate Val
-        Val->>SchRepo: getWeeklyRemoteCount(employeeID, date)
-        SchRepo-->>Val: count (e.g., 2)
-        Val-->>Ctrl: quotaValid (BR-01: count + 1 <= 3)
-        deactivate Val
+    alt Validation Failed
+        System-->>UI: Return Error Message
+        UI-->>Employee: Display Policy Violation Warning
+    else Validation Passed
+        System->>DB: Save Request Record (Status: Pending)
+        activate DB
+        DB-->>System: Request Saved (Request ID Generated)
+        deactivate DB
 
-        alt Weekly Quota Exceeded (> 3 Days)
-            Ctrl-->>UI: returnError("Weekly remote limit of 3 days exceeded")
-            UI-->>Employee: displayErrorMessage("Quota exceeded violation")
-        else Quota Valid
-            Ctrl->>Val: validateDeptCapacity(deptID, date)
-            activate Val
-            Val->>SchRepo: getDeptOnSitePercentage(deptID, date)
-            SchRepo-->>Val: percentage (e.g., 55%)
-            Val-->>Ctrl: capacityValid (BR-04: percentage >= 50%)
-            deactivate Val
+        System->>Notif: Send Notification Alert to Supervisor
+        activate Notif
+        Notif-->>System: Notification Dispatched
+        deactivate Notif
 
-            alt Dept Capacity Breached (< 50%)
-                Ctrl-->>UI: returnError("Department on-site staff must remain >= 50%")
-                UI-->>Employee: displayErrorMessage("Department capacity violation")
-            else All Business Rules Passed
-                Ctrl->>ReqRepo: saveRequest(requestObject, status="Pending")
-                activate ReqRepo
-                ReqRepo-->>Ctrl: requestID (R104)
-                deactivate ReqRepo
-
-                Ctrl->>Notif: sendSupervisorNotification(supervisorID, requestID)
-                activate Notif
-                Notif-->>Ctrl: notificationDispatched
-                deactivate Notif
-
-                Ctrl-->>UI: returnSuccess("Request R104 submitted successfully")
-                deactivate Ctrl
-                UI-->>Employee: displayConfirmationBanner("Submitted for Approval")
-                deactivate UI
-            end
-        end
+        System-->>UI: Return Success Response
+        deactivate System
+        UI-->>Employee: Display Confirmation Message
+        deactivate UI
     end
 
 </div>
 
 <h4>Technical Explanation of Sequence Diagram</h4>
-<p>The sequence diagram models the object interaction pipeline across six software entities:</p>
+<p>The simplified sequence diagram models the object interaction pipeline across five core system components:</p>
 <ol>
-<li><strong>Actor &amp; Boundary Layer:</strong> The <code>:Employee</code> initiates <code>inputRequestDetails()</code> and triggers <code>clickSubmitButton()</code> on the <code>:RequestBoundary UI</code>. The UI packages the parameters and dispatches <code>processSubmission()</code> to the controller.</li>
-<li><strong>Controller Layer:</strong> The <code>:RequestController</code> orchestrates validation logic by delegating sequential verification tasks to the <code>:BusinessRuleValidator</code>.</li>
-<li><strong>Sequential Business Rule Validation Pipeline:</strong><ul>
-<li><em>Step 3–6 (BR-02 Lead Time):</em> Evaluates requested date against submission timestamp. If lead time is less than two days, execution short-circuits and returns a validation exception to the UI.</li>
-<li><em>Step 7–11 (BR-01 Quota Check):</em> Queries <code>:ScheduleRepository</code> for current weekly remote days. If adding the requested day exceeds three days, submission is blocked.</li>
-<li><em>Step 12–16 (BR-04 Department Capacity):</em> Queries <code>:ScheduleRepository</code> to compute projected on-site percentage. If availability falls below 50%, an error is raised.</li>
+<li><strong>Actor &amp; Interface Layer:</strong> The <code>Employee</code> enters request details (date, location, reason) and clicks submit on the <code>Web Portal (UI)</code>. The UI forwards the submission details to the <code>System Controller</code>.</li>
+<li><strong>Validation &amp; Rules Check:</strong> The <code>System Controller</code> queries the <code>Database</code> to validate core business constraints in sequence:<ul>
+<li><em>Lead Time Rule (BR-02):</em> Verifies request date is at least 2 days in advance.</li>
+<li><em>Weekly Quota Rule (BR-01):</em> Verifies weekly remote count does not exceed 3 days.</li>
+<li><em>Department Capacity Rule (BR-04):</em> Verifies department on-site presence remains at or above 50%.</li>
 </ul>
 </li>
+<li><strong>Exception Handling &amp; Alternative Path:</strong> If any business rule validation fails, the controller short-circuits execution and returns a descriptive error message to the UI to notify the employee.</li>
+<li><strong>Persistence &amp; Notification:</strong> When validation passes, the controller instructs the <code>Database</code> to save the request with <code>Pending</code> status. It then invokes the <code>Notification System</code> to dispatch an alert to the supervisor before returning a success message to the UI.</li>
 <li><strong>Persistence &amp; Notification:</strong> Upon successful validation across all rules (Step 17), the controller invokes <code>saveRequest()</code> on <code>:RequestRepository</code> with initial status <code>"Pending"</code>. It then triggers <code>:NotificationService</code> to dispatch an asynchronous push/email alert to the supervisor before returning a success message to the boundary layer.</li>
 </ol>
 <hr />
@@ -485,54 +359,33 @@ sequenceDiagram
 <p>The Activity Diagram models the dynamic operational workflow, decision branches, and control structures governing request processing.</p>
 <div class="mermaid">
 flowchart TD
-    Start([● Start: Submit Request]) --> InputDetails[Employee Enters Requested Date, Location & Reason]
-    InputDetails --> SubmitClick[Click 'Submit for Approval']
-    SubmitClick --> ValLeadTime{Check BR-02:\nSubmitted >= 2 Days\nBefore Target Date?}
+    Start(["Start: Submit Request"]) --> Input["Employee Submits Request Details"]
+    Input --> Validate{"Validate Business Rules:<br/>BR-01 Quota <= 3 Days<br/>BR-02 Notice >= 2 Days<br/>BR-04 Dept On-Site >= 50%"}
 
-    ValLeadTime -- No --> RejectLeadTime[Flag Validation Error:\nLead Time < 2 Days]
-    RejectLeadTime --> DisplayError[Display Error Message on UI]
-    DisplayError --> EndFailure([● End: Submission Failed])
+    Validate -- "Rule Violation" --> FlagErr["Display Policy Error Message"]
+    FlagErr --> EndFail(["End: Submission Failed"])
 
-    ValLeadTime -- Yes --> ValQuota{Check BR-01:\nWeekly Remote Days\n<= 3 Days?}
+    Validate -- "Rules Passed" --> SavePending["Persist Request (Status: Pending)"]
+    SavePending --> AlertMgr["Send Notification Alert to Manager"]
+    AlertMgr --> ManagerDec{"BR-03: Manager Approval?"}
 
-    ValQuota -- No --> RejectQuota[Flag Validation Error:\nWeekly Quota Exceeded]
-    RejectQuota --> DisplayError
+    ManagerDec -- "Approved" --> ApprAction["Update Status: Approved<br/>Update WorkSchedule Table<br/>Send Approval Alert"]
+    ApprAction --> EndAppr(["End: Request Approved"])
 
-    ValQuota -- Yes --> ValCapacity{Check BR-04:\nDept On-Site Staff\n>= 50%?}
-
-    ValCapacity -- No --> RejectCapacity[Flag Validation Error:\nDept Capacity Breached]
-    RejectCapacity --> DisplayError
-
-    ValCapacity -- Yes --> PersistPending[Persist Request in DB\nStatus = 'Pending']
-    PersistPending --> DispatchNotif[Send Notification Alert\nto Assigned Supervisor]
-    DispatchNotif --> AwaitReview[Request Enters Manager Queue]
-
-    AwaitReview --> ManagerDecision{Check BR-03:\nManager Decision?}
-
-    ManagerDecision -- Rejected --> LogRejection[Update Request Status = 'Rejected'\nStore Rejection Reason]
-    LogRejection --> SendRejectNotif[Dispatch Rejection Notification\nto Employee]
-    SendRejectNotif --> EndRejected([● End: Request Rejected])
-
-    ManagerDecision -- Approved --> UpdateSchedule[Update Request Status = 'Approved'\nUpdate WorkSchedule Table]
-    UpdateSchedule --> SendApproveNotif[Dispatch Approval Notification\nto Employee]
-    SendApproveNotif --> EndApproved([● End: Request Approved & Scheduled])
+    ManagerDec -- "Rejected" --> RejAction["Update Status: Rejected<br/>Log Rejection Reason<br/>Send Rejection Alert"]
+    RejAction --> EndRej(["End: Request Rejected"])
 
 </div>
 
 <h4>Technical Explanation of Activity Diagram</h4>
 <p>The activity diagram models the operational lifecycle of a request from initiation to final schedule commitment:</p>
 <ol>
-<li><strong>Entry &amp; Initial Input:</strong> Starts at the initial node when an employee completes the request form and submits it.</li>
-<li><strong>Cascading Validation Guard Conditions:</strong> The flow enters a sequence of diamond decision nodes representing automated rule evaluations:<ul>
-<li><em>Decision Node 1 (BR-02):</em> Evaluates advance notice. Failures branch immediately to error handling.</li>
-<li><em>Decision Node 2 (BR-01):</em> Evaluates weekly quota. Failures branch to quota rejection.</li>
-<li><em>Decision Node 3 (BR-04):</em> Evaluates departmental capacity. Failures branch to staffing rejection.</li>
-</ul>
-</li>
-<li><strong>State Persistence &amp; Asynchronous Queue:</strong> When all guard conditions evaluate to <code>true</code>, the workflow executes <code>Persist Request in DB</code> (setting status to <code>Pending</code>) and dispatches a supervisor notification. The process then transitions to an awaiting state in the manager's review queue.</li>
-<li><strong>Managerial Decision &amp; Terminal States:</strong><ul>
-<li>If the manager rejects (BR-03), the workflow executes <code>Log Rejection</code>, dispatches a notification, and terminates at <code>End: Request Rejected</code>.</li>
-<li>If approved, the workflow updates the <code>WorkSchedule</code> table, logs the schedule commitment, dispatches an approval notification, and terminates at <code>End: Request Approved &amp; Scheduled</code>.</li>
+<li><strong>Entry &amp; Initial Input:</strong> Starts at the initial node when an employee completes the request form and submits it through the web portal.</li>
+<li><strong>Automated Guard Validations (BR-01, BR-02, BR-04):</strong> Evaluates lead time notice (BR-02), weekly remote quota (BR-01), and departmental on-site staffing capacity (BR-04). If any validation fails, execution branches to display an error and terminates.</li>
+<li><strong>State Persistence &amp; Manager Routing:</strong> When all guard conditions evaluate to <code>true</code>, the workflow persists the request as <code>Pending</code> and dispatches a notification alert to the assigned manager.</li>
+<li><strong>Managerial Decision (BR-03) &amp; Terminal States:</strong><ul>
+<li>If approved, the workflow commits the schedule to <code>WorkSchedule</code>, notifies the employee, and terminates at <code>End: Request Approved</code>.</li>
+<li>If rejected, the workflow records the mandatory rejection reason, notifies the employee, and terminates at <code>End: Request Rejected</code>.</li>
 </ul>
 </li>
 </ol>

@@ -192,12 +192,16 @@ html_document = f"""<!DOCTYPE html>
 
   .mermaid {{
     text-align: center;
-    margin: 18px 0;
+    margin: 20px 0;
     page-break-inside: avoid;
-    overflow: hidden;
+    page-break-before: auto;
+    page-break-after: auto;
+    overflow: visible;
   }}
   .mermaid svg {{
     max-width: 100%;
+    max-height: 220mm;
+    width: auto;
     height: auto;
   }}
   
@@ -270,4 +274,4 @@ html_document = f"""<!DOCTYPE html>
 with open(html_path, "w", encoding="utf-8") as f:
     f.write(html_document)
 
-print("Pre-rendered HTML with uncropped img scaling generated successfully:", html_path)
+print("Pre-rendered HTML with single-page diagram scaling generated successfully:", html_path)
