@@ -1,0 +1,192 @@
+1
+00:00:00,000 --> 00:00:10,000
+ [BLANK_AUDIO]
+
+2
+00:00:30,000 --> 00:00:40,000
+ [BLANK_AUDIO]
+
+3
+00:01:00,000 --> 00:01:10,000
+ [BLANK_AUDIO]
+
+4
+00:01:30,000 --> 00:01:40,000
+ [BLANK_AUDIO]
+
+5
+00:02:00,000 --> 00:02:19,000
+ [BLANK_AUDIO]
+
+6
+00:02:19,000 --> 00:02:21,460
+ Okay, if you are ready, let's continue here.
+
+7
+00:02:21,460 --> 00:02:22,060
+ Are you all ready?
+
+8
+00:02:24,320 --> 00:02:25,420
+ >> Yes, please.
+
+9
+00:02:25,420 --> 00:02:29,040
+ >> Okay, so these are the tips for your final assessment.
+
+10
+00:02:30,000 --> 00:02:32,200
+ [BLANK_AUDIO]
+
+11
+00:02:32,200 --> 00:02:37,360
+ So, I think your final assessment is scheduled next Saturday or
+
+12
+00:02:37,360 --> 00:02:38,260
+ Sunday, right?
+
+13
+00:02:38,260 --> 00:02:39,600
+ [BLANK_AUDIO]
+
+14
+00:02:39,600 --> 00:02:40,400
+ Is it Sunday?
+
+15
+00:02:40,400 --> 00:02:43,480
+ [BLANK_AUDIO]
+
+16
+00:02:43,480 --> 00:02:47,500
+ >> I think Saturday means, yeah, Saturday.
+
+17
+00:02:47,500 --> 00:02:51,880
+ >> Yeah, it's an online assessment, but it's a proctored test.
+
+18
+00:02:51,880 --> 00:02:56,640
+ That means people observe you, then it's a closed book test.
+
+19
+00:02:56,640 --> 00:03:01,480
+ So you're not allowed to refer to any other, what we call that,
+
+20
+00:03:01,480 --> 00:03:04,060
+ resources during the test, yeah?
+
+21
+00:03:04,060 --> 00:03:07,360
+ You have done this kind of test before?
+
+22
+00:03:07,360 --> 00:03:11,240
+ >> Yes, Miss, for- >> The previous subject,
+
+23
+00:03:11,240 --> 00:03:12,680
+ previous message subject, right?
+
+24
+00:03:12,680 --> 00:03:14,400
+ >> Yeah, the mathematical one.
+
+25
+00:03:14,400 --> 00:03:21,120
+ >> Okay, yeah, so let me share.
+
+26
+00:03:21,120 --> 00:03:25,720
+ This is some important tips, so you just follow exactly.
+
+27
+00:03:25,720 --> 00:03:33,400
+ So first of course, you need to understand on drawing ERD, okay?
+
+28
+00:03:33,400 --> 00:03:35,440
+ So entity relationship diagram.
+
+29
+00:03:35,440 --> 00:03:46,940
+ [BLANK_AUDIO]
+
+30
+00:03:46,940 --> 00:03:51,720
+ So, I think we have done some studies before on drawing ERD diagram.
+
+31
+00:03:51,720 --> 00:03:55,040
+ And for your test also, I think you've done ERD diagram, right?
+
+32
+00:03:55,040 --> 00:03:57,400
+ So far, any of you still have any issues with ERD?
+
+33
+00:03:57,400 --> 00:04:00,640
+ [BLANK_AUDIO]
+
+34
+00:04:00,640 --> 00:04:03,960
+ So practice for, you can look for more example online.
+
+35
+00:04:03,960 --> 00:04:08,480
+ I will try to check, is there any past year questions available?
+
+36
+00:04:08,480 --> 00:04:12,360
+ Then I will try to share one set with question and answer.
+
+37
+00:04:12,360 --> 00:04:15,800
+ So alert me, okay, maybe on Monday, I'll just look for
+
+38
+00:04:15,800 --> 00:04:18,560
+ a sample questions, past year questions.
+
+39
+00:04:18,560 --> 00:04:23,280
+ I'll share one set, so that you have more practice on
+
+40
+00:04:23,280 --> 00:04:27,080
+ past year questions, you know, questions on past year papers.
+
+41
+00:04:27,080 --> 00:04:29,720
+ And for second topic, it's about normalization.
+
+42
+00:04:31,720 --> 00:04:36,600
+ Of course, normalization is a bit challenging topic compared to other topics here.
+
+43
+00:04:36,600 --> 00:04:41,720
+ So here for your test, you need to understand UNF, unnormalized form.
+
+44
+00:04:43,280 --> 00:04:47,360
+ And we have 1NF, 2NF, until the 3NF.
+
+45
+00:04:47,360 --> 00:04:50,720
+ [BLANK_AUDIO]
+
+46
+00:04:50,720 --> 00:04:56,840
+ Okay, so you'll be given a data set, or you'll be given another scenario.
+
+47
+00:04:56,840 --> 00:05:03,880
+ So from there, you have to perform all this normalization, UNF until 3NF, okay?
+
+48
+00:05:03,880 --> 00:05:06,960
+ So try to refer to the, for those who.
+

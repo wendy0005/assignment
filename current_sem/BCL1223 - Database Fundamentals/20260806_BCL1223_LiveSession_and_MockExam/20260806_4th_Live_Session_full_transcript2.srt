@@ -1,0 +1,1764 @@
+1
+00:00:00,000 --> 00:00:11,440
+ First of today's session is to share final exam tips and as well I want you all to demonstrate
+
+2
+00:00:11,440 --> 00:00:13,880
+ your assignment completion.
+
+3
+00:00:13,880 --> 00:00:20,840
+ So I expect you to demonstrate the coding that you have done, the outcome of your assignment.
+
+4
+00:00:20,840 --> 00:00:27,680
+ So I'll be recording the session and your demonstration and presentation is important.
+
+5
+00:00:27,680 --> 00:00:32,440
+ It carries some marks for your overall assignment marks.
+
+6
+00:00:32,440 --> 00:00:35,640
+ So example let's say total assignment marks is 10.
+
+7
+00:00:35,640 --> 00:00:39,960
+ So this one I'll calculate, sorry that total is 100.
+
+8
+00:00:39,960 --> 00:00:43,680
+ This one presentation is considered 10 marks.
+
+9
+00:00:43,680 --> 00:00:49,600
+ So those absent today's presentation without valid reason yeah and that's why some of
+
+10
+00:00:49,600 --> 00:00:51,560
+ them they have valid reason.
+
+11
+00:00:51,560 --> 00:00:56,640
+ I asked them to do pre-recording that means they can use PowerPoint or whatever tools
+
+12
+00:00:56,640 --> 00:01:02,520
+ to record their assignment demonstration and then they can submit it to me.
+
+13
+00:01:02,520 --> 00:01:05,200
+ So maybe I'll create a link also for submission.
+
+14
+00:01:05,200 --> 00:01:09,160
+ So as for today yeah so you can share screen here.
+
+15
+00:01:09,160 --> 00:01:16,600
+ So I expect you to share screen then you can use PowerPoint to explain your assignment
+
+16
+00:01:16,600 --> 00:01:22,240
+ and switch to coding or you can straight maybe use report.
+
+17
+00:01:22,240 --> 00:01:28,040
+ No slides means you can show report, explain some important content of your assignment
+
+18
+00:01:28,040 --> 00:01:34,120
+ and then you can show the SQL, Oracle life or any tools that you're using tools doesn't
+
+19
+00:01:34,120 --> 00:01:40,240
+ matter as long you have a utilize a proper tools to complete your assignment that is
+
+20
+00:01:40,240 --> 00:01:41,800
+ good enough.
+
+21
+00:01:41,800 --> 00:01:44,360
+ So it's your turn now.
+
+22
+00:01:44,360 --> 00:01:49,600
+ So if you're ready just share screen and then after we complete this then I'll explain
+
+23
+00:01:49,600 --> 00:01:52,960
+ the final exam preparation.
+
+24
+00:01:52,960 --> 00:02:02,400
+ Okay so we want to start first if you're ready you can start here.
+
+25
+00:02:02,400 --> 00:02:17,680
+ We want to share first if you're ready you can start.
+
+26
+00:02:17,680 --> 00:02:32,320
+ So looking at the submission list yeah we have Bong Bong are you ready Bong Killio
+
+27
+00:02:32,320 --> 00:02:39,800
+ and Chin yeah yeah you can share screen yeah Bong Killio if I can direct share my calling
+
+28
+00:02:39,800 --> 00:02:47,360
+ can can okay can can can no problem but of course you have to show me how you implement
+
+29
+00:02:47,360 --> 00:02:53,400
+ the entire assignment like you want to show you know some info first then you share coding
+
+30
+00:02:53,400 --> 00:03:14,200
+ either one is okay sure okay is this anyone show my coding already yeah can see okay this
+
+31
+00:03:14,200 --> 00:03:21,000
+ one I'm meeting for the Sturgy College in Perturin Jaya the student report including
+
+32
+00:03:21,000 --> 00:03:31,000
+ the advisor club event membership staff student and venue okay in this assignment I can store
+
+33
+00:03:31,000 --> 00:03:39,000
+ all the required data including the club membership the data of the membership so actually we
+
+34
+00:03:39,000 --> 00:03:46,920
+ can crack the table for the student firstly I drop all the table with constraint constraint
+
+35
+00:03:46,920 --> 00:03:55,360
+ because previously I have using this for the another testing so I drop all the data first
+
+36
+00:03:55,360 --> 00:04:03,680
+ then I crack the table for student after that I crack for the table for advisor the club
+
+37
+00:04:03,680 --> 00:04:13,400
+ membership using the for the student is student ID is the primary key that this one have using
+
+38
+00:04:13,400 --> 00:04:20,800
+ for the the club the anything the membership for the student ID so this one is the primary
+
+39
+00:04:20,800 --> 00:04:31,000
+ key then the club membership staff and also the venue okay this one is what I insert to
+
+40
+00:04:31,000 --> 00:04:41,440
+ the data so I have insert 10 student inside the my students values and also the advisor
+
+41
+00:04:41,440 --> 00:04:50,680
+ staff club venue and membership is this I too fast for my presentation okay can follow
+
+42
+00:04:50,680 --> 00:05:02,920
+ okay yeah okay firstly I if want to select for the student want to find the student name
+
+43
+00:05:02,920 --> 00:05:09,960
+ form for the club for the any like who are joining the club any student for the club I
+
+44
+00:05:09,960 --> 00:05:17,240
+ am using this coding for the find a student at the database okay when I press this one
+
+45
+00:05:17,240 --> 00:05:23,760
+ we can show the student name student form and also the club name we can know who will
+
+46
+00:05:23,760 --> 00:05:32,680
+ entire to join the club so easy for us to find the student who are joining the specific
+
+47
+00:05:32,680 --> 00:05:42,040
+ club so you can sorry you can run some of the query to show the output generated to
+
+48
+00:05:42,040 --> 00:05:52,040
+ miss the output only actually I know I'm running some of the case to running the output for
+
+49
+00:05:52,040 --> 00:06:01,000
+ this one is the advisor okay then this one is the update because based on the previously
+
+50
+00:06:01,000 --> 00:06:08,600
+ I insert the club the advisor I just update one advisor for one club only so I I need to
+
+51
+00:06:08,600 --> 00:06:17,920
+ update the advisor then we can know can find this output and that's the following one is
+
+52
+00:06:17,920 --> 00:06:27,520
+ the student name for the missing documents we can follow if the when the approval form
+
+53
+00:06:27,520 --> 00:06:41,440
+ is we didn't have then this one can follow the the data then this one for the advisor
+
+54
+00:06:41,440 --> 00:06:54,160
+ name for finding the club and also the activity name event and there that the following one
+
+55
+00:06:54,160 --> 00:07:04,920
+ is the total the total sum of the event the advisor join if let's say the advisor is joining
+
+56
+00:07:04,920 --> 00:07:12,680
+ more than one event for the semester they will pass on this coding the sum test when
+
+57
+00:07:12,680 --> 00:07:23,120
+ the e semester event semester number is one then we'll press one else request zero we
+
+58
+00:07:23,120 --> 00:07:31,600
+ can find that one who are joining more than one event at a semester okay the last day
+
+59
+00:07:31,600 --> 00:07:40,240
+ is for the club club ID for all let's we know the student who are entire to the club
+
+60
+00:07:40,240 --> 00:07:54,720
+ is this to shut my prison yeah okay it's good hopefully I've documented the report
+
+61
+00:07:54,720 --> 00:08:04,440
+ where well with like screenshot of the SQL and output yeah any challenges you face during
+
+62
+00:08:04,440 --> 00:08:13,960
+ the assignment I mean some challenges doing this assignment during the most challenges
+
+63
+00:08:13,960 --> 00:08:20,440
+ is when the same test sometimes I forget the same test then I forget to put yeah coding
+
+64
+00:08:20,440 --> 00:08:25,520
+ part like this one I forget to put so understanding the coding is important for your final assessment
+
+65
+00:08:25,520 --> 00:08:33,760
+ as well they will test it or what we call that SQL syntax knowledge but you write the
+
+66
+00:08:33,760 --> 00:08:44,720
+ syntax law during the assessment okay thank you thank you miss yeah yeah thank you okay
+
+67
+00:08:44,720 --> 00:08:55,840
+ no next is chin ratio now you ready I'm following the order of submission okay if you want to
+
+68
+00:08:55,840 --> 00:09:02,960
+ share our video is optional I mean you share screen you want to on video is up to you and
+
+69
+00:09:02,960 --> 00:09:17,040
+ the science we can yeah so yeah yeah so need to share the report order code okay it's up
+
+70
+00:09:17,040 --> 00:09:25,080
+ to you which one you convenient to explain but you can switch mode let me from report
+
+71
+00:09:25,080 --> 00:09:35,960
+ you can go to SQL so see how is so I first first explain the student now so I create
+
+72
+00:09:35,960 --> 00:09:55,160
+ and then open data okay I can see the number 10 and it's tough it's fun this stuff it means
+
+73
+00:09:55,160 --> 00:10:08,160
+ for the event one yeah and the advisor advisor is for the club advisor okay good and smile
+
+74
+00:10:08,160 --> 00:10:29,520
+ also for the club information for the event but the event have the competition drama show
+
+75
+00:10:29,520 --> 00:10:44,800
+ how to use AI music okay and then this one is for the place and for conduct the activity
+
+76
+00:10:44,800 --> 00:11:01,440
+ la the event okay this one is a mandatory I mean who joined the club hmm so I want the
+
+77
+00:11:01,440 --> 00:11:23,680
+ code where okay within this one first one think this one first one first one is but does this
+
+78
+00:11:23,680 --> 00:11:41,440
+ shows membership is yeah this one is the first one for the task and the second one I think
+
+79
+00:11:41,440 --> 00:11:58,480
+ you select two query oh yes correct error do you have the report with the code and output
+
+80
+00:11:58,480 --> 00:12:17,640
+ generator you can open that just now can one some syntax error for having come I think you
+
+81
+00:12:17,640 --> 00:12:29,880
+ should select until the next line the stock at one oh yeah try others
+
+82
+00:12:29,880 --> 00:12:51,680
+ it's okay right other other other other other questions I know I know I know
+
+83
+00:12:51,680 --> 00:13:13,560
+ I think that double S la the syntax error okay this one is no have the question is mentioned
+
+84
+00:13:13,560 --> 00:13:32,000
+ yeah the question is select the advice one so let me show you this is for more than one
+
+85
+00:13:32,000 --> 00:13:37,720
+ right yeah and then this one is for the select one so which one the approval no have the
+
+86
+00:13:37,720 --> 00:14:01,840
+ approval so all is okay so I run the code okay yeah I still don't have and then number
+
+87
+00:14:01,840 --> 00:14:10,040
+ four is want to know which the alone for which card yeah I run the code so when you're doing
+
+88
+00:14:10,040 --> 00:14:16,840
+ this kind of assignment using SQL in the SQL code the Oracle live maybe you can put something
+
+89
+00:14:16,840 --> 00:14:22,880
+ of command like to split the question by maybe number you know how to put command right so
+
+90
+00:14:22,880 --> 00:14:31,940
+ it's here for you to understand would comment what it's specific so the advisor club activity
+
+91
+00:14:31,940 --> 00:14:43,680
+ centuries and fall okay and number five so also show which semester which is assigned
+
+92
+00:14:43,680 --> 00:15:13,200
+ this semester okay so I wonder cool yeah I can see yeah yeah
+
+93
+00:15:13,200 --> 00:15:25,140
+ okay so the last one yeah this one is the last one okay see the event club name and it's
+
+94
+00:15:25,140 --> 00:15:51,880
+ student I mean it's showing which student join that club yeah okay it looks what are
+
+95
+00:15:51,880 --> 00:15:58,880
+ the challenges you face when you're doing this assignment the code law okay so I think
+
+96
+00:15:58,880 --> 00:16:12,600
+ codes error understanding the syntax is the challenging part la okay thank you Chin next
+
+97
+00:16:12,600 --> 00:16:28,360
+ Hari Prasad are you ready okay can you hear me yeah okay all right can you all see the
+
+98
+00:16:28,360 --> 00:16:34,880
+ screen yes yes right so I will start my I didn't prepare any presentation slides so I will
+
+99
+00:16:34,880 --> 00:16:39,320
+ just go to the questions first the question of the assignments are based on the table
+
+100
+00:16:39,320 --> 00:16:49,560
+ one if you have a look on this case party informations and the table data description here it's actually
+
+101
+00:16:49,560 --> 00:17:04,520
+ providing a lot of information for us to create the entity so I next let me go to the right
+
+102
+00:17:04,520 --> 00:17:11,200
+ so next is firstly from for my understanding I created the identity of entity so I want
+
+103
+00:17:11,200 --> 00:17:17,960
+ to know how many entities available here and then I create a purpose and after that I create
+
+104
+00:17:17,960 --> 00:17:23,320
+ a relationship and I didn't get the summary because the reason this is very important
+
+105
+00:17:23,320 --> 00:17:29,880
+ because if this will help me to understand how the relation between each entity and it
+
+106
+00:17:29,880 --> 00:17:35,880
+ will help us help me to understand how to protect the code based on the next questions
+
+107
+00:17:35,880 --> 00:17:44,600
+ so these relationships are and then I have created a data dictionary with the data tag
+
+108
+00:17:44,600 --> 00:17:50,880
+ blanks in constrain so I to understand later when I want to do the coding what the informations
+
+109
+00:17:50,880 --> 00:17:58,520
+ I need to put in so this is important is important dictionary because without this I have a difficult
+
+110
+00:17:58,520 --> 00:18:11,580
+ times to create the table and next is the erd diagram created to understand so the most
+
+111
+00:18:11,580 --> 00:18:17,840
+ important thing is I have created a membership table here because it's a junction entity
+
+112
+00:18:17,840 --> 00:18:23,000
+ where the student to the club is an end to end so I have to create some kind of a relationship
+
+113
+00:18:23,000 --> 00:18:34,240
+ additional relationship to make sure it allows us to have a clear data expression okay so
+
+114
+00:18:34,240 --> 00:18:50,280
+ we'll go for the next one alright this is my article data that I have created informations
+
+115
+00:18:50,280 --> 00:19:03,480
+ here so for example if we go here we can see the column data type and the data informations
+
+116
+00:19:03,480 --> 00:19:12,200
+ here so in advisor section there is advisor id advisor name free school in free form number
+
+117
+00:19:12,200 --> 00:19:34,920
+ when this is the contact number here I will go to the questions so I have created inserted
+
+118
+00:19:34,920 --> 00:19:46,080
+ some information using the standard syntax insert into all for the first questions I
+
+119
+00:19:46,080 --> 00:19:52,880
+ selected this thing because the questions requesting for phone number and where I use
+
+120
+00:19:52,880 --> 00:20:00,240
+ the form student table and checking the membership and because they want to know the name of
+
+121
+00:20:00,240 --> 00:20:06,580
+ the student and the role into club so we have to use the student id and those who are in
+
+122
+00:20:06,580 --> 00:20:12,040
+ the membership so membership is because they're already enrolled so they have a membership
+
+123
+00:20:12,040 --> 00:20:24,640
+ and since location requesting us to find out the order by student names I use this one
+
+124
+00:20:24,640 --> 00:20:33,320
+ and this the detailed information I have on based on the query result okay and the next
+
+125
+00:20:33,320 --> 00:20:39,480
+ thing is a questions of finding the number of advisor we actually more than 12 so that's
+
+126
+00:20:39,480 --> 00:20:46,680
+ a sub query I created first so I firstly want to find the advisor id and from the club and
+
+127
+00:20:46,680 --> 00:20:54,200
+ I want to group them by the advisor id because I want to know how many advisor actually advising
+
+128
+00:20:54,200 --> 00:21:02,920
+ more than one club and from there I use another query where selected advisor id advisor name
+
+129
+00:21:02,920 --> 00:21:11,560
+ and company to find out from advisor and from the club to find out if both ID are informations
+
+130
+00:21:11,560 --> 00:21:25,640
+ correctly and then find the information order and this the informations we can see for example
+
+131
+00:21:25,640 --> 00:21:38,200
+ we can see all Dr. Ahmad Rahman he has two clubs and same with the Dr. Dan Mehle.
+
+132
+00:21:38,200 --> 00:21:45,640
+ The next one is about the question regarding the identifying that students who actually
+
+133
+00:21:45,640 --> 00:21:51,680
+ do not submit the form so I create the query of finally looking at the student id and create
+
+134
+00:21:51,680 --> 00:21:57,960
+ an approval form as a missing form where I find from the table of student where we can
+
+135
+00:21:57,960 --> 00:22:15,160
+ see the faculty approval attributes and order by student id and we can see two person of
+
+136
+00:22:15,160 --> 00:22:25,200
+ it which is Aina and Sikino Aisha and this is one of the quite difficult part for my
+
+137
+00:22:25,200 --> 00:22:44,840
+ end to create a spreadsheet and but I able to understand how to do it so firstly, so
+
+138
+00:22:44,840 --> 00:22:50,280
+ this is the queries where we can see semester one semester two semester three how many times
+
+139
+00:22:50,280 --> 00:22:57,640
+ they actually passed the call and for the challenges part is more towards progression
+
+140
+00:22:57,640 --> 00:23:04,140
+ number five and the syntax error on the coding because sometimes I tend to miss the symbols
+
+141
+00:23:04,140 --> 00:23:25,320
+ here which always create a problem error for me so yeah okay so you have a plan and executed
+
+142
+00:23:25,320 --> 00:23:36,740
+ assignment how to present good so very yeah okay thank you can we have who has supposed
+
+143
+00:23:36,740 --> 00:24:03,920
+ to present today are you ready yes miss okay I can see my screen miss yeah yeah okay this
+
+144
+00:24:03,920 --> 00:24:11,260
+ is my report so I'll start with the first question which is show relationship with between entities
+
+145
+00:24:11,260 --> 00:24:18,440
+ and multiplicities so the first one is student and registers in clubs so it's a one to many
+
+146
+00:24:18,440 --> 00:24:25,560
+ different one to many cardinality and then club to advisor is one to one because each
+
+147
+00:24:25,560 --> 00:24:33,420
+ clubs should have one advisor but it can be many or so and then advisor to club so one
+
+148
+00:24:33,420 --> 00:24:41,960
+ advisor should advise one club only okay next club to president each club is one to one
+
+149
+00:24:41,960 --> 00:24:50,920
+ each club requires one president and then student to club president so one student can serve
+
+150
+00:24:50,920 --> 00:25:01,900
+ as one club presidents only okay next I will go to the data dictionary as you can see I
+
+151
+00:25:01,900 --> 00:25:09,880
+ did each one individually and I add I also added the club membership because every student
+
+152
+00:25:09,880 --> 00:25:19,520
+ should have club membership for easier tracking okay next we go to the ERD diagram so the club
+
+153
+00:25:19,520 --> 00:25:25,920
+ membership will become the junction box for between student and the club so each club
+
+154
+00:25:25,920 --> 00:25:30,720
+ will create a membership for student and a student need to use the club membership to
+
+155
+00:25:30,720 --> 00:25:39,440
+ enter the club so it's easier to try and then each club has one advisor and then each club
+
+156
+00:25:39,440 --> 00:25:49,440
+ organizes events and the events will be held at the venues and in charge by a staff next
+
+157
+00:25:49,440 --> 00:26:03,560
+ we go to the definition of language okay this one I use no coding first okay first the code
+
+158
+00:26:03,560 --> 00:26:11,320
+ will be the create student table next is the create advisor table and then create staff
+
+159
+00:26:11,320 --> 00:26:21,200
+ in charge table a venue club and then for club advisor president club membership and
+
+160
+00:26:21,200 --> 00:26:28,480
+ then the events and this one is to adding in the data so first we go through the students
+
+161
+00:26:28,480 --> 00:26:37,560
+ table so each student table will have student ID student names student phone number the
+
+162
+00:26:37,560 --> 00:26:49,200
+ faculty and the scholarship details so so this is the data that I added in in the tables
+
+163
+00:26:49,200 --> 00:27:00,780
+ about the students names and everything next is the advisor so each advisor table will
+
+164
+00:27:00,780 --> 00:27:11,200
+ have advisor ID name office room number office phone number and this is the 10 of the advisors
+
+165
+00:27:11,200 --> 00:27:26,160
+ in the clubs and then the club membership is included membership ID student ID club ID
+
+166
+00:27:26,160 --> 00:27:36,040
+ and the date they register the into the club and the faculty approval and this is the sample
+
+167
+00:27:36,040 --> 00:27:49,120
+ of student IDs that have been inserted and then this one is the events that included
+
+168
+00:27:49,120 --> 00:28:00,000
+ event ID activity name semester event date club ID and venue ID so the example is coding
+
+169
+00:28:00,000 --> 00:28:05,680
+ workshop dance competition there's a 10 of the events that are going to be happening
+
+170
+00:28:05,680 --> 00:28:21,960
+ and with the updates that is going to happen so staff in charge including staff ID staff
+
+171
+00:28:21,960 --> 00:28:30,320
+ name phone their phone number and office number so these are the 10 stuff that are in charge
+
+172
+00:28:30,320 --> 00:28:46,240
+ of the venue and some events and then lastly the venue so when you I did with that and
+
+173
+00:28:46,240 --> 00:28:58,520
+ stuff ID and this one includes the venue location and the staff ID that will handle this venue
+
+174
+00:28:58,520 --> 00:29:14,800
+ with the venue IDs keep that's all wish yeah well designed Simon and executed so yeah thank
+
+175
+00:29:14,800 --> 00:29:30,360
+ you what's next in the list was of course she's not presenting today right Luis are you ready
+
+176
+00:29:30,360 --> 00:29:38,360
+ Luis lie can I just have a quick minute because I'm just trying to populate and some issue
+
+177
+00:29:38,360 --> 00:29:52,840
+ with the oracle developer and yeah thank you Dr. apologies Chang Jing Lee Chang Jing
+
+178
+00:29:52,840 --> 00:29:56,840
+ Are you here? Yes. Oh, okay, consciously.
+
+179
+00:30:22,840 --> 00:30:28,840
+ Miss, I think I need to leave before I can share my screen.
+
+180
+00:30:28,840 --> 00:30:32,840
+ I need to click and reopen the mic.
+
+181
+00:30:52,840 --> 00:31:02,840
+ [BLANK_AUDIO]
+
+182
+00:31:22,840 --> 00:31:32,840
+ [BLANK_AUDIO]
+
+183
+00:31:51,240 --> 00:31:55,240
+ Let me share my screen now. Okay.
+
+184
+00:31:55,240 --> 00:32:05,240
+ [BLANK_AUDIO]
+
+185
+00:32:05,240 --> 00:32:13,240
+ Okay, so I'll start with my report first. Okay.
+
+186
+00:32:13,240 --> 00:32:23,240
+ Okay, so I'll just start directly with this ARD diagram.
+
+187
+00:32:23,240 --> 00:32:29,240
+ Okay, so the first important design decision was the membership table.
+
+188
+00:32:29,240 --> 00:32:39,240
+ Okay, the student and club have a many to many relationship because a student can join several clubs and each club can have many students.
+
+189
+00:32:39,240 --> 00:32:49,240
+ A direct many to many relationship cannot be implemented cleanly in a relational database.
+
+190
+00:32:49,240 --> 00:32:55,240
+ Okay, so membership resolve into one to many relationships.
+
+191
+00:32:55,240 --> 00:33:07,240
+ And it also stores the data register and membership status because those values describe a student's membership in a particular club rather than the student or club independently.
+
+192
+00:33:07,240 --> 00:33:15,240
+ Also got event registrations as like separate from the membership.
+
+193
+00:33:15,240 --> 00:33:23,240
+ Event registrations. Okay, so because joining a club and registering for one of each event are different facts.
+
+194
+00:33:23,240 --> 00:33:27,240
+ And a member may attend some events and skip others.
+
+195
+00:33:27,240 --> 00:33:33,240
+ So this table records the event student's registration date and attendance status.
+
+196
+00:33:33,240 --> 00:33:45,240
+ Composite foreign key also ensure that the events belong to the stated and that the registering students is a member of that same club.
+
+197
+00:33:45,240 --> 00:33:53,240
+ And also we have a club president table in a separate relationship.
+
+198
+00:33:53,240 --> 00:34:06,240
+ Okay, so it composite foreign key points to membership, which means a student cannot become president of a club unless that exact student club membership already exists.
+
+199
+00:34:06,240 --> 00:34:15,240
+ So keeping this rule in the database, it prevents invalid data regardless of which applications enter it.
+
+200
+00:34:15,240 --> 00:34:27,240
+ Okay, so I'll switch to my Oracle Live SQL.
+
+201
+00:34:27,240 --> 00:34:37,240
+ Okay, so for this one.
+
+202
+00:34:37,240 --> 00:34:43,240
+ So I insert all the data in here and the total table is 11.
+
+203
+00:34:43,240 --> 00:34:47,240
+ Okay, and it included all the faculty.
+
+204
+00:34:47,240 --> 00:34:51,240
+ Sorry, I'll open this.
+
+205
+00:34:51,240 --> 00:34:53,240
+ Okay.
+
+206
+00:34:53,240 --> 00:34:59,240
+ Okay, and then, yeah, so it show 11 table here.
+
+207
+00:34:59,240 --> 00:35:07,240
+ And yes, include all those table that I mentioned just now and then total seats also show total seats here.
+
+208
+00:35:07,240 --> 00:35:13,240
+ Okay, so it's 228 and then.
+
+209
+00:35:13,240 --> 00:35:27,240
+ So I also here that has a rejection test.
+
+210
+00:35:27,240 --> 00:35:41,240
+ So here I tried to replace the president's of club that ID C001 with students ID BB-1002.
+
+211
+00:35:41,240 --> 00:35:49,240
+ So the student exists, but the pair C001 and BB-1002 does not exist in the membership.
+
+212
+00:35:49,240 --> 00:35:57,240
+ So like rejects the updates through the composite foreign key named FK president membership here.
+
+213
+00:35:57,240 --> 00:36:13,240
+ Okay, and then so like I feel like this is stronger than checking only the student ID because a normal foreign key to student table would prove that the BB-1002 is a valid student,
+
+214
+00:36:13,240 --> 00:36:17,240
+ but it would not prove membership in C001.
+
+215
+00:36:17,240 --> 00:36:25,240
+ Okay, referencing the combined club and student key proof like both facts together.
+
+216
+00:36:25,240 --> 00:36:30,240
+ And then the safe point and the rollback protect the demonstration data.
+
+217
+00:36:30,240 --> 00:36:34,240
+ So this test does not leave any permanent change.
+
+218
+00:36:34,240 --> 00:36:48,240
+ And then we also got is a multi club advisor SQL.
+
+219
+00:36:48,240 --> 00:36:58,240
+ So all this are those data that I inserted that advisor name, the number of club and the assigned club for each of the advisor name advisor.
+
+220
+00:36:58,240 --> 00:37:06,240
+ Yeah, so you see that each advisor may have assigned to maybe three clubs here.
+
+221
+00:37:06,240 --> 00:37:14,240
+ And also I got this missing approval form.
+
+222
+00:37:14,240 --> 00:37:25,240
+ And these queries like produce a contact list for students who join at least one club but have not submitted their faculty approval form.
+
+223
+00:37:25,240 --> 00:37:31,240
+ So the first condition selects the student whose approved flight is n.
+
+224
+00:37:31,240 --> 00:37:46,240
+ Yeah, so the correlated as these sub query then checks the membership using the current student's ID.
+
+225
+00:37:46,240 --> 00:37:47,240
+ Sorry.
+
+226
+00:37:47,240 --> 00:37:50,240
+ Okay.
+
+227
+00:37:50,240 --> 00:37:59,240
+ Okay, so and then so it result that here 10 students are with missing approval form.
+
+228
+00:37:59,240 --> 00:38:08,240
+ And then lastly we got this preferred by semester.
+
+229
+00:38:08,240 --> 00:38:15,240
+ Okay, so the inner queries here first like it connects the advisor clubs events and semester.
+
+230
+00:38:15,240 --> 00:38:21,240
+ And at that stage each event is still represent as a separate role.
+
+231
+00:38:21,240 --> 00:38:32,240
+ So it groups those roles by advisor and then changes the three semester names into columns.
+
+232
+00:38:32,240 --> 00:38:34,240
+ Okay.
+
+233
+00:38:34,240 --> 00:38:39,240
+ Yeah, and then and counts the events ID in each column.
+
+234
+00:38:39,240 --> 00:38:49,240
+ So and the MVL here it converts like any missing count to zero instead of displaying now.
+
+235
+00:38:49,240 --> 00:38:57,240
+ So the output contains all 10 advisor because the queries begin with the advisor table.
+
+236
+00:38:57,240 --> 00:39:00,240
+ So use and use left choice.
+
+237
+00:39:00,240 --> 00:39:07,240
+ So each semester columns total 15 events and that because there are 15 clubs.
+
+238
+00:39:07,240 --> 00:39:11,240
+ Okay, and every club's whole one event per semester.
+
+239
+00:39:11,240 --> 00:39:15,240
+ So you can see that the doctor doctor Aisha.
+
+240
+00:39:15,240 --> 00:39:19,240
+ She advises to like three clubs.
+
+241
+00:39:19,240 --> 00:39:22,240
+ So her row show three events in every semester.
+
+242
+00:39:22,240 --> 00:39:27,240
+ So across all three semester the preferred.
+
+243
+00:39:27,240 --> 00:39:33,240
+ Reconciled to the 45 events records the store in the database.
+
+244
+00:39:33,240 --> 00:39:44,240
+ Yeah, so actually all this like it covers the main point like 11 normalized table with all the seats that I show just now 228 roles.
+
+245
+00:39:44,240 --> 00:39:51,240
+ And all the primary key foreign key check unique constraint and force.
+
+246
+00:39:51,240 --> 00:40:01,240
+ And also there are six rejection tests past here and all the assessment or six assessments query it returns the correct results.
+
+247
+00:40:01,240 --> 00:40:06,240
+ Yeah, I think that's all for my presentations.
+
+248
+00:40:06,240 --> 00:40:14,240
+ Okay, Chen Jingyi well explained presentation but assignment work.
+
+249
+00:40:14,240 --> 00:40:19,240
+ Anyone else are you presenting?
+
+250
+00:40:19,240 --> 00:40:20,240
+ Yes, Miss.
+
+251
+00:40:20,240 --> 00:40:22,240
+ Okay, can I share screen?
+
+252
+00:40:31,240 --> 00:40:56,240
+ Okay, this is my report.
+
+253
+00:40:56,240 --> 00:41:01,240
+ This is my entity ratio and multiplies as well.
+
+254
+00:41:01,240 --> 00:41:10,240
+ The entity name first advisor as a one to one to many as a relation name is advisers entity name is club.
+
+255
+00:41:10,240 --> 00:41:17,240
+ And that for this an advisor lecture can monitor one more more than the club.
+
+256
+00:41:17,240 --> 00:41:30,240
+ So the club has one to one entity multiple T and same as to student one to many club one to many a student.
+
+257
+00:41:30,240 --> 00:41:39,240
+ Zero to one, one to one and one to many as we go proceed all same.
+
+258
+00:41:39,240 --> 00:42:00,240
+ So the data dictionary have entity student entity advisor entity staff entity venue club, club member and even final is even registration as well for the joint table I have integrated at one deli cascade.
+
+259
+00:42:00,240 --> 00:42:07,240
+ This one can help to prevent integrity on the table.
+
+260
+00:42:07,240 --> 00:42:21,240
+ Same as well to even add on delete restrict and when you are here as well.
+
+261
+00:42:21,240 --> 00:42:38,240
+ This is my diagram handing many to many relationship as student membership.
+
+262
+00:42:38,240 --> 00:42:39,240
+ I see my diagram.
+
+263
+00:42:39,240 --> 00:42:42,240
+ I think for me blurry.
+
+264
+00:42:42,240 --> 00:42:47,240
+ Is it clear?
+
+265
+00:42:47,240 --> 00:42:52,240
+ Hello.
+
+266
+00:42:52,240 --> 00:43:18,240
+ Yes miss yes.
+
+267
+00:43:22,240 --> 00:43:43,240
+ You can't hear your voice.
+
+268
+00:43:43,240 --> 00:44:08,240
+ You'll mutate.
+
+269
+00:44:08,240 --> 00:44:13,240
+ Okay.
+
+270
+00:44:38,240 --> 00:44:48,240
+ Okay.
+
+271
+00:44:48,240 --> 00:45:16,240
+ Okay.
+
+272
+00:45:16,240 --> 00:45:22,240
+ I think I'll be left the call already so I think I'll just present mine.
+
+273
+00:45:22,240 --> 00:45:24,240
+ You want to present now.
+
+274
+00:45:24,240 --> 00:45:26,240
+ I think I think he left the call he's not here.
+
+275
+00:45:26,240 --> 00:45:28,240
+ Yeah and then you can start this.
+
+276
+00:45:28,240 --> 00:45:30,240
+ Okay I'll just quickly cover mine first.
+
+277
+00:45:30,240 --> 00:45:36,240
+ Okay.
+
+278
+00:45:36,240 --> 00:45:39,240
+ Sorry here once I come to China make sure I present the right screen.
+
+279
+00:45:39,240 --> 00:45:41,240
+ Okay yeah we can see a screen.
+
+280
+00:45:41,240 --> 00:45:47,240
+ Okay I think I ended up using the developer one a bit too complicated.
+
+281
+00:45:47,240 --> 00:45:56,240
+ So this is just creating the tables for each specific for the database basically for the students clubs venues events and the lecturer.
+
+282
+00:45:56,240 --> 00:46:03,240
+ This is a self edit table to help track because we need the details for the lecturer who are advisors as well.
+
+283
+00:46:03,240 --> 00:46:08,240
+ Okay this is a specific part to alter the tables adding the constraint for foreign keys.
+
+284
+00:46:08,240 --> 00:46:16,240
+ Basically I had to turn these specific ones unique and then in the developer system I can convert that into the foreign key as well.
+
+285
+00:46:16,240 --> 00:46:36,240
+ There is also the code for the FK there is a FK constraints code where you can also do it in in the setup of the tables as well but I had to use the different version of the Oracle one which is a bit older cause the newer one wasn't working very well so that's why I had to manually go around it.
+
+286
+00:46:36,240 --> 00:46:38,240
+ Okay.
+
+287
+00:46:38,240 --> 00:46:44,240
+ After that populating tables as well there is actually the way where you can sort of like remove this line.
+
+288
+00:46:44,240 --> 00:46:52,240
+ And kind of work it like this and then you go one by one by one but unfortunately mine is again the older versions we have to like manually key in each one.
+
+289
+00:46:52,240 --> 00:46:57,240
+ There is probably a easier way but I couldn't find it so you have a long list of.
+
+290
+00:46:57,240 --> 00:46:59,240
+ Entering the code.
+
+291
+00:46:59,240 --> 00:47:06,240
+ And then I'm not sure how to split up the SQL again this is very foreign so I don't apologize.
+
+292
+00:47:06,240 --> 00:47:12,240
+ Yeah it's very long I don't apologize but each of the queries kind of work on their own you can basically work it from here.
+
+293
+00:47:12,240 --> 00:47:16,240
+ This basically selects the student name and the student phone number as well.
+
+294
+00:47:16,240 --> 00:47:18,240
+ Okay.
+
+295
+00:47:18,240 --> 00:47:21,240
+ And you order this by the student name in alphabetical order.
+
+296
+00:47:21,240 --> 00:47:32,240
+ This basically shows all the lecturers who are also clubs advisors by joining the two tables and identifying who's in a club basically working as an advisor.
+
+297
+00:47:32,240 --> 00:47:42,240
+ I do admit that what I didn't realize was that I accidentally made each data unique so basically you will always show 10 but should there be you know any.
+
+298
+00:47:42,240 --> 00:47:52,240
+ Lecture details who are not I mean on the grand scheme of things there will be a lecture table containing the details who are probably not linked to any clubs which is when you will see the.
+
+299
+00:47:52,240 --> 00:47:55,240
+ The advisors right.
+
+300
+00:47:55,240 --> 00:48:13,240
+ Question three basically this is the one where you have to find out whether the faculty form sorry.
+
+301
+00:48:13,240 --> 00:48:18,240
+ It will appear here this did work out earlier but I think I'll change it and.
+
+302
+00:48:18,240 --> 00:48:26,240
+ Last but not least that's also this one where it will also show you all the club names and the club events that are happening as well.
+
+303
+00:48:26,240 --> 00:48:32,240
+ And Italy question five and six I didn't understand it the logic that I was used to for sequels a bit different.
+
+304
+00:48:32,240 --> 00:48:43,240
+ In terms of the pivot tables but I couldn't get it to work on the Oracle database which is in my it's in my assignment but it's not here I can show that if it's required.
+
+305
+00:48:49,240 --> 00:48:56,240
+ But in terms of this difficulties that I was facing in terms of this is mostly in terms of the Oracle again the Oracle.
+
+306
+00:48:56,240 --> 00:49:07,240
+ The setup was a bit easier once you kind of figure out what to do the latest version the 26 C didn't work for me I had to go all the way down to 21 C.
+
+307
+00:49:07,240 --> 00:49:19,240
+ Yeah but in terms of it is because I learned SQL separately before this and then the syntax is very different that was that was made mostly my struggle so I had to like rechange all my code.
+
+308
+00:49:19,240 --> 00:49:23,240
+ And if it's okay I'll resubmit my assignment as well more.
+
+309
+00:49:23,240 --> 00:49:26,240
+ Yeah I'll open the link until maybe middle of next week.
+
+310
+00:49:26,240 --> 00:49:34,240
+ Okay yeah I'll just resubmit with the correct answer I'll give you more time like at least middle of next week then you'll focus on your exam preparation.
+
+311
+00:49:34,240 --> 00:49:37,240
+ Yes thank you so much.
+
+312
+00:49:37,240 --> 00:49:39,240
+ But that's all from my end.
+
+313
+00:49:39,240 --> 00:49:43,240
+ Yeah so Abilash you can share screen yeah.
+
+314
+00:49:43,240 --> 00:49:45,240
+ Sorry for the interruption.
+
+315
+00:49:45,240 --> 00:49:47,240
+ Yes yes since it's okay.
+
+316
+00:49:47,240 --> 00:49:51,240
+ The mic one is connected to the DSV.
+
+317
+00:49:51,240 --> 00:49:52,240
+ No okay.
+
+318
+00:49:52,240 --> 00:49:54,240
+ No okay I fixed it.
+
+319
+00:50:05,240 --> 00:50:10,240
+ Okay this is my entity relation diagram.
+
+320
+00:50:10,240 --> 00:50:23,240
+ This diagram have six primary entities that they are students, advisor, staff, menu club and even along with two composite junction entities, club member and even registration.
+
+321
+00:50:23,240 --> 00:50:36,240
+ To reserve many to many relationship by enforcing one to one club leadership and one to many advisor monitoring and staff manage menu booking.
+
+322
+00:50:36,240 --> 00:50:39,240
+ You go down.
+
+323
+00:50:39,240 --> 00:50:42,240
+ Okay we proceed to the SQL.
+
+324
+00:50:42,240 --> 00:50:47,240
+ I changed to currently I'm using the tool exam.
+
+325
+00:50:47,240 --> 00:50:52,240
+ This is my exam interface.
+
+326
+00:50:52,240 --> 00:50:56,240
+ This is my my table.
+
+327
+00:50:56,240 --> 00:51:01,240
+ My database, my database name is Seiki Student Affair.
+
+328
+00:51:01,240 --> 00:51:07,240
+ Inside advisor you can solve the all insert values data.
+
+329
+00:51:07,240 --> 00:51:12,240
+ This is my structure.
+
+330
+00:51:12,240 --> 00:51:14,240
+ Same goes to club.
+
+331
+00:51:14,240 --> 00:51:25,240
+ Fdata, F10 data and the structure as well.
+
+332
+00:51:25,240 --> 00:51:27,240
+ Club.
+
+333
+00:51:27,240 --> 00:51:36,240
+ This is club data for 10 and 10 data and same for structure.
+
+334
+00:51:36,240 --> 00:51:45,240
+ Event.
+
+335
+00:51:45,240 --> 00:52:05,240
+ Event and even registration, staff, student and menu for them each time each time when to write SQL is not like the life SQL already prepared need to save somewhere the coding or SQL.
+
+336
+00:52:05,240 --> 00:52:07,240
+ Okay.
+
+337
+00:52:07,240 --> 00:52:13,240
+ If the table also need to copy and paste as well.
+
+338
+00:52:13,240 --> 00:52:18,240
+ Yeah, this cannot save directly like the life SQL.
+
+339
+00:52:18,240 --> 00:52:23,240
+ Every time need to do again and again.
+
+340
+00:52:23,240 --> 00:52:25,240
+ For now I already create the old table.
+
+341
+00:52:25,240 --> 00:52:28,240
+ For now we don't need the need to create table.
+
+342
+00:52:28,240 --> 00:52:29,240
+ Okay.
+
+343
+00:52:29,240 --> 00:52:36,240
+ I will just explain to you here for some case are using enum to yes or no.
+
+344
+00:52:36,240 --> 00:52:42,240
+ Because some people using characters or string to yes or no.
+
+345
+00:52:42,240 --> 00:52:50,240
+ For me I usually use enum for easy can if you create anything like system it can use food.
+
+346
+00:52:50,240 --> 00:52:51,240
+ Okay.
+
+347
+00:52:51,240 --> 00:52:52,240
+ As long you understand.
+
+348
+00:52:52,240 --> 00:52:53,240
+ Okay.
+
+349
+00:52:53,240 --> 00:52:58,240
+ Some some table I use the on delivery streak and want a brick cascade.
+
+350
+00:52:58,240 --> 00:53:01,240
+ This can help to prevent the integrity.
+
+351
+00:53:01,240 --> 00:53:06,240
+ When sometimes user at example.
+
+352
+00:53:06,240 --> 00:53:14,240
+ At venue ID is duplicate the day but they delete in the venue table is not really the one ID.
+
+353
+00:53:14,240 --> 00:53:15,240
+ Integrated.
+
+354
+00:53:15,240 --> 00:53:18,240
+ We avoid the integrity.
+
+355
+00:53:18,240 --> 00:53:25,240
+ To constant the table.
+
+356
+00:53:25,240 --> 00:53:29,240
+ This is my insert values over here.
+
+357
+00:53:29,240 --> 00:53:30,240
+ Okay.
+
+358
+00:53:30,240 --> 00:53:31,240
+ Okay.
+
+359
+00:53:31,240 --> 00:53:36,240
+ For now we go to the query one.
+
+360
+00:53:36,240 --> 00:53:37,240
+ Ready.
+
+361
+00:53:37,240 --> 00:53:46,240
+ These are the output for the query one.
+
+362
+00:53:46,240 --> 00:53:49,240
+ Some of the users they did not use the distinct.
+
+363
+00:53:49,240 --> 00:53:54,240
+ The distinct is using is for avoid the integrity.
+
+364
+00:53:54,240 --> 00:53:58,240
+ Sometimes some table of duplicate ID.
+
+365
+00:53:58,240 --> 00:54:05,240
+ If using the distinct it can avoid the duplicate ID.
+
+366
+00:54:05,240 --> 00:54:08,240
+ This is my query one output.
+
+367
+00:54:08,240 --> 00:54:27,240
+ Okay.
+
+368
+00:54:27,240 --> 00:54:29,240
+ This is our output for the query two.
+
+369
+00:54:29,240 --> 00:54:31,240
+ The advisor ID advisor name.
+
+370
+00:54:31,240 --> 00:54:40,240
+ As we see the select for this query have having count club ID more to one.
+
+371
+00:54:40,240 --> 00:54:41,240
+ Okay.
+
+372
+00:54:41,240 --> 00:54:44,240
+ It can group by advisor ID.
+
+373
+00:54:44,240 --> 00:54:45,240
+ Okay.
+
+374
+00:54:45,240 --> 00:54:54,240
+ And this table is joined with the advisor ID from club.
+
+375
+00:54:54,240 --> 00:54:55,240
+ Club.
+
+376
+00:54:55,240 --> 00:54:56,240
+ Club.
+
+377
+00:54:56,240 --> 00:54:58,240
+ With the club advisor ID.
+
+378
+00:54:58,240 --> 00:55:05,240
+ Okay.
+
+379
+00:55:05,240 --> 00:55:15,240
+ This query help to find the missing approval form from the student.
+
+380
+00:55:15,240 --> 00:55:22,240
+ We can show the student ID, the student name for easy view for number, facility and the
+
+381
+00:55:22,240 --> 00:55:49,240
+ missing document approval.
+
+382
+00:55:49,240 --> 00:55:54,240
+ This is query four for join some three tables.
+
+383
+00:55:54,240 --> 00:56:00,240
+ They are club, event and venue to show output like this advisor name, club name, activity
+
+384
+00:56:00,240 --> 00:56:02,240
+ name, event date and venue type.
+
+385
+00:56:19,240 --> 00:56:39,240
+ These are query five for counting the, count the case semester number for, they are advisor
+
+386
+00:56:39,240 --> 00:56:45,240
+ name, semester one, semester two and total even they are done.
+
+387
+00:56:45,240 --> 00:56:46,240
+ Okay.
+
+388
+00:56:46,240 --> 00:57:01,240
+ The final is query six event register and club assignment.
+
+389
+00:57:01,240 --> 00:57:08,240
+ This is our output for the table, club name, student ID, student name, phone number and
+
+390
+00:57:08,240 --> 00:57:09,240
+ activity name.
+
+391
+00:57:09,240 --> 00:57:10,240
+ Okay.
+
+392
+00:57:10,240 --> 00:57:23,240
+ That's it.
+
+393
+00:57:23,240 --> 00:57:24,240
+ Okay.
+
+394
+00:57:24,240 --> 00:57:25,240
+ I miss.
+
+395
+00:57:25,240 --> 00:57:26,240
+ Okay.
+
+396
+00:57:26,240 --> 00:57:28,240
+ I will explain the assignment.
+
+397
+00:57:28,240 --> 00:57:33,240
+ So maybe now you take each of you can go for maybe five minutes break.
+
+398
+00:57:33,240 --> 00:57:36,240
+ I will start with the exam discussion maybe around 1215.
+
+399
+00:57:36,240 --> 00:57:37,240
+ Is it okay?
+
+400
+00:57:37,240 --> 00:57:38,240
+ Yeah.
+
+401
+00:57:38,240 --> 00:57:41,240
+ We will start again 1215.
+
+402
+00:57:41,240 --> 00:57:42,240
+ Yeah.
+
+403
+00:57:42,240 --> 00:57:42,240
+ Thank you.
+
+404
+00:58:08,240 --> 00:58:18,240
+ [BLANK_AUDIO]
+
+405
+00:58:38,240 --> 00:58:48,240
+ [BLANK_AUDIO]
+
+406
+00:59:08,240 --> 00:59:18,240
+ [BLANK_AUDIO]
+
+407
+00:59:38,240 --> 00:59:48,240
+ [BLANK_AUDIO]
+
+408
+01:00:08,240 --> 01:00:18,240
+ [BLANK_AUDIO]
+
+409
+01:00:38,240 --> 01:00:48,240
+ [BLANK_AUDIO]
+
+410
+01:01:08,240 --> 01:01:18,240
+ [BLANK_AUDIO]
+
+411
+01:01:38,240 --> 01:01:48,240
+ [BLANK_AUDIO]
+
+412
+01:02:08,240 --> 01:02:18,240
+ [BLANK_AUDIO]
+
+413
+01:02:38,240 --> 01:02:48,240
+ [BLANK_AUDIO]
+
+414
+01:03:08,240 --> 01:03:18,240
+ [BLANK_AUDIO]
+
+415
+01:03:18,240 --> 01:03:28,240
+ [BLANK_AUDIO]
+
+416
+01:03:28,240 --> 01:03:36,240
+ [BLANK_AUDIO]
+
+417
+01:03:36,240 --> 01:03:46,240
+ [BLANK_AUDIO]
+
+418
+01:04:06,240 --> 01:04:16,240
+ [BLANK_AUDIO]
+
+419
+01:04:36,240 --> 01:04:46,240
+ [BLANK_AUDIO]
+
+420
+01:05:06,240 --> 01:05:16,240
+ [BLANK_AUDIO]
+
+421
+01:05:36,240 --> 01:05:46,240
+ [BLANK_AUDIO]
+
+422
+01:06:06,240 --> 01:06:16,240
+ [BLANK_AUDIO]
+
+423
+01:06:16,240 --> 01:06:20,240
+ [BLANK_AUDIO]
+
+424
+01:06:20,240 --> 01:06:26,240
+ [BLANK_AUDIO]
+
+425
+01:06:26,240 --> 01:06:34,240
+ [BLANK_AUDIO]
+
+426
+01:06:34,240 --> 01:06:44,240
+ [BLANK_AUDIO]
+
+427
+01:06:44,240 --> 01:06:54,240
+ [BLANK_AUDIO]
+
+428
+01:06:54,240 --> 01:07:04,240
+ [BLANK_AUDIO]
+
+429
+01:07:04,240 --> 01:07:14,240
+ [BLANK_AUDIO]
+
+430
+01:07:14,240 --> 01:07:24,240
+ [BLANK_AUDIO]
+
+431
+01:07:24,240 --> 01:07:34,240
+ [BLANK_AUDIO]
+
+432
+01:07:34,240 --> 01:07:44,240
+ [BLANK_AUDIO]
+
+433
+01:07:44,240 --> 01:07:54,240
+ [BLANK_AUDIO]
+
+434
+01:07:54,240 --> 01:08:04,240
+ [BLANK_AUDIO]
+
+435
+01:08:04,240 --> 01:08:14,240
+ [BLANK_AUDIO]
+
+436
+01:08:14,240 --> 01:08:24,240
+ [BLANK_AUDIO]
+
+437
+01:08:24,240 --> 01:08:34,240
+ [BLANK_AUDIO]
+
+438
+01:08:34,240 --> 01:08:44,240
+ [BLANK_AUDIO]
+
+439
+01:08:44,240 --> 01:08:54,240
+ [BLANK_AUDIO]
+
+440
+01:08:54,240 --> 01:09:04,240
+ [BLANK_AUDIO]
+
+441
+01:09:04,240 --> 01:09:14,240
+ [BLANK_AUDIO]
+

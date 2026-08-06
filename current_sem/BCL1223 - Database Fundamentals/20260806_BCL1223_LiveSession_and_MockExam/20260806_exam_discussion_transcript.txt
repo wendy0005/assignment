@@ -1,0 +1,48 @@
+[BLANK_AUDIO]
+[BLANK_AUDIO]
+[BLANK_AUDIO]
+[BLANK_AUDIO]
+[BLANK_AUDIO]
+Okay, if you are ready, let's continue here.
+Are you all ready?
+>> Yes, please.
+>> Okay, so these are the tips for your final assessment.
+[BLANK_AUDIO]
+So, I think your final assessment is scheduled next Saturday or
+Sunday, right?
+[BLANK_AUDIO]
+Is it Sunday?
+[BLANK_AUDIO]
+>> I think Saturday means, yeah, Saturday.
+>> Yeah, it's an online assessment, but it's a proctored test.
+That means people observe you, then it's a closed book test.
+So you're not allowed to refer to any other, what we call that,
+resources during the test, yeah?
+You have done this kind of test before?
+>> Yes, Miss, for- >> The previous subject,
+previous message subject, right?
+>> Yeah, the mathematical one.
+>> Okay, yeah, so let me share.
+This is some important tips, so you just follow exactly.
+So first of course, you need to understand on drawing ERD, okay?
+So entity relationship diagram.
+[BLANK_AUDIO]
+So, I think we have done some studies before on drawing ERD diagram.
+And for your test also, I think you've done ERD diagram, right?
+So far, any of you still have any issues with ERD?
+[BLANK_AUDIO]
+So practice for, you can look for more example online.
+I will try to check, is there any past year questions available?
+Then I will try to share one set with question and answer.
+So alert me, okay, maybe on Monday, I'll just look for
+a sample questions, past year questions.
+I'll share one set, so that you have more practice on
+past year questions, you know, questions on past year papers.
+And for second topic, it's about normalization.
+Of course, normalization is a bit challenging topic compared to other topics here.
+So here for your test, you need to understand UNF, unnormalized form.
+And we have 1NF, 2NF, until the 3NF.
+[BLANK_AUDIO]
+Okay, so you'll be given a data set, or you'll be given another scenario.
+So from there, you have to perform all this normalization, UNF until 3NF, okay?
+So try to refer to the, for those who.

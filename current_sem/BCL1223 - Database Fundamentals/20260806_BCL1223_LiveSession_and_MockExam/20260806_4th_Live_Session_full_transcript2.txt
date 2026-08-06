@@ -1,0 +1,441 @@
+First of today's session is to share final exam tips and as well I want you all to demonstrate
+your assignment completion.
+So I expect you to demonstrate the coding that you have done, the outcome of your assignment.
+So I'll be recording the session and your demonstration and presentation is important.
+It carries some marks for your overall assignment marks.
+So example let's say total assignment marks is 10.
+So this one I'll calculate, sorry that total is 100.
+This one presentation is considered 10 marks.
+So those absent today's presentation without valid reason yeah and that's why some of
+them they have valid reason.
+I asked them to do pre-recording that means they can use PowerPoint or whatever tools
+to record their assignment demonstration and then they can submit it to me.
+So maybe I'll create a link also for submission.
+So as for today yeah so you can share screen here.
+So I expect you to share screen then you can use PowerPoint to explain your assignment
+and switch to coding or you can straight maybe use report.
+No slides means you can show report, explain some important content of your assignment
+and then you can show the SQL, Oracle life or any tools that you're using tools doesn't
+matter as long you have a utilize a proper tools to complete your assignment that is
+good enough.
+So it's your turn now.
+So if you're ready just share screen and then after we complete this then I'll explain
+the final exam preparation.
+Okay so we want to start first if you're ready you can start here.
+We want to share first if you're ready you can start.
+So looking at the submission list yeah we have Bong Bong are you ready Bong Killio
+and Chin yeah yeah you can share screen yeah Bong Killio if I can direct share my calling
+can can okay can can can no problem but of course you have to show me how you implement
+the entire assignment like you want to show you know some info first then you share coding
+either one is okay sure okay is this anyone show my coding already yeah can see okay this
+one I'm meeting for the Sturgy College in Perturin Jaya the student report including
+the advisor club event membership staff student and venue okay in this assignment I can store
+all the required data including the club membership the data of the membership so actually we
+can crack the table for the student firstly I drop all the table with constraint constraint
+because previously I have using this for the another testing so I drop all the data first
+then I crack the table for student after that I crack for the table for advisor the club
+membership using the for the student is student ID is the primary key that this one have using
+for the the club the anything the membership for the student ID so this one is the primary
+key then the club membership staff and also the venue okay this one is what I insert to
+the data so I have insert 10 student inside the my students values and also the advisor
+staff club venue and membership is this I too fast for my presentation okay can follow
+okay yeah okay firstly I if want to select for the student want to find the student name
+form for the club for the any like who are joining the club any student for the club I
+am using this coding for the find a student at the database okay when I press this one
+we can show the student name student form and also the club name we can know who will
+entire to join the club so easy for us to find the student who are joining the specific
+club so you can sorry you can run some of the query to show the output generated to
+miss the output only actually I know I'm running some of the case to running the output for
+this one is the advisor okay then this one is the update because based on the previously
+I insert the club the advisor I just update one advisor for one club only so I I need to
+update the advisor then we can know can find this output and that's the following one is
+the student name for the missing documents we can follow if the when the approval form
+is we didn't have then this one can follow the the data then this one for the advisor
+name for finding the club and also the activity name event and there that the following one
+is the total the total sum of the event the advisor join if let's say the advisor is joining
+more than one event for the semester they will pass on this coding the sum test when
+the e semester event semester number is one then we'll press one else request zero we
+can find that one who are joining more than one event at a semester okay the last day
+is for the club club ID for all let's we know the student who are entire to the club
+is this to shut my prison yeah okay it's good hopefully I've documented the report
+where well with like screenshot of the SQL and output yeah any challenges you face during
+the assignment I mean some challenges doing this assignment during the most challenges
+is when the same test sometimes I forget the same test then I forget to put yeah coding
+part like this one I forget to put so understanding the coding is important for your final assessment
+as well they will test it or what we call that SQL syntax knowledge but you write the
+syntax law during the assessment okay thank you thank you miss yeah yeah thank you okay
+no next is chin ratio now you ready I'm following the order of submission okay if you want to
+share our video is optional I mean you share screen you want to on video is up to you and
+the science we can yeah so yeah yeah so need to share the report order code okay it's up
+to you which one you convenient to explain but you can switch mode let me from report
+you can go to SQL so see how is so I first first explain the student now so I create
+and then open data okay I can see the number 10 and it's tough it's fun this stuff it means
+for the event one yeah and the advisor advisor is for the club advisor okay good and smile
+also for the club information for the event but the event have the competition drama show
+how to use AI music okay and then this one is for the place and for conduct the activity
+la the event okay this one is a mandatory I mean who joined the club hmm so I want the
+code where okay within this one first one think this one first one first one is but does this
+shows membership is yeah this one is the first one for the task and the second one I think
+you select two query oh yes correct error do you have the report with the code and output
+generator you can open that just now can one some syntax error for having come I think you
+should select until the next line the stock at one oh yeah try others
+it's okay right other other other other other questions I know I know I know
+I think that double S la the syntax error okay this one is no have the question is mentioned
+yeah the question is select the advice one so let me show you this is for more than one
+right yeah and then this one is for the select one so which one the approval no have the
+approval so all is okay so I run the code okay yeah I still don't have and then number
+four is want to know which the alone for which card yeah I run the code so when you're doing
+this kind of assignment using SQL in the SQL code the Oracle live maybe you can put something
+of command like to split the question by maybe number you know how to put command right so
+it's here for you to understand would comment what it's specific so the advisor club activity
+centuries and fall okay and number five so also show which semester which is assigned
+this semester okay so I wonder cool yeah I can see yeah yeah
+okay so the last one yeah this one is the last one okay see the event club name and it's
+student I mean it's showing which student join that club yeah okay it looks what are
+the challenges you face when you're doing this assignment the code law okay so I think
+codes error understanding the syntax is the challenging part la okay thank you Chin next
+Hari Prasad are you ready okay can you hear me yeah okay all right can you all see the
+screen yes yes right so I will start my I didn't prepare any presentation slides so I will
+just go to the questions first the question of the assignments are based on the table
+one if you have a look on this case party informations and the table data description here it's actually
+providing a lot of information for us to create the entity so I next let me go to the right
+so next is firstly from for my understanding I created the identity of entity so I want
+to know how many entities available here and then I create a purpose and after that I create
+a relationship and I didn't get the summary because the reason this is very important
+because if this will help me to understand how the relation between each entity and it
+will help us help me to understand how to protect the code based on the next questions
+so these relationships are and then I have created a data dictionary with the data tag
+blanks in constrain so I to understand later when I want to do the coding what the informations
+I need to put in so this is important is important dictionary because without this I have a difficult
+times to create the table and next is the erd diagram created to understand so the most
+important thing is I have created a membership table here because it's a junction entity
+where the student to the club is an end to end so I have to create some kind of a relationship
+additional relationship to make sure it allows us to have a clear data expression okay so
+we'll go for the next one alright this is my article data that I have created informations
+here so for example if we go here we can see the column data type and the data informations
+here so in advisor section there is advisor id advisor name free school in free form number
+when this is the contact number here I will go to the questions so I have created inserted
+some information using the standard syntax insert into all for the first questions I
+selected this thing because the questions requesting for phone number and where I use
+the form student table and checking the membership and because they want to know the name of
+the student and the role into club so we have to use the student id and those who are in
+the membership so membership is because they're already enrolled so they have a membership
+and since location requesting us to find out the order by student names I use this one
+and this the detailed information I have on based on the query result okay and the next
+thing is a questions of finding the number of advisor we actually more than 12 so that's
+a sub query I created first so I firstly want to find the advisor id and from the club and
+I want to group them by the advisor id because I want to know how many advisor actually advising
+more than one club and from there I use another query where selected advisor id advisor name
+and company to find out from advisor and from the club to find out if both ID are informations
+correctly and then find the information order and this the informations we can see for example
+we can see all Dr. Ahmad Rahman he has two clubs and same with the Dr. Dan Mehle.
+The next one is about the question regarding the identifying that students who actually
+do not submit the form so I create the query of finally looking at the student id and create
+an approval form as a missing form where I find from the table of student where we can
+see the faculty approval attributes and order by student id and we can see two person of
+it which is Aina and Sikino Aisha and this is one of the quite difficult part for my
+end to create a spreadsheet and but I able to understand how to do it so firstly, so
+this is the queries where we can see semester one semester two semester three how many times
+they actually passed the call and for the challenges part is more towards progression
+number five and the syntax error on the coding because sometimes I tend to miss the symbols
+here which always create a problem error for me so yeah okay so you have a plan and executed
+assignment how to present good so very yeah okay thank you can we have who has supposed
+to present today are you ready yes miss okay I can see my screen miss yeah yeah okay this
+is my report so I'll start with the first question which is show relationship with between entities
+and multiplicities so the first one is student and registers in clubs so it's a one to many
+different one to many cardinality and then club to advisor is one to one because each
+clubs should have one advisor but it can be many or so and then advisor to club so one
+advisor should advise one club only okay next club to president each club is one to one
+each club requires one president and then student to club president so one student can serve
+as one club presidents only okay next I will go to the data dictionary as you can see I
+did each one individually and I add I also added the club membership because every student
+should have club membership for easier tracking okay next we go to the ERD diagram so the club
+membership will become the junction box for between student and the club so each club
+will create a membership for student and a student need to use the club membership to
+enter the club so it's easier to try and then each club has one advisor and then each club
+organizes events and the events will be held at the venues and in charge by a staff next
+we go to the definition of language okay this one I use no coding first okay first the code
+will be the create student table next is the create advisor table and then create staff
+in charge table a venue club and then for club advisor president club membership and
+then the events and this one is to adding in the data so first we go through the students
+table so each student table will have student ID student names student phone number the
+faculty and the scholarship details so so this is the data that I added in in the tables
+about the students names and everything next is the advisor so each advisor table will
+have advisor ID name office room number office phone number and this is the 10 of the advisors
+in the clubs and then the club membership is included membership ID student ID club ID
+and the date they register the into the club and the faculty approval and this is the sample
+of student IDs that have been inserted and then this one is the events that included
+event ID activity name semester event date club ID and venue ID so the example is coding
+workshop dance competition there's a 10 of the events that are going to be happening
+and with the updates that is going to happen so staff in charge including staff ID staff
+name phone their phone number and office number so these are the 10 stuff that are in charge
+of the venue and some events and then lastly the venue so when you I did with that and
+stuff ID and this one includes the venue location and the staff ID that will handle this venue
+with the venue IDs keep that's all wish yeah well designed Simon and executed so yeah thank
+you what's next in the list was of course she's not presenting today right Luis are you ready
+Luis lie can I just have a quick minute because I'm just trying to populate and some issue
+with the oracle developer and yeah thank you Dr. apologies Chang Jing Lee Chang Jing
+Are you here? Yes. Oh, okay, consciously.
+Miss, I think I need to leave before I can share my screen.
+I need to click and reopen the mic.
+[BLANK_AUDIO]
+[BLANK_AUDIO]
+Let me share my screen now. Okay.
+[BLANK_AUDIO]
+Okay, so I'll start with my report first. Okay.
+Okay, so I'll just start directly with this ARD diagram.
+Okay, so the first important design decision was the membership table.
+Okay, the student and club have a many to many relationship because a student can join several clubs and each club can have many students.
+A direct many to many relationship cannot be implemented cleanly in a relational database.
+Okay, so membership resolve into one to many relationships.
+And it also stores the data register and membership status because those values describe a student's membership in a particular club rather than the student or club independently.
+Also got event registrations as like separate from the membership.
+Event registrations. Okay, so because joining a club and registering for one of each event are different facts.
+And a member may attend some events and skip others.
+So this table records the event student's registration date and attendance status.
+Composite foreign key also ensure that the events belong to the stated and that the registering students is a member of that same club.
+And also we have a club president table in a separate relationship.
+Okay, so it composite foreign key points to membership, which means a student cannot become president of a club unless that exact student club membership already exists.
+So keeping this rule in the database, it prevents invalid data regardless of which applications enter it.
+Okay, so I'll switch to my Oracle Live SQL.
+Okay, so for this one.
+So I insert all the data in here and the total table is 11.
+Okay, and it included all the faculty.
+Sorry, I'll open this.
+Okay.
+Okay, and then, yeah, so it show 11 table here.
+And yes, include all those table that I mentioned just now and then total seats also show total seats here.
+Okay, so it's 228 and then.
+So I also here that has a rejection test.
+So here I tried to replace the president's of club that ID C001 with students ID BB-1002.
+So the student exists, but the pair C001 and BB-1002 does not exist in the membership.
+So like rejects the updates through the composite foreign key named FK president membership here.
+Okay, and then so like I feel like this is stronger than checking only the student ID because a normal foreign key to student table would prove that the BB-1002 is a valid student,
+but it would not prove membership in C001.
+Okay, referencing the combined club and student key proof like both facts together.
+And then the safe point and the rollback protect the demonstration data.
+So this test does not leave any permanent change.
+And then we also got is a multi club advisor SQL.
+So all this are those data that I inserted that advisor name, the number of club and the assigned club for each of the advisor name advisor.
+Yeah, so you see that each advisor may have assigned to maybe three clubs here.
+And also I got this missing approval form.
+And these queries like produce a contact list for students who join at least one club but have not submitted their faculty approval form.
+So the first condition selects the student whose approved flight is n.
+Yeah, so the correlated as these sub query then checks the membership using the current student's ID.
+Sorry.
+Okay.
+Okay, so and then so it result that here 10 students are with missing approval form.
+And then lastly we got this preferred by semester.
+Okay, so the inner queries here first like it connects the advisor clubs events and semester.
+And at that stage each event is still represent as a separate role.
+So it groups those roles by advisor and then changes the three semester names into columns.
+Okay.
+Yeah, and then and counts the events ID in each column.
+So and the MVL here it converts like any missing count to zero instead of displaying now.
+So the output contains all 10 advisor because the queries begin with the advisor table.
+So use and use left choice.
+So each semester columns total 15 events and that because there are 15 clubs.
+Okay, and every club's whole one event per semester.
+So you can see that the doctor doctor Aisha.
+She advises to like three clubs.
+So her row show three events in every semester.
+So across all three semester the preferred.
+Reconciled to the 45 events records the store in the database.
+Yeah, so actually all this like it covers the main point like 11 normalized table with all the seats that I show just now 228 roles.
+And all the primary key foreign key check unique constraint and force.
+And also there are six rejection tests past here and all the assessment or six assessments query it returns the correct results.
+Yeah, I think that's all for my presentations.
+Okay, Chen Jingyi well explained presentation but assignment work.
+Anyone else are you presenting?
+Yes, Miss.
+Okay, can I share screen?
+Okay, this is my report.
+This is my entity ratio and multiplies as well.
+The entity name first advisor as a one to one to many as a relation name is advisers entity name is club.
+And that for this an advisor lecture can monitor one more more than the club.
+So the club has one to one entity multiple T and same as to student one to many club one to many a student.
+Zero to one, one to one and one to many as we go proceed all same.
+So the data dictionary have entity student entity advisor entity staff entity venue club, club member and even final is even registration as well for the joint table I have integrated at one deli cascade.
+This one can help to prevent integrity on the table.
+Same as well to even add on delete restrict and when you are here as well.
+This is my diagram handing many to many relationship as student membership.
+I see my diagram.
+I think for me blurry.
+Is it clear?
+Hello.
+Yes miss yes.
+You can't hear your voice.
+You'll mutate.
+Okay.
+Okay.
+Okay.
+I think I'll be left the call already so I think I'll just present mine.
+You want to present now.
+I think I think he left the call he's not here.
+Yeah and then you can start this.
+Okay I'll just quickly cover mine first.
+Okay.
+Sorry here once I come to China make sure I present the right screen.
+Okay yeah we can see a screen.
+Okay I think I ended up using the developer one a bit too complicated.
+So this is just creating the tables for each specific for the database basically for the students clubs venues events and the lecturer.
+This is a self edit table to help track because we need the details for the lecturer who are advisors as well.
+Okay this is a specific part to alter the tables adding the constraint for foreign keys.
+Basically I had to turn these specific ones unique and then in the developer system I can convert that into the foreign key as well.
+There is also the code for the FK there is a FK constraints code where you can also do it in in the setup of the tables as well but I had to use the different version of the Oracle one which is a bit older cause the newer one wasn't working very well so that's why I had to manually go around it.
+Okay.
+After that populating tables as well there is actually the way where you can sort of like remove this line.
+And kind of work it like this and then you go one by one by one but unfortunately mine is again the older versions we have to like manually key in each one.
+There is probably a easier way but I couldn't find it so you have a long list of.
+Entering the code.
+And then I'm not sure how to split up the SQL again this is very foreign so I don't apologize.
+Yeah it's very long I don't apologize but each of the queries kind of work on their own you can basically work it from here.
+This basically selects the student name and the student phone number as well.
+Okay.
+And you order this by the student name in alphabetical order.
+This basically shows all the lecturers who are also clubs advisors by joining the two tables and identifying who's in a club basically working as an advisor.
+I do admit that what I didn't realize was that I accidentally made each data unique so basically you will always show 10 but should there be you know any.
+Lecture details who are not I mean on the grand scheme of things there will be a lecture table containing the details who are probably not linked to any clubs which is when you will see the.
+The advisors right.
+Question three basically this is the one where you have to find out whether the faculty form sorry.
+It will appear here this did work out earlier but I think I'll change it and.
+Last but not least that's also this one where it will also show you all the club names and the club events that are happening as well.
+And Italy question five and six I didn't understand it the logic that I was used to for sequels a bit different.
+In terms of the pivot tables but I couldn't get it to work on the Oracle database which is in my it's in my assignment but it's not here I can show that if it's required.
+But in terms of this difficulties that I was facing in terms of this is mostly in terms of the Oracle again the Oracle.
+The setup was a bit easier once you kind of figure out what to do the latest version the 26 C didn't work for me I had to go all the way down to 21 C.
+Yeah but in terms of it is because I learned SQL separately before this and then the syntax is very different that was that was made mostly my struggle so I had to like rechange all my code.
+And if it's okay I'll resubmit my assignment as well more.
+Yeah I'll open the link until maybe middle of next week.
+Okay yeah I'll just resubmit with the correct answer I'll give you more time like at least middle of next week then you'll focus on your exam preparation.
+Yes thank you so much.
+But that's all from my end.
+Yeah so Abilash you can share screen yeah.
+Sorry for the interruption.
+Yes yes since it's okay.
+The mic one is connected to the DSV.
+No okay.
+No okay I fixed it.
+Okay this is my entity relation diagram.
+This diagram have six primary entities that they are students, advisor, staff, menu club and even along with two composite junction entities, club member and even registration.
+To reserve many to many relationship by enforcing one to one club leadership and one to many advisor monitoring and staff manage menu booking.
+You go down.
+Okay we proceed to the SQL.
+I changed to currently I'm using the tool exam.
+This is my exam interface.
+This is my my table.
+My database, my database name is Seiki Student Affair.
+Inside advisor you can solve the all insert values data.
+This is my structure.
+Same goes to club.
+Fdata, F10 data and the structure as well.
+Club.
+This is club data for 10 and 10 data and same for structure.
+Event.
+Event and even registration, staff, student and menu for them each time each time when to write SQL is not like the life SQL already prepared need to save somewhere the coding or SQL.
+Okay.
+If the table also need to copy and paste as well.
+Yeah, this cannot save directly like the life SQL.
+Every time need to do again and again.
+For now I already create the old table.
+For now we don't need the need to create table.
+Okay.
+I will just explain to you here for some case are using enum to yes or no.
+Because some people using characters or string to yes or no.
+For me I usually use enum for easy can if you create anything like system it can use food.
+Okay.
+As long you understand.
+Okay.
+Some some table I use the on delivery streak and want a brick cascade.
+This can help to prevent the integrity.
+When sometimes user at example.
+At venue ID is duplicate the day but they delete in the venue table is not really the one ID.
+Integrated.
+We avoid the integrity.
+To constant the table.
+This is my insert values over here.
+Okay.
+Okay.
+For now we go to the query one.
+Ready.
+These are the output for the query one.
+Some of the users they did not use the distinct.
+The distinct is using is for avoid the integrity.
+Sometimes some table of duplicate ID.
+If using the distinct it can avoid the duplicate ID.
+This is my query one output.
+Okay.
+This is our output for the query two.
+The advisor ID advisor name.
+As we see the select for this query have having count club ID more to one.
+Okay.
+It can group by advisor ID.
+Okay.
+And this table is joined with the advisor ID from club.
+Club.
+Club.
+With the club advisor ID.
+Okay.
+This query help to find the missing approval form from the student.
+We can show the student ID, the student name for easy view for number, facility and the
+missing document approval.
+This is query four for join some three tables.
+They are club, event and venue to show output like this advisor name, club name, activity
+name, event date and venue type.
+These are query five for counting the, count the case semester number for, they are advisor
+name, semester one, semester two and total even they are done.
+Okay.
+The final is query six event register and club assignment.
+This is our output for the table, club name, student ID, student name, phone number and
+activity name.
+Okay.
+That's it.
+Okay.
+I miss.
+Okay.
+I will explain the assignment.
+So maybe now you take each of you can go for maybe five minutes break.
+I will start with the exam discussion maybe around 1215.
+Is it okay?
+Yeah.
+We will start again 1215.
+Yeah.
+Thank you.
+[BLANK_AUDIO]
+[BLANK_AUDIO]
+[BLANK_AUDIO]
+[BLANK_AUDIO]
+[BLANK_AUDIO]
+[BLANK_AUDIO]
+[BLANK_AUDIO]
+[BLANK_AUDIO]
+[BLANK_AUDIO]
+[BLANK_AUDIO]
+[BLANK_AUDIO]
+[BLANK_AUDIO]
+[BLANK_AUDIO]
+[BLANK_AUDIO]
+[BLANK_AUDIO]
+[BLANK_AUDIO]
+[BLANK_AUDIO]
+[BLANK_AUDIO]
+[BLANK_AUDIO]
+[BLANK_AUDIO]
+[BLANK_AUDIO]
+[BLANK_AUDIO]
+[BLANK_AUDIO]
+[BLANK_AUDIO]
+[BLANK_AUDIO]
+[BLANK_AUDIO]
+[BLANK_AUDIO]
+[BLANK_AUDIO]
+[BLANK_AUDIO]
+[BLANK_AUDIO]
+[BLANK_AUDIO]
+[BLANK_AUDIO]
+[BLANK_AUDIO]
+[BLANK_AUDIO]
+[BLANK_AUDIO]
+[BLANK_AUDIO]
+[BLANK_AUDIO]
+[BLANK_AUDIO]

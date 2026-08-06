@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BCL1223 - Database Fundamentals Practice Exam Paper</title>
+    <!-- MathJax for rendering LaTeX formulas -->
+    <script src="https://polyfill.io/3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <!-- Mermaid.js for rendering ERD diagrams -->
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <style>
+        @page {
+            size: A4;
+            margin: 20mm 15mm 20mm 15mm;
+        }
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 11pt;
+            line-height: 1.5;
+            color: #111111;
+            background-color: #ffffff;
+            margin: 0 auto;
+            max-width: 900px;
+            padding: 20px;
+        }
+        .header-box {
+            border: 2px solid #1a365d;
+            background-color: #f7fafc;
+            padding: 18px;
+            margin-bottom: 25px;
+            border-radius: 4px;
+        }
+        .header-box h1 {
+            color: #1a365d;
+            font-size: 18pt;
+            margin: 0 0 10px 0;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .header-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            font-size: 10.5pt;
+            border-top: 1px solid #cbd5e0;
+            padding-top: 10px;
+            margin-top: 10px;
+        }
+        .header-grid div {
+            padding: 2px 0;
+        }
+        h2 {
+            color: #1a365d;
+            font-size: 14pt;
+            border-bottom: 2px solid #2b6cb0;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            page-break-after: avoid;
+        }
+        h3 {
+            color: #2c5282;
+            font-size: 12pt;
+            margin-top: 20px;
+            margin-bottom: 8px;
+            page-break-after: avoid;
+        }
+        p, li {
+            text-align: justify;
+            margin-bottom: 10px;
+        }
+        ul, ol {
+            margin-top: 5px;
+            margin-bottom: 15px;
+            padding-left: 25px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 10pt;
+            page-break-inside: avoid;
+        }
+        table, th, td {
+            border: 1px solid #a0aec0;
+        }
+        th {
+            background-color: #ebf8ff;
+            color: #2b6cb0;
+            font-weight: bold;
+            text-align: left;
+            padding: 8px 10px;
+        }
+        td {
+            padding: 6px 10px;
+            vertical-align: top;
+        }
+        tr:nth-child(even) {
+            background-color: #f7fafc;
+        }
+        pre, code {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 9.5pt;
+        }
+        pre {
+            background-color: #2d3748;
+            color: #f7fafc;
+            padding: 12px;
+            border-radius: 5px;
+            overflow-x: auto;
+            page-break-inside: avoid;
+            margin: 15px 0;
+            border-left: 4px solid #3182ce;
+        }
+        .mermaid {
+            display: flex;
+            justify-content: center;
+            background-color: #ffffff;
+            padding: 15px;
+            border: 1px solid #e2e8f0;
+            border-radius: 5px;
+            margin: 20px 0;
+            page-break-inside: avoid;
+        }
+        .model-answer {
+            background-color: #f0fff4;
+            border-left: 4px solid #38a169;
+            padding: 12px 15px;
+            margin: 12px 0;
+            border-radius: 0 4px 4px 0;
+        }
+        .section-box {
+            margin-bottom: 30px;
+        }
+        .page-break {
+            page-break-before: always;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header-box">
+        <h1>BCL1223 — Database Fundamentals</h1>
+        <h3 style="text-align: center; color: #4a5568; margin: 0 0 10px 0;">Final Assessment Practice Exam & Model Answer Scheme</h3>
+        <div class="header-grid">
+            <div><strong>Student Name:</strong> Chan Jing Yi</div>
+            <div><strong>Student ID:</strong> SUOL2500321</div>
+            <div><strong>Course Code:</strong> BCL1223</div>
+            <div><strong>Course Title:</strong> Database Fundamentals</div>
+            <div><strong>Assessment Mode:</strong> Closed-Book Proctored Mock Exam</div>
+            <div><strong>Date:</strong> August 6, 2026</div>
+        </div>
+    </div>
+
+    <div class="section-box">
+        <h2>Executive Summary & Exam Guidelines</h2>
+        <p>This practice examination document has been compiled to prepare for the <strong>BCL1223 Database Fundamentals Final Assessment</strong>. The assessment tests key theoretical concepts, conceptual database design, normalization techniques, and practical SQL query formulation.</p>
+        <p>The exam paper is structured into four main technical sections matching the course syllabus and live assessment requirements:</p>
+        <ol>
+            <li><strong>Section A: Core Database Concepts & Relational Architecture</strong> (20 Marks)</li>
+            <li><strong>Section B: Entity-Relationship Diagram (ERD) & Conceptual Data Modeling</strong> (25 Marks)</li>
+            <li><strong>Section C: Database Normalization (UNF to 3NF)</strong> (25 Marks)</li>
+            <li><strong>Section D: SQL Query Writing & Syntax Implementation</strong> (30 Marks)</li>
+        </ol>
+    </div>
+
+    <!-- SECTION A -->
+    <div class="section-box">
+        <h2>SECTION A: Core Database Concepts & Relational Architecture (20 Marks)</h2>
+        
+        <h3>Question 1.1: Database Systems vs. Traditional File Processing</h3>
+        <p>Compare traditional file-processing systems with modern Relational Database Management Systems (RDBMS). Explain how physical and logical data independence reduce system maintenance overhead. <em>(4 Marks)</em></p>
+        <div class="model-answer">
+            <p><strong>Model Answer:</strong></p>
+            <p>Traditional file-processing systems store data in isolated files maintained by separate application programs. This architecture introduces severe data redundancy, structural dependence, data inconsistency, and difficult ad-hoc reporting. Conversely, a Relational Database Management System (RDBMS) centralizes data storage and decouples data access from application logic through the ANSI-SPARC three-schema architecture.</p>
+            <ul>
+                <li><strong>Logical Data Independence:</strong> The immunity of external schemas and application programs to changes in the conceptual schema (e.g., adding a new attribute or table). Applications remain unaffected unless they directly interact with altered structures.</li>
+                <li><strong>Physical Data Independence:</strong> The immunity of the conceptual schema to changes in physical storage structures (e.g., changing file indexing schemes, moving disk volumes, or altering B-tree structures). The physical layout can be optimized without modifying logical queries or software interfaces.</li>
+            </ul>
+        </div>
+
+        <h3>Question 1.2: Integrity Constraints Analysis</h3>
+        <p>Distinguish between <strong>Entity Integrity</strong> and <strong>Referential Integrity</strong>. Provide a concrete scenario demonstrating how violating referential integrity damages database consistency. <em>(4 Marks)</em></p>
+        <div class="model-answer">
+            <p><strong>Model Answer:</strong></p>
+            <ul>
+                <li><strong>Entity Integrity:</strong> Enforces that no primary key attribute can be null (<code>NULL</code>). Because primary keys serve as unique row identifiers, a null primary key value prevents uniquely identifying tuple instances within a relation.</li>
+                <li><strong>Referential Integrity:</strong> Enforces that a foreign key value in a child relation must either match a valid candidate key value in a referenced parent relation or be entirely null (if optional).</li>
+            </ul>
+            <p><strong>Violation Scenario:</strong> Consider a <code>STUDENT</code> table (parent) and a <code>CLUB_MEMBERSHIP</code> table (child). If a user attempts to insert a record into <code>CLUB_MEMBERSHIP</code> with <code>Student_ID = 'S999'</code> when student <code>'S999'</code> does not exist in <code>STUDENT</code>, referential integrity is violated. Allowing this orphan record creates an invalid reference, leading to failed join operations, erroneous report aggregations, and corrupted database integrity.</p>
+        </div>
+
+        <h3>Question 1.3: Relational Keys Classification</h3>
+        <p>Define and contrast the following database keys: <strong>Candidate Key</strong>, <strong>Primary Key</strong>, <strong>Composite Key</strong>, and <strong>Foreign Key</strong>. <em>(4 Marks)</em></p>
+        <div class="model-answer">
+            <p><strong>Model Answer:</strong></p>
+            <ol>
+                <li><strong>Candidate Key:</strong> A minimal superkey—a minimal set of attributes that uniquely identifies each tuple in a relation without any redundant attributes.</li>
+                <li><strong>Primary Key:</strong> The specific candidate key chosen by the database designer to serve as the principal tuple identifier for a relation.</li>
+                <li><strong>Composite Key:</strong> A primary or candidate key that consists of two or more attributes combined (e.g., <code>{Student_ID, Club_ID}</code> in a membership relation).</li>
+                <li><strong>Foreign Key:</strong> An attribute or set of attributes in one relation that references the primary key of another relation, establishing a logical linkage between tables.</li>
+            </ol>
+        </div>
+
+        <h3>Question 1.4: Relational Algebra Operations</h3>
+        <p>Given the relational schema <code>STUDENT(StudentID, Name, Faculty, GPA)</code> and <code>ENROLLMENT(StudentID, CourseID, Grade)</code>, express the following query in formal Relational Algebra: <em>"Retrieve the Name and GPA of all students in the 'FICT' faculty who achieved a grade of 'A' in course 'BCL1223'."</em> <em>(4 Marks)</em></p>
+        <div class="model-answer">
+            <p><strong>Model Answer:</strong></p>
+            <p>To express this query, we apply selection ($\sigma$), natural join ($\bowtie$), and projection ($\pi$):</p>
+            <p>$$\pi_{\text{Name}, \text{GPA}} \left( \sigma_{\text{Faculty} = \text{'FICT'}} (\text{STUDENT}) \bowtie \sigma_{\text{CourseID} = \text{'BCL1223'} \land \text{Grade} = \text{'A'}} (\text{ENROLLMENT}) \right)$$</p>
+        </div>
+
+        <h3>Question 1.5: DBMS Architecture</h3>
+        <p>Explain the three levels of the <strong>ANSI-SPARC Architecture</strong> and the role of the Database Administrator (DBA) in managing schema mappings. <em>(4 Marks)</em></p>
+        <div class="model-answer">
+            <p><strong>Model Answer:</strong></p>
+            <ol>
+                <li><strong>External Level (User Views):</strong> Tailored perspectives of the database presented to specific end-user groups.</li>
+                <li><strong>Conceptual Level (Community View):</strong> The complete logical structure of the entire database, describing all entities, relationships, data types, and integrity constraints.</li>
+                <li><strong>Internal Level (Physical View):</strong> The low-level representation detailing physical storage allocation, access paths, indexing, and data compression techniques.</li>
+            </ol>
+        </div>
+    </div>
+
+    <!-- SECTION B -->
+    <div class="section-box page-break">
+        <h2>SECTION B: Entity-Relationship Diagram (ERD) & Conceptual Data Modeling (25 Marks)</h2>
+        
+        <p><strong>Scenario Description:</strong> SEGi University Student Affairs Department requires an interactive database system to manage student clubs, campus events, venue bookings, and academic advisors.</p>
+        <p><strong>Business Rules:</strong></p>
+        <ul>
+            <li>A <strong>Student</strong> can join multiple <strong>Clubs</strong>, and a <strong>Club</strong> consists of multiple <strong>Students</strong>.</li>
+            <li>Each <strong>Club</strong> must be advised by exactly one <strong>Advisor</strong> (Lecturer), but an <strong>Advisor</strong> can advise one or more <strong>Clubs</strong>.</li>
+            <li>Each <strong>Club</strong> organizes one or more <strong>Events</strong>. Each <strong>Event</strong> is organized by exactly one <strong>Club</strong>.</li>
+            <li>Each <strong>Event</strong> is held at exactly one <strong>Venue</strong>, while a <strong>Venue</strong> can host multiple <strong>Events</strong>.</li>
+            <li>A <strong>Staff Member</strong> is assigned to manage one or more <strong>Venues</strong>, but each <strong>Venue</strong> is managed by exactly one designated <strong>Staff Member</strong>.</li>
+        </ul>
+
+        <h3>Question 2.1: Structural Entity & Multiplicity Analysis</h3>
+        <p>Identify all entities, primary keys, foreign keys, and cardinalities. Explain how the Many-to-Many ($M:N$) relationship between <code>STUDENT</code> and <code>CLUB</code> is resolved. <em>(8 Marks)</em></p>
+        <div class="model-answer">
+            <p><strong>Model Answer:</strong></p>
+            <ul>
+                <li><strong>Entities & Keys:</strong> <code>STUDENT</code> (PK: StudentID), <code>CLUB</code> (PK: ClubID, FK: AdvisorID), <code>ADVISOR</code> (PK: AdvisorID), <code>EVENT</code> (PK: EventID, FK: ClubID, VenueID), <code>VENUE</code> (PK: VenueID, FK: StaffID), <code>STAFF</code> (PK: StaffID), <code>CLUB_MEMBERSHIP</code> (Junction Entity, PK: {StudentID, ClubID}).</li>
+                <li><strong>Multiplicities:</strong> Advisor:Club (1:M), Club:Event (1:M), Venue:Event (1:M), Staff:Venue (1:M), Student:Club (M:N decomposed via CLUB_MEMBERSHIP).</li>
+            </ul>
+        </div>
+
+        <h3>Question 2.2: Mermaid ERD Diagram Generation</h3>
+        <p>Construct a complete Entity-Relationship Diagram (ERD) using Mermaid.js syntax reflecting all entities, primary keys, foreign keys, and cardinalities. <em>(10 Marks)</em></p>
+        
+        <div class="mermaid">
+        erDiagram
+            ADVISOR ||--o{ CLUB : "advises (1:M)"
+            CLUB ||--o{ EVENT : "organizes (1:M)"
+            VENUE ||--o{ EVENT : "hosts (1:M)"
+            STAFF ||--o{ VENUE : "manages (1:M)"
+            STUDENT ||--o{ CLUB_MEMBERSHIP : "holds (1:M)"
+            CLUB ||--o{ CLUB_MEMBERSHIP : "contains (1:M)"
+
+            ADVISOR {
+                string AdvisorID PK
+                string AdvisorName
+                string OfficeRoom
+                string PhoneNo
+                string Faculty
+            }
+
+            CLUB {
+                string ClubID PK
+                string ClubName
+                string Category
+                string AdvisorID FK
+            }
+
+            STUDENT {
+                string StudentID PK
+                string StudentName
+                string Email
+                string PhoneNo
+                string Faculty
+            }
+
+            CLUB_MEMBERSHIP {
+                string StudentID PK, FK
+                string ClubID PK, FK
+                date RegisterDate
+                string ApprovalStatus
+            }
+
+            STAFF {
+                string StaffID PK
+                string StaffName
+                string Position
+                string PhoneNo
+            }
+
+            VENUE {
+                string VenueID PK
+                string VenueName
+                int Capacity
+                string StaffID FK
+            }
+
+            EVENT {
+                string EventID PK
+                string EventName
+                date EventDate
+                int SemesterNo
+                string ClubID FK
+                string VenueID FK
+            }
+        </div>
+
+        <h3>Question 2.3: Data Dictionary Construction</h3>
+        <p>Formulate a Data Dictionary table for the <code>CLUB_MEMBERSHIP</code> and <code>EVENT</code> entities. <em>(7 Marks)</em></p>
+        
+        <p><strong>Data Dictionary: <code>CLUB_MEMBERSHIP</code> Entity</strong></p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Attribute Name</th>
+                    <th>Data Type</th>
+                    <th>Field Size</th>
+                    <th>Key Type</th>
+                    <th>Nullability</th>
+                    <th>Constraint Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>StudentID</code></td>
+                    <td>VARCHAR2</td>
+                    <td>10</td>
+                    <td>PK, FK</td>
+                    <td>NOT NULL</td>
+                    <td>References <code>STUDENT(StudentID)</code></td>
+                </tr>
+                <tr>
+                    <td><code>ClubID</code></td>
+                    <td>VARCHAR2</td>
+                    <td>10</td>
+                    <td>PK, FK</td>
+                    <td>NOT NULL</td>
+                    <td>References <code>CLUB(ClubID)</code></td>
+                </tr>
+                <tr>
+                    <td><code>RegisterDate</code></td>
+                    <td>DATE</td>
+                    <td>Default</td>
+                    <td>None</td>
+                    <td>NOT NULL</td>
+                    <td>System registration date</td>
+                </tr>
+                <tr>
+                    <td><code>ApprovalStatus</code></td>
+                    <td>VARCHAR2</td>
+                    <td>15</td>
+                    <td>None</td>
+                    <td>NOT NULL</td>
+                    <td><code>CHECK (ApprovalStatus IN ('APPROVED', 'PENDING', 'REJECTED'))</code></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- SECTION C -->
+    <div class="section-box page-break">
+        <h2>SECTION C: Database Normalization (UNF to 3NF) (25 Marks)</h2>
+        
+        <p><strong>Scenario:</strong> Convert an unnormalized event register report into 3NF.</p>
+        
+        <h3>Question 3.1: Unnormalized Form (UNF)</h3>
+        <div class="model-answer">
+            <p>$$\text{UNF: } \text{EVENT\_REGISTER}(\underline{\text{InvoiceNo}}, \text{InvoiceDate}, \text{StudentID}, \text{StudentName}, \text{StudentEmail}, \text{Faculty}, \{\text{EventID}, \text{EventName}, \text{EventDate}, \text{ClubID}, \text{ClubName}, \text{AdvisorID}, \text{AdvisorName}, \text{Fee}\})$$</p>
+        </div>
+
+        <h3>Question 3.2: First Normal Form (1NF) & Functional Dependencies</h3>
+        <div class="model-answer">
+            <p>$$\text{1NF Schema: } \text{EVENT\_REGISTER\_1NF}(\underline{\text{InvoiceNo}}, \underline{\text{EventID}}, \text{InvoiceDate}, \text{StudentID}, \text{StudentName}, \text{StudentEmail}, \text{Faculty}, \text{EventName}, \text{EventDate}, \text{ClubID}, \text{ClubName}, \text{AdvisorID}, \text{AdvisorName}, \text{Fee})$$</p>
+            <p><strong>Functional Dependencies (FDs):</strong></p>
+            <ul>
+                <li>$\text{FD1: } \{\text{InvoiceNo}, \text{EventID}\} \rightarrow \text{Fee}$ <em>(Full FD)</em></li>
+                <li>$\text{FD2: } \text{InvoiceNo} \rightarrow \text{InvoiceDate}, \text{StudentID}, \text{StudentName}, \text{StudentEmail}, \text{Faculty}$ <em>(Partial FD)</em></li>
+                <li>$\text{FD3: } \text{StudentID} \rightarrow \text{StudentName}, \text{StudentEmail}, \text{Faculty}$ <em>(Transitive FD)</em></li>
+                <li>$\text{FD4: } \text{EventID} \rightarrow \text{EventName}, \text{EventDate}, \text{ClubID}, \text{ClubName}, \text{AdvisorID}, \text{AdvisorName}$ <em>(Partial FD)</em></li>
+                <li>$\text{FD5: } \text{ClubID} \rightarrow \text{ClubName}, \text{AdvisorID}, \text{AdvisorName}$ <em>(Transitive FD)</em></li>
+                <li>$\text{FD6: } \text{AdvisorID} \rightarrow \text{AdvisorName}$ <em>(Transitive FD)</em></li>
+            </ul>
+        </div>
+
+        <h3>Question 3.3 & 3.4: 2NF & Final 3NF Normalization Schema</h3>
+        <div class="model-answer">
+            <p><strong>Final 3NF Relations:</strong></p>
+            <ol>
+                <li>$\text{STUDENT}(\underline{\text{StudentID}}, \text{StudentName}, \text{StudentEmail}, \text{Faculty})$</li>
+                <li>$\text{INVOICE}(\underline{\text{InvoiceNo}}, \text{InvoiceDate}, \text{StudentID}^*)$</li>
+                <li>$\text{ADVISOR}(\underline{\text{AdvisorID}}, \text{AdvisorName})$</li>
+                <li>$\text{CLUB}(\underline{\text{ClubID}}, \text{ClubName}, \text{AdvisorID}^*)$</li>
+                <li>$\text{EVENT}(\underline{\text{EventID}}, \text{EventName}, \text{EventDate}, \text{ClubID}^*)$</li>
+                <li>$\text{INVOICE\_LINE}(\underline{\text{InvoiceNo}}^*, \underline{\text{EventID}}^*, \text{Fee})$</li>
+            </ol>
+        </div>
+    </div>
+
+    <!-- SECTION D -->
+    <div class="section-box page-break">
+        <h2>SECTION D: SQL Query Writing & Syntax Implementation (30 Marks)</h2>
+        
+        <h3>Question 4.1: DDL Table Creation Script</h3>
+<pre><code>-- 1. Create ADVISOR Table
+CREATE TABLE ADVISOR (
+    AdvisorID    VARCHAR2(10)  NOT NULL,
+    AdvisorName  VARCHAR2(100) NOT NULL,
+    OfficeRoom   VARCHAR2(20),
+    PhoneNo      VARCHAR2(15),
+    Faculty      VARCHAR2(50)  NOT NULL,
+    CONSTRAINT pk_advisor PRIMARY KEY (AdvisorID)
+);
+
+-- 2. Create CLUB Table
+CREATE TABLE CLUB (
+    ClubID       VARCHAR2(10)  NOT NULL,
+    ClubName     VARCHAR2(100) NOT NULL,
+    Category     VARCHAR2(50)  NOT NULL,
+    AdvisorID    VARCHAR2(10)  NOT NULL,
+    CONSTRAINT pk_club PRIMARY KEY (ClubID),
+    CONSTRAINT uq_club_name UNIQUE (ClubName),
+    CONSTRAINT fk_club_advisor FOREIGN KEY (AdvisorID) 
+        REFERENCES ADVISOR(AdvisorID) ON DELETE RESTRICT
+);
+
+-- 3. Create CLUB_MEMBERSHIP Table
+CREATE TABLE CLUB_MEMBERSHIP (
+    StudentID       VARCHAR2(10) NOT NULL,
+    ClubID          VARCHAR2(10) NOT NULL,
+    RegisterDate    DATE DEFAULT SYSDATE NOT NULL,
+    ApprovalStatus  VARCHAR2(15) DEFAULT 'PENDING' NOT NULL,
+    CONSTRAINT pk_club_membership PRIMARY KEY (StudentID, ClubID),
+    CONSTRAINT chk_approval_status 
+        CHECK (ApprovalStatus IN ('APPROVED', 'PENDING', 'REJECTED'))
+);</code></pre>
+
+        <h3>Question 4.2 to 4.5: Advanced DML Queries</h3>
+        <p><strong>Query: Aggregating Advisors managing >1 Club</strong></p>
+<pre><code>SELECT 
+    a.AdvisorID,
+    a.AdvisorName,
+    COUNT(c.ClubID) AS TotalClubsAdvised
+FROM ADVISOR a
+INNER JOIN CLUB c ON a.AdvisorID = c.AdvisorID
+GROUP BY a.AdvisorID, a.AdvisorName
+HAVING COUNT(c.ClubID) > 1
+ORDER BY TotalClubsAdvised DESC;</code></pre>
+
+        <p><strong>Query: Conditional Pivot Aggregation (Semester Event Counts)</strong></p>
+<pre><code>SELECT 
+    a.AdvisorID,
+    a.AdvisorName,
+    SUM(CASE WHEN e.SemesterNo = 1 THEN 1 ELSE 0 END) AS Sem1_Event_Count,
+    SUM(CASE WHEN e.SemesterNo = 2 THEN 1 ELSE 0 END) AS Sem2_Event_Count,
+    COUNT(e.EventID) AS Total_Events_Organized
+FROM ADVISOR a
+INNER JOIN CLUB c ON a.AdvisorID = c.AdvisorID
+INNER JOIN EVENT e ON c.ClubID = e.ClubID
+GROUP BY a.AdvisorID, a.AdvisorName
+ORDER BY Total_Events_Organized DESC;</code></pre>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            mermaid.initialize({ startOnLoad: true, theme: 'neutral' });
+        });
+    </script>
+</body>
+</html>
