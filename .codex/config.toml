@@ -1,0 +1,6 @@
+[mcp_servers.blynk]
+url = "https://blynk.cloud/mcp"
+auth = "oauth"
+enabled = true
+default_tools_approval_mode = "writes"
+tool_timeout_sec = 60

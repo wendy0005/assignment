@@ -1,8 +1,8 @@
 import re
 import markdown
 
-md_path = "/Users/jingyichan/CodingArea/assignment/current_sem/BCL1233 - System Analysis/assignment/20260805_BCL1233_Final/BCL1233_FinalAssessment_Answers.md"
-html_path = "/Users/jingyichan/CodingArea/assignment/current_sem/BCL1233 - System Analysis/assignment/20260805_BCL1233_Final/BCL1233_FinalAssessment_Answers.html"
+md_path = "/Users/tankarhau/PycharmProjects/assignment/current_sem/BCL1233 - System Analysis/assignment/20260805_BCL1233_Final/BCL1233_FinalAssessment_Answers.md"
+html_path = "/Users/tankarhau/PycharmProjects/assignment/current_sem/BCL1233 - System Analysis/assignment/20260805_BCL1233_Final/BCL1233_FinalAssessment_Answers.html"
 
 with open(md_path, "r", encoding="utf-8") as f:
     md_text = f.read()
@@ -149,6 +149,9 @@ html_document = f"""<!DOCTYPE html>
     border-collapse: collapse;
     margin: 14px 0;
     font-size: 9.5pt;
+    page-break-inside: auto;
+  }}
+  tr {{
     page-break-inside: avoid;
   }}
   th, td {{

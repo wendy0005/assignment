@@ -25,7 +25,7 @@ User interface design forms the primary interaction touchpoint between organizat
 
 #### Interface Wireframe Design
 
-![Submit Hybrid Work Request UI Wireframe](images/submit_hybrid_request_ui.jpg)
+![Submit Hybrid Work Request UI Wireframe](images/wireframe1.png)
 
 
 
@@ -50,7 +50,7 @@ The **Submit Hybrid Work Request** screen serves as the initial entry portal for
 
 #### Interface Wireframe Design
 
-![Approve Hybrid Work Request UI Wireframe](images/approve_hybrid_request_ui.jpg)
+![Approve Hybrid Work Request UI Wireframe](images/wireframe2.png)
 
 
 
@@ -70,7 +70,7 @@ The **Approve Hybrid Work Request** screen provides supervisors with a decision-
 
 #### Interface Wireframe Design
 
-![Employee Check-in Check-out UI Wireframe](images/checkin_checkout_ui.jpg)
+![Employee Check-in Check-out UI Wireframe](images/wireframe3.png)
 
 
 
@@ -272,6 +272,8 @@ System testing ensures that functional specifications and business rules operate
 ### 1. Requirements Traceability Matrix
 
 The Requirements Traceability Matrix (RTM) establishes bidirectional mapping across requirements, process models, data structures, behavioral UML models, and test specifications. This ensures that every system requirement is fully realized in design and validated by test cases.
+
+<br><br>
 
 | Requirement ID | Requirement Name & Description | DFD Process Ref | Business Rule Ref | ERD Entity & Attributes | UML Diagram Ref | Test Case ID |
 |---|---|---|---|---|---|---|
