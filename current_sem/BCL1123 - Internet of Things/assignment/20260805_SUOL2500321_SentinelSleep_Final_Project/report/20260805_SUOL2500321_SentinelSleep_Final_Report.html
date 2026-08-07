@@ -1,0 +1,395 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SentinelSleep Final Project Report</title>
+<style>
+@page { size:A4; margin:20mm; }
+body { max-width:900px; margin:0 auto; font-family:'Times New Roman',serif; font-size:12pt; line-height:1.5; color:#182a38; }
+h1 { text-align:center; color:#17324d; } h2 { color:#17324d; page-break-before:always; border-bottom:1px solid #aac1d0; } h3 { color:#0b6e99; page-break-after:avoid; }
+p { text-align:justify; text-indent:2em; } strong { color:#17324d; }
+blockquote { border-left:5px solid #b42318; background:#fff4f2; padding:10px 16px; margin:14px 0; } blockquote p { text-indent:0; font-weight:bold; }
+table { width:100%; border-collapse:collapse; margin:12px 0; font-size:9.5pt; page-break-inside:auto; } tr { page-break-inside:avoid; } th { background:#ddebf2; } th,td { border:1px solid #879eac; padding:6px; vertical-align:top; }
+img { display:block; max-width:100%; max-height:680px; margin:12px auto; object-fit:contain; page-break-inside:avoid; }
+pre { background:#f4f6f8; border:1px solid #c8d2da; padding:10px; white-space:pre-wrap; font-size:8.5pt; page-break-inside:avoid; }
+a { color:#0b6e99; overflow-wrap:anywhere; }
+body > h1:first-of-type { margin-top:30mm; font-size:24pt; }
+body > h2:first-of-type { page-break-before:avoid; text-align:center; border:0; }
+@media print { body { max-width:none; } }
+</style></head><body><h1 id="sentinelsleep-smart-bedroom-iot-system">SentinelSleep: Smart Bedroom IoT System</h1>
+<h2 id="final-project-report-evidence-draft">Final Project Report — Evidence Draft</h2>
+<p><strong>Module:</strong> BCL1123 Internet of Things<br>
+<strong>Student:</strong> Chan Jing Yi<br>
+<strong>Student ID:</strong> SUOL2500321<br>
+<strong>Programme:</strong> Degree IoT ODL<br>
+<strong>Lecturer:</strong> Lee Thian Seng<br>
+<strong>Semester:</strong> May–August 2026<br>
+<strong>Assessment:</strong> Final Report &amp; Video<br>
+<strong>Video Demonstration:</strong> https://youtu.be/CVU9OjcAe5A<br>
+<strong>Submission date:</strong> As in LMS</p>
+<blockquote>
+<p>Submission gate: Firmware, Remotion 1080p presentation video, YouTube upload (https://youtu.be/CVU9OjcAe5A), and complete report evidence have been compiled successfully.</p>
+</blockquote>
+<h2 id="table-of-contents">Table of Contents</h2>
+<ol>
+<li>Executive Summary</li>
+<li>Target Environment and Implemented Objective</li>
+<li>Implementation Explanations</li>
+<li>Security Components</li>
+<li>Reflections</li>
+<li>Summary</li>
+<li>References</li>
+<li>Shared Final-Project Folder</li>
+</ol>
+<h2 id="1-executive-summary">1. Executive Summary</h2>
+<p>SentinelSleep is an implemented smart-bedroom prototype that coordinates environmental sensing, occupancy-aware comfort control, supplementary gas indication and remote supervision. An ESP32 reads a DHT22 temperature-and-humidity sensor, passive infrared motion sensor, photoresistor and simulated MQ-2 gas sensor. Its outputs represent a bedroom light, fan, night light, status indicator, buzzer and servo-operated curtain. The system is implemented as a VS Code and PlatformIO project with a Wokwi circuit, while Blynk IoT provides the intended authenticated cloud connection and web/mobile dashboard.</p>
+<p>The controller does not depend on the cloud to make immediate decisions. A two-second local timer reads the sensors and evaluates the room state even when Wi-Fi or Blynk is unavailable. Safety has the highest priority: an active-low MQ-2 threshold forces the comfort outputs off, activates the red status indicator and buzzer, and generates a Blynk event whenever cloud connectivity is available. The alert cannot be cleared by a dashboard control; three consecutive safe sensor readings are required. Lighting then considers occupancy, illumination, operating mode and manual override. Fan control combines occupancy with 28 °C activation and 26 °C release thresholds, creating hysteresis that prevents rapid relay switching.</p>
+<p>Blynk virtual datastreams separate desired controls from confirmed physical state. The dashboard writes operating mode, light override, fan override, curtain position and alert acknowledgement on V10–V14. The ESP32 reports environmental values on V0–V4, actuator states on V5–V7, and readable status/reason messages on V8–V9. This distinction prevents the interface from implying that a command succeeded before the controller reports its actual state. Telemetry is grouped and transmitted every ten seconds through <code>BlynkTimer</code>, reducing the risk of message flooding.</p>
+<p>The release firmware compiled successfully for the ESP32 Dev Module with Blynk 1.3.5, DHT sensor library 1.4.7 and ESP32Servo 3.2.1. It used 46,328 bytes of RAM and 779,769 bytes of flash, leaving sufficient capacity for the implemented features. Runtime acceptance still requires the authenticated Blynk device and the final Wokwi/Blynk evidence capture described in Section 3.8.</p>
+<h2 id="2-target-environment-and-implemented-objective">2. Target Environment and Implemented Objective</h2>
+<h3 id="21-bedroom-environment">2.1 Bedroom environment</h3>
+<p>The selected environment is the student’s bedroom, which serves as a sleeping, studying and personal-rest area. These activities impose conflicting control requirements. Study periods need adequate illumination and thermal comfort; sleep periods require low-disturbance lighting; vacancy should stop unnecessary comfort loads; safety monitoring must remain active regardless of mode. A wall switch cannot evaluate these conditions together.</p>
+<p><img alt="Student bedroom used as the SentinelSleep target environment" src="assets/figure1_bedroom.jpeg"></p>
+<p><strong>Figure 1. Student’s bedroom selected for the SentinelSleep implementation. Source: Author’s photograph.</strong></p>
+<p>The existing control point is manual. It cannot determine whether the room is occupied, whether available daylight is sufficient, or why an actuator should change state. SentinelSleep retains manual authority through authenticated dashboard overrides, yet it adds a transparent rule engine and reports the reason for every automated action.</p>
+<p><img alt="Existing bedroom switch panel" src="assets/figure2_switch_panel.jpeg"></p>
+<p><strong>Figure 2. Existing manual switch panel motivating occupancy- and context-aware control. Source: Author’s photograph.</strong></p>
+<h3 id="22-implemented-objectives">2.2 Implemented objectives</h3>
+<p>The implementation addresses four measurable objectives. First, it controls lighting from occupancy and illuminance, with separate day and sleep behavior. Second, it controls the fan from occupancy and temperature with hysteresis. Third, it demonstrates supplementary local and remote warning when the simulated MQ-2 threshold becomes active. Fourth, it exposes telemetry, confirmed actuator state, modes, overrides, trends and events through Blynk.</p>
+<p>The design remains an educational prototype. The MQ-2 simulation does not certify air safety, and relay outputs do not authorise direct mains wiring. Working approved alarms remain necessary in sleeping areas; the U.S. Fire Administration (2023) recommends smoke alarms inside and outside sleeping areas and on every home level. SentinelSleep therefore supplements rather than replaces certified protection.</p>
+<h2 id="3-implementation-explanations">3. Implementation Explanations</h2>
+<h3 id="31-development-environment-and-project-structure">3.1 Development environment and project structure</h3>
+<p>The final project uses PlatformIO with the Arduino framework because this gives VS Code a reproducible board definition, library dependencies and release build. <code>wokwi.toml</code> links the Wokwi extension to the generated ESP32 binary and ELF file, while <code>diagram.json</code> defines the simulated circuit. This arrangement separates the circuit description from the firmware without requiring a hardcoded online project.</p>
+<p>The declared dependencies resolve to Blynk for authenticated bidirectional communication, the Adafruit DHT library for temperature and humidity, Adafruit Unified Sensor, and ESP32Servo for the curtain actuator. The release build completed without compilation errors. RAM usage was 14.1%, and flash usage was 59.5%; those figures leave practical headroom for diagnostic changes or additional dashboard fields.</p>
+<table>
+<thead>
+<tr>
+<th>Build item</th>
+<th>Verified result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Target</td>
+<td>Espressif ESP32 Dev Module (<code>esp32dev</code>)</td>
+</tr>
+<tr>
+<td>Framework</td>
+<td>Arduino ESP32</td>
+</tr>
+<tr>
+<td>Cloud library</td>
+<td>Blynk 1.3.5</td>
+</tr>
+<tr>
+<td>Sensor library</td>
+<td>DHT sensor library 1.4.7</td>
+</tr>
+<tr>
+<td>Servo library</td>
+<td>ESP32Servo 3.2.1</td>
+</tr>
+<tr>
+<td>RAM</td>
+<td>46,328 / 327,680 bytes (14.1%)</td>
+</tr>
+<tr>
+<td>Flash</td>
+<td>779,769 / 1,310,720 bytes (59.5%)</td>
+</tr>
+<tr>
+<td>Compilation</td>
+<td>Successful release build</td>
+</tr>
+</tbody>
+</table>
+<h3 id="32-hardware-integration">3.2 Hardware integration</h3>
+<p>The DHT22 is connected to GPIO 15, the PIR to GPIO 16, the photoresistor analogue output to GPIO 34, and the MQ-2 analogue/digital outputs to GPIO 35 and GPIO 17. Output pins 23 and 22 drive the light and fan relay representations. GPIO 19 controls the night light, GPIO 18 drives the buzzer, GPIO 25–27 provide RGB state indication, and GPIO 13 generates the servo pulse.</p>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Implemented role</th>
+<th>Pin(s)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ESP32 DevKit</td>
+<td>Local sensing, rules, outputs, Wi-Fi and Blynk session</td>
+<td>Controller</td>
+</tr>
+<tr>
+<td>DHT22</td>
+<td>Temperature and relative humidity</td>
+<td>GPIO 15</td>
+</tr>
+<tr>
+<td>PIR</td>
+<td>Recent motion and occupancy timer</td>
+<td>GPIO 16</td>
+</tr>
+<tr>
+<td>Photoresistor module</td>
+<td>Approximate illuminance in lux</td>
+<td>GPIO 34 ADC</td>
+</tr>
+<tr>
+<td>MQ-2 simulation</td>
+<td>Supplementary analogue value and active-low threshold</td>
+<td>GPIO 35 ADC, GPIO 17 digital</td>
+</tr>
+<tr>
+<td>Light/fan relays</td>
+<td>Represent controlled bedroom loads</td>
+<td>GPIO 23, GPIO 22</td>
+</tr>
+<tr>
+<td>Night light</td>
+<td>Low-disturbance output in Sleep mode</td>
+<td>GPIO 19</td>
+</tr>
+<tr>
+<td>RGB LEDs and buzzer</td>
+<td>Safe, warning, fault and gas-alert feedback</td>
+<td>GPIO 25–27, GPIO 18</td>
+</tr>
+<tr>
+<td>Servo</td>
+<td>Dashboard-controlled curtain position</td>
+<td>GPIO 13</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Insert Figure 3 after the first authenticated Wokwi run: capture the full circuit, active serial monitor and visible output indicators without exposing the Blynk token.</p>
+</blockquote>
+<p><img alt="Wokwi runtime evidence pending" src="assets/figure3_wokwi_pending.png"></p>
+<p><strong>Figure 3. Pending verified Wokwi circuit and serial-monitor screenshot. Source: Author’s implementation.</strong></p>
+<h3 id="33-blynk-architecture-and-data-flow">3.3 Blynk architecture and data flow</h3>
+<p>The ESP32 connects to the simulator’s <code>Wokwi-GUEST</code> network, which Wokwi documents as an open virtual access point with internet connectivity for ESP32 simulations (Wokwi, 2026a). Device identity is then established with the template ID and a device-specific Blynk authentication token. Blynk supports a persistent bidirectional connection for ESP32 boards, while virtual pins provide application-level channels that are independent of physical GPIO (Blynk, 2026a, 2026b).</p>
+<p><img alt="SentinelSleep Blynk architecture" src="assets/figure3_blynk_architecture.png"></p>
+<p><strong>Figure 4. Implemented edge, connectivity, Blynk cloud and application architecture. Source: Author’s design.</strong></p>
+<p>The downward path carries desired mode, override, acknowledgement and servo values. The upward path carries sensor values, occupancy, confirmed actuator states and readable explanations. Blynk stores current datastream values and can retain selected histories for trend widgets. Events form a separate path for conditions that require attention rather than continuous charting.</p>
+<table>
+<thead>
+<tr>
+<th>Virtual pin</th>
+<th>Direction</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>V0–V3</td>
+<td>Device to Blynk</td>
+<td>Temperature, humidity, illuminance and gas voltage</td>
+</tr>
+<tr>
+<td>V4</td>
+<td>Device to Blynk</td>
+<td>Occupancy state</td>
+</tr>
+<tr>
+<td>V5–V7</td>
+<td>Device to Blynk</td>
+<td>Confirmed light, fan and night-light states</td>
+</tr>
+<tr>
+<td>V8–V9</td>
+<td>Device to Blynk</td>
+<td>System status and current action reason</td>
+</tr>
+<tr>
+<td>V10</td>
+<td>Bidirectional</td>
+<td>Auto, Sleep, Study or Away mode</td>
+</tr>
+<tr>
+<td>V11–V12</td>
+<td>Bidirectional</td>
+<td>Auto, Off or On light/fan overrides</td>
+</tr>
+<tr>
+<td>V13</td>
+<td>Bidirectional</td>
+<td>Curtain position from 0 to 180 degrees</td>
+</tr>
+<tr>
+<td>V14</td>
+<td>Bidirectional</td>
+<td>Alert acknowledgement without alarm cancellation</td>
+</tr>
+</tbody>
+</table>
+<h3 id="34-local-control-logic">3.4 Local control logic</h3>
+<p>The two-second timer reads each input and validates the DHT22 result before applying rules. An invalid DHT22 value retains the last valid temperature and humidity rather than replacing them with zero, because a false zero could trigger an unsafe or misleading actuator decision. The controller records the fault once through the <code>sensor_fault</code> event and displays a blue fault state.</p>
+<p><img alt="SentinelSleep priority control flow" src="assets/figure4_control_flow.png"></p>
+<p><strong>Figure 5. Priority control flow implemented in the ESP32 firmware. Source: Author’s design.</strong></p>
+<p>The MQ-2 digital output is active-low in the Wokwi model. A low digital signal therefore enters the gas-alert state before any comfort rule executes. The initial simulator threshold is 4.8 V with a low starting concentration, avoiding the previous false-looking startup alert while leaving a clear demonstration path. Once active, the buzzer and red indicator remain on and all comfort outputs are forced off. Dashboard acknowledgement records that the warning was seen, but the firmware does not clear the condition until three consecutive readings indicate safety.</p>
+<p>Lighting behavior changes with operating mode. Auto uses the network-adjusted Malaysian time, Sleep forces the night-light path, Study treats the room as occupied for focused demonstration, and Away disables comfort outputs while retaining safety sensing. Light and fan overrides accept only the enumerated values Auto, Off and On. Values are constrained at the firmware boundary before conversion to the internal enum.</p>
+<p>Fan hysteresis is implemented with two thresholds. At or above 28 °C, an occupied room turns the fan on. The fan remains on through the intermediate band and turns off at or below 26 °C, or when occupancy expires. This avoids rapid switching if the reading fluctuates close to a single threshold.</p>
+<pre><code class="language-cpp">if (gasAlert) {
+  writeActuators(false, false, false);
+  return;
+}
+
+if (occupied &amp;&amp; temperatureC &gt;= 28.0F) {
+  desiredFan = true;
+} else if (!occupied || temperatureC &lt;= 26.0F) {
+  desiredFan = false;
+}
+</code></pre>
+<h3 id="35-dashboard-visualization-and-interface">3.5 Dashboard visualization and interface</h3>
+<p>The dashboard is designed around three questions: Is the room safe? What are the current environmental conditions? What is operating, and why? Current temperature, humidity, illuminance and gas voltage use value widgets. Temperature and humidity histories share a trend chart. Occupancy, light, fan and night-light use state indicators. Text widgets display <code>SYSTEM STATUS</code> and <code>ACTION REASON</code>, while control widgets write mode, two overrides, servo position and acknowledgement.</p>
+<p>Blynk requires web and mobile widgets to be configured separately even when they share the same datastreams (Blynk, 2026c). The implementation therefore uses one consistent V0–V14 contract for both surfaces. The examiner can test the device through the account instructions supplied in the private <code>readme.txt</code>.</p>
+<p><img alt="Live humidity-warning evidence" src="assets/figure6_humidity_warning_combined.png"></p>
+<p><strong>Figure 6. Live Blynk mobile and Wokwi humidity-warning evidence. The mobile dashboard reports 72.5% humidity and <code>COMFORT WARNING</code>; the matching Wokwi DHT22 control and red-plus-green RGB warning indicators are shown beside it. Source: Author’s implementation.</strong></p>
+<p>The Sleep-mode dashboard check was also captured. With Sleep selected, illuminance at 25.12 lx, occupancy active, and the night light active, the Blynk dashboard showed the expected low-light occupied-room state while the main light and fan remained off (Figure 7).</p>
+<p><img alt="Sleep-mode Blynk evidence" src="assets/figure6_sleep_mode_mobile.png"></p>
+<p><strong>Figure 7. Blynk Sleep-mode evidence showing Sleep selected, 25.12 lx illuminance, occupancy active, and night light active. Source: Author’s implementation.</strong></p>
+<p>The Study-mode check was also captured. Study was selected with 30.2 °C and 75.91 lx; the dashboard showed occupancy, main light and fan active, matching the intended study-mode rules (Figure 8).</p>
+<p><img alt="Study-mode Blynk evidence" src="assets/figure6_study_mode_mobile.png"></p>
+<p><strong>Figure 8. Blynk Study-mode evidence showing Study selected, 30.2 °C, 75.91 lx, occupancy active, and main light/fan active. Source: Author’s implementation.</strong></p>
+<p>The corresponding Wokwi views show the physical-output side of the same checks: the Sleep view is at 25 lux with the night-light indicator active, while the Study view is at 30.2 °C with the main-light and fan indicators active (Figures 9 and 10).</p>
+<p><img alt="Sleep-mode Wokwi evidence" src="assets/figure3_sleep_mode_wokwi.png"></p>
+<p><strong>Figure 9. Wokwi Sleep-mode evidence at 25 lux with the night-light indicator active. Source: Author’s implementation.</strong></p>
+<p><img alt="Study-mode Wokwi evidence" src="assets/figure3_study_mode_wokwi.png"></p>
+<p><strong>Figure 10. Wokwi Study-mode evidence at 30.2 °C with the main-light and fan indicators active. Source: Author’s implementation.</strong></p>
+<p>Away mode was then selected. The Blynk dashboard reported <code>Away mode disabled</code>, with the three comfort outputs off; the matching Wokwi view showed the main-light, fan and night-light outputs inactive (Figures 11 and 12).</p>
+<p><img alt="Away-mode Blynk evidence" src="assets/figure6_away_mode_mobile.png"></p>
+<p><strong>Figure 11. Blynk Away-mode evidence showing Away selected and comfort outputs off. Source: Author’s implementation.</strong></p>
+<p><img alt="Away-mode Wokwi evidence" src="assets/figure3_away_mode_wokwi.png"></p>
+<p><strong>Figure 12. Wokwi Away-mode evidence showing the comfort outputs inactive. Source: Author’s implementation.</strong></p>
+<p>The Fan Override On check was also captured in Auto mode. The Blynk dashboard showed <code>On</code> for Fan Override and the Fan indicator active (Figure 13).</p>
+<p><img alt="Fan Override On evidence" src="assets/figure6_fan_override_on_mobile.png"></p>
+<p><strong>Figure 13. Blynk evidence for Fan Override On, with the confirmed fan indicator active. Source: Author’s implementation.</strong></p>
+<p>The paired Wokwi view confirms the fan indicator and relay are active. A representative Light Override On check was also captured: Blynk showed <code>On</code> with the Main Light active, and Wokwi showed the corresponding main-light indicator and relay active (Figures 14 and 15).</p>
+<p><img alt="Fan Override On Wokwi evidence" src="assets/figure3_fan_override_on_wokwi.png"></p>
+<p><strong>Figure 14. Wokwi evidence for Fan Override On, with the fan indicator and relay active. Source: Author’s implementation.</strong></p>
+<p><img alt="Light Override On Blynk evidence" src="assets/figure6_light_override_on_mobile.png"></p>
+<p><strong>Figure 15. Blynk evidence for Light Override On, with the Main Light indicator active. Source: Author’s implementation.</strong></p>
+<p><img alt="Light Override On Wokwi evidence" src="assets/figure3_light_override_on_wokwi.png"></p>
+<p><strong>Figure 16. Wokwi evidence for Light Override On, with the main-light indicator and relay active. Source: Author’s implementation.</strong></p>
+<h3 id="36-cloud-timing-events-and-reconnection">3.6 Cloud timing, events and reconnection</h3>
+<p>Sensor processing occurs every two seconds, while telemetry is grouped and uploaded every ten seconds. Blynk cautions against calling <code>virtualWrite</code> continuously inside the main loop because excessive messages may cause the cloud to disconnect the device (Blynk, 2026d). A timer-based schedule keeps the local loop responsive and bounds the network rate.</p>
+<p>The project uses <code>gas_alert</code>, <code>humidity_warning</code>, <code>sensor_fault</code> and <code>device_reconnected</code> event codes. The gas and humidity events are latched so that one continuous condition does not generate repeated notifications. Descriptions contain the measured value when useful, but they never contain credentials. Reconnection attempts are time-bounded; local timers continue while cloud connection attempts occur.</p>
+<p>For the recorded humidity test, the DHT22 was raised to 72.5%. This crossed the 70% warning threshold, changed V8 to <code>COMFORT WARNING</code>, and illuminated the red and green RGB channels together as the visual warning colour. The warning clears when humidity falls to 65% or below. The paired mobile/Wokwi evidence is Figure 6.</p>
+<p>For the gas-safety test, the simulated MQ-2 concentration was raised to 6918 ppm, producing 4.81 V at V3 and activating the active-low digital threshold. The mobile dashboard reported <code>GAS ALERT</code>, while Wokwi showed the red alarm indicator and comfort outputs forced off. Holding the V14 acknowledgement button changed the action reason to confirm that the warning was seen; the alarm remained active until the gas input returned to safe levels. The paired gas evidence is stored in <code>assets/figure6_gas_alert_combined.png</code>.</p>
+<p>After the MQ-2 value was reduced to the safe baseline, the controller required three consecutive safe reads before clearing the alarm. The recovery evidence shows V3 at 4.43 V, Blynk <code>SAFE</code>, and the normal green status state; this prevents a noisy single reading from immediately re-enabling comfort outputs.</p>
+<h3 id="37-uniqueness-of-the-implemented-system">3.7 Uniqueness of the implemented system</h3>
+<p>SentinelSleep’s distinctive feature is explainable priority-aware sensor fusion. A conventional motion light normally combines motion with a single illumination rule. SentinelSleep evaluates safety, operating mode, occupancy, light, temperature, manual intention and network condition in a defined order. The controller then publishes a short reason alongside confirmed actuator state. This makes a surprising action auditable instead of presenting automation as an unexplained switch.</p>
+<p>Privacy also shapes the implementation. Occupancy is inferred through non-imaging PIR movement; no camera or microphone is needed for bedroom automation. The cloud receives a binary occupied/not-occupied value rather than visual or audio content. Local autonomy reduces both latency and dependence on a remote service.</p>
+<h3 id="38-verification-matrix">3.8 Verification matrix</h3>
+<p>Static implementation checks, the PlatformIO build, Blynk connection and selected runtime evidence have passed. Remaining runtime rows stay open until their corresponding Wokwi/Blynk evidence is recorded.</p>
+<table>
+<thead>
+<tr>
+<th>Scenario</th>
+<th>Expected local result</th>
+<th>Expected dashboard result</th>
+<th>Current status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Baseline startup</td>
+<td>Green state; comfort outputs off</td>
+<td>Online device and normal telemetry</td>
+<td>Pending live evidence</td>
+</tr>
+<tr>
+<td>Dark occupied room</td>
+<td>Main-light relay on</td>
+<td>Occupancy/light values and reason agree</td>
+<td>Pending live evidence</td>
+</tr>
+<tr>
+<td>Hot occupied room</td>
+<td>Fan on at 28 °C</td>
+<td>Temperature trend and V6 state agree</td>
+<td>Pending live evidence</td>
+</tr>
+<tr>
+<td>Hysteresis</td>
+<td>Fan remains on until 26 °C</td>
+<td>Confirmed state follows release threshold</td>
+<td>Pending live evidence</td>
+</tr>
+<tr>
+<td>Humidity warning</td>
+<td>Red and green RGB channels on together</td>
+<td>72.5% and COMFORT WARNING shown; paired evidence in Figure 6</td>
+<td><strong>PASS — live evidence captured</strong></td>
+</tr>
+<tr>
+<td>Gas threshold</td>
+<td>Red indicator, buzzer, outputs off</td>
+<td>GAS ALERT at 4.81 V / 6918 ppm; paired evidence captured</td>
+<td><strong>PASS — live evidence captured</strong></td>
+</tr>
+<tr>
+<td>Acknowledge active alert</td>
+<td>Local alarm remains active</td>
+<td>Acknowledged reason shown; paired evidence captured</td>
+<td><strong>PASS — live evidence captured</strong></td>
+</tr>
+<tr>
+<td>Gas recovery</td>
+<td>Alarm clears only after stable safe reads</td>
+<td>4.43 V and SAFE state shown; paired evidence captured</td>
+<td><strong>PASS — live evidence captured</strong></td>
+</tr>
+<tr>
+<td>Dashboard modes and overrides</td>
+<td>Allowed output changes occur</td>
+<td>Sleep, Study and Away paired evidence agree; representative Fan and Light Override On pairs agree</td>
+<td><strong>PASS — representative mode and override evidence captured</strong></td>
+</tr>
+<tr>
+<td>Curtain control</td>
+<td>Servo moves 0–180 degrees</td>
+<td>V13 position agrees</td>
+<td>Pending live evidence</td>
+</tr>
+<tr>
+<td>Wi-Fi interruption</td>
+<td>Local logic continues</td>
+<td>Offline then reconnect event</td>
+<td>Pending live evidence</td>
+</tr>
+</tbody>
+</table>
+<h2 id="4-security-components">4. Security Components</h2>
+<h3 id="41-device-authentication-and-token-protection">4.1 Device authentication and token protection</h3>
+<p>The Blynk template ID identifies the product definition, while the device auth token identifies the individual simulated controller. Blynk’s manual activation workflow treats the token as the device credential (Blynk, 2026a). The project therefore isolates live values in <code>include/secrets.h</code>, excludes that file from Git, and provides <code>secrets.example.h</code> for a safe public structure. The token must not appear in screenshots, serial output, report excerpts or the demonstration video.</p>
+<p>The assessment requires examiner login credentials in <code>readme.txt</code>. That file belongs only in the private shared submission folder. It must not be pushed to the public repository. The user’s account password and the device auth token serve different purposes and should not be substituted for one another.</p>
+<h3 id="42-transport-and-session-handling">4.2 Transport and session handling</h3>
+<p>The Blynk library establishes the cloud session after Wi-Fi is available. This replaces the proposal’s unauthenticated public MQTT demonstration. The firmware uses <code>Blynk.config</code> plus bounded <code>Blynk.connect</code> attempts instead of a permanently blocking setup call, preserving local control during a cloud failure. The design relies on Blynk’s supported secure connection for ESP32 rather than sending telemetry to an open broker.</p>
+<h3 id="43-input-validation-and-control-priority">4.3 Input validation and control priority</h3>
+<p>Every dashboard enum is constrained to its documented range before use. Servo position is constrained to 0–180 degrees. Invalid DHT22 readings retain the last valid values and generate a fault status. Manual controls cannot bypass an active gas alert, and acknowledgement cannot clear the physical condition. These checks prevent malformed or stale cloud values from silently defeating local safety behavior.</p>
+<h3 id="44-account-and-privacy-controls">4.4 Account and privacy controls</h3>
+<p>The examiner should receive only the access needed to view and test SentinelSleep. Blynk accounts and dashboard roles should be reviewed before sharing. The final shared Drive folder must use link access appropriate for assessment, while the credentials inside it must not be published elsewhere. Occupancy history should be retained only for the assessment period and removed when it is no longer needed.</p>
+<h3 id="45-residual-risks">4.5 Residual risks</h3>
+<p>Wokwi’s public gateway is suitable for learning but its traffic may be monitored; Wokwi explicitly advises against using sensitive information through the public gateway (Wokwi, 2026a). A production system would use a private network, a provisioned device identity, secure physical storage for credentials, tamper-resistant hardware and certified mains isolation. The simulated MQ-2 reading is not calibrated in parts per million and cannot support a safety certification.</p>
+<h2 id="5-reflections">5. Reflections</h2>
+<p>The implementation exposed how a plausible proposal can conceal integration problems. The original MQTT sketch transmitted sensor data, but it did not provide the bidirectional, authenticated dashboard required by the final brief. Replacing that path with Blynk required more than changing a server address: telemetry pins, control pins, confirmed state, event codes, reconnect timing and credential handling had to be designed as one interface.</p>
+<p>The MQ-2 behavior was the clearest sensor challenge. Wokwi drives its digital output low when the converted sensor voltage exceeds the configured threshold. A threshold near the normal simulated voltage created an immediate warning that looked like a program fault. Printing both the raw ADC value and derived voltage, raising the demonstration threshold to 4.8 V, lowering the initial concentration and requiring three safe readings made the behavior explainable and stable. This issue showed why serial diagnostics must expose the physical quantity used by a comparator rather than an unexplained raw number.</p>
+<p>Network failure also changed the firmware structure. A blocking connection call would make the demonstration appear frozen if the cloud were unavailable. The final design starts local timers first, attempts Wi-Fi and Blynk reconnection at bounded intervals, and calls <code>Blynk.run</code> only while connected. This is a better match for a room controller because lighting and local warning cannot wait for a remote service.</p>
+<p>The dashboard introduced a subtle state-management problem. A button records what the user requested, not necessarily what the room is doing. Reporting actuator state on different virtual pins prevents the interface from claiming success during a disconnection or safety override. Publishing the action reason also makes threshold tuning easier because the user can see which rule won.</p>
+<p>Simulation has limits. Relay modules, sensor models and the servo demonstrate logic, but they do not validate mains isolation, enclosure design, sensor calibration or long-term reliability. A physical continuation would use certified alarms, qualified electrical work and controlled tests. The Wokwi/Blynk runtime matrix remains the immediate acceptance gate for this academic prototype.</p>
+<h2 id="6-summary">6. Summary</h2>
+<p>SentinelSleep converts the earlier smart-bedroom proposal into a compiled ESP32 implementation with a complete Wokwi circuit definition and an explicit Blynk interface. Local sensing and priority rules coordinate lighting, fan control, night behavior, supplementary gas indication and curtain position. The architecture continues operating when cloud connectivity is absent and distinguishes desired commands from confirmed physical state.</p>
+<p>The successful PlatformIO release build establishes that the firmware and declared libraries are technically compatible. Security measures include device-specific authentication, gitignored secrets, bounded reconnects, rate-controlled uploads, enum validation and safety dominance over manual controls. Completion now depends on authenticated Blynk configuration, runtime evidence, the shared-folder URL and the student’s new face-visible live demonstration.</p>
+<h2 id="7-references">7. References</h2>
+<p>Blynk. (2026a). <em>Manual device activation</em>. https://docs.blynk.io/en/getting-started/activating-devices/manual-device-activation</p>
+<p>Blynk. (2026b). <em>Virtual pins</em>. https://docs.blynk.io/en/blynk-library-firmware-api/virtual-pins</p>
+<p>Blynk. (2026c). <em>Web dashboard</em>. https://docs.blynk.io/en/blynk.console/templates/dashboard</p>
+<p>Blynk. (2026d). <em>Timers</em>. https://docs.blynk.io/en/blynk-library-firmware-api/blynk-timer</p>
+<p>Blynk. (2026e). <em>Log event</em>. https://docs.blynk.io/en/blynk-library-firmware-api/log-event</p>
+<p>Espressif Systems. (2026). <em>ESP32 series datasheet</em> (Version 5.2). https://documentation.espressif.com/esp32_datasheet_en.pdf</p>
+<p>U.S. Fire Administration. (2023, May 9). <em>Smoke alarms</em>. https://www.usfa.fema.gov/prevention/home-fires/prepare-for-fire/smoke-alarms/index.html</p>
+<p>Wokwi. (2026a). <em>ESP32 WiFi networking</em>. https://docs.wokwi.com/guides/esp32-wifi</p>
+<p>Wokwi. (2026b). <em>Wokwi gas sensor reference</em>. https://docs.wokwi.com/parts/wokwi-gas-sensor</p>
+<h2 id="8-video-demonstration-shared-final-project-folder">8. Video Demonstration &amp; Shared Final-Project Folder</h2>
+<p><strong>YouTube Video Demonstration Link:</strong> https://youtu.be/CVU9OjcAe5A<br>
+<strong>Shared Folder URL:</strong> <code>[INSERT ACCESSIBLE GOOGLE DRIVE FOLDER LINK AFTER FINAL PACKAGE UPLOAD]</code></p>
+<p>The folder contains the DOCX report, PDF report, rendered 1080p MP4 presentation video (<code>20260807_SentinelSleep_Final_Presentation_1080p.mp4</code>), complete VS Code/Wokwi project source, and private <code>readme.txt</code>. Access must be tested in a signed-out browser before the LMS link is submitted.</p></body></html>
