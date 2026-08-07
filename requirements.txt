@@ -1,11 +1,6 @@
-pypdf
-Pillow
-pdfplumber
-pdf2image
-pyyaml
-lxml
-Markdown
-edge-tts
-tabulate
-aiohttp
-flask
+pillow>=10.0.0
+markdown>=3.5
+python-docx>=1.1.0
+pypdf>=4.0.0
+pdfplumber>=0.10.0
+requests>=2.31.0

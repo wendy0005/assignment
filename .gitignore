@@ -32,6 +32,8 @@ Thumbs.db
 .env.test.local
 .env.production.local
 .env.*.local
+.venv/
+venv/
 
 # Build
 dist/
