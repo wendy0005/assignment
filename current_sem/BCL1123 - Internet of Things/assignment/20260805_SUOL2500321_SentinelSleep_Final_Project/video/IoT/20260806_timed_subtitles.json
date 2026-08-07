@@ -1,0 +1,402 @@
+{
+  "01_Introduction.MOV": [
+    {
+      "startFrame": 0,
+      "endFrame": 154,
+      "text": "Hello, my name is Chan Jing Yi, and this is my final project called SentinelSleep."
+    },
+    {
+      "startFrame": 187,
+      "endFrame": 353,
+      "text": "SentinelSleep is a smart bedroom system built using an ESP32 microcontroller,"
+    },
+    {
+      "startFrame": 353,
+      "endFrame": 552,
+      "text": "with Wokwi simulations and a Blynk IoT cloud platform."
+    },
+    {
+      "startFrame": 552,
+      "endFrame": 665,
+      "text": "It monitors temperature, humidity, room brightness, occupancy, and gas safety."
+    },
+    {
+      "startFrame": 665,
+      "endFrame": 948,
+      "text": "It can control the main light, fan, night light, buzzer, and curtain servo."
+    }
+  ],
+  "02_Hardware_and_Architecture.MOV": [
+    {
+      "startFrame": 0,
+      "endFrame": 250,
+      "text": "This is the Wokwi circuit. The DHT22 measures temperature and humidity, PIR detects occupancy,"
+    },
+    {
+      "startFrame": 250,
+      "endFrame": 454,
+      "text": "the photoresistor measures illuminance, and the MQ-2 provides gas safety input."
+    },
+    {
+      "startFrame": 470,
+      "endFrame": 670,
+      "text": "The system contains relays for main light and fan, RGB status indicators,"
+    },
+    {
+      "startFrame": 670,
+      "endFrame": 859,
+      "text": "a night light indicator, a buzzer, and a curtain servo."
+    },
+    {
+      "startFrame": 859,
+      "endFrame": 1073,
+      "text": "The ESP32 processes sensor readings locally and sends telemetry to Blynk via virtual datastreams."
+    },
+    {
+      "startFrame": 1073,
+      "endFrame": 1337,
+      "text": "The Blynk dashboard displays both sensor readings and confirmed actuator states."
+    }
+  ],
+  "03_Baseline_Operation.MOV": [
+    {
+      "startFrame": 0,
+      "endFrame": 134,
+      "text": "First, I will demonstrate the normal operating condition."
+    },
+    {
+      "startFrame": 134,
+      "endFrame": 196,
+      "text": "The device is online."
+    },
+    {
+      "startFrame": 196,
+      "endFrame": 337,
+      "text": "The temperature is approximately 27.3\u00b0C."
+    },
+    {
+      "startFrame": 337,
+      "endFrame": 406,
+      "text": "Humidity is 65%."
+    },
+    {
+      "startFrame": 406,
+      "endFrame": 593,
+      "text": "Illuminance is about 499 lux, and gas voltage is approximately 4.43V."
+    },
+    {
+      "startFrame": 593,
+      "endFrame": 722,
+      "text": "The system status is SAFE, and comfort outputs are currently inactive."
+    }
+  ],
+  "04_Normal_Lighting.MOV": [
+    {
+      "startFrame": 0,
+      "endFrame": 180,
+      "text": "Next, I will reduce the illuminance below threshold and trigger the PIR sensor."
+    },
+    {
+      "startFrame": 180,
+      "endFrame": 420,
+      "text": "The room is now dark and occupied. The ESP32 detects this and activates the main light."
+    },
+    {
+      "startFrame": 420,
+      "endFrame": 630,
+      "text": "The Blynk dashboard confirms occupancy state, main light state, and active reasons."
+    },
+    {
+      "startFrame": 630,
+      "endFrame": 810,
+      "text": "When motion stops, the vacancy timer expires and the light turns off."
+    }
+  ],
+  "05_Temperature_and_Humidity.MOV": [
+    {
+      "startFrame": 0,
+      "endFrame": 194,
+      "text": "Now I increase the temperature to approximately 30\u00b0C while occupied."
+    },
+    {
+      "startFrame": 194,
+      "endFrame": 334,
+      "text": "The fan activates because the temperature is above the fan threshold."
+    },
+    {
+      "startFrame": 334,
+      "endFrame": 478,
+      "text": "When temperature is reduced, hysteresis logic prevents rapid switching."
+    },
+    {
+      "startFrame": 478,
+      "endFrame": 732,
+      "text": "I will now raise the humidity above 70%."
+    },
+    {
+      "startFrame": 732,
+      "endFrame": 972,
+      "text": "The Blynk dashboard changes to COMFORT WARNING,"
+    },
+    {
+      "startFrame": 972,
+      "endFrame": 1248,
+      "text": "and red and green RGB channels illuminate together to show warning condition."
+    }
+  ],
+  "06_Sleep_Mode.MOV": [
+    {
+      "startFrame": 0,
+      "endFrame": 116,
+      "text": "I will now select Sleep Mode."
+    },
+    {
+      "startFrame": 116,
+      "endFrame": 322,
+      "text": "The illuminance is approximately 25 lux (below sleep lighting threshold),"
+    },
+    {
+      "startFrame": 322,
+      "endFrame": 398,
+      "text": "and the PIR detects occupancy."
+    },
+    {
+      "startFrame": 398,
+      "endFrame": 534,
+      "text": "The night light activates while main light and fan remain off."
+    },
+    {
+      "startFrame": 534,
+      "endFrame": 654,
+      "text": "This provides low-level lighting suitable for sleeping."
+    }
+  ],
+  "07_Study_Mode.MOV": [
+    {
+      "startFrame": 0,
+      "endFrame": 60,
+      "text": "Next, I will select Study Mode."
+    },
+    {
+      "startFrame": 129,
+      "endFrame": 264,
+      "text": "The temperature is approximately 30.2\u00b0C,"
+    },
+    {
+      "startFrame": 264,
+      "endFrame": 450,
+      "text": "and illuminance is below 100 lux. Study Mode treats room as occupied."
+    },
+    {
+      "startFrame": 480,
+      "endFrame": 570,
+      "text": "The Blynk dashboard shows occupancy,"
+    },
+    {
+      "startFrame": 570,
+      "endFrame": 720,
+      "text": "main light and fan active."
+    },
+    {
+      "startFrame": 720,
+      "endFrame": 810,
+      "text": "Physical indicators and relays show the same confirmed output state."
+    }
+  ],
+  "08_Away_Mode.MOV": [
+    {
+      "startFrame": 0,
+      "endFrame": 82,
+      "text": "I will now select Away Mode."
+    },
+    {
+      "startFrame": 82,
+      "endFrame": 289,
+      "text": "The dashboard reports Away Mode has disabled comfort outputs."
+    },
+    {
+      "startFrame": 289,
+      "endFrame": 373,
+      "text": "Main light, fan, and night light are off."
+    },
+    {
+      "startFrame": 373,
+      "endFrame": 544,
+      "text": "Wokwi circuit confirms outputs are inactive,"
+    },
+    {
+      "startFrame": 544,
+      "endFrame": 649,
+      "text": "preventing unnecessary operation when unoccupied."
+    }
+  ],
+  "09_Light_Override.MOV": [
+    {
+      "startFrame": 0,
+      "endFrame": 180,
+      "text": "I'll set operating mode back to Auto and select Light Override On."
+    },
+    {
+      "startFrame": 180,
+      "endFrame": 270,
+      "text": "The main light turns on immediately."
+    },
+    {
+      "startFrame": 270,
+      "endFrame": 493,
+      "text": "The Blynk dashboard reports override and active main light state,"
+    },
+    {
+      "startFrame": 493,
+      "endFrame": 583,
+      "text": "while physical main light indicator and relay also activate."
+    }
+  ],
+  "10_Fan_Override.MOV": [
+    {
+      "startFrame": 0,
+      "endFrame": 90,
+      "text": "Now I will select Fan Override On."
+    },
+    {
+      "startFrame": 90,
+      "endFrame": 300,
+      "text": "Blynk fan indicator turns on, and Wokwi fan relay activates."
+    },
+    {
+      "startFrame": 300,
+      "endFrame": 570,
+      "text": "Manual command is applied and confirmed output state is reported separately from requested control."
+    }
+  ],
+  "11_Curtain_Servo.MOV": [
+    {
+      "startFrame": 0,
+      "endFrame": 250,
+      "text": "I will now move curtain control from 0\u00b0 to 90\u00b0 and then to 180\u00b0."
+    },
+    {
+      "startFrame": 250,
+      "endFrame": 406,
+      "text": "The Wokwi servo follows the selected position,"
+    },
+    {
+      "startFrame": 406,
+      "endFrame": 536,
+      "text": "and Blynk dashboard reports confirmed curtain position."
+    }
+  ],
+  "12_Gas_Alert_and_Acknowledgement.MOV": [
+    {
+      "startFrame": 0,
+      "endFrame": 180,
+      "text": "Next, I increase MQ-2 gas value until safety threshold is reached."
+    },
+    {
+      "startFrame": 180,
+      "endFrame": 360,
+      "text": "The system now reports GAS ALERT; red indicator and buzzer activate."
+    },
+    {
+      "startFrame": 360,
+      "endFrame": 570,
+      "text": "Comfort outputs are forced off because gas safety has highest priority."
+    },
+    {
+      "startFrame": 570,
+      "endFrame": 660,
+      "text": "I will press Acknowledge Alert control."
+    },
+    {
+      "startFrame": 660,
+      "endFrame": 870,
+      "text": "Acknowledgement is recorded, but alarm remains active while gas condition is unsafe."
+    },
+    {
+      "startFrame": 870,
+      "endFrame": 1110,
+      "text": "After lowering gas value, system waits for multiple safe readings before clearing alarm."
+    }
+  ],
+  "13_Network_and_Security.MOV": [
+    {
+      "startFrame": 0,
+      "endFrame": 255,
+      "text": "The ESP32 continues running sensor and safety logic locally even if cloud connection is interrupted."
+    },
+    {
+      "startFrame": 255,
+      "endFrame": 465,
+      "text": "When connection is restored, device reconnects and Blynk telemetry updates."
+    },
+    {
+      "startFrame": 465,
+      "endFrame": 732,
+      "text": "For security, Blynk token is stored in private secrets file,"
+    },
+    {
+      "startFrame": 732,
+      "endFrame": 846,
+      "text": "not displayed in video or committed as a public credential."
+    }
+  ],
+  "14_Reflection.MOV": [
+    {
+      "startFrame": 0,
+      "endFrame": 218,
+      "text": "This project demonstrates separating requested control states from confirmed actual state."
+    },
+    {
+      "startFrame": 218,
+      "endFrame": 278,
+      "text": "It also shows why gas safety must take priority over comfort controls."
+    },
+    {
+      "startFrame": 278,
+      "endFrame": 432,
+      "text": "The system is validated through simulation and cloud interaction,"
+    },
+    {
+      "startFrame": 432,
+      "endFrame": 604,
+      "text": "however Wokwi prototype does not replace certified gas alarms,"
+    },
+    {
+      "startFrame": 604,
+      "endFrame": 720,
+      "text": "mains-safety testing, or real sensor calibration."
+    },
+    {
+      "startFrame": 720,
+      "endFrame": 830,
+      "text": "Thank you for watching."
+    }
+  ],
+  "15_Closing.MOV": [
+    {
+      "startFrame": 0,
+      "endFrame": 217,
+      "text": "To conclude, SentinelSleep demonstrates ESP32 sensor integration,"
+    },
+    {
+      "startFrame": 217,
+      "endFrame": 446,
+      "text": "local priority-based automation, Blynk cloud monitoring,"
+    },
+    {
+      "startFrame": 446,
+      "endFrame": 668,
+      "text": "operating modes, manual overrides, and gas safety handling."
+    },
+    {
+      "startFrame": 668,
+      "endFrame": 713,
+      "text": "The system provides explainable output decisions while keeping safety active at device level."
+    },
+    {
+      "startFrame": 713,
+      "endFrame": 740,
+      "text": "Thank you for watching."
+    }
+  ]
+}
