@@ -40,6 +40,7 @@ dist/
 build/
 out/
 *.docx
+!20260805_SUOL2500321_SentinelSleep_Final_Report.docx
 *.db
 !progress.db
 *.pyc
