@@ -6,9 +6,11 @@ Module: BCL1123 Internet of Things
 
 CONTENTS
 1. report/20260805_SUOL2500321_SentinelSleep_Final_Report.docx
-2. video/20260805_SUOL2500321_SentinelSleep_Final_Demo.mp4
-3. project/ — complete VS Code, PlatformIO and Wokwi project
-4. evidence/ — implementation test matrix and captured evidence
+2. report/20260805_SUOL2500321_SentinelSleep_Final_Report.pdf
+3. YouTube Video Demonstration: https://youtu.be/CVU9OjcAe5A
+4. video/20260807_SentinelSleep_Final_Presentation_1080p.mp4
+5. project/ — complete VS Code, PlatformIO and Wokwi project
+6. evidence/ — implementation test matrix and captured evidence
 
 BLYNK EXAMINER ACCESS
 Login URL: https://blynk.cloud/

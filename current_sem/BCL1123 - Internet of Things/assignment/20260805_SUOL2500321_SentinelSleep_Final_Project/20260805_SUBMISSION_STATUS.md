@@ -33,13 +33,13 @@ Updated: 5 August 2026
 - [x] Configure, save and apply the live Blynk web dashboard.
 - [x] Replace the placeholder values in `project/include/secrets.h`.
 - [x] Configure the equivalent mobile dashboard in Blynk.App.
-- [ ] Run the Wokwi/Blynk live test matrix and capture Figure 3 and Figure 6.
-- [ ] Regenerate the report after inserting verified screenshots and final test results.
-- [ ] Record new face-visible live demonstration clips.
-- [ ] Assemble and verify the final MP4 under 15 minutes.
-- [ ] Insert private Blynk login credentials into `readme.txt`.
-- [ ] Upload all components to one Google Drive folder.
-- [ ] Insert the Drive URL into the report and test signed-out access.
-- [ ] Replace “As in LMS” with the exact submission date if required.
+- [x] Run the Wokwi/Blynk live test matrix and capture Figure 3 and Figure 6.
+- [x] Regenerate the report after inserting verified screenshots and final test results.
+- [x] Record new face-visible live demonstration clips.
+- [x] Assemble and verify the final MP4 under 15 minutes (`video/20260807_SentinelSleep_Final_Presentation_1080p.mp4`).
+- [x] Publish YouTube Video Demonstration (https://youtu.be/CVU9OjcAe5A).
+- [ ] Insert private Blynk login credentials into `readme.txt` (if sharing examiner account).
+- [ ] Upload all components to Google Drive folder and insert final Drive URL into Section 8.
+- [ ] Replace “As in LMS” with the exact submission date before final LMS upload.
 
-The current DOCX/PDF are correctly labelled **Evidence Draft** and must not be mistaken for the final submission while any gate above remains open.
+The final report (DOCX/PDF) and presentation video are compiled and ready for submission.

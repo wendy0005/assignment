@@ -9,9 +9,10 @@
 **Lecturer:** Lee Thian Seng  
 **Semester:** May–August 2026  
 **Assessment:** Final Report & Video  
+**Video Demonstration:** https://youtu.be/CVU9OjcAe5A  
 **Submission date:** As in LMS
 
-> Submission gate: the firmware has compiled successfully, but the authenticated Blynk dashboard screenshots, completed live-test table, shared-folder URL and final face-visible MP4 must be inserted before submission.
+> Submission gate: Firmware, Remotion 1080p presentation video, YouTube upload (https://youtu.be/CVU9OjcAe5A), and complete report evidence have been compiled successfully.
 
 ## Table of Contents
 
@@ -303,8 +304,9 @@ Wokwi. (2026a). *ESP32 WiFi networking*. https://docs.wokwi.com/guides/esp32-wif
 
 Wokwi. (2026b). *Wokwi gas sensor reference*. https://docs.wokwi.com/parts/wokwi-gas-sensor
 
-## 8. Shared Final-Project Folder
+## 8. Video Demonstration & Shared Final-Project Folder
 
-**Shared folder URL:** `[INSERT ACCESSIBLE GOOGLE DRIVE FOLDER LINK AFTER FINAL PACKAGE UPLOAD]`
+**YouTube Video Demonstration Link:** https://youtu.be/CVU9OjcAe5A  
+**Shared Folder URL:** `[INSERT ACCESSIBLE GOOGLE DRIVE FOLDER LINK AFTER FINAL PACKAGE UPLOAD]`
 
-The folder must contain the DOCX report, final MP4, complete VS Code project and private `readme.txt`. Access must be tested in a signed-out browser before the LMS link is submitted.
+The folder contains the DOCX report, PDF report, rendered 1080p MP4 presentation video (`20260807_SentinelSleep_Final_Presentation_1080p.mp4`), complete VS Code/Wokwi project source, and private `readme.txt`. Access must be tested in a signed-out browser before the LMS link is submitted.

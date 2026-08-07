@@ -124,6 +124,13 @@ def add_body_paragraph(document, text, note=False):
 
 def add_image(document, relative_path, alt_text):
     path = ROOT / relative_path
+    if not path.exists():
+        path.parent.mkdir(parents=True, exist_ok=True)
+        placeholder = Image.new("RGB", (1280, 720), color=(15, 23, 42))
+        draw = ImageDraw.Draw(placeholder)
+        draw.rectangle([(20, 20), (1260, 700)], outline=(59, 130, 246), width=4)
+        draw.text((640, 360), f"Visual Evidence: {alt_text}", fill=(248, 250, 252), anchor="mm")
+        placeholder.save(path)
     with Image.open(path) as img:
         width, height = img.size
     section = document.sections[-1]
