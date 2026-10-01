@@ -52,6 +52,7 @@ async function sendMessage(payload) {
 
 // ---- TOPIC SELECTION ----
 let allTopics = [];
+let currentMode = "content";
 
 async function loadTopics() {
   setStatus("Loading topics...");
@@ -60,17 +61,26 @@ async function loadTopics() {
 
   try {
     const response = await chrome.tabs.sendMessage(tab.id, { action: "get-topics" });
+    if (response && response.mode) currentMode = response.mode;
     if (response && response.topics && response.topics.length > 0) {
       allTopics = response.topics;
-      renderTopicCheckboxes(allTopics);
-      document.getElementById("topic-selection").classList.remove("hidden");
-      document.getElementById("topic-loading").classList.add("hidden");
-      scrapeBtn.textContent = "Scrape Selected Topics";
-      scrapeBtn.disabled = false;
-      setStatus("Ready — select topics and scrape");
+      if (currentMode === "files") {
+        // Nested layout: extract everything in one click (no topic selection)
+        document.getElementById("topic-selection").classList.add("hidden");
+        scrapeBtn.textContent = "Extract Everything";
+        scrapeBtn.disabled = false;
+        setStatus("Ready — extracts every item in the course");
+      } else {
+        renderTopicCheckboxes(allTopics);
+        document.getElementById("topic-selection").classList.remove("hidden");
+        document.getElementById("topic-loading").classList.add("hidden");
+        scrapeBtn.textContent = "Scrape Selected Topics";
+        scrapeBtn.disabled = false;
+        setStatus("Ready — select topics and scrape");
+      }
     } else {
       // No topics found; fall back to scrape-all
-      scrapeBtn.textContent = "Scrape Module Topics";
+      scrapeBtn.textContent = currentMode === "files" ? "Extract Everything" : "Scrape Module Topics";
       scrapeBtn.disabled = false;
       setStatus("Ready");
     }
@@ -117,7 +127,7 @@ scrapeBtn.addEventListener("click", async () => {
   resultEl.classList.add("hidden");
   progressEl.classList.remove("hidden");
   scrapeBtn.disabled = true;
-  setStatus("Scraping Module Topics...");
+  setStatus(currentMode === "files" ? "Downloading files..." : "Scraping Module Topics...");
 
   const tab = await getActiveTab();
   if (!tab) {
@@ -135,7 +145,7 @@ scrapeBtn.addEventListener("click", async () => {
 
   const checkedTopics = getCheckedTopics();
   const payload = { action: "scrape-module-topics" };
-  if (checkedTopics.length > 0) payload.topics = checkedTopics;
+  if (checkedTopics.length > 0 && currentMode !== "files") payload.topics = checkedTopics;
 
   const data = await sendMessage(payload);
   if (!data) {
@@ -149,13 +159,23 @@ scrapeBtn.addEventListener("click", async () => {
   progressEl.classList.add("hidden");
   resultEl.classList.remove("hidden");
   scrapeBtn.disabled = false;
-  setStatus(`Completed — ${data.contents?.length || 0} items scraped`);
+  if (data.mode === "files") {
+    const ok = (data.contents || []).filter((c) => c.downloaded).length;
+    setStatus(`${data.status} — ${ok}/${data.contents?.length || 0} items extracted`);
+  } else {
+    setStatus(`Completed — ${data.contents?.length || 0} items scraped`);
+  }
 });
 
 // Load topics on popup open
 loadTopics();
 
 function displayResults(data) {
+  if (data.mode === "files") {
+    displayFileResults(data);
+    return;
+  }
+
   let summary = `Course: ${data.course?.courseName || "N/A"}\n`;
   summary += `Student: ${data.student?.name || "N/A"}\n`;
   summary += `Status: ${data.status}\n`;
@@ -190,17 +210,64 @@ function displayResults(data) {
   outputEl.textContent = summary;
 }
 
+function displayFileResults(data) {
+  const contents = data.contents || [];
+  const ok = contents.filter((c) => c.downloaded).length;
+  const failed = contents.length - ok;
+
+  let summary = `Course: ${data.course?.courseName || "N/A"}\n`;
+  summary += `Student: ${data.student?.name || "N/A"}\n`;
+  summary += `Status: ${data.status}\n`;
+  summary += `Items extracted: ${ok}/${contents.length}`;
+  if (failed) summary += ` (${failed} failed)`;
+  summary += `\n\n=== Items ===\n`;
+
+  for (const c of contents) {
+    summary += `\n[${c.topic}] ${c.label}\n`;
+    if (c.downloaded) {
+      if (c.type === "page") {
+        const bits = [];
+        if (c.imagesSaved) bits.push(`${c.imagesSaved} image(s)`);
+        if (c.quillText) bits.push(`${c.quillText.length} chars text`);
+        summary += `  ✓ saved — ${bits.join(", ") || "page"}\n`;
+      } else {
+        const name = c.fileUrl ? c.fileUrl.split("/").pop() : (c.title || "");
+        summary += `  ✓ saved — ${name}\n`;
+      }
+    } else {
+      summary += `  ⚠ ${c.error || "not extracted"}\n`;
+    }
+  }
+
+  outputEl.textContent = summary;
+}
+
 document.getElementById("export-json").addEventListener("click", () => {
   if (!scrapedData) return;
   const clean = {
+    mode: scrapedData.mode || "content",
     course: scrapedData.course,
     student: scrapedData.student,
     structure: scrapedData.structure,
-    contents: scrapedData.contents.map((c) => ({
+    status: scrapedData.status,
+    sections: scrapedData.sections,
+    errors: scrapedData.errors,
+    contents: (scrapedData.contents || []).map((c) => ({
+      type: c.type,
       topic: c.topic,
       label: c.label,
       title: c.title,
+      chapter: c.chapter,
+      fileUrl: c.fileUrl,
+      iframeSrc: c.iframeSrc,
+      imagesSaved: c.imagesSaved,
+      quillHtml: c.quillHtml,
+      links: c.links,
+      filename: c.filename,
+      quillText: c.quillText,
       text: c.text,
+      downloaded: c.downloaded,
+      error: c.error,
     })),
   };
   const blob = new Blob([JSON.stringify(clean, null, 2)], {
@@ -255,6 +322,21 @@ function toMarkdown(data) {
   const courseName = cleanCourseName(data.course?.courseName);
   let md = `# ${courseName || "Course"}\n\n`;
   if (data.student?.name) md += `**Student:** ${data.student.name}\n\n`;
+
+  if (data.mode === "files") {
+    md += `## Downloaded Files\n\n`;
+    for (const c of data.contents || []) {
+      const mark = c.downloaded ? "x" : " ";
+      const note = c.error ? ` — ${c.error}` : "";
+      md += `### ${c.topic} — ${c.label}\n\n`;
+      md += `- [${mark}] Extracted${note}\n\n`;
+      if (c.text) md += c.text + "\n\n";
+      if (c.fileUrl) md += `[${c.filename || c.label}](${c.fileUrl})\n\n`;
+      for (const link of c.links || []) md += `[Open linked material](${link})\n\n`;
+    }
+    return md;
+  }
+
   md += `---\n\n`;
 
   if (data.contents) {

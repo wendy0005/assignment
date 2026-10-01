@@ -96,6 +96,9 @@
 
   // ---- FETCH AVAILABLE TOPICS ----
   async function fetchTopicList() {
+    if (isNestedLayout()) {
+      return getSubchapters().map((s) => s.name);
+    }
     ensureContentTab();
     await sleep(1000);
     await expandAll();
@@ -210,6 +213,8 @@
 
   // ---- MAIN SCRAPE ----
   async function scrapeModuleTopics(selectedTopics) {
+    if (isNestedLayout()) return extractAllNested();
+
     const result = {
       url: window.location.href,
       timestamp: new Date().toISOString(),
@@ -579,16 +584,380 @@ async function downloadAllLectureNotes() {
   return result;
 }
 
+  // =====================================================================
+  // NESTED LAYOUT SUPPORT
+  // Courses whose content page is built from collapsible sections
+  // (`.panel-name`) and sub-sections (`.sub-chap_name`) with draggable
+  // item rows (`.list-cont_inbox`). Items open in the `files-view` route,
+  // where the content is a PDF hosted on S3 (requires a Referer header,
+  // so it is fetched from the page context as a blob before saving).
+  // =====================================================================
+
+  function normText(s) {
+    return (s || "").replace(/[\u200b\u200c\u200d\ufeff]/g, "").replace(/\s+/g, " ").trim();
+  }
+
+  function isNestedLayout() {
+    const hasOldTopics = Array.from(document.querySelectorAll("button")).some((b) => {
+      const t = cleanText(b.textContent);
+      return t.startsWith("Topic ") && t.includes("COMPLETE");
+    });
+    if (hasOldTopics) return false;
+    if (document.querySelector(".list-cont_inbox") ||
+      document.querySelector("button.toggle-btn .sub-chap_name") ||
+      document.querySelector("button.toggle-btn .panel-name")) return true;
+    // Item views (files-view / page-content / content-page) of a nested-layout course.
+    const h = window.location.hash;
+    return (h.includes("files-view") || h.includes("page-content") || h.includes("content-page")) && h.includes("chapId=");
+  }
+
+  // Course context ids captured by inject.js (MAIN world) from the site's own
+  // content requests, published on <html data-camu-ctx="...">.
+  // NOTE: tCntId is NOT always present (it only appears in item-level API
+  // calls). The outline API works without it, and its response contains TPID
+  // which IS the tCntId. So only CrID is required here; tCntId is backfilled
+  // from the outline response in apiOutline().
+  function getCtx() {
+    try {
+      const raw = document.documentElement.getAttribute("data-camu-ctx");
+      if (!raw) return null;
+      const o = JSON.parse(raw);
+      return o && o.CrID ? o : null;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  // Sub-chapters from the sidebar. Each carries its own id (sChpId) and the
+  // id of its parent chapter (chapId), both available as droppable ids.
+  function getSubchapters() {
+    const out = [];
+    const seen = new Set();
+    for (const btn of document.querySelectorAll("button.toggle-btn")) {
+      const subEl = btn.querySelector(".sub-chap_name");
+      if (!subEl) continue;
+      const name = normText(subEl.textContent);
+      const sChpId = (btn.getAttribute("data-target") || "").replace("#", "");
+      if (!name || !sChpId || seen.has(sChpId)) continue;
+      let chapId = "";
+      let a = btn.parentElement;
+      while (a) {
+        if (a.classList && a.classList.contains("panel-collapse")) {
+          chapId = a.getAttribute("data-rbd-droppable-id") || a.id || "";
+          break;
+        }
+        a = a.parentElement;
+      }
+      seen.add(sChpId);
+      out.push({ name, sChpId, chapId });
+    }
+    return out;
+  }
+
+  // Full course outline (chapters + sub-chapters) from the site API. Used as a
+  // fallback when the sidebar is not mounted (e.g. opened from an item view).
+  // Also backfills ctx.tCntId from the response TPID — the outline API works
+  // without tCntId, but get-subchapter-items requires it, and TPID === tCntId
+  // (verified: using TPID as tCntId returns aContents, without it returns
+  // NO_DOCS_FOUND). This fixes scraping from content-page?chapId=&subId= deep
+  // links where inject.js never saw a tCntId-bearing request.
+  async function apiOutline(ctx) {
+    const body = {
+      CrID: ctx.CrID,
+      DeptID: ctx.DeptID,
+      InId: ctx.InId,
+      PrID: ctx.PrID,
+      SemID: ctx.SemID,
+      AcYr: ctx.AcYr,
+      SecID: ctx.SecID,
+      SubjId: ctx.subjId || ctx.SubjId,
+      staffId: ctx.staffId,
+      isFE: true,
+      isAllSubject: false,
+      OutCmBsdEdu: false,
+      isFrmLms: true,
+    };
+    const r = await fetch("/TeachContentDefinition/searchbyteachcriteria/", {
+      method: "POST",
+      headers: { "content-type": "application/json;charset=UTF-8" },
+      body: JSON.stringify(body),
+      credentials: "include",
+    });
+    if (!r.ok) throw new Error("HTTP " + r.status);
+    const j = await r.json();
+    const d0 = (j && j.output && j.output.data && j.output.data[0]) || null;
+    // Backfill tCntId for later get-subchapter-items calls
+    if (d0 && d0.TPID && !ctx.tCntId) {
+      ctx.tCntId = d0.TPID;
+      try {
+        document.documentElement.setAttribute("data-camu-ctx", JSON.stringify(ctx));
+      } catch (e) { /* ignore */ }
+    }
+    const chapters = (d0 && d0.Chapter) || [];
+    const out = [];
+    for (const ch of chapters) {
+      for (const sc of ch.SubChapter || []) {
+        out.push({ name: sc.Name, chapter: ch.ChapName, sChpId: sc._id, chapId: ch._id });
+      }
+    }
+    return out;
+  }
+
+  async function apiItems(ctx, chapId, sChpId) {
+    const body = {
+      tCntId: ctx.tCntId,
+      subjId: ctx.subjId || ctx.SubjId,
+      PrID: ctx.PrID,
+      CrID: ctx.CrID,
+      AcYr: ctx.AcYr,
+      DeptID: ctx.DeptID,
+      SemID: ctx.SemID,
+      SecID: ctx.SecID,
+      chapId,
+      sChpId,
+    };
+    const r = await fetch("/teaching-content/get-subchapter-items", {
+      method: "POST",
+      headers: { "content-type": "application/json;charset=UTF-8" },
+      body: JSON.stringify(body),
+      credentials: "include",
+    });
+    if (!r.ok) throw new Error("HTTP " + r.status);
+    const j = await r.json();
+    const error = j?.output?.errors;
+    if (error && error.code !== "NO_DOCS_FOUND") throw new Error(JSON.stringify(error));
+    return j?.output?.data?.aContents || [];
+  }
+
+  function waitForHash(pred, timeout) {
+    return new Promise((resolve) => {
+      const start = Date.now();
+      const tick = () => {
+        if (pred(window.location.hash)) return resolve(true);
+        if (Date.now() - start > timeout) return resolve(false);
+        setTimeout(tick, 300);
+      };
+      tick();
+    });
+  }
+
+  function getFileResourceUrls() {
+    try {
+      return performance
+        .getEntriesByType("resource")
+        .map((e) => e.name)
+        .filter((n) => /segicamuattachments|\/attachment\/|\.pdf(\?|$)/i.test(n));
+    } catch (e) {
+      return [];
+    }
+  }
+
+  function sanitizeFileName(name) {
+    return (name || "file")
+      .replace(/[\\/:*?"<>|]+/g, " ")
+      .replace(/\s+/g, " ")
+      .trim()
+      .slice(0, 150) || "file";
+  }
+
+  async function saveBlob(blob, filename) {
+    const url = URL.createObjectURL(blob);
+    try {
+      const result = await chrome.runtime.sendMessage({ action: "download-file", url, filename });
+      if (!result?.ok) throw new Error(result?.error || "Download failed");
+    } finally {
+      URL.revokeObjectURL(url);
+    }
+  }
+
+  async function saveUrlAsFile(url, filename) {
+    const resp = await fetch(url, { credentials: "omit" });
+    if (!resp.ok) throw new Error("HTTP " + resp.status);
+    await saveBlob(await resp.blob(), filename);
+  }
+
+  // Save every image embedded in a PAGE item's HTML.
+  async function saveImagesFromHtml(html, baseName) {
+    const doc = new DOMParser().parseFromString(html, "text/html");
+    const imgs = Array.from(doc.querySelectorAll("img"));
+    let saved = 0;
+    let idx = 0;
+    for (const img of imgs) {
+      const src = img.getAttribute("src") || "";
+      if (!src) continue;
+      try {
+        const blob = await (await fetch(src, { credentials: "omit" })).blob();
+        const ext = /image\/png/i.test(blob.type) || /^data:image\/png/i.test(src) ? ".png"
+          : /image\/jpe?g/i.test(blob.type) || /^data:image\/jpe?g/i.test(src) ? ".jpg"
+          : /image\/webp/i.test(blob.type) ? ".webp"
+          : ".png";
+        idx++;
+        const suffix = imgs.length > 1 ? " (" + idx + ")" : "";
+        await saveBlob(blob, sanitizeFileName(baseName) + suffix + ext);
+        saved++;
+        await sleep(500);
+      } catch (e) {
+        // skip individual image failures
+      }
+    }
+    return saved;
+  }
+
+  async function extractAllNested() {
+    const result = {
+      mode: "files",
+      url: window.location.href,
+      timestamp: new Date().toISOString(),
+      course: getCourseInfo(),
+      student: getStudentInfo(),
+      status: "started",
+      contents: [],
+    };
+
+    const ctx = getCtx();
+    if (!ctx) {
+      result.status = "error: course context not captured — refresh the page once, then retry";
+      return result;
+    }
+
+    let subchapters;
+    try {
+      // The mounted sidebar may contain only expanded chapters.
+      subchapters = await apiOutline(ctx);
+    } catch (e) {
+      result.status = "error: cannot enumerate course: " + e.message;
+      return result;
+    }
+    result.sections = [];
+    result.errors = [];
+    if (subchapters.length === 0) {
+      result.status = "error: no sub-chapters found";
+      return result;
+    }
+    if (!ctx.tCntId) {
+      result.status = "error: course context (tCntId) not found — refresh the page once, then retry";
+      return result;
+    }
+
+    // 1. Pull every item up front (PAGE items include their HTML).
+    const items = [];
+    for (let s = 0; s < subchapters.length; s++) {
+      const sc = subchapters[s];
+      chrome.runtime.sendMessage({
+        action: "scrape-progress",
+        current: s + 1,
+        total: subchapters.length,
+        label: "Listing " + sc.name,
+      }).catch(() => {});
+      try {
+        const list = await apiItems(ctx, sc.chapId, sc.sChpId);
+        result.sections.push({ chapter: sc.chapter, name: sc.name, count: list.length });
+        for (const it of list) {
+          items.push({
+            id: it._id,
+            type: it.type,
+            title: it.title,
+            topic: sc.name,
+            chapter: sc.name,
+            chapId: it.chapId || sc.chapId,
+            subId: sc.sChpId,
+            pageHtml: it && it.page && it.page.html ? it.page.html : "",
+          });
+        }
+      } catch (e) {
+        result.errors.push({ section: sc.name, error: e.message });
+      }
+      await sleep(150);
+    }
+
+    if (items.length === 0) {
+      result.status = "error: no items found";
+      return result;
+    }
+
+    // 2. Extract each item.
+    for (let i = 0; i < items.length; i++) {
+      const it = items[i];
+      chrome.runtime.sendMessage({
+        action: "scrape-progress",
+        current: i + 1,
+        total: items.length,
+        label: it.topic + " > " + it.title,
+      }).catch(() => {});
+
+      const entry = {
+        id: it.id, type: it.type.toLowerCase(), topic: it.topic,
+        label: it.title, title: it.title, chapter: it.chapter,
+        downloaded: false, error: "",
+      };
+      try {
+        // List responses omit file metadata; the item query returns the full content.
+        const response = await fetch("/teaching-content/get-subchapter-items", {
+          method: "POST", credentials: "include",
+          headers: { "content-type": "application/json;charset=UTF-8" },
+          body: JSON.stringify({ _id: it.id, sChpId: it.subId }),
+        });
+        if (!response.ok) throw new Error("HTTP " + response.status);
+        const data = await response.json();
+        if (data.output?.errors) throw new Error(JSON.stringify(data.output.errors));
+        const full = data.output?.data?.aContents?.find((item) => item._id === it.id);
+        if (!full) throw new Error("Item details missing");
+        if (it.type === "PAGE") {
+          entry.quillHtml = full.page?.html || "";
+          const doc = new DOMParser().parseFromString(entry.quillHtml, "text/html");
+          entry.text = doc.body.innerText || doc.body.textContent || "";
+          entry.quillText = entry.text;
+          entry.links = Array.from(doc.querySelectorAll("a[href],iframe[src]")).map((el) => el.href || el.src);
+          entry.imagesSaved = await saveImagesFromHtml(entry.quillHtml, it.topic + " - " + it.title);
+          // Preserve page text and its source in the automatically saved JSON export.
+          entry.downloaded = !!entry.quillHtml;
+          if (!entry.downloaded) throw new Error("Page content missing");
+        } else if (it.type === "FILE") {
+          entry.fileUrl = full.file?.url || full.file?.link || "";
+          entry.filename = sanitizeFileName(it.topic + " - " + (full.file?.name || it.title));
+          if (!entry.fileUrl) throw new Error("File URL missing");
+          await saveUrlAsFile(entry.fileUrl, entry.filename);
+          entry.downloaded = true;
+        } else {
+          entry.content = full;
+          entry.downloaded = true;
+        }
+      } catch (e) {
+        entry.error = e.message;
+      }
+      result.contents.push(entry);
+    }
+
+    result.status = result.errors.length || result.contents.some((c) => !c.downloaded)
+      ? "partial" : "completed";
+    await saveBlob(new Blob([JSON.stringify(result, null, 2)], { type: "application/json" }),
+      sanitizeFileName(result.course.courseName) + " - materials.json");
+    return result;
+  }
+
   chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     if (request.action === "get-topics") {
-      fetchTopicList().then((topics) => sendResponse({ topics }));
+      fetchTopicList().then((topics) =>
+        sendResponse({ topics, mode: isNestedLayout() ? "files" : "content" })
+      );
       return true;
     }
     if (request.action === "scrape-module-topics") {
-      scrapeModuleTopics(request.topics).then((data) => sendResponse(data));
+      scrapeModuleTopics(request.topics).then(sendResponse).catch((e) => sendResponse({ status: "error: " + e.message, contents: [] }));
       return true;
     }
     if (request.action === "download-lecture-notes") {
+      if (isNestedLayout()) {
+        extractAllNested().then((data) =>
+          sendResponse({
+            status: data.status,
+            total: data.contents.length,
+            downloaded: data.contents.filter((c) => c.downloaded).length,
+            failed: data.contents.filter((c) => !c.downloaded).length,
+          })
+        );
+        return true;
+      }
       downloadAllLectureNotes().then((data) => sendResponse(data));
       return true;
     }
