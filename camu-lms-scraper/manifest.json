@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Camu LMS Scraper",
-  "version": "1.3.0",
+  "version": "1.3.2",
   "description": "Extract course content from Camu LMS pages and export as markdown/JSON, or download course files (PDFs).",
   "permissions": ["activeTab", "storage", "scripting", "downloads"],
   "host_permissions": [

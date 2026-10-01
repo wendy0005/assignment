@@ -161,7 +161,8 @@ scrapeBtn.addEventListener("click", async () => {
   scrapeBtn.disabled = false;
   if (data.mode === "files") {
     const ok = (data.contents || []).filter((c) => c.downloaded).length;
-    setStatus(`${data.status} — ${ok}/${data.contents?.length || 0} items extracted`);
+    const skipped = (data.contents || []).filter((c) => c.skipped).length;
+    setStatus(`${data.status} — ${ok}/${data.contents?.length || 0} items available, ${skipped} already saved`);
   } else {
     setStatus(`Completed — ${data.contents?.length || 0} items scraped`);
   }
@@ -225,7 +226,9 @@ function displayFileResults(data) {
   for (const c of contents) {
     summary += `\n[${c.topic}] ${c.label}\n`;
     if (c.downloaded) {
-      if (c.type === "page") {
+      if (c.skipped) {
+        summary += "  ✓ already saved — skipped download\n";
+      } else if (c.type === "page") {
         const bits = [];
         if (c.imagesSaved) bits.push(`${c.imagesSaved} image(s)`);
         if (c.quillText) bits.push(`${c.quillText.length} chars text`);

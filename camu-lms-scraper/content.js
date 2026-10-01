@@ -760,20 +760,40 @@ async function downloadAllLectureNotes() {
       .slice(0, 150) || "file";
   }
 
-  async function saveBlob(blob, filename) {
+  async function contentKey(text) {
+    const digest = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(text));
+    return Array.from(new Uint8Array(digest), (byte) => byte.toString(16).padStart(2, "0")).join("");
+  }
+
+  function courseDownloadName(filename) {
+    const course = sanitizeFileName(getCourseInfo().courseName || "Course");
+    return course + "/" + filename;
+  }
+
+  async function checkExisting(filename, sourceKey) {
+    const result = await chrome.runtime.sendMessage({ action: "check-download", filename: courseDownloadName(filename), sourceKey });
+    if (!result?.ok) throw new Error(result?.error || "Cannot check existing download");
+    return result;
+  }
+
+  async function saveBlob(blob, filename, sourceKey) {
     const url = URL.createObjectURL(blob);
     try {
-      const result = await chrome.runtime.sendMessage({ action: "download-file", url, filename });
+      const result = await chrome.runtime.sendMessage({ action: "download-file", url, filename: courseDownloadName(filename), sourceKey });
       if (!result?.ok) throw new Error(result?.error || "Download failed");
+      return result;
     } finally {
       URL.revokeObjectURL(url);
     }
   }
 
   async function saveUrlAsFile(url, filename) {
+    const sourceKey = "url:" + url;
+    const existing = await checkExisting(filename, sourceKey);
+    if (existing.skipped) return existing;
     const resp = await fetch(url, { credentials: "omit" });
     if (!resp.ok) throw new Error("HTTP " + resp.status);
-    await saveBlob(await resp.blob(), filename);
+    return await saveBlob(await resp.blob(), filename, sourceKey);
   }
 
   // Save every image embedded in a PAGE item's HTML.
@@ -781,26 +801,26 @@ async function downloadAllLectureNotes() {
     const doc = new DOMParser().parseFromString(html, "text/html");
     const imgs = Array.from(doc.querySelectorAll("img"));
     let saved = 0;
-    let idx = 0;
-    for (const img of imgs) {
+    let skipped = 0;
+    for (let index = 0; index < imgs.length; index++) {
+      const img = imgs[index];
       const src = img.getAttribute("src") || "";
       if (!src) continue;
-      try {
-        const blob = await (await fetch(src, { credentials: "omit" })).blob();
-        const ext = /image\/png/i.test(blob.type) || /^data:image\/png/i.test(src) ? ".png"
-          : /image\/jpe?g/i.test(blob.type) || /^data:image\/jpe?g/i.test(src) ? ".jpg"
-          : /image\/webp/i.test(blob.type) ? ".webp"
-          : ".png";
-        idx++;
-        const suffix = imgs.length > 1 ? " (" + idx + ")" : "";
-        await saveBlob(blob, sanitizeFileName(baseName) + suffix + ext);
-        saved++;
-        await sleep(500);
-      } catch (e) {
-        // skip individual image failures
-      }
+      const ext = /^data:image\/jpe?g/i.test(src) || /\.jpe?g(?:[?#]|$)/i.test(src) ? ".jpg"
+        : /^data:image\/webp/i.test(src) || /\.webp(?:[?#]|$)/i.test(src) ? ".webp"
+        : ".png";
+      const suffix = imgs.length > 1 ? " (" + (index + 1) + ")" : "";
+      const filename = sanitizeFileName(baseName) + suffix + ext;
+      const sourceKey = "image:" + await contentKey(src);
+      const existing = await checkExisting(filename, sourceKey);
+      if (existing.skipped) { saved++; skipped++; continue; }
+      const response = await fetch(src, { credentials: "omit" });
+      if (!response.ok) throw new Error("Image HTTP " + response.status);
+      const result = await saveBlob(await response.blob(), filename, sourceKey);
+      saved++;
+      if (result.skipped) skipped++;
     }
-    return saved;
+    return { saved, skipped };
   }
 
   async function extractAllNested() {
@@ -908,7 +928,10 @@ async function downloadAllLectureNotes() {
           entry.text = doc.body.innerText || doc.body.textContent || "";
           entry.quillText = entry.text;
           entry.links = Array.from(doc.querySelectorAll("a[href],iframe[src]")).map((el) => el.href || el.src);
-          entry.imagesSaved = await saveImagesFromHtml(entry.quillHtml, it.topic + " - " + it.title);
+          const images = await saveImagesFromHtml(entry.quillHtml, it.topic + " - " + it.title);
+          entry.imagesSaved = images.saved;
+          entry.imagesSkipped = images.skipped;
+          entry.skipped = images.saved > 0 && images.saved === images.skipped;
           // Preserve page text and its source in the automatically saved JSON export.
           entry.downloaded = !!entry.quillHtml;
           if (!entry.downloaded) throw new Error("Page content missing");
@@ -916,7 +939,8 @@ async function downloadAllLectureNotes() {
           entry.fileUrl = full.file?.url || full.file?.link || "";
           entry.filename = sanitizeFileName(it.topic + " - " + (full.file?.name || it.title));
           if (!entry.fileUrl) throw new Error("File URL missing");
-          await saveUrlAsFile(entry.fileUrl, entry.filename);
+          const download = await saveUrlAsFile(entry.fileUrl, entry.filename);
+          entry.skipped = download.skipped;
           entry.downloaded = true;
         } else {
           entry.content = full;
@@ -930,8 +954,16 @@ async function downloadAllLectureNotes() {
 
     result.status = result.errors.length || result.contents.some((c) => !c.downloaded)
       ? "partial" : "completed";
-    await saveBlob(new Blob([JSON.stringify(result, null, 2)], { type: "application/json" }),
-      sanitizeFileName(result.course.courseName) + " - materials.json");
+    // Ignore run timestamps and skip counters when checking whether the export changed.
+    const snapshot = {
+      course: result.course, sections: result.sections, errors: result.errors,
+      contents: result.contents.map(({ skipped, imagesSkipped, ...content }) => content),
+    };
+    const sourceKey = "export:" + await contentKey(JSON.stringify(snapshot));
+    const filename = sanitizeFileName(result.course.courseName) + " - materials.json";
+    const existing = await checkExisting(filename, sourceKey);
+    result.exportSkipped = existing.skipped;
+    if (!existing.skipped) await saveBlob(new Blob([JSON.stringify(result, null, 2)], { type: "application/json" }), filename, sourceKey);
     return result;
   }
 
