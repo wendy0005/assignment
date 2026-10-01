@@ -40,3 +40,7 @@ To find and read current Remotion documentation, load [Remotion Docs](remotion-d
 ## Upgrading
 
 To upgrade Remotion, related packages, compatible Mediabunny packages, and installed Remotion Agent Skills, load [Remotion Upgrade](remotion-upgrade/REFERENCE.md).
+
+## Previous recipe collection
+
+For recipes from the previous skill version, consult [the archived recipe index](references/legacy-global/REFERENCE.md). The project references above remain the primary guidance.

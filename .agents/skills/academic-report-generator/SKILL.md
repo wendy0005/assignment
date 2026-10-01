@@ -69,3 +69,7 @@ ALWAYS include the following student information in the cover page and header/fo
 ALWAYS deliver both:
 1.  **Markdown Source:** The `.md` file for version control and raw text access.
 2.  **PDF Final:** The official submission-ready document with full styling and rendered visuals.
+
+## Course PDF naming and processing helpers
+
+Prefix newly generated course PDFs and PDF output folders with the current date in `YYYYMMDD` format, unless the user specifies a filename. Preserve the original names of downloaded source files. For the previous project PDF form and OCR helpers, consult [the processing guide](references/pdf-processing/GUIDE.md). The bundled PDF skill handles general PDF work.
