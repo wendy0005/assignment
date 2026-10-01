@@ -54,6 +54,26 @@ python3 server.py
 # Opens http://localhost:8000/
 ```
 
+## PDF Generation Workflow
+
+When creating exam answers, assignments, or reports, follow this pattern:
+1. **Markdown First** — Write content as a `.md` file (e.g., `Database_Fundamentals_Exam_Answers.md`)
+2. **Convert to PDF** — Use the `.venv` environment for PDF generation:
+   ```bash
+   .venv/bin/python -c "import markdown; print('ok')"
+   ```
+   Available PDF tools in `.venv`: `reportlab`, `markdown`, `pypdf`
+   Use the `academic-report-generator` skill for professional rendering via Playwright.
+3. **Files go in `current_sem/`** — Keep generated PDFs in the relevant course folder under `current_sem/`
+
+## Virtual Environment
+
+The `.venv/` directory contains project-specific Python packages. Always use `.venv/bin/python` or `.venv/bin/pip` for tool installation:
+```bash
+.venv/bin/pip install <package>
+.venv/bin/python script.py
+```
+
 ## Google Calendar Management — CRITICAL
 
 When adding or modifying calendar events for course deadlines:

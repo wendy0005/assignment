@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BCL1223 Database Fundamentals - Final Exam Answers</title>
+    <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        mermaid.initialize({
+          startOnLoad: true,
+          theme: 'default',
+          securityLevel: 'loose',
+          er: {
+            useMaxWidth: true,
+            fill: '#f8fafc',
+            stroke: '#334155'
+          }
+        });
+      });
+    </script>
+
+    <style>
+        @page {
+            size: A4;
+            margin: 15mm 12mm 15mm 12mm;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, Helvetica, sans-serif;
+            font-size: 10pt;
+            line-height: 1.5;
+            color: #1e293b;
+            background-color: #ffffff;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 10px;
+        }
+
+        h1 {
+            font-size: 16pt;
+            color: #0f172a;
+            border-bottom: 2px solid #2563eb;
+            padding-bottom: 6px;
+            margin-top: 24px;
+            margin-bottom: 12px;
+            page-break-after: avoid;
+        }
+
+        h2 {
+            font-size: 13pt;
+            color: #1e3a8a;
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 4px;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            page-break-after: avoid;
+        }
+
+        h3 {
+            font-size: 11pt;
+            color: #1e293b;
+            margin-top: 14px;
+            margin-bottom: 6px;
+            page-break-after: avoid;
+        }
+
+        p {
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        /* Fix long code line truncation in PDF */
+        pre {
+            background-color: #0f172a;
+            color: #f8fafc;
+            padding: 10px 12px;
+            border-radius: 6px;
+            font-family: 'Fira Code', 'Consolas', 'Monaco', monospace;
+            font-size: 8.5pt;
+            line-height: 1.4;
+            white-space: pre-wrap !important;
+            word-wrap: break-word !important;
+            word-break: break-word !important;
+            overflow-x: hidden;
+            margin: 10px 0;
+            page-break-inside: avoid;
+        }
+
+        code {
+            font-family: 'Fira Code', 'Consolas', 'Monaco', monospace;
+            font-size: 8.5pt;
+            background-color: #f1f5f9;
+            color: #0f172a;
+            padding: 2px 4px;
+            border-radius: 4px;
+            white-space: pre-wrap !important;
+            word-break: break-word !important;
+        }
+
+        pre code {
+            background-color: transparent;
+            color: inherit;
+            padding: 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 12px 0;
+            font-size: 9pt;
+            page-break-inside: avoid;
+        }
+
+        th, td {
+            padding: 6px 10px;
+            border: 1px solid #cbd5e1;
+            text-align: left;
+        }
+
+        th {
+            background-color: #1e293b;
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f8fafc;
+        }
+
+        .mermaid {
+            display: flex;
+            justify-content: center;
+            background-color: #ffffff;
+            padding: 12px;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            margin: 14px 0;
+            page-break-inside: avoid;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #e2e8f0;
+            margin: 18px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>BCL1223 Database Fundamentals — Online Final Examination (May 2026)</h1>
+<p><strong>Student Name:</strong> Chan Jing Yi<br />
+<strong>Student ID:</strong> SUOL2500321<br />
+<strong>Course Code:</strong> BCL1223 / BTL2233 / BIT1223 / BCL2233  </p>
+<hr />
+<h2>QUESTION 1</h2>
+<h3>(a) Creation Script for All 3 Tables (15 Marks)</h3>
+<pre><code class="language-sql">CREATE TABLE SALESPERSON (
+    SalespersonNo    CHAR(4)        NOT NULL,
+    SalespersonName  VARCHAR2(15)   NOT NULL,
+    Commission       NUMBER(5,2)    DEFAULT 0.00,
+    hireDate         DATE           NOT NULL,
+    CONSTRAINT pk_salesperson PRIMARY KEY (SalespersonNo)
+);
+
+CREATE TABLE PRODUCT (
+    productNo        CHAR(6)        NOT NULL,
+    productName      VARCHAR2(20)   NOT NULL,
+    unitPrice        NUMBER(8,2)    NOT NULL,
+    CONSTRAINT pk_product PRIMARY KEY (productNo)
+);
+
+CREATE TABLE SALES (
+    salespPersonNo   CHAR(4)        NOT NULL,
+    productNo        CHAR(6)        NOT NULL,
+    quantity         NUMBER(6)      NOT NULL,
+    CONSTRAINT pk_sales PRIMARY KEY (salespPersonNo, productNo),
+    CONSTRAINT fk_sales_salesperson FOREIGN KEY (salespPersonNo) 
+        REFERENCES SALESPERSON(SalespersonNo),
+    CONSTRAINT fk_sales_product FOREIGN KEY (productNo) 
+        REFERENCES PRODUCT(productNo)
+);
+</code></pre>
+<h3>(b) Insert Script for 2 Records per Table (10 Marks)</h3>
+<pre><code class="language-sql">INSERT INTO SALESPERSON (SalespersonNo, SalespersonName, Commission, hireDate)
+VALUES ('S001', 'Alice Tan', 0.12, TO_DATE('2022-01-15', 'YYYY-MM-DD'));
+
+INSERT INTO SALESPERSON (SalespersonNo, SalespersonName, Commission, hireDate)
+VALUES ('S002', 'Bob Smith', 0.08, TO_DATE('2023-05-20', 'YYYY-MM-DD'));
+</code></pre>
+<hr />
+<h2>QUESTION 2</h2>
+<h3>(a) Display all salespersons sorted by hire date (3 Marks)</h3>
+<pre><code class="language-sql">SELECT * FROM SALESPERSON ORDER BY hireDate ASC;
+</code></pre>
+<h3>(b) Display all salespersons with commission &gt; 10% (4 Marks)</h3>
+<pre><code class="language-sql">SELECT * FROM SALESPERSON WHERE Commission &gt; 0.10;
+</code></pre>
+<h3>(c) Display all products’ unit prices after 10% increase (4 Marks)</h3>
+<pre><code class="language-sql">SELECT productNo, productName, unitPrice, 
+       unitPrice * 1.10 AS NewUnitPrice 
+FROM PRODUCT;
+</code></pre>
+<h3>(d) Display salespersons, product number and quantity for products Wrench or Hammer (6 Marks)</h3>
+<pre><code class="language-sql">SELECT sp.SalespersonNo, sp.SalespersonName, s.productNo, s.quantity
+FROM SALESPERSON sp
+JOIN SALES s ON sp.SalespersonNo = s.salespPersonNo
+JOIN PRODUCT p ON s.productNo = p.productNo
+WHERE LOWER(p.productName) IN ('wrench', 'hammer')
+ORDER BY sp.SalespersonNo ASC;
+</code></pre>
+<h3>(e) Display salesperson number, name, product name and total for each salesperson sold for each product (8 Marks)</h3>
+<pre><code class="language-sql">SELECT sp.SalespersonNo, sp.SalespersonName, p.productName, 
+       SUM(s.quantity * p.unitPrice) AS TotalSalesAmount
+FROM SALESPERSON sp
+JOIN SALES s ON sp.SalespersonNo = s.salespPersonNo
+JOIN PRODUCT p ON s.productNo = p.productNo
+GROUP BY sp.SalespersonNo, sp.SalespersonName, p.productName;
+</code></pre>
+<hr />
+<h2>QUESTION 3</h2>
+<h3>(a) Complete ERD for Order Form (15 Marks)</h3>
+<p><strong>Entities &amp; Attributes:</strong><br />
+- <code>CUSTOMER</code> (<u>CustomerNo</u>, CustomerName, CustomerAddress, City, Country)<br />
+- <code>CUSTOMER_ORDER</code> (<u>OrderNo</u>, OrderDate, CustomerNo<em>)<br />
+- <code>PRODUCT</code> (<u>ProductNo</u>, ProductDescription, UnitPrice)<br />
+- <code>ORDER_LINE</code> (<u>OrderNo</em></u>, <u>ProductNo*</u>, Quantity, HistoricalUnitPrice)</p>
+<p><strong>Cardinalities:</strong><br />
+- <code>CUSTOMER</code> to <code>CUSTOMER_ORDER</code>: 1 to Many ($1:M$)<br />
+- <code>CUSTOMER_ORDER</code> to <code>ORDER_LINE</code>: 1 to Many ($1:M$)<br />
+- <code>PRODUCT</code> to <code>ORDER_LINE</code>: 1 to Many ($1:M$)</p>
+<p><strong>ER Diagram:</strong></p>
+<pre class="mermaid">erDiagram
+    CUSTOMER ||--o{ CUSTOMER_ORDER : "places (1:M)"
+    CUSTOMER_ORDER ||--|{ ORDER_LINE : "contains (1:M)"
+    PRODUCT ||--o{ ORDER_LINE : "referenced_in (1:M)"
+
+    CUSTOMER {
+        string CustomerNo PK
+        string CustomerName
+        string CustomerAddress
+        string City
+        string Country
+    }
+
+    CUSTOMER_ORDER {
+        string OrderNo PK
+        date OrderDate
+        string CustomerNo FK
+    }
+
+    PRODUCT {
+        string ProductNo PK
+        string ProductDescription
+        number UnitPrice
+    }
+
+    ORDER_LINE {
+        string OrderNo PK, FK
+        string ProductNo PK, FK
+        number Quantity
+        number HistoricalUnitPrice
+    }</pre>
+
+<h3>(b) Oracle Creation Script for Table <code>ORDER_LINE</code> (10 Marks)</h3>
+<pre><code class="language-sql">CREATE TABLE ORDER_LINE (
+    OrderNo             VARCHAR2(10)   NOT NULL,
+    ProductNo           VARCHAR2(10)   NOT NULL,
+    Quantity            NUMBER(6)      NOT NULL,
+    HistoricalUnitPrice NUMBER(8,2)    NOT NULL,
+    CONSTRAINT pk_order_line PRIMARY KEY (OrderNo, ProductNo),
+    CONSTRAINT fk_line_order FOREIGN KEY (OrderNo) 
+        REFERENCES CUSTOMER_ORDER(OrderNo),
+    CONSTRAINT fk_line_product FOREIGN KEY (ProductNo) 
+        REFERENCES PRODUCT(ProductNo)
+);
+</code></pre>
+<hr />
+<h2>QUESTION 4</h2>
+<h3>(a) Normalization from UNF to 3NF (10 Marks)</h3>
+<ul>
+<li><strong>UNF:</strong> <code>PRODUCTION_REQUEST</code> (<u>PR_No</u>, Supplier_No, Supplier_Name, Supplier_Contact_Info, Order_Date, Signature, Expected_Delivery_Date, {Supplier_Item_No, Item_Description, Unit_Size, Unit_Price, Quantity, Sub_Total})</li>
+<li><strong>1NF:</strong> <code>PRODUCTION_REQUEST</code> (<u>PR_No</u>, <u>Supplier_Item_No</u>, Supplier_No, Supplier_Name, Supplier_Contact_Info, Order_Date, Signature, Expected_Delivery_Date, Item_Description, Unit_Size, Unit_Price, Quantity)</li>
+<li><strong>2NF:</strong></li>
+<li><code>PR_HEADER</code> (<u>PR_No</u>, Supplier_No, Supplier_Name, Supplier_Contact_Info, Order_Date, Signature, Expected_Delivery_Date)</li>
+<li><code>ITEM</code> (<u>Supplier_Item_No</u>, Item_Description, Unit_Size, Unit_Price)</li>
+<li><code>PR_LINE_ITEM</code> (<u>PR_No</u>, <u>Supplier_Item_No</u>, Quantity)</li>
+<li><strong>3NF:</strong></li>
+<li><code>SUPPLIER</code> (<u>Supplier_No</u>, Supplier_Name, Supplier_Contact_Info)</li>
+<li><code>PRODUCTION_REQUEST</code> (<u>PR_No</u>, Order_Date, Signature, Expected_Delivery_Date, Supplier_No*)</li>
+<li><code>ITEM</code> (<u>Supplier_Item_No</u>, Item_Description, Unit_Size, Unit_Price)</li>
+<li><code>PR_LINE_ITEM</code> (<u>PR_No<em></u>, <u>Supplier_Item_No</em></u>, Quantity)</li>
+</ul>
+<h3>(b) Database Anomalies &amp; Examples (15 Marks)</h3>
+<ol>
+<li><strong>Insertion Anomaly:</strong> Inability to add a record without inserting dummy/NULL values for missing primary key attributes (e.g., adding a course before any student enrolls in a combined table).</li>
+<li><strong>Deletion Anomaly:</strong> Unintentional destruction of secondary data when deleting a primary record (e.g., deleting the last staff member in a department permanently erases department information).</li>
+<li><strong>Modification Anomaly:</strong> Data inconsistency caused when updating redundant attributes across multiple rows fails to alter every instance (e.g., updating a customer address in 5 out of 10 order records).</li>
+</ol>
+    </div>
+</body>
+</html>
