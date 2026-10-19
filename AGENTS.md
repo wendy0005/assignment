@@ -66,6 +66,18 @@ When creating exam answers, assignments, or reports, follow this pattern:
    Use the `academic-report-generator` skill for professional rendering via Playwright.
 3. **Files go in `current_sem/`** — Keep generated PDFs in the relevant course folder under `current_sem/`
 
+## Course Materials Structure (`current_sem/`)
+
+When downloading, adding, or organizing learning materials for current semester modules:
+- **Module Folder**: Format as `current_sem/<Course Code> - <Course Name>/` (e.g., `current_sem/BCL1213 - Operating Systems/`).
+- **Standard Category Subfolders**:
+  - **`Course Documents/`** — Syllabus, pro-forma, course introduction, and grading guidelines.
+  - **`Lectures/`** — Lecture slide PDFs/PPTXs and summary infographics.
+  - **`Tutorials/`** — Tutorial question sheets, working worksheets, and answer sheets.
+  - **`E-Books/`** — Textbooks, reference books, and e-book PDFs.
+  - **`assignment/`** — Nested assignment briefs, code, and submissions grouped by dated folders (e.g., `assignment/YYYYMMDD_[Assignment_Name]/`).
+- **Amazon S3 Download Note**: When downloading attachments from Camu S3 storage (`segicamuattachments.s3.ap-southeast-1.amazonaws.com`), always provide the header `-H "Referer: https://staff-spark.segi.edu.my/"` to avoid HTTP 403 Forbidden errors.
+
 ## Virtual Environment
 
 The `.venv/` directory contains project-specific Python packages. Always use `.venv/bin/python` or `.venv/bin/pip` for tool installation:

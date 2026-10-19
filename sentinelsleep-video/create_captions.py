@@ -15,12 +15,11 @@ ROOT = Path(__file__).resolve().parent
 PUBLIC = ROOT / "public"
 CAPTION_DIR = PUBLIC / "captions"
 MODEL_NAME = "small.en"
-SCRIPT_PATH = (
-    ROOT.parent
-    / "current_sem"
-    / "BCL1123 - Internet of Things"
-    / "20260718_SUOL2500321_Smart_Bedroom_Presentation_Script.md"
-)
+_script_candidates = [
+    ROOT.parent / "previous_sems" / "2026_May_Aug" / "BCL1123 - Internet of Things" / "assignment" / "20260718_SUOL2500321_Smart_Bedroom_IoT_Proposal" / "20260718_SUOL2500321_Smart_Bedroom_Presentation_Script.md",
+    ROOT.parent / "current_sem" / "BCL1123 - Internet of Things" / "20260718_SUOL2500321_Smart_Bedroom_Presentation_Script.md",
+]
+SCRIPT_PATH = next((p for p in _script_candidates if p.exists()), _script_candidates[0])
 
 INITIAL_PROMPT = (
     "SentinelSleep smart bedroom presentation by Chan Jing Yi, student ID "

@@ -1,0 +1,743 @@
+{
+  "version": 1,
+  "items": {
+    "6ab4d692089286f299311b70": {
+      "filename": "04StackOperations.pdf",
+      "course": "BCL1313 - Algorithms and Complexity",
+      "category": "Lectures",
+      "size_bytes": 1075007,
+      "path": "BCL1313 - Algorithms and Complexity/Lectures/04StackOperations.pdf",
+      "synced_at": "2026-10-07T14:25:51.010912"
+    },
+    "6ab4d691089286f299311b58": {
+      "filename": "02RecursionConcepts.pdf",
+      "course": "BCL1313 - Algorithms and Complexity",
+      "category": "Lectures",
+      "size_bytes": 844319,
+      "path": "BCL1313 - Algorithms and Complexity/Lectures/02RecursionConcepts.pdf",
+      "synced_at": "2026-10-07T14:25:51.011082"
+    },
+    "6ab4d691089286f299311b60": {
+      "filename": "03LinkedListStructures.pdf",
+      "course": "BCL1313 - Algorithms and Complexity",
+      "category": "Lectures",
+      "size_bytes": 2054186,
+      "path": "BCL1313 - Algorithms and Complexity/Lectures/03LinkedListStructures.pdf",
+      "synced_at": "2026-10-07T14:25:51.011231"
+    },
+    "6ab4d692089286f299311b68": {
+      "filename": "05QueueManagement.pdf",
+      "course": "BCL1313 - Algorithms and Complexity",
+      "category": "Lectures",
+      "size_bytes": 1015333,
+      "path": "BCL1313 - Algorithms and Complexity/Lectures/05QueueManagement.pdf",
+      "synced_at": "2026-10-07T14:25:51.011374"
+    },
+    "6ab4d696089286f299311c10": {
+      "filename": "Lab1.pdf",
+      "course": "BCL1313 - Algorithms and Complexity",
+      "category": "Tutorials",
+      "size_bytes": 122097,
+      "path": "BCL1313 - Algorithms and Complexity/Tutorials/Lab1.pdf",
+      "synced_at": "2026-10-07T14:25:51.011488"
+    },
+    "6ab4d696089286f299311c18": {
+      "filename": "Lab2.pdf",
+      "course": "BCL1313 - Algorithms and Complexity",
+      "category": "Tutorials",
+      "size_bytes": 166408,
+      "path": "BCL1313 - Algorithms and Complexity/Tutorials/Lab2.pdf",
+      "synced_at": "2026-10-07T14:25:51.012535"
+    },
+    "6ab4d696089286f299311c20": {
+      "filename": "Lab3.pdf",
+      "course": "BCL1313 - Algorithms and Complexity",
+      "category": "Tutorials",
+      "size_bytes": 134126,
+      "path": "BCL1313 - Algorithms and Complexity/Tutorials/Lab3.pdf",
+      "synced_at": "2026-10-07T14:25:51.012787"
+    },
+    "6ab4d696089286f299311c28": {
+      "filename": "Lab4.pdf",
+      "course": "BCL1313 - Algorithms and Complexity",
+      "category": "Tutorials",
+      "size_bytes": 121058,
+      "path": "BCL1313 - Algorithms and Complexity/Tutorials/Lab4.pdf",
+      "synced_at": "2026-10-07T14:25:51.013546"
+    },
+    "6ab4d697089286f299311c30": {
+      "filename": "Lab5.pdf",
+      "course": "BCL1313 - Algorithms and Complexity",
+      "category": "Tutorials",
+      "size_bytes": 121626,
+      "path": "BCL1313 - Algorithms and Complexity/Tutorials/Lab5.pdf",
+      "synced_at": "2026-10-07T14:25:51.013706"
+    },
+    "6ab4d697089286f299311c38": {
+      "filename": "Lab6.pdf",
+      "course": "BCL1313 - Algorithms and Complexity",
+      "category": "Tutorials",
+      "size_bytes": 137378,
+      "path": "BCL1313 - Algorithms and Complexity/Tutorials/Lab6.pdf",
+      "synced_at": "2026-10-07T14:25:51.013817"
+    },
+    "6ab4d697089286f299311c40": {
+      "filename": "Lab7.pdf",
+      "course": "BCL1313 - Algorithms and Complexity",
+      "category": "Tutorials",
+      "size_bytes": 151878,
+      "path": "BCL1313 - Algorithms and Complexity/Tutorials/Lab7.pdf",
+      "synced_at": "2026-10-07T14:25:51.013918"
+    },
+    "6ab4d694089286f299311bc0": {
+      "filename": "10HashingLookup.pdf",
+      "course": "BCL1313 - Algorithms and Complexity",
+      "category": "Lectures",
+      "size_bytes": 563131,
+      "path": "BCL1313 - Algorithms and Complexity/Lectures/10HashingLookup.pdf",
+      "synced_at": "2026-10-07T14:25:51.014056"
+    },
+    "6ab4d68e089286f299311a0c": {
+      "filename": "3SOITWelcomeMessage.mp4",
+      "course": "BCL1313 - Algorithms and Complexity",
+      "category": "Course Documents",
+      "size_bytes": 107533534,
+      "path": "BCL1313 - Algorithms and Complexity/Course Documents/3SOITWelcomeMessage.mp4",
+      "synced_at": "2026-10-07T14:25:51.014132"
+    },
+    "6ab4d693089286f299311ba0": {
+      "filename": "06TreeTraversalTechniques.pdf",
+      "course": "BCL1313 - Algorithms and Complexity",
+      "category": "Lectures",
+      "size_bytes": 1093124,
+      "path": "BCL1313 - Algorithms and Complexity/Lectures/06TreeTraversalTechniques.pdf",
+      "synced_at": "2026-10-07T14:25:51.014472"
+    },
+    "6ab4d693089286f299311b98": {
+      "filename": "00CourseOverview.pptx",
+      "course": "BCL1313 - Algorithms and Complexity",
+      "category": "Course Documents",
+      "size_bytes": 2170588,
+      "path": "BCL1313 - Algorithms and Complexity/Course Documents/00CourseOverview.pptx",
+      "synced_at": "2026-10-07T14:25:51.014669"
+    },
+    "6ab4d693089286f299311ba8": {
+      "filename": "07GraphExploration.pdf",
+      "course": "BCL1313 - Algorithms and Complexity",
+      "category": "Lectures",
+      "size_bytes": 1420253,
+      "path": "BCL1313 - Algorithms and Complexity/Lectures/07GraphExploration.pdf",
+      "synced_at": "2026-10-07T14:25:51.014825"
+    },
+    "6ab4d693089286f299311bb0": {
+      "filename": "08SortingAlgorithms.pdf",
+      "course": "BCL1313 - Algorithms and Complexity",
+      "category": "Lectures",
+      "size_bytes": 920883,
+      "path": "BCL1313 - Algorithms and Complexity/Lectures/08SortingAlgorithms.pdf",
+      "synced_at": "2026-10-07T14:25:51.014963"
+    },
+    "6ab4d694089286f299311bc8": {
+      "filename": "Tutorial1.pdf",
+      "course": "BCL1313 - Algorithms and Complexity",
+      "category": "Tutorials",
+      "size_bytes": 130751,
+      "path": "BCL1313 - Algorithms and Complexity/Tutorials/Tutorial1.pdf",
+      "synced_at": "2026-10-07T14:25:51.015066"
+    },
+    "6ab4d694089286f299311bd0": {
+      "filename": "Tutorial2.pdf",
+      "course": "BCL1313 - Algorithms and Complexity",
+      "category": "Tutorials",
+      "size_bytes": 190979,
+      "path": "BCL1313 - Algorithms and Complexity/Tutorials/Tutorial2.pdf",
+      "synced_at": "2026-10-07T14:25:51.015162"
+    },
+    "6ab4d694089286f299311bd8": {
+      "filename": "Tutorial3.pdf",
+      "course": "BCL1313 - Algorithms and Complexity",
+      "category": "Tutorials",
+      "size_bytes": 169974,
+      "path": "BCL1313 - Algorithms and Complexity/Tutorials/Tutorial3.pdf",
+      "synced_at": "2026-10-07T14:25:51.015257"
+    },
+    "6ab4d695089286f299311be0": {
+      "filename": "Tutorial4.pdf",
+      "course": "BCL1313 - Algorithms and Complexity",
+      "category": "Tutorials",
+      "size_bytes": 184191,
+      "path": "BCL1313 - Algorithms and Complexity/Tutorials/Tutorial4.pdf",
+      "synced_at": "2026-10-07T14:25:51.015353"
+    },
+    "6ab4d695089286f299311be8": {
+      "filename": "Tutorial5.pdf",
+      "course": "BCL1313 - Algorithms and Complexity",
+      "category": "Tutorials",
+      "size_bytes": 140827,
+      "path": "BCL1313 - Algorithms and Complexity/Tutorials/Tutorial5.pdf",
+      "synced_at": "2026-10-07T14:25:51.015452"
+    },
+    "6ab4d695089286f299311bf0": {
+      "filename": "Tutorial6.pdf",
+      "course": "BCL1313 - Algorithms and Complexity",
+      "category": "Tutorials",
+      "size_bytes": 217492,
+      "path": "BCL1313 - Algorithms and Complexity/Tutorials/Tutorial6.pdf",
+      "synced_at": "2026-10-07T14:25:51.015550"
+    },
+    "6ab4d695089286f299311bf8": {
+      "filename": "Tutorial7.pdf",
+      "course": "BCL1313 - Algorithms and Complexity",
+      "category": "Tutorials",
+      "size_bytes": 209642,
+      "path": "BCL1313 - Algorithms and Complexity/Tutorials/Tutorial7.pdf",
+      "synced_at": "2026-10-07T14:25:51.015644"
+    },
+    "6ab4d695089286f299311c00": {
+      "filename": "Tutorial8.pdf",
+      "course": "BCL1313 - Algorithms and Complexity",
+      "category": "Tutorials",
+      "size_bytes": 133136,
+      "path": "BCL1313 - Algorithms and Complexity/Tutorials/Tutorial8.pdf",
+      "synced_at": "2026-10-07T14:25:51.015813"
+    },
+    "6ab4d696089286f299311c08": {
+      "filename": "Tutorial9.pdf",
+      "course": "BCL1313 - Algorithms and Complexity",
+      "category": "Tutorials",
+      "size_bytes": 154605,
+      "path": "BCL1313 - Algorithms and Complexity/Tutorials/Tutorial9.pdf",
+      "synced_at": "2026-10-07T14:25:51.016035"
+    },
+    "6ab4d694089286f299311bb8": {
+      "filename": "09SearchingTechniques.pdf",
+      "course": "BCL1313 - Algorithms and Complexity",
+      "category": "Lectures",
+      "size_bytes": 695355,
+      "path": "BCL1313 - Algorithms and Complexity/Lectures/09SearchingTechniques.pdf",
+      "synced_at": "2026-10-07T14:25:51.016200"
+    },
+    "6ab4d692089286f299311b90": {
+      "filename": "01IntroductiontoAlgorithmsComplexity.pdf",
+      "course": "BCL1313 - Algorithms and Complexity",
+      "category": "Course Documents",
+      "size_bytes": 914814,
+      "path": "BCL1313 - Algorithms and Complexity/Lectures/01IntroductiontoAlgorithmsComplexity.pdf",
+      "synced_at": "2026-10-07T14:25:51.016366"
+    },
+    "6ab4d68f089286f299311a58": {
+      "filename": "Chapter1.pdf",
+      "course": "BCL1313 - Algorithms and Complexity",
+      "category": "Course Documents",
+      "size_bytes": 18751570,
+      "path": "BCL1313 - Algorithms and Complexity/Lectures/Chapter1.pdf",
+      "synced_at": "2026-10-07T14:25:51.016847"
+    },
+    "6ac34a11caf2c262f21d680e": {
+      "filename": "CHAPTER1INTRODUCTIONTOCOMPUTERSYSTEMS.ppt",
+      "course": "BCL1333 - System Fundamentals",
+      "category": "Lectures",
+      "size_bytes": 600064,
+      "path": "BCL1333 - System Fundamentals/Lectures/CHAPTER1INTRODUCTIONTOCOMPUTERSYSTEMS.ppt",
+      "synced_at": "2026-10-07T14:25:51.017693"
+    },
+    "6ac34a77973a8a5118362c68": {
+      "filename": "COURSEOVERVIEWBBCL1333SYSTEMFUNDAMENTALSSEPT-DEC2026.pdf",
+      "course": "BCL1333 - System Fundamentals",
+      "category": "Course Documents",
+      "size_bytes": 1021596,
+      "path": "BCL1333 - System Fundamentals/Course Documents/COURSEOVERVIEWBBCL1333SYSTEMFUNDAMENTALSSEPT-DEC2026.pdf",
+      "synced_at": "2026-10-07T14:25:51.017771"
+    },
+    "6ab68d563d59559dc8a40750": {
+      "filename": "00ClassIntroduction.pptx",
+      "course": "BCL2113 - Software Engineering",
+      "category": "Course Documents",
+      "size_bytes": 3432578,
+      "path": "BCL2113 - Software Engineering/Course Documents/00ClassIntroduction.pptx",
+      "synced_at": "2026-10-07T14:25:51.017880"
+    },
+    "6ab68d563d59559dc8a40766": {
+      "filename": "01Introduction_to_Software_Engineering.pptx",
+      "course": "BCL2113 - Software Engineering",
+      "category": "Course Documents",
+      "size_bytes": 1744536,
+      "path": "BCL2113 - Software Engineering/Lectures/01Introduction_to_Software_Engineering.pptx",
+      "synced_at": "2026-10-07T14:25:51.017982"
+    },
+    "6ab68f04413e3ce712b6e708": {
+      "filename": "02SDLCframeworkmethods.pptx",
+      "course": "BCL2113 - Software Engineering",
+      "category": "Course Documents",
+      "size_bytes": 862642,
+      "path": "BCL2113 - Software Engineering/Lectures/02SDLCframeworkmethods.pptx",
+      "synced_at": "2026-10-07T14:25:51.018072"
+    },
+    "6ab68f04413e3ce712b6e716": {
+      "filename": "03RequirementsAnalysisandSpecification.pptx",
+      "course": "BCL2113 - Software Engineering",
+      "category": "Course Documents",
+      "size_bytes": 372782,
+      "path": "BCL2113 - Software Engineering/Lectures/03RequirementsAnalysisandSpecification.pptx",
+      "synced_at": "2026-10-07T14:25:51.018159"
+    },
+    "6ab68f04413e3ce712b6e6f3": {
+      "filename": "04AgileSWDevaccessible.pptx",
+      "course": "BCL2113 - Software Engineering",
+      "category": "Course Documents",
+      "size_bytes": 10914350,
+      "path": "BCL2113 - Software Engineering/Lectures/04AgileSWDevaccessible.pptx",
+      "synced_at": "2026-10-07T14:25:51.018243"
+    },
+    "6ab68f04413e3ce712b6e701": {
+      "filename": "05Software_Project_Management_Presentation.pptx",
+      "course": "BCL2113 - Software Engineering",
+      "category": "Course Documents",
+      "size_bytes": 3826624,
+      "path": "BCL2113 - Software Engineering/Lectures/05Software_Project_Management_Presentation.pptx",
+      "synced_at": "2026-10-07T14:25:51.019322"
+    },
+    "6ab68f04413e3ce712b6e6fa": {
+      "filename": "06DesignPatterns.pptx",
+      "course": "BCL2113 - Software Engineering",
+      "category": "Course Documents",
+      "size_bytes": 3290587,
+      "path": "BCL2113 - Software Engineering/Lectures/06DesignPatterns.pptx",
+      "synced_at": "2026-10-07T14:25:51.021121"
+    },
+    "6ab68f04413e3ce712b6e70f": {
+      "filename": "07ChangeRequestManagementinRequirementEngineering.pptx",
+      "course": "BCL2113 - Software Engineering",
+      "category": "Course Documents",
+      "size_bytes": 1617191,
+      "path": "BCL2113 - Software Engineering/Lectures/07ChangeRequestManagementinRequirementEngineering.pptx",
+      "synced_at": "2026-10-07T14:25:51.021249"
+    },
+    "6ab4d5a16ebcbc1e158aeabc": {
+      "filename": "3SIMTopic5FileManagement.pdf",
+      "course": "BCL2344 - Web and Mobile Development",
+      "category": "Course Documents",
+      "size_bytes": 664002,
+      "path": "BCL2344 - Web and Mobile Development/Lectures/3SIMTopic5FileManagement.pdf",
+      "synced_at": "2026-10-07T14:25:51.021438"
+    },
+    "6ab4d5a16ebcbc1e158aea43": {
+      "filename": "3SIMTopic3(MemoryManagement).pdf",
+      "course": "BCL2344 - Web and Mobile Development",
+      "category": "Course Documents",
+      "size_bytes": 1214368,
+      "path": "BCL2344 - Web and Mobile Development/Lectures/3SIMTopic3(MemoryManagement).pdf",
+      "synced_at": "2026-10-07T14:25:51.021547"
+    },
+    "6ab4d5a26ebcbc1e158aeaef": {
+      "filename": "3SIMTopic6SystemImplementationandConstraints.pdf",
+      "course": "BCL2344 - Web and Mobile Development",
+      "category": "Course Documents",
+      "size_bytes": 782426,
+      "path": "BCL2344 - Web and Mobile Development/Lectures/3SIMTopic6SystemImplementationandConstraints.pdf",
+      "synced_at": "2026-10-07T14:25:51.021770"
+    },
+    "6ab4d5a16ebcbc1e158aea7f": {
+      "filename": "3SIMTopic4ProcessSynchronization.pdf",
+      "course": "BCL2344 - Web and Mobile Development",
+      "category": "Course Documents",
+      "size_bytes": 551735,
+      "path": "BCL2344 - Web and Mobile Development/Lectures/3SIMTopic4ProcessSynchronization.pdf",
+      "synced_at": "2026-10-07T14:25:51.021882"
+    },
+    "6ab4d5a06ebcbc1e158ae9cb": {
+      "filename": "3SIM01IntrotoOS.pdf",
+      "course": "BCL2344 - Web and Mobile Development",
+      "category": "Course Documents",
+      "size_bytes": 1362314,
+      "path": "BCL2344 - Web and Mobile Development/Lectures/3SIM01IntrotoOS.pdf",
+      "synced_at": "2026-10-07T14:25:51.028152"
+    },
+    "6ab4d59f6ebcbc1e158ae973": {
+      "filename": "3SOITWelcomeMessage.mp4",
+      "course": "BCL2344 - Web and Mobile Development",
+      "category": "Course Documents",
+      "size_bytes": 107533534,
+      "path": "BCL2344 - Web and Mobile Development/Course Documents/3SOITWelcomeMessage.mp4",
+      "synced_at": "2026-10-07T14:25:51.028263"
+    },
+    "6ab4d5a06ebcbc1e158ae984": {
+      "filename": "5LecturerProfile.mp4",
+      "course": "BCL2344 - Web and Mobile Development",
+      "category": "Course Documents",
+      "size_bytes": 17440709,
+      "path": "BCL2344 - Web and Mobile Development/Course Documents/5LecturerProfile.mp4",
+      "synced_at": "2026-10-07T14:25:51.028350"
+    },
+    "6ab4d5a16ebcbc1e158aea07": {
+      "filename": "2SIM02ProcessManagementandScheduling.pdf",
+      "course": "BCL2344 - Web and Mobile Development",
+      "category": "Course Documents",
+      "size_bytes": 3102587,
+      "path": "BCL2344 - Web and Mobile Development/Lectures/2SIM02ProcessManagementandScheduling.pdf",
+      "synced_at": "2026-10-07T14:25:51.028464"
+    },
+    "BIT1213BCL1213BTL1213OperatingSystemIntroduction.pdf": {
+      "filename": "BIT1213BCL1213BTL1213OperatingSystemIntroduction.pdf",
+      "course": "BCL1213 - Operating Systems",
+      "category": "Course Documents",
+      "size_bytes": 15507840,
+      "path": "BCL1213 - Operating Systems/Course Documents/BIT1213BCL1213BTL1213OperatingSystemIntroduction.pdf",
+      "synced_at": "2026-10-07T12:02:46"
+    },
+    "BCL1213OperatingSystemPro-Forma.pdf": {
+      "filename": "BCL1213OperatingSystemPro-Forma.pdf",
+      "course": "BCL1213 - Operating Systems",
+      "category": "Course Documents",
+      "size_bytes": 684121,
+      "path": "BCL1213 - Operating Systems/Course Documents/BCL1213OperatingSystemPro-Forma.pdf",
+      "synced_at": "2026-10-07T12:02:46"
+    },
+    "Tutorial1.pdf": {
+      "filename": "Tutorial1.pdf",
+      "course": "BCL1213 - Operating Systems",
+      "category": "Tutorials",
+      "size_bytes": 127491,
+      "path": "BCL1213 - Operating Systems/Tutorials/Tutorial1.pdf",
+      "synced_at": "2026-10-07T12:02:46"
+    },
+    "Operating-System-Concepts-10th-Edition.pdf": {
+      "filename": "Operating-System-Concepts-10th-Edition.pdf",
+      "course": "BCL1213 - Operating Systems",
+      "category": "E-Books",
+      "size_bytes": 4398284,
+      "path": "BCL1213 - Operating Systems/E-Books/Operating-System-Concepts-10th-Edition.pdf",
+      "synced_at": "2026-10-07T12:02:46"
+    },
+    "UnderstandingOperatingSystems6EByAnnMcIverMcHoesandIdaMFlynn.pdf": {
+      "filename": "UnderstandingOperatingSystems6EByAnnMcIverMcHoesandIdaMFlynn.pdf",
+      "course": "BCL1213 - Operating Systems",
+      "category": "E-Books",
+      "size_bytes": 11137686,
+      "path": "BCL1213 - Operating Systems/E-Books/UnderstandingOperatingSystems6EByAnnMcIverMcHoesandIdaMFlynn.pdf",
+      "synced_at": "2026-10-07T12:02:46"
+    },
+    "InfographicChapter01.png": {
+      "filename": "InfographicChapter01.png",
+      "course": "BCL1213 - Operating Systems",
+      "category": "Lectures",
+      "size_bytes": 5978319,
+      "path": "BCL1213 - Operating Systems/Lectures/InfographicChapter01.png",
+      "synced_at": "2026-10-07T12:02:46"
+    },
+    "Chapter01IntroductiontoOperatingSystem.pdf": {
+      "filename": "Chapter01IntroductiontoOperatingSystem.pdf",
+      "course": "BCL1213 - Operating Systems",
+      "category": "Lectures",
+      "size_bytes": 1854452,
+      "path": "BCL1213 - Operating Systems/Lectures/Chapter01IntroductiontoOperatingSystem.pdf",
+      "synced_at": "2026-10-07T12:02:46"
+    },
+    "6ab735dc95625a735a204e0c": {
+      "filename": "BIT1213BCL1213BTL1213OperatingSystemIntroduction.pdf",
+      "course": "BCL1213 - Operating Systems",
+      "category": "Course Documents",
+      "size_bytes": 15507840,
+      "path": "BCL1213 - Operating Systems/Course Documents/BIT1213BCL1213BTL1213OperatingSystemIntroduction.pdf",
+      "synced_at": "2026-10-11T16:14:56.565981"
+    },
+    "6ac903006363343a1ae75fcd": {
+      "filename": "InfographicChapter02.png",
+      "course": "BCL1213 - Operating Systems",
+      "category": "Tutorials",
+      "size_bytes": 6045575,
+      "path": "BCL1213 - Operating Systems/Tutorials/InfographicChapter02.png",
+      "url": "https://segicamuattachments.s3.ap-southeast-1.amazonaws.com/assignment/67444af4e40449662df81d2f/0bb4b957-1b84-4645-b76c-cff8d6ca6b3d_49db5b956d76dd17544af5d9dc015f54.png",
+      "synced_at": "2026-10-11T16:14:57.302750"
+    },
+    "6ab74d9d02de0b9929fa49d3": {
+      "filename": "UnderstandingOperatingSystems6EByAnnMcIverMcHoesandIdaMFlynn.pdf",
+      "course": "BCL1213 - Operating Systems",
+      "category": "Course Documents",
+      "size_bytes": 11137686,
+      "path": "BCL1213 - Operating Systems/E-Books/UnderstandingOperatingSystems6EByAnnMcIverMcHoesandIdaMFlynn.pdf",
+      "synced_at": "2026-10-11T16:14:57.304910"
+    },
+    "6ab74dac02de0b9929fa4a79": {
+      "filename": "Operating-System-Concepts-10th-Edition.pdf",
+      "course": "BCL1213 - Operating Systems",
+      "category": "Course Documents",
+      "size_bytes": 4398284,
+      "path": "BCL1213 - Operating Systems/E-Books/Operating-System-Concepts-10th-Edition.pdf",
+      "synced_at": "2026-10-11T16:14:57.305057"
+    },
+    "6aba0d5f455fe9559add5afc": {
+      "filename": "Chapter01IntroductiontoOperatingSystem.pdf",
+      "course": "BCL1213 - Operating Systems",
+      "category": "Tutorials",
+      "size_bytes": 1854452,
+      "path": "BCL1213 - Operating Systems/Lectures/Chapter01IntroductiontoOperatingSystem.pdf",
+      "synced_at": "2026-10-11T16:14:57.305200"
+    },
+    "6aba0d6b3d0e0110894a2d4e": {
+      "filename": "InfographicChapter01.png",
+      "course": "BCL1213 - Operating Systems",
+      "category": "Tutorials",
+      "size_bytes": 5978319,
+      "path": "BCL1213 - Operating Systems/Lectures/InfographicChapter01.png",
+      "synced_at": "2026-10-11T16:14:57.305335"
+    },
+    "6ac3534ccaf2c262f22080bd": {
+      "filename": "Tutorial1.pdf",
+      "course": "BCL1213 - Operating Systems",
+      "category": "Tutorials",
+      "size_bytes": 127491,
+      "path": "BCL1213 - Operating Systems/Tutorials/Tutorial1.pdf",
+      "synced_at": "2026-10-11T16:14:57.305433"
+    },
+    "6ab74e0902de0b9929fa50ef": {
+      "filename": "BCL1213OperatingSystemPro-Forma.pdf",
+      "course": "BCL1213 - Operating Systems",
+      "category": "Course Documents",
+      "size_bytes": 684121,
+      "path": "BCL1213 - Operating Systems/Course Documents/BCL1213OperatingSystemPro-Forma.pdf",
+      "synced_at": "2026-10-11T16:14:57.305508"
+    },
+    "6ab4d692089286f299311b78": {
+      "filename": "AssignmentBCC1313_122026.pdf",
+      "course": "BCL1313 - Algorithms and Complexity",
+      "category": "Lectures",
+      "size_bytes": 141985,
+      "path": "BCL1313 - Algorithms and Complexity/Lectures/AssignmentBCC1313_122026.pdf",
+      "url": "https://segicamuattachments.s3.ap-southeast-1.amazonaws.com/assignment/67444af4e40449662df81d2f/36cedafd-1bf6-4c7e-b044-d9ef55376c99_1d46530cfd467e63a8ddae4231acab8f.pdf",
+      "synced_at": "2026-10-11T16:14:57.611608"
+    },
+    "6ab4d692089286f299311b80": {
+      "filename": "MarkingRubric.docx",
+      "course": "BCL1313 - Algorithms and Complexity",
+      "category": "Course Documents",
+      "size_bytes": 27844,
+      "path": "BCL1313 - Algorithms and Complexity/Course Documents/MarkingRubric.docx",
+      "url": "https://segicamuattachments.s3.ap-southeast-1.amazonaws.com/assignment/67444af4e40449662df81d2f/eba5c9f2-0441-49bf-82c9-ddd442ab84d0_2a41dfe2625556d2d7d71194d85c585c.docx",
+      "synced_at": "2026-10-11T16:14:57.878456"
+    },
+    "6acadcb83db97e25711fb88f": {
+      "filename": "Assignment1(Proposal).pdf",
+      "course": "BCL2344 - Web and Mobile Development",
+      "category": "Lectures",
+      "size_bytes": 270104,
+      "path": "BCL2344 - Web and Mobile Development/Lectures/Assignment1(Proposal).pdf",
+      "url": "https://segicamuattachments.s3.ap-southeast-1.amazonaws.com/assignment/67444af4e40449662df81d2f/4587e8f3-c3b3-467a-9df7-91b5fe734b01_4cd712eb8a648e0fdf89c74e8cf4e7fa.pdf",
+      "synced_at": "2026-10-11T16:14:58.252730"
+    },
+    "6acadcb93db97e25711fb8b7": {
+      "filename": "Proposal(MS).pdf",
+      "course": "BCL2344 - Web and Mobile Development",
+      "category": "Course Documents",
+      "size_bytes": 202192,
+      "path": "BCL2344 - Web and Mobile Development/Course Documents/Proposal(MS).pdf",
+      "url": "https://segicamuattachments.s3.ap-southeast-1.amazonaws.com/assignment/67444af4e40449662df81d2f/f0c9076c-7126-4450-a558-253cc8231e71_dad2eed1f7ca24552030aff3db8d47fa.pdf",
+      "synced_at": "2026-10-11T16:14:58.590466"
+    },
+    "6acadcb63db97e25711fb83f": {
+      "filename": "2_MobileAppDevelopmentProcess.pptx",
+      "course": "BCL2344 - Web and Mobile Development",
+      "category": "Lectures",
+      "size_bytes": 3109393,
+      "path": "BCL2344 - Web and Mobile Development/Lectures/2_MobileAppDevelopmentProcess.pptx",
+      "url": "https://segicamuattachments.s3.ap-southeast-1.amazonaws.com/assignment/67444af4e40449662df81d2f/3984980e-b58f-49b7-81b6-3e24e5d29e3c_ddc57eb649244f0c2ad93668c868b734.pptx",
+      "synced_at": "2026-10-11T16:14:59.115096"
+    },
+    "6acadcb63db97e25711fb847": {
+      "filename": "3_MobileDevelopmentEnvironmentSetup.pptx",
+      "course": "BCL2344 - Web and Mobile Development",
+      "category": "Lectures",
+      "size_bytes": 1609152,
+      "path": "BCL2344 - Web and Mobile Development/Lectures/3_MobileDevelopmentEnvironmentSetup.pptx",
+      "url": "https://segicamuattachments.s3.ap-southeast-1.amazonaws.com/assignment/67444af4e40449662df81d2f/f85964e4-9e46-4289-bf96-bdaed8198bef_db1c8b9a8abd5a80e2d89b951ae0f4f5.pptx",
+      "synced_at": "2026-10-11T16:14:59.645671"
+    },
+    "6acadcb73db97e25711fb84f": {
+      "filename": "4_IntroductiontoFlutterandWidgets.pptx",
+      "course": "BCL2344 - Web and Mobile Development",
+      "category": "Course Documents",
+      "size_bytes": 3803972,
+      "path": "BCL2344 - Web and Mobile Development/Course Documents/4_IntroductiontoFlutterandWidgets.pptx",
+      "url": "https://segicamuattachments.s3.ap-southeast-1.amazonaws.com/assignment/67444af4e40449662df81d2f/ee0f244f-a36b-4aef-9ec5-9598b4697fdf_95b21363ba701ec912e35e9a67fdd93f.pptx",
+      "synced_at": "2026-10-11T16:15:00.280126"
+    },
+    "6acadcb93db97e25711fb89f": {
+      "filename": "Assignment.pdf",
+      "course": "BCL2344 - Web and Mobile Development",
+      "category": "Lectures",
+      "size_bytes": 274509,
+      "path": "BCL2344 - Web and Mobile Development/Lectures/Assignment.pdf",
+      "url": "https://segicamuattachments.s3.ap-southeast-1.amazonaws.com/assignment/67444af4e40449662df81d2f/8d068dc1-fad0-451d-87ea-829dca48c3c1_f2e2ff39b16e6f06c74253b046f74bfd.pdf",
+      "synced_at": "2026-10-11T16:15:00.633703"
+    },
+    "6acadcb93db97e25711fb8a7": {
+      "filename": "MarkingRubric.pdf",
+      "course": "BCL2344 - Web and Mobile Development",
+      "category": "Course Documents",
+      "size_bytes": 208152,
+      "path": "BCL2344 - Web and Mobile Development/Course Documents/MarkingRubric.pdf",
+      "url": "https://segicamuattachments.s3.ap-southeast-1.amazonaws.com/assignment/67444af4e40449662df81d2f/33c0557e-6033-47fe-968d-ea900a960107_ef9f93c03eee890908c0c3201a170c45.pdf",
+      "synced_at": "2026-10-11T16:15:01.063050"
+    },
+    "6acadcba3db97e25711fb8ef": {
+      "filename": "Proposal(MS).pdf",
+      "course": "BCL2344 - Web and Mobile Development",
+      "category": "Course Documents",
+      "size_bytes": 202192,
+      "path": "BCL2344 - Web and Mobile Development/Course Documents/Proposal(MS).pdf",
+      "synced_at": "2026-10-11T16:15:01.063989"
+    },
+    "6acadcbb3db97e25711fb90f": {
+      "filename": "Assignment(Proposal).pdf",
+      "course": "BCL2344 - Web and Mobile Development",
+      "category": "Lectures",
+      "size_bytes": 267858,
+      "path": "BCL2344 - Web and Mobile Development/Lectures/Assignment(Proposal).pdf",
+      "url": "https://segicamuattachments.s3.ap-southeast-1.amazonaws.com/assignment/67444af4e40449662df81d2f/8a08eff0-e5eb-4a02-98e7-30f06b933b88_60d8053d9592e607efaadf1a29dadb2f.pdf",
+      "synced_at": "2026-10-11T16:15:01.416928"
+    },
+    "6acadcb73db97e25711fb857": {
+      "filename": "1_SettinguptheEnvironment.pdf",
+      "course": "BCL2344 - Web and Mobile Development",
+      "category": "Tutorials",
+      "size_bytes": 503003,
+      "path": "BCL2344 - Web and Mobile Development/Tutorials/1_SettinguptheEnvironment.pdf",
+      "url": "https://segicamuattachments.s3.ap-southeast-1.amazonaws.com/assignment/67444af4e40449662df81d2f/c5968e97-144f-434e-a820-260c134da9ce_9ad5ffbcc0f9b92d050d7ffe8e9cef9a.pdf",
+      "synced_at": "2026-10-11T16:15:01.839520"
+    },
+    "6acadcb73db97e25711fb85f": {
+      "filename": "2_CreateYourFirstApp.pdf",
+      "course": "BCL2344 - Web and Mobile Development",
+      "category": "Tutorials",
+      "size_bytes": 659717,
+      "path": "BCL2344 - Web and Mobile Development/Tutorials/2_CreateYourFirstApp.pdf",
+      "url": "https://segicamuattachments.s3.ap-southeast-1.amazonaws.com/assignment/67444af4e40449662df81d2f/d9688933-0603-4d63-b102-6b7168054222_07e79d2c0f199d34fea4131f08c739f0.pdf",
+      "synced_at": "2026-10-11T16:15:02.317092"
+    },
+    "6acadcb73db97e25711fb867": {
+      "filename": "3_CreateSimpleFlutterApp.pdf",
+      "course": "BCL2344 - Web and Mobile Development",
+      "category": "Tutorials",
+      "size_bytes": 378068,
+      "path": "BCL2344 - Web and Mobile Development/Tutorials/3_CreateSimpleFlutterApp.pdf",
+      "url": "https://segicamuattachments.s3.ap-southeast-1.amazonaws.com/assignment/67444af4e40449662df81d2f/e39ad9b2-03c8-4049-926e-a40a872dccac_38cb66124f1f04143fd010e0dfad9f74.pdf",
+      "synced_at": "2026-10-11T16:15:02.689307"
+    },
+    "6acadcb83db97e25711fb86f": {
+      "filename": "4_FlutterWidgets_1.docx",
+      "course": "BCL2344 - Web and Mobile Development",
+      "category": "Tutorials",
+      "size_bytes": 1613115,
+      "path": "BCL2344 - Web and Mobile Development/Tutorials/4_FlutterWidgets_1.docx",
+      "url": "https://segicamuattachments.s3.ap-southeast-1.amazonaws.com/assignment/67444af4e40449662df81d2f/5d18fba0-1790-4bd0-be7d-28fa1e41241f_d6325c81230e2448f4af74cf34cfc742.docx",
+      "synced_at": "2026-10-11T16:15:03.214992"
+    },
+    "6acadcb83db97e25711fb877": {
+      "filename": "5_FlutterWidgets_2.docx",
+      "course": "BCL2344 - Web and Mobile Development",
+      "category": "Tutorials",
+      "size_bytes": 560057,
+      "path": "BCL2344 - Web and Mobile Development/Tutorials/5_FlutterWidgets_2.docx",
+      "url": "https://segicamuattachments.s3.ap-southeast-1.amazonaws.com/assignment/67444af4e40449662df81d2f/a767ac9e-15ac-42b3-b95c-54d5518f63d7_dffe087233207dff5b82fa8bebe2c4ec.docx",
+      "synced_at": "2026-10-11T16:15:03.624243"
+    },
+    "6acadcb83db97e25711fb87f": {
+      "filename": "6_FlutterWidgets_3.docx",
+      "course": "BCL2344 - Web and Mobile Development",
+      "category": "Tutorials",
+      "size_bytes": 725126,
+      "path": "BCL2344 - Web and Mobile Development/Tutorials/6_FlutterWidgets_3.docx",
+      "url": "https://segicamuattachments.s3.ap-southeast-1.amazonaws.com/assignment/67444af4e40449662df81d2f/b5a4dd0f-a892-4029-a7fd-e0396ac423ac_5d40739daeb028355d4de4af549e1567.docx",
+      "synced_at": "2026-10-11T16:15:04.039553"
+    },
+    "6acadcb83db97e25711fb887": {
+      "filename": "7_FlutterWidgets_4.docx",
+      "course": "BCL2344 - Web and Mobile Development",
+      "category": "Tutorials",
+      "size_bytes": 368201,
+      "path": "BCL2344 - Web and Mobile Development/Tutorials/7_FlutterWidgets_4.docx",
+      "url": "https://segicamuattachments.s3.ap-southeast-1.amazonaws.com/assignment/67444af4e40449662df81d2f/91d7bbff-0e73-4a46-8136-6f9bd798d61d_88d1d6ecb59355704562fc39b531ab99.docx",
+      "synced_at": "2026-10-11T16:15:04.459745"
+    },
+    "6acadcb93db97e25711fb8bf": {
+      "filename": "8_PageNavigation.docx",
+      "course": "BCL2344 - Web and Mobile Development",
+      "category": "Tutorials",
+      "size_bytes": 567070,
+      "path": "BCL2344 - Web and Mobile Development/Tutorials/8_PageNavigation.docx",
+      "url": "https://segicamuattachments.s3.ap-southeast-1.amazonaws.com/assignment/67444af4e40449662df81d2f/595d59c9-f420-4a11-bb71-de37a0b990ec_44321f9b15704b32ee9e7f4c80d55f77.docx",
+      "synced_at": "2026-10-11T16:15:04.913559"
+    },
+    "6acadcb93db97e25711fb8c7": {
+      "filename": "9_PageNavigation_2.docx",
+      "course": "BCL2344 - Web and Mobile Development",
+      "category": "Tutorials",
+      "size_bytes": 1971015,
+      "path": "BCL2344 - Web and Mobile Development/Tutorials/9_PageNavigation_2.docx",
+      "url": "https://segicamuattachments.s3.ap-southeast-1.amazonaws.com/assignment/67444af4e40449662df81d2f/f542431a-d3a9-4a0f-9aca-745362b45d4a_50e07fa9654eebd6052182f08ea25da9.docx",
+      "synced_at": "2026-10-11T16:15:05.431907"
+    },
+    "6acadcba3db97e25711fb8cf": {
+      "filename": "10_AddingFirebase.docx",
+      "course": "BCL2344 - Web and Mobile Development",
+      "category": "Tutorials",
+      "size_bytes": 735011,
+      "path": "BCL2344 - Web and Mobile Development/Tutorials/10_AddingFirebase.docx",
+      "url": "https://segicamuattachments.s3.ap-southeast-1.amazonaws.com/assignment/67444af4e40449662df81d2f/8aa667bf-9e7c-4ec9-915e-0b51d5063e49_c652ede70298b18139ac3142d4b7a8fe.docx",
+      "synced_at": "2026-10-11T16:15:05.865373"
+    },
+    "6acadcba3db97e25711fb8ff": {
+      "filename": "11_InteractiveWidget_2.docx",
+      "course": "BCL2344 - Web and Mobile Development",
+      "category": "Tutorials",
+      "size_bytes": 484505,
+      "path": "BCL2344 - Web and Mobile Development/Tutorials/11_InteractiveWidget_2.docx",
+      "url": "https://segicamuattachments.s3.ap-southeast-1.amazonaws.com/assignment/67444af4e40449662df81d2f/05fcc571-d43d-4009-9d51-0ed4a59e8038_93424cd3117c28ce8de1cd523dbf1fdc.docx",
+      "synced_at": "2026-10-11T16:15:06.281419"
+    },
+    "6acadcbb3db97e25711fb907": {
+      "filename": "10_InteractiveWidget_1.docx",
+      "course": "BCL2344 - Web and Mobile Development",
+      "category": "Tutorials",
+      "size_bytes": 250056,
+      "path": "BCL2344 - Web and Mobile Development/Tutorials/10_InteractiveWidget_1.docx",
+      "url": "https://segicamuattachments.s3.ap-southeast-1.amazonaws.com/assignment/67444af4e40449662df81d2f/f117c326-8c8f-49f0-b438-1a0f8a970cc3_e459dc9ceebc79d4526735fefd25079c.docx",
+      "synced_at": "2026-10-11T16:15:06.616238"
+    },
+    "6acadcb63db97e25711fb837": {
+      "filename": "1_IntroductiontoWebandMobileDevelopment.pptx",
+      "course": "BCL2344 - Web and Mobile Development",
+      "category": "Course Documents",
+      "size_bytes": 4497377,
+      "path": "BCL2344 - Web and Mobile Development/Course Documents/1_IntroductiontoWebandMobileDevelopment.pptx",
+      "url": "https://segicamuattachments.s3.ap-southeast-1.amazonaws.com/assignment/67444af4e40449662df81d2f/3886238b-804d-43bc-a53b-a44d116257e1_bef76c92bcf0a9be0d1f7e6ee38fb5ba.pptx",
+      "synced_at": "2026-10-11T16:15:07.382096"
+    },
+    "6acadcba3db97e25711fb8d7": {
+      "filename": "LabAssessment.pdf",
+      "course": "BCL2344 - Web and Mobile Development",
+      "category": "Tutorials",
+      "size_bytes": 259709,
+      "path": "BCL2344 - Web and Mobile Development/Tutorials/LabAssessment.pdf",
+      "url": "https://segicamuattachments.s3.ap-southeast-1.amazonaws.com/assignment/67444af4e40449662df81d2f/3e43746c-eb67-4780-a19f-f4f4594de8f9_5830c14a68d6f4542566ef8e8870ed4d.pdf",
+      "synced_at": "2026-10-11T16:15:07.748598"
+    },
+    "6acadcba3db97e25711fb8df": {
+      "filename": "LabAssessment_MarkingRubric.pdf",
+      "course": "BCL2344 - Web and Mobile Development",
+      "category": "Tutorials",
+      "size_bytes": 208248,
+      "path": "BCL2344 - Web and Mobile Development/Tutorials/LabAssessment_MarkingRubric.pdf",
+      "url": "https://segicamuattachments.s3.ap-southeast-1.amazonaws.com/assignment/67444af4e40449662df81d2f/dce394c8-4a65-4b66-a8c9-e0f53394dee7_0fe51ea05328341444d218ce10a17d9d.pdf",
+      "synced_at": "2026-10-11T16:15:08.073208"
+    },
+    "6acdd2e148bdeb1d81b670cc": {
+      "filename": "Chapter02ProcessManagement.pdf",
+      "course": "BCL1213 - Operating Systems",
+      "category": "Tutorials",
+      "size_bytes": 2311358,
+      "path": "BCL1213 - Operating Systems/Lectures/Chapter02ProcessManagement.pdf",
+      "synced_at": "2026-10-13T20:51:33.695501"
+    }
+  }
+}

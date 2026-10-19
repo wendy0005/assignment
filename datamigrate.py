@@ -438,41 +438,50 @@ def main():
 
     results = {}
 
+    def resolve_source(*parts):
+        p1 = BASE_DIR / 'current_sem' / Path(*parts)
+        if p1.exists():
+            return p1
+        p2 = BASE_DIR / 'previous_sems' / '2026_May_Aug' / Path(*parts)
+        if p2.exists():
+            return p2
+        return p1
+
     results['iot_lessons'] = migrate_iot_lessons(
-        conn, BASE_DIR / 'current_sem' / 'iot_lessons.html')
+        conn, resolve_source('iot_lessons.html'))
 
     results['database_lessons'] = migrate_database_lessons(
-        conn, BASE_DIR / 'current_sem' / 'BCL1223 - Database Fundamentals' / 'database_interactive_lessons.html')
+        conn, resolve_source('BCL1223 - Database Fundamentals', 'database_interactive_lessons.html'))
 
     results['secplus_study'] = migrate_secplus_study(
-        conn, BASE_DIR / 'current_sem' / 'security_plus_study.html')
+        conn, resolve_source('security_plus_study.html'))
 
     results['secplus_quiz'] = migrate_quiz_generic(
-        conn, BASE_DIR / 'current_sem' / 'security_plus_quiz.html',
+        conn, resolve_source('security_plus_quiz.html'),
         'secplus-quiz', 'SY0-701', 'CompTIA Security+ Quiz',
         'Practice quiz covering all 16 Security+ domains', '🔒')
 
     results['ghf_quiz'] = migrate_quiz_generic(
-        conn, BASE_DIR / 'current_sem' / 'github_foundations_quiz.html',
+        conn, resolve_source('github_foundations_quiz.html'),
         'ghf', 'GHF', 'GitHub Foundations',
         'Practice quiz for GitHub Foundations certification — 7 domains', '🐙')
 
     # Document pages
     doc_sources = [
         ('bcl1223-t1', 'BCL1223', 'Tutorial 1 — Database Concepts Answers',
-         BASE_DIR / 'current_sem' / 'BCL1223 - Database Fundamentals' / 'Tutorial1_DatabaseConcepts_Answers.html', '📄'),
+         resolve_source('BCL1223 - Database Fundamentals', 'Tutorial1_DatabaseConcepts_Answers.html'), '📄'),
         ('bcl1223-t2', 'BCL1223', 'Tutorial 2 — Relational Data Models Answers',
-         BASE_DIR / 'current_sem' / 'BCL1223 - Database Fundamentals' / 'Tutorial2_RelationalDataModels_Answers.html', '📄'),
+         resolve_source('BCL1223 - Database Fundamentals', 'Tutorial2_RelationalDataModels_Answers.html'), '📄'),
         ('bcl1223-t3', 'BCL1223', 'Tutorial 3 Answers',
-         BASE_DIR / 'current_sem' / 'BCL1223 - Database Fundamentals' / '20260710_Tutorial3_Answers.html', '📄'),
+         resolve_source('BCL1223 - Database Fundamentals', '20260710_Tutorial3_Answers.html'), '📄'),
         ('bcl1223-test', 'BCL1223', 'Database Fundamentals Test Answers',
-         BASE_DIR / 'current_sem' / 'BCL1223 - Database Fundamentals' / '20260710_Database_Fundamentals_Test_Answers.html', '📄'),
+         resolve_source('BCL1223 - Database Fundamentals', '20260710_Database_Fundamentals_Test_Answers.html'), '📄'),
         ('bcl1233-a1', 'BCL1233', 'Assignment 1 — System Analysis',
-         BASE_DIR / 'current_sem' / 'BCL1233 - System Analysis' / 'BCL1233Assignment1_Answers.html', '📄'),
+         resolve_source('BCL1233 - System Analysis', 'BCL1233Assignment1_Answers.html'), '📄'),
         ('bcl1233-a2', 'BCL1233', 'Assignment 2 — System Analysis',
-         BASE_DIR / 'current_sem' / 'BCL1233 - System Analysis' / 'BCL1233Assignment2_Answers.html', '📄'),
+         resolve_source('BCL1233 - System Analysis', 'BCL1233Assignment2_Answers.html'), '📄'),
         ('bcl1233-a3', 'BCL1233', 'Assignment 3 — System Analysis',
-         BASE_DIR / 'current_sem' / 'BCL1233 - System Analysis' / 'BCL1233Assignment3_Answers.html', '📄'),
+         resolve_source('BCL1233 - System Analysis', 'BCL1233Assignment3_Answers.html'), '📄'),
     ]
     for cid, code, name, path, icon in doc_sources:
         if path.exists():
