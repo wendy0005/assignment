@@ -1,0 +1,36 @@
+{
+  "courses": {
+    "BCL1213": {
+      "name": "Operating Systems",
+      "notebook_id": "8ec68d4f-c5f5-496e-8fce-8bbfdeaf9fc1",
+      "notebook_url": "https://notebook.google.com/notebook/8ec68d4f-c5f5-496e-8fce-8bbfdeaf9fc1",
+      "download_folder": "~/Downloads/Camu Materials/BCL1213 - Operating Systems"
+    },
+    "BCL1313": {
+      "name": "Algorithms and Complexity",
+      "notebook_id": "db6d9c53-93bd-4b98-afbf-6e6a91149b6b",
+      "notebook_url": "https://notebook.google.com/notebook/db6d9c53-93bd-4b98-afbf-6e6a91149b6b",
+      "download_folder": "~/Downloads/Camu Materials/BCL1313 - Algorithms and Complexity",
+      "known_replacements": [
+        {
+          "original_file": "General Information - 4 Organization Chart.png",
+          "source_id": "4b279d7b-72a2-4304-b71b-8ec9beede7c1",
+          "source_title": "General Information - 4 Organization Chart (OCR text)",
+          "representation": "OCR text",
+          "limitation": "Original graphical hierarchy is not preserved.",
+          "original_sha256": "a08174591b04d7deba1d6d30eb45bd1a4273e907a24535011cc2b9bf8d2af871"
+        },
+        {
+          "original_file": "General Information - 3SOITWelcomeMessage.mp4",
+          "source_id": "f2bb1969-57c0-4f9d-b402-ecd9c3b59d1c",
+          "source_title": "General Information - SOIT Welcome Message (visual OCR notes)",
+          "representation": "Visual OCR notes from frames sampled every three seconds",
+          "limitation": "Not a full video transcript; music, motion, and graphical layout are not imported.",
+          "original_sha256": "fce51aae04a117eb976ca139759b3851239e1308c461d25234e6cd1ab6a0eb3e"
+        }
+      ]
+    }
+  },
+  "manifest_path": "~/Downloads/Camu Materials/notebooklm-upload-manifest.json",
+  "note": "Verify notebook ownership and source status live before each sync. Registry IDs are routing hints, not proof of current availability."
+}
