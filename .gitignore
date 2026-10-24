@@ -9,6 +9,8 @@ yarn-error.log*
 logs/
 *.log
 .playwright-mcp/
+tmp/
+profile_surveys_completed.png
 
 # OS
 .DS_Store

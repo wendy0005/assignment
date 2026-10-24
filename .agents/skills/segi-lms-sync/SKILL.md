@@ -53,7 +53,7 @@ Each file attachment is hosted on Amazon S3 (`segicamuattachments.s3.ap-southeas
 To avoid re-downloading files that already exist on disk or re-downloading when new materials are added, the sync workflow employs a **3-tier deduplication check**:
 
 1. **Manifest Verification (`current_sem/.lms_manifest.json`)**:
-   Tracks every downloaded file by its unique identifier, filename, course, category, byte size, and timestamp. If an entry is marked synced, it is skipped.
+   Tracks every downloaded file by its unique identifier, filename, course, category, byte size, and timestamp. Treat a manifest entry as a record to verify, not proof that the file still exists. Check the course directory for a non-empty file before skipping; stale entries must not block a missing file from being downloaded again.
 2. **On-Disk Search**:
    Before downloading any item, the script searches the entire course directory (`current_sem/<Course Code> - <Course Name>/`). If a file with the identical name and valid size (> 0 bytes) already exists anywhere within the course directory, it is marked as `[ALREADY DOWNLOADED]` and skipped.
 3. **Atomic File Writes**:
@@ -135,6 +135,20 @@ Execute the bundled synchronization script with `.venv`:
 - `--dry-run`: Reports what would be downloaded without downloading.
 - `--force`: Overrides deduplication checks to force re-downloading.
 
-### Step 3: Upload and Generate Learning Materials
+### Step 3: Optional NotebookLM Upload
 
-For each course with newly synchronized notes, follow **Preparing Materials for NotebookLM** above, wait for new sources to process, then complete **Beginner Learning Materials** for that course before reporting the sync task finished. Use the course's existing NotebookLM notebook when available; if the notebook mapping is unclear, locate it from the user's prior context or ask only when it cannot be reliably identified.
+Only when the user asks to upload the newly synchronized notes to NotebookLM, follow **Preparing Materials for NotebookLM** above, wait for new sources to process, then complete **Beginner Learning Materials** for that course. Use the course's existing NotebookLM notebook when available; if the notebook mapping is unclear, locate it from the user's prior context or ask only when it cannot be reliably identified. A local LMS sync by itself does not authorize NotebookLM uploads or generation.
+
+## 6. Assignment Deadlines and Attached Tutorial Materials
+
+When the user asks for course deadlines, tutorial due dates, or calendar entries, inspect both the course outline and each course's **Assignments > Todo** list. Some tutorial submissions appear as assignment rows nested under a chapter/subchapter, while other tutorials are learning files and have no submission deadline.
+
+For each relevant submission, record the course code and full name, exact item title, due date and time, and LMS status (for example, Todo, completed, or missed). Open the item from its course context and check its assignment overview for a `DUE` line and any `ATTACHMENT` files. Do not infer a deadline from a tutorial filename, chapter number, or class schedule. Treat a displayed `12:00 AM` as midnight at the start of that date, in the LMS timezone shown (commonly UTC+08:00 / Asia/Kuala_Lumpur).
+
+Assignment-only attachments may not appear in the course-content file catalog or outline API results. If the assignment overview exposes a downloadable attachment, capture its actual item ID, displayed filename, original extension, and file URL; add it to the matching course catalog and download it under that course's `Tutorials/` folder (or `assignment/` if it is an assignment brief). Preserve the original filename where possible. If separate LMS items use the same filename, compare their content hashes; if the contents differ, keep both with clear disambiguating names.
+
+When the user also asks to put deadlines in Google Calendar, use the configured `gws` Calendar workflow. Follow workspace title formatting (`[Course Code] [Course Name] [Event/Assignment Name]`), use the LMS due time as the event end, start 30 minutes beforehand, include the course/item and source link in the description, and verify the created event with `gws calendar events list` or its returned event record. Report missed items separately rather than creating a future event for a past due time.
+
+## 7. Final Completeness Check
+
+After synchronization, compare every catalog filename with files under its course folder and require a non-zero file size. Confirm that duplicate names with different item IDs either have matching content hashes or have distinct local names. Report per-course catalog counts, existing skips, new downloads, failures, and any course pages or attachments that could not be checked.

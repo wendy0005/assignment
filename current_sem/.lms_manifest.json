@@ -97,14 +97,6 @@
       "path": "BCL1313 - Algorithms and Complexity/Lectures/10HashingLookup.pdf",
       "synced_at": "2026-10-07T14:25:51.014056"
     },
-    "6ab4d68e089286f299311a0c": {
-      "filename": "3SOITWelcomeMessage.mp4",
-      "course": "BCL1313 - Algorithms and Complexity",
-      "category": "Course Documents",
-      "size_bytes": 107533534,
-      "path": "BCL1313 - Algorithms and Complexity/Course Documents/3SOITWelcomeMessage.mp4",
-      "synced_at": "2026-10-07T14:25:51.014132"
-    },
     "6ab4d693089286f299311ba0": {
       "filename": "06TreeTraversalTechniques.pdf",
       "course": "BCL1313 - Algorithms and Complexity",
@@ -353,14 +345,6 @@
       "path": "BCL2344 - Web and Mobile Development/Lectures/3SIM01IntrotoOS.pdf",
       "synced_at": "2026-10-07T14:25:51.028152"
     },
-    "6ab4d59f6ebcbc1e158ae973": {
-      "filename": "3SOITWelcomeMessage.mp4",
-      "course": "BCL2344 - Web and Mobile Development",
-      "category": "Course Documents",
-      "size_bytes": 107533534,
-      "path": "BCL2344 - Web and Mobile Development/Course Documents/3SOITWelcomeMessage.mp4",
-      "synced_at": "2026-10-07T14:25:51.028263"
-    },
     "6ab4d5a06ebcbc1e158ae984": {
       "filename": "5LecturerProfile.mp4",
       "course": "BCL2344 - Web and Mobile Development",
@@ -507,15 +491,6 @@
       "url": "https://segicamuattachments.s3.ap-southeast-1.amazonaws.com/assignment/67444af4e40449662df81d2f/36cedafd-1bf6-4c7e-b044-d9ef55376c99_1d46530cfd467e63a8ddae4231acab8f.pdf",
       "synced_at": "2026-10-11T16:14:57.611608"
     },
-    "6ab4d692089286f299311b80": {
-      "filename": "MarkingRubric.docx",
-      "course": "BCL1313 - Algorithms and Complexity",
-      "category": "Course Documents",
-      "size_bytes": 27844,
-      "path": "BCL1313 - Algorithms and Complexity/Course Documents/MarkingRubric.docx",
-      "url": "https://segicamuattachments.s3.ap-southeast-1.amazonaws.com/assignment/67444af4e40449662df81d2f/eba5c9f2-0441-49bf-82c9-ddd442ab84d0_2a41dfe2625556d2d7d71194d85c585c.docx",
-      "synced_at": "2026-10-11T16:14:57.878456"
-    },
     "6acadcb83db97e25711fb88f": {
       "filename": "Assignment1(Proposal).pdf",
       "course": "BCL2344 - Web and Mobile Development",
@@ -623,87 +598,6 @@
       "url": "https://segicamuattachments.s3.ap-southeast-1.amazonaws.com/assignment/67444af4e40449662df81d2f/e39ad9b2-03c8-4049-926e-a40a872dccac_38cb66124f1f04143fd010e0dfad9f74.pdf",
       "synced_at": "2026-10-11T16:15:02.689307"
     },
-    "6acadcb83db97e25711fb86f": {
-      "filename": "4_FlutterWidgets_1.docx",
-      "course": "BCL2344 - Web and Mobile Development",
-      "category": "Tutorials",
-      "size_bytes": 1613115,
-      "path": "BCL2344 - Web and Mobile Development/Tutorials/4_FlutterWidgets_1.docx",
-      "url": "https://segicamuattachments.s3.ap-southeast-1.amazonaws.com/assignment/67444af4e40449662df81d2f/5d18fba0-1790-4bd0-be7d-28fa1e41241f_d6325c81230e2448f4af74cf34cfc742.docx",
-      "synced_at": "2026-10-11T16:15:03.214992"
-    },
-    "6acadcb83db97e25711fb877": {
-      "filename": "5_FlutterWidgets_2.docx",
-      "course": "BCL2344 - Web and Mobile Development",
-      "category": "Tutorials",
-      "size_bytes": 560057,
-      "path": "BCL2344 - Web and Mobile Development/Tutorials/5_FlutterWidgets_2.docx",
-      "url": "https://segicamuattachments.s3.ap-southeast-1.amazonaws.com/assignment/67444af4e40449662df81d2f/a767ac9e-15ac-42b3-b95c-54d5518f63d7_dffe087233207dff5b82fa8bebe2c4ec.docx",
-      "synced_at": "2026-10-11T16:15:03.624243"
-    },
-    "6acadcb83db97e25711fb87f": {
-      "filename": "6_FlutterWidgets_3.docx",
-      "course": "BCL2344 - Web and Mobile Development",
-      "category": "Tutorials",
-      "size_bytes": 725126,
-      "path": "BCL2344 - Web and Mobile Development/Tutorials/6_FlutterWidgets_3.docx",
-      "url": "https://segicamuattachments.s3.ap-southeast-1.amazonaws.com/assignment/67444af4e40449662df81d2f/b5a4dd0f-a892-4029-a7fd-e0396ac423ac_5d40739daeb028355d4de4af549e1567.docx",
-      "synced_at": "2026-10-11T16:15:04.039553"
-    },
-    "6acadcb83db97e25711fb887": {
-      "filename": "7_FlutterWidgets_4.docx",
-      "course": "BCL2344 - Web and Mobile Development",
-      "category": "Tutorials",
-      "size_bytes": 368201,
-      "path": "BCL2344 - Web and Mobile Development/Tutorials/7_FlutterWidgets_4.docx",
-      "url": "https://segicamuattachments.s3.ap-southeast-1.amazonaws.com/assignment/67444af4e40449662df81d2f/91d7bbff-0e73-4a46-8136-6f9bd798d61d_88d1d6ecb59355704562fc39b531ab99.docx",
-      "synced_at": "2026-10-11T16:15:04.459745"
-    },
-    "6acadcb93db97e25711fb8bf": {
-      "filename": "8_PageNavigation.docx",
-      "course": "BCL2344 - Web and Mobile Development",
-      "category": "Tutorials",
-      "size_bytes": 567070,
-      "path": "BCL2344 - Web and Mobile Development/Tutorials/8_PageNavigation.docx",
-      "url": "https://segicamuattachments.s3.ap-southeast-1.amazonaws.com/assignment/67444af4e40449662df81d2f/595d59c9-f420-4a11-bb71-de37a0b990ec_44321f9b15704b32ee9e7f4c80d55f77.docx",
-      "synced_at": "2026-10-11T16:15:04.913559"
-    },
-    "6acadcb93db97e25711fb8c7": {
-      "filename": "9_PageNavigation_2.docx",
-      "course": "BCL2344 - Web and Mobile Development",
-      "category": "Tutorials",
-      "size_bytes": 1971015,
-      "path": "BCL2344 - Web and Mobile Development/Tutorials/9_PageNavigation_2.docx",
-      "url": "https://segicamuattachments.s3.ap-southeast-1.amazonaws.com/assignment/67444af4e40449662df81d2f/f542431a-d3a9-4a0f-9aca-745362b45d4a_50e07fa9654eebd6052182f08ea25da9.docx",
-      "synced_at": "2026-10-11T16:15:05.431907"
-    },
-    "6acadcba3db97e25711fb8cf": {
-      "filename": "10_AddingFirebase.docx",
-      "course": "BCL2344 - Web and Mobile Development",
-      "category": "Tutorials",
-      "size_bytes": 735011,
-      "path": "BCL2344 - Web and Mobile Development/Tutorials/10_AddingFirebase.docx",
-      "url": "https://segicamuattachments.s3.ap-southeast-1.amazonaws.com/assignment/67444af4e40449662df81d2f/8aa667bf-9e7c-4ec9-915e-0b51d5063e49_c652ede70298b18139ac3142d4b7a8fe.docx",
-      "synced_at": "2026-10-11T16:15:05.865373"
-    },
-    "6acadcba3db97e25711fb8ff": {
-      "filename": "11_InteractiveWidget_2.docx",
-      "course": "BCL2344 - Web and Mobile Development",
-      "category": "Tutorials",
-      "size_bytes": 484505,
-      "path": "BCL2344 - Web and Mobile Development/Tutorials/11_InteractiveWidget_2.docx",
-      "url": "https://segicamuattachments.s3.ap-southeast-1.amazonaws.com/assignment/67444af4e40449662df81d2f/05fcc571-d43d-4009-9d51-0ed4a59e8038_93424cd3117c28ce8de1cd523dbf1fdc.docx",
-      "synced_at": "2026-10-11T16:15:06.281419"
-    },
-    "6acadcbb3db97e25711fb907": {
-      "filename": "10_InteractiveWidget_1.docx",
-      "course": "BCL2344 - Web and Mobile Development",
-      "category": "Tutorials",
-      "size_bytes": 250056,
-      "path": "BCL2344 - Web and Mobile Development/Tutorials/10_InteractiveWidget_1.docx",
-      "url": "https://segicamuattachments.s3.ap-southeast-1.amazonaws.com/assignment/67444af4e40449662df81d2f/f117c326-8c8f-49f0-b438-1a0f8a970cc3_e459dc9ceebc79d4526735fefd25079c.docx",
-      "synced_at": "2026-10-11T16:15:06.616238"
-    },
     "6acadcb63db97e25711fb837": {
       "filename": "1_IntroductiontoWebandMobileDevelopment.pptx",
       "course": "BCL2344 - Web and Mobile Development",
@@ -738,6 +632,123 @@
       "size_bytes": 2311358,
       "path": "BCL1213 - Operating Systems/Lectures/Chapter02ProcessManagement.pdf",
       "synced_at": "2026-10-13T20:51:33.695501"
+    },
+    "6ad5965b6ee9a65b068d2193": {
+      "filename": "Tutorial2ProcessManagement.docx",
+      "course": "BCL1213 - Operating Systems",
+      "category": "Tutorials",
+      "size_bytes": 9020,
+      "path": "BCL1213 - Operating Systems/Tutorials/Tutorial2ProcessManagement.docx",
+      "url": "https://segicamuattachments.s3.ap-southeast-1.amazonaws.com/assignment/67444af4e40449662df81d2f/f5d47731-27ba-4817-b4df-9203772837d5_5efce4fcaa1bf4df5f5b0caf46a757ef.docx",
+      "synced_at": "2026-10-21T01:04:19.087701"
+    },
+    "6ab4d692089286f299311b80": {
+      "filename": "MarkingRubric.docx",
+      "course": "BCL1313 - Algorithms and Complexity",
+      "category": "Lectures",
+      "size_bytes": 27844,
+      "path": "BCL1313 - Algorithms and Complexity/Lectures/MarkingRubric.docx",
+      "url": "https://segicamuattachments.s3.ap-southeast-1.amazonaws.com/assignment/67444af4e40449662df81d2f/eba5c9f2-0441-49bf-82c9-ddd442ab84d0_2a41dfe2625556d2d7d71194d85c585c.docx",
+      "synced_at": "2026-10-21T01:04:19.288281"
+    },
+    "6ab4d68e089286f299311a0c": {
+      "filename": "3SOITWelcomeMessage.mp4",
+      "course": "BCL1313 - Algorithms and Complexity",
+      "category": "Course Documents",
+      "size_bytes": 107533534,
+      "path": "BCL1313 - Algorithms and Complexity/Course Documents/3SOITWelcomeMessage.mp4",
+      "url": "https://segicamuattachments.s3.ap-southeast-1.amazonaws.com/assignment/67444af4e40449662df81d2f/98597bcc-5cf7-455e-8901-1b030443d821_5ec7c1d4215341a72d2493e6e1555ac6.mp4",
+      "synced_at": "2026-10-21T01:04:30.563558"
+    },
+    "6ab4d59f6ebcbc1e158ae973": {
+      "filename": "3SOITWelcomeMessage.mp4",
+      "course": "BCL2344 - Web and Mobile Development",
+      "category": "Course Documents",
+      "size_bytes": 107533534,
+      "path": "BCL2344 - Web and Mobile Development/Course Documents/3SOITWelcomeMessage.mp4",
+      "url": "https://segicamuattachments.s3.ap-southeast-1.amazonaws.com/assignment/67444af4e40449662df81d2f/f56906f0-28bb-43b4-9466-505385e02c2f_a69b3fb860ff3625fda19d04f84cc050.mp4",
+      "synced_at": "2026-10-21T01:04:40.916503"
+    },
+    "6acadcb83db97e25711fb86f": {
+      "filename": "4_FlutterWidgets_1.docx",
+      "course": "BCL2344 - Web and Mobile Development",
+      "category": "Tutorials",
+      "size_bytes": 1613115,
+      "path": "BCL2344 - Web and Mobile Development/Tutorials/4_FlutterWidgets_1.docx",
+      "url": "https://segicamuattachments.s3.ap-southeast-1.amazonaws.com/assignment/67444af4e40449662df81d2f/5d18fba0-1790-4bd0-be7d-28fa1e41241f_d6325c81230e2448f4af74cf34cfc742.docx",
+      "synced_at": "2026-10-21T01:04:41.753436"
+    },
+    "6acadcb83db97e25711fb877": {
+      "filename": "5_FlutterWidgets_2.docx",
+      "course": "BCL2344 - Web and Mobile Development",
+      "category": "Tutorials",
+      "size_bytes": 560057,
+      "path": "BCL2344 - Web and Mobile Development/Tutorials/5_FlutterWidgets_2.docx",
+      "url": "https://segicamuattachments.s3.ap-southeast-1.amazonaws.com/assignment/67444af4e40449662df81d2f/a767ac9e-15ac-42b3-b95c-54d5518f63d7_dffe087233207dff5b82fa8bebe2c4ec.docx",
+      "synced_at": "2026-10-21T01:04:42.187558"
+    },
+    "6acadcb83db97e25711fb87f": {
+      "filename": "6_FlutterWidgets_3.docx",
+      "course": "BCL2344 - Web and Mobile Development",
+      "category": "Tutorials",
+      "size_bytes": 725126,
+      "path": "BCL2344 - Web and Mobile Development/Tutorials/6_FlutterWidgets_3.docx",
+      "url": "https://segicamuattachments.s3.ap-southeast-1.amazonaws.com/assignment/67444af4e40449662df81d2f/b5a4dd0f-a892-4029-a7fd-e0396ac423ac_5d40739daeb028355d4de4af549e1567.docx",
+      "synced_at": "2026-10-21T01:04:42.642564"
+    },
+    "6acadcb83db97e25711fb887": {
+      "filename": "7_FlutterWidgets_4.docx",
+      "course": "BCL2344 - Web and Mobile Development",
+      "category": "Tutorials",
+      "size_bytes": 368201,
+      "path": "BCL2344 - Web and Mobile Development/Tutorials/7_FlutterWidgets_4.docx",
+      "url": "https://segicamuattachments.s3.ap-southeast-1.amazonaws.com/assignment/67444af4e40449662df81d2f/91d7bbff-0e73-4a46-8136-6f9bd798d61d_88d1d6ecb59355704562fc39b531ab99.docx",
+      "synced_at": "2026-10-21T01:04:42.951402"
+    },
+    "6acadcb93db97e25711fb8bf": {
+      "filename": "8_PageNavigation.docx",
+      "course": "BCL2344 - Web and Mobile Development",
+      "category": "Tutorials",
+      "size_bytes": 567070,
+      "path": "BCL2344 - Web and Mobile Development/Tutorials/8_PageNavigation.docx",
+      "url": "https://segicamuattachments.s3.ap-southeast-1.amazonaws.com/assignment/67444af4e40449662df81d2f/595d59c9-f420-4a11-bb71-de37a0b990ec_44321f9b15704b32ee9e7f4c80d55f77.docx",
+      "synced_at": "2026-10-21T01:04:43.211124"
+    },
+    "6acadcb93db97e25711fb8c7": {
+      "filename": "9_PageNavigation_2.docx",
+      "course": "BCL2344 - Web and Mobile Development",
+      "category": "Tutorials",
+      "size_bytes": 1971015,
+      "path": "BCL2344 - Web and Mobile Development/Tutorials/9_PageNavigation_2.docx",
+      "url": "https://segicamuattachments.s3.ap-southeast-1.amazonaws.com/assignment/67444af4e40449662df81d2f/f542431a-d3a9-4a0f-9aca-745362b45d4a_50e07fa9654eebd6052182f08ea25da9.docx",
+      "synced_at": "2026-10-21T01:04:43.697920"
+    },
+    "6acadcba3db97e25711fb8cf": {
+      "filename": "10_AddingFirebase.docx",
+      "course": "BCL2344 - Web and Mobile Development",
+      "category": "Tutorials",
+      "size_bytes": 735011,
+      "path": "BCL2344 - Web and Mobile Development/Tutorials/10_AddingFirebase.docx",
+      "url": "https://segicamuattachments.s3.ap-southeast-1.amazonaws.com/assignment/67444af4e40449662df81d2f/8aa667bf-9e7c-4ec9-915e-0b51d5063e49_c652ede70298b18139ac3142d4b7a8fe.docx",
+      "synced_at": "2026-10-21T01:04:44.013286"
+    },
+    "6acadcba3db97e25711fb8ff": {
+      "filename": "11_InteractiveWidget_2.docx",
+      "course": "BCL2344 - Web and Mobile Development",
+      "category": "Tutorials",
+      "size_bytes": 484505,
+      "path": "BCL2344 - Web and Mobile Development/Tutorials/11_InteractiveWidget_2.docx",
+      "url": "https://segicamuattachments.s3.ap-southeast-1.amazonaws.com/assignment/67444af4e40449662df81d2f/05fcc571-d43d-4009-9d51-0ed4a59e8038_93424cd3117c28ce8de1cd523dbf1fdc.docx",
+      "synced_at": "2026-10-21T01:04:44.359733"
+    },
+    "6acadcbb3db97e25711fb907": {
+      "filename": "10_InteractiveWidget_1.docx",
+      "course": "BCL2344 - Web and Mobile Development",
+      "category": "Tutorials",
+      "size_bytes": 250056,
+      "path": "BCL2344 - Web and Mobile Development/Tutorials/10_InteractiveWidget_1.docx",
+      "url": "https://segicamuattachments.s3.ap-southeast-1.amazonaws.com/assignment/67444af4e40449662df81d2f/f117c326-8c8f-49f0-b438-1a0f8a970cc3_e459dc9ceebc79d4526735fefd25079c.docx",
+      "synced_at": "2026-10-21T01:04:44.691508"
     }
   }
 }

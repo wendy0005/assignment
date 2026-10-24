@@ -137,6 +137,16 @@ User wants to...
 
 ## Command Categories
 
+### Learning explanations and study artifacts
+
+When this user asks NLM to explain a difficult course concept, provide a plain-English explanation and generate suitable Studio study artifacts as part of the same task. This is the user's standing preference for these teaching requests; do not stop after a chat response or ask them to request the artifacts again. An explicit text-only request overrides this preference. Upload-only, account, and usage requests do not trigger artifact generation.
+
+- Ground the explanation and artifact in the relevant course sources. Define unfamiliar terms, use one concrete analogy, and finish with a short answer the student can use for revision.
+- Default to three complementary study aids for a difficult course concept: a concise visual infographic, a beginner guide with a worked example, and easy flashcards for recall. Start the three generations concurrently where supported. Follow an explicitly requested count or format instead, and count an artifact already generating toward that total. Do not create duplicate artifacts or default to quota-heavy cinematic video.
+- Announce the artifact, check usage, and generate using the existing CLI/MCP confirmation flag. The standing preference authorizes this scoped generation; preserve approval requirements for unrelated generation and deletion.
+- Poll until completion, download the result into `current_sem/<Course Code> - <Course Name>/nlm/` with a date-prefixed filename, inspect it for readability and factual errors, and provide its local link together with the notebook link. Keep NLM-generated downloads together in this `nlm/` subfolder, including images, reports, flashcards, audio and other exports; retain original course sources in their existing categories. For a non-course request, use an `nlm/` subfolder within the user's chosen output directory. Correct or disclose misleading analogies; NLM output is not automatically accurate.
+- Distinguish requested, generating, completed, and downloaded states. Do not claim an artifact exists after only querying chat or submitting a generation request.
+
 ### 1. Authentication
 
 #### MCP Authentication
@@ -1037,7 +1047,7 @@ nlm pipeline run ingest-and-podcast --notebook <id> --input-url "https://example
 Wait between operations to avoid rate limits:
 
 - Source operations: 2 seconds
-- Content generation: run sequentially; after a rate limit, wait 1-2 minutes
+- Content generation: normally run sequentially; for the authorized teaching set above or an explicit concurrent request, submit the complementary jobs without waiting for each generation to finish. After a rate limit, wait 1-2 minutes.
 - Research operations: 2 seconds
 - Query operations: 2 seconds
 - Before quota-limited chat or Studio work, check `nlm usage` (MCP: `usage_get`)

@@ -121,17 +121,17 @@ def sync_materials(input_json, target_dir, dry_run=False, force=False):
             # Check 1: De-duplication check against existing file in course
             existing_loc = file_exists_in_course(course_path, filename)
             
-            # Check 2: Manifest record check
+            # Check 2: Manifest record check. A record alone does not prove
+            # that the file is still on disk; files can be moved or deleted.
             in_manifest = item_id in manifest.get("items", {})
 
-            if not force and (existing_loc or in_manifest):
-                loc_display = existing_loc if existing_loc else dest_path
-                sz = os.path.getsize(loc_display) if os.path.exists(loc_display) else 0
+            if not force and existing_loc:
+                sz = os.path.getsize(existing_loc)
                 print(f"  [ALREADY DOWNLOADED] {category}/{filename} ({sz:,} bytes) -> Skipped")
                 stats["skipped"] += 1
                 
                 # Update manifest if missing
-                if not in_manifest and existing_loc:
+                if not in_manifest:
                     manifest["items"][item_id] = {
                         "filename": filename,
                         "course": course_folder_name,
@@ -141,6 +141,10 @@ def sync_materials(input_json, target_dir, dry_run=False, force=False):
                         "synced_at": datetime.now().isoformat()
                     }
                 continue
+
+            if not force and in_manifest and not existing_loc:
+                print(f"  [STALE MANIFEST] {category}/{filename} is missing from disk; downloading again")
+                manifest["items"].pop(item_id, None)
 
             if dry_run:
                 print(f"  [WOULD DOWNLOAD] {category}/{filename} from {url}")
