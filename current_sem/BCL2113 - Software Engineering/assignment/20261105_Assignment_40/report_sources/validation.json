@@ -1,0 +1,26 @@
+{
+  "pages": 14,
+  "page_labels": [
+    "Cover",
+    "i",
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9",
+    "10",
+    "11",
+    "12"
+  ],
+  "main_report_words": 2000,
+  "body_font": "Times New Roman 12 pt",
+  "heading_font": "Times New Roman 14 pt",
+  "references": "Harvard author and date, alphabetical, hanging indent, access dates",
+  "real_user_elicitation": "Not supplied; explicitly pending in section 2.1 and Appendix A",
+  "diagram_count": 3,
+  "table_count": 5
+}

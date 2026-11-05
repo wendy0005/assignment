@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 660 615" role="img" aria-label="LMS use case diagram">
+<style>text{font-family:Times New Roman,serif;fill:#111;font-size:17px} .uc{fill:#f7f9fb;stroke:#222;stroke-width:1.2}.assoc{stroke:#333;stroke-width:1.1;fill:none}</style>
+<rect x="100" y="8" width="450" height="600" fill="white" stroke="#222"/>
+<text x="325" y="31" text-anchor="middle">Proposed University LMS</text>
+<path class="assoc" d="M 55 252 L 130 78"/>
+<path class="assoc" d="M 55 252 L 130 149"/>
+<path class="assoc" d="M 55 252 L 130 220"/>
+<path class="assoc" d="M 55 252 L 130 291"/>
+<path class="assoc" d="M 55 252 L 130 362"/>
+<path class="assoc" d="M 55 252 L 130 433"/>
+<path class="assoc" d="M 55 252 L 130 504"/>
+<path class="assoc" d="M 598 219 L 520 149"/>
+<path class="assoc" d="M 598 219 L 520 291"/>
+<path class="assoc" d="M 598 219 L 520 362"/>
+<path class="assoc" d="M 598 530 L 520 575"/>
+<ellipse class="uc" cx="325" cy="78" rx="195" ry="27"/>
+<text x="325" y="75" text-anchor="middle">Enrol in course</text><text x="325" y="95" text-anchor="middle">FR1</text>
+<ellipse class="uc" cx="325" cy="149" rx="195" ry="27"/>
+<text x="325" y="146" text-anchor="middle">Publish / access materials</text><text x="325" y="166" text-anchor="middle">FR2</text>
+<ellipse class="uc" cx="325" cy="220" rx="195" ry="27"/>
+<text x="325" y="217" text-anchor="middle">Submit assignment</text><text x="325" y="237" text-anchor="middle">FR3</text>
+<ellipse class="uc" cx="325" cy="291" rx="195" ry="27"/>
+<text x="325" y="288" text-anchor="middle">Manage / view assessment</text><text x="325" y="308" text-anchor="middle">FR4</text>
+<ellipse class="uc" cx="325" cy="362" rx="195" ry="27"/>
+<text x="325" y="359" text-anchor="middle">Course communication</text><text x="325" y="379" text-anchor="middle">FR5</text>
+<ellipse class="uc" cx="325" cy="433" rx="195" ry="27"/>
+<text x="325" y="430" text-anchor="middle">View / export deadlines</text><text x="325" y="450" text-anchor="middle">FR6</text>
+<ellipse class="uc" cx="325" cy="504" rx="195" ry="27"/>
+<text x="325" y="501" text-anchor="middle">Verify receipt / download</text><text x="325" y="521" text-anchor="middle">FR7</text>
+<ellipse class="uc" cx="325" cy="575" rx="195" ry="27"/>
+<text x="325" y="572" text-anchor="middle">Administer courses / users</text><text x="325" y="592" text-anchor="middle">FR8</text>
+<g class="assoc"><circle cx="38" cy="232" r="9"/><path d="M 38 241 V 270 M 21 252 H 55 M 38 270 L 23 290 M 38 270 L 53 290"/></g><text x="38" y="309" text-anchor="middle" style="font-size:15px">Student</text>
+<g class="assoc"><circle cx="615" cy="199" r="9"/><path d="M 615 208 V 237 M 598 219 H 632 M 615 237 L 600 257 M 615 237 L 630 257"/></g><text x="615" y="276" text-anchor="middle" style="font-size:15px">Lecturer</text>
+<g class="assoc"><circle cx="615" cy="510" r="9"/><path d="M 615 519 V 548 M 598 530 H 632 M 615 548 L 600 568 M 615 548 L 630 568"/></g><text x="615" y="587" text-anchor="middle" style="font-size:15px">Administrator</text>
+</svg>
