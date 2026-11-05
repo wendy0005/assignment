@@ -1,0 +1,280 @@
+I'm good afternoon teenager.
+Can you hear my voice?
+We have two more students, so let's just wait around 5-4 minutes for the rest to attend
+and see whether they're not or else we can just continue with our class, yeah?
+Yeah, sure means.
+Alright, okay.
+[BLANK_AUDIO]
+[BLANK_AUDIO]
+[BLANK_AUDIO]
+[BLANK_AUDIO]
+[BLANK_AUDIO]
+[BLANK_AUDIO]
+I don't remember last class attendance of last class later.
+I checked for two more like being quiet.
+Nami?
+[BLANK_AUDIO]
+Okay, last time I never attend the class meeting.
+Okay, I did have class last week, last session, first class, and that's attendees, but not sure why no rest of the-
+Last week is late.
+It's not last week, it's not last week, week before then.
+So last week, yeah, I don't have classes, and for the first class I never joined.
+First class, yeah, last week I didn't have class, first class was, when was it, two or three weeks ago.
+This is recorded, so no issue on this one.
+Okay, I have uploaded a assignment, okay, for this class, I have uploaded assignment for this class, so let's explain on this assignment.
+View date, you can see in the, you can see in this box, I think it's 14 November, and this is an individual.
+Hey, this is project manager, I'm going to see love, sorry, sorry.
+[BLANK_AUDIO]
+[INAUDIBLE]
+[INAUDIBLE]
+[BLANK_AUDIO]
+Okay, so I have uploaded this assignment on the, okay, we have, since you did not attend last class yet, we have-
+[BLANK_AUDIO]
+Okay, so for assessment for this course, okay, we have two assessments, which is continuous assessment, and we have final assessment.
+So continuous assessment consists of, number one is the assignment report, okay, number two is case study.
+Case study is considered as test law, okay, for the final assessment, we have one reflective report.
+So this is basically 40%, this is 20%, which is 60%, and this one is 40%.
+So this one is despite, okay, I will explain on the assignment.
+Right, consider 40%, so apply software engineering methodologies in LMS development.
+So basically, let's look at the question, software engineering means that you apply software development methodology in a scenario.
+In this case, the scenario is you are developing a learning management system, which is like, you are going to develop a learning management system.
+But for this course, you, of course, you are not going to develop the system, but you have to imagine that you're going to develop what are the methodologies that you should adopt to develop that project.
+So basically, software development methodology that you have is basically waterfall, okay, you can, you can actually watch.
+So, sorry, are you ODL or we can't?
+ODL means, okay, so you can see the content of the file in SPACSIA, so we have waterfall, we have prototype, okay, we have agile, okay, we have scrum, okay, as CRUM.
+So the one that is commonly used now is basically this tree, which when this is kind of outdated, but in the street, they still use these methodologies.
+So when you go through the slide, it explains every, every, each of these methodologies, you have to understand them.
+And then you can apply which basically you have to know which methodology is suitable to be applied in this scenario.
+So let's look at the scenario.
+So your part of your part of software engineering team, thus with design and developing a learning management system for a mid-sized private university, the system should allow students to enroll in cost submit assignment, communicate with lecturers and access cost material.
+Lecturers, lecturers should be able to upload content, manage assignment, track student performance, communicate with students, the university aims to launch this system in the next year.
+So, propose a system that you feel has many weaknesses and flaws, right, and overview of the system, support the proposed system with doing good research to include existing issues, problems and solution to resolve the problem.
+So these are the tasks that you have to do. First, the question number one is planning analysis technology, right, an introduction that briefly explained the proposed system include two objectives.
+So elements is general.
+So you can propose like SPAC, SPAC is one of the examples of elements or any other learning management system that you notice has flaws, okay, so you can propose, and then then briefly explain the object, sorry, the system, and then include two objectives for you to develop the system.
+Number two is the requirement engineering requirement engineering is basically how you are going to get the requirements.
+Now you're going to get the requirements, where is a requirement, it is basically functions that you are going to put in the system. Yeah, so conduct requirement elicitation, what is requirement elicitation means that requirement gathering.
+It means that what are the functions that you are supposed to put in that LMS in that system techniques from real user together about the system so LMS is related with lecturers students here.
+You can ask student, you can also ask lecturer who any lecturers that involved, you can ask them, what are the requirements that they feel should be in this kind of system.
+So the question should be related in getting at least five significant requirements, for example, for example, assessment marking, for example, assessment uploading downloading, what type of file that allowed to be uploaded.
+Okay, and so on how many files can be uploaded at one time. Okay, so five five significant requirements means five significant functions that you should put.
+And then write a compete user recommends specification for the proposed system. There's an example, there's a chapter in the sparks here on requirement engineering. So there's a guideline. How are you going to come up with a user requirement specification.
+So these are basically a document that document document that list out list of requirements with extra details. Okay, for example, you say that login so what type of login, what type of input or food and so on that you should allow in that part.
+So it is specified in this specification requirement. So why.
+So when the business analyst come up with this user requirements specification, the requirement upon approval, it will be passed to designer. So designer will design the system based on the specification requirements that gotten from the business analyst.
+So that's why the statement has to be clear has to be precise so that designer understand because when designer understand designer will draw, will design the system.
+And then the design will be passed to, will be passed to programmer to program or code the program so it start from this documentation there's a chapter on this one that you can refer, refer to.
+All include a minimum of five functional and five non functional requirements apply the requirement engineering process to ensure requirements are clear. So in terms of this functional and non functional requirements.
+Maybe in next class, yeah, I will share on this one or maybe I record on this part because user, you know, student always confuse on the difference between five between functional and non functional requirements. Okay.
+All right. Question number three, okay, then you have to choose which methodology with the meet as software process model justification so you would choose the one that I listed just now is only among among many methodologies.
+So you choose, let's see you in this question, it asked to apply scrum methodology. Okay, it asked to apply scrum methodology. Okay. So, a price crime methodology for software development life cycle and describe how it is being implemented.
+It means that you cannot just explain in in basically in scrum there's like five to six stages. Okay, or recall that faces. Okay, so you cannot generally explain the general stages of scrum processes.
+It means that you can first explain the general stage, and then include on how you're going to apply your work that follows that stage. Okay, for example, one of the stages requirement analysis.
+So then you will explain generally what is a requirement analysis, then next, you will explain how are you going to do that requirement analysis, how are you going to apply that requirement analysis for this LMS system.
+So basically probably you see that okay contact real user gathered requirements from user, what type of who are the users, where are you going to get that users and so on and so forth. Okay.
+Number four, number four is the design, the design system design UML diagram. So design a use case diagram to depict your function requirements so basically for functional requirement, it is related with use case diagram, UCD, which is this one line, UCD, also appear in one of the chapter that you can read further.
+I believe, I think I will also record all we will, I will explain it in next class.
+Or after this session, what is UCD and so on so that you can better understand. So you have to come up with a use case diagram in class diagram.
+And then the next question is the team will define at least four role in software engineering team. Right.
+You know, you are you are you are you are you are you are you are you are you are you are working right. Yeah, okay. I thought the engine.
+Are you well with the idea.
+Development. No. Okay. All right. So means that I will have to explain on this in this software engineering.
+And I think it appears in chapter, this one of the chapters well. What are the roles under software development team so basically this software development it start with project manager. Okay, the first one.
+Basically the one who liars with client to ask them what are the requirements in software engineering requirements means functions.
+What are the module requirements that the user wants. Okay. Once we a finalize with that the next row it will pass that this is where the user requirement spec comes in.
+It is in tax. Okay. So it will pass with designer.
+Okay, system designer. So system designer will design the system.
+Okay, design the system based on the requirements that spec. So the design will include use case diagram class diagram.
+Or what do you call that database design. Okay. And then state chart diagram and so on. Okay. So these are the roles after design, after design the designer will pass to I'll continue here.
+Okay, so programmer then will the will develop the system. Okay. So once the system is developed, it will pass to tester. Okay, there's a tester in your team.
+Okay, there's a tester in your team to test the system. Once the test are okay, then it will pass to technician or maintenance and support.
+They are the ones who will maintain the system. So this is actually an example of the roles in software engineering team. You can read further on this one.
+Okay. And then explain how each role contributes to successful delivery and create a simple contact or timeline for a development life cycle.
+So what is a gun chat. Gun chat is basically the task that you plan for you to develop the system. Okay, later I show sample of the gun chat.
+All right. Next is the next question question of the six think what are the software quality and testing plan that you're going to plan to propose a test plan for one key feature, for example, one key feature means, let's say one module.
+Okay, one module so propose one of the functions. Okay. What are the tests that you're going to do. Question will seven is the risk management identify for potential risk during the development, for example.
+10 over eight case student resign, for example, or student sick, for example, budget constraint, for example, okay, those are potential risks that happen in the project development. And lastly, talking about ethical and legal consideration.
+Also, there's topic on this one.
+Okay.
+All right.
+These are basically the question.
+Any question on this one.
+Okay. So let's look at this basically software engineering.
+Five minutes, give me five minutes. Let's have a five minutes break.
+Okay.
+All right.
+All right.
+All right.
+All right.
+All right.
+All right.
+All right.
+All right.
+All right.
+Are you in class?
+Okay, we continue if you're here.
+Okay, because I said five minutes. I think it's less than five minutes.
+Okay, so let's look at generally what is software engineering. Yeah.
+The previous assessment was the assessment that you told earlier, you are in 14 November.
+Yeah, correct, right.
+Anything about it?
+No.
+Okay. All right.
+I think later, you can always message me or messaging the teams if you want to ask anything about the assignment.
+In case you have questions.
+So let's look at what is software engineering in the big picture.
+Okay.
+So what is software engineering basically?
+So it is a systematic way to plan design and build tests and maintain this.
+So basically software engineering engineering engineering or engineering the whole process of software development,
+not just develop the software.
+Software engineering means it start from plan.
+Okay.
+Plan your project.
+Let's say you're given a project to develop something to develop one system or any system.
+And then you plan for it and then you design.
+You build it is the implementation and then you test the system and lastly, you maintain.
+So this is basically one, two, three, four, five, five, January stages.
+Of software engineering for generic stages, because when you choose, like I said, just now there are few software process model.
+There are few software development methodologies.
+Then you design and then you build a test and maintain. So this plan is where sometimes it divides into two. So the first one is just analyze the problem.
+Okay.
+And the second, this is where you gather the requirements.
+Okay.
+So why do we need it? Why, why do we need to know about this method or this when we want to develop system, basically to solve user problems, reduce error, and manage time and improve software quality.
+So why because sometimes they are programmable when they are given this. Okay, please develop a class cost registration system. They write away, do the code.
+Okay, but that is where they got it wrong. Okay, because it is proven that when you follow up one of the software development methodologies.
+The successful rate is higher as compact you write away code and then you have problems, you have to bad reverse that one step and then you quote again the reverse one step and so on.
+So it starts with you identify first, the problem or if given a scenario, you analyze first the scenario and then you plan, you do the planning so that we can, we can understand the, we can understand the problem.
+And then you can reduce the error rate. Okay. So for example, a university, a university LMS okay for students, lecturers and administration. So LMS mean learning management system.
+Learning management system, you can see it like spots, a place where usually in educational institution, they have this system so that we have student, we have student list, we have a list of courses that the student take.
+And then in each of the courses student can see all the materials, we can student can submit assessment student can look at the marks given by the lecturers and so on and so forth. So that is actually LMS.
+Okay, so the software development is a process, not just about writing code like I said just now, it is proven that in research that when one adopt a follow development methodology successful rate of the system of the project is higher.
+So this is the process first you understand the problem, and then you get the requirements when you when we are in this class or when we are talking about software development, we don't call functions with them as requirements.
+Right. So when requirements.
+There's functional requirements and non functional requirement, do you have that here if we have.
+The requirement usually we gather the requirements from our client. Let's say I'm your client, I want you to develop LMS. So you have to get back to me to know what are the requirements that I want, or you to put in the system.
+Okay, then once you got that you design the solution design means you haven't you do not start with development yet. You draw a certain drawing, and then you develop and then you test the system that is a generic one.
+Okay, let's look at the first stage. This is just a general understanding on software engineering process. So when you read further on different types of methodology, it may be first.
+Basically, they will always have these generic faces. Okay. So planning and analysis is first to understand the problem before proposing a solution. So I say that.
+So I need a system that can manage my sales, for example, user, they are not technical. They don't know about system. They are on momentum. So they will go to you. They know that you are in IT, you are developer or something, or you are the project manager.
+So I need to make up please I need a system that can manage my sales. So first you have to analyze the problem first before you propose what kind of solution. Okay.
+So problem what is what is going wrong, what is going wrong for the user's example student cannot easily come for weather and assignment was submitted.
+That is the assistant system when the student submitted the assessment or the assignment. They cannot see the status whether the assignment successfully submitted or not.
+Okay, because when we develop a system, it originate from existing problem. There must be a problem that's what people ask you to develop a new system or enhance or else why bother to waste our time.
+Okay. So right then you have to understand the objective. Okay. What you want to achieve. For example, design and design elements that display clear submission status because the problem initially is student cannot see the status of the submission.
+This is an example. All right. Then how do we know that it is a real problem. So of course you have to ask around here. This is in the analysis phase first you have to understand the problem.
+And you also have to know that this is a genuine problem, not just one person's problem. Okay.
+So for example. Okay.
+This is on the introduction party students are unsure whether their assignment upload a succeeded and then the objective is to propose to propose a clear submission confirmation after successful upload.
+And then. So the problem is, then you know what is the problem. Okay, the problem is something that you need to fix. And then the objective is what the project needs to accomplish. Right.
+And then second stage gathering the requirements. So you have to ask the user. What are the requirements that they want to put in this kind of system. Okay.
+So how can you get the data. So there are many we call the requirement elicitation elicit with you, you, you, you get the requirements. Yeah. So one of the method is you do interview.
+Okay.
+As student or lecture in this context we are talking about LMS the example so the user will be students, lecturers, or maybe student admin also can student affairs is okay. So ask them questions and record their answer that is the interview.
+So you also do questionnaire. Okay. So you do, you, you come up with a few questions related with how can you get the requirement and then you pass to the users users mean you can pass to this case LMS.
+What do you call that lecture and user lecture and student.
+The method is observation observation means you don't disturb them. You don't interview them. You don't go survey. You go and see at their workplace and observe how do they do their work and you jot down the information.
+Okay. So watch how users complete a task and no difficulties. Okay. You may verify at the end of the day, but bottom line is observation is you just observe.
+You don't disturb them. Okay. So example of interview question. What is difficult about submitting assignments because the problem is student always found difficult in submitting and they don't know the status of the submission.
+What is difficult about submitting assignment. How do you know the ability to succeed. Okay. And then you also asked you remember two types of user student and lecturer. Okay, on the for the lecture side. What is difficult about tracking submission.
+What do you give marks and feedback now so example of the question so that you know the feedback so you know what you are supposed to adjust to come up with the requirements case.
+All right. And then there are two types of requirements. Okay. If you remember in a question, but later you can read back the question.
+There are two types of requirement function requirements and non function requirements. This one student always confused. Okay. So functional is what should the system do means that what are the functions, the core function without the functions.
+It's not a system. Okay. So what should the system do so functional requirement one the system shall allow students to submit assignment. So you know here that submission is allowed.
+This is the user. Okay. And this is the context. Right. So the system should allow students to submit assignment function number two function requirement number two. The system should allow lecturers to provide feedback.
+There should be a function to provide feedback. Okay. Who can provide feedback. This is the user that provide the feedback. Okay. This is the user that do.
+Sorry, this task. This is the task. Okay. All the requirements. Okay. This is the task order requirements. This is the user. So we always put user with a task user with a task so that you know.
+Three function requirements. The system should allow students to view grades. You should have this function. We call that this requirement. Okay. And who is the user that would like us that would that will relate with this past student.
+So, and these are the example of functional requirement means that the function. Let's look at what is non-functional. When student always got confused, they will see that non-functional is function that is not important, which is wrong.
+Okay. Function non-functional requirement is the supported functions that allows the functional requirement to work. Okay. So how well must it work. So non-functional one.
+Because page load within three seconds under defined normal condition. So, when the developer develop, when the programmer develop, they have to make sure that it works within this infrastructure.
+Only authorized user shall excel. So this one is the security part. Okay. This one is about accessibility part. The system shall support the current user. So this is about what we call that.
+I forgot the term, the, the, I cannot get the term at the moment here to show that the capacity, the capacity of the system. Capacitors. So basically, when you, when you have these requirements.
+Okay. These systems, these non-functional requirement support the system. Okay. And without having discerned, basically, it also unable to make the system unable to work very good.
+So, the difference between functional and non-functional common. When the summer, later, time by time, I always ask students to submit draft so that I can check whether or not you're on the right track or not. Okay.
+What is the methodology, the adopted methodology that you are you choose so you are supposed to choose crumb. Okay. So then read what scrum means. Okay. One of the features of scrum methodology is it works in small step means that for what the fall, it has like seven, eight steps for scrum.
+Two faces one, two, three, four, only four faces. Right. So first is the backlog. Okay. So prioritize list of features. So these are the list of tasks that you have to do.
+And then, choose for this spring, spring is basically a cycle.
+Second cycle usually for one requirement, for example. Okay. So work for that cycle and then review and get feedback with the user. And then if you need to improve based on the feedback feedback of the user, then you will go back and so on.
+Right. So for example, spring, spring is the cycle for the first cycle, you need to build and test this sort of login the function is to the login. Okay. And then next is bill and test environment.
+And then, why use scrum user can give it back because like I informed just now when you scrum is one of the modern methodologies. Okay. So modern methodologies include client in our development team.
+So whenever you develop, you can always check with your user, whether or not the functions or the requirements or the part of the system that you develop.
+You can also check on what they expected. Okay. All right. And then that is the methodologies next is the UML the design. Okay.
+There's a use case diagram, there's a class diagram. I think for this part.
+It needs one class to explain on this. I'll skip this one, but you have to put this one in your assignment. So let's whether I going to record.
+And then at the same time, please read the slides on this chapter, and also equip yourself with external sources from YouTube and so on. So basically use case diagram is to show the interaction between.
+User and the requirements requirement. In this case, we call use case. That's why it says use case diagram. It shows the interaction between user.
+And use case the use case is drawn in this ellipsis right not to go in detail on this one because I think both this one requires a detailed detail explanation.
+Okay. This one used to explain on the question in the assignment. So team roles, I have explained on a team roles. There are very, there are a number of team roles when you are in software development.
+So the first one is the project manager, this, this, this, the leader, this is the one who will track task, what plan, who will schedule, who will look up for the manpower. Okay. And so on. Right.
+Next you have the requirement analysis just now I can meet as business and at least the name of the role. Okay.
+Yes, with the user or client to get the requirement to talk to the user documents needs and so on to get the requirements needed. And then developer is the one who developed the system will do the coding design and both the system.
+And then another role is faster to check the behavior. We also have other role basically designer. Okay. We also role as supporting support team support team so basically technician that you usually force under the supporting.
+Right. So then project timeline. Okay. When you do a project, usually you have to come up with the project schedule first to make sure that you can complete within the timeframe.
+And we usually when you're given the project, they said, okay, please deliver to me in three months. Okay. All of the functions. So these are the stages one, two, three, four stages. And these are the time that we want what, what are the part that you are going to compete.
+They who is in charge and so on and so forth. Yeah. In this example, we 10 means that three months and one week. Okay, for example.
+Next stage is software testing. Once the development done, then you have to test your system. Okay. So you have unit testing, you have integration testing, you have system test.
+So you need test basically you are developer going to develop or develop this software going to test. Okay. That's one small component. For example, you do one per any test. This one basically done by the programmer itself.
+Okay, then we have also integration test integration happens when your system. Okay. Like us with other system. Let's say system to K, let's say some tree or say modular module to module three. This is the main system.
+So integration means usually programmer, a given module or module, then later you have to compile what we call the reconciler concern and integrate them. So when you integrate them.
+So you have to check whether the system is working on a that is what we call integration system.
+Lastly, is the system test. Yeah, this is where you test the whole thing from starting login for example login until the confirmation of the submission of the assignment.
+Okay.
+So much.
+Okay. So, so the testing is the stage five or six.
+Right. So example, the test case, test case one. What is the task that you want to do and test for example upload valid PDF PDF before the line.
+Okay. And then what is the expected result submission save confirmation display.
+So this is what test case mean. So test case to you test other function upload and supported for a time test case three open another student student assignment submission.
+And then these are the expected results. So this is test case.
+One of the question in the assignment. Okay.
+So risk management, we have one chapter on resource assignment or resource management. You can also read on the notes. Yeah.
+So basically risk is we want to identify what are the possible risk may happen when you develop this system attack. Like I give example just now.
+Let's say you have three people in a team development and then at least stuff. One of the stuff resigned. So what will you do. So that's why we have to identify the risk so that you have planned the backup plan for you to mitigate the ratio.
+So, and you can put impact on the risk. High impact means that you will always make sure you have a plan B for this one. For example, data breach. It is high impact because if data is breached data may loss and you will have difficulties in
+continuing with your project. The low impact, then you you low impact, for example, schedule delay, this is not low impact. Okay. So mitigate track progress weekly requirement change mitigate mitigation product.
+Okay. So when you have this action plan mitigation is action plan. So when this risk happening, you already have your action plan to combat to handle this kind of phrase. Okay.
+Um, legal in terms of ethics legal and issues, for example, data privacy, when you have this learning learning management system. So you have the user details. Okay. So, LMS talks user I student ID grades and submission. So, how can you ensure that these data within under the data protection act, how are you going to ensure that these data is protected.
+So you can read and how you can plan, or how can you propose to ensure that you follow the data protection act. Okay. Proper information to roll with access and appropriate roll with access mean.
+When student want to access, you just give pages or functions that only student can access, if lecturer want to access, you can give all of the function, for example. Okay. All right.
+And these are example of ethics legal issues in terms of copyright in terms of report checking. Okay. Copyright. For example, if you're doing funnel your project with second you stay. Okay. Let's say your final year, and then
+who on the project. Is it you, or is it segy, so that is in terms of copyright that you may want to think of, right. Okay, that is basically what software engineering in general is, and this slide is basically to explain on the questions in the assignment.
+Other than that.
+How do I use this.
+Okay, so let's look at.
+A word.
+Okay, project. Sorry, sorry, we see.
+Okay.
+Oh, sorry. Okay. So software engineering.
+There are chapters that I have uploaded key that you can refer to. There's not a name. Let me show you.
+I didn't share my screen. I didn't share my screen all done.
+Yeah.
+Okay.
+So, what is it.
+Okay, so let's look at a way chapter.
+Okay, so I have uploaded chapter one introduction to software engineering, and then chapter two explain or explain on the method logic that you can choose chapter three explain on the requirement analysis and specification.
+This in this chapter it also include the UML diagram, but I will explain on the use case diagram and class diagram in our next class on in recorded version so that you further understand.
+Okay. And then also on the agile because you're going to apply on a job so further agile. And then, okay, that's about it. So later, not in this class like I will experience for the elements of the question.
+All right, when we look at our.
+Right.
+So, the assignment I have uploaded here, the duty is 14K.
+You will upload here, but I think they'll be in third session.
+You will or you will submit to me draft first before you submit final submissions to make sure that you submit the correct one.
+And next class time is it.
+Okay, in next class, I will further explain on the diagrams.
+Any questions to never.
+Any question.
+Okay, so I think that's what all for today.
+You can always ask question in teams in this chat. You can always be good.
+Or you can find my name in teams and ask me question.
+All right.
+All right, that's all. Yeah.
+Find example is.
+Sorry.
+No, there's no final assessment means you will do kind of fun, kind of exam, but it's in terms of reporting, but you will do it during our class.
+No final exam.
+Okay.
+Did I answer your question?
+All right, that's all for today.
+Thank you.
+All right, bye bye.
