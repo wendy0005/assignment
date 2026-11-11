@@ -10,6 +10,7 @@
 table{width:100%;border-collapse:collapse;margin:6pt 0 11pt;table-layout:fixed;font-size:12pt;line-height:1.25}th,td{padding:6pt;border:.5pt solid #888;vertical-align:top;font-weight:400;overflow-wrap:break-word}th{font-weight:700;background:#edf1f5}table p{line-height:1.25;margin:0}th:first-child,td:first-child{width:17%}thead{display:table-header-group}tr{break-inside:avoid}.caption{font-size:12pt;font-weight:700;line-height:1.3;margin:8pt 0}a{color:inherit;text-decoration:none;overflow-wrap:anywhere}
 .cover{text-align:center;padding-top:12mm}.cover p{text-align:center;margin-bottom:17pt}.cover h1{font-size:14pt;line-height:1.5;margin:23pt 0}.cover .identity{margin-top:28mm}.cover .identity p{margin-bottom:8pt}.cover .count{margin-top:23mm;line-height:1.5}
 .contents{margin-bottom:16pt}.contents a{display:flex;justify-content:space-between;gap:8pt;margin:0 0 5pt;font-size:12pt;line-height:1.25}.contents a span:first-child{flex:1;border-bottom:1px dotted #aaa}.contents a.sub{padding-left:14pt}.contents a span:last-child{min-width:16pt;text-align:right}.figure svg{width:100%;height:auto;display:block;margin:auto}.usecase svg{max-height:175mm}.mermaid svg{max-width:100%!important;max-height:166mm!important;width:100%!important;height:auto!important}.mermaid{margin:4mm 0}.mermaid .nodeLabel,.mermaid text{font-family:ReportTimes,"Times New Roman",serif!important}.references p{text-align:left;padding-left:20pt;text-indent:-20pt;line-height:1.5;margin-bottom:10pt}.riskmatrix{text-align:center;margin-top:12pt}.riskmatrix th,.riskmatrix td{font-size:12pt;padding:8pt 3pt;text-align:center}.riskmatrix th:first-child,.riskmatrix td:first-child{width:20%}.low{background:#eef4ee}.medium{background:#f8f0d8}.high{background:#f5dddd}.legend{text-align:center;margin-bottom:10pt}
+.appendix table th:first-child,.appendix table td:first-child{width:18%}.appendix table th:nth-child(2),.appendix table td:nth-child(2){width:12%}.appendix table th,.appendix table td{font-size:10.5pt;padding:5pt;line-height:1.2}
 #page-8 th:nth-child(1),#page-8 td:nth-child(1){width:20%}#page-8 th:nth-child(2),#page-8 td:nth-child(2){width:37%}#page-8 th:nth-child(3),#page-8 td:nth-child(3){width:43%}
 #page-9 .content > table th:nth-child(1),#page-9 .content > table td:nth-child(1){width:26%}#page-9 .content > table th:nth-child(2),#page-9 .content > table td:nth-child(2){width:20%}#page-9 .content > table th:nth-child(3),#page-9 .content > table td:nth-child(3){width:54%}
 @media print{html,body{background:white}.sheet{margin:0;box-shadow:none}}
@@ -19,7 +20,7 @@ table{width:100%;border-collapse:collapse;margin:6pt 0 11pt;table-layout:fixed;f
 <h1>Applying Software Engineering Methodologies in LMS Development</h1>
 <p class="subtitle">A Camu informed proposal for a private university</p>
 <div class="identity"><p>Student name: Chan Jing Yi</p><p>Student ID: SUOL2500321</p><p>Report date: 5 November 2026</p></div>
-<p class="count">Main report: 2,000 words<br/>Including headings, tables and captions; excluding diagram labels, references, front matter and Appendix A.</p>
+<p class="count">Main report: 2,022 words<br/>Including headings, tables and captions; excluding diagram labels, references, front matter and Appendix A.</p>
 </div></div><footer class="footer"><span>Chan Jing Yi | SUOL2500321</span><span></span></footer></section><section class="sheet contents" id="contents"><div class="header"><span>BCL2113 Software Engineering</span><span>Chan Jing Yi | SUOL2500321</span></div><div class="content"><h1>Table of contents</h1><div class="contents">
 <a href="#page-1"><span>1. Planning and analysis</span><span>1</span></a>
 <a href="#page-1"><span>2. Requirements engineering</span><span>1</span></a>
@@ -51,9 +52,8 @@ table{width:100%;border-collapse:collapse;margin:6pt 0 11pt;table-layout:fixed;f
 <p>Objective one is to provide enrolled students with a unified deadline dashboard and consistent course workspace before the next academic year. Objective two is to make assignment submission verifiable and protect academic information through receipts, permissions and tested recovery procedures. Proposed acceptance targets appear in the specification.</p>
 <h1>2. Requirements engineering</h1>
 <h2>2.1 Elicitation and evidence status</h2>
-<p>The supplied project summary identifies navigation, confirmation, session and accessibility concerns. Its original respondents, dates and sources are unspecified; it is preliminary scoping input. Public reviews provide secondary evidence, not direct elicitation from SEGi users. No interview responses, participant counts or survey percentages are invented.</p>
-<p>The proposed elicitation combines interviews with students, lecturers and an administrator, followed by a survey. Interviews explore failed tasks and exceptions; the survey checks priorities across respondents. Appendix A contains questions and recording instructions. Direct responses and stakeholder validation remain necessary to satisfy the brief’s real user requirement. Evidence should be anonymised and retained only as needed for the assignment, with participants informed about how their responses will be used.</p>
-<p>Interview participants should demonstrate how they locate a deadline, retrieve materials and confirm a submission. Ask neutral follow up questions about the device, connection and sequence of actions. Separate software failures from missing lecturer content or institutional settings. Compare responses by role and invite participants to correct the interpretation. The survey should ask about frequency and importance separately, because an infrequent failure may still have severe consequences.</p></div><footer class="footer"><span>Chan Jing Yi | SUOL2500321</span><span>1</span></footer></section><section class="sheet main" id="page-2"><div class="header"><span>BCL2113 Software Engineering</span><span>Chan Jing Yi | SUOL2500321</span></div><div class="content"><h2>2.2 Functional user requirements</h2>
+<p>On 4 November 2026, four students provided anonymised feedback about their own Camu accounts, with agreement to use their responses in this report. They rated ease of finding materials and deadlines as 2, 3, 2 and 3 out of 5. Their responses are summarised in Appendix A. The small student sample does not represent all users; lecturer and administrator validation remains necessary.</p>
+<p>All four described a mismatch between Tasks and the empty Assignments view and reported a Messages error. Several wanted course materials in Content, clear deadlines and links from tasks to feedback. The calendar and task status labels were valued. Empty views do not establish a defect: materials may be unpublished or available through a course page. A later course-specific check found Software Engineering materials and its assessment in Content. Login, downloads and mobile use were not verified.</p></div><footer class="footer"><span>Chan Jing Yi | SUOL2500321</span><span>1</span></footer></section><section class="sheet main" id="page-2"><div class="header"><span>BCL2113 Software Engineering</span><span>Chan Jing Yi | SUOL2500321</span></div><div class="content"><h2>2.2 Functional user requirements</h2>
 <p>Students access enrolled courses; lecturers manage assigned courses; administrators manage membership and staff assignments. All requirements are provisional until users validate them.</p>
 <div class="caption">Table 1. Functional requirements and acceptance conditions</div>
 
@@ -87,7 +87,7 @@ table{width:100%;border-collapse:collapse;margin:6pt 0 11pt;table-layout:fixed;f
 </tr>
 <tr>
 <td style="text-align: left;">FR6</td>
-<td style="text-align: left;">Display published deadlines across enrolled courses chronologically and export them as a calendar file.</td>
+<td style="text-align: left;">Display published deadlines chronologically; show the same deadline and submission status in every assignment view; allow calendar export.</td>
 </tr>
 <tr>
 <td style="text-align: left;">FR7</td>
@@ -100,8 +100,8 @@ table{width:100%;border-collapse:collapse;margin:6pt 0 11pt;table-layout:fixed;f
 </tbody>
 </table>
 <h2>2.3 Analysis and traceability</h2>
-<p>Navigation concerns motivate FR2 and FR6; submission uncertainty motivates FR3 and FR7. Communication and assessment requirements also follow the assignment scenario. This mapping supports prioritisation without presenting assumptions as measured findings. Receipts and permission controls take priority over calendar export because submission loss has greater academic consequences.</p>
-<p>The evidence also requires critical appraisal. Public reviewers select themselves and may use different configurations, versions and institutions. The 2021 review is historical evidence, so it supports investigation rather than a claim about current behaviour. Missing information about email receipts or mobile accessibility cannot establish that those features are universally absent. A local observation log should record the date, device, task and outcome, then distinguish reproduced problems from unresolved reports.</p></div><footer class="footer"><span>Chan Jing Yi | SUOL2500321</span><span>2</span></footer></section><section class="sheet main" id="page-3"><div class="header"><span>BCL2113 Software Engineering</span><span>Chan Jing Yi | SUOL2500321</span></div><div class="content"><h2>2.4 Nonfunctional requirements</h2>
+<p>The student responses support five needs: accessible course materials (FR2), consistent assignment information across views (FR4 and FR6), visible deadlines (FR6), reliable messages (FR5), and accessible grades and feedback (FR4). Student 2 requested feedback from the task; Student 4 wanted helpful empty states. Students 3 and 4 valued the calendar, while Students 1 and 2 highlighted task statuses. Proposed receipts (FR3 and FR7) address submission assurance but were not established by these responses.</p>
+<p>Public reviews are secondary evidence and may concern other versions or institutions. The historical 2021 review supports investigation, not a claim about current SEGi behaviour. The Product Owner prioritises receipts over calendar export because lost submission evidence has greater consequences, then seeks student and lecturer review. Requirements and targets require stakeholder validation.</p></div><footer class="footer"><span>Chan Jing Yi | SUOL2500321</span><span>2</span></footer></section><section class="sheet main" id="page-3"><div class="header"><span>BCL2113 Software Engineering</span><span>Chan Jing Yi | SUOL2500321</span></div><div class="content"><h2>2.4 Nonfunctional requirements</h2>
 <p>The following values are proposed acceptance targets, not observed Camu performance. Validate the workload and service commitments with university stakeholders.</p>
 <div class="caption">Table 2. Nonfunctional requirements and verification</div>
 
@@ -141,7 +141,7 @@ table{width:100%;border-collapse:collapse;margin:6pt 0 11pt;table-layout:fixed;f
 </table>
 <h2>2.5 Requirements validation and control</h2>
 <p>Elicitation is followed by analysis, specification, validation and controlled revision. Replace vague statements such as “fast uploads” with measurable conditions. Check contradictions through shared definitions: a deadline uses server time, a submission completes when storage and metadata succeed, and late work requires an authorised extension. Failed transfers produce no success receipt.</p>
-<p>Each requirement links to its source, owner and acceptance test. Stakeholders review exception scenarios before approval; versioned change requests document effects on cost, tests and schedule. Accessibility follows W3C (2024), while upload controls follow OWASP (n.d.). Neither guidance replaces local user validation.</p>
+<p>Each requirement links to its source, owner and acceptance test. Stakeholders review exception scenarios before approval; a change request records impacts on cost, tests and schedule. For example, a new file type needs Product Owner approval, security review, implementation and verification before closure. Accessibility follows W3C (2024), while upload controls follow OWASP (n.d.). Neither guidance replaces local user validation.</p>
 <p>For mobile sessions, preserve draft form content before expiry, warn users before requiring authentication and restore the draft afterwards. Do not extend access indefinitely or bypass permission checks. Confirm the university’s preferred timeout policy with administrators. Test interruptions by switching applications and reconnecting after network loss; the expected behaviour must distinguish a saved draft from an accepted assignment.</p></div><footer class="footer"><span>Chan Jing Yi | SUOL2500321</span><span>3</span></footer></section><section class="sheet main" id="page-4"><div class="header"><span>BCL2113 Software Engineering</span><span>Chan Jing Yi | SUOL2500321</span></div><div class="content"><h1>3. Scrum process model</h1>
 <h2>3.1 Implementation and suitability</h2>
 <p>Scrum provides short feedback cycles for uncertain requirements (Schwaber and Sutherland, 2020). The Product Owner orders the Product Backlog around a reliable course workspace. Two week Sprints produce usable increments, beginning with enrolment and progressing through materials, submissions and grading.</p>
@@ -149,7 +149,7 @@ table{width:100%;border-collapse:collapse;margin:6pt 0 11pt;table-layout:fixed;f
 <p>The Definition of Done requires reviewed code, passing acceptance tests, accessibility checks and updated documentation. Scrum suits the LMS because feedback can reveal policy exceptions before release. It cannot guarantee a fixed scope and launch date; lower priority work must remain negotiable.</p>
 <h1>4. System design</h1>
 <h2>4.1 Modelling approach</h2>
-<p>The following diagrams describe the proposed system, not Camu’s internal implementation. Figure 1 maps actors to all eight functional requirements. Figure 2 models assignment submission with attributes, operations and multiplicities. Authentication is a precondition; course membership and staff assignment determine authorisation.</p></div><footer class="footer"><span>Chan Jing Yi | SUOL2500321</span><span>4</span></footer></section><section class="sheet main" id="page-5"><div class="header"><span>BCL2113 Software Engineering</span><span>Chan Jing Yi | SUOL2500321</span></div><div class="content"><h2>4.2 Use case diagram</h2>
+<p>The following diagrams describe the proposed system, not Camu’s internal implementation. Figure 1 maps actors to all eight functional requirements. Figure 2 models assignment submission with attributes, operations and multiplicities. Authentication is a precondition; membership determines authorisation. In MVC, the model stores submission data, the view displays the form and receipt, and the controller handles requests.</p></div><footer class="footer"><span>Chan Jing Yi | SUOL2500321</span><span>4</span></footer></section><section class="sheet main" id="page-5"><div class="header"><span>BCL2113 Software Engineering</span><span>Chan Jing Yi | SUOL2500321</span></div><div class="content"><h2>4.2 Use case diagram</h2>
 <div class="figure usecase">
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 660 615" role="img" aria-label="LMS use case diagram">
 <style>text{font-family:Times New Roman,serif;fill:#111;font-size:17px} .uc{fill:#f7f9fb;stroke:#222;stroke-width:1.2}.assoc{stroke:#333;stroke-width:1.1;fill:none}</style>
@@ -270,7 +270,7 @@ table{width:100%;border-collapse:collapse;margin:6pt 0 11pt;table-layout:fixed;f
 </tr>
 </tbody>
 </table>
-<p>Dates depend on approval of the project start. Reviews and regression testing occur throughout, including early Sprints. Release requires resolved critical defects, stakeholder acceptance and a successful restoration exercise.</p></div><footer class="footer"><span>Chan Jing Yi | SUOL2500321</span><span>7</span></footer></section><section class="sheet main" id="page-8"><div class="header"><span>BCL2113 Software Engineering</span><span>Chan Jing Yi | SUOL2500321</span></div><div class="content"><h1>6. Software quality and testing</h1>
+<p>Dates depend on approval of the project start. Reviews and regression testing occur throughout, including early Sprints. Release requires resolved critical defects, stakeholder acceptance and a successful restoration exercise. After release, the team monitors service, fixes defects and manages changes.</p></div><footer class="footer"><span>Chan Jing Yi | SUOL2500321</span><span>7</span></footer></section><section class="sheet main" id="page-8"><div class="header"><span>BCL2113 Software Engineering</span><span>Chan Jing Yi | SUOL2500321</span></div><div class="content"><h1>6. Software quality and testing</h1>
 <h2>6.1 Assignment submission test plan</h2>
 <p>Prepare an enrolled student, a nonmember, a lecturer, open and expired assignments, and safe test files. Unit tests check validation and deadline logic; integration tests check storage and database consistency; system tests exercise the browser workflow. User acceptance testing confirms the receipt and lecturer view. OWASP (n.d.) informs upload abuse cases. These are planned tests, not executed results.</p>
 <div class="caption">Table 4. Submission test cases and expected outcomes</div>
@@ -318,6 +318,11 @@ table{width:100%;border-collapse:collapse;margin:6pt 0 11pt;table-layout:fixed;f
 <td style="text-align: left;">T7 Acceptance</td>
 <td style="text-align: left;">Student submits; lecturer opens it.</td>
 <td style="text-align: left;">Correct file, timestamp and receipt agree.</td>
+</tr>
+<tr>
+<td style="text-align: left;">T8 System</td>
+<td style="text-align: left;">Compare assignment views.</td>
+<td style="text-align: left;">Deadline and submission status agree.</td>
 </tr>
 </tbody>
 </table>
@@ -416,47 +421,41 @@ table{width:100%;border-collapse:collapse;margin:6pt 0 11pt;table-layout:fixed;f
 <p>Inaccessible controls can prevent timely submissions. Apply WCAG 2.2 AA, provide meaningful labels and textual status messages, and test keyboard access and reflow (W3C, 2024). Verify problems with affected users rather than assuming every reported accessibility defect exists locally.</p>
 <p>Submission receipts support fair dispute resolution but cannot prove authorship. Preserve audit records and allow human review of exceptional cases. Automated alerts must not independently determine misconduct or academic penalties.</p>
 <h2>8.4 Recommendation</h2>
-<p>Proceed with the proposed LMS through incremental validation. Prioritise reliable submission and protected access, confirm local user needs, and use the pilot to decide whether the release criteria are met.</p></div><footer class="footer"><span>Chan Jing Yi | SUOL2500321</span><span>10</span></footer></section><section class="sheet main" id="page-11"><div class="header"><span>BCL2113 Software Engineering</span><span>Chan Jing Yi | SUOL2500321</span></div><div class="content"><h1>References</h1><div class="references"><p>Intellectual Property Corporation of Malaysia (n.d.) <em>Copyright Act</em>. Available at: <a href="https://www.myipo.gov.my/copyright-act/">https://www.myipo.gov.my/copyright-act/</a> (Accessed: 5 November 2026).</p><p>Kiruba, S. (2026) ‘Review of MyCamu Lite’, <em>Google Play</em>, 3 August. Available at: <a href="https://play.google.com/store/apps/details?id=com.octoze.camu.mycamuapp">https://play.google.com/store/apps/details?id=com.octoze.camu.mycamuapp</a> (Accessed: 5 November 2026).</p><p>OWASP (n.d.) <em>File Upload Cheat Sheet</em>. Available at: <a href="https://cheatsheetseries.owasp.org/cheatsheets/File_Upload_Cheat_Sheet.html">https://cheatsheetseries.owasp.org/cheatsheets/File_Upload_Cheat_Sheet.html</a> (Accessed: 5 November 2026).</p><p>Personal Data Protection Department (n.d.) <em>Akta Perlindungan Data Peribadi (Pindaan) 2024</em>. Available at: <a href="https://www.pdp.gov.my/akta/akta-pdppindaan-2024/">https://www.pdp.gov.my/akta/akta-pdppindaan-2024/</a> (Accessed: 5 November 2026).</p><p>Punay, A.R. (2026) ‘Submitting Outputs’, <em>Mapúa Malayan Digital College Support</em>, updated 19 June. Available at: <a href="https://support.mmdc.mcl.edu.ph/hc/en-us/articles/17566038499341-Submitting-Outputs">https://support.mmdc.mcl.edu.ph/hc/en-us/articles/17566038499341-Submitting-Outputs</a> (Accessed: 5 November 2026).</p><p>Schwaber, K. and Sutherland, J. (2020) <em>The Scrum Guide</em>. November. Available at: <a href="https://scrumguides.org/scrum-guide.html">https://scrumguides.org/scrum-guide.html</a> (Accessed: 5 November 2026).</p><p>Suriyakumar, P. (2021) ‘Review of MyCamu Lite’, <em>Google Play</em>, 10 January. Available at: <a href="https://play.google.com/store/apps/details?id=com.octoze.camu.mycamuapp">https://play.google.com/store/apps/details?id=com.octoze.camu.mycamuapp</a> (Accessed: 5 November 2026).</p><p>W3C (2024) <em>Web Content Accessibility Guidelines (WCAG) 2.2</em>. Recommendation, 12 December. Available at: <a href="https://www.w3.org/TR/WCAG22/">https://www.w3.org/TR/WCAG22/</a> (Accessed: 5 November 2026).</p></div></div><footer class="footer"><span>Chan Jing Yi | SUOL2500321</span><span>11</span></footer></section><section class="sheet appendix" id="page-12"><div class="header"><span>BCL2113 Software Engineering</span><span>Chan Jing Yi | SUOL2500321</span></div><div class="content"><h1>Appendix A. Real user elicitation instrument</h1>
-<h2>A.1 Interview questions</h2>
+<p>Proceed with the proposed LMS through incremental validation. Prioritise reliable submission and protected access, confirm local user needs, and use the pilot to decide whether the release criteria are met.</p></div><footer class="footer"><span>Chan Jing Yi | SUOL2500321</span><span>10</span></footer></section><section class="sheet main" id="page-11"><div class="header"><span>BCL2113 Software Engineering</span><span>Chan Jing Yi | SUOL2500321</span></div><div class="content"><h1>References</h1><div class="references"><p>Intellectual Property Corporation of Malaysia (n.d.) <em>Copyright Act</em>. Available at: <a href="https://www.myipo.gov.my/copyright-act/">https://www.myipo.gov.my/copyright-act/</a> (Accessed: 5 November 2026).</p><p>Kiruba, S. (2026) ‘Review of MyCamu Lite’, <em>Google Play</em>, 3 August. Available at: <a href="https://play.google.com/store/apps/details?id=com.octoze.camu.mycamuapp">https://play.google.com/store/apps/details?id=com.octoze.camu.mycamuapp</a> (Accessed: 5 November 2026).</p><p>OWASP (n.d.) <em>File Upload Cheat Sheet</em>. Available at: <a href="https://cheatsheetseries.owasp.org/cheatsheets/File_Upload_Cheat_Sheet.html">https://cheatsheetseries.owasp.org/cheatsheets/File_Upload_Cheat_Sheet.html</a> (Accessed: 5 November 2026).</p><p>Personal Data Protection Department (n.d.) <em>Akta Perlindungan Data Peribadi (Pindaan) 2024</em>. Available at: <a href="https://www.pdp.gov.my/akta/akta-pdppindaan-2024/">https://www.pdp.gov.my/akta/akta-pdppindaan-2024/</a> (Accessed: 5 November 2026).</p><p>Punay, A.R. (2026) ‘Submitting Outputs’, <em>Mapúa Malayan Digital College Support</em>, updated 19 June. Available at: <a href="https://support.mmdc.mcl.edu.ph/hc/en-us/articles/17566038499341-Submitting-Outputs">https://support.mmdc.mcl.edu.ph/hc/en-us/articles/17566038499341-Submitting-Outputs</a> (Accessed: 5 November 2026).</p><p>Schwaber, K. and Sutherland, J. (2020) <em>The Scrum Guide</em>. November. Available at: <a href="https://scrumguides.org/scrum-guide.html">https://scrumguides.org/scrum-guide.html</a> (Accessed: 5 November 2026).</p><p>Suriyakumar, P. (2021) ‘Review of MyCamu Lite’, <em>Google Play</em>, 10 January. Available at: <a href="https://play.google.com/store/apps/details?id=com.octoze.camu.mycamuapp">https://play.google.com/store/apps/details?id=com.octoze.camu.mycamuapp</a> (Accessed: 5 November 2026).</p><p>W3C (2024) <em>Web Content Accessibility Guidelines (WCAG) 2.2</em>. Recommendation, 12 December. Available at: <a href="https://www.w3.org/TR/WCAG22/">https://www.w3.org/TR/WCAG22/</a> (Accessed: 5 November 2026).</p></div></div><footer class="footer"><span>Chan Jing Yi | SUOL2500321</span><span>11</span></footer></section><section class="sheet appendix" id="page-12"><div class="header"><span>BCL2113 Software Engineering</span><span>Chan Jing Yi | SUOL2500321</span></div><div class="content"><h1>Appendix A. Student feedback</h1>
+<h2>A.1 Method and questions</h2>
+<p>Four students provided feedback on 4 November 2026 about their own Camu accounts and agreed to anonymous use. They rated ease of finding materials and deadlines, described observed problems and access to messages, grades and feedback, suggested three changes, and identified useful features. Their answers are summarised below.</p>
+<h2>A.2 Anonymised responses</h2>
 <table>
 <thead>
 <tr>
-<th style="text-align: left;">Item</th>
-<th style="text-align: left;">Question and requirement link</th>
+<th style="text-align: left;">Participant</th>
+<th style="text-align: left;">Rating</th>
+<th style="text-align: left;">Summary</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align: left;">Q1</td>
-<td style="text-align: left;">What do you use Camu for most often? Which tasks matter most? Scope and priorities.</td>
+<td style="text-align: left;">Student 1</td>
+<td style="text-align: left;">2/5</td>
+<td style="text-align: left;">Tasks showed status; Content and Assignments were empty. Messages failed. Requested materials, consistent assignments and update alerts. Valued class times and task status.</td>
 </tr>
 <tr>
-<td style="text-align: left;">Q2</td>
-<td style="text-align: left;">Please show how you find a course file or deadline. Where do difficulties occur? FR2 and FR6.</td>
+<td style="text-align: left;">Student 2</td>
+<td style="text-align: left;">3/5</td>
+<td style="text-align: left;">Tasks showed statuses but Assignments was empty. Messages failed and Gradebook showed no coursework. Requested consistent lists, visible deadlines and task linked feedback. Valued status labels.</td>
 </tr>
 <tr>
-<td style="text-align: left;">Q3</td>
-<td style="text-align: left;">How do you confirm that your submission was received? What evidence would help? FR3 and FR7.</td>
+<td style="text-align: left;">Student 3</td>
+<td style="text-align: left;">2/5</td>
+<td style="text-align: left;">Content and Assignments were empty; Messages failed. Requested course materials, reliable messages, consistent deadlines and task linked feedback. Valued the calendar.</td>
 </tr>
 <tr>
-<td style="text-align: left;">Q4</td>
-<td style="text-align: left;">How do lecturers manage assignments, grades and messages? Who should access them? FR4 and FR5.</td>
-</tr>
-<tr>
-<td style="text-align: left;">Q5</td>
-<td style="text-align: left;">What happens if your connection fails or the session expires? Describe the device and outcome. NFR2 and NFR6.</td>
-</tr>
-<tr>
-<td style="text-align: left;">Q6</td>
-<td style="text-align: left;">What difficulties arise on a phone, with larger text or assistive technology? NFR5.</td>
+<td style="text-align: left;">Student 4</td>
+<td style="text-align: left;">3/5</td>
+<td style="text-align: left;">Tasks contained entries while Assignments was empty; Messages failed. Requested reliable messages, consistent task information, materials and informative empty states. Valued Calendar and Tasks.</td>
 </tr>
 </tbody>
-</table>
-<h2>A.2 Survey and evidence record</h2>
-<p>Ask respondents to rate the importance of finding materials, viewing deadlines, confirming submissions, protecting grades and receiving messages from 1 (least important) to 5 (most important). Ask separately how often each difficulty occurs and allow an explanation. Do not calculate percentages until responses have been collected.</p>
-<p>Record participant code and role, date, consent, task context, anonymised response, interpretation, linked requirement and validation status. Avoid names, passwords, grades or other unnecessary personal information. Invite participants to confirm the interpretation.</p>
-<h2>A.3 Outstanding research</h2>
-<p>Direct SEGi interviews or survey responses have not been supplied. The project summary is preliminary input and the two public reviews are secondary evidence. These sources cannot substitute for conducting the real user elicitation required by the brief. No test execution or prototype evaluation is claimed.</p></div><footer class="footer"><span>Chan Jing Yi | SUOL2500321</span><span>12</span></footer></section><script type="module">
+</table></div><footer class="footer"><span>Chan Jing Yi | SUOL2500321</span><span>12</span></footer></section><script type="module">
 import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11.12.1/dist/mermaid.esm.min.mjs';
 try { mermaid.initialize({startOnLoad:false,securityLevel:'loose',theme:'neutral',fontFamily:'Times New Roman',themeVariables:{fontFamily:'Times New Roman',fontSize:'18px'},class:{useMaxWidth:true,hideEmptyMembersBox:true}}); await mermaid.run({querySelector:'.mermaid'}); await document.fonts.ready; window.reportReady=true; } catch(e){ window.reportError=String(e); }
 </script></body></html>

@@ -1,0 +1,24 @@
+{
+  "notebook_id": "8ec68d4f-c5f5-496e-8fce-8bbfdeaf9fc1",
+  "source_id": "98bec403-e63c-41e2-bd69-fe0c0c2f918f",
+  "artifacts": {
+    "audio": {
+      "artifact_type": "audio",
+      "artifact_id": "a311a8ea-5e90-410e-84f0-a5bab7589702",
+      "status": "queued",
+      "message": "Audio generation started."
+    },
+    "interactive_report": {
+      "artifact_type": "report",
+      "artifact_id": "4418e5dd-995c-4390-8ec4-0995fe0533b4",
+      "status": "queued",
+      "message": "Report generation started."
+    },
+    "slides": {
+      "artifact_type": "slide_deck",
+      "artifact_id": "1f0c7da7-cc8c-4901-a741-68237791a544",
+      "status": "queued",
+      "message": "Slide Deck generation started."
+    }
+  }
+}

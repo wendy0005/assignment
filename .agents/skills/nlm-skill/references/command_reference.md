@@ -57,6 +57,7 @@ nlm login [OPTIONS]
 | `--force` | | Replace credentials even if the detected account differs |
 | `--clear` | | Clear stored browser/profile state before login |
 | `--wsl` | | Use the WSL/Windows-browser authentication path |
+| `--storage` | | `protected` or `file`: where to keep the saved login for a NEW profile (skips the question; refused for existing profiles) |
 
 **Note**: Each profile gets its own isolated Chrome session, so you can be logged into multiple Google accounts simultaneously.
 
@@ -103,14 +104,21 @@ cookies. Runs a headless-browser pass against the saved profile — no user
 interaction — which keeps an unattended session (cron/launchd) alive without
 an interactive `nlm login`. Exits non-zero if the refresh fails.
 
+`--http-only` refreshes eligible cookies and page tokens over HTTP, even when
+CDP transport is configured. It cannot renew browser-dependent PSIDTS cookies
+or revive a fully expired login. Explicit refresh bypasses automatic recovery
+cooldown and failure limits.
+
 ```bash
 nlm auth refresh
 nlm auth refresh --profile work
+nlm auth refresh --http-only
 ```
 
 | Option | Short | Description |
 |--------|-------|-------------|
 | `--profile` | `-p` | Profile to refresh (default: the configured default profile) |
+| `--http-only` | | Force HTTP transport without launching a browser; validate before saving |
 
 **Example:**
 ```bash
@@ -351,6 +359,10 @@ nlm source list <notebook-id> [OPTIONS]
 When freshness is skipped, `stale`/`is_stale` is `null` (unknown), not
 `false` (fresh).
 
+Source listing JSON includes `url` for web and YouTube sources. The current MCP
+`source_list_drive` and `source_get_content` responses omit this field; use the
+CLI when an original source URL is needed.
+
 ### nlm source add
 
 Add a source to a notebook.
@@ -401,6 +413,8 @@ nlm source get <source-id> [OPTIONS]
 |--------|-------|-------------|
 | `--profile` | `-p` | Use specific profile |
 
+`nlm source get <source-id> --json` includes the original web or YouTube `url`.
+
 ### nlm source describe
 
 Get AI-generated source summary with keywords.
@@ -440,7 +454,11 @@ nlm source stale <notebook-id> [OPTIONS]
 
 ### nlm source sync
 
-Sync Drive sources with latest content.
+Sync Drive sources with latest content. Without explicit source IDs, only confirmed
+stale sources eligible for automatic sync are selected. The command reports
+sources with unknown freshness and stale sources that cannot sync automatically,
+including when other sources are synced successfully. Explicit source IDs bypass
+the freshness selection.
 
 ```bash
 nlm source sync <notebook-id> [OPTIONS]
@@ -1024,6 +1042,20 @@ nlm chats to-note <notebook-id> <conversation-id> [OPTIONS]
 | `--turn` | `-t` | 1-indexed turn to save (default: entire chat) |
 | `--title` | | Note title |
 | `--json` | | Output raw JSON |
+
+### nlm chats delete
+
+Permanently delete all server-side chat history for a notebook. The command
+prompts for confirmation unless `--confirm` is supplied.
+
+```bash
+nlm chats delete <notebook-id-or-title> [OPTIONS]
+```
+
+| Option | Short | Description |
+|--------|-------|-------------|
+| `--confirm` | `-y` | Skip the interactive confirmation |
+| `--json` | | Output raw JSON |
 | `--profile` | `-p` | Use specific profile |
 
 ---
@@ -1103,7 +1135,7 @@ nlm config set <key> <value>
 | `output.format` | `table` | Default output format (table, json) |
 | `output.color` | `true` | Enable colored output |
 | `output.short_ids` | `true` | Show shortened IDs |
-| `auth.browser` | `auto` | Preferred browser for login (auto, chrome, arc, dia, comet, brave, edge, chromium, firefox, vivaldi, opera). Falls back to auto if a preferred named browser is not found. |
+| `auth.browser` | `auto` | Preferred browser for login (auto, chrome, arc, dia, comet, brave, edge, edge-beta, chromium, firefox, vivaldi, opera). Falls back to auto if a preferred named browser is not found. |
 | `auth.browser_path` | empty | Explicit Chromium-compatible executable path. Overrides named discovery; `NLM_BROWSER_PATH` provides the environment override. |
 | `auth.default_profile` | `default` | Profile to use when `--profile` not specified. **Note:** The MCP Server always uses the active default profile. Changing this setting will instantaneously switch the MCP server's Google account. |
 
@@ -1206,7 +1238,7 @@ the selected Claude profile before adding or removing MCP configuration. The
 CLI refuses to write while the active Claude executable is running, including
 when Relay AI launched it. Bare `nlm setup` opens a wizard with Show my tools' status,
 Add the MCP to my tools/agents, Add the skill to my tools/agents, Remove an MCP
-or skill, Copy MCP setup for a tool not listed, and Exit (Esc goes back). It
+or skill, Credential protection, Copy MCP setup for a tool not listed, and Exit (Esc goes back). It
 offers to rename entries still using the old `notebooklm-mcp` name. MCP configuration defaults to app/user scope;
 GitHub Copilot is configured in the VS Code user profile by the wizard. Its
 direct command defaults to the current project and accepts `--scope user` for

@@ -1,0 +1,1122 @@
+{
+  "title": "BCL1213 Chapters 1–4: 40-question reviewed practice quiz",
+  "questions": [
+    {
+      "type": "multiple_choice",
+      "question": "An airport is deploying an automated air-traffic monitoring system that receives continuous data from aircraft sensors. When critical safety information arrives, the system must process it and react within a strict, highly predictable time boundary. Which operating system model is required for this application?",
+      "answerOptions": [
+        {
+          "text": "Soft Real-Time Operating System",
+          "isCorrect": false,
+          "rationale": "Soft real-time systems prioritize critical tasks but cannot strictly guarantee deadline fulfillment, making them unsuitable for safety-critical monitoring."
+        },
+        {
+          "text": "Hard Real-Time Operating System",
+          "isCorrect": true,
+          "rationale": "Safety-critical systems like air-traffic monitoring demand guaranteed, deterministic response times where missing a deadline could lead to catastrophic system failure."
+        },
+        {
+          "text": "Time-Sharing Operating System",
+          "isCorrect": false,
+          "rationale": "Time-sharing systems split CPU time among multiple interactive users for fairness rather than guaranteeing strict latency upper bounds for sensor events."
+        },
+        {
+          "text": "Batch Operating System",
+          "isCorrect": false,
+          "rationale": "Batch systems execute collections of jobs sequentially without real-time interaction, making them incapable of immediate event response."
+        }
+      ],
+      "hint": "Consider the operational consequences if a system fails to process critical sensor data before a strict deadline.",
+      "chapter": 1,
+      "origin": "NotebookLM; reviewed locally"
+    },
+    {
+      "chapter": 1,
+      "question": "Which statement best describes the kernel?",
+      "answerOptions": [
+        {
+          "text": "The core OS component that manages privileged operations and system resources.",
+          "isCorrect": true,
+          "rationale": "The kernel performs core OS resource-management and protection functions."
+        },
+        {
+          "text": "Any application with a graphical user interface.",
+          "isCorrect": false,
+          "rationale": "Applications use OS services; they are not the kernel."
+        },
+        {
+          "text": "A file containing only user documents.",
+          "isCorrect": false,
+          "rationale": "Documents are data, not core OS software."
+        },
+        {
+          "text": "A physical memory chip.",
+          "isCorrect": false,
+          "rationale": "The kernel is software, not a chip."
+        }
+      ],
+      "origin": "Local replacement of a historical trivia question"
+    },
+    {
+      "chapter": 1,
+      "question": "Why is an OS called a resource manager?",
+      "answerOptions": [
+        {
+          "text": "It stores only network passwords.",
+          "isCorrect": false,
+          "rationale": "Review the relevant definition or trace in the study guide."
+        },
+        {
+          "text": "It allocates CPU time, memory and I/O resources.",
+          "isCorrect": true,
+          "rationale": "The OS coordinates allocation and protection of shared hardware resources."
+        },
+        {
+          "text": "It replaces all application software.",
+          "isCorrect": false,
+          "rationale": "Review the relevant definition or trace in the study guide."
+        },
+        {
+          "text": "It manufactures CPU chips.",
+          "isCorrect": false,
+          "rationale": "Review the relevant definition or trace in the study guide."
+        }
+      ],
+      "origin": "Local review supplement; new numeric exercises are practice examples"
+    },
+    {
+      "chapter": 1,
+      "question": "What is the main purpose of a device driver?",
+      "answerOptions": [
+        {
+          "text": "Turn volatile RAM into permanent storage.",
+          "isCorrect": false,
+          "rationale": "Review the relevant definition or trace in the study guide."
+        },
+        {
+          "text": "Schedule every process in every computer.",
+          "isCorrect": false,
+          "rationale": "Review the relevant definition or trace in the study guide."
+        },
+        {
+          "text": "Translate OS requests into commands for a particular device.",
+          "isCorrect": true,
+          "rationale": "A driver provides device-specific control behind an OS interface."
+        },
+        {
+          "text": "Replace the CPU instruction set.",
+          "isCorrect": false,
+          "rationale": "Review the relevant definition or trace in the study guide."
+        }
+      ],
+      "origin": "Local review supplement; new numeric exercises are practice examples"
+    },
+    {
+      "chapter": 1,
+      "question": "Which feature best characterizes batch processing?",
+      "answerOptions": [
+        {
+          "text": "No jobs may wait in a queue.",
+          "isCorrect": false,
+          "rationale": "Review the relevant definition or trace in the study guide."
+        },
+        {
+          "text": "Jobs are submitted and processed with little or no interaction during execution.",
+          "isCorrect": true,
+          "rationale": "Batch systems emphasize queued jobs rather than ongoing user interaction."
+        },
+        {
+          "text": "Every job must finish within a hard deadline.",
+          "isCorrect": false,
+          "rationale": "Review the relevant definition or trace in the study guide."
+        },
+        {
+          "text": "All users have a dedicated physical CPU.",
+          "isCorrect": false,
+          "rationale": "Review the relevant definition or trace in the study guide."
+        }
+      ],
+      "origin": "Local review supplement; new numeric exercises are practice examples"
+    },
+    {
+      "chapter": 1,
+      "question": "How does multiprogramming improve CPU utilization?",
+      "answerOptions": [
+        {
+          "text": "Every job receives a separate CPU chip.",
+          "isCorrect": false,
+          "rationale": "Review the relevant definition or trace in the study guide."
+        },
+        {
+          "text": "Every process is guaranteed a hard deadline.",
+          "isCorrect": false,
+          "rationale": "Review the relevant definition or trace in the study guide."
+        },
+        {
+          "text": "Another ready job can run while one job waits for I/O.",
+          "isCorrect": true,
+          "rationale": "Keeping multiple jobs available allows CPU work to overlap another job I/O wait."
+        },
+        {
+          "text": "I/O is removed from all programs.",
+          "isCorrect": false,
+          "rationale": "Review the relevant definition or trace in the study guide."
+        }
+      ],
+      "origin": "Local review supplement; new numeric exercises are practice examples"
+    },
+    {
+      "chapter": 1,
+      "question": "What is the main goal of time-sharing?",
+      "answerOptions": [
+        {
+          "text": "Responsive interactive service through frequent CPU switching.",
+          "isCorrect": true,
+          "rationale": "Short CPU allocations let users interact while other tasks also make progress."
+        },
+        {
+          "text": "Eliminating every context switch.",
+          "isCorrect": false,
+          "rationale": "Review the relevant definition or trace in the study guide."
+        },
+        {
+          "text": "Archiving files on tape only.",
+          "isCorrect": false,
+          "rationale": "Review the relevant definition or trace in the study guide."
+        },
+        {
+          "text": "Executing one entire user session before another starts.",
+          "isCorrect": false,
+          "rationale": "Review the relevant definition or trace in the study guide."
+        }
+      ],
+      "origin": "Local review supplement; new numeric exercises are practice examples"
+    },
+    {
+      "chapter": 1,
+      "question": "Why does a hard real-time task need predictable timing?",
+      "answerOptions": [
+        {
+          "text": "Correctness includes meeting its required deadline.",
+          "isCorrect": true,
+          "rationale": "A high average speed alone does not establish an upper bound on response time."
+        },
+        {
+          "text": "Fast average execution always guarantees every deadline.",
+          "isCorrect": false,
+          "rationale": "Review the relevant definition or trace in the study guide."
+        },
+        {
+          "text": "It can ignore all interrupts.",
+          "isCorrect": false,
+          "rationale": "Review the relevant definition or trace in the study guide."
+        },
+        {
+          "text": "Its files must be stored only in cache.",
+          "isCorrect": false,
+          "rationale": "Review the relevant definition or trace in the study guide."
+        }
+      ],
+      "origin": "Local review supplement; new numeric exercises are practice examples"
+    },
+    {
+      "chapter": 1,
+      "question": "Which statement best distinguishes a network OS from a distributed OS conceptually?",
+      "answerOptions": [
+        {
+          "text": "A network OS exposes network services across identifiable machines; a distributed OS aims to coordinate machines as a more integrated system.",
+          "isCorrect": true,
+          "rationale": "Both use networking, but their integration and presentation of resources differ."
+        },
+        {
+          "text": "A distributed OS needs only one physical processor.",
+          "isCorrect": false,
+          "rationale": "Review the relevant definition or trace in the study guide."
+        },
+        {
+          "text": "Neither type uses communication.",
+          "isCorrect": false,
+          "rationale": "Review the relevant definition or trace in the study guide."
+        },
+        {
+          "text": "A network OS cannot share files.",
+          "isCorrect": false,
+          "rationale": "Review the relevant definition or trace in the study guide."
+        }
+      ],
+      "origin": "Local review supplement; new numeric exercises are practice examples"
+    },
+    {
+      "chapter": 1,
+      "question": "What happens when an application makes a system call?",
+      "answerOptions": [
+        {
+          "text": "It requests an OS service through a controlled interface.",
+          "isCorrect": true,
+          "rationale": "System calls request services; only operations that need to wait must block."
+        },
+        {
+          "text": "It always terminates immediately.",
+          "isCorrect": false,
+          "rationale": "Review the relevant definition or trace in the study guide."
+        },
+        {
+          "text": "It necessarily becomes blocked until another process exits.",
+          "isCorrect": false,
+          "rationale": "Review the relevant definition or trace in the study guide."
+        },
+        {
+          "text": "It physically replaces the memory controller.",
+          "isCorrect": false,
+          "rationale": "Review the relevant definition or trace in the study guide."
+        }
+      ],
+      "origin": "Local review supplement; new numeric exercises are practice examples"
+    },
+    {
+      "type": "multiple_choice",
+      "question": "Which fundamental section of a process's memory footprint is explicitly reserved for storing global and static program variables?",
+      "answerOptions": [
+        {
+          "text": "Heap",
+          "isCorrect": false,
+          "rationale": "The heap manages dynamic memory allocated explicitly at runtime by the program."
+        },
+        {
+          "text": "Data section",
+          "isCorrect": true,
+          "rationale": "The data areas hold global/static variables, including initialized data and the zero-initialized BSS area in common layouts."
+        },
+        {
+          "text": "Program Counter",
+          "isCorrect": false,
+          "rationale": "The program counter is a CPU register tracking the address of the current or next instruction to execute, not a memory data section."
+        },
+        {
+          "text": "Stack",
+          "isCorrect": false,
+          "rationale": "The stack dynamically holds temporary call data such as function parameters, local variables, and return addresses during execution."
+        }
+      ],
+      "hint": "Focus on the region separate from stack call frames and dynamically allocated heap memory.",
+      "chapter": 2,
+      "origin": "NotebookLM; reviewed locally"
+    },
+    {
+      "type": "multiple_choice",
+      "question": "Consider a non-preemptive CPU scheduling scenario. Process $P_3$ arrives at time $t = 6\\text{ ms}$ with a required burst time of $7\\text{ ms}$. If the CPU completes the previous process $P_2$ at $t = 7\\text{ ms}$ and immediately begins executing $P_3$, what are the Turnaround Time (TAT) and Waiting Time (WT) for $P_3$?",
+      "answerOptions": [
+        {
+          "text": "$\\text{TAT} = 1\\text{ ms}$, $\\text{WT} = 8\\text{ ms}$",
+          "isCorrect": false,
+          "rationale": "This option reverses the values of Turnaround Time and Waiting Time."
+        },
+        {
+          "text": "$\\text{TAT} = 8\\text{ ms}$, $\\text{WT} = 1\\text{ ms}$",
+          "isCorrect": true,
+          "rationale": "Completion Time is $7 + 7 = 14\\text{ ms}$. Turnaround Time is $\\text{CT} - \\text{Arrival} = 14 - 6 = 8\\text{ ms}$. Waiting Time is $\\text{TAT} - \\text{Burst} = 8 - 7 = 1\\text{ ms}$."
+        },
+        {
+          "text": "$\\text{TAT} = 14\\text{ ms}$, $\\text{WT} = 7\\text{ ms}$",
+          "isCorrect": false,
+          "rationale": "This calculation confuses Completion Time with Turnaround Time and fails to subtract the arrival time of $6\\text{ ms}$."
+        },
+        {
+          "text": "$\\text{TAT} = 7\\text{ ms}$, $\\text{WT} = 0\\text{ ms}$",
+          "isCorrect": false,
+          "rationale": "This calculation incorrectly assumes $P_3$ arrived at $t = 7\\text{ ms}$ instead of $t = 6\\text{ ms}$, ignoring its $1\\text{ ms}$ queue wait time."
+        }
+      ],
+      "hint": "First calculate Completion Time, then subtract Arrival Time for TAT, and subtract Burst Time from TAT for WT.",
+      "chapter": 2,
+      "origin": "NotebookLM; reviewed locally"
+    },
+    {
+      "type": "multiple_choice",
+      "question": "In a CPU scheduling queue, Process $P_4$ arrives at time $t = 11\\text{ ms}$ with a burst time of $4\\text{ ms}$. If execution for $P_4$ starts at $t = 14\\text{ ms}$ right after $P_3$ finishes, what is the exact Waiting Time (WT) experienced by $P_4$?",
+      "answerOptions": [
+        {
+          "text": "$18\\text{ ms}$",
+          "isCorrect": false,
+          "rationale": "This value is the absolute completion timestamp ($14 + 4 = 18\\text{ ms}$) rather than the wait duration."
+        },
+        {
+          "text": "$3\\text{ ms}$",
+          "isCorrect": true,
+          "rationale": "Waiting Time is the difference between the execution start time and arrival time: $14\\text{ ms} - 11\\text{ ms} = 3\\text{ ms}$ (or $\\text{TAT} - \\text{Burst} = 7 - 4 = 3\\text{ ms}$)."
+        },
+        {
+          "text": "$4\\text{ ms}$",
+          "isCorrect": false,
+          "rationale": "This value is the execution burst time of the process itself, not its waiting time in the ready queue."
+        },
+        {
+          "text": "$7\\text{ ms}$",
+          "isCorrect": false,
+          "rationale": "This value represents the Turnaround Time (Completion Time $18\\text{ ms} -$ Arrival Time $11\\text{ ms}$) rather than the Waiting Time."
+        }
+      ],
+      "hint": "Subtract the process arrival time from the time it actually gained access to the CPU.",
+      "chapter": 2,
+      "origin": "NotebookLM; reviewed locally"
+    },
+    {
+      "chapter": 2,
+      "question": "Which statement about threads in one process is correct?",
+      "answerOptions": [
+        {
+          "text": "Threads cannot run on different CPU cores.",
+          "isCorrect": false,
+          "rationale": "Multiple runnable threads may execute in parallel on different cores."
+        },
+        {
+          "text": "Threads never need synchronization.",
+          "isCorrect": false,
+          "rationale": "Shared mutable state can create races."
+        },
+        {
+          "text": "They share the process address space but have separate execution registers and stacks.",
+          "isCorrect": true,
+          "rationale": "Threads share process resources while retaining independent execution state."
+        },
+        {
+          "text": "Each thread must have a completely separate process address space.",
+          "isCorrect": false,
+          "rationale": "That describes separate processes rather than threads of one process."
+        }
+      ],
+      "origin": "Local replacement using core process/thread concepts"
+    },
+    {
+      "type": "multiple_choice",
+      "question": "An operating system uses non-preemptive First-Come, First-Served (FCFS) scheduling. Process $P_2$ arrives at $t = 0\\text{ ms}$ with a burst time of $3\\text{ ms}$, but execution is delayed until $t = 4\\text{ ms}$ because $P_1$ was running. What is the total Turnaround Time (TAT) for $P_2$?",
+      "answerOptions": [
+        {
+          "text": "$4\\text{ ms}$",
+          "isCorrect": false,
+          "rationale": "This is the Waiting Time ($4 - 0 = 4\\text{ ms}$) of $P_2$, not its total Turnaround Time."
+        },
+        {
+          "text": "$11\\text{ ms}$",
+          "isCorrect": false,
+          "rationale": "This incorrectly adds the start time ($4\\text{ ms}$), burst time ($3\\text{ ms}$), and wait time ($4\\text{ ms}$)."
+        },
+        {
+          "text": "$3\\text{ ms}$",
+          "isCorrect": false,
+          "rationale": "This is only the burst time of $P_2$, ignoring the wait time spent in the queue before execution."
+        },
+        {
+          "text": "$7\\text{ ms}$",
+          "isCorrect": true,
+          "rationale": "$P_2$ starts at $4\\text{ ms}$ and runs for $3\\text{ ms}$, completing at $t = 7\\text{ ms}$. Turnaround Time is $\\text{CT} - \\text{Arrival} = 7 - 0 = 7\\text{ ms}$."
+        }
+      ],
+      "hint": "Compute completion time first, then subtract the process arrival time.",
+      "chapter": 2,
+      "origin": "NotebookLM; reviewed locally"
+    },
+    {
+      "chapter": 2,
+      "question": "A process finishes an I/O operation in the five-state model. Where does it normally go?",
+      "answerOptions": [
+        {
+          "text": "Ready",
+          "isCorrect": true,
+          "rationale": "Completion makes it eligible for CPU service; the scheduler still decides when it runs."
+        },
+        {
+          "text": "Running immediately in every case",
+          "isCorrect": false,
+          "rationale": "Review the relevant definition or trace in the study guide."
+        },
+        {
+          "text": "Terminated",
+          "isCorrect": false,
+          "rationale": "Review the relevant definition or trace in the study guide."
+        },
+        {
+          "text": "New",
+          "isCorrect": false,
+          "rationale": "Review the relevant definition or trace in the study guide."
+        }
+      ],
+      "origin": "Local review supplement; new numeric exercises are practice examples"
+    },
+    {
+      "chapter": 2,
+      "question": "Which item belongs in a PCB?",
+      "answerOptions": [
+        {
+          "text": "A copy of the entire operating system source code.",
+          "isCorrect": false,
+          "rationale": "Review the relevant definition or trace in the study guide."
+        },
+        {
+          "text": "Every byte of every open file.",
+          "isCorrect": false,
+          "rationale": "Review the relevant definition or trace in the study guide."
+        },
+        {
+          "text": "Saved program counter and register state.",
+          "isCorrect": true,
+          "rationale": "The PCB is process bookkeeping used to manage and resume execution."
+        },
+        {
+          "text": "The physical CPU itself.",
+          "isCorrect": false,
+          "rationale": "Review the relevant definition or trace in the study guide."
+        }
+      ],
+      "origin": "Local review supplement; new numeric exercises are practice examples"
+    },
+    {
+      "chapter": 2,
+      "question": "A process arrives at 2 ms, first runs at 5 ms and completes at 12 ms after 6 ms total CPU burst. Find response, turnaround and waiting time.",
+      "answerOptions": [
+        {
+          "text": "3 ms, 10 ms, 4 ms",
+          "isCorrect": true,
+          "rationale": "Response = 5−2=3; turnaround = 12−2=10; waiting = 10−6=4. Assume no I/O and negligible overhead."
+        },
+        {
+          "text": "5 ms, 12 ms, 6 ms",
+          "isCorrect": false,
+          "rationale": "Review the relevant definition or trace in the study guide."
+        },
+        {
+          "text": "3 ms, 7 ms, 1 ms",
+          "isCorrect": false,
+          "rationale": "Review the relevant definition or trace in the study guide."
+        },
+        {
+          "text": "10 ms, 3 ms, 4 ms",
+          "isCorrect": false,
+          "rationale": "Review the relevant definition or trace in the study guide."
+        }
+      ],
+      "origin": "Local review supplement; new numeric exercises are practice examples"
+    },
+    {
+      "chapter": 2,
+      "question": "Round Robin quantum is 2 ms. P1 and P2 both arrive at 0, bursts 3 ms and 2 ms; P1 is initially first. With zero overhead, what is the timeline?",
+      "answerOptions": [
+        {
+          "text": "P1 0–2, P2 2–4, P1 4–5",
+          "isCorrect": true,
+          "rationale": "P1 uses one quantum and queues behind P2. P2 finishes in its quantum; P1 then uses its remaining 1 ms."
+        },
+        {
+          "text": "P1 0–2, P2 2–3, P1 3–5",
+          "isCorrect": false,
+          "rationale": "Review the relevant definition or trace in the study guide."
+        },
+        {
+          "text": "P2 0–2, P1 2–5",
+          "isCorrect": false,
+          "rationale": "Review the relevant definition or trace in the study guide."
+        },
+        {
+          "text": "P1 0–3, P2 3–5",
+          "isCorrect": false,
+          "rationale": "Review the relevant definition or trace in the study guide."
+        }
+      ],
+      "origin": "Local review supplement; new numeric exercises are practice examples"
+    },
+    {
+      "chapter": 2,
+      "question": "Which technique helps prevent starvation in priority scheduling?",
+      "answerOptions": [
+        {
+          "text": "Remove the ready queue.",
+          "isCorrect": false,
+          "rationale": "Review the relevant definition or trace in the study guide."
+        },
+        {
+          "text": "Give every waiting process lower priority forever.",
+          "isCorrect": false,
+          "rationale": "Review the relevant definition or trace in the study guide."
+        },
+        {
+          "text": "Aging: gradually increase the effective priority of waiting jobs.",
+          "isCorrect": true,
+          "rationale": "Aging helps long-waiting jobs eventually receive CPU service."
+        },
+        {
+          "text": "Always admit only the newest process.",
+          "isCorrect": false,
+          "rationale": "Review the relevant definition or trace in the study guide."
+        }
+      ],
+      "origin": "Local review supplement; new numeric exercises are practice examples"
+    },
+    {
+      "type": "multiple_choice",
+      "question": "An organization stores rarely accessed long-term backups and prioritizes high capacity and low cost over retrieval speed. Which hierarchy tier is typically intended for archival tape or offline optical libraries?",
+      "answerOptions": [
+        {
+          "text": "Secondary Storage",
+          "isCorrect": false,
+          "rationale": "Secondary storage can also store backups; the archival tape/offline-library context specifically identifies the tertiary tier in this hierarchy."
+        },
+        {
+          "text": "Tertiary Storage",
+          "isCorrect": true,
+          "rationale": "Tertiary storage (such as tape drives or archival optical media) provides very low cost per byte and massive capacity specifically designed for long-term data archiving."
+        },
+        {
+          "text": "Cache Memory",
+          "isCorrect": false,
+          "rationale": "Cache memory resides directly near or on the CPU for high-speed instruction access, possessing extremely limited capacity and very high relative cost."
+        },
+        {
+          "text": "Main Memory (RAM)",
+          "isCorrect": false,
+          "rationale": "Main memory is volatile and offers high-speed execution space, making it unsuitable and far too expensive for permanent storage."
+        }
+      ],
+      "hint": "Identify the tier positioned below secondary storage designed explicitly for archival tape or optical media.",
+      "chapter": 3,
+      "origin": "NotebookLM; reviewed locally"
+    },
+    {
+      "type": "multiple_choice",
+      "question": "An operating system uses segmented memory management. Segment 1 has a base address of 2500 and a limit of 800. If a process requests a logical memory address at Segment 1, offset 750, what physical address will the hardware produce?",
+      "answerOptions": [
+        {
+          "text": "3250",
+          "isCorrect": true,
+          "rationale": "The offset $750$ is valid because $0 \\le 750 < 800$. The physical address is computed as $\\text{base} + \\text{offset} = 2500 + 750 = 3250$."
+        },
+        {
+          "text": "750",
+          "isCorrect": false,
+          "rationale": "This value represents the raw logical offset, missing the base address translation step."
+        },
+        {
+          "text": "Invalid Address Trap",
+          "isCorrect": false,
+          "rationale": "The address is valid because offset $750$ is strictly less than the segment length limit of $800$."
+        },
+        {
+          "text": "2500",
+          "isCorrect": false,
+          "rationale": "This is only the base address of Segment 1 without adding the requested displacement offset."
+        }
+      ],
+      "hint": "First check if offset is strictly less than the segment limit, then add the base address.",
+      "chapter": 3,
+      "origin": "NotebookLM; reviewed locally"
+    },
+    {
+      "type": "multiple_choice",
+      "question": "A segment table entry specifies Segment 2 with a base address of 3000 and a segment limit of 300. What happens when a process attempts to reference logical Segment 2 at offset 350?",
+      "answerOptions": [
+        {
+          "text": "The memory system translates the address to physical address 3350.",
+          "isCorrect": false,
+          "rationale": "Hardware does not perform address addition when the offset fails boundary limit verification."
+        },
+        {
+          "text": "The OS automatically expands the limit to 400 and translates to physical address 3350.",
+          "isCorrect": false,
+          "rationale": "Segment limits are fixed boundaries established by program layout; out-of-bounds references trap to the OS rather than auto-expanding."
+        },
+        {
+          "text": "The request is redirected to virtual memory disk space at offset 50.",
+          "isCorrect": false,
+          "rationale": "Segmentation limit violation raises an addressing exception rather than performing disk swapping."
+        },
+        {
+          "text": "An invalid address fault occurs because offset 350 exceeds the segment limit of 300.",
+          "isCorrect": true,
+          "rationale": "For segmentation memory bounds checking, valid offsets must satisfy $0 \\le \\text{offset} < \\text{limit}$. Since $350 \\ge 300$, the memory access is illegal."
+        }
+      ],
+      "hint": "Evaluate the condition $0 \\le \\text{offset} < \\text{limit}$ using the segment's defined limit.",
+      "chapter": 3,
+      "origin": "NotebookLM; reviewed locally"
+    },
+    {
+      "type": "multiple_choice",
+      "question": "Which statement accurately highlights key architectural differences in memory division and fragmentation between Paging and Segmentation?",
+      "answerOptions": [
+        {
+          "text": "Paging completely eliminates internal fragmentation, while Segmentation completely eliminates external fragmentation.",
+          "isCorrect": false,
+          "rationale": "Paging inherent suffers from internal fragmentation, and Segmentation naturally generates external fragmentation."
+        },
+        {
+          "text": "Paging uses variable-sized blocks causing external fragmentation, while Segmentation uses fixed-size blocks causing internal fragmentation.",
+          "isCorrect": false,
+          "rationale": "This statement reverses the division mechanisms: pages are fixed-size, whereas segments are variable-sized."
+        },
+        {
+          "text": "Paging uses fixed-size memory blocks causing internal fragmentation, while Segmentation uses logical variable-sized blocks causing external fragmentation.",
+          "isCorrect": true,
+          "rationale": "Paging allocates uniform fixed-size pages (leading to wasted space inside the last page), whereas Segmentation allocates variable program sections (leading to external memory gaps)."
+        },
+        {
+          "text": "Paging relies on segment tables to manage memory, while Segmentation relies on physical frame tables.",
+          "isCorrect": false,
+          "rationale": "Paging maps pages to physical frames using page tables, while Segmentation relies on segment tables."
+        }
+      ],
+      "hint": "Recall which approach uses uniform block sizes versus variable logical program divisions.",
+      "chapter": 3,
+      "origin": "NotebookLM; reviewed locally"
+    },
+    {
+      "type": "multiple_choice",
+      "question": "A valid, disk-backed virtual-memory page is not resident in RAM. What is the usual demand-paging response?",
+      "answerOptions": [
+        {
+          "text": "Update page table mapping $\rightarrow$ trigger thrashing alert $\rightarrow$ fetch page from secondary storage $\rightarrow$ allocate RAM frame.",
+          "isCorrect": false,
+          "rationale": "The page table can only be updated after the required page is successfully loaded into physical RAM."
+        },
+        {
+          "text": "Trap to the page-fault handler; validate the access, obtain a frame (evicting a page if necessary), load the page, update the mapping, and restart the instruction.",
+          "isCorrect": true,
+          "rationale": "The OS must check that access is valid, locate the backing data, obtain a frame, perform the necessary I/O, update translation state and resume. A clean eviction may not require a write to disk."
+        },
+        {
+          "text": "Terminate process execution $\rightarrow$ clear segment table $\rightarrow$ reallocate system cache $\rightarrow$ restart OS kernel.",
+          "isCorrect": false,
+          "rationale": "A page fault is a routine virtual memory exception, not a fatal process error that forces termination."
+        },
+        {
+          "text": "Fetch missing page from disk $\rightarrow$ trigger page fault handler $\rightarrow$ update page table $\rightarrow$ swap out RAM page.",
+          "isCorrect": false,
+          "rationale": "Disk retrieval cannot happen before the page fault handler is invoked to locate missing data and free RAM frames."
+        }
+      ],
+      "hint": "Identify which component traps the missing page exception first before secondary storage is accessed.",
+      "chapter": 3,
+      "origin": "NotebookLM; reviewed locally"
+    },
+    {
+      "type": "multiple_choice",
+      "question": "In virtual memory management, what direct system behavior characterizes 'thrashing'?",
+      "answerOptions": [
+        {
+          "text": "Severe performance degradation caused by continuous and excessive swapping of pages between RAM and disk storage.",
+          "isCorrect": true,
+          "rationale": "Thrashing occurs when processes spend more time handling page faults and swapping pages in and out of disk than executing real instructions."
+        },
+        {
+          "text": "Internal fragmentation filling L1 cache registers during rapid context switching.",
+          "isCorrect": false,
+          "rationale": "Thrashing involves virtual memory page replacement between RAM and secondary storage disks."
+        },
+        {
+          "text": "Rapid allocation of physical segment limits causing system-wide memory fragmentation.",
+          "isCorrect": false,
+          "rationale": "Segment limit allocation issues cause external fragmentation or segmentation faults, not thrashing."
+        },
+        {
+          "text": "Permanent locking of CPU cores caused by circular resource waiting among bank threads.",
+          "isCorrect": false,
+          "rationale": "Circular wait among processes describes a deadlock state, not virtual memory thrashing."
+        }
+      ],
+      "hint": "Focus on the performance impact of constant page replacement operations between memory and secondary storage.",
+      "chapter": 3,
+      "origin": "NotebookLM; reviewed locally"
+    },
+    {
+      "type": "multiple_choice",
+      "question": "A segmentation table maintains Segment 0 with base address 1200 and limit 500. A process issues a logical memory reference targeting Segment 0 at offset 200. What is the calculated physical memory address?",
+      "answerOptions": [
+        {
+          "text": "700",
+          "isCorrect": false,
+          "rationale": "This incorrectly subtracts offset $200$ from the limit $500$ instead of adding it to base $1200$."
+        },
+        {
+          "text": "1200",
+          "isCorrect": false,
+          "rationale": "This is simply the segment base address without adding the required displacement offset."
+        },
+        {
+          "text": "1400",
+          "isCorrect": true,
+          "rationale": "Offset $200 < 500$ limit is valid. Physical address = $\\text{base} + \\text{offset} = 1200 + 200 = 1400$."
+        },
+        {
+          "text": "Out of Bounds Exception",
+          "isCorrect": false,
+          "rationale": "The offset is completely valid because $200$ is strictly less than the segment limit of $500$."
+        }
+      ],
+      "hint": "Verify offset validity against the limit, then add the segment base address.",
+      "chapter": 3,
+      "origin": "NotebookLM; reviewed locally"
+    },
+    {
+      "type": "multiple_choice",
+      "question": "Which of the following forms of memory storage provides non-volatile data retention, large capacity (e.g., 500GB to 10TB+), and lower cost per bit relative to main memory?",
+      "answerOptions": [
+        {
+          "text": "Main Memory (RAM)",
+          "isCorrect": false,
+          "rationale": "RAM is fast and volatile, losing all content when system power is disconnected."
+        },
+        {
+          "text": "Secondary Storage (SSDs / HDDs)",
+          "isCorrect": true,
+          "rationale": "Secondary storage devices such as SSDs and HDDs retain files permanently when power is turned off, providing large capacity at low relative cost."
+        },
+        {
+          "text": "L2 CPU Cache",
+          "isCorrect": false,
+          "rationale": "Cache memory is volatile, expensive, and engineered specifically for ultra-fast CPU access."
+        },
+        {
+          "text": "Processor Registers",
+          "isCorrect": false,
+          "rationale": "Registers offer tiny storage capacity directly within the CPU for immediate cycle processing."
+        }
+      ],
+      "hint": "Identify internal or external disk-based storage that holds persistent software files.",
+      "chapter": 3,
+      "origin": "NotebookLM; reviewed locally"
+    },
+    {
+      "chapter": 3,
+      "question": "Page size is 1024 bytes and logical address is 2500. Page 2 maps to frame 7. What is the physical address?",
+      "answerOptions": [
+        {
+          "text": "7620 bytes",
+          "isCorrect": true,
+          "rationale": "2500=2×1024+452; physical address=7×1024+452=7620 bytes."
+        },
+        {
+          "text": "7168 bytes",
+          "isCorrect": false,
+          "rationale": "Review the relevant definition or trace in the study guide."
+        },
+        {
+          "text": "2500 bytes",
+          "isCorrect": false,
+          "rationale": "Review the relevant definition or trace in the study guide."
+        },
+        {
+          "text": "2952 bytes",
+          "isCorrect": false,
+          "rationale": "Review the relevant definition or trace in the study guide."
+        }
+      ],
+      "origin": "Local review supplement; new numeric exercises are practice examples"
+    },
+    {
+      "chapter": 3,
+      "question": "A 6 KiB process occupies two 4 KiB pages. How much unused space is inside the final allocated page?",
+      "answerOptions": [
+        {
+          "text": "0 KiB",
+          "isCorrect": false,
+          "rationale": "Review the relevant definition or trace in the study guide."
+        },
+        {
+          "text": "4 KiB",
+          "isCorrect": false,
+          "rationale": "Review the relevant definition or trace in the study guide."
+        },
+        {
+          "text": "2 KiB",
+          "isCorrect": true,
+          "rationale": "The allocation is 8 KiB and the process uses 6 KiB: internal fragmentation is 2 KiB. Assume no other overhead."
+        },
+        {
+          "text": "6 KiB",
+          "isCorrect": false,
+          "rationale": "Review the relevant definition or trace in the study guide."
+        }
+      ],
+      "origin": "Local review supplement; new numeric exercises are practice examples"
+    },
+    {
+      "type": "multiple_choice",
+      "question": "Two concurrent banking threads update a shared account balance initialized at RM1,000. Thread A reads RM1,000 to deposit RM100. Thread B reads RM1,000 to withdraw RM200. Thread A completes calculation and writes RM1,100. Afterward, Thread B calculates from its previously read value and writes its outcome. What is the final account balance, and what concurrency issue occurred?",
+      "answerOptions": [
+        {
+          "text": "RM1,200, caused by an unhandled circular wait deadlock between bank threads.",
+          "isCorrect": false,
+          "rationale": "This scenario demonstrates a race condition and lost update rather than a process deadlock."
+        },
+        {
+          "text": "RM900, because thread synchronization automatically combined both transactions.",
+          "isCorrect": false,
+          "rationale": "Without explicit synchronization primitives, unprotected read-modify-write operations do not automatically merge."
+        },
+        {
+          "text": "RM1,100, because Thread B's transaction was cancelled when Thread A wrote first.",
+          "isCorrect": false,
+          "rationale": "Thread B does not cancel automatically; it overwrites the balance with its own computed value."
+        },
+        {
+          "text": "RM800, caused by a race condition resulting in a lost update of Thread A's deposit.",
+          "isCorrect": true,
+          "rationale": "Thread B writes $\\text{RM1,000} - \\text{RM200} = \\text{RM800}$ based on its stale read, completely overwriting Thread A's deposit of RM100."
+        }
+      ],
+      "hint": "Determine the value Thread B calculates using its cached read of RM1,000 when writing last.",
+      "chapter": 4,
+      "origin": "NotebookLM; reviewed locally"
+    },
+    {
+      "type": "multiple_choice",
+      "question": "According to Coffman's criteria, which four conditions must hold simultaneously for a system deadlock to occur?",
+      "answerOptions": [
+        {
+          "text": "Resource Swapping, Context Switch, Lock Preemption, Circular Wait",
+          "isCorrect": false,
+          "rationale": "Context switching and resource swapping are core OS management tasks, not standard Coffman conditions."
+        },
+        {
+          "text": "Shared Access, Hold and Wait, Preemption, Aging",
+          "isCorrect": false,
+          "rationale": "'Shared Access' violates Mutual Exclusion, and 'Aging' is a technique to solve starvation rather than a deadlock condition."
+        },
+        {
+          "text": "Mutual Exclusion, Hold and Wait, No Preemption, Circular Wait",
+          "isCorrect": true,
+          "rationale": "These four conditions represent Coffman's necessary conditions required for concurrent processes to fall into a deadlock state."
+        },
+        {
+          "text": "Mutual Exclusion, Starvation, Preemption, Linear Wait",
+          "isCorrect": false,
+          "rationale": "Deadlocks require 'No Preemption' and 'Circular Wait', whereas preemption breaks deadlock conditions."
+        }
+      ],
+      "hint": "Recall the four necessary process synchronization conditions defined by Coffman.",
+      "chapter": 4,
+      "origin": "NotebookLM; reviewed locally"
+    },
+    {
+      "type": "multiple_choice",
+      "question": "Which deadlock management strategy dynamically evaluates resource requests in real-time—such as through the Banker's Algorithm—to guarantee the system never enters an unsafe state?",
+      "answerOptions": [
+        {
+          "text": "Ostrich Algorithm",
+          "isCorrect": false,
+          "rationale": "The Ostrich Algorithm ignores deadlocks completely, relying on the assumption that deadlocks occur very rarely."
+        },
+        {
+          "text": "Deadlock Avoidance",
+          "isCorrect": true,
+          "rationale": "Deadlock Avoidance dynamically analyzes allocation states and claim vectors (e.g., Banker's Algorithm) to ensure requests are granted only if the system remains in a safe state."
+        },
+        {
+          "text": "Deadlock Prevention",
+          "isCorrect": false,
+          "rationale": "Deadlock Prevention prevents deadlocks structurally by designing protocol rules that negate at least one Coffman condition in advance."
+        },
+        {
+          "text": "Deadlock Detection & Recovery",
+          "isCorrect": false,
+          "rationale": "Detection & Recovery allows deadlocks to occur first, then discovers the deadlock cycle and recovers post-facto."
+        }
+      ],
+      "hint": "Distinguish between statically breaking rules in advance versus dynamically assessing safe resource allocation paths.",
+      "chapter": 4,
+      "origin": "NotebookLM; reviewed locally"
+    },
+    {
+      "type": "multiple_choice",
+      "question": "What is a primary operational trade-off of applying Deadlock Prevention protocols compared to other deadlock management strategies?",
+      "answerOptions": [
+        {
+          "text": "It carries high risks of unrecoverable data loss during process crashes.",
+          "isCorrect": false,
+          "rationale": "Data loss risks arise during post-deadlock abort operations in Detection and Recovery strategies."
+        },
+        {
+          "text": "It requires complete advance knowledge of all future process resource demands.",
+          "isCorrect": false,
+          "rationale": "Dynamic advance knowledge of max resource claims is a requirement of Deadlock Avoidance (Banker's Algorithm), not Prevention."
+        },
+        {
+          "text": "It increases system design complexity while ignoring system failure risks.",
+          "isCorrect": false,
+          "rationale": "Ignoring system failure risks while simplifying design characterizes the Ostrich Algorithm approach."
+        },
+        {
+          "text": "It lowers overall system resource efficiency and utilization.",
+          "isCorrect": true,
+          "rationale": "By enforcing conservative constraints to invalidate one of Coffman's conditions (e.g., forcing processes to release all resources), system throughput and resource efficiency decrease."
+        }
+      ],
+      "hint": "Think about how strict rules restricting how processes hold and request resources affect overall system efficiency.",
+      "chapter": 4,
+      "origin": "NotebookLM; reviewed locally"
+    },
+    {
+      "type": "multiple_choice",
+      "question": "Which approach to deadlocks simplifies operating system design by ignoring deadlock possibilities entirely under the assumption that deadlocks occur infrequently?",
+      "answerOptions": [
+        {
+          "text": "Detection and Recovery",
+          "isCorrect": false,
+          "rationale": "Detection and Recovery actively runs diagnostic routines to find circular waits and break deadlocked processes."
+        },
+        {
+          "text": "Coffman Prevention",
+          "isCorrect": false,
+          "rationale": "Prevention explicitly modifies system rules so deadlocks are mathematically impossible."
+        },
+        {
+          "text": "Banker's Algorithm",
+          "isCorrect": false,
+          "rationale": "The Banker's Algorithm actively computes safe states to dynamically avoid deadlocks."
+        },
+        {
+          "text": "Ostrich Algorithm",
+          "isCorrect": true,
+          "rationale": "The Ostrich Algorithm simplifies design by ignoring deadlocks, accepting the small risk of failure in exchange for zero runtime overhead."
+        }
+      ],
+      "hint": "Name the strategy named after a bird that buries its head in the sand.",
+      "chapter": 4,
+      "origin": "NotebookLM; reviewed locally"
+    },
+    {
+      "chapter": 4,
+      "question": "Which property distinguishes a mutex from a semaphore?",
+      "answerOptions": [
+        {
+          "text": "Neither requires atomic implementation.",
+          "isCorrect": false,
+          "rationale": "Review the relevant definition or trace in the study guide."
+        },
+        {
+          "text": "A mutex always allows five threads at once.",
+          "isCorrect": false,
+          "rationale": "Review the relevant definition or trace in the study guide."
+        },
+        {
+          "text": "Only semaphores can protect any shared state.",
+          "isCorrect": false,
+          "rationale": "Review the relevant definition or trace in the study guide."
+        },
+        {
+          "text": "A mutex has an owner that must unlock it; a semaphore provides permit counting/signaling.",
+          "isCorrect": true,
+          "rationale": "Ownership is a key mutex rule; semaphore signaling need not come from an owning thread."
+        }
+      ],
+      "origin": "Local review supplement; new numeric exercises are practice examples"
+    },
+    {
+      "chapter": 4,
+      "question": "A counting semaphore is initialized to 3 for three identical devices. Three threads acquire one permit each. What happens to a fourth acquire before any release?",
+      "answerOptions": [
+        {
+          "text": "It forcibly releases all devices.",
+          "isCorrect": false,
+          "rationale": "Review the relevant definition or trace in the study guide."
+        },
+        {
+          "text": "It succeeds because the initial count was positive.",
+          "isCorrect": false,
+          "rationale": "Review the relevant definition or trace in the study guide."
+        },
+        {
+          "text": "It automatically creates a fourth device.",
+          "isCorrect": false,
+          "rationale": "Review the relevant definition or trace in the study guide."
+        },
+        {
+          "text": "It waits until a permit becomes available.",
+          "isCorrect": true,
+          "rationale": "All three permits have been consumed, so the next acquire cannot proceed until a release."
+        }
+      ],
+      "origin": "Local review supplement; new numeric exercises are practice examples"
+    },
+    {
+      "chapter": 4,
+      "question": "What does waiting on a condition variable normally do with the associated mutex?",
+      "answerOptions": [
+        {
+          "text": "Atomically releases it while blocking and reacquires it before returning.",
+          "isCorrect": true,
+          "rationale": "The release lets another thread change shared state; the predicate must be rechecked after waking."
+        },
+        {
+          "text": "Guarantees the condition remains true without rechecking.",
+          "isCorrect": false,
+          "rationale": "Review the relevant definition or trace in the study guide."
+        },
+        {
+          "text": "Deletes the mutex permanently.",
+          "isCorrect": false,
+          "rationale": "Review the relevant definition or trace in the study guide."
+        },
+        {
+          "text": "Holds it forever so no producer can change state.",
+          "isCorrect": false,
+          "rationale": "Review the relevant definition or trace in the study guide."
+        }
+      ],
+      "origin": "Local review supplement; new numeric exercises are practice examples"
+    },
+    {
+      "chapter": 4,
+      "question": "Every thread must acquire lock A before lock B. Which necessary deadlock condition does this rule break?",
+      "answerOptions": [
+        {
+          "text": "No preemption",
+          "isCorrect": false,
+          "rationale": "Review the relevant definition or trace in the study guide."
+        },
+        {
+          "text": "The existence of all critical sections",
+          "isCorrect": false,
+          "rationale": "Review the relevant definition or trace in the study guide."
+        },
+        {
+          "text": "Mutual exclusion",
+          "isCorrect": false,
+          "rationale": "Review the relevant definition or trace in the study guide."
+        },
+        {
+          "text": "Circular wait",
+          "isCorrect": true,
+          "rationale": "A consistent global acquisition order prevents a cycle of lock dependencies."
+        }
+      ],
+      "origin": "Local review supplement; new numeric exercises are practice examples"
+    },
+    {
+      "chapter": 4,
+      "question": "How does starvation differ from deadlock?",
+      "answerOptions": [
+        {
+          "text": "Neither involves waiting.",
+          "isCorrect": false,
+          "rationale": "Review the relevant definition or trace in the study guide."
+        },
+        {
+          "text": "Deadlock always stops every process in the OS.",
+          "isCorrect": false,
+          "rationale": "Review the relevant definition or trace in the study guide."
+        },
+        {
+          "text": "Starvation always requires a circular lock dependency.",
+          "isCorrect": false,
+          "rationale": "Review the relevant definition or trace in the study guide."
+        },
+        {
+          "text": "A starved process waits indefinitely while others progress; a deadlocked set cannot progress because of resource dependencies.",
+          "isCorrect": true,
+          "rationale": "Unrelated processes may continue during a deadlock; starvation does not require a resource cycle."
+        }
+      ],
+      "origin": "Local review supplement; new numeric exercises are practice examples"
+    }
+  ],
+  "note": "20 NotebookLM questions reviewed locally plus 20 local practice questions. Local export differs from the Studio quiz."
+}

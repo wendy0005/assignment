@@ -1,8 +1,7 @@
 ---
 name: nlm-skill
-metadata:
-  version: "0.14.0"
 description: 'Expert guide for the Gemini Notebook (formerly Google NotebookLM) CLI (`nlm`) and MCP server - interfaces for Gemini Notebook. Use this skill when users want to interact with Gemini Notebook programmatically, including: creating/managing notebooks, checking plan usage and quota windows, adding sources (URLs, YouTube, text, Google Drive), generating content (podcasts, reports, interactive reports, quizzes, flashcards, mind maps, slides, infographics, videos, data tables), conducting research, chatting with sources, or automating Gemini Notebook workflows. Triggers on mentions of "nlm", "notebooklm", "Gemini Notebook", "plan usage", "quota", "podcast generation", "audio overview", "interactive report", "lesson report", "refactor document", "critique draft", or any Gemini Notebook-related automation task.'
+version: "0.16.1"
 ---
 
 # Gemini Notebook CLI & MCP Expert
@@ -38,7 +37,7 @@ elif has_cli:
     use_cli()
 ```
 
-Check the active account before a mutation when more than one profile is saved: `nlm login profile list` shows accounts, and `nlm config get auth.default_profile` shows the MCP default. CLI commands can use `--profile <name>`; most MCP tools use the active default profile. `usage_get(profile=...)` is an account-specific read and does not switch other MCP tools.
+Check the active account before a mutation when more than one profile is saved: `nlm login profile list` shows accounts, and `nlm config get auth.default_profile` shows the MCP default. CLI commands can use `--profile <name>`. MCP tools use the active profile: call the `profile` tool (`action=list`, then `action=switch` with `name=...`) to change it for this MCP server until it restarts (add `make_default=true` only when the user asks to change their default). While a switch is active, tool results carry `active_profile_note`; tell the user which account is in use. `usage_get(profile=...)` is an account-specific read and does not switch other MCP tools.
 
 ## Quick Reference
 
@@ -57,7 +56,7 @@ nlm usage --json        # Return usage data as machine-readable JSON
 
 1. **Authenticate when needed**: Run `nlm login` for first-time setup or confirmed stale/missing credentials. Saved cookies often remain usable for weeks.
 2. **Do not confuse network failures with expired auth**: `auth_status="unverified"` means the probe was inconclusive. Check connectivity or try an API call before asking the user to log in again.
-3. **Auto-Authentication Recovery**: The CLI includes automatic 3-layer auth recovery (CSRF refresh -> Token reload -> Headless Auth) and 3x server error retries. Most errors are handled automatically. You only need to manually run `nlm login` if all recovery layers fail. For unattended machines, `nlm auth refresh` refreshes a session non-interactively (headless) from a scheduler so it never lapses between jobs.
+3. **Auto-Authentication Recovery**: The CLI includes automatic 3-layer auth recovery (CSRF refresh -> Token reload -> Headless Auth) and retries for explicitly classified read-only requests. Mutations are not replayed after ambiguous server errors. Most errors are handled automatically. You only need to manually run `nlm login` if all recovery layers fail. Automatic browser recovery has a per-process cooldown and failure budget; concurrent requests share an active recovery. Explicit `nlm auth refresh` bypasses these limits. Use `--http-only` when a browser must not open; it cannot renew browser-dependent PSIDTS cookies or revive a fully expired login.
 4. **⚠️ ALWAYS ASK USER BEFORE DELETE**: Before executing ANY delete command, ask the user for explicit confirmation. Deletions are **irreversible**. Show what will be deleted and warn about permanent data loss.
 5. **Always obtain approval before generation or deletion**: Direct
    `studio_create` and delete operations enforce `--confirm` / `confirm=True`.
@@ -73,8 +72,8 @@ nlm usage --json        # Return usage data as machine-readable JSON
 13. **Studio: fast track by default**: Infer format/style/prompt silently—one compact line, then `studio_create(confirm=True)`. No intake questionnaires. Fast track reduces clarifying questions, not the confirm gate. **Cinematic video is always guided** (quota-limited). Full preview only when vague, high-stakes, cinematic, or user asks. See **[references/studio-prompting-guide.md](references/studio-prompting-guide.md)**.
 14. **Check plan usage before quota-limited work**: Run `nlm usage` (MCP: `usage_get`) before expensive chat or Studio work when budget availability matters. It reports measured compute usage, remaining percentage, and UTC reset times for the rolling and weekly windows. If the check returns an authentication error, refresh the session instead of treating the allowance as exhausted.
 
-**Current MCP surface:** 50 tools. Consolidated action tools include `note`,
-`label`, `studio_status`, `batch`, `pipeline`, and `tag`. Consolidated type
+**Current MCP surface:** 55 tools. Consolidated action tools include `note`,
+`label`, `studio_status`, `batch`, `pipeline`, `tag`, `profile`, and `alias`. Consolidated type
 tools include `source_add`, `studio_create`, and `download_artifact`. The
 read-only `usage_get` tool reports rolling and weekly plan usage windows.
 
@@ -159,6 +158,8 @@ nlm login
 
 # Then reload tokens in MCP
 mcp__gemini-notebook-mcp__refresh_auth()
+# Refresh a specific saved account without switching the active account:
+mcp__gemini-notebook-mcp__refresh_auth(profile="work")
 # Returns status: "success" (valid), "expired" (tokens dead, run `nlm login`),
 # or "error". `nlm login` is the only recovery path for "expired".
 ```
@@ -177,6 +178,7 @@ mcp__gemini-notebook-mcp__save_auth_tokens(cookies="<cookie_header>")
 ```bash
 nlm login                           # Launch browser, extract cookies (primary method)
 nlm login --check                   # Validate current session
+nlm login --storage protected       # New profile: store the login encrypted (or 'file'); skips the question
 nlm login --profile work            # Use named profile for multiple accounts
 nlm login --provider openclaw --cdp-url http://127.0.0.1:18800  # External CDP provider
 nlm login switch <profile>          # Switch the default profile
@@ -184,6 +186,8 @@ nlm login profile list              # List all profiles with email addresses
 nlm login profile delete <name>     # Delete a profile
 nlm login profile rename <old> <new> # Rename a profile
 nlm auth refresh                    # Non-interactive headless refresh (schedulers/unattended)
+nlm auth refresh --profile work     # Refresh a named saved account
+nlm auth refresh --http-only        # Validate and save without opening a browser
 nlm auth storage status             # Check credential storage mode (file or protected)
 nlm auth storage set protected      # Encrypt credentials using OS credential store (--profile X or --all)
 nlm auth storage set file           # Decrypt credentials back to plain files (downgrade prep)
@@ -200,9 +204,35 @@ nlm auth storage relocate           # Re-bind credentials after moving storage d
 `not_configured` means first-time setup is required; `unverified` means the
 probe was inconclusive; `error` means the health check itself failed.
 
-**Switching MCP Accounts**: The MCP server always uses the active default profile. If you need to switch which Google account the MCP server is communicating with, you MUST use the CLI: run `nlm login switch <name>`. Your next MCP tool call will instantly use the new account.
+**Switching MCP Accounts**: Call the `profile` tool: `profile(action="list")` shows saved accounts, `profile(action="switch", name="<name>")` uses that account for every later MCP call until the MCP server restarts (apps that share one server across chats, like Claude Desktop, apply it to every open chat). Add `make_default=true` ONLY if the user asks to change their default account; it also changes the CLI default. From a terminal, `nlm login switch <name>` changes the saved default and the next MCP call uses it.
 
 **Note**: Both MCP and CLI share the same authentication backend, so authenticating with one works for both.
+
+**Login completion (v0.15.3+):** Builtin Chromium/CDP login waits up to 300 seconds
+for signed-in Google cookies and the actual CSRF token. A Notebook URL, HTTP 200,
+or an anonymous `NID` cookie is not proof of authentication. If an older version
+saved only `NID` and reported success, upgrade and retry
+`nlm login --profile <name>`, then verify with `nlm login --check --profile <name>`. Keep the same
+profile; do not delete it or invent tokens to repair this failure. Builtin login
+closes its browser after completion; externally managed CDP browsers remain open.
+See [login recovery](references/troubleshooting.md#browser-closes-before-sign-in-or-reports-false-success).
+
+**Headless refresh & CDP port fallback (v0.15.4+):** `nlm auth refresh` surfaces actionable failure diagnostics (explaining signed-out profiles, missing browser profiles, or candidate credential rejection) rather than silently returning empty tokens. Headless authentication also automatically falls back to an OS-assigned ephemeral port when default ports conflict.
+
+**Refresh safety (v0.15.5+):** `--http-only` forces HTTP transport even when
+`NOTEBOOKLM_RPC_TRANSPORT=cdp` is configured and saves credentials only after a
+valid authenticated API response. It remains available when
+`NOTEBOOKLM_DISABLE_HEADLESS_REFRESH=1` disables browser recovery. On accounts
+where reopening the browser revokes the session, keep browser recovery disabled;
+an HTTP-only failure may still require interactive `nlm login`.
+
+Automatic browser recovery defaults to a 900-second cooldown and three failures
+per profile within each process. Set `NOTEBOOKLM_AUTH_RECOVERY_COOLDOWN_SECONDS`
+or `NOTEBOOKLM_AUTH_MAX_HEADLESS_FAILURES` to 0 to disable that limit. A new
+credential revision or changed file-mode cookies resets the budget; success
+clears the failure count. Concurrent callers wait up to 60 seconds for the same
+recovery result. Separate processes serialize Chromium recovery with a
+per-profile lock. Explicit CLI/MCP refresh bypasses the automatic budget.
 
 ### Plan Usage and Quotas
 
@@ -260,6 +290,13 @@ or long-running questions may need a larger budget, for example
 By default, `notebook_query` continues the notebook's persistent chat when
 `conversation_id` is omitted. For an independent question, pass
 `new_conversation=True` (or use `--new-conversation` with the CLI).
+
+**Collections (MCP only):** Native home-page collections group whole notebooks,
+separate from source labels. Use `collection_list`, `collection_create`,
+`collection_edit`, `collection_set_emoji`, and `collection_delete`. Editing
+takes the complete notebook list and sends only the delta; an unknown
+`collection_id` raises. Deletion requires `confirm=True` and never deletes the
+notebooks inside.
 
 #### CLI Commands
 
@@ -336,7 +373,7 @@ nlm source content <source-id> -o file.txt  # Export to file
 
 # Drive sync (for stale sources)
 nlm source stale <nb-id>               # List outdated Drive sources
-nlm source sync <nb-id> --confirm      # Sync all stale sources
+nlm source sync <nb-id> --confirm      # Sync confirmed stale, syncable sources
 nlm source sync <nb-id> --source-ids <ids> --confirm  # Sync specific
 
 # Rename
@@ -348,6 +385,25 @@ nlm source delete <source-id> --confirm
 ```
 
 **Drive types**: `doc`, `slides`, `sheets`, `pdf`
+
+**Original source URLs:** CLI `nlm source list <nb-id> --json` and
+`nlm source get <source-id> --json` return `url` for web and YouTube sources;
+`nlm source list <nb-id> --url` prints ID-to-URL pairs. The current MCP
+`source_list_drive` and `source_get_content` results omit that field. Use the CLI
+when the original URL is needed instead of assuming a field or inferring a URL
+from transcript text.
+
+### Experimental source passage search (MCP only, 0.16.0)
+
+Use source_search(notebook_id, query, source_ids=None, max_results=8,
+snippet_chars=900) to retrieve relevant excerpts without generating an answer.
+It is disabled unless NOTEBOOKLM_ENABLE_NATIVE_SOURCE_SEARCH=1 is set in the
+MCP server environment. Notebook aliases work. Optional source_ids must be a
+list of 1–10 source UUIDs belonging to the notebook. Queries are limited to
+1,000 characters; responses contain at most 20 passages, 1,800 characters per
+excerpt, and 12,000 excerpt characters total. Results rotate across source
+groups and do not assert a global relevance ranking. There is no CLI command.
+The upstream API is undocumented; keep this feature experimental.
 
 ### 4. Research (Source Discovery)
 
@@ -688,8 +744,10 @@ Use `chat_list`, `chat_get`, and `chat_export` to list/view/export a
 notebook's chat history. Transcripts are fetched from NotebookLM's server
 (not just this process's cache), so past chats are visible even from a fresh
 MCP session. `chat_get`'s `conversation_id` is optional and defaults to the
-notebook's latest session. There is no MCP tool for saving a chat to a note
-yet — use the CLI's `nlm chats to-note` for that.
+notebook's latest session. Use `chat_save_to_note` (CLI: `nlm chats to-note`)
+to save a chat or one turn as a Note. Aliases from `alias` work as `notebook_id`.
+Use `chat_delete(confirm=True)` (CLI: `nlm chats delete <id> --confirm`) only
+after explicit approval; it permanently deletes the notebook's full chat history.
 
 #### CLI Commands
 
@@ -735,6 +793,7 @@ nlm chats get <nb-id> <conversation-id>              # Specific session
 nlm chats export <nb-id> --format md -o chat.md      # Export to file
 nlm chats to-note <nb-id> <conversation-id> --turn 3 # Save one turn as a Note
 nlm chats to-note <nb-id> <conversation-id>          # Save the full chat as a Note
+nlm chats delete <nb-id> --confirm                   # Permanently delete all chat history
 
 # Resume a listed conversation with a follow-up question:
 nlm notebook query <nb-id> "follow-up question" --conversation-id <conversation-id>
@@ -807,7 +866,7 @@ nlm login switch work                        # Switch default profile
 | `output.format`        | `table`   | Default output format (table, json)                                                             |
 | `output.color`         | `true`    | Enable colored output                                                                           |
 | `output.short_ids`     | `true`    | Show shortened IDs                                                                              |
-| `auth.browser`         | `auto`    | Preferred browser for login (auto, chrome, arc, dia, comet, brave, edge, chromium, firefox, vivaldi, opera) |
+| `auth.browser`         | `auto`    | Preferred browser for login (auto, chrome, arc, dia, comet, brave, edge, edge-beta, chromium, firefox, vivaldi, opera) |
 | `auth.browser_path`    | empty     | Explicit Chromium-compatible executable; overrides discovery (`NLM_BROWSER_PATH` also supported) |
 | `auth.default_profile` | `default` | Profile to use when `--profile` not specified                                                   |
 
@@ -967,6 +1026,56 @@ nlm tag list                                              # List all tagged note
 nlm tag select "ai research"                              # Find notebooks by tag match
 ```
 
+### 16. Long-Lived MCP Server Configuration
+
+The MCP server runs as a long-lived process. For 24/7 deployments (e.g. an always-on assistant), a few knobs help bound memory and tune behavior.
+
+#### Conversation cache bounds (added in 0.6.14)
+
+The in-process conversation history cache used to grow without bound, eventually OOM'ing the host on always-on servers. Three env-var knobs cap memory. Set any to `0` to disable that specific cap and restore the old unbounded behavior:
+
+| Env var                                      | Default  | Purpose                                                                                                                                                                |
+| -------------------------------------------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `NOTEBOOKLM_CONVERSATION_MAX_TURNS`          | `50`     | Max turns kept per conversation. Older turns are FIFO-dropped. Survivors are renumbered `1..N` so `turn_number` stays a stable 1-indexed position in the current list. |
+| `NOTEBOOKLM_CONVERSATION_MAX_CONVS`          | `500`    | Max distinct conversations cached. On overflow, the least-recently-used conversation is evicted. Reads and writes both promote to MRU.                                 |
+| `NOTEBOOKLM_CONVERSATION_MAX_CHARS_PER_TURN` | `100000` | Per-turn answer char cap. Safety net against pathological payloads. Queries are user input and not truncated.                                                          |
+
+With all defaults: 500 convs × 50 turns × up to 100k chars = hard upper bound around ~2.5 GB of answer text. In practice answers are 1–10 KB, so the typical ceiling is ~25 MB.
+
+Negative values are clamped to `0` (unlimited) with a warning. Invalid values fall back to the default with a warning.
+
+#### Cache stats (added in 0.6.14)
+
+For monitoring from Python, the `BaseClient` exposes `get_conversation_cache_stats()` which returns:
+
+```python
+{
+    "conversations": int,            # current number of cached conversations
+    "total_turns": int,              # current number of cached turns across all convs
+    "max_turns_per_conversation": int,
+    "max_conversations": int,
+    "max_chars_per_turn": int,
+}
+```
+
+There's no MCP or CLI tool wrapper in 0.6.14. Call it directly from Python if you need to surface cache pressure in your own tooling.
+
+#### Server startup flags (notebooklm-mcp)
+
+When starting the MCP server directly, two flags control transport-layer behavior. Neither affects the conversation cache above.
+
+- `--stateless` / `--no-stateless` (default: `true`, env `NOTEBOOKLM_MCP_STATELESS`): Controls whether the MCP HTTP transport keeps per-session state. Leave it `true` unless you know you need sessions. The flag exists to work around an MCP SDK double-response crash (python-sdk#2416) and is unrelated to the conversation cache.
+- `--transport http` / `--transport stdio` (default: `stdio`): Pick the transport. `--transport http` requires `--port` (default `8000`).
+- `--host <addr>` (default `127.0.0.1`): Bind address for HTTP/SSE. Refuses external binds unless `NOTEBOOKLM_ALLOW_EXTERNAL_BIND=1` is set.
+
+#### Remote MCP security
+
+The server has no built-in endpoint authentication or TLS and uses one
+process-wide Google account. Never expose it directly to the public internet.
+Put authentication, TLS, and network restrictions in front of remote
+deployments. Browser/phone-local files are not transferred automatically;
+`source_add(file)` requires a path already present on the server host.
+
 ## Common Patterns
 
 ### Pattern 1: Research → Podcast Pipeline
@@ -1062,3 +1171,4 @@ For detailed information, see:
 - **[references/command_reference.md](references/command_reference.md)**: Complete command signatures
 - **[references/troubleshooting.md](references/troubleshooting.md)**: Detailed error handling
 - **[references/workflows.md](references/workflows.md)**: End-to-end task sequences
+- **[references/remote-mcp.md](references/remote-mcp.md)**: Remote HTTP deployment boundaries, security, account isolation, and file-transfer limitations

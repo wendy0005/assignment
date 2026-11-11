@@ -1,0 +1,186 @@
+{
+  "notebook_id": "8ec68d4f-c5f5-496e-8fce-8bbfdeaf9fc1",
+  "notebook_url": "https://notebook.google.com/notebook/8ec68d4f-c5f5-496e-8fce-8bbfdeaf9fc1",
+  "artifacts": {
+    "report": {
+      "artifact_type": "report",
+      "artifact_id": "83d2864a-3502-4609-92d3-1d58db3c832e",
+      "status": "unknown",
+      "message": "Report generation started."
+    },
+    "flashcards": {
+      "artifact_type": "flashcards",
+      "artifact_id": "0148dc40-37a0-4f4e-8e83-6b532a4edab1",
+      "status": "queued",
+      "message": "Flashcards generation started."
+    },
+    "infographic": {
+      "artifact_type": "infographic",
+      "artifact_id": "e435696d-764a-4a92-9926-1132ce7612d2",
+      "status": "queued",
+      "message": "Infographic generation started."
+    },
+    "quiz": {
+      "artifact_type": "quiz",
+      "artifact_id": "09ba7b5e-b2e1-4a35-98bb-8ba3e02b7b1b",
+      "status": "queued",
+      "message": "Quiz generation started."
+    }
+  },
+  "scope": "Chapters 1-4 only; ten selected lecture/tutorial sources; full textbooks and Chapter 5 excluded",
+  "notebook_source_inventory": [
+    {
+      "id": "d07590aa-683a-460c-980a-beca0514fb46",
+      "title": "1.1 Introduction/BIT1213BCL1213BTL1213OperatingSystemIntroduction.pdf",
+      "type": "pdf",
+      "url": null,
+      "status": 2
+    },
+    {
+      "id": "67f7b0ad-8d5b-4d61-b7b6-0fbf774d2a20",
+      "title": "1.2 Pro-Forma/BCL1213OperatingSystemPro-Forma.pdf",
+      "type": "pdf",
+      "url": null,
+      "status": 2
+    },
+    {
+      "id": "e377e3de-21c2-448f-b360-10d4956adbd4",
+      "title": "1.3 E-Books/Operating-System-Concepts-10th-Edition.pdf",
+      "type": "pdf",
+      "url": null,
+      "status": 2
+    },
+    {
+      "id": "c87ecc05-fdae-45ff-b8a5-287cb3c59c0b",
+      "title": "1.3 E-Books/UnderstandingOperatingSystems6EByAnnMcIverMcHoesandIdaMFlynn.pdf",
+      "type": "pdf",
+      "url": null,
+      "status": 2
+    },
+    {
+      "id": "4b876d9c-3fe6-4d60-ab9f-9419711ae624",
+      "title": "Chapter 01 Introduction to Operating System/InfographicChapter01.png",
+      "type": "image",
+      "url": null,
+      "status": 2
+    },
+    {
+      "id": "f159ee8c-f7e3-45c6-9f54-f394beb4ebf1",
+      "title": "Chapter 1 — Lecture Notes — Introduction to Operating Systems",
+      "type": "pdf",
+      "url": null,
+      "status": 2
+    },
+    {
+      "id": "55aa4244-dfa3-4b4f-bafe-ef02c5693443",
+      "title": "Chapter 2 — Lecture Notes — Process Management",
+      "type": "pdf",
+      "url": null,
+      "status": 2
+    },
+    {
+      "id": "fd3ea23d-0c34-487f-8cf7-0169a1a80593",
+      "title": "Chapter 2 — SIM Notes — Process Management and Scheduling",
+      "type": "pdf",
+      "url": null,
+      "status": 2
+    },
+    {
+      "id": "d0986e7d-badb-49e9-9fb0-3fd4de8a44a9",
+      "title": "Chapter 3 — Lecture Notes (Part A) — Memory Management",
+      "type": "pdf",
+      "url": null,
+      "status": 2
+    },
+    {
+      "id": "900ecb23-b1f3-4264-bd2b-fa20a87413b6",
+      "title": "Chapter 3 — Lecture Notes (Part B) — Memory Management",
+      "type": "pdf",
+      "url": null,
+      "status": 2
+    },
+    {
+      "id": "c00a91a5-eb14-4a43-a2bb-eb56cd26229c",
+      "title": "Chapter 3 — SIM Notes — Memory Management",
+      "type": "pdf",
+      "url": null,
+      "status": 2
+    },
+    {
+      "id": "50979534-9e5c-41d4-9799-4e4c11e4df61",
+      "title": "Chapter 4 — SIM Notes — Process Synchronization",
+      "type": "pdf",
+      "url": null,
+      "status": 2
+    },
+    {
+      "id": "d402cabe-ac35-4248-8c4a-b39935347ae1",
+      "title": "General Information/1 Must Read/image-1.png",
+      "type": "image",
+      "url": null,
+      "status": 2
+    },
+    {
+      "id": "afdf4098-bdb9-452a-bb86-a775c84869f4",
+      "title": "General Information/2 Grade Distribution/image-1.png",
+      "type": "image",
+      "url": null,
+      "status": 2
+    },
+    {
+      "id": "749bd85b-0204-4589-9718-f27e2ccb71cf",
+      "title": "Tutorials/20261011_Tutorial1_Answers.pdf",
+      "type": "pdf",
+      "url": null,
+      "status": 2
+    },
+    {
+      "id": "b48f1559-d77f-4820-a1e7-a47181f538ef",
+      "title": "Tutorials/20261021_Tutorial2_Process_Management_Answers.pdf",
+      "type": "pdf",
+      "url": null,
+      "status": 2
+    },
+    {
+      "id": "bc8b5e8c-8e12-43be-9e09-1e39c05590bb",
+      "title": "Tutorials/20261105_Tutorial3_Memory_Management_Answers.pdf",
+      "type": "pdf",
+      "url": null,
+      "status": 2
+    },
+    {
+      "id": "94aa5514-ea56-476b-989a-2b006d3572a7",
+      "title": "Tutorials/InfographicChapter02.png",
+      "type": "image",
+      "url": null,
+      "status": 2
+    },
+    {
+      "id": "df01ee03-0c17-4263-8c1a-c3fa8130fd07",
+      "title": "Tutorials/Tutorial1.pdf",
+      "type": "pdf",
+      "url": null,
+      "status": 2
+    },
+    {
+      "id": "9eab825f-8d3f-47fd-ad21-f4d2e47e9c10",
+      "title": "Tutorials/Tutorial2ProcessManagement.docx",
+      "type": "uploaded_file",
+      "url": null,
+      "status": 2
+    }
+  ],
+  "selected_source_ids": [
+    "f159ee8c-f7e3-45c6-9f54-f394beb4ebf1",
+    "55aa4244-dfa3-4b4f-bafe-ef02c5693443",
+    "fd3ea23d-0c34-487f-8cf7-0169a1a80593",
+    "df01ee03-0c17-4263-8c1a-c3fa8130fd07",
+    "b48f1559-d77f-4820-a1e7-a47181f538ef",
+    "d0986e7d-badb-49e9-9fb0-3fd4de8a44a9",
+    "900ecb23-b1f3-4264-bd2b-fa20a87413b6",
+    "c00a91a5-eb14-4a43-a2bb-eb56cd26229c",
+    "50979534-9e5c-41d4-9799-4e4c11e4df61",
+    "bc8b5e8c-8e12-43be-9e09-1e39c05590bb"
+  ],
+  "local_review": "Guide corrected; quiz expanded from 20 to 40; flashcards clarified and expanded from 60 to 76; reviewed vector revision sheet replaces erroneous generated infographic. See REVIEW_NOTES."
+}
