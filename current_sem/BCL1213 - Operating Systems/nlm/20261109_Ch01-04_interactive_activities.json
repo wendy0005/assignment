@@ -1,0 +1,1962 @@
+{
+  "elements": [
+    {
+      "element_id": "e7a0bfe4-a280-4a4a-b947-13f54487221c",
+      "type": "flashcards",
+      "title": "Operating Systems Flashcards",
+      "element_status": "completed",
+      "steering_prompt": "A set of active recall cards covering fundamental OS definitions, system call behavior, key architectural trade-offs, and common exam traps across OS types.",
+      "description": "A set of active recall cards covering fundamental OS definitions, system call behavior, key architectural trade-offs, and common exam traps across OS types.",
+      "section": {
+        "heading": "Chapter 1: Operating System Fundamentals and Architecture Types",
+        "text": "The Operating System as a Resource Manager\nAt its core, an **Operating System (OS)** is system software that acts as an intermediary interface between physical computer hardware and user application programs. Its primary objective is simple yet critical: execute user programs efficiently, make the system convenient to use, and manage physical hardware resources cleanly.\nThink of the OS as a building manager who coordinates access to shared facilities. Through combined software protocols and hardware enforcement mechanisms, the OS manages six fundamental subsystems:\n**CPU Management:** Decides which ready process gets access to the CPU next.\n**Memory Management:** Tracks allocated memory regions, translates logical addresses to physical RAM, and protects process address spaces.\n**Device Management:** Controls hardware I/O peripherals using specialized device drivers.\n**File Management:** Organizes non-volatile persistent storage and enforces file access permissions.\n**Protection & Security:** Regulates access to system resources and isolates executing tasks.\n**User & Program Interfaces:** Provides graphical user interfaces (GUIs), command shells, and system call APIs for service requests.\nSystem Calls and Service Execution\nWhen an application program requires a kernel service (such as writing data to a disk file or allocating memory), it executes a **system call**. A system call is a controlled request to the operating system kernel. A common exam misconception is assuming that invoking a system call automatically blocks the calling process. In reality, if a system call can be fulfilled immediately by the kernel without waiting for external hardware I/O, the process does not transition to a blocked state.\nArchitectural Evolution of Operating System Types\nUnderstanding how operating systems evolved helps clarify their architectural trade-offs:\n**Batch Systems:** Execute queued jobs sequentially with zero user interaction during execution (e.g., offline payroll jobs). They are unsuitable for responsive, interactive work.\n**Multiprogramming Systems:** Keep multiple programs loaded in main memory simultaneously. When the active program stalls waiting for an I/O operation, the CPU switches to another program. This maximizes CPU utilization, though it does not imply simultaneous physical execution on a single core.\n**Time-sharing (Timeslicing) Systems:** A logical extension of multiprogramming designed for rapid interactivity. The CPU switches between tasks so rapidly using fixed time slices that users can interact with programs while they run. Note that fast average response in timesharing is **not** equivalent to guaranteed hard real-time execution.\n**Real-time Systems (RTOS):** Built specifically to meet rigid timing requirements. **Hard real-time** systems consider a missed deadline an absolute system failure, whereas **soft real-time** systems tolerate minor deadline misses.\n**Network Operating Systems:** Provide coordinated services (such as shared files, remote printers, and network authentication) across distinct, identifiable networked computers. If the central network infrastructure or primary server fails, network services become unavailable, though independent local work can continue.\n**Distributed Operating Systems:** Coordinate multiple autonomous computers so they appear to the user as a single, unified environment. Crucially, each node in a distributed architecture possesses its own CPU and local memory."
+      },
+      "settings": {
+        "difficulty": {
+          "values": [
+            "easy",
+            "medium",
+            "hard"
+          ],
+          "default": "medium"
+        },
+        "card_amount": {
+          "values": [
+            "fewer",
+            "standard",
+            "more"
+          ],
+          "default": "fewer"
+        }
+      },
+      "content": {
+        "cards": [
+          {
+            "front": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "What is an Operating System (OS)?"
+                }
+              ]
+            },
+            "back": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "System software that manages computer hardware and acts as an intermediary interface between application programs and physical hardware."
+                }
+              ]
+            }
+          },
+          {
+            "front": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "What is the core objective of an operating system?"
+                }
+              ]
+            },
+            "back": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "To execute user programs, make the computer convenient to use, and efficiently manage system resources such as the CPU, memory, and storage."
+                }
+              ]
+            }
+          },
+          {
+            "front": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "What is a system call?"
+                }
+              ]
+            },
+            "back": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "A controlled request made by an application program to the operating system kernel to perform a privileged service or access hardware resources."
+                }
+              ]
+            }
+          },
+          {
+            "front": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "Does making a system call automatically force a process into a waiting state?"
+                }
+              ]
+            },
+            "back": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "No. A system call that can complete immediately does not require the running process to transition to a waiting state."
+                }
+              ]
+            }
+          },
+          {
+            "front": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "What is the defining characteristic of a batch operating system?"
+                }
+              ]
+            },
+            "back": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "It executes submitted programs (jobs) sequentially in groups with little to no user interaction during execution."
+                }
+              ]
+            }
+          },
+          {
+            "front": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "What is the primary objective of multiprogramming?"
+                }
+              ]
+            },
+            "back": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "To maximize CPU utilization by keeping multiple jobs loaded in main memory so the CPU can switch to another job whenever the active job waits for input/output (I/O)."
+                }
+              ]
+            }
+          },
+          {
+            "front": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "What is the primary objective of time-sharing (timesharing) operating systems?"
+                }
+              ]
+            },
+            "back": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "To provide fast interactive response times by rapidly switching the CPU among tasks using short time-slices, giving users the illusion of exclusive access."
+                }
+              ]
+            }
+          },
+          {
+            "front": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "How does multiprogramming differ fundamentally from time-sharing?"
+                }
+              ]
+            },
+            "back": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "Multiprogramming focuses purely on keeping the CPU busy during I/O delays, whereas time-sharing focuses on user interactivity through rapid time-sliced CPU switching."
+                }
+              ]
+            }
+          },
+          {
+            "front": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "What defines a Hard Real-Time operating system?"
+                }
+              ]
+            },
+            "back": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "A system where meeting strict timing deadlines is mandatory, and missing a deadline causes operational failure."
+                }
+              ]
+            }
+          },
+          {
+            "front": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "Does missing a deadline in a hard real-time system always cause a total computer system shutdown?"
+                }
+              ]
+            },
+            "back": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "No. A missed hard deadline is strictly unacceptable and considered a system failure, but it does not necessarily cause an immediate physical shutdown of the entire machine."
+                }
+              ]
+            }
+          },
+          {
+            "front": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "How does a Soft Real-Time operating system handle missed deadlines?"
+                }
+              ]
+            },
+            "back": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "It prioritizes critical tasks to meet timing targets but can tolerate occasional deadline misses without catastrophic system failure."
+                }
+              ]
+            }
+          },
+          {
+            "front": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "What is the main operational failure risk in a server-centric Network OS environment?"
+                }
+              ]
+            },
+            "back": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "If the central server or network infrastructure fails, connected clients lose access to shared files, applications, and network services, while local work continues."
+                }
+              ]
+            }
+          },
+          {
+            "front": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "How are processor resources organized in a Distributed Operating System?"
+                }
+              ]
+            },
+            "back": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "Each autonomous computer node across the network has its own separate CPU and memory, coordinated as a unified system environment."
+                }
+              ]
+            }
+          },
+          {
+            "front": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "What is the fundamental difference between a passive program and an active process?"
+                }
+              ]
+            },
+            "back": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "A program is a passive file stored on disk, whereas a process is an active program currently being executed by the CPU with allocated resources."
+                }
+              ]
+            }
+          },
+          {
+            "front": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "What is a Process Control Block (PCB)?"
+                }
+              ]
+            },
+            "back": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "A system data structure created by the operating system for every active process to store its execution state, ID, memory details, and CPU registers."
+                }
+              ]
+            }
+          },
+          {
+            "front": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "What happens during a context switch between two processes?"
+                }
+              ]
+            },
+            "back": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "The OS saves the current execution state of the running process into its PCB and loads the previously saved state of the newly scheduled process from its PCB."
+                }
+              ]
+            }
+          },
+          {
+            "front": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "Which event triggers a process to move from the New state to the Ready state?"
+                }
+              ]
+            },
+            "back": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "Admission by the operating system into main memory."
+                }
+              ]
+            }
+          },
+          {
+            "front": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "Which event triggers a process to move from the Ready state to the Running state?"
+                }
+              ]
+            },
+            "back": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "Dispatching by the CPU scheduler when a CPU core becomes available."
+                }
+              ]
+            }
+          },
+          {
+            "front": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "Which event causes a process to transition from the Running state to the Waiting (Blocked) state?"
+                }
+              ]
+            },
+            "back": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "The process issuing a request for a blocking event, such as an I/O operation."
+                }
+              ]
+            }
+          },
+          {
+            "front": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "Which event causes a process to transition directly from the Running state back to the Ready state?"
+                }
+              ]
+            },
+            "back": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "Preemption by the CPU scheduler, such as when its assigned time quantum expires."
+                }
+              ]
+            }
+          },
+          {
+            "front": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "Which event triggers a process to transition from the Waiting state to the Ready state?"
+                }
+              ]
+            },
+            "back": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "The completion of the specific I/O operation or external event the process was waiting for."
+                }
+              ]
+            }
+          },
+          {
+            "front": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "What is First-Come, First-Served (FCFS) CPU scheduling?"
+                }
+              ]
+            },
+            "back": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "A non-preemptive scheduling algorithm that dispatches processes strictly in the order of their arrival time."
+                }
+              ]
+            }
+          },
+          {
+            "front": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "What is the primary objective of Shortest Job First (SJF) scheduling?"
+                }
+              ]
+            },
+            "back": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "To minimize average waiting time by selecting the available process with the shortest CPU burst length next."
+                }
+              ]
+            }
+          },
+          {
+            "front": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "What is the primary limitation and starvation risk of Shortest Job First (SJF) scheduling?"
+                }
+              ]
+            },
+            "back": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "Future CPU burst lengths must be estimated rather than known in advance, and long processes can suffer starvation if short jobs arrive continuously."
+                }
+              ]
+            }
+          },
+          {
+            "front": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "What is Shortest Remaining Time First (SRTF) scheduling?"
+                }
+              ]
+            },
+            "back": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "The preemptive counterpart of Shortest Job First (SJF), which preempts the running process if a newly arrived process has a shorter remaining CPU burst time."
+                }
+              ]
+            }
+          },
+          {
+            "front": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "How does Priority Scheduling determine which ready process runs next?"
+                }
+              ]
+            },
+            "back": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "It assigns an integer priority rank to each process and dispatches the process with the highest priority rank (often represented by the lowest integer value)."
+                }
+              ]
+            }
+          },
+          {
+            "front": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "How does Round Robin (RR) CPU scheduling enforce interactive fairness?"
+                }
+              ]
+            },
+            "back": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "It allocates a fixed time quantum ($Q$) to each process in turn, preempting and re-queueing any process that does not finish within its quantum."
+                }
+              ]
+            }
+          },
+          {
+            "front": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "What is the operational consequence of choosing an excessively small time quantum in Round Robin scheduling?"
+                }
+              ]
+            },
+            "back": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "It causes frequent preemptions and context switches, creating high system overhead that degrades overall CPU processing efficiency."
+                }
+              ]
+            }
+          },
+          {
+            "front": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "What happens to Round Robin scheduling when the time quantum is set excessively large?"
+                }
+              ]
+            },
+            "back": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "It degrades interactive response time and degenerates into First-Come, First-Served (FCFS) scheduling."
+                }
+              ]
+            }
+          },
+          {
+            "front": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "What is the formula for process Turnaround Time (TAT)?"
+                }
+              ]
+            },
+            "back": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "$\\text{Turnaround Time} = \\text{Completion Time} - \\text{Arrival Time}$"
+                }
+              ]
+            }
+          },
+          {
+            "front": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "In a single CPU burst model with zero I/O, what is the formula for process Waiting Time (WT)?"
+                }
+              ]
+            },
+            "back": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "$\\text{Waiting Time} = \\text{Turnaround Time} - \\text{Burst Time}$"
+                }
+              ]
+            }
+          },
+          {
+            "front": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "How are computer memory components ordered from fastest to slowest access speed?"
+                }
+              ]
+            },
+            "back": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "CPU Registers $\\rightarrow$ Cache Memory $\\rightarrow$ Main Memory (RAM) $\\rightarrow$ Secondary Storage (Solid-State Drives / Hard Disks)."
+                }
+              ]
+            }
+          },
+          {
+            "front": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "What is the main physical difference between RAM and secondary storage like HDDs or SSDs?"
+                }
+              ]
+            },
+            "back": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "RAM is fast, volatile memory that loses data when powered off, whereas secondary storage is slower, non-volatile memory that retains data persistently."
+                }
+              ]
+            }
+          },
+          {
+            "front": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "What is Virtual Memory?"
+                }
+              ]
+            },
+            "back": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "A memory management technique that provides each process with a logical address space mapped to physical memory, enabling execution even when a program exceeds physical RAM."
+                }
+              ]
+            }
+          },
+          {
+            "front": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "What is a Logical Address Space?"
+                }
+              ]
+            },
+            "back": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "The set of all virtual memory addresses generated by the CPU during program execution."
+                }
+              ]
+            }
+          },
+          {
+            "front": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "What is a Physical Address Space?"
+                }
+              ]
+            },
+            "back": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "The set of all physical locations directly accessible in RAM hardware."
+                }
+              ]
+            }
+          },
+          {
+            "front": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "In virtual memory paging, what is the relationship between a Page and a Frame?"
+                }
+              ]
+            },
+            "back": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "A Page is a fixed-size block of logical memory space, and a Frame is an identically sized fixed-size block of physical RAM."
+                }
+              ]
+            }
+          },
+          {
+            "front": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "What is the primary role of a Page Table?"
+                }
+              ]
+            },
+            "back": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "It is an OS data structure maintained per process that translates logical Page Numbers into physical Frame Numbers."
+                }
+              ]
+            }
+          },
+          {
+            "front": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "What formula calculates a physical address from a mapped frame number, page size, and offset?"
+                }
+              ]
+            },
+            "back": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "$\\text{Physical Address} = (\\text{Frame Number} \\times \\text{Page Size}) + \\text{Offset}$"
+                }
+              ]
+            }
+          },
+          {
+            "front": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "What mathematical constraint must a page offset satisfy to be valid?"
+                }
+              ]
+            },
+            "back": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "The offset must strictly satisfy $0 \\le \\text{Offset} < \\text{Page Size}$."
+                }
+              ]
+            }
+          },
+          {
+            "front": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "How does Segmentation divide program memory differently from Paging?"
+                }
+              ]
+            },
+            "back": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "Paging divides memory into arbitrary fixed-size pages, whereas Segmentation divides memory into variable-sized logical units (e.g., functions, stack, main code) matching a programmer's view."
+                }
+              ]
+            }
+          },
+          {
+            "front": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "What rule validates a logical offset in a segmentation system before calculating the physical address?"
+                }
+              ]
+            },
+            "back": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "The offset must satisfy $0 \\le \\text{Offset} < \\text{Limit}$ (where Limit is segment length). An offset equal to or greater than the limit causes an invalid memory reference."
+                }
+              ]
+            }
+          },
+          {
+            "front": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "What is Internal Fragmentation?"
+                }
+              ]
+            },
+            "back": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "Unused memory space left inside an allocated fixed-size partition or page because the process memory request was smaller than the partition size."
+                }
+              ]
+            }
+          },
+          {
+            "front": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "What is External Fragmentation?"
+                }
+              ]
+            },
+            "back": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "A state where enough total free RAM exists to satisfy an allocation request, but the available space is split into non-contiguous fragments."
+                }
+              ]
+            }
+          },
+          {
+            "front": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "Why does Paging completely eliminate external fragmentation?"
+                }
+              ]
+            },
+            "back": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "Because physical memory is divided into fixed-size frames, allowing any logical page to be assigned to any available physical frame regardless of contiguous location."
+                }
+              ]
+            }
+          },
+          {
+            "front": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "How does First-Fit dynamic memory allocation select a memory hole?"
+                }
+              ]
+            },
+            "back": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "It scans memory from the beginning and allocates the very first free hole that is large enough to hold the requested size."
+                }
+              ]
+            }
+          },
+          {
+            "front": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "How does Best-Fit dynamic memory allocation select a memory hole?"
+                }
+              ]
+            },
+            "back": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "It searches the entire list of free holes and allocates the smallest available hole that is large enough, minimizing immediate leftover space."
+                }
+              ]
+            }
+          },
+          {
+            "front": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "How does Worst-Fit dynamic memory allocation select a memory hole?"
+                }
+              ]
+            },
+            "back": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "It searches the entire list of free holes and allocates the largest available hole, leaving the maximum remaining leftover space."
+                }
+              ]
+            }
+          },
+          {
+            "front": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "How does Direct Access storage differ from Direct Memory Access (DMA)?"
+                }
+              ]
+            },
+            "back": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "Direct Access is a storage positioning method (e.g., HDDs accessing data blocks), whereas DMA is a hardware mechanism that transfers data between I/O devices and RAM without CPU intervention."
+                }
+              ]
+            }
+          },
+          {
+            "front": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "What is a Critical Section in concurrent programming?"
+                }
+              ]
+            },
+            "back": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "A segment of code that accesses shared resources (such as shared variables or files) that must not be accessed concurrently by multiple execution threads."
+                }
+              ]
+            }
+          },
+          {
+            "front": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "What does the Mutual Exclusion requirement guarantee in a critical section solution?"
+                }
+              ]
+            },
+            "back": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "If a process is executing inside its critical section, no other process can be executing in its critical section simultaneously."
+                }
+              ]
+            }
+          },
+          {
+            "front": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "What does the Progress requirement guarantee in a critical section solution?"
+                }
+              ]
+            },
+            "back": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "If no process is in its critical section and some processes wish to enter, only those processes not in their remainder sections can decide which process enters next, and this selection cannot be postponed indefinitely."
+                }
+              ]
+            }
+          },
+          {
+            "front": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "What does the Bounded Waiting requirement guarantee in a critical section solution?"
+                }
+              ]
+            },
+            "back": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "There is a strict limit on the number of times other processes can enter their critical sections after a process requests entry, preventing indefinite waiting."
+                }
+              ]
+            }
+          },
+          {
+            "front": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "What is a Race Condition?"
+                }
+              ]
+            },
+            "back": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "A flaw occurring when multiple execution threads manipulate shared data concurrently, causing the final output to depend on the exact timing and order of execution."
+                }
+              ]
+            }
+          },
+          {
+            "front": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "What ownership rule applies to a Mutex Lock?"
+                }
+              ]
+            },
+            "back": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "Strict ownership: only the thread that acquired the mutex lock is allowed to release it."
+                }
+              ]
+            }
+          },
+          {
+            "front": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "What values can a Binary Semaphore take?"
+                }
+              ]
+            },
+            "back": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "It is restricted strictly to binary integer values of $0$ and $1$."
+                }
+              ]
+            }
+          },
+          {
+            "front": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "What is the primary function of a Counting Semaphore?"
+                }
+              ]
+            },
+            "back": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "To manage and control access to a finite pool containing multiple identical resource instances."
+                }
+              ]
+            }
+          },
+          {
+            "front": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "Why must a Condition Variable wait call be placed inside a predicate loop?"
+                }
+              ]
+            },
+            "back": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "To recheck the shared state condition upon awakening, ensuring another thread has not consumed the state change or triggered a wake-up without the predicate being met."
+                }
+              ]
+            }
+          },
+          {
+            "front": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "What is an operating system Deadlock?"
+                }
+              ]
+            },
+            "back": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "A state where a set of processes are permanently blocked because each holds a resource while waiting for another resource held by another process in the set."
+                }
+              ]
+            }
+          },
+          {
+            "front": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "What are the four necessary Coffman conditions required for a deadlock to occur?"
+                }
+              ]
+            },
+            "back": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "Mutual Exclusion, Hold and Wait, No Preemption, and Circular Wait."
+                }
+              ]
+            }
+          },
+          {
+            "front": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "How can an operating system break the Circular Wait condition to prevent deadlocks?"
+                }
+              ]
+            },
+            "back": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "By assigning a global integer order to all resource types and requiring all processes to request resources in strictly increasing numerical order."
+                }
+              ]
+            }
+          },
+          {
+            "front": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "How does Deadlock differ from Starvation?"
+                }
+              ]
+            },
+            "back": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "Deadlock is a mutual, permanent blocking state among a set of processes, whereas Starvation is indefinite postponement of a process while other processes receive resource allocation."
+                }
+              ]
+            }
+          },
+          {
+            "front": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "In deadlock avoidance, is an unsafe state automatically deadlocked?"
+                }
+              ]
+            },
+            "back": {
+              "flashcardContentBlock": [
+                {
+                  "type": "text",
+                  "content": "No. An unsafe state is not necessarily deadlocked; it simply means the system cannot guarantee that all processes can finish without a deadlock occurring."
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "element_id": "13da1330-5b5a-415f-9745-7c674907047a",
+      "type": "mind_map",
+      "title": "Process Scheduling MindMap",
+      "element_status": "completed",
+      "steering_prompt": "Use only the selected reviewed guide and this report section. Keep simple English, define technical words, and do not invent exam predictions. Connect PCB/context switching, ready/running/waiting transitions, FCFS/SJF/Priority/Round Robin, turnaround/waiting/response formulas and arrival-time assumptions. Do not imply every system call blocks or every interrupt preempts.",
+      "description": "A structural overview connecting process states, scheduling algorithms, mathematical formulas, and tie-breaking trade-offs.",
+      "section": {
+        "heading": "Chapter 2: Process Management and CPU Scheduling Mechanics",
+        "text": "Process Abstraction and the Process Control Block (PCB)\nA **process** is defined as a program in execution. While a program is a passive entity stored as an executable file on disk, a process is an active entity actively executing instructions with a program counter, CPU registers, and allocated memory.\nFor every active process, the operating system maintains a central data structure called the **Process Control Block (PCB)**. The PCB serves as the process's repository, holding critical context metadata including:\nProcess Identification Number (PID)\nCurrent Process State\nProgram Counter (PC) and CPU Registers\nCPU Scheduling Priority and Accounting Data\nMemory Allocation Pointers\nI/O Device and Open File Status\nWhen the CPU switches execution from Process A to Process B, a **Context Switch** occurs. The OS saves the CPU execution context of Process A into its PCB and restores the previously saved CPU context of Process B from its PCB.\nThe Process State Lifecycle\nA process transitions through five primary states during its lifecycle:\n**New:** The process is being created and initialized.\nTransition to Ready: Occurs when the OS admits the process into main memory.\n**Ready:** The process is loaded in main memory and waiting for assignment to a CPU core.\nTransition to Running: Occurs when the CPU scheduler dispatches the process.\n**Running:** Instructions are actively executing on the CPU core.\nTransition to Waiting: Occurs when the process makes a blocking request (e.g., waiting for disk I/O).\nTransition to Ready: Occurs when the scheduler preempts the process (e.g., time slice expiration).\nTransition to Terminated: Occurs upon job completion or an unhandled system exception.\n**Waiting (Blocked):** The process cannot execute until an external event or I/O operation completes.\nTransition to Ready: Occurs when the awaited I/O or event completes.\n**Terminated:** Execution is finished, and resources are reclaimed by the OS.\nFully Worked CPU Scheduling Practice Problems\nAll problems below assume a single CPU core, single CPU burst per process, zero context-switch overhead, and no I/O stalls. Response Time is defined as (\\text{First CPU Start Time} - \\text{Arrival Time}), Turnaround Time (TAT) is (\\text{Completion Time} - \\text{Arrival Time}), and Waiting Time (WT) is (TAT - \\text{Burst Time}).\nAlgorithm 1: First-Come, First-Served (FCFS)\nDataset: P1 (AT=0, BT=8), P2 (AT=1, BT=4), P3 (AT=2, BT=2).\nExecution Trace:\nt=0\\text{ ms}: P1 arrives and executes.\nt=1\\text{ ms}: P2 arrives. Ready Queue: [P2].\nt=2\\text{ ms}: P3 arrives. Ready Queue: [P2, P3].\nt=8\\text{ ms}: P1 finishes. P2 starts. Ready Queue: [P3].\nt=12\\text{ ms}: P2 finishes. P3 starts. Ready Queue: [\\,].\nt=14\\text{ ms}: P3 finishes.\nGantt Chart: | P1 (0-8) | P2 (8-12) | P3 (12-14) |\nCalculations:\nP1: CT=8\\text{ ms}, TAT = 8-0 = 8\\text{ ms}, WT = 8-8 = 0\\text{ ms}\nP2: CT=12\\text{ ms}, TAT = 12-1 = 11\\text{ ms}, WT = 11-4 = 7\\text{ ms}\nP3: CT=14\\text{ ms}, TAT = 14-2 = 12\\text{ ms}, WT = 12-2 = 10\\text{ ms}\n**Average TAT:** (8 + 11 + 12) / 3 = 10.33\\text{ ms}\n**Average WT:** (0 + 7 + 10) / 3 = 5.67\\text{ ms}\nAlgorithm 2: Non-Preemptive Shortest Job First (SJF)\nTie-breaker: If burst times match, use earlier Arrival Time (FCFS). Dataset: P1 (AT=0, BT=7), P2 (AT=2, BT=4), P3 (AT=4, BT=1), P4 (AT=5, BT=4).\nExecution Trace:\nt=0\\text{ ms}: P1 arrives and starts executing.\nt=7\\text{ ms}: P1 finishes. Ready Queue contains P2 (BT=4), P3 (BT=1), P4 (BT=4). P3 has the shortest burst (1\\text{ ms}) and is dispatched.\nt=8\\text{ ms}: P3 finishes. Candidates P2 and P4 tie with BT=4\\text{ ms}. P2 arrived earlier (AT=2 vs 5), so P2 is dispatched.\nt=12\\text{ ms}: P2 finishes. P4 is dispatched.\nt=16\\text{ ms}: P4 finishes.\nGantt Chart: | P1 (0-7) | P3 (7-8) | P2 (8-12) | P4 (12-16) |\nCalculations:\nP1: CT=7, TAT=7-0=7\\text{ ms}, WT=7-7=0\\text{ ms}\nP3: CT=8, TAT=8-4=4\\text{ ms}, WT=4-1=3\\text{ ms}\nP2: CT=12, TAT=12-2=10\\text{ ms}, WT=10-4=6\\text{ ms}\nP4: CT=16, TAT=16-5=11\\text{ ms}, WT=11-4=7\\text{ ms}\n**Average TAT:** (7 + 4 + 10 + 11) / 4 = 8.00\\text{ ms}\n**Average WT:** (0 + 3 + 6 + 7) / 4 = 4.00\\text{ ms}\nAlgorithm 3: Non-Preemptive Priority Scheduling\nPriority Rule: Lower Integer Value = Higher Priority Rank. Dataset: P1 (AT=0, BT=4, Pri=2), P2 (AT=1, BT=3, Pri=1), P3 (AT=2, BT=5, Pri=3).\nExecution Trace:\nt=0\\text{ ms}: P1 arrives and executes.\nt=4\\text{ ms}: P1 completes. Ready Queue has P2 (Pri=1) and P3 (Pri=3). P2 has higher priority and is dispatched.\nt=7\\text{ ms}: P2 completes. P3 is dispatched.\nt=12\\text{ ms}: P3 completes.\nGantt Chart: | P1 (0-4) | P2 (4-7) | P3 (7-12) |\nCalculations:\nP1: CT=4, TAT=4-0=4\\text{ ms}, WT=4-4=0\\text{ ms}\nP2: CT=7, TAT=7-1=6\\text{ ms}, WT=6-3=3\\text{ ms}\nP3: CT=12, TAT=12-2=10\\text{ ms}, WT=10-5=5\\text{ ms}\n**Average TAT:** (4 + 6 + 10) / 3 = 6.67\\text{ ms}\n**Average WT:** (0 + 3 + 5) / 3 = 2.67\\text{ ms}\nAlgorithm 4: Round Robin (RR) Scheduling (Q = 3\\text{ ms})\nDataset: P1 (AT=0, BT=5), P2 (AT=1, BT=3), P3 (AT=2, BT=1).\nExecution Trace:\nt=0\\text{ ms}: P1 starts.\nt=1, 2\\text{ ms}: P2, then P3 arrive.\nt=3\\text{ ms}: P1 time slice expires (rem BT=2). P1 is re-queued behind P3. Ready Queue: [P2, P3, P1]. P2 starts.\nt=6\\text{ ms}: P2 finishes its 3\\text{ ms} burst. Ready Queue: [P3, P1]. P3 starts.\nt=7\\text{ ms}: P3 finishes its 1\\text{ ms} burst. Ready Queue: [P1]. P1 starts.\nt=9\\text{ ms}: P1 finishes remaining 2\\text{ ms}.\nGantt Chart: | P1 (0-3) | P2 (3-6) | P3 (6-7) | P1 (7-9) |\nCalculations:\nP1: CT=9, TAT=9-0=9\\text{ ms}, WT=9-5=4\\text{ ms}\nP2: CT=6, TAT=6-1=5\\text{ ms}, WT=5-3=2\\text{ ms}\nP3: CT=7, TAT=7-2=5\\text{ ms}, WT=5-1=4\\text{ ms}\n**Average TAT:** (9 + 5 + 5) / 3 = 6.33\\text{ ms}\n**Average WT:** (4 + 2 + 4) / 3 = 3.33\\text{ ms}"
+      },
+      "settings": {},
+      "content": {
+        "name": "Operating Systems Process Management & CPU Scheduling",
+        "children": [
+          {
+            "name": "Process Fundamentals & Control",
+            "children": [
+              {
+                "name": "Process: Active program in execution containing program counter, registers, and resources"
+              },
+              {
+                "name": "PCB: Repository data structure storing process state, ID, PC, registers, priority, memory, and I/O status"
+              },
+              {
+                "name": "Context Switching: OS saves current state into PCB and loads newly scheduled state from its PCB"
+              },
+              {
+                "name": "System Call: Controlled request to the kernel, does not automatically block the process"
+              },
+              {
+                "name": "Hardware Interrupt: Does not necessarily cause the running process to lose the CPU"
+              }
+            ]
+          },
+          {
+            "name": "Process Life Cycle & State Transitions",
+            "children": [
+              {
+                "name": "New State: Process being created and initialized",
+                "children": [
+                  {
+                    "name": "Ready Trigger: OS admits process into main memory"
+                  }
+                ]
+              },
+              {
+                "name": "Ready State: Loaded in main memory waiting to be assigned to a CPU core",
+                "children": [
+                  {
+                    "name": "Running Trigger: CPU scheduler dispatches process"
+                  }
+                ]
+              },
+              {
+                "name": "Running State: Instructions actively executed by CPU core",
+                "children": [
+                  {
+                    "name": "Waiting Trigger: Must wait for blocking I/O or event; immediate system calls need not block"
+                  },
+                  {
+                    "name": "Ready Trigger: Scheduler preempts process when time quantum expires"
+                  },
+                  {
+                    "name": "Terminated Trigger: Completes execution or encounters unhandled exception"
+                  }
+                ]
+              },
+              {
+                "name": "Waiting State: Cannot execute until external event or I/O operation completes",
+                "children": [
+                  {
+                    "name": "Ready Trigger: I/O operation completes or waited event occurs"
+                  }
+                ]
+              },
+              {
+                "name": "Terminated State: Execution complete and OS cleans up resources"
+              }
+            ]
+          },
+          {
+            "name": "CPU Scheduling Algorithms",
+            "children": [
+              {
+                "name": "FCFS: Non-preemptive, simple, strict arrival order processing with minimal context-switch overhead"
+              },
+              {
+                "name": "SJF & SRTF: SJF is non-preemptive; SRTF is preemptive; minimizes average waiting time using burst lengths"
+              },
+              {
+                "name": "Priority Scheduling: Non-preemptive or preemptive; lower integer value means higher priority rank"
+              },
+              {
+                "name": "Round Robin (RR): Preemptive, maximizes interactive fairness via time slices (Q)"
+              }
+            ]
+          },
+          {
+            "name": "Scheduling Formulas & Assumptions",
+            "children": [
+              {
+                "name": "Turnaround Time (TAT): Completion Time minus Arrival Time"
+              },
+              {
+                "name": "Waiting Time (WT): Turnaround Time minus Burst Time (under single CPU-burst/no-I/O assumptions)"
+              },
+              {
+                "name": "Response Time: First CPU start time minus Arrival Time"
+              },
+              {
+                "name": "Arrival-Time Ties: Use stated input order unless another rule is given"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "element_id": "43412db7-b67b-4a67-9197-49b313b2cfc7",
+      "type": "slide_deck",
+      "title": "Memory Management & Address Translation Guide",
+      "element_status": "suggested",
+      "steering_prompt": null,
+      "description": "A visual step-by-step presentation detailing paging translation rules, segmentation bounds checking, fragmentation types, and dynamic allocation strategies.",
+      "section": {
+        "heading": "Chapter 3: Memory Management, Address Translation, and Allocation",
+        "text": "Memory Hierarchy and Storage Systems\nMemory systems balance speed, capacity, and cost per bit:\n**Registers & Cache Memory:** Extremely fast, operating near CPU clock speed. Integrated directly inside or adjacent to the CPU chip, but limited in capacity (megabytes) and extremely expensive per bit.\n**RAM (Main Memory):** Moderate speed and capacity (gigabytes), volatile (loses data on power loss), and significantly cheaper per bit than cache.\n**Secondary & Mass Storage:** Non-volatile storage including HDDs, SSDs, Optical Discs, USB drives, Tape drives, and Cloud Storage. They provide large capacities at low cost per bit but are significantly slower than RAM.\nVirtual Memory Principles and Misconceptions\n**Virtual Memory** provides each process with a logical address space mapped to physical RAM, enabling program protection and non-contiguous placement. Through **demand paging**, the OS keeps actively used pages in RAM and leaves remaining pages in backing storage.\nExam Correction Trap: Consider a scenario where physical RAM is 8\\text{ GB} and a process requires 12\\text{ GB}. The arithmetic difference is 4\\text{ GB}. However, this 4\\text{ GB} difference is purely a capacity comparison—it is **not** an automatic guarantee that the OS will allocate exactly 4\\text{ GB} of swap space. Actual execution depends on system commit limits, OS overhead, competing processes, and working set sizes. If the active working set exceeds RAM, excessive page fault swapping causes **thrashing**.\nAddress Translation Mechanics & Boundary Rules\nPaging Architecture\nIn a paging system, logical memory is divided into fixed-size blocks called **Pages**, and physical RAM is divided into equal-sized blocks called **Frames**. Addresses generated by the CPU consist of a Page Number (p) and a Page Offset (d). \\text{Physical Address} = (\\text{Frame Number} \\times \\text{Page Size}) + \\text{Offset}\nCritical Boundary Constraint: The offset must strictly satisfy 0 \\le \\text{Offset} < \\text{Page Size}.\nRecognizing Source Corrections: If an exam question mentions a 4\\text{ KiB} page size paired with a 100\\text{ KiB} offset, **that address tuple is mathematically invalid**. An offset of 100\\text{ KiB} exceeds a 4\\text{ KiB} page size. When encountering such an error, explicitly state the invalidity, show the valid rule, and apply proper units.\nFully Worked Valid Paging Calculation:\nAssume byte addressing, Page Size = 4\\text{ KiB} = 4096\\text{ bytes}, Page 3 is mapped to Frame 5, and Offset = 100\\text{ bytes}.\nValidate constraint: 0 \\le 100 < 4096 (Valid).\nLogical Address = (3 \\times 4096) + 100 = 12388\\text{ bytes}.\nPhysical Address = (5 \\times 4096) + 100 = 20580\\text{ bytes}.\nSegmentation Architecture\nSegmentation divides memory into variable-length logical segments (e.g., code, stack, function). A logical address consists of (Segment Number, Offset).\nValidation Rule: The offset must satisfy 0 \\le \\text{Offset} < \\text{Segment Limit}. If valid:\n\\text{Physical Address} = \\text{Segment Base} + \\text{Offset}\nWorked Course Example (Base = 2500, Limit = 600):\nOffset 500: Valid (0 \\le 500 < 600). Physical Address = 2500 + 500 = 3000.\nOffset 600: **Invalid** (Offset equals limit). Triggers a segment fault. Do not attempt translation.\nFragmentation & Dynamic Memory Allocation\n**Internal Fragmentation:** Unused space inside an allocated fixed-size block/page. Paging suffers from internal fragmentation but completely eliminates external fragmentation.\n**External Fragmentation:** Total free physical memory exists to satisfy an allocation request, but it is split into non-contiguous fragments across physical RAM.\nDynamic Partitioning Allocation Strategies\nWhen allocating a process request of size N into available free holes (e.g., holes ordered by address: 100\\text{ KiB}, 500\\text{ KiB}, 200\\text{ KiB}, 300\\text{ KiB}, 600\\text{ KiB} for a request of 212\\text{ KiB}):\n**First-Fit:** Scans from the start and chooses the first hole \\ge N. (Selects 500\\text{ KiB} hole; leftover = 288\\text{ KiB}).\n**Best-Fit:** Searches all holes and chooses the smallest hole \\ge N. (Selects 300\\text{ KiB} hole; leftover = 88\\text{ KiB}).\n**Worst-Fit:** Searches all holes and chooses the largest hole \\ge N. (Selects 600\\text{ KiB} hole; leftover = 388\\text{ KiB}).\nNote on Direct Memory Access (DMA): Do not confuse direct access storage (e.g., hard drive sector access) with **DMA**, which is a hardware controller mechanism that transfers data blocks directly between I/O devices and RAM without forcing the CPU to move every byte."
+      },
+      "settings": {
+        "slide_format": {
+          "values": [
+            "detailed_deck",
+            "presenter_slides"
+          ],
+          "default": "detailed_deck"
+        },
+        "slide_length": {
+          "values": [
+            "short",
+            "default"
+          ],
+          "default": "default"
+        }
+      }
+    },
+    {
+      "element_id": "397a8269-c91a-4551-bdd8-139dcf14deb0",
+      "type": "video",
+      "title": "Process Synchronization & Deadlocks Video Overview",
+      "element_status": "unknown",
+      "steering_prompt": "A dynamic video breakdown explaining critical section requirements, lost updates, semaphore vs mutex mechanics, condition variable predicate loops, and Coffman deadlock prevention.",
+      "description": "A dynamic video breakdown explaining critical section requirements, lost updates, semaphore vs mutex mechanics, condition variable predicate loops, and Coffman deadlock prevention.",
+      "section": {
+        "heading": "Chapter 4: Process Synchronization and Deadlock Handling",
+        "text": "The Critical Section Problem & Race Conditions\nA **Race Condition** occurs when multiple execution threads manipulate shared memory concurrently, and the final result depends on the exact execution timing order.\nExecution Trace of Lost Update:\nShared variable counter = 5. Thread A executes counter++, Thread B executes counter--:\nTo prevent race conditions, code segments accessing shared data (**Critical Sections**) must satisfy three requirements:\n**Mutual Exclusion:** If process P_i is executing in its critical section, no other processes can execute in their critical sections simultaneously.\n**Progress:** If no process is in its critical section and some wish to enter, only processes not executing in their remainder sections can participate in deciding who enters next, without indefinite postponement.\n**Bounded Waiting:** A bound must exist on the number of times other processes can enter their critical sections after a process has requested entry, preventing starvation.\nSynchronization Primitives Comparison\n**Mutex Lock:** Enforces exclusive single-resource access with **strict ownership** (only the acquiring thread can release it).\n**Binary Semaphore:** Restricted to values 0 and 1. Has **no ownership rules**—any task can signal the semaphore.\n**Counting Semaphore:** Tracks an integer count of available permits for a pool of resource instances. Has no mutex ownership.\n**Condition Variable:** Used for thread signaling. Holds no permits and provides no lock on its own. It **must** be paired with a Mutex lock and tested inside a predicate loop:\nWhy the while loop? Woken threads must recheck the predicate condition because another thread may consume the item first, or a spurious wakeup may occur.\nDeadlocks: The Four Coffman Necessary Conditions\nA **Deadlock** is a state where a set of processes are permanently blocked, each holding a resource and waiting for another held by another process in the set. For a resource deadlock to occur, **all four Coffman conditions must hold simultaneously**:\n**Mutual Exclusion:** At least one resource is held in a non-shareable mode.\n**Hold and Wait:** A process holds at least one resource while waiting to acquire additional resources held by others.\n**No Preemption:** Resources cannot be forcibly preempted; they are released only voluntarily.\n**Circular Wait:** A closed chain of processes \\{P_0, P_1, \\dots, P_n\\} exists such that P_0 waits for P_1, and P_n waits for P_0.\nImportant Distinction: The presence of these four conditions is a necessary prerequisite, but their presence alone is **not absolute proof** that a system is currently deadlocked if resources have multiple physical instances.\nDeadlock Prevention Strategies\nDeadlock prevention structural strategies systematically invalidate at least one necessary condition:\n**Preventing Mutual Exclusion:** Make resources shareable (e.g., read-only files). Unsuitable for non-shareable devices like printers.\n**Preventing Hold & Wait:** Force processes to request and receive all required resources at once before starting, or release current resources before making new requests.\n**Preventing No Preemption:** Preempt held resources if a new request cannot be immediately granted (only works for state-saveable resources like CPU registers or RAM).\n**Preventing Circular Wait:** Impose a strict global numerical ordering on all system resource types. Enforce a rule requiring processes to request resources in strictly increasing numerical order.\nSystem Deadlock Management Approaches & Starvation\n**Prevention:** Structural constraints that eliminate one Coffman condition.\n**Avoidance:** Evaluates runtime allocation requests and grants them only if the resulting system state remains **Safe** (e.g., Banker's Algorithm). Note: An **Unsafe state is not necessarily deadlocked**; it simply lacks guaranteed deadlock-free execution paths.\n**Detection & Recovery:** Grants resources freely, periodically checks for deadlocked process sets, and recovers via process termination or rollback.\n**Deadlock vs. Starvation:** Deadlock is mutual blockage of an entire affected process set. **Starvation** is indefinite delay of a single process because other processes repeatedly receive service priority (mitigated by **aging**)."
+      },
+      "settings": {
+        "video_format": {
+          "values": [
+            "explainer",
+            "cinematic",
+            "short"
+          ],
+          "default": "cinematic"
+        }
+      }
+    },
+    {
+      "element_id": "4f9fb433-4b58-49bb-ac98-b9b9aaaea5da",
+      "type": "quiz",
+      "title": "Operating Systems Quiz",
+      "element_status": "completed",
+      "steering_prompt": "Use only the selected reviewed guide and this report section. Keep simple English, define technical words, and do not invent exam predictions. Provide balanced questions across Chapters 1–4 with clear correct-answer explanations: OS types, scheduling timing, paging and segment bounds, race conditions, semaphore permits, condition-variable loops and four necessary deadlock conditions; include units and assumptions for arithmetic.",
+      "description": "A comprehensive exam-focused quiz testing concepts, worked CPU scheduling metrics, memory address translations, fragmentation, and deadlock prevention mechanics.",
+      "section": {
+        "heading": "Summary",
+        "text": "Mastering operating system principles requires understanding how hardware management, process scheduling, memory translation, and concurrency control interact to create efficient and reliable computing environments.\nKey Takeaways\n**OS Architectures:** Operating systems manage hardware components through modular subsystems. Timesharing provides interactive responsiveness via timeslicing but does not grant hard real-time guarantees. System calls do not automatically block processes unless waiting for external hardware I/O.\n**Process Management & Scheduling:** Process context switches incur overhead as states are saved and restored via Process Control Blocks. Scheduling algorithms balance CPU utilization, waiting time, and fairness, with FCFS, SJF, Priority, and Round Robin exhibiting distinct mathematical trade-offs.\n**Memory Management:** Paging divides memory into fixed pages and frames to eliminate external fragmentation, whereas segmentation divides memory into variable logical segments. Address translation requires enforcing offset boundaries (0 \\le \\text{Offset} < \\text{Page Size} or \\text{Limit}).\n**Concurrency & Deadlocks:** Critical sections demand mutual exclusion, progress, and bounded waiting. Synchronization primitives like condition variables require predicate testing inside loops. Resource deadlocks require all four Coffman conditions, which can be structurally prevented by strategies such as global resource ordering."
+      },
+      "settings": {
+        "difficulty": {
+          "values": [
+            "easy",
+            "medium",
+            "hard"
+          ],
+          "default": "medium"
+        },
+        "question_amount": {
+          "values": [
+            "fewer",
+            "standard",
+            "more"
+          ],
+          "default": "standard"
+        }
+      },
+      "content": {
+        "questions": [
+          {
+            "type": "multiple_choice",
+            "question": "What is the primary operational objective that distinguishes a time-sharing operating system from a pure multiprogramming system?",
+            "answerOptions": [
+              {
+                "text": "Providing rapid interactive responsiveness to user requests through frequent time-slicing.",
+                "isCorrect": true,
+                "rationale": "Time-sharing extends multiprogramming by rapidly switching the CPU among tasks using short time quanta to maintain user interactivity."
+              },
+              {
+                "text": "Maximizing overall CPU utilization by switching tasks strictly when a process blocks for I/O.",
+                "isCorrect": false,
+                "rationale": "Switching tasks solely during I/O stalls is the main goal of basic multiprogramming, not interactive time-sharing."
+              },
+              {
+                "text": "Guaranteeing strict, deterministic timing deadlines for critical task completion.",
+                "isCorrect": false,
+                "rationale": "Deterministic deadline guarantees are required for real-time systems, whereas time-sharing provides fast average response without hard guarantees."
+              },
+              {
+                "text": "Executing submitted offline jobs sequentially in batches without user intervention.",
+                "isCorrect": false,
+                "rationale": "Executing queued jobs sequentially with minimal interaction describes early batch operating systems."
+              }
+            ],
+            "hint": "Consider which operating system paradigm focuses on giving interactive users the illusion of exclusive system access."
+          },
+          {
+            "type": "multiple_choice",
+            "question": "In a server-centric Network Operating System environment, what is the primary risk associated with a failure of the central server or network infrastructure?",
+            "answerOptions": [
+              {
+                "text": "Dependent clients lose access to shared network services, though local client operations can still continue.",
+                "isCorrect": true,
+                "rationale": "Network operating systems rely on central infrastructure for shared resources (such as remote files and authentication), so central outages disrupt remote services while isolated local execution remains possible."
+              },
+              {
+                "text": "All connected client processing nodes experience an immediate system crash and total CPU hardware lockup.",
+                "isCorrect": false,
+                "rationale": "Client machines have autonomous local CPUs and memory, so central server failure affects shared network services rather than causing local hardware crashes."
+              },
+              {
+                "text": "Local computations on client nodes automatically convert into hard real-time execution tasks.",
+                "isCorrect": false,
+                "rationale": "Network outages do not alter the operating system scheduling model or grant real-time guarantees."
+              },
+              {
+                "text": "Network failure guarantees total system fault tolerance with zero service degradation.",
+                "isCorrect": false,
+                "rationale": "Assuming complete fault tolerance ignores the single-point-of-failure risk inherent in central server dependencies."
+              }
+            ],
+            "hint": "Think about what happens to local resources versus shared central services during a network outage."
+          },
+          {
+            "type": "multiple_choice",
+            "question": "Assume a single-CPU system running three processes with no I/O, zero context-switch overhead, and First-Come, First-Served (FCFS) scheduling. The process arrival times and burst times are:\n- Process $P_1$: Arrival Time = $0\\text{ ms}$, Burst Time = $5\\text{ ms}$\n- Process $P_2$: Arrival Time = $2\\text{ ms}$, Burst Time = $3\\text{ ms}$\n- Process $P_3$: Arrival Time = $4\\text{ ms}$, Burst Time = $2\\text{ ms}$\n\nWhat is the average turnaround time for these processes?",
+            "answerOptions": [
+              {
+                "text": "$5.67\\text{ ms}$",
+                "isCorrect": true,
+                "rationale": "Turnaround time is computed as Completion Time minus Arrival Time ($TAT = CT - AT$). $P_1$ finishes at $t=5\\text{ ms}$ ($TAT=5$), $P_2$ finishes at $t=8\\text{ ms}$ ($TAT=8-2=6$), and $P_3$ finishes at $t=10\\text{ ms}$ ($TAT=10-4=6$). The average is $\\frac{5 + 6 + 6}{3} = 5.67\\text{ ms}$."
+              },
+              {
+                "text": "$7.67\\text{ ms}$",
+                "isCorrect": false,
+                "rationale": "This value incorrectly omits subtracting non-zero arrival times when computing process turnaround times."
+              },
+              {
+                "text": "$2.33\\text{ ms}$",
+                "isCorrect": false,
+                "rationale": "This calculation represents the average waiting time ($WT = TAT - BT$), not the average turnaround time."
+              },
+              {
+                "text": "$3.33\\text{ ms}$",
+                "isCorrect": false,
+                "rationale": "This value results from dividing total burst time by 3 rather than evaluating the completion timeline."
+              }
+            ],
+            "hint": "Remember that Turnaround Time equals Completion Time minus Arrival Time."
+          },
+          {
+            "type": "multiple_choice",
+            "question": "A system uses Non-Preemptive Shortest Job First (SJF) scheduling on a single CPU with no I/O and zero context-switch cost. If two processes in the Ready Queue have identical burst times, the scheduler applies a First-Come, First-Served (FCFS) tie-breaker. Consider the following process table:\n\n| Process ID | Arrival Time (ms) | Burst Time (ms) |\n| --- | --- | --- |\n| $P_1$ | 0 | 6 |\n| $P_2$ | 1 | 2 |\n| $P_3$ | 2 | 2 |\n\nWhat is the completion time of Process $P_3$?",
+            "answerOptions": [
+              {
+                "text": "$10\\text{ ms}$",
+                "isCorrect": true,
+                "rationale": "$P_1$ starts at $t=0\\text{ ms}$ and runs until $t=6\\text{ ms}$. At $t=6\\text{ ms}$, both $P_2$ ($AT=1$) and $P_3$ ($AT=2$) are ready with equal burst times ($2\\text{ ms}$). The FCFS tie-breaker selects $P_2$, which runs from $t=6\\text{ ms}$ to $t=8\\text{ ms}$. $P_3$ is dispatched next and completes at $t=8 + 2 = 10\\text{ ms}$."
+              },
+              {
+                "text": "$8\\text{ ms}$",
+                "isCorrect": false,
+                "rationale": "This is the completion time of $P_2$, which won the FCFS tie-breaker over $P_3$ due to its earlier arrival time."
+              },
+              {
+                "text": "$4\\text{ ms}$",
+                "isCorrect": false,
+                "rationale": "This result assumes $P_1$ was preempted upon the arrival of $P_2$, violating the non-preemptive rule."
+              },
+              {
+                "text": "$12\\text{ ms}$",
+                "isCorrect": false,
+                "rationale": "This overestimates completion time by failing to account for process execution starting immediately at $t=0\\text{ ms}$."
+              }
+            ],
+            "hint": "Trace execution sequentially up to $t=6\\text{ ms}$ and apply the tie-breaker rule for ready candidate jobs."
+          },
+          {
+            "type": "multiple_choice",
+            "question": "Consider a single-CPU system running Round Robin scheduling with a Time Quantum $Q = 3\\text{ ms}$ and zero context-switch overhead. The dataset is as follows:\n- Process $P_1$: Arrival Time = $0\\text{ ms}$, Burst Time = $5\\text{ ms}$\n- Process $P_2$: Arrival Time = $1\\text{ ms}$, Burst Time = $3\\text{ ms}$\n- Process $P_3$: Arrival Time = $2\\text{ ms}$, Burst Time = $1\\text{ ms}$\n\nWhat is the waiting time for Process $P_1$?",
+            "answerOptions": [
+              {
+                "text": "$4\\text{ ms}$",
+                "isCorrect": true,
+                "rationale": "$P_1$ runs from $t=0$ to $t=3$ (remaining burst $2\\text{ ms}$). Ready Queue becomes $[P_2, P_3, P_1]$. $P_2$ runs from $t=3$ to $t=6$ and completes. $P_3$ runs from $t=6$ to $t=7$ and completes. $P_1$ runs from $t=7$ to $t=9$ and completes ($CT=9\\text{ ms}$). Turnaround time $TAT = 9 - 0 = 9\\text{ ms}$; Waiting time $WT = 9 - 5 = 4\\text{ ms}$."
+              },
+              {
+                "text": "$9\\text{ ms}$",
+                "isCorrect": false,
+                "rationale": "This value represents the total turnaround time ($CT - AT$) of $P_1$, not its waiting time."
+              },
+              {
+                "text": "$2\\text{ ms}$",
+                "isCorrect": false,
+                "rationale": "This is the remaining burst time of $P_1$ after its first time quantum expires."
+              },
+              {
+                "text": "$5\\text{ ms}$",
+                "isCorrect": false,
+                "rationale": "This is the total CPU burst time of process $P_1$, not time spent waiting in the ready queue."
+              }
+            ],
+            "hint": "Track the state of the Ready Queue after $P_1$'s first quantum expires at $t=3\\text{ ms}$."
+          },
+          {
+            "type": "multiple_choice",
+            "question": "During process execution, a running process executes a system call to read data from a storage drive. How does the operating system transition this process in the state model?",
+            "answerOptions": [
+              {
+                "text": "From Running to Waiting (Blocked) until the I/O operation completes.",
+                "isCorrect": true,
+                "rationale": "A blocking I/O system call requires external hardware completion, forcing the active process into the Waiting state so the CPU can run other tasks."
+              },
+              {
+                "text": "From Running directly to Terminated state immediately.",
+                "isCorrect": false,
+                "rationale": "Initiating an I/O request is a standard operational request, not an unhandled exception or exit condition that terminates a process."
+              },
+              {
+                "text": "From Running to Ready state via scheduler preemption.",
+                "isCorrect": false,
+                "rationale": "Transitions to Ready from Running occur during preemption (such as time slice expiry), whereas waiting for external I/O forces a transition to Waiting."
+              },
+              {
+                "text": "From Ready directly to Terminated state.",
+                "isCorrect": false,
+                "rationale": "A process must be running to execute a system call; non-running ready processes cannot initiate system calls."
+              }
+            ],
+            "hint": "Identify the state designed for processes suspended while awaiting external device completion."
+          },
+          {
+            "type": "multiple_choice",
+            "question": "A system uses a byte-addressable paging scheme with a page size of $4\\text{ KiB} = 4096\\text{ bytes}$. Logical page 3 is mapped to physical frame 5 in the page table. What is the physical address corresponding to the logical address with page number 3 and offset $100\\text{ bytes}$?",
+            "answerOptions": [
+              {
+                "text": "$20580\\text{ bytes}$",
+                "isCorrect": true,
+                "rationale": "The offset $100$ is valid ($0 \\le 100 < 4096$). Physical Address = $(\\text{Frame Number} \\times \\text{Page Size}) + \\text{Offset} = (5 \\times 4096) + 100 = 20480 + 100 = 20580\\text{ bytes}$."
+              },
+              {
+                "text": "$12388\\text{ bytes}$",
+                "isCorrect": false,
+                "rationale": "This calculation incorrectly uses the logical page number ($3 \\times 4096 + 100$) instead of the physical frame number."
+              },
+              {
+                "text": "$102400\\text{ bytes}$",
+                "isCorrect": false,
+                "rationale": "This error stems from an invalid offset calculation, such as attempting to multiply offset by page size."
+              },
+              {
+                "text": "$24576\\text{ bytes}$",
+                "isCorrect": false,
+                "rationale": "This value represents frame base address $6 \\times 4096$ without adding the specified byte offset."
+              }
+            ],
+            "hint": "Substitute the physical frame number into the translation formula: $(\\text{Frame Number} \\times \\text{Page Size}) + \\text{Offset}$."
+          },
+          {
+            "type": "multiple_choice",
+            "question": "In a segmented memory management system, a segment has a base address of $2500$ and a limit (segment length) of $600$. Which statement correctly evaluates physical address translation for offsets $500$ and $600$?",
+            "answerOptions": [
+              {
+                "text": "Offset $500$ translates to physical address $3000$, whereas offset $600$ causes an out-of-bounds illegal address error.",
+                "isCorrect": true,
+                "rationale": "The valid offset range is $0 \\le \\text{Offset} < \\text{Limit}$. Offset $500$ is valid ($2500 + 500 = 3000$). Offset $600$ equals the limit, violating the strict inequality limit boundary."
+              },
+              {
+                "text": "Both offset $500$ and offset $600$ translate successfully to physical addresses $3000$ and $3100$.",
+                "isCorrect": false,
+                "rationale": "This error ignores boundary verification, incorrectly treating offset equal to limit as valid."
+              },
+              {
+                "text": "Offset $500$ triggers a memory protection trap, while offset $600$ translates to $3100$.",
+                "isCorrect": false,
+                "rationale": "Offset 500 lies strictly within the limit boundary ($500 < 600$) and does not trigger a protection trap."
+              },
+              {
+                "text": "Offset $500$ translates to physical address $2500$, and offset $600$ translates to $3000$.",
+                "isCorrect": false,
+                "rationale": "This calculation fails to add the logical offset to the segment base address."
+              }
+            ],
+            "hint": "Check the valid condition $0 \\le \\text{Offset} < \\text{Limit}$ before computing $\\text{Base} + \\text{Offset}$."
+          },
+          {
+            "type": "multiple_choice",
+            "question": "A system has physical RAM of $8\\text{ GB}$ and executes a process requiring $12\\text{ GB}$ of memory space. How does virtual memory using demand paging accommodate this execution?",
+            "answerOptions": [
+              {
+                "text": "It maps active working-set pages into available RAM frames and keeps inactive pages on secondary backing storage.",
+                "isCorrect": true,
+                "rationale": "Virtual memory relies on demand paging to load required pages into physical frames while retaining non-resident pages in backing storage."
+              },
+              {
+                "text": "It automatically converts physical RAM memory blocks into secondary magnetic storage space.",
+                "isCorrect": false,
+                "rationale": "Virtual memory does not change physical hardware types; it provides a logical address abstraction mapped across RAM and backing storage."
+              },
+              {
+                "text": "It guarantees that exactly $4\\text{ GB}$ of swap space is allocated without considering active working sets or operating system overhead.",
+                "isCorrect": false,
+                "rationale": "The arithmetic difference ($4\\text{ GB}$) is a capacity illustration, not a static guarantee of swap allocation regardless of system state."
+              },
+              {
+                "text": "It compresses the executable program file so it occupies zero memory frames in RAM.",
+                "isCorrect": false,
+                "rationale": "Executing processes must have their active instructions and data present in physical RAM frames."
+              }
+            ],
+            "hint": "Focus on how logical pages are managed between main memory and backing storage."
+          },
+          {
+            "type": "multiple_choice",
+            "question": "Shared variable `counter` initially holds a value of 5. Process A (`counter++`) and Process B (`counter--`) execute concurrently. Process A reads 5 into $R_1$ and increments it to 6. Before Process A writes back, Process B reads 5 into $R_2$, decrements it to 4, and writes 4 back to `counter`. Finally, Process A writes 6 back to `counter`. What is the resulting state?",
+            "answerOptions": [
+              {
+                "text": "`counter` = 6, illustrating a race condition due to unsynchronized concurrent access.",
+                "isCorrect": true,
+                "rationale": "Because Process A's write occurs last, it overwrites Process B's update, leaving `counter` at 6 instead of the expected 5."
+              },
+              {
+                "text": "`counter` = 5, showing that concurrent access automatically preserves consistency.",
+                "isCorrect": false,
+                "rationale": "Without proper synchronization, concurrent interleaved writes corrupt shared state, failing to produce the correct value 5."
+              },
+              {
+                "text": "`counter` = 4, because decrement operations always take priority over increment operations.",
+                "isCorrect": false,
+                "rationale": "Process B's write (4) was overwritten when Process A subsequently executed its delayed store instruction (6)."
+              },
+              {
+                "text": "The CPU halts execution immediately due to a hardware memory lock fault.",
+                "isCorrect": false,
+                "rationale": "Interleaved instructions in user memory cause data corruption (a race condition), not a CPU hardware fault."
+              }
+            ],
+            "hint": "Follow the sequence of read, modify, and write-back instructions step-by-step."
+          },
+          {
+            "type": "multiple_choice",
+            "question": "How does a condition variable differ from a mutex lock in process synchronization?",
+            "answerOptions": [
+              {
+                "text": "A condition variable signals state changes and releases/re-acquires an associated mutex while waiting, whereas a mutex enforces single-thread ownership for exclusive access.",
+                "isCorrect": true,
+                "rationale": "Mutexes enforce mutual exclusion with strict ownership rules, whereas condition variables allow threads to block and wait for logical predicate changes while releasing an associated mutex."
+              },
+              {
+                "text": "A condition variable maintains an internal integer permit count that tracks resource instances without requiring a mutex.",
+                "isCorrect": false,
+                "rationale": "Tracking integer permits without strict ownership describes counting semaphores, not condition variables."
+              },
+              {
+                "text": "A condition variable enforces exclusive critical section entry without requiring any predicate checks.",
+                "isCorrect": false,
+                "rationale": "Condition variables do not provide mutual exclusion on their own and must be used inside a loop checking a predicate alongside a mutex."
+              },
+              {
+                "text": "A mutex lock can be unlocked by any arbitrary task, whereas a condition variable enforces strict thread ownership.",
+                "isCorrect": false,
+                "rationale": "This reverses the concepts: mutexes enforce strict thread ownership for unlocking, whereas condition variables do not maintain lock ownership."
+              }
+            ],
+            "hint": "Consider the requirement for an associated lock and how threads wait for state changes."
+          },
+          {
+            "type": "multiple_choice",
+            "question": "Why must a thread evaluate a condition variable wait operation inside a `while` loop predicate check (e.g., `while (predicate) wait(cv, mutex);`) rather than a simple `if` statement?",
+            "answerOptions": [
+              {
+                "text": "Because another thread may modify the shared predicate state before the awakened thread re-acquires the mutex.",
+                "isCorrect": true,
+                "rationale": "Re-checking the predicate in a loop ensures that if another process consumes the resource or a spurious wakeup occurs after the signal, the predicate is verified before proceeding."
+              },
+              {
+                "text": "Because calling `wait()` automatically increments the internal permit count of the condition variable.",
+                "isCorrect": false,
+                "rationale": "Condition variables do not store integer permits; wait operations release the mutex and suspend the caller."
+              },
+              {
+                "text": "Because the loop prevents the system from triggering context switches during critical section execution.",
+                "isCorrect": false,
+                "rationale": "Evaluating predicates in loops does not disable CPU scheduling context switches."
+              },
+              {
+                "text": "Because `if` statements cannot evaluate shared boolean expressions in concurrent languages.",
+                "isCorrect": false,
+                "rationale": "Control structures like `if` statements evaluate boolean expressions normally; the loop is required for correctness in concurrent logic."
+              }
+            ],
+            "hint": "Think about what might happen to the shared state between the moment a signal is sent and when the thread resumes execution."
+          },
+          {
+            "type": "multiple_select",
+            "question": "Which of the following characteristics accurately distinguish a time-sharing system from a basic multiprogramming system?",
+            "answerOptions": [
+              {
+                "text": "Time-sharing uses time quanta to switch tasks frequently, prioritizing interactive user responsiveness.",
+                "isCorrect": true,
+                "rationale": "Time-sharing focuses specifically on rapid user interaction by enforcing periodic CPU time slices across active tasks."
+              },
+              {
+                "text": "Basic multiprogramming focuses primarily on keeping the CPU busy by switching tasks when the active process waits for I/O.",
+                "isCorrect": true,
+                "rationale": "Multiprogramming maximizes CPU utilization by overlapping compute cycles with I/O wait times without requiring time-slicing."
+              },
+              {
+                "text": "Time-sharing guarantees deterministic hard real-time response deadlines for critical applications.",
+                "isCorrect": false,
+                "rationale": "Time-sharing improves average interactive response time but does not provide mandatory hard real-time deadline guarantees."
+              },
+              {
+                "text": "Basic multiprogramming requires each task to run on an independent physical CPU core in a distributed network.",
+                "isCorrect": false,
+                "rationale": "Multiprogramming operates on single or multi-core systems by keeping multiple jobs loaded in main memory concurrently."
+              }
+            ],
+            "hint": "Select options that contrast user interactivity goals with CPU utilization goals.",
+            "hasAllOfTheAbove": false,
+            "hasNoneOfTheAbove": false
+          },
+          {
+            "type": "multiple_select",
+            "question": "Which of the following conditions must hold simultaneously for a system resource deadlock to occur?",
+            "answerOptions": [
+              {
+                "text": "Mutual Exclusion: At least one resource must be held in a non-shareable mode.",
+                "isCorrect": true,
+                "rationale": "Mutual exclusion ensures that only one process at a time can hold and use a non-shareable resource instance."
+              },
+              {
+                "text": "Hold and Wait: A process holds at least one resource while waiting to acquire additional resources held by others.",
+                "isCorrect": true,
+                "rationale": "Hold and wait establishes that processes retain currently granted resources while requesting blocked resources."
+              },
+              {
+                "text": "No Preemption: Resources cannot be forcibly taken from a process; they must be released voluntarily.",
+                "isCorrect": true,
+                "rationale": "No preemption prevents the OS from forcibly reclaiming allocated resources to break dependencies."
+              },
+              {
+                "text": "Circular Wait: A closed chain of processes exists such that each process waits for a resource held by the next process in the chain.",
+                "isCorrect": true,
+                "rationale": "Circular wait creates a closed dependency cycle among blocked processes waiting on held resources."
+              }
+            ],
+            "hint": "Identify the four necessary Coffman conditions required for resource deadlock.",
+            "hasAllOfTheAbove": true,
+            "hasNoneOfTheAbove": false
+          },
+          {
+            "type": "multiple_select",
+            "question": "A system has free memory holes ordered by memory address as follows: $100\\text{ KiB}$, $500\\text{ KiB}$, $200\\text{ KiB}$, $300\\text{ KiB}$, and $600\\text{ KiB}$. A new process requests an allocation of $212\\text{ KiB}$. Assuming each allocation strategy is evaluated independently from the original list, which selections are correct?",
+            "answerOptions": [
+              {
+                "text": "First-Fit selects the $500\\text{ KiB}$ hole, leaving a remaining fragment of $288\\text{ KiB}$.",
+                "isCorrect": true,
+                "rationale": "First-Fit scans from the beginning ($100\\text{ KiB}$ is too small) and allocates from the $500\\text{ KiB}$ hole, leaving $500 - 212 = 288\\text{ KiB}$."
+              },
+              {
+                "text": "Best-Fit selects the $300\\text{ KiB}$ hole, leaving a remaining fragment of $88\\text{ KiB}$.",
+                "isCorrect": true,
+                "rationale": "Best-Fit searches for the smallest hole $\\ge 212\\text{ KiB}$, choosing $300\\text{ KiB}$ and leaving $300 - 212 = 88\\text{ KiB}$."
+              },
+              {
+                "text": "Worst-Fit selects the $600\\text{ KiB}$ hole, leaving a remaining fragment of $388\\text{ KiB}$.",
+                "isCorrect": true,
+                "rationale": "Worst-Fit selects the largest available hole ($600\\text{ KiB}$), leaving $600 - 212 = 388\\text{ KiB}$."
+              },
+              {
+                "text": "First-Fit selects the $200\\text{ KiB}$ hole because it is closest in address space.",
+                "isCorrect": false,
+                "rationale": "The $200\\text{ KiB}$ hole is smaller than the requested $212\\text{ KiB}$ and cannot accommodate the allocation."
+              }
+            ],
+            "hint": "Evaluate First-Fit (first valid candidate), Best-Fit (smallest valid candidate), and Worst-Fit (largest valid candidate) independently.",
+            "hasAllOfTheAbove": false,
+            "hasNoneOfTheAbove": false
+          },
+          {
+            "type": "multiple_select",
+            "question": "Which features accurately describe the differences between internal and external memory fragmentation?",
+            "answerOptions": [
+              {
+                "text": "Internal fragmentation occurs when allocated fixed-size memory blocks leave unused space inside the block allocated to a process.",
+                "isCorrect": true,
+                "rationale": "Internal fragmentation arises in fixed-partitioning or paging systems when a process request is slightly smaller than the fixed block unit."
+              },
+              {
+                "text": "External fragmentation occurs when total free memory is sufficient to satisfy an allocation request, but the memory is split into non-contiguous gaps.",
+                "isCorrect": true,
+                "rationale": "External fragmentation is caused by dynamic allocation and deallocation of variable partitions over time, leaving unusable gaps between active allocations."
+              },
+              {
+                "text": "Paging completely eliminates external fragmentation by allowing logical pages to be assigned to non-contiguous physical frames.",
+                "isCorrect": true,
+                "rationale": "Paging removes the requirement for contiguous physical placement, preventing external gaps between allocated memory partitions."
+              },
+              {
+                "text": "Compaction is used to eliminate internal fragmentation in fixed-page architectures.",
+                "isCorrect": false,
+                "rationale": "Compaction shifts variable partitions to merge external gaps; it cannot alter internal unused space within fixed page boundaries."
+              }
+            ],
+            "hint": "Distinguish between wasted space inside fixed allocations versus non-contiguous gaps between variable partitions.",
+            "hasAllOfTheAbove": false,
+            "hasNoneOfTheAbove": false
+          },
+          {
+            "type": "fill_in_the_blank",
+            "question": "The data structure maintained by the operating system to store information about an active process—including its state, program counter, CPU registers, and memory allocations—is known as the Process ___ Block.",
+            "bestAnswer": "Control",
+            "acceptableAnswers": [
+              "Control",
+              "control"
+            ],
+            "rationale": "The Process Control Block (PCB) is the central repository structure created by the OS to preserve execution details for process management and context switching.",
+            "hint": "This term completes the acronym PCB."
+          },
+          {
+            "type": "fill_in_the_blank",
+            "question": "A fixed-sized contiguous block of physical RAM space that is sized identically to a logical page is called a ___.",
+            "bestAnswer": "frame",
+            "acceptableAnswers": [
+              "frame",
+              "Frame"
+            ],
+            "rationale": "In paging systems, physical memory is divided into fixed-size units called frames, which map directly to logical pages of equal size.",
+            "hint": "Logical memory uses pages; physical RAM uses this matching unit."
+          },
+          {
+            "type": "fill_in_the_blank",
+            "question": "Deadlock prevention can eliminate the circular wait condition by requiring processes to request all system resources in strictly increasing numerical ___.",
+            "bestAnswer": "order",
+            "acceptableAnswers": [
+              "order",
+              "ordering",
+              "sequence"
+            ],
+            "rationale": "Assigning global integer ranks to resource types and enforcing requests in increasing order prevents closed circular dependency cycles from forming.",
+            "hint": "This concept involves imposing a global integer ranking hierarchy on resources."
+          },
+          {
+            "type": "fill_in_the_blank",
+            "question": "A locking mechanism that enforces strict single-thread ownership—ensuring that only the thread that acquired the lock can release it—is known as a ___ lock.",
+            "bestAnswer": "mutex",
+            "acceptableAnswers": [
+              "mutex",
+              "Mutex",
+              "mutual exclusion"
+            ],
+            "rationale": "A mutex lock enforces strict ownership rules, guaranteeing that execution inside a critical section is limited to the acquiring thread.",
+            "hint": "This term is a contraction of 'mutual exclusion'."
+          },
+          {
+            "type": "fill_in_the_blank",
+            "question": "To satisfy the criteria for solving the critical section problem, a solution must guarantee mutual exclusion, bounded waiting, and ___.",
+            "bestAnswer": "progress",
+            "acceptableAnswers": [
+              "progress",
+              "Progress"
+            ],
+            "rationale": "Progress ensures that if no process is in its critical section, only processes attempting to enter can participate in the decision, preventing indefinite postponement.",
+            "hint": "Name the criterion that ensures candidate processes are not postponed indefinitely when entering an empty critical section."
+          },
+          {
+            "type": "short_answer",
+            "question": "Why does Shortest Job First (SJF) scheduling minimize average waiting time, and what is its primary practical limitation?",
+            "grading": {
+              "modelAnswer": "SJF minimizes average waiting time by executing processes with shorter burst times ahead of longer tasks, which reduces waiting times for subsequent queued processes. Its primary practical limitation is that future CPU burst lengths are generally unknown in advance and must be estimated, which can cause long processes to suffer from starvation.",
+              "rationale": "Executing short bursts first reduces cumulative waiting times across queued processes, but inability to predict exact CPU bursts limits practical implementation.",
+              "requiredAttributes": [
+                "Explains that running shorter burst processes first reduces overall accumulated waiting time.",
+                "Identifies that future CPU burst lengths are unknown or must be estimated, leading to potential starvation for long jobs."
+              ],
+              "errors": {
+                "misconceptions": [
+                  "Claiming SJF guarantees global optimality when processes arrive dynamically at different times.",
+                  "Stating that SJF completely eliminates process starvation."
+                ],
+                "bluffs": [
+                  "Vague assertions that SJF is faster without explaining burst length ordering or estimation challenges."
+                ]
+              }
+            },
+            "hint": "Focus on how placing short tasks ahead of long tasks affects waiting metrics, and consider what information the scheduler lacks."
+          },
+          {
+            "type": "short_answer",
+            "question": "Explain how paging eliminates external fragmentation while still allowing internal fragmentation.",
+            "grading": {
+              "modelAnswer": "Paging eliminates external fragmentation by dividing physical memory into fixed-size frames and logical memory into equal-sized pages, allowing any page to be allocated to any available frame without needing contiguous space. However, because pages are fixed in size, if a process's memory request is not an exact multiple of the page size, the last allocated page will contain unused memory, resulting in internal fragmentation.",
+              "rationale": "Non-contiguous frame placement prevents gaps between allocations, but fixed page sizes leave unused space in the final allocated page.",
+              "requiredAttributes": [
+                "Explains that non-contiguous allocation of fixed-size pages into physical frames eliminates external gaps.",
+                "Explains that internal fragmentation occurs in the last page when a process allocation request is not an exact multiple of page size."
+              ],
+              "errors": {
+                "misconceptions": [
+                  "Claiming paging suffers from external fragmentation.",
+                  "Stating that internal fragmentation occurs between physical frames."
+                ],
+                "bluffs": [
+                  "Assertions that paging fixes all fragmentation types without addressing fixed page size limits."
+                ]
+              }
+            },
+            "hint": "Contrast non-contiguous frame placement with the fixed allocation size of individual pages."
+          },
+          {
+            "type": "short_answer",
+            "question": "What is the difference between resource deadlock and process starvation?",
+            "grading": {
+              "modelAnswer": "Deadlock is a state where a set of processes are mutually blocked because each holds a resource while waiting for another resource held by another process in the set, preventing any process in that set from making progress. Starvation is a state where a process is indefinitely delayed from making progress because other processes repeatedly receive priority access to requested resources.",
+              "rationale": "Deadlock involves cyclic mutual blocking across processes, whereas starvation involves indefinite postponement due to scheduling policy biases.",
+              "requiredAttributes": [
+                "Defines deadlock as mutual, cyclic resource blocking among a set of processes.",
+                "Defines starvation as indefinite postponement of a process while other processes receive resources."
+              ],
+              "errors": {
+                "misconceptions": [
+                  "Treating deadlock and starvation as identical terms.",
+                  "Claiming starved processes are holding resources in a cyclic waiting loop."
+                ],
+                "bluffs": [
+                  "Vague descriptions of slow system execution without defining cyclic blocking versus unfair resource allocation."
+                ]
+              }
+            },
+            "hint": "Distinguish between mutual cyclic blocking and indefinite postponement caused by scheduling priorities."
+          },
+          {
+            "type": "short_answer",
+            "question": "How does an excessively small time quantum affect Round Robin CPU scheduling performance?",
+            "grading": {
+              "modelAnswer": "An excessively small time quantum causes frequent task preemptions, resulting in high context-switching overhead. This context-switch overhead consumes significant CPU processing time, reducing overall system throughput and computational efficiency.",
+              "rationale": "Frequent time-slice expirations increase context-switch context saves and restores, wasting processor cycles on overhead rather than useful process execution.",
+              "requiredAttributes": [
+                "Identifies that a small quantum increases the frequency of context switches.",
+                "Explains that high context-switch overhead degrades CPU efficiency or overall throughput."
+              ],
+              "errors": {
+                "misconceptions": [
+                  "Claiming a small quantum causes Round Robin to degenerate into First-Come, First-Served.",
+                  "Stating that small time quanta decrease context-switch frequency."
+                ],
+                "bluffs": [
+                  "Vague statements that small quanta make the system slow without mentioning context-switch overhead."
+                ]
+              }
+            },
+            "hint": "Consider the relationship between context switch frequency, CPU overhead, and task switching."
+          }
+        ]
+      }
+    }
+  ],
+  "timed_out": false,
+  "review_label": "Checked against the plan and the report section, not against the original sources.",
+  "total": 5
+}

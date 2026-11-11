@@ -78,6 +78,14 @@ When downloading, adding, or organizing learning materials for current semester 
   - **`assignment/`** — Nested assignment briefs, code, and submissions grouped by dated folders (e.g., `assignment/YYYYMMDD_[Assignment_Name]/`).
 - **Amazon S3 Download Note**: When downloading attachments from Camu S3 storage (`segicamuattachments.s3.ap-southeast-1.amazonaws.com`), always provide the header `-H "Referer: https://staff-spark.segi.edu.my/"` to avoid HTTP 403 Forbidden errors.
 
+## NotebookLM Course Sources — CRITICAL
+
+- Upload only original course or lecturer-provided materials as NotebookLM sources by default, such as lecture slides, SIM notes, original tutorial questions, course documents, and reference books.
+- Do not upload AI-generated study guides, summaries, generated answer sheets, corrected revision notes, or other derived study outputs as sources unless the user explicitly requests it. Keep these as local deliverables or NotebookLM Studio artifacts.
+- Generate study materials from the selected original sources. Put correction instructions in generation prompts rather than uploading a rewritten or combined guide as a new source.
+- Name sources clearly by chapter and document type, for example `Chapter 1 — Lecture Notes — Introduction to Operating Systems` or `Chapter 3 — SIM Notes — Memory Management`. Distinguish original materials from generated revision aids.
+- Reuse the existing course notebook and check live sources before uploading to avoid duplicates. This rule does not authorize deleting previously uploaded sources.
+
 ## Virtual Environment
 
 The `.venv/` directory contains project-specific Python packages. Always use `.venv/bin/python` or `.venv/bin/pip` for tool installation:

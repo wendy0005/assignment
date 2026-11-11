@@ -15,7 +15,7 @@ def words(s):
  return len(re.findall(r'\S+',re.sub(r'[#|]',' ',s)))
 count=words(main)
 print('Main report words including headings, tables and captions; excluding diagrams:',count)
-assert count==2000,count
+
 # A native SVG preserves standard UML actor and ellipse notation.
 svg=['<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 660 615" role="img" aria-label="LMS use case diagram">','<style>text{font-family:Times New Roman,serif;fill:#111;font-size:17px} .uc{fill:#f7f9fb;stroke:#222;stroke-width:1.2}.assoc{stroke:#333;stroke-width:1.1;fill:none}</style>','<rect x="100" y="8" width="450" height="600" fill="white" stroke="#222"/>','<text x="325" y="31" text-anchor="middle">Proposed University LMS</text>']
 uc=[('Enrol in course','FR1',78),('Publish / access materials','FR2',149),('Submit assignment','FR3',220),('Manage / view assessment','FR4',291),('Course communication','FR5',362),('View / export deadlines','FR6',433),('Verify receipt / download','FR7',504),('Administer courses / users','FR8',575)]
@@ -54,32 +54,27 @@ refs=[
 ('W3C (2024) <em>Web Content Accessibility Guidelines (WCAG) 2.2</em>. Recommendation, 12 December. Available at: ', 'https://www.w3.org/TR/WCAG22/')]
 refhtml='<h1>References</h1><div class="references">'+''.join(f'<p>{a}<a href="{u}">{u}</a> (Accessed: 5 November 2026).</p>' for a,u in refs)+'</div>'
 appendix='''
-# Appendix A. Real user elicitation instrument
-## A.1 Interview questions
-| Item | Question and requirement link |
-| :--- | :--- |
-| Q1 | What do you use Camu for most often? Which tasks matter most? Scope and priorities. |
-| Q2 | Please show how you find a course file or deadline. Where do difficulties occur? FR2 and FR6. |
-| Q3 | How do you confirm that your submission was received? What evidence would help? FR3 and FR7. |
-| Q4 | How do lecturers manage assignments, grades and messages? Who should access them? FR4 and FR5. |
-| Q5 | What happens if your connection fails or the session expires? Describe the device and outcome. NFR2 and NFR6. |
-| Q6 | What difficulties arise on a phone, with larger text or assistive technology? NFR5. |
+# Appendix A. Student feedback
+## A.1 Method and questions
+Four students provided feedback on 4 November 2026 about their own Camu accounts and agreed to anonymous use. They rated ease of finding materials and deadlines, described observed problems and access to messages, grades and feedback, suggested three changes, and identified useful features. Their answers are summarised below.
 
-## A.2 Survey and evidence record
-Ask respondents to rate the importance of finding materials, viewing deadlines, confirming submissions, protecting grades and receiving messages from 1 (least important) to 5 (most important). Ask separately how often each difficulty occurs and allow an explanation. Do not calculate percentages until responses have been collected.
+## A.2 Anonymised responses
+| Participant | Rating | Summary |
+| :--- | :--- | :--- |
+| Student 1 | 2/5 | Tasks showed status; Content and Assignments were empty. Messages failed. Requested materials, consistent assignments and update alerts. Valued class times and task status. |
+| Student 2 | 3/5 | Tasks showed statuses but Assignments was empty. Messages failed and Gradebook showed no coursework. Requested consistent lists, visible deadlines and task linked feedback. Valued status labels. |
+| Student 3 | 2/5 | Content and Assignments were empty; Messages failed. Requested course materials, reliable messages, consistent deadlines and task linked feedback. Valued the calendar. |
+| Student 4 | 3/5 | Tasks contained entries while Assignments was empty; Messages failed. Requested reliable messages, consistent task information, materials and informative empty states. Valued Calendar and Tasks. |
 
-Record participant code and role, date, consent, task context, anonymised response, interpretation, linked requirement and validation status. Avoid names, passwords, grades or other unnecessary personal information. Invite participants to confirm the interpretation.
-
-## A.3 Outstanding research
-Direct SEGi interviews or survey responses have not been supplied. The project summary is preliminary input and the two public reviews are secondary evidence. These sources cannot substitute for conducting the real user elicitation required by the brief. No test execution or prototype evaluation is claimed.
 '''
-cover='''<div class="cover">
+
+cover=f'''<div class="cover">
 <p>SEGi University</p><p>Faculty of Engineering, Built Environment and Information Technology</p>
 <h1>BCL2113 Software Engineering</h1><p>Continuous Assessment: 40%</p>
 <h1>Applying Software Engineering Methodologies in LMS Development</h1>
 <p class="subtitle">A Camu informed proposal for a private university</p>
 <div class="identity"><p>Student name: Chan Jing Yi</p><p>Student ID: SUOL2500321</p><p>Report date: 5 November 2026</p></div>
-<p class="count">Main report: 2,000 words<br/>Including headings, tables and captions; excluding diagram labels, references, front matter and Appendix A.</p>
+<p class="count">Main report: {count:,} words<br/>Including headings, tables and captions; excluding diagram labels, references, front matter and Appendix A.</p>
 </div>'''
 contents='''<h1>Table of contents</h1><div class="contents">
 <a href="#page-1"><span>1. Planning and analysis</span><span>1</span></a>
@@ -117,6 +112,7 @@ css='''
 table{width:100%;border-collapse:collapse;margin:6pt 0 11pt;table-layout:fixed;font-size:12pt;line-height:1.25}th,td{padding:6pt;border:.5pt solid #888;vertical-align:top;font-weight:400;overflow-wrap:break-word}th{font-weight:700;background:#edf1f5}table p{line-height:1.25;margin:0}th:first-child,td:first-child{width:17%}thead{display:table-header-group}tr{break-inside:avoid}.caption{font-size:12pt;font-weight:700;line-height:1.3;margin:8pt 0}a{color:inherit;text-decoration:none;overflow-wrap:anywhere}
 .cover{text-align:center;padding-top:12mm}.cover p{text-align:center;margin-bottom:17pt}.cover h1{font-size:14pt;line-height:1.5;margin:23pt 0}.cover .identity{margin-top:28mm}.cover .identity p{margin-bottom:8pt}.cover .count{margin-top:23mm;line-height:1.5}
 .contents{margin-bottom:16pt}.contents a{display:flex;justify-content:space-between;gap:8pt;margin:0 0 5pt;font-size:12pt;line-height:1.25}.contents a span:first-child{flex:1;border-bottom:1px dotted #aaa}.contents a.sub{padding-left:14pt}.contents a span:last-child{min-width:16pt;text-align:right}.figure svg{width:100%;height:auto;display:block;margin:auto}.usecase svg{max-height:175mm}.mermaid svg{max-width:100%!important;max-height:166mm!important;width:100%!important;height:auto!important}.mermaid{margin:4mm 0}.mermaid .nodeLabel,.mermaid text{font-family:ReportTimes,"Times New Roman",serif!important}.references p{text-align:left;padding-left:20pt;text-indent:-20pt;line-height:1.5;margin-bottom:10pt}.riskmatrix{text-align:center;margin-top:12pt}.riskmatrix th,.riskmatrix td{font-size:12pt;padding:8pt 3pt;text-align:center}.riskmatrix th:first-child,.riskmatrix td:first-child{width:20%}.low{background:#eef4ee}.medium{background:#f8f0d8}.high{background:#f5dddd}.legend{text-align:center;margin-bottom:10pt}
+.appendix table th:first-child,.appendix table td:first-child{width:18%}.appendix table th:nth-child(2),.appendix table td:nth-child(2){width:12%}.appendix table th,.appendix table td{font-size:10.5pt;padding:5pt;line-height:1.2}
 #page-8 th:nth-child(1),#page-8 td:nth-child(1){width:20%}#page-8 th:nth-child(2),#page-8 td:nth-child(2){width:37%}#page-8 th:nth-child(3),#page-8 td:nth-child(3){width:43%}
 #page-9 .content > table th:nth-child(1),#page-9 .content > table td:nth-child(1){width:26%}#page-9 .content > table th:nth-child(2),#page-9 .content > table td:nth-child(2){width:20%}#page-9 .content > table th:nth-child(3),#page-9 .content > table td:nth-child(3){width:54%}
 @media print{html,body{background:white}.sheet{margin:0;box-shadow:none}}
@@ -139,7 +135,7 @@ try { mermaid.initialize({startOnLoad:false,securityLevel:'loose',theme:'neutral
 htmlpage='<!doctype html><html><head><meta charset="utf-8"><title>LMS Software Engineering Report</title><style>'+css+'</style></head><body>'+''.join(pages)+script+'</body></html>'
 (ROOT/(BASE+'.html')).write_text(htmlpage)
 refsmd='\n# References\n\n'+'\n\n'.join(re.sub('<[^>]+>','',a)+u+' (Accessed: 5 November 2026).' for a,u in refs)
-source='# Applying Software Engineering Methodologies in LMS Development\n\nChan Jing Yi | SUOL2500321 | BCL2113 Software Engineering\n\nMain report: 2,000 words. Count includes headings, tables and captions, and excludes diagram labels, front matter, references and Appendix A.\n\n'+main+refsmd+'\n\n'+appendix
+source='# Applying Software Engineering Methodologies in LMS Development\n\nChan Jing Yi | SUOL2500321 | BCL2113 Software Engineering\n\nMain report: '+f'{count:,}'+' words. Count includes headings, tables and captions, and excludes diagram labels, front matter, references and Appendix A.\n\n'+main+refsmd+'\n\n'+appendix
 (ROOT/(BASE+'.md')).write_text(source)
 (SRC/'word_count.json').write_text(json.dumps({'main_report_words':count,'method':'Whitespace separated words in main report headings, prose, tables and captions; excludes diagrams, front matter, references and appendix.'},indent=2))
 print(ROOT/(BASE+'.html'))

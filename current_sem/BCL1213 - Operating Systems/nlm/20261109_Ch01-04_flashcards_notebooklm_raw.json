@@ -1,0 +1,1090 @@
+{
+  "title": "Operating Systems Flashcards",
+  "cards": [
+    {
+      "front": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "[Chapter 1 - Intro to OS] What is an Operating System (OS)?"
+          }
+        ]
+      },
+      "back": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "An Operating System is system software that manages computer hardware and software resources, serving as an intermediary between user applications and system hardware."
+          }
+        ]
+      }
+    },
+    {
+      "front": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "[Chapter 1 - Intro to OS] Why is an Operating System described as a 'resource manager'?"
+          }
+        ]
+      },
+      "back": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "It allocates system resources (such as CPU time, memory, storage, and I/O devices) effectively and fairly to maximize performance and maintain system stability."
+          }
+        ]
+      }
+    },
+    {
+      "front": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "[Chapter 1 - Intro to OS] What is the correct hierarchy flow when an application requests access to physical hardware?"
+          }
+        ]
+      },
+      "back": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "Application $\\rightarrow$ Operating System $\\rightarrow$ Device Driver $\\rightarrow$ Hardware"
+          }
+        ]
+      }
+    },
+    {
+      "front": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "[Chapter 1 - Intro to OS] What is the primary function of a device driver in an operating system?"
+          }
+        ]
+      },
+      "back": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "A device driver translates high-level common requests from the operating system into specific hardware commands tailored to underlying physical components."
+          }
+        ]
+      }
+    },
+    {
+      "front": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "[Chapter 1 - Intro to OS] What early historical U.S. government computer operated directly without an operating system?"
+          }
+        ]
+      },
+      "back": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "ENIAC (Electronic Numerical Integrator and Computer)"
+          }
+        ]
+      }
+    },
+    {
+      "front": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "[Chapter 1 - Intro to OS] Which two key operating system concepts were introduced in the 1960s to improve CPU utilization?"
+          }
+        ]
+      },
+      "back": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "Multiprogramming and Time-sharing"
+          }
+        ]
+      }
+    },
+    {
+      "front": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "[Chapter 1 - Intro to OS] Why was the release of UNIX in 1973 a major milestone in operating system history?"
+          }
+        ]
+      },
+      "back": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "It was the first operating system designed to be portable across different hardware platforms while offering simplicity and multitasking."
+          }
+        ]
+      }
+    },
+    {
+      "front": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "[Chapter 1 - Intro to OS] Which two personal computer operating systems popularized Graphical User Interfaces (GUIs) in the mid-1980s?"
+          }
+        ]
+      },
+      "back": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "Apple Macintosh (1984) and Microsoft Windows 1.0 (1985)"
+          }
+        ]
+      }
+    },
+    {
+      "front": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "[Chapter 1 - Intro to OS] Which operating system released in 1991 established a landmark model for free and open-source software development?"
+          }
+        ]
+      },
+      "back": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "Linux"
+          }
+        ]
+      }
+    },
+    {
+      "front": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "[Chapter 1 - Intro to OS] What defines a Real-Time Operating System (RTOS)?"
+          }
+        ]
+      },
+      "back": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "An OS designed to process continuous incoming data and respond within strict, predictable time constraints."
+          }
+        ]
+      }
+    },
+    {
+      "front": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "[Chapter 1 - Intro to OS] How does a Hard RTOS differ fundamentally from a Soft RTOS?"
+          }
+        ]
+      },
+      "back": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "A Hard RTOS guarantees strict deadline compliance where missing a deadline causes total system failure; a Soft RTOS prioritizes critical tasks but tolerates occasional minor delay."
+          }
+        ]
+      }
+    },
+    {
+      "front": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "[Chapter 1 - Intro to OS] Why is a Batch Operating System unsuitable for an automated air-traffic monitoring system?"
+          }
+        ]
+      },
+      "back": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "Batch systems collect and process jobs sequentially in groups without real-time interaction, preventing immediate response to critical sensory updates."
+          }
+        ]
+      }
+    },
+    {
+      "front": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "[Chapter 1 - Intro to OS] In real-time computing, why is 'fast processing' alone insufficient to describe system requirements?"
+          }
+        ]
+      },
+      "back": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "Real-time performance requires determinism and predictable timing guarantees, not merely high average execution speeds."
+          }
+        ]
+      }
+    },
+    {
+      "front": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "[Chapter 1 - Intro to OS] What are the primary features and typical use cases of Tertiary Storage?"
+          }
+        ]
+      },
+      "back": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "Tertiary storage consists of very slow, very large capacity, low-cost non-volatile storage (e.g., optical discs, tape drives) used mainly for long-term archiving and backups."
+          }
+        ]
+      }
+    },
+    {
+      "front": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "[Chapter 1 - Intro to OS] How does Secondary Storage differ from Main Memory (RAM) regarding data volatility?"
+          }
+        ]
+      },
+      "back": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "Secondary storage is non-volatile (retains data when powered off), whereas main memory (RAM) is volatile (loses data when power is lost)."
+          }
+        ]
+      }
+    },
+    {
+      "front": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "[Chapter 2 - Process Management] What is the core distinction between a program and a process?"
+          }
+        ]
+      },
+      "back": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "A program is a static set of instructions stored on disk; a process is a dynamic program in execution loaded into memory with active execution state."
+          }
+        ]
+      }
+    },
+    {
+      "front": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "[Chapter 2 - Process Management] What is the role of the Program Counter (PC) component within a process?"
+          }
+        ]
+      },
+      "back": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "It holds the memory address of the next instruction to be executed by the CPU for that process."
+          }
+        ]
+      }
+    },
+    {
+      "front": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "[Chapter 2 - Process Management] In process memory structure, how does the Stack section differ from the Heap section?"
+          }
+        ]
+      },
+      "back": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "The Stack stores temporary execution data such as function parameters, return addresses, and local variables; the Heap stores memory dynamically allocated during execution."
+          }
+        ]
+      }
+    },
+    {
+      "front": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "[Chapter 2 - Process Management] What is a Process Control Block (PCB)?"
+          }
+        ]
+      },
+      "back": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "A data structure maintained by the OS containing key metadata about a process, including PID, process state, program counter, CPU registers, and memory management info."
+          }
+        ]
+      }
+    },
+    {
+      "front": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "[Chapter 2 - Process Management] What occurs during the 'Start' (or 'New') state of a process lifecycle?"
+          }
+        ]
+      },
+      "back": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "The operating system creates the process, assigns its process control block, and sets up its initial resource structures."
+          }
+        ]
+      }
+    },
+    {
+      "front": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "[Chapter 2 - Process Management] What condition defines the 'Ready' state in process management?"
+          }
+        ]
+      },
+      "back": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "The process is fully loaded in memory and prepared to execute, but is waiting in queue to be allocated CPU time."
+          }
+        ]
+      }
+    },
+    {
+      "front": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "[Chapter 2 - Process Management] What causes a running process to move into the 'Waiting' (or 'Blocked') state?"
+          }
+        ]
+      },
+      "back": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "The process cannot proceed until a specific external event occurs, such as completing an I/O operation or disk read."
+          }
+        ]
+      }
+    },
+    {
+      "front": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "[Chapter 2 - Process Management] Which state transition occurs when a process in the 'Running' state requires an I/O operation?"
+          }
+        ]
+      },
+      "back": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "The process transitions from 'Running' to 'Waiting'. After I/O completion, it moves to 'Ready'."
+          },
+          {
+            "type": "image",
+            "reference": "d0eee767-f8f3-4430-9eea-f0fd13903961",
+            "alt": "Process state lifecycle flow diagram showing Start, Ready, Running, Waiting, and Terminated states"
+          }
+        ]
+      }
+    },
+    {
+      "front": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "[Chapter 2 - Process Scheduling] What is the main responsibility of the Long-Term Scheduler (Job Scheduler)?"
+          }
+        ]
+      },
+      "back": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "It selects processes from the mass storage job pool, loads them into main memory, and controls the degree of multiprogramming."
+          }
+        ]
+      }
+    },
+    {
+      "front": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "[Chapter 2 - Process Scheduling] What is the primary function of the Short-Term Scheduler (CPU Scheduler)?"
+          }
+        ]
+      },
+      "back": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "It frequently selects which ready process in memory gets CPU execution time next."
+          }
+        ]
+      }
+    },
+    {
+      "front": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "[Chapter 2 - Process Scheduling] What is the role of the Medium-Term Scheduler?"
+          }
+        ]
+      },
+      "back": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "It handles process swapping by temporarily suspending and moving idle/inactive processes out of main memory to optimize resource utilization."
+          }
+        ]
+      }
+    },
+    {
+      "front": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "[Chapter 2 - Process Scheduling] What is meant by the term 'degree of multiprogramming'?"
+          }
+        ]
+      },
+      "back": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "The total number of processes residing simultaneously in main memory."
+          }
+        ]
+      }
+    },
+    {
+      "front": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "[Chapter 2 - Process Management] What is context switching, and why is frequent context switching undesirable?"
+          }
+        ]
+      },
+      "back": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "Context switching is saving the CPU state of a current process and restoring another process's state. Frequent context switching creates purely administrative CPU overhead without executing user code."
+          }
+        ]
+      }
+    },
+    {
+      "front": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "[Chapter 2 - Process Scheduling] What is the formula for process Turnaround Time (TAT)?"
+          }
+        ]
+      },
+      "back": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "$\\text{Turnaround Time (TAT)} = \\text{Completion Time} - \\text{Arrival Time}$"
+          }
+        ]
+      }
+    },
+    {
+      "front": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "[Chapter 2 - Process Scheduling] What is the formula for process Waiting Time (WT)?"
+          }
+        ]
+      },
+      "back": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "$\\text{Waiting Time (WT)} = \\text{Turnaround Time} - \\text{Burst Time}$"
+          }
+        ]
+      }
+    },
+    {
+      "front": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "[Chapter 2 - Process Scheduling] How does the First-Come, First-Served (FCFS) algorithm determine CPU allocation?"
+          }
+        ]
+      },
+      "back": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "It allocates the CPU to processes strictly in the order of their arrival in the ready queue."
+          }
+        ]
+      }
+    },
+    {
+      "front": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "[Chapter 2 - Process Scheduling] What is the 'convoy effect' associated with FCFS scheduling?"
+          }
+        ]
+      },
+      "back": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "A scenario where short processes wait in queue for a long CPU-bound process to finish, significantly increasing average waiting time."
+          }
+        ]
+      }
+    },
+    {
+      "front": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "[Chapter 2 - Process Scheduling] How does Shortest Job Next (SJN / SJF) scheduling select the next process?"
+          }
+        ]
+      },
+      "back": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "It selects the process with the smallest execution burst time from the ready queue."
+          }
+        ]
+      }
+    },
+    {
+      "front": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "[Chapter 2 - Process Scheduling] What potential disadvantage is associated with Shortest Job First (SJF) scheduling?"
+          }
+        ]
+      },
+      "back": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "Starvation: longer jobs may be delayed indefinitely if short processes continuously enter the ready queue."
+          }
+        ]
+      }
+    },
+    {
+      "front": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "[Chapter 2 - Process Scheduling] How does Round Robin (RR) CPU scheduling operate?"
+          }
+        ]
+      },
+      "back": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "It assigns CPU execution time to each process for a fixed interval called a time quantum, cycling through ready queue processes."
+          }
+        ]
+      }
+    },
+    {
+      "front": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "[Chapter 2 - Process Scheduling] What is the consequence of selecting a very small time quantum in Round Robin scheduling?"
+          }
+        ]
+      },
+      "back": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "It causes frequent context switching, which increases system overhead and reduces overall CPU efficiency."
+          }
+        ]
+      }
+    },
+    {
+      "front": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "[Chapter 2 - Process Scheduling] How does Priority Scheduling decide execution order?"
+          }
+        ]
+      },
+      "back": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "Each process is assigned a priority rank; the CPU is allocated to the process with the highest priority."
+          }
+        ]
+      }
+    },
+    {
+      "front": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "[Chapter 2 - Process Scheduling] How does the 'aging' technique solve process starvation in priority systems?"
+          }
+        ]
+      },
+      "back": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "Aging continuously increases the priority ranking of processes that remain waiting in the system for extended periods."
+          }
+        ]
+      }
+    },
+    {
+      "front": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "[Chapter 2 - Process Architecture] Why do modern web browsers like Chrome run individual tabs as separate processes rather than single threads?"
+          }
+        ]
+      },
+      "back": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "Process isolation prevents a crash or malicious script in one tab/renderer from bringing down the entire browser application."
+          }
+        ]
+      }
+    },
+    {
+      "front": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "[Chapter 2 - Process Architecture] What structural feature distinguishes threads within a single process from separate processes?"
+          }
+        ]
+      },
+      "back": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "Threads share their parent process's memory address space and resources, whereas separate processes maintain strictly isolated address spaces."
+          }
+        ]
+      }
+    },
+    {
+      "front": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "[Chapter 3 - Memory Management] In segmented memory, what mathematical condition determines if a memory offset is valid?"
+          }
+        ]
+      },
+      "back": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "$0 \\le \\text{Offset} < \\text{Limit}$"
+          }
+        ]
+      }
+    },
+    {
+      "front": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "[Chapter 3 - Memory Management] What is the formula to calculate physical address in a segmented memory system?"
+          }
+        ]
+      },
+      "back": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "$\\text{Physical Address} = \\text{Base Address} + \\text{Offset}$"
+          }
+        ]
+      }
+    },
+    {
+      "front": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "[Chapter 3 - Memory Management] Given Segment 0 with base $1200$ and limit $500$, is offset $200$ valid, and what is the physical address?"
+          }
+        ]
+      },
+      "back": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "Valid (since $200 < 500$). Physical Address $= 1200 + 200 = 1400$."
+          }
+        ]
+      }
+    },
+    {
+      "front": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "[Chapter 3 - Memory Management] Given Segment 1 with base $2500$ and limit $800$, is offset $750$ valid, and what is the physical address?"
+          }
+        ]
+      },
+      "back": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "Valid (since $750 < 800$). Physical Address $= 2500 + 750 = 3250$."
+          }
+        ]
+      }
+    },
+    {
+      "front": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "[Chapter 3 - Memory Management] Given Segment 2 with base $3000$ and limit $300$, why is an requested offset of $350$ invalid?"
+          }
+        ]
+      },
+      "back": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "It is invalid because $350 \\ge 300$ (offset exceeds segment limit). Valid offsets are $0$ through $299$."
+          }
+        ]
+      }
+    },
+    {
+      "front": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "[Chapter 3 - Memory Management] Given Segment 3 with base $5200$ and limit $600$, what physical address results from offset $500$?"
+          }
+        ]
+      },
+      "back": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "Valid (since $500 < 600$). Physical Address $= 5200 + 500 = 5700$."
+          }
+        ]
+      }
+    },
+    {
+      "front": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "[Chapter 3 - Memory Management] What is the functional role of RAM compared to Secondary Storage?"
+          }
+        ]
+      },
+      "back": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "RAM provides fast, volatile primary storage directly accessible by the CPU for active processes; Secondary storage provides large non-volatile persistence for files."
+          }
+        ]
+      }
+    },
+    {
+      "front": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "[Chapter 3 - Memory Management] What primary system factor dictates the transfer speed of Cloud Storage?"
+          }
+        ]
+      },
+      "back": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "Internet network speed and bandwidth availability."
+          }
+        ]
+      }
+    },
+    {
+      "front": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "[Chapter 4 - Process Synchronization] What is concurrency in operating systems?"
+          }
+        ]
+      },
+      "back": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "A system state where multiple processes or threads execute simultaneously or in overlapping time periods."
+          }
+        ]
+      }
+    },
+    {
+      "front": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "[Chapter 4 - Process Synchronization] What is a race condition?"
+          }
+        ]
+      },
+      "back": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "A concurrency flaw where multiple threads access shared resources without synchronization, making final results dependent on execution timing."
+          }
+        ]
+      }
+    },
+    {
+      "front": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "[Chapter 4 - Process Synchronization] Suppose an initial bank balance is RM1,000. Thread A deposits RM100 and Thread B withdraws RM200 concurrently without synchronization. Why can the final balance result in RM800?"
+          }
+        ]
+      },
+      "back": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "Thread B performed an unprotected read of RM1,000 before Thread A wrote RM1,100. Thread B calculates $1000 - 200 = 800$ and overwrites the balance, resulting in a lost deposit."
+          }
+        ]
+      }
+    },
+    {
+      "front": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "[Chapter 4 - Process Synchronization] What is a critical section in process execution?"
+          }
+        ]
+      },
+      "back": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "A segment of code that accesses shared resources (e.g., variables, files) that must not be concurrently executed by more than one thread or process."
+          }
+        ]
+      }
+    },
+    {
+      "front": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "[Chapter 4 - Process Synchronization] What is a Mutex (Mutual Exclusion) lock?"
+          }
+        ]
+      },
+      "back": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "A synchronization locking mechanism used to guarantee that only one process or thread enters a critical section at any single moment."
+          }
+        ]
+      }
+    },
+    {
+      "front": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "[Chapter 4 - Process Synchronization] What is a Semaphore in process coordination?"
+          }
+        ]
+      },
+      "back": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "A signaling variable/tool used to control access to finite shared resources across multiple concurrent processes."
+          }
+        ]
+      }
+    },
+    {
+      "front": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "[Chapter 4 - Process Synchronization] What defines a Deadlock state?"
+          }
+        ]
+      },
+      "back": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "A situation where two or more processes are permanently blocked because each is waiting for a resource held by another process in a circular chain."
+          }
+        ]
+      }
+    },
+    {
+      "front": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "[Chapter 4 - Process Synchronization] What is Starvation in process management?"
+          }
+        ]
+      },
+      "back": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "A condition where a ready process is delayed indefinitely from acquiring resources because other higher-priority tasks continuously take precedence."
+          }
+        ]
+      }
+    },
+    {
+      "front": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "[Chapter 4 - Process Synchronization] What is the key functional difference between Deadlock and Starvation?"
+          }
+        ]
+      },
+      "back": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "Deadlock is a complete system circular dependency where no process can proceed; Starvation involves specific processes waiting indefinitely while other processes continue executing."
+          }
+        ]
+      }
+    },
+    {
+      "front": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "[Chapter 4 - Process Synchronization] What are the four necessary conditions for a deadlock to occur?"
+          }
+        ]
+      },
+      "back": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "1. Mutual Exclusion\n2. Hold and Wait\n3. No Preemption\n4. Circular Wait"
+          }
+        ]
+      }
+    },
+    {
+      "front": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "[Chapter 4 - Process Synchronization] Why does sharing data across threads require less overhead than Inter-Process Communication (IPC)?"
+          }
+        ]
+      },
+      "back": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "Threads share the same memory address space within a process, eliminating the need to pass data across system boundary calls required by IPC."
+          }
+        ]
+      }
+    },
+    {
+      "front": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "[Chapter 4 - Process Synchronization] In modern browser architecture, what responsibilities are typically assigned to a renderer's main thread versus worker threads?"
+          }
+        ]
+      },
+      "back": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "The main thread handles JavaScript execution and page layout; worker threads execute asynchronous background tasks."
+          }
+        ]
+      }
+    }
+  ]
+}

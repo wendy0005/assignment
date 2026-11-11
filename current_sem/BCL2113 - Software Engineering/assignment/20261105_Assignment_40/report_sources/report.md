@@ -10,11 +10,9 @@ Objective one is to provide enrolled students with a unified deadline dashboard 
 
 # 2. Requirements engineering
 ## 2.1 Elicitation and evidence status
-The supplied project summary identifies navigation, confirmation, session and accessibility concerns. Its original respondents, dates and sources are unspecified; it is preliminary scoping input. Public reviews provide secondary evidence, not direct elicitation from SEGi users. No interview responses, participant counts or survey percentages are invented.
+On 4 November 2026, four students provided anonymised feedback about their own Camu accounts, with agreement to use their responses in this report. They rated ease of finding materials and deadlines as 2, 3, 2 and 3 out of 5. Their responses are summarised in Appendix A. The small student sample does not represent all users; lecturer and administrator validation remains necessary.
 
-The proposed elicitation combines interviews with students, lecturers and an administrator, followed by a survey. Interviews explore failed tasks and exceptions; the survey checks priorities across respondents. Appendix A contains questions and recording instructions. Direct responses and stakeholder validation remain necessary to satisfy the brief’s real user requirement. Evidence should be anonymised and retained only as needed for the assignment, with participants informed about how their responses will be used.
-
-Interview participants should demonstrate how they locate a deadline, retrieve materials and confirm a submission. Ask neutral follow up questions about the device, connection and sequence of actions. Separate software failures from missing lecturer content or institutional settings. Compare responses by role and invite participants to correct the interpretation. The survey should ask about frequency and importance separately, because an infrequent failure may still have severe consequences.
+All four described a mismatch between Tasks and the empty Assignments view and reported a Messages error. Several wanted course materials in Content, clear deadlines and links from tasks to feedback. The calendar and task status labels were valued. Empty views do not establish a defect: materials may be unpublished or available through a course page. A later course-specific check found Software Engineering materials and its assessment in Content. Login, downloads and mobile use were not verified.
 
 <!-- page: 2 -->
 ## 2.2 Functional user requirements
@@ -29,14 +27,14 @@ Students access enrolled courses; lecturers manage assigned courses; administrat
 | FR3 | Accept a student’s PDF or DOCX assignment up to 20 MB. Issue a unique receipt only after successful storage and record creation. |
 | FR4 | Let lecturers create assignments and publish deadlines, grades and feedback. Students see only their own private results. |
 | FR5 | Provide course announcements and messages to enrolled students and assigned lecturers, with a visible delivery status. |
-| FR6 | Display published deadlines across enrolled courses chronologically and export them as a calendar file. |
+| FR6 | Display published deadlines chronologically; show the same deadline and submission status in every assignment view; allow calendar export. |
 | FR7 | Let students reopen receipts showing filename and server receipt time, and download the exact stored submission. |
 | FR8 | Let administrators create courses and assign lecturers and memberships. Reject unauthorised administrative requests. |
 
 ## 2.3 Analysis and traceability
-Navigation concerns motivate FR2 and FR6; submission uncertainty motivates FR3 and FR7. Communication and assessment requirements also follow the assignment scenario. This mapping supports prioritisation without presenting assumptions as measured findings. Receipts and permission controls take priority over calendar export because submission loss has greater academic consequences.
+The student responses support five needs: accessible course materials (FR2), consistent assignment information across views (FR4 and FR6), visible deadlines (FR6), reliable messages (FR5), and accessible grades and feedback (FR4). Student 2 requested feedback from the task; Student 4 wanted helpful empty states. Students 3 and 4 valued the calendar, while Students 1 and 2 highlighted task statuses. Proposed receipts (FR3 and FR7) address submission assurance but were not established by these responses.
 
-The evidence also requires critical appraisal. Public reviewers select themselves and may use different configurations, versions and institutions. The 2021 review is historical evidence, so it supports investigation rather than a claim about current behaviour. Missing information about email receipts or mobile accessibility cannot establish that those features are universally absent. A local observation log should record the date, device, task and outcome, then distinguish reproduced problems from unresolved reports.
+Public reviews are secondary evidence and may concern other versions or institutions. The historical 2021 review supports investigation, not a claim about current SEGi behaviour. The Product Owner prioritises receipts over calendar export because lost submission evidence has greater consequences, then seeks student and lecturer review. Requirements and targets require stakeholder validation.
 
 <!-- page: 3 -->
 ## 2.4 Nonfunctional requirements
@@ -56,7 +54,7 @@ The following values are proposed acceptance targets, not observed Camu performa
 ## 2.5 Requirements validation and control
 Elicitation is followed by analysis, specification, validation and controlled revision. Replace vague statements such as “fast uploads” with measurable conditions. Check contradictions through shared definitions: a deadline uses server time, a submission completes when storage and metadata succeed, and late work requires an authorised extension. Failed transfers produce no success receipt.
 
-Each requirement links to its source, owner and acceptance test. Stakeholders review exception scenarios before approval; versioned change requests document effects on cost, tests and schedule. Accessibility follows W3C (2024), while upload controls follow OWASP (n.d.). Neither guidance replaces local user validation.
+Each requirement links to its source, owner and acceptance test. Stakeholders review exception scenarios before approval; a change request records impacts on cost, tests and schedule. For example, a new file type needs Product Owner approval, security review, implementation and verification before closure. Accessibility follows W3C (2024), while upload controls follow OWASP (n.d.). Neither guidance replaces local user validation.
 
 For mobile sessions, preserve draft form content before expiry, warn users before requiring authentication and restore the draft afterwards. Do not extend access indefinitely or bypass permission checks. Confirm the university’s preferred timeout policy with administrators. Test interruptions by switching applications and reconnecting after network loss; the expected behaviour must distinguish a saved draft from an accepted assignment.
 
@@ -71,7 +69,7 @@ The Definition of Done requires reviewed code, passing acceptance tests, accessi
 
 # 4. System design
 ## 4.1 Modelling approach
-The following diagrams describe the proposed system, not Camu’s internal implementation. Figure 1 maps actors to all eight functional requirements. Figure 2 models assignment submission with attributes, operations and multiplicities. Authentication is a precondition; course membership and staff assignment determine authorisation.
+The following diagrams describe the proposed system, not Camu’s internal implementation. Figure 1 maps actors to all eight functional requirements. Figure 2 models assignment submission with attributes, operations and multiplicities. Authentication is a precondition; membership determines authorisation. In MVC, the model stores submission data, the view displays the form and receipt, and the controller handles requests.
 
 <!-- page: 5 -->
 ## 4.2 Use case diagram
@@ -143,7 +141,7 @@ The Product Owner sets priorities and accepts business outcomes. The Scrum Maste
 | 17 to 20 | Integrated security, load and recovery validation. |
 | 21 to 24 | User pilot, training, migration rehearsal and release. |
 
-Dates depend on approval of the project start. Reviews and regression testing occur throughout, including early Sprints. Release requires resolved critical defects, stakeholder acceptance and a successful restoration exercise.
+Dates depend on approval of the project start. Reviews and regression testing occur throughout, including early Sprints. Release requires resolved critical defects, stakeholder acceptance and a successful restoration exercise. After release, the team monitors service, fixes defects and manages changes.
 
 <!-- page: 8 -->
 # 6. Software quality and testing
@@ -161,6 +159,7 @@ Prepare an enrolled student, a nonmember, a lecturer, open and expired assignmen
 | T5 System | Nonmember attempts upload or download. | Access denied; no private file exposed. |
 | T6 System | Disallowed type or file above 20 MB. | Safe rejection with clear explanation. |
 | T7 Acceptance | Student submits; lecturer opens it. | Correct file, timestamp and receipt agree. |
+| T8 System | Compare assignment views. | Deadline and submission status agree. |
 
 Entry requires stable test data and agreed criteria. Exit requires all critical cases passing and no unresolved critical defects. Record evidence, severity, owner and retest outcome; load and accessibility checks additionally verify NFR2 and NFR5.
 
