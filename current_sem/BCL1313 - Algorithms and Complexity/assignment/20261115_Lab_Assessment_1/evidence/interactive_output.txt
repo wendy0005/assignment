@@ -1,0 +1,214 @@
+
+RESTAURANT ORDER MANAGEMENT
+1. Enqueue new order
+2. Process next order (Dequeue + Push)
+3. Front/Peek incoming
+4. Display incoming
+5. Peek completed
+6. Pop completed
+7. Display completed
+0. Exit
+Choice: Invalid choice. Enter an integer from 0 to 7.
+
+RESTAURANT ORDER MANAGEMENT
+1. Enqueue new order
+2. Process next order (Dequeue + Push)
+3. Front/Peek incoming
+4. Display incoming
+5. Peek completed
+6. Pop completed
+7. Display completed
+0. Exit
+Choice: Invalid choice. Enter an integer from 0 to 7.
+
+RESTAURANT ORDER MANAGEMENT
+1. Enqueue new order
+2. Process next order (Dequeue + Push)
+3. Front/Peek incoming
+4. Display incoming
+5. Peek completed
+6. Pop completed
+7. Display completed
+0. Exit
+Choice: Invalid choice. Enter an integer from 0 to 7.
+
+RESTAURANT ORDER MANAGEMENT
+1. Enqueue new order
+2. Process next order (Dequeue + Push)
+3. Front/Peek incoming
+4. Display incoming
+5. Peek completed
+6. Pop completed
+7. Display completed
+0. Exit
+Choice: Queue is empty. No order processed.
+
+RESTAURANT ORDER MANAGEMENT
+1. Enqueue new order
+2. Process next order (Dequeue + Push)
+3. Front/Peek incoming
+4. Display incoming
+5. Peek completed
+6. Pop completed
+7. Display completed
+0. Exit
+Choice: Queue is empty. No front order.
+
+RESTAURANT ORDER MANAGEMENT
+1. Enqueue new order
+2. Process next order (Dequeue + Push)
+3. Front/Peek incoming
+4. Display incoming
+5. Peek completed
+6. Pop completed
+7. Display completed
+0. Exit
+Choice: Incoming queue (front to rear), count = 0
+Queue is empty.
+
+RESTAURANT ORDER MANAGEMENT
+1. Enqueue new order
+2. Process next order (Dequeue + Push)
+3. Front/Peek incoming
+4. Display incoming
+5. Peek completed
+6. Pop completed
+7. Display completed
+0. Exit
+Choice: Stack is empty. No top order.
+
+RESTAURANT ORDER MANAGEMENT
+1. Enqueue new order
+2. Process next order (Dequeue + Push)
+3. Front/Peek incoming
+4. Display incoming
+5. Peek completed
+6. Pop completed
+7. Display completed
+0. Exit
+Choice: Stack is empty. No order popped.
+
+RESTAURANT ORDER MANAGEMENT
+1. Enqueue new order
+2. Process next order (Dequeue + Push)
+3. Front/Peek incoming
+4. Display incoming
+5. Peek completed
+6. Pop completed
+7. Display completed
+0. Exit
+Choice: Completed stack (top to bottom), count = 0
+Stack is empty.
+
+RESTAURANT ORDER MANAGEMENT
+1. Enqueue new order
+2. Process next order (Dequeue + Push)
+3. Front/Peek incoming
+4. Display incoming
+5. Peek completed
+6. Pop completed
+7. Display completed
+0. Exit
+Choice: Customer (maximum 16 characters): Enter 1 to 16 characters.
+Customer (maximum 16 characters): Food item (maximum 20 characters): Quantity (1 to 999): Invalid quantity. Enter an integer from 1 to 999.
+Quantity (1 to 999): Invalid quantity. Enter an integer from 1 to 999.
+Quantity (1 to 999): Invalid quantity. Enter an integer from 1 to 999.
+Quantity (1 to 999): Invalid quantity. Enter an integer from 1 to 999.
+Quantity (1 to 999): Enqueued ORD001
+
+RESTAURANT ORDER MANAGEMENT
+1. Enqueue new order
+2. Process next order (Dequeue + Push)
+3. Front/Peek incoming
+4. Display incoming
+5. Peek completed
+6. Pop completed
+7. Display completed
+0. Exit
+Choice: Front/Peek (queue unchanged):
+Order ID  Customer          Food item             Quantity
+ORD001    Aiman             Chicken Rice          2
+
+RESTAURANT ORDER MANAGEMENT
+1. Enqueue new order
+2. Process next order (Dequeue + Push)
+3. Front/Peek incoming
+4. Display incoming
+5. Peek completed
+6. Pop completed
+7. Display completed
+0. Exit
+Choice: Incoming queue (front to rear), count = 1
+Order ID  Customer          Food item             Quantity
+ORD001    Aiman             Chicken Rice          2
+
+RESTAURANT ORDER MANAGEMENT
+1. Enqueue new order
+2. Process next order (Dequeue + Push)
+3. Front/Peek incoming
+4. Display incoming
+5. Peek completed
+6. Pop completed
+7. Display completed
+0. Exit
+Choice: Processed ORD001 -> automatically pushed ORD001 to completed stack.
+
+RESTAURANT ORDER MANAGEMENT
+1. Enqueue new order
+2. Process next order (Dequeue + Push)
+3. Front/Peek incoming
+4. Display incoming
+5. Peek completed
+6. Pop completed
+7. Display completed
+0. Exit
+Choice: Peek (stack unchanged):
+Order ID  Customer          Food item             Quantity
+ORD001    Aiman             Chicken Rice          2
+
+RESTAURANT ORDER MANAGEMENT
+1. Enqueue new order
+2. Process next order (Dequeue + Push)
+3. Front/Peek incoming
+4. Display incoming
+5. Peek completed
+6. Pop completed
+7. Display completed
+0. Exit
+Choice: Completed stack (top to bottom), count = 1
+Order ID  Customer          Food item             Quantity
+ORD001    Aiman             Chicken Rice          2
+
+RESTAURANT ORDER MANAGEMENT
+1. Enqueue new order
+2. Process next order (Dequeue + Push)
+3. Front/Peek incoming
+4. Display incoming
+5. Peek completed
+6. Pop completed
+7. Display completed
+0. Exit
+Choice: Popped ORD001 from completed stack.
+
+RESTAURANT ORDER MANAGEMENT
+1. Enqueue new order
+2. Process next order (Dequeue + Push)
+3. Front/Peek incoming
+4. Display incoming
+5. Peek completed
+6. Pop completed
+7. Display completed
+0. Exit
+Choice: Completed stack (top to bottom), count = 0
+Stack is empty.
+
+RESTAURANT ORDER MANAGEMENT
+1. Enqueue new order
+2. Process next order (Dequeue + Push)
+3. Front/Peek incoming
+4. Display incoming
+5. Peek completed
+6. Pop completed
+7. Display completed
+0. Exit
+Choice: Session ended.

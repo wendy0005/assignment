@@ -1,0 +1,68 @@
+=== TASK 2A: FIVE INCOMING ORDERS AND FRONT/PEEK ===
+Enqueued ORD001
+Enqueued ORD002
+Enqueued ORD003
+Enqueued ORD004
+Enqueued ORD005
+Incoming queue (front to rear), count = 5
+Order ID  Customer          Food item             Quantity
+ORD001    Aiman             Chicken Rice          2
+ORD002    Bella             Fried Rice            1
+ORD003    Chen              Burger                2
+ORD004    Devi              Nasi Lemak            1
+ORD005    Ethan             Spaghetti             2
+Front/Peek (queue unchanged):
+Order ID  Customer          Food item             Quantity
+ORD001    Aiman             Chicken Rice          2
+After Peek: pending count = 5
+
+=== TASK 2B: DEQUEUE, AUTOMATIC PUSH AND NEW ENQUEUE ===
+Processed ORD001 -> automatically pushed ORD001 to completed stack.
+Incoming queue (front to rear), count = 4
+Order ID  Customer          Food item             Quantity
+ORD002    Bella             Fried Rice            1
+ORD003    Chen              Burger                2
+ORD004    Devi              Nasi Lemak            1
+ORD005    Ethan             Spaghetti             2
+Completed stack (top to bottom), count = 1
+Order ID  Customer          Food item             Quantity
+ORD001    Aiman             Chicken Rice          2
+Enqueued ORD006
+Incoming queue (front to rear), count = 5
+Order ID  Customer          Food item             Quantity
+ORD002    Bella             Fried Rice            1
+ORD003    Chen              Burger                2
+ORD004    Devi              Nasi Lemak            1
+ORD005    Ethan             Spaghetti             2
+ORD006    Farah             Mee Goreng            1
+
+=== TASK 3A: THREE ORDERS PROCESSED IN TOTAL ===
+Processed ORD002 -> automatically pushed ORD002 to completed stack.
+Processed ORD003 -> automatically pushed ORD003 to completed stack.
+Incoming queue (front to rear), count = 3
+Order ID  Customer          Food item             Quantity
+ORD004    Devi              Nasi Lemak            1
+ORD005    Ethan             Spaghetti             2
+ORD006    Farah             Mee Goreng            1
+Completed stack (top to bottom), count = 3
+Order ID  Customer          Food item             Quantity
+ORD003    Chen              Burger                2
+ORD002    Bella             Fried Rice            1
+ORD001    Aiman             Chicken Rice          2
+Peek (stack unchanged):
+Order ID  Customer          Food item             Quantity
+ORD003    Chen              Burger                2
+After Peek: completed count = 3
+
+=== TASK 3B: POP MOST RECENTLY COMPLETED ORDER ===
+Popped ORD003 from completed stack.
+Completed stack (top to bottom), count = 2
+Order ID  Customer          Food item             Quantity
+ORD002    Bella             Fried Rice            1
+ORD001    Aiman             Chicken Rice          2
+Incoming queue (front to rear), count = 3
+Order ID  Customer          Food item             Quantity
+ORD004    Devi              Nasi Lemak            1
+ORD005    Ethan             Spaghetti             2
+ORD006    Farah             Mee Goreng            1
+Final counts: pending = 3, completed = 2, popped = 1

@@ -26,6 +26,7 @@ This skill provides a rigorous workflow for transforming assignment briefs or re
     - **Paragraph-First Approach:** ALWAYS use professional paragraphs and cohesive sentences for all analysis, descriptions, and theoretical discussions. **Avoid bullet points and numbered lists for narrative content.** Lists should be used only for step-by-step mathematical workings or simple enumerations of items (e.g., a list of components).
     - **Case Studies:** Ground technical concepts in real-world examples (e.g., Smart Greenhouse, Building Monitoring).
     - **Referencing:** Use **APA or Harvard style** (as requested) for all in-text citations and the reference list. **Crucially, ensure every reference includes its full source (URL, DOI, or publication details) and double-check that the source is active and accurately supports the claim.** Ensure all technical claims are backed by credible academic or industry sources. **NEVER include a URL that has not been empirically verified via search.**
+    - **Do not cite the question or assessment brief:** Treat the user's own question, assignment brief and marking scheme as task instructions, not as literature sources. Do not add author and year citations such as `(SEGi University, 2026)` or reference list entries for those documents merely to describe the assignment, its requirements, sample data or marking criteria. Continue citing external sources that support substantive technical or academic claims. Cite a brief only when the user explicitly asks for it or when the brief itself is the subject of a critical source analysis.
 
 3. **Anti-Detection & Humanization Strategy (CRITICAL):**
     - **Eliminate "AI-isms":** Strictly avoid phrases that trigger AI detectors.
@@ -47,7 +48,7 @@ This skill provides a rigorous workflow for transforming assignment briefs or re
     - **Academic Styling:** Use "Times New Roman" or "Arial", 12pt/11pt font, and 1.5 line spacing as the standard for academic reports.
 
 5. **Professional Rendering Workflow:**
-    - **Step 1 (Markdown Source):** Create a clean, well-structured `.md` file containing all text, LaTeX formulas, and Mermaid diagrams. This serves as the editable source and raw submission.
+    - **Step 1 (Markdown Source):** Create a clean, well-structured `.md` file containing all text, LaTeX formulas, and Mermaid diagrams. Retain it as the editable working source; include it in an assessed submission only if the brief or user requests Markdown.
     - **Step 2 (HTML Preview):** Generate a professionally styled HTML version based on the Markdown content. If LaTeX is used in the markdown, ensure the HTML preview includes **MathJax** or **KaTeX** loading and config scripts (e.g., via CDN) to render math elements correctly. Ensure you include the **Mermaid.js** script and a custom renderer (e.g., in `marked.js`) that converts `mermaid` code blocks into `<div class="mermaid">` elements. Use a listener (like `mermaid.run()`) to trigger the rendering.
     - **Step 3 (PDF Generation):** Use the `mcp_playwright_browser_run_code` tool to convert the HTML to a professional A4 PDF. **Crucially, your Playwright script MUST wait for both the Mermaid diagrams and MathJax/KaTeX (if loaded) to finish rendering.** Use `await page.waitForSelector('.mermaid svg', { timeout: 10000 });` and appropriate wait loops for math elements to ensure they are fully drawn before calling `page.pdf()`. **Note:** Do not use `require('fs')` inside the browser context as it is not supported. Instead, pass the HTML content as a string variable or navigate to a local file.
 
@@ -61,6 +62,14 @@ Write the final report for the marker or assessor, not as a record of the agent'
 - Distinguish submission artifacts from production artifacts. Markdown, HTML, rendering scripts and execution logs may be retained for reproducibility, but only identify them inside the report when the assessment instructions require them.
 - Mention the target academic or technical platform when relevant (for example, Oracle SQL), but omit how the platform was hosted or automated unless that hosting choice is itself assessed.
 
+## Submission ZIP Contents
+
+Package only the deliverables required by the assessment brief or explicitly requested by the user. Build the ZIP from an explicit list of those files, not by archiving the entire working folder.
+
+Exclude Markdown working sources, HTML previews, rendering scripts such as `render_report.py`, test and verification helpers, execution logs, build files, downloaded dependencies, the original brief and internal README files unless they are specifically required. Required program source code belongs in the ZIP; scripts used only to produce or check the report do not. Include only screenshots required as submission evidence.
+
+Keep editable sources and production files locally, separate from the submission ZIP. Before delivery, inspect the archive contents and confirm every included file satisfies a submission requirement. Providing Markdown alongside the final PDF does not mean including it in the submission ZIP.
+
 ## Student Identity Configuration
 ALWAYS include the following student information in the cover page and header/footer of every generated report:
 - **Student Name:** Chan Jing Yi
@@ -68,7 +77,7 @@ ALWAYS include the following student information in the cover page and header/fo
 
 ## Final Output Structure
 ALWAYS deliver both:
-1.  **Markdown Source:** The `.md` file for version control and raw text access.
+1.  **Markdown Source:** The `.md` file for version control and raw text access, provided separately from the submission ZIP unless explicitly required inside it.
 2.  **PDF Final:** The official submission-ready document with full styling and rendered visuals.
 
 ## Course PDF naming and processing helpers
