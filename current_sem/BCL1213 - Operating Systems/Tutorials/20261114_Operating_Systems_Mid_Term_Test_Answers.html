@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SEGi University - BCL1213 Operating Systems Mid-Term Test Answers</title>
+    <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        mermaid.initialize({
+          startOnLoad: true,
+          theme: 'default',
+          securityLevel: 'loose'
+        });
+      });
+    </script>
+
+    <style>
+        @page {
+            size: A4;
+            margin: 18mm 14mm 18mm 14mm;
+            @bottom-right {
+                content: counter(page);
+            }
+        }
+
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 11pt;
+            line-height: 1.6;
+            color: #111827;
+            background-color: #ffffff;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 10px;
+        }
+
+        h1 {
+            font-size: 18pt;
+            color: #0f172a;
+            border-bottom: 2.5px solid #1e3a8a;
+            padding-bottom: 6px;
+            margin-top: 10px;
+            margin-bottom: 12px;
+            text-align: center;
+            page-break-after: avoid;
+        }
+
+        h2 {
+            font-size: 14pt;
+            color: #1e3a8a;
+            border-bottom: 1.5px solid #cbd5e1;
+            padding-bottom: 4px;
+            margin-top: 24px;
+            margin-bottom: 12px;
+            page-break-after: avoid;
+        }
+
+        h3 {
+            font-size: 12pt;
+            color: #1e293b;
+            margin-top: 18px;
+            margin-bottom: 8px;
+            page-break-after: avoid;
+        }
+
+        h4 {
+            font-size: 11pt;
+            color: #334155;
+            margin-top: 12px;
+            margin-bottom: 6px;
+            page-break-after: avoid;
+        }
+
+        p {
+            margin-top: 0;
+            margin-bottom: 12px;
+            text-align: justify;
+        }
+
+        ul, ol {
+            margin-top: 0;
+            margin-bottom: 12px;
+            padding-left: 24px;
+        }
+
+        li {
+            margin-bottom: 6px;
+            text-align: justify;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 14px 0;
+            font-size: 9.5pt;
+            font-family: Arial, Helvetica, sans-serif;
+            page-break-inside: avoid;
+        }
+
+        th, td {
+            padding: 7px 10px;
+            border: 1px solid #94a3b8;
+            text-align: left;
+            vertical-align: top;
+        }
+
+        th {
+            background-color: #1e3a8a;
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f8fafc;
+        }
+
+        .mermaid {
+            display: flex;
+            justify-content: center;
+            background-color: #ffffff;
+            padding: 14px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            margin: 16px 0;
+            page-break-inside: avoid;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #cbd5e1;
+            margin: 20px 0;
+        }
+
+        blockquote {
+            border-left: 4px solid #1e3a8a;
+            padding-left: 14px;
+            margin: 12px 0;
+            color: #334155;
+            background-color: #f8fafc;
+            padding-top: 6px;
+            padding-bottom: 6px;
+        }
+
+        pre {
+            background-color: #f1f5f9;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-family: 'Consolas', 'Courier New', monospace;
+            font-size: 9pt;
+            page-break-inside: avoid;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>SEGi University</h1>
+<h2>Faculty of Engineering, Technology and Built Environment</h2>
+<h3>Mid-Term Examination Answers: Operating Systems</h3>
+<ul>
+<li><strong>Programme:</strong> Bachelor of Computer Science (Hons) / Bachelor of Information Technology (Hons)</li>
+<li><strong>Module Code:</strong> BTL1213 / BIT1213 / BCL1213</li>
+<li><strong>Module Title:</strong> Operating Systems</li>
+<li><strong>Student Name:</strong> Chan Jing Yi</li>
+<li><strong>Student ID:</strong> SUOL2500321</li>
+<li><strong>Date:</strong> November 14th, 2026</li>
+<li><strong>Time Allowed:</strong> 2 Hours</li>
+<li><strong>Total Marks:</strong> 100 Marks</li>
+</ul>
+<hr />
+<h2>Question 1 (25 Marks)</h2>
+<h3>(a) Definition of Operating Systems Fundamentals (3 Marks)</h3>
+<p>An Operating System (OS) is core system software that acts as an intermediary bridge between computer hardware and user application software (Silberschatz et al., 2018). It abstracts complex, low level hardware operations into manageable abstractions while orchestrating the hardware resources of the machine. The fundamental roles of an operating system can be synthesized into three primary responsibilities:</p>
+<ol>
+<li>Resource Management: The operating system allocates and deallocates central processing unit time, main memory regions, input and output peripherals, and storage blocks among competing tasks to maximize efficiency and avoid conflict.</li>
+<li>Hardware Abstraction and Control: By utilizing device drivers and kernel interfaces, the operating system conceals physical architecture nuances from user programs, providing standardized system calls for file manipulation, network transmission, and hardware interaction.</li>
+<li>Execution Environment and Protection: The operating system supervises process execution in protected dual mode operations (user mode and kernel mode). This ensures isolated execution spaces, preventing malfunctioning or unauthorized applications from crashing adjacent programs or compromising the underlying system.</li>
+</ol>
+<hr />
+<h3>(b) Layered Interaction in Operating Systems to Maximize Multiprogramming (9 Marks)</h3>
+<p>The degree of multiprogramming reflects the total number of distinct active processes simultaneously resident within primary memory competing for processor cycles. In the architectural hierarchy depicted in Figure 1, bidirectional interactions occur across four principal layers: User, Application, Operating System, and Hardware. </p>
+<pre class="mermaid">graph TD
+    User["User Layer\n(Commands, Inputs, Interactive Jobs)"]
+    App["Application Layer\n(DBMS, Web Browsers, Compilers, User Applications)"]
+    OS["Operating System Layer\n(Process Management, CPU Scheduler, Memory Manager, Device Drivers)"]
+    HW["Hardware Layer\n(CPU, Physical RAM, Secondary Storage, I/O Controllers)"]
+
+    User <-->|GUI / CLI / Interaction| App
+    App <-->|System Calls (APIs) / Returns| OS
+    OS <-->|Privileged Instructions / Interrupts| HW</pre>
+
+<h4>Layer Interactions and Workflow</h4>
+<ol>
+<li>User to Application Layer: Multiple users or automated user sessions invoke concurrent software applications, including database engines, web browsers, and media editors. Each invocation spawns execution requests that pass downward into the application environment.</li>
+<li>Application to Operating System Layer: Applications cannot directly manipulate physical memory or hardware registers due to kernel protection barriers. When an application requires system resources, such as allocating memory, opening a socket, or reading a storage file, it invokes a System Call (POSIX or Windows API). This triggers a software interrupt or trap that transitions processor execution from unprivileged user mode to privileged kernel mode.</li>
+<li>Operating System to Hardware Layer: Inside kernel space, specialized subsystems, including the CPU scheduler, virtual memory manager, and device driver modules, translate logical requests into hardware operations. The OS issues commands to device controllers and assigns CPU time slices through hardware timer interrupts.</li>
+<li>Hardware to Operating System Layer: As hardware devices execute asynchronous tasks (such as disk sector reads or packet arrivals), controllers fire hardware interrupts back to the CPU. The operating system interrupt handler halts current execution temporarily, saves processor registers, processes the completed I/O transaction, and updates process states.</li>
+</ol>
+<h4>Maximizing the Degree of Multiprogramming</h4>
+<p>The architectural coordination among these layers maximizes the degree of multiprogramming through four interrelated operational mechanisms:</p>
+<ol>
+<li>Overlapping CPU and I/O Execution: Central processing units operate at nanosecond speeds, whereas disk and network peripherals operate at millisecond timescales. When an active application issues an I/O system call, the operating system immediately transitions that process from the Running state to the Waiting state. Instead of permitting the processor to stall idle, the short term scheduler dispatches another ready process from the memory resident queue. </li>
+<li>Memory Multiplexing and Isolation: The memory management subsystem partitions physical RAM to house multiple process address spaces concurrently. By leveraging hardware paging and base limit registers, the operating system guarantees that several applications remain co-resident in memory without risk of memory overwrites.</li>
+<li>Preemptive Time Slicing via Hardware Timers: Hardware interval timers generate periodic interrupts that return CPU control to the kernel dispatcher. The operating system enforces round robin or multi level feedback scheduling, preventing any single compute heavy process from monopolizing the processor, thereby preserving high responsiveness across all co-resident tasks.</li>
+<li>Interrupt Driven I/O Asynchrony: Upon I/O completion, hardware interrupts trigger the operating system to move waiting applications back to the Ready queue. This bidirectional loop ensures that processor utilization approaches saturation while maintaining high overall system throughput.</li>
+</ol>
+<hr />
+<h3>(c) Differentiating Internal and External Fragmentation (4 Marks)</h3>
+<p>Memory fragmentation occurs when available physical memory cannot be effectively utilized by arriving processes. The distinction between internal and external fragmentation relates to where the unallocated memory resides and the architectural allocation policy responsible.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Comparative Aspect</th>
+<th style="text-align: left;">Internal Fragmentation</th>
+<th style="text-align: left;">External Fragmentation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Location of Unused Memory</strong></td>
+<td style="text-align: left;">Resides <strong>inside</strong> an allocated memory block or partition assigned to a specific process.</td>
+<td style="text-align: left;">Resides <strong>outside</strong> allocated partitions, scattered across memory as unallocated holes.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Primary Root Cause</strong></td>
+<td style="text-align: left;">Arises from <strong>fixed-size allocation units</strong> (such as fixed partitioning or paging) when a process request is smaller than the assigned block size.</td>
+<td style="text-align: left;">Arises from <strong>dynamic, variable-size contiguous allocation</strong> as processes of varying sizes load and terminate over time.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Availability to Other Processes</strong></td>
+<td style="text-align: left;">The wasted space is locked within the partition and <strong>cannot</strong> be used by any other process until the current process terminates.</td>
+<td style="text-align: left;">Total free memory across all holes may be mathematically sufficient for a new job, but no single contiguous hole is large enough.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Remediation Techniques</strong></td>
+<td style="text-align: left;">Employing smaller block/page sizes, dynamic memory allocation, or variable segment sizing.</td>
+<td style="text-align: left;">Memory compaction (relocating active partitions dynamically) or transitioning to non-contiguous paging schemes.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3>(d) Memory Allocation Algorithms: Tracing Job Allocations (9 Marks)</h3>
+<h4>Problem Specifications</h4>
+<ul>
+<li><strong>Arriving Jobs:</strong> Job 1 (200 KB), Job 2 (450 KB), Job 3 (350 KB), Job 4 (600 KB).</li>
+<li><strong>Initial Memory Blocks:</strong> Block 1 (500 KB), Block 2 (700 KB), Block 3 (300 KB), Block 4 (800 KB).</li>
+</ul>
+<p>Contiguous partition allocation assigns arriving jobs sequentially to available blocks based on specific placement heuristics.</p>
+<h4>(i) Best-Fit Algorithm (3 Marks)</h4>
+<p>The Best-Fit strategy searches the entire set of free blocks to allocate the smallest block that is large enough to satisfy the job request ($\text{Block Size} \ge \text{Job Size}$), minimizing immediate leftover partition space.</p>
+<ul>
+<li><strong>Job 1 (200 KB):</strong> </li>
+<li>Available blocks: Block 1 (500 KB), Block 2 (700 KB), Block 3 (300 KB), Block 4 (800 KB).</li>
+<li>Candidate qualifying blocks: Block 3 (300 KB), Block 1 (500 KB), Block 2 (700 KB), Block 4 (800 KB).</li>
+<li>Smallest qualifying block: <strong>Block 3 (300 KB)</strong>.</li>
+<li>Internal fragmentation remaining: $300\text{ KB} - 200\text{ KB} = 100\text{ KB}$.</li>
+<li>
+<p><strong>Allocation: Job 1 is allocated to Block 3.</strong></p>
+</li>
+<li>
+<p><strong>Job 2 (450 KB):</strong></p>
+</li>
+<li>Remaining available blocks: Block 1 (500 KB), Block 2 (700 KB), Block 4 (800 KB).</li>
+<li>Candidate qualifying blocks: Block 1 (500 KB), Block 2 (700 KB), Block 4 (800 KB).</li>
+<li>Smallest qualifying block: <strong>Block 1 (500 KB)</strong>.</li>
+<li>Internal fragmentation remaining: $500\text{ KB} - 450\text{ KB} = 50\text{ KB}$.</li>
+<li>
+<p><strong>Allocation: Job 2 is allocated to Block 1.</strong></p>
+</li>
+<li>
+<p><strong>Job 3 (350 KB):</strong></p>
+</li>
+<li>Remaining available blocks: Block 2 (700 KB), Block 4 (800 KB).</li>
+<li>Candidate qualifying blocks: Block 2 (700 KB), Block 4 (800 KB).</li>
+<li>Smallest qualifying block: <strong>Block 2 (700 KB)</strong>.</li>
+<li>Internal fragmentation remaining: $700\text{ KB} - 350\text{ KB} = 350\text{ KB}$.</li>
+<li>
+<p><strong>Allocation: Job 3 is allocated to Block 2.</strong></p>
+</li>
+<li>
+<p><strong>Job 4 (600 KB):</strong></p>
+</li>
+<li>Remaining available block: Block 4 (800 KB).</li>
+<li>Check capacity: $800\text{ KB} \ge 600\text{ KB}$.</li>
+<li>Internal fragmentation remaining: $800\text{ KB} - 600\text{ KB} = 200\text{ KB}$.</li>
+<li>
+<p><strong>Allocation: Job 4 is allocated to Block 4.</strong></p>
+</li>
+<li>
+<p><strong>Best-Fit Summary Table:</strong></p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Job</th>
+<th style="text-align: left;">Job Size</th>
+<th style="text-align: left;">Allocated Block</th>
+<th style="text-align: left;">Block Size</th>
+<th style="text-align: left;">Internal Waste</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Job 1</strong></td>
+<td style="text-align: left;">200 KB</td>
+<td style="text-align: left;"><strong>Block 3</strong></td>
+<td style="text-align: left;">300 KB</td>
+<td style="text-align: left;">100 KB</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Job 2</strong></td>
+<td style="text-align: left;">450 KB</td>
+<td style="text-align: left;"><strong>Block 1</strong></td>
+<td style="text-align: left;">500 KB</td>
+<td style="text-align: left;">50 KB</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Job 3</strong></td>
+<td style="text-align: left;">350 KB</td>
+<td style="text-align: left;"><strong>Block 2</strong></td>
+<td style="text-align: left;">700 KB</td>
+<td style="text-align: left;">350 KB</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Job 4</strong></td>
+<td style="text-align: left;">600 KB</td>
+<td style="text-align: left;"><strong>Block 4</strong></td>
+<td style="text-align: left;">800 KB</td>
+<td style="text-align: left;">200 KB</td>
+</tr>
+</tbody>
+</table>
+<p><em>All arriving jobs are successfully accommodated under Best-Fit.</em></p>
+<hr />
+<h4>(ii) First-Fit Algorithm (3 Marks)</h4>
+<p>The First-Fit strategy scans memory blocks sequentially from the beginning of the list and allocates the first block encountered that is large enough to hold the job.</p>
+<ul>
+<li><strong>Job 1 (200 KB):</strong></li>
+<li>Inspect Block 1 (500 KB): $500\text{ KB} \ge 200\text{ KB}$. Large enough.</li>
+<li>Allocation: <strong>Job 1 is allocated to Block 1.</strong></li>
+<li>
+<p>Remaining blocks: Block 2 (700 KB), Block 3 (300 KB), Block 4 (800 KB).</p>
+</li>
+<li>
+<p><strong>Job 2 (450 KB):</strong></p>
+</li>
+<li>Inspect Block 1: Already occupied.</li>
+<li>Inspect Block 2 (700 KB): $700\text{ KB} \ge 450\text{ KB}$. Large enough.</li>
+<li>Allocation: <strong>Job 2 is allocated to Block 2.</strong></li>
+<li>
+<p>Remaining blocks: Block 3 (300 KB), Block 4 (800 KB).</p>
+</li>
+<li>
+<p><strong>Job 3 (350 KB):</strong></p>
+</li>
+<li>Inspect Block 1 and Block 2: Already occupied.</li>
+<li>Inspect Block 3 (300 KB): $300\text{ KB} &lt; 350\text{ KB}$. Insufficient capacity, skip.</li>
+<li>Inspect Block 4 (800 KB): $800\text{ KB} \ge 350\text{ KB}$. Large enough.</li>
+<li>Allocation: <strong>Job 3 is allocated to Block 4.</strong></li>
+<li>
+<p>Remaining block: Block 3 (300 KB).</p>
+</li>
+<li>
+<p><strong>Job 4 (600 KB):</strong></p>
+</li>
+<li>Inspect Block 3 (300 KB): $300\text{ KB} &lt; 600\text{ KB}$. Insufficient capacity.</li>
+<li>
+<p>Allocation: <strong>Job 4 cannot be allocated</strong> and must wait in the job queue.</p>
+</li>
+<li>
+<p><strong>First-Fit Summary Table:</strong></p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Job</th>
+<th style="text-align: left;">Job Size</th>
+<th style="text-align: left;">Allocated Block</th>
+<th style="text-align: left;">Block Size</th>
+<th style="text-align: left;">Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Job 1</strong></td>
+<td style="text-align: left;">200 KB</td>
+<td style="text-align: left;"><strong>Block 1</strong></td>
+<td style="text-align: left;">500 KB</td>
+<td style="text-align: left;">Allocated</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Job 2</strong></td>
+<td style="text-align: left;">450 KB</td>
+<td style="text-align: left;"><strong>Block 2</strong></td>
+<td style="text-align: left;">700 KB</td>
+<td style="text-align: left;">Allocated</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Job 3</strong></td>
+<td style="text-align: left;">350 KB</td>
+<td style="text-align: left;"><strong>Block 4</strong></td>
+<td style="text-align: left;">800 KB</td>
+<td style="text-align: left;">Allocated</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Job 4</strong></td>
+<td style="text-align: left;">600 KB</td>
+<td style="text-align: left;"><em>None</em></td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;"><strong>Waiting (Cannot Fit)</strong></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h4>(iii) Worst-Fit Algorithm (3 Marks)</h4>
+<p>The Worst-Fit strategy allocates the largest available free block to an incoming job, based on the concept that the remaining fragment will be large enough to serve subsequent requests.</p>
+<ul>
+<li><strong>Job 1 (200 KB):</strong></li>
+<li>Available blocks: Block 1 (500 KB), Block 2 (700 KB), Block 3 (300 KB), Block 4 (800 KB).</li>
+<li>Largest available block: <strong>Block 4 (800 KB)</strong>.</li>
+<li>Allocation: <strong>Job 1 is allocated to Block 4.</strong></li>
+<li>
+<p>Remaining blocks: Block 1 (500 KB), Block 2 (700 KB), Block 3 (300 KB).</p>
+</li>
+<li>
+<p><strong>Job 2 (450 KB):</strong></p>
+</li>
+<li>Remaining available blocks: Block 1 (500 KB), Block 2 (700 KB), Block 3 (300 KB).</li>
+<li>Largest available block: <strong>Block 2 (700 KB)</strong>.</li>
+<li>Allocation: <strong>Job 2 is allocated to Block 2.</strong></li>
+<li>
+<p>Remaining blocks: Block 1 (500 KB), Block 3 (300 KB).</p>
+</li>
+<li>
+<p><strong>Job 3 (350 KB):</strong></p>
+</li>
+<li>Remaining available blocks: Block 1 (500 KB), Block 3 (300 KB).</li>
+<li>Largest available block: <strong>Block 1 (500 KB)</strong>.</li>
+<li>Allocation: <strong>Job 3 is allocated to Block 1.</strong></li>
+<li>
+<p>Remaining block: Block 3 (300 KB).</p>
+</li>
+<li>
+<p><strong>Job 4 (600 KB):</strong></p>
+</li>
+<li>Remaining available block: Block 3 (300 KB).</li>
+<li>Capacity check: $300\text{ KB} &lt; 600\text{ KB}$. Insufficient space.</li>
+<li>
+<p>Allocation: <strong>Job 4 cannot be allocated</strong> and must wait in the job queue.</p>
+</li>
+<li>
+<p><strong>Worst-Fit Summary Table:</strong></p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Job</th>
+<th style="text-align: left;">Job Size</th>
+<th style="text-align: left;">Allocated Block</th>
+<th style="text-align: left;">Block Size</th>
+<th style="text-align: left;">Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Job 1</strong></td>
+<td style="text-align: left;">200 KB</td>
+<td style="text-align: left;"><strong>Block 4</strong></td>
+<td style="text-align: left;">800 KB</td>
+<td style="text-align: left;">Allocated</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Job 2</strong></td>
+<td style="text-align: left;">450 KB</td>
+<td style="text-align: left;"><strong>Block 2</strong></td>
+<td style="text-align: left;">700 KB</td>
+<td style="text-align: left;">Allocated</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Job 3</strong></td>
+<td style="text-align: left;">350 KB</td>
+<td style="text-align: left;"><strong>Block 1</strong></td>
+<td style="text-align: left;">500 KB</td>
+<td style="text-align: left;">Allocated</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Job 4</strong></td>
+<td style="text-align: left;">600 KB</td>
+<td style="text-align: left;"><em>None</em></td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;"><strong>Waiting (Cannot Fit)</strong></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3>(e) Advantages of Multiprogramming (3 Marks)</h3>
+<p>Multiprogramming delivers several systemic performance advantages over uniprogramming execution environments:</p>
+<ol>
+<li>High Central Processing Unit Utilization: In a uniprogramming system, the processor sits completely idle while a process performs slow peripheral I/O operations. Multiprogramming allows the operating system to switch the CPU to an alternate ready job, keeping CPU utilization consistently elevated.</li>
+<li>Improved Total System Throughput: System throughput, measured as the number of completed jobs per unit time, increases substantially because computational processing and peripheral device transfers proceed in parallel across distinct programs.</li>
+<li>Decreased Turnaround and Response Latencies: Shorter or interactive jobs do not experience starvation behind massive batch calculations, because shared processor scheduling guarantees equitable execution progress across all active tasks.</li>
+</ol>
+<hr />
+<h2>Question 2 (25 Marks)</h2>
+<h3>(a) Definition and Mechanism of Swapping (3 Marks)</h3>
+<p>Swapping is a memory management mechanism wherein an entire process address space (or inactive pages of a process) is temporarily evacuated from primary physical memory (RAM) and stored onto a fast secondary backing store, such as a dedicated disk swap partition or solid state drive swapfile (Tanenbaum &amp; Bos, 2015). </p>
+<p>The operating system executes swapping via a mid term scheduler. When physical memory becomes overcommitted, the mid term scheduler selects a dormant, blocked, or low priority process, copies its active execution image and register context to secondary storage, and marks its physical frames as free. When the process is scheduled to resume or when sufficient RAM becomes available, the swapper reads the memory image back from the backing store into available physical memory frames, updates internal address mapping tables, and returns the process to the Ready queue.</p>
+<hr />
+<h3>(b) Two Reasons Why the Operating System Performs Swapping in the Laboratory Scenario (4 Marks)</h3>
+<ol>
+<li>Relieving Memory Overcommitment and Preventing System Depletion: The laboratory environment executes concurrent high demand workloads, specifically a database management system, a multi tab web browser, and a video editing suite. Because the aggregate memory footprint of these applications exceeds the physical RAM limits, swapping evacuates idle or background processes to secondary storage, preventing out-of-memory kernel panics and preserving system stability.</li>
+<li>Facilitating Fair Multitasking and Priority Execution: Video rendering and interactive database querying require substantial working sets to execute without interruption. Swapping enables the operating system to temporarily suspend lower priority background tasks, such as inactive browser instances, allocating uncontested physical RAM to the active foreground processes to maintain high interactive performance.</li>
+</ol>
+<hr />
+<h3>(c) Swapping Out and Swapping In: Process and Impact on Execution (5 Marks)</h3>
+<h4>Operational Process</h4>
+<ul>
+<li><strong>Swapping Out:</strong> The mid term scheduler identifies a victim process (e.g., an application blocked on long term user input). The kernel writes the execution state, data segments, heap, and thread stacks of the process onto the secondary swap space. The memory management unit updates page and segment descriptors to mark the locations as invalid or swapped out, liberating the physical RAM frames for other active processes.</li>
+<li><strong>Swapping In:</strong> When a swapped process receives a pending event or is selected by the scheduler, the operating system allocates free physical memory frames. If RAM is full, another process must first be swapped out. The kernel transfers the saved memory blocks from secondary storage into the newly allocated frames, reconfigures page table base registers and translation entries, and transitions the process back to the Ready state.</li>
+</ul>
+<pre class="mermaid">sequenceDiagram
+    autonumber
+    participant RAM as Physical RAM
+    participant OS as OS Mid-Term Scheduler
+    participant Disk as Secondary Swap Store
+
+    Note over RAM,Disk: Swapping Out Operation
+    OS->>RAM: Identify dormant victim process and lock frames
+    OS->>Disk: Write process memory image to swap partition
+    OS->>RAM: Deallocate frames; mark page table entries as swapped
+
+    Note over RAM,Disk: Swapping In Operation
+    OS->>RAM: Locate/allocate free physical frames
+    OS->>Disk: Fetch saved process image from swap partition
+    OS->>RAM: Load image into frames; restore registers and page table
+    OS->>OS: Move process to Ready queue</pre>
+
+<h4>Effects on Process Execution</h4>
+<p>Swapping imposes a notable latency penalty on process execution. Secondary storage transfer speeds, even on modern solid state drives, remain several orders of magnitude slower than bus speeds in physical RAM. Consequently, a process undergoing swapping experiences execution suspension, during which it cannot make computational progress. If physical memory is chronically undersized, the system risks thrashing, a state in which the processor spends more time moving pages between RAM and disk than executing user instructions.</p>
+<hr />
+<h3>(d) Two Fundamental Principles or Challenges of Concurrency in the Laboratory Scenario (6 Marks)</h3>
+<ol>
+<li>Race Conditions: A race condition manifests when multiple concurrent execution threads or processes access and manipulate shared data items simultaneously, such that the final outcome depends unpredictably on the precise execution order and timing of thread scheduling (Silberschatz et al., 2018). In the university laboratory scenario, concurrent database transactions updating the same laboratory inventory or student account records without synchronization will produce corrupt, inconsistent records due to interleaved read, modify, and write sequences.</li>
+<li>Deadlock: Deadlock represents an execution impasse where two or more processes are unable to proceed because each holds a non shareable resource while awaiting another resource held by the competing process. For instance, the video editing application may hold an exclusive hardware lock on the GPU frame buffer while requesting access to a shared database transaction log, whereas the database server holds the lock on the transaction log while requesting the frame buffer. If mutual exclusion, hold and wait, no preemption, and circular wait conditions converge, all involved processes freeze indefinitely.</li>
+</ol>
+<hr />
+<h3>(e) Preventing Inconsistent Account Balances Using Critical Sections and Mutual Exclusion (4 Marks)</h3>
+<p>In concurrent systems, the code segment that reads, modifies, and writes back shared mutable data (such as a database bank balance variable) is designated as the <strong>Critical Section</strong>. </p>
+<p>To prevent inconsistent balances, the operating system and database management system enforce <strong>Mutual Exclusion</strong>. Mutual exclusion guarantees that when one process enters its critical section to manipulate a shared account balance, all other competing processes are strictly prohibited from entering their respective critical sections for that same data item.</p>
+<h4>Operational Mechanism</h4>
+<p>Consider an initial balance of $1,000 subjected to two concurrent transactions: Transaction A deposits $200, and Transaction B withdraws $100. Without mutual exclusion, both transactions read $1,000 simultaneously. If Transaction A calculates $1,200 and Transaction B calculates $900, the last transaction to write back overwrites the other update, causing a lost update anomaly. </p>
+<p>By enforcing mutual exclusion using synchronization locks:<br />
+1. Transaction A acquires the mutual exclusion lock protecting the account record, enters the critical section, reads $1,000, updates the balance to $1,200, writes the record, and releases the lock.<br />
+2. Transaction B is forced to wait in a queue until the lock is released.<br />
+3. Transaction B acquires the lock, enters the critical section, reads the accurate balance of $1,200, computes $1,100, writes the final state, and exits. </p>
+<p>Mutual exclusion converts concurrent overlapping data access into an orderly, serial execution sequence, guaranteeing transactional atomicity and data consistency.</p>
+<hr />
+<h3>(f) Consequence of Poor Concurrency Control and Appropriate Solution (3 Marks)</h3>
+<ul>
+<li><strong>Consequence (The Lost Update Anomaly):</strong> When concurrent processes update shared database records without synchronization, the lost update anomaly occurs. One process reads an uncommitted value, modifies it in local registers, and writes it back, completely erasing an intermediate update performed by an interleaved process. This causes permanent ledger corruption, unrecoverable data discrepancies, and financial inaccuracies.</li>
+<li><strong>Recommended Solution:</strong> Implementation of <strong>Strict Two-Phase Locking (2PL)</strong> combined with <strong>Mutex Locks</strong> or <strong>Atomic Database Transactions</strong>. Under two phase locking, a transaction must acquire exclusive write locks on all records before modifying data, and cannot release locks until transaction commit. This satisfies ACID properties (Atomicity, Consistency, Isolation, Durability), preventing data races and guaranteeing serializable consistency.</li>
+</ul>
+<hr />
+<h2>Question 3 (25 Marks)</h2>
+<h3>(a) Process State Transition Diagram and Transition Explanations (6 Marks)</h3>
+<p>The five state process model depicts the lifecycle of an operating system process as it moves from creation through CPU execution to termination.</p>
+<pre class="mermaid">stateDiagram-v2
+    [*] --> New
+    New --> Ready: Admit
+    Ready --> Running: Dispatch
+    Running --> Ready: Interrupt
+    Running --> Waiting: Block
+    Waiting --> Ready: Wakeup
+    Running --> Terminated: Exit
+    Terminated --> [*]</pre>
+
+<h4>Detailed Transition Explanations</h4>
+<ol>
+<li><code>New</code> to <code>Ready</code> (Admit): The long term job scheduler creates the Process Control Block and admits the newly created program into main memory, assigning it a slot in the ready queue.</li>
+<li><code>Ready</code> to <code>Running</code> (Dispatch): The short term CPU scheduler selects the process from the ready queue according to scheduling policy and allocates the CPU via context dispatching.</li>
+<li><code>Running</code> to <code>Ready</code> (Interrupt): The executing process is preempted by the operating system due to the expiration of its allocated time slice quantum or the arrival of a higher priority process.</li>
+<li><code>Running</code> to <code>Waiting</code> (Block): The running process requests an operating system service that cannot be completed immediately, such as an I/O peripheral transfer or child process synchronization, moving to the waiting queue.</li>
+<li><code>Waiting</code> to <code>Ready</code> (Wakeup): The requested I/O transfer completes or an asynchronous event signal arrives. An interrupt notifies the operating system, which transitions the process back to the ready queue.</li>
+<li><code>Running</code> to <code>Terminated</code> (Exit): The process executes its final instruction, makes an exit system call, or encounters an unrecoverable runtime error, prompting the operating system to reclaim its resources.</li>
+</ol>
+<hr />
+<h3>(b) Differentiation Between a Process and a Thread (6 Marks)</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Evaluation Aspect</th>
+<th style="text-align: left;">Process</th>
+<th style="text-align: left;">Thread</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>i. Memory Allocation</strong></td>
+<td style="text-align: left;">Allocated an <strong>independent, isolated address space</strong> containing its own code, global data, runtime heap, and stack regions protected by hardware MMU boundaries.</td>
+<td style="text-align: left;">Operates within the address space of its parent process; threads <strong>share code, data, and heap segments</strong>, maintaining only a private stack and register set.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>ii. Execution</strong></td>
+<td style="text-align: left;">Serves as an independent unit of execution. Context switches between distinct processes require extensive kernel intervention, address translation changes, and cache flushes.</td>
+<td style="text-align: left;">Represents a lightweight execution stream within a process. Context switching between peer threads incurs low overhead because address mapping remains unchanged.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>iii. Resource Sharing</strong></td>
+<td style="text-align: left;">Cannot share memory or files directly without explicit <strong>Inter-Process Communication (IPC)</strong> mechanisms like pipes, message queues, sockets, or shared memory segments.</td>
+<td style="text-align: left;">Directly and natively <strong>shares all open file descriptors, network connections, and heap data structures</strong> across all peer threads within the common process.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3>(c) Five Information Fields Stored in a Process Control Block (5 Marks)</h3>
+<p>The Process Control Block (PCB) is the primary kernel data structure that stores the complete operational state of an operating system process (Stallings, 2018). Five key fields include:</p>
+<ol>
+<li>Process Identifier (PID) and Process State: A unique numerical identifier assigned by the kernel to reference the process, accompanied by its current execution status (New, Ready, Running, Waiting, or Terminated).</li>
+<li>Program Counter (PC): A processor register pointer that records the exact memory address of the next machine instruction to be executed when the process regains CPU control.</li>
+<li>CPU Register Save Area: Storage for hardware accumulators, index registers, stack pointers, and condition code flags that must be saved during an interrupt so execution can be restored seamlessly.</li>
+<li>CPU Scheduling Information: Contains the scheduling priority level of the process, pointers to active scheduling queues, and historical metrics such as consumed CPU time slices.</li>
+<li>Memory Management Information: Holds base and limit register values or pointers to page tables and segment tables, allowing the memory management unit to validate and translate logical addresses during execution.</li>
+</ol>
+<hr />
+<h3>(d) Context Switching Mechanics and Necessity in Multiprogramming (8 Marks)</h3>
+<h4>Operational Steps of a Context Switch from Process P1 to Process P2</h4>
+<p>A context switch represents the kernel mechanism used to reassign the central processing unit from an active process (P1) to another waiting process (P2).</p>
+<pre class="mermaid">sequenceDiagram
+    autonumber
+    participant P1 as Process P1
+    participant OS as OS Kernel / Dispatcher
+    participant P2 as Process P2
+
+    P1->>OS: Timer Interrupt or System Call triggers mode switch
+    Note over OS: 1. Save state of P1 into PCB1 (PC, Registers, SP)
+    Note over OS: 2. Update P1 state (Running -> Ready or Waiting)
+    Note over OS: 3. Move PCB1 to appropriate scheduler queue
+    Note over OS: 4. Scheduler selects Process P2 from Ready Queue
+    Note over OS: 5. Load memory mapping (reload CR3/page table pointer)
+    Note over OS: 6. Restore architectural state of P2 from PCB2
+    OS->>P2: Dispatch CPU; switch to user mode and resume P2</pre>
+
+<ol>
+<li>Hardware Interrupt or System Call: While P1 executes in user mode, a hardware timer interrupt or system call trap occurs, switching processor privilege to kernel mode.</li>
+<li>Saving the Context of P1: The kernel saves P1's current architectural state, including the Program Counter, general purpose registers, floating point registers, stack pointer, and processor status word, directly into P1's PCB.</li>
+<li>Updating Process State and Queue Relocation: P1's state is changed from Running to Ready (if preempted) or to Waiting (if blocked on I/O). PCB1 is enqueued into the corresponding scheduling list.</li>
+<li>Process Selection: The CPU scheduler executes its scheduling algorithm (such as Round Robin or Priority Scheduling) to select the next process, P2, from the ready queue.</li>
+<li>Memory Context Reconfiguration: The kernel switches the virtual memory translation context by updating the page table base register (such as register CR3 on x86 architectures) to point to P2's page tables, invalidating non global Translation Lookaside Buffer (TLB) cache lines.</li>
+<li>Restoring the Context of P2: The kernel loads the registers, stack pointer, and Program Counter values saved in PCB2 into the physical CPU hardware registers.</li>
+<li>Resuming Execution: The operating system executes a return from interrupt instruction, dropping CPU privilege back to user mode and resuming P2 at its saved program counter location.</li>
+</ol>
+<h4>Necessity in a Multiprogramming Environment</h4>
+<ol>
+<li>Enabling Time Sharing and Concurrency: Context switching allows a single physical processor core to be shared among dozens of active processes, creating the working illusion of simultaneous execution for end users.</li>
+<li>Preventing Processor Underutilization: When an executing process stalls on high latency peripheral transfers, context switching immediately reassigns the processor to a compute ready process, keeping hardware throughput near saturation.</li>
+<li>Enforcing Equitable Scheduling and Responsiveness: Without preemptive context switching, a compute intensive batch process could run indefinitely, starving interactive tasks and degrading overall responsiveness.</li>
+</ol>
+<hr />
+<h2>Question 4 (25 Marks)</h2>
+<h3>(a) The Concept of Paging in Memory Management (5 Marks)</h3>
+<p>Paging is a non contiguous memory allocation architecture that decouples a program's logical address space from physical memory (RAM), eliminating external fragmentation and avoiding the need for compaction.</p>
+<ul>
+<li><strong>Page:</strong> The fixed size logical partition of a process's virtual address space. Programs are subdivided into equal sized pages during compilation and loading.</li>
+<li><strong>Frame:</strong> The fixed size physical partition of physical RAM. Frames are configured to match the exact size of logical pages.</li>
+<li><strong>Page Table:</strong> A kernel maintained data structure for each process that stores the mapping between logical page numbers and physical frame numbers, augmented with protection flags, valid invalid bits, and dirty bits.</li>
+</ul>
+<pre class="mermaid">graph LR
+    subgraph Logical Address
+        P["Page Number (p)"]
+        D1["Offset (d)"]
+    end
+
+    subgraph MMU Translation
+        PT["Page Table\np -> f"]
+    end
+
+    subgraph Physical Address
+        F["Frame Number (f)"]
+        D2["Offset (d)"]
+    end
+
+    subgraph Physical RAM
+        RAM["Physical Frame f in RAM"]
+    end
+
+    P --> PT
+    PT --> F
+    D1 --> D2
+    F --> RAM
+    D2 --> RAM</pre>
+
+<h4>Translation Mechanics</h4>
+<p>When the CPU generates a logical address, the Memory Management Unit divides the address into a Page Number ($p$) and a Page Offset ($d$). The page number indexes the process page table to retrieve the assigned physical frame number ($f$). Because page size and frame size are identical, the offset within the page translates directly to the offset within the frame. The physical memory address is formed by concatenating the frame number with the offset ($\text{Physical Address} = f \times \text{Page Size} + d$).</p>
+<hr />
+<h3>(b) Memory System Calculations and Structural Relationships (11 Marks)</h3>
+<h4>Given System Specifications</h4>
+<ul>
+<li><strong>Logical Address Space:</strong> $16\text{ KB} = 16 \times 1,024\text{ bytes} = 16,384\text{ bytes} = 2^{14}\text{ bytes}$</li>
+<li><strong>Physical Memory:</strong> $64\text{ KB} = 64 \times 1,024\text{ bytes} = 65,536\text{ bytes} = 2^{16}\text{ bytes}$</li>
+<li><strong>Page Size:</strong> $4\text{ KB} = 4 \times 1,024\text{ bytes} = 4,096\text{ bytes} = 2^{12}\text{ bytes}$</li>
+</ul>
+<hr />
+<h4>(i) Number of Pages in the Logical Address Space (3 Marks)</h4>
+<p>The total number of logical pages is calculated by dividing the logical address space by the page size:</p>
+<p>$$\text{Number of Pages} = \frac{\text{Logical Address Space}}{\text{Page Size}} = \frac{16\text{ KB}}{4\text{ KB}} = 4\text{ pages}$$</p>
+<h5>Binary Address Breakdown</h5>
+<ul>
+<li>Total logical address bits: $\log_2(16,384) = 14\text{ bits}$.</li>
+<li>Offset bits ($d$): $\log_2(\text{Page Size}) = \log_2(4,096) = 12\text{ bits}$.</li>
+<li>Page number bits ($p$): $\text{Total Bits} - \text{Offset Bits} = 14 - 12 = 2\text{ bits}$.</li>
+<li>Valid page numbers: $2^2 = 4\text{ pages}$ (Page 0, Page 1, Page 2, Page 3).</li>
+</ul>
+<hr />
+<h4>(ii) Number of Frames in Physical Memory (3 Marks)</h4>
+<p>The total number of physical frames is calculated by dividing physical memory capacity by the frame size (which is equal to page size):</p>
+<p>$$\text{Number of Frames} = \frac{\text{Physical Memory Size}}{\text{Frame Size}} = \frac{64\text{ KB}}{4\text{ KB}} = 16\text{ frames}$$</p>
+<h5>Binary Address Breakdown</h5>
+<ul>
+<li>Total physical address bits: $\log_2(65,536) = 16\text{ bits}$.</li>
+<li>Offset bits ($d$): $\log_2(4,096) = 12\text{ bits}$.</li>
+<li>Frame number bits ($f$): $\text{Total Physical Bits} - \text{Offset Bits} = 16 - 12 = 4\text{ bits}$.</li>
+<li>Valid frame numbers: $2^4 = 16\text{ frames}$ (Frame 0 through Frame 15).</li>
+</ul>
+<hr />
+<h4>(iii) Relationship Between Pages and Frames (5 Marks)</h4>
+<ol>
+<li>Dimensional Equivalence: Pages and frames maintain identical physical dimensions ($4\text{ KB} = 4,096\text{ bytes}$). This guarantees that any logical page can occupy any free physical frame without translation scaling.</li>
+<li>Logical to Physical Decoupling: Pages represent the process perspective of contiguous linear address space, whereas frames represent actual hardware memory blocks. A program with 4 logical pages requires only 4 frames out of the 16 available in physical memory.</li>
+<li>Non-Contiguous Allocation: Logical pages that appear consecutive in program memory (e.g., Pages 0, 1, 2, and 3) can be scattered across non-contiguous physical frames (such as Frames 1, 5, 8, and 14).</li>
+<li>Independent Address Spaces: The total number of pages ($4$) is smaller than the total number of physical frames ($16$). The remaining 12 physical frames ($48\text{ KB}$) can be allocated to other concurrent processes or reserved for operating system kernel buffers.</li>
+<li>Indirection via Page Table: The page table serves as the translation link. The offset bits ($12\text{ bits}$) pass through unchanged from logical address to physical address, while the $2\text{ bit}$ page number is mapped to a $4\text{ bit}$ frame number.</li>
+</ol>
+<hr />
+<h3>(c) Concept of Segmentation and Differentiation from Paging (5 Marks)</h3>
+<h4>Concept of Segmentation</h4>
+<p>Segmentation is a variable size memory management scheme that aligns with the programmer view of software structure (Silberschatz et al., 2018). Instead of dividing a program into arbitrary fixed size blocks, segmentation partitions memory into variable length logical modules, such as the main function, global data segment, runtime heap, thread stack, and library routines. </p>
+<p>A logical address under segmentation comprises a pair: $\langle\text{Segment Number } s, \text{Offset } d\rangle$. The operating system maintains a <strong>Segment Table</strong>, where each entry contains a <strong>Base Address</strong> (the starting physical memory location of the segment) and a <strong>Limit</strong> (the exact length of the segment). When the CPU executes an instruction, the hardware validates that the offset is strictly less than the segment limit ($d &lt; \text{Limit}$). If valid, the physical address is computed as $\text{Physical Address} = \text{Base} + d$; otherwise, a memory access violation trap (segmentation fault) is raised.</p>
+<h4>Differentiation Between Paging and Segmentation</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Feature</th>
+<th style="text-align: left;">Paging</th>
+<th style="text-align: left;">Segmentation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Partition Sizing</strong></td>
+<td style="text-align: left;">Uses <strong>fixed-size</strong> blocks (pages and frames).</td>
+<td style="text-align: left;">Uses <strong>variable-size</strong> blocks reflecting logical modules.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Programmer Visibility</strong></td>
+<td style="text-align: left;"><strong>Transparent</strong> to the programmer; managed automatically by compiler and hardware MMU.</td>
+<td style="text-align: left;"><strong>Visible</strong> to the programmer or compiler as structural components (code, data, stack).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Address Structure</strong></td>
+<td style="text-align: left;">Single continuous linear address split by hardware into Page Number ($p$) and Offset ($d$).</td>
+<td style="text-align: left;">Two-dimensional address explicitly defined as Segment Number ($s$) and Offset ($d$).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Fragmentation Effects</strong></td>
+<td style="text-align: left;">Subject to <strong>internal fragmentation</strong> on final pages, but completely eliminates external fragmentation.</td>
+<td style="text-align: left;">Has <strong>zero internal fragmentation</strong>, but suffers from <strong>external fragmentation</strong> requiring compaction.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Protection and Sharing</strong></td>
+<td style="text-align: left;">Protection bits applied uniformly across fixed pages.</td>
+<td style="text-align: left;">Natural and intuitive, because protection permissions (read, write, execute) align with logical modules (e.g., read-only code vs read-write data).</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3>(d) Role of Virtual Memory in Executing Large Programs on Limited RAM (4 Marks)</h3>
+<p>Virtual memory enables an operating system to execute programs whose aggregate address spaces exceed available physical RAM through three operational mechanisms:</p>
+<ol>
+<li>Separation of User Logical Memory from Physical Memory: Virtual memory abstracts physical RAM into an expansive virtual address space, allowing programs that require substantial memory to execute on constrained physical hardware without manual memory overlaying by programmers.</li>
+<li>Demand Paging and Working Set Execution: Under demand paging, programs are not loaded into RAM in their entirety at launch. Instead, pages are transferred from secondary storage into physical frames only when referenced during execution. Because programs exhibit temporal and spatial locality, only the active execution set (the working set) must reside in physical RAM at any given moment.</li>
+<li>Page Fault Resolution and Dynamic Page Replacement: When the processor attempts to access a virtual address mapped to an unallocated page, the hardware MMU detects an invalid bit and raises a <strong>Page Fault Interrupt</strong>. The operating system kernel intercepts the trap, suspends the executing process, loads the requested page from backing storage into an available frame, updates the page table, and restarts the instruction. If physical memory is completely occupied, a page replacement algorithm (such as Least Recently Used or Clock) selects an inactive victim page, writes modified contents back to disk, and repurposes the frame.</li>
+</ol>
+<hr />
+<h2>References</h2>
+<ul>
+<li>Silberschatz, A., Galvin, P. B., &amp; Gagne, G. (2018). <em>Operating System Concepts</em> (10th ed.). John Wiley &amp; Sons.</li>
+<li>Stallings, W. (2018). <em>Operating Systems: Internals and Design Principles</em> (9th ed.). Pearson Education.</li>
+<li>Tanenbaum, A. S., &amp; Bos, H. (2015). <em>Modern Operating Systems</em> (4th ed.). Pearson.</li>
+</ul>
+    </div>
+</body>
+</html>
