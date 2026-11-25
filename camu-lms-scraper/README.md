@@ -46,6 +46,16 @@ The extension detects the page layout automatically:
 Each course gets its own folder automatically, for example
 `Downloads/Camu Materials/BCL1313 - Algorithms and Complexity/`.
 
+To compare with the repository, click **Connect current_sem folder** and select
+the project's `current_sem` directory. For BCL courses, the scraper checks the
+matching course folder and its subfolders by size and SHA-256 content hash. It
+skips saving an exact match even when the local filename differs; a file with
+different contents is not considered a match. The LMS file is fetched to
+calculate its hash, so this saves disk duplicates rather than network traffic.
+Unmatched files continue to be saved under Downloads, not directly into the
+repository. If Chrome revokes access, reconnect the folder before retrying.
+The folder must be connected separately on each computer/browser profile.
+
 Before fetching an attachment, the scraper checks Chrome download history for
 an existing completed file in `Downloads/Camu Materials/<Course Name>/`. Existing files are
 marked **already saved** and skipped, including embedded page images. Deleted
@@ -54,14 +64,20 @@ are downloaded again, replacing the old filename. An unchanged JSON export is
 also skipped. Older scraper downloads within the same course folder are recognized by their exact filename
 on the first run; later runs track source revisions in extension storage.
 
-This uses Chrome's download history and file existence flags. Files manually
-moved/renamed or copied outside Chrome cannot be discovered by the extension;
-clearing download history also prevents recognizing those files.
+The Downloads check uses Chrome's download history and file existence flags.
+Files outside Chrome's download history are found only when they are in the
+connected course folder and match by content.
 
 After reloading the extension, refresh the Camu tab once. If Camu shows
 “All Courses” after navigating a deep link, select the course from the LMS
 course dashboard first. Keep the popup open to see progress; extraction itself
 runs in the content tab. Do not navigate away or reload that tab during a run.
+
+If automatic catalog export fails, the result is marked partial and the popup
+retains the collected entries. Use **Export JSON** before closing the popup,
+then reload the extension, refresh the LMS tab, and retry. Failed individual
+items and sections are listed in the results; a partial run does not mean all
+files were saved.
 
 ### Verified on 2026-10-01
 

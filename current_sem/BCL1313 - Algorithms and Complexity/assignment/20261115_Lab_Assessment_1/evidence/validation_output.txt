@@ -1,0 +1,13 @@
+PASS 1: Queue FIFO, nonmutating Peek, empty Dequeue.
+PASS 2: Queue capacity, repeated reuse and partial wraparound.
+PASS 3: Stack LIFO, Peek, overflow, underflow and reuse.
+PASS 4: Automatic transfer preserves every field; Pop leaves queue unchanged.
+PASS 5: Full completed stack retains pending order; retry succeeds after Pop.
+PASS 6: Invalid fields and malformed integers rejected.
+PASS 7: Assessment demonstration reaches expected final state.
+All seven C++ test groups passed.
+PASS 8: Interactive menu, invalid choices and quantities, empty operations.
+PASS 9: Interactive full queue rejects eleventh order without overwriting data.
+PASS 10: Input EOF creates no partial order; invalid command option returns error.
+All ten validation groups passed.
+Address and undefined behaviour sanitizers reported no errors.

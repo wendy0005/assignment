@@ -1,3 +1,25 @@
+import { courseFolderGet, courseFolderSet } from './course-folder.js';
+
+const folderStatus = document.getElementById('course-folder-status');
+async function refreshFolderStatus() {
+  try {
+    const handle = await courseFolderGet();
+    const granted = handle && await handle.queryPermission({ mode: 'read' }) === 'granted';
+    folderStatus.textContent = !handle ? 'No course folder connected' : granted ? 'current_sem connected' : 'Reconnect current_sem to allow comparison';
+  } catch (error) { folderStatus.textContent = 'Course folder unavailable: ' + error.message; }
+}
+document.getElementById('select-course-folder').addEventListener('click', async () => {
+  try {
+    const handle = await window.showDirectoryPicker({ mode: 'read', id: 'camu-current-sem' });
+    if (handle.name !== 'current_sem') throw new Error('Please select the current_sem folder.');
+    await courseFolderSet(handle);
+    await refreshFolderStatus();
+  } catch (error) {
+    if (error.name !== 'AbortError') folderStatus.textContent = 'Could not connect folder: ' + error.message;
+  }
+});
+refreshFolderStatus();
+
 const statusEl = document.getElementById("status");
 const resultEl = document.getElementById("result");
 const outputEl = document.getElementById("output");
@@ -221,13 +243,21 @@ function displayFileResults(data) {
   summary += `Status: ${data.status}\n`;
   summary += `Items extracted: ${ok}/${contents.length}`;
   if (failed) summary += ` (${failed} failed)`;
-  summary += `\n\n=== Items ===\n`;
+  summary += "\n";
+  if (data.exportError) {
+    summary += `\n⚠ Automatic catalog export failed: ${data.exportError}\nUse Export JSON to save the collected results, then reload the extension and refresh the LMS page before retrying.\n`;
+  }
+  if (data.errors?.length) {
+    summary += "\n=== Sections not listed ===\n";
+    for (const error of data.errors) summary += `  ⚠ ${error.section}: ${error.error}\n`;
+  }
+  summary += `\n=== Items ===\n`;
 
   for (const c of contents) {
     summary += `\n[${c.topic}] ${c.label}\n`;
     if (c.downloaded) {
       if (c.skipped) {
-        summary += "  ✓ already saved — skipped download\n";
+        summary += c.inCourseFolder ? "  ✓ identical file in current_sem — skipped saving\n" : "  ✓ already saved — skipped download\n";
       } else if (c.type === "page") {
         const bits = [];
         if (c.imagesSaved) bits.push(`${c.imagesSaved} image(s)`);
@@ -255,6 +285,7 @@ document.getElementById("export-json").addEventListener("click", () => {
     status: scrapedData.status,
     sections: scrapedData.sections,
     errors: scrapedData.errors,
+    exportError: scrapedData.exportError,
     contents: (scrapedData.contents || []).map((c) => ({
       type: c.type,
       topic: c.topic,

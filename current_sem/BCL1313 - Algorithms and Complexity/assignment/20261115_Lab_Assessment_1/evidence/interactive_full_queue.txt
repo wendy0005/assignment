@@ -1,0 +1,154 @@
+
+RESTAURANT ORDER MANAGEMENT
+1. Enqueue new order
+2. Process next order (Dequeue + Push)
+3. Front/Peek incoming
+4. Display incoming
+5. Peek completed
+6. Pop completed
+7. Display completed
+0. Exit
+Choice: Customer (maximum 16 characters): Food item (maximum 20 characters): Quantity (1 to 999): Enqueued ORD001
+
+RESTAURANT ORDER MANAGEMENT
+1. Enqueue new order
+2. Process next order (Dequeue + Push)
+3. Front/Peek incoming
+4. Display incoming
+5. Peek completed
+6. Pop completed
+7. Display completed
+0. Exit
+Choice: Customer (maximum 16 characters): Food item (maximum 20 characters): Quantity (1 to 999): Enqueued ORD002
+
+RESTAURANT ORDER MANAGEMENT
+1. Enqueue new order
+2. Process next order (Dequeue + Push)
+3. Front/Peek incoming
+4. Display incoming
+5. Peek completed
+6. Pop completed
+7. Display completed
+0. Exit
+Choice: Customer (maximum 16 characters): Food item (maximum 20 characters): Quantity (1 to 999): Enqueued ORD003
+
+RESTAURANT ORDER MANAGEMENT
+1. Enqueue new order
+2. Process next order (Dequeue + Push)
+3. Front/Peek incoming
+4. Display incoming
+5. Peek completed
+6. Pop completed
+7. Display completed
+0. Exit
+Choice: Customer (maximum 16 characters): Food item (maximum 20 characters): Quantity (1 to 999): Enqueued ORD004
+
+RESTAURANT ORDER MANAGEMENT
+1. Enqueue new order
+2. Process next order (Dequeue + Push)
+3. Front/Peek incoming
+4. Display incoming
+5. Peek completed
+6. Pop completed
+7. Display completed
+0. Exit
+Choice: Customer (maximum 16 characters): Food item (maximum 20 characters): Quantity (1 to 999): Enqueued ORD005
+
+RESTAURANT ORDER MANAGEMENT
+1. Enqueue new order
+2. Process next order (Dequeue + Push)
+3. Front/Peek incoming
+4. Display incoming
+5. Peek completed
+6. Pop completed
+7. Display completed
+0. Exit
+Choice: Customer (maximum 16 characters): Food item (maximum 20 characters): Quantity (1 to 999): Enqueued ORD006
+
+RESTAURANT ORDER MANAGEMENT
+1. Enqueue new order
+2. Process next order (Dequeue + Push)
+3. Front/Peek incoming
+4. Display incoming
+5. Peek completed
+6. Pop completed
+7. Display completed
+0. Exit
+Choice: Customer (maximum 16 characters): Food item (maximum 20 characters): Quantity (1 to 999): Enqueued ORD007
+
+RESTAURANT ORDER MANAGEMENT
+1. Enqueue new order
+2. Process next order (Dequeue + Push)
+3. Front/Peek incoming
+4. Display incoming
+5. Peek completed
+6. Pop completed
+7. Display completed
+0. Exit
+Choice: Customer (maximum 16 characters): Food item (maximum 20 characters): Quantity (1 to 999): Enqueued ORD008
+
+RESTAURANT ORDER MANAGEMENT
+1. Enqueue new order
+2. Process next order (Dequeue + Push)
+3. Front/Peek incoming
+4. Display incoming
+5. Peek completed
+6. Pop completed
+7. Display completed
+0. Exit
+Choice: Customer (maximum 16 characters): Food item (maximum 20 characters): Quantity (1 to 999): Enqueued ORD009
+
+RESTAURANT ORDER MANAGEMENT
+1. Enqueue new order
+2. Process next order (Dequeue + Push)
+3. Front/Peek incoming
+4. Display incoming
+5. Peek completed
+6. Pop completed
+7. Display completed
+0. Exit
+Choice: Customer (maximum 16 characters): Food item (maximum 20 characters): Quantity (1 to 999): Enqueued ORD010
+
+RESTAURANT ORDER MANAGEMENT
+1. Enqueue new order
+2. Process next order (Dequeue + Push)
+3. Front/Peek incoming
+4. Display incoming
+5. Peek completed
+6. Pop completed
+7. Display completed
+0. Exit
+Choice: Customer (maximum 16 characters): Food item (maximum 20 characters): Quantity (1 to 999): Queue is full. Order was not added.
+
+RESTAURANT ORDER MANAGEMENT
+1. Enqueue new order
+2. Process next order (Dequeue + Push)
+3. Front/Peek incoming
+4. Display incoming
+5. Peek completed
+6. Pop completed
+7. Display completed
+0. Exit
+Choice: Incoming queue (front to rear), count = 10
+Order ID  Customer          Food item             Quantity
+ORD001    Customer0         Rice                  1
+ORD002    Customer1         Rice                  1
+ORD003    Customer2         Rice                  1
+ORD004    Customer3         Rice                  1
+ORD005    Customer4         Rice                  1
+ORD006    Customer5         Rice                  1
+ORD007    Customer6         Rice                  1
+ORD008    Customer7         Rice                  1
+ORD009    Customer8         Rice                  1
+ORD010    Customer9         Rice                  1
+
+RESTAURANT ORDER MANAGEMENT
+1. Enqueue new order
+2. Process next order (Dequeue + Push)
+3. Front/Peek incoming
+4. Display incoming
+5. Peek completed
+6. Pop completed
+7. Display completed
+0. Exit
+Choice: Session ended.

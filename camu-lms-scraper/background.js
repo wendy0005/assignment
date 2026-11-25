@@ -1,3 +1,4 @@
+import { courseFolderGet, findCourseFile } from './course-folder.js';
 // Chrome download history provides file existence; storage tracks source revisions.
 const pendingDownloads = new Map();
 const trustedOrigins = ["https://staff-spark.segi.edu.my", "https://student-spark.segi.edu.my"];
@@ -48,6 +49,21 @@ async function saveDownload(request) {
 }
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+  if (request.action === 'check-course-file') {
+    let origin;
+    try { origin = new URL(sender.tab?.url).origin; } catch (_) { /* invalid sender */ }
+    if (!trustedOrigins.includes(origin) || !/^BCL\d{4}$/i.test(request.courseCode || '') ||
+        !/^[a-f0-9]{64}$/.test(request.hash || '') || !Number.isSafeInteger(request.size) || request.size <= 0) {
+      sendResponse({ error: 'Invalid course file check' });
+      return;
+    }
+    (async () => {
+      const root = await courseFolderGet();
+      if (!root) return { ok: true, configured: false, matched: false };
+      return { ok: true, configured: true, matched: await findCourseFile(root, request.courseCode, request.size, request.hash) };
+    })().then(sendResponse).catch(e => sendResponse({ error: e.message }));
+    return true;
+  }
   if (["check-download", "download-file"].includes(request.action)) {
     let origin;
     try { origin = new URL(sender.tab?.url).origin; } catch (_) { /* invalid sender */ }

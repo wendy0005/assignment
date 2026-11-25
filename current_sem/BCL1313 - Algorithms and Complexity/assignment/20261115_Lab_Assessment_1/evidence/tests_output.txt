@@ -1,0 +1,8 @@
+PASS 1: Queue FIFO, nonmutating Peek, empty Dequeue.
+PASS 2: Queue capacity, repeated reuse and partial wraparound.
+PASS 3: Stack LIFO, Peek, overflow, underflow and reuse.
+PASS 4: Automatic transfer preserves every field; Pop leaves queue unchanged.
+PASS 5: Full completed stack retains pending order; retry succeeds after Pop.
+PASS 6: Invalid fields and malformed integers rejected.
+PASS 7: Assessment demonstration reaches expected final state.
+All seven C++ test groups passed.

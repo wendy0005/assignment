@@ -770,18 +770,25 @@ async function downloadAllLectureNotes() {
     return course + "/" + filename;
   }
 
-  async function checkExisting(filename, sourceKey) {
-    const result = await chrome.runtime.sendMessage({ action: "check-download", filename: courseDownloadName(filename), sourceKey });
-    if (!result?.ok) throw new Error(result?.error || "Cannot check existing download");
+  async function downloadServiceMessage(request) {
+    let result;
+    try {
+      result = await chrome.runtime.sendMessage(request);
+    } catch (error) {
+      throw new Error("Cannot contact the scraper download service. Reload the extension, refresh the LMS page, and retry. " + error.message);
+    }
+    if (!result?.ok) throw new Error(result?.error || "The scraper download service did not respond. Reload the extension, refresh the LMS page, and retry.");
     return result;
+  }
+
+  async function checkExisting(filename, sourceKey) {
+    return downloadServiceMessage({ action: "check-download", filename: courseDownloadName(filename), sourceKey });
   }
 
   async function saveBlob(blob, filename, sourceKey) {
     const url = URL.createObjectURL(blob);
     try {
-      const result = await chrome.runtime.sendMessage({ action: "download-file", url, filename: courseDownloadName(filename), sourceKey });
-      if (!result?.ok) throw new Error(result?.error || "Download failed");
-      return result;
+      return await downloadServiceMessage({ action: "download-file", url, filename: courseDownloadName(filename), sourceKey });
     } finally {
       URL.revokeObjectURL(url);
     }
@@ -789,11 +796,20 @@ async function downloadAllLectureNotes() {
 
   async function saveUrlAsFile(url, filename) {
     const sourceKey = "url:" + url;
-    const existing = await checkExisting(filename, sourceKey);
-    if (existing.skipped) return existing;
     const resp = await fetch(url, { credentials: "omit" });
     if (!resp.ok) throw new Error("HTTP " + resp.status);
-    return await saveBlob(await resp.blob(), filename, sourceKey);
+    const blob = await resp.blob();
+    if (!blob.size) throw new Error("Downloaded file is empty");
+    const courseCode = (getCourseInfo().courseName || "").match(/\bBCL\d{4}\b/i)?.[0];
+    if (courseCode) {
+      const digest = await crypto.subtle.digest('SHA-256', await blob.arrayBuffer());
+      const hash = Array.from(new Uint8Array(digest), b => b.toString(16).padStart(2, '0')).join('');
+      const match = await downloadServiceMessage({ action: 'check-course-file', courseCode, size: blob.size, hash });
+      if (match.matched) return { ok: true, skipped: true, inCourseFolder: true };
+    }
+    const existing = await checkExisting(filename, sourceKey);
+    if (existing.skipped) return existing;
+    return await saveBlob(blob, filename, sourceKey);
   }
 
   // Save every image embedded in a PAGE item's HTML.
@@ -941,6 +957,7 @@ async function downloadAllLectureNotes() {
           if (!entry.fileUrl) throw new Error("File URL missing");
           const download = await saveUrlAsFile(entry.fileUrl, entry.filename);
           entry.skipped = download.skipped;
+          entry.inCourseFolder = !!download.inCourseFolder;
           entry.downloaded = true;
         } else {
           entry.content = full;
@@ -961,9 +978,15 @@ async function downloadAllLectureNotes() {
     };
     const sourceKey = "export:" + await contentKey(JSON.stringify(snapshot));
     const filename = sanitizeFileName(result.course.courseName) + " - materials.json";
-    const existing = await checkExisting(filename, sourceKey);
-    result.exportSkipped = existing.skipped;
-    if (!existing.skipped) await saveBlob(new Blob([JSON.stringify(result, null, 2)], { type: "application/json" }), filename, sourceKey);
+    try {
+      const existing = await checkExisting(filename, sourceKey);
+      result.exportSkipped = existing.skipped;
+      if (!existing.skipped) await saveBlob(new Blob([JSON.stringify(result, null, 2)], { type: "application/json" }), filename, sourceKey);
+    } catch (error) {
+      // Keep the collected entries available to the popup's manual export.
+      result.status = "partial";
+      result.exportError = error.message;
+    }
     return result;
   }
 

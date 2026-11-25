@@ -12,8 +12,10 @@ import time
 import argparse
 import requests
 from datetime import datetime
+from pathlib import Path
 
 MANIFEST_FILENAME = ".lms_manifest.json"
+PROJECT_ROOT = Path(__file__).resolve().parents[4]
 
 CATEGORIES = {
     "tutorial": "Tutorials",
@@ -81,7 +83,8 @@ def sync_materials(input_json, target_dir, dry_run=False, force=False):
     with open(input_json, "r", encoding="utf-8") as f:
         courses = json.load(f)
 
-    os.makedirs(target_dir, exist_ok=True)
+    if not dry_run:
+        os.makedirs(target_dir, exist_ok=True)
     manifest_path = os.path.join(target_dir, MANIFEST_FILENAME)
     manifest = load_manifest(manifest_path)
 
@@ -97,7 +100,8 @@ def sync_materials(input_json, target_dir, dry_run=False, force=False):
         name = course.get("name", "Course")
         course_folder_name = f"{code} - {name}"
         course_path = os.path.join(target_dir, course_folder_name)
-        os.makedirs(course_path, exist_ok=True)
+        if not dry_run:
+            os.makedirs(course_path, exist_ok=True)
 
         files = course.get("files", [])
         print(f"\n=======================================================")
@@ -193,16 +197,17 @@ def sync_materials(input_json, target_dir, dry_run=False, force=False):
                         pass
                 stats["failed"] += 1
 
-    save_manifest(manifest_path, manifest)
+    if not dry_run:
+        save_manifest(manifest_path, manifest)
     print("\n-------------------------------------------------------")
     print(f"Sync Complete: {stats['downloaded']} downloaded, {stats['skipped']} skipped (no overlap), {stats['failed']} failed (Total: {stats['total']})")
-    print(f"Manifest updated at: {manifest_path}")
+    print(f"{'Manifest unchanged (dry run)' if dry_run else 'Manifest updated at: ' + manifest_path}")
     print("-------------------------------------------------------")
 
 def main():
     parser = argparse.ArgumentParser(description="SEGi Camu LMS Material Sync with De-duplication")
-    parser.add_argument("--input", default="/Users/jingyichan/CodingArea/assignment/lms_materials_all.json", help="Path to extracted LMS materials JSON")
-    parser.add_argument("--target-dir", default="/Users/jingyichan/CodingArea/assignment/current_sem", help="Target root directory (current_sem)")
+    parser.add_argument("--input", default=str(PROJECT_ROOT / "lms_materials_all.json"), help="Path to extracted LMS materials JSON")
+    parser.add_argument("--target-dir", default=str(PROJECT_ROOT / "current_sem"), help="Target root directory (current_sem)")
     parser.add_argument("--dry-run", action="store_true", help="Simulate sync without downloading")
     parser.add_argument("--force", action="store_true", help="Force re-download of existing files")
 
