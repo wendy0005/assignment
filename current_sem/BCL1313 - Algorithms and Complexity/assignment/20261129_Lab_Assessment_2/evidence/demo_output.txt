@@ -1,0 +1,82 @@
+=== TASK 1: INITIAL BAKERY INVENTORY DATASET (10 ITEMS) ===
+Original Unsorted Bakery Inventory:
+----------------------------------------------------------------
+Prod ID   Product Name            Category        Price (RM)
+----------------------------------------------------------------
+BK001     Butter Croissant        Pastry                4.50
+BK002     Chocolate Cake          Cake                 25.00
+BK003     Garlic Bread            Bread                 3.80
+BK004     Red Velvet Cupcake      Cake                  6.50
+BK005     Cheese Tart             Pastry                5.20
+BK006     Whole Wheat Loaf        Bread                 6.00
+BK007     Macaron Box (6 pcs)     Cookies              12.00
+BK008     Blueberry Muffin        Cake                  4.80
+BK009     Banana Bread            Bread                 7.50
+BK010     Oatmeal Cookies         Cookies               8.00
+----------------------------------------------------------------
+
+=== TASK 2A: INSERTION SORT (PRICE ASCENDING) ===
+Sorted by Price (Insertion Sort):
+----------------------------------------------------------------
+Prod ID   Product Name            Category        Price (RM)
+----------------------------------------------------------------
+BK003     Garlic Bread            Bread                 3.80
+BK001     Butter Croissant        Pastry                4.50
+BK008     Blueberry Muffin        Cake                  4.80
+BK005     Cheese Tart             Pastry                5.20
+BK006     Whole Wheat Loaf        Bread                 6.00
+BK004     Red Velvet Cupcake      Cake                  6.50
+BK009     Banana Bread            Bread                 7.50
+BK010     Oatmeal Cookies         Cookies               8.00
+BK007     Macaron Box (6 pcs)     Cookies              12.00
+BK002     Chocolate Cake          Cake                 25.00
+----------------------------------------------------------------
+Metrics (n = 10): 25 comparisons, 35 element movements
+
+=== TASK 2B: MERGE SORT (PRICE ASCENDING) ===
+Sorted by Price (Merge Sort):
+----------------------------------------------------------------
+Prod ID   Product Name            Category        Price (RM)
+----------------------------------------------------------------
+BK003     Garlic Bread            Bread                 3.80
+BK001     Butter Croissant        Pastry                4.50
+BK008     Blueberry Muffin        Cake                  4.80
+BK005     Cheese Tart             Pastry                5.20
+BK006     Whole Wheat Loaf        Bread                 6.00
+BK004     Red Velvet Cupcake      Cake                  6.50
+BK009     Banana Bread            Bread                 7.50
+BK010     Oatmeal Cookies         Cookies               8.00
+BK007     Macaron Box (6 pcs)     Cookies              12.00
+BK002     Chocolate Cake          Cake                 25.00
+----------------------------------------------------------------
+Metrics (n = 10): 23 comparisons, 68 element movements
+
+=== TASK 3: SEARCHING ALGORITHMS (LINEAR & BINARY SEARCH) ===
+[Linear Search by Product ID] Query: "BK007"
+Status: FOUND at unsorted index 6 (7 comparisons)
+  Product ID   : BK007
+  Product Name : Macaron Box (6 pcs)
+  Category     : Cookies
+  Price (RM)   : 12.00
+
+[Linear Search by Product Name] Query: "Matcha Brownie"
+Status: Product "Matcha Brownie" not found in inventory (10 comparisons)
+
+[Binary Search by Price on Sorted Inventory] Query: RM 6.50
+Status: FOUND at sorted index 5 (3 comparisons)
+  Product ID   : BK004
+  Product Name : Red Velvet Cupcake
+  Category     : Cake
+  Price (RM)   : 6.50
+
+[Binary Search by Price on Sorted Inventory] Query: RM 9.90
+Status: No product priced at RM 9.90 found in inventory (3 comparisons)
+
+=== TASK 4: SCALABILITY BENCHMARK (n = 10 vs n = 1,000) ===
+Sorting Comparison (Price Ascending):
+  n =    10 | Insertion Sort:       25 comparisons | Merge Sort:     23 comparisons
+  n = 1,000 | Insertion Sort:   250190 comparisons | Merge Sort:   8739 comparisons
+
+Worst-Case Search Comparison (Absent Target):
+  n =    10 | Linear Search:        10 comparisons | Binary Search:   3 comparisons
+  n = 1,000 | Linear Search:      1000 comparisons | Binary Search:  10 comparisons
