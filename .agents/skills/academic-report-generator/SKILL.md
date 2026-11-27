@@ -45,7 +45,11 @@ This skill provides a rigorous workflow for transforming assignment briefs or re
     - **Latex Support:** Use LaTeX syntax ($ ... $) only for actual complex mathematical formulas, equations, and calculations. **Do NOT use raw dollar signs for simple non-mathematical terms or ratios (e.g., database cardinalities like M:N, 1:M, or 1:1)**; use regular bold text or code blocks instead.
     - **Step-by-Step Working:** Show every logical step for any calculations.
     - **Mermaid Diagrams:** Integrate Mermaid.js for flowcharts, architecture diagrams, and logic circuits.
-    - **Academic Styling:** Use "Times New Roman" or "Arial", 12pt/11pt font, and 1.5 line spacing as the standard for academic reports.
+    - **Default Report Style**. Use the [StudyPocket proposal](<../../../current_sem/BCL2344 - Web and Mobile Development/assignment/20261021_StudyPocket_Proposal/ChanJingYi_SUOL2500321_Proposal.pdf>) as the visual reference for academic PDFs in this workspace. Follow any formatting requirements in the assessment brief or the user's instructions first.
+      - Set the page to A4 portrait with 19 mm top and 20 mm side and bottom margins. Use a white background, 11 pt Arial body text in `#202A34`, and 1.5 line spacing.
+      - Use navy `#173D57` for headings, links, and primary accents. Set section titles in 17 pt bold with a thin `#B8C7D3` rule and subsection titles in 12.5 pt bold. Use pale blue `#F7F9FC` and blue-grey `#BBC7D2` for figure surfaces and outlines where appropriate.
+      - On the cover, left-align the 34 pt bold title and 18 pt regular subtitle. Place the assessment label, course details, and student details below in distinct blocks. Use a slim header with the course on the left and assessment name on the right. Put the student name and ID at the left of the footer and the current and total page numbers at the right.
+      - Keep figures and labels readable at print size. Use fewer figures per page or split a dense diagram across sections if needed. Check the rendered PDF against the reference for typography, colour, cover layout, and page furniture.
 
 5. **Professional Rendering Workflow:**
     - **Step 1 (Markdown Source):** Create a clean, well-structured `.md` file containing all text, LaTeX formulas, and Mermaid diagrams. Retain it as the editable working source; include it in an assessed submission only if the brief or user requests Markdown.
